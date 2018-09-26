@@ -12,6 +12,16 @@
     "no-implicit-dependencies": [
       true,
       "dev"
+    ],
+    "no-submodule-imports": [
+      true,
+      "@storybook"
+    ],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore"
     ]
   }
 }
