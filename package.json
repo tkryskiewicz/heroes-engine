@@ -2,5 +2,8 @@
   "private": true,
   "name": "heroes-engine",
   "description": "A Heroes of Might and Magic engine written in TypeScript.",
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "devDependencies": {
+    "typescript": "^3.0.3"
+  }
 }
