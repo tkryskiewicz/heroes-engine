@@ -1,0 +1,1 @@
+export { ResourceIcon } from "./ResourceIcon";

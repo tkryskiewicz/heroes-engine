@@ -1,4 +1,4 @@
-import { Alignment, HeroClass, heroes } from "heroes-homm1";
+import { Alignment, HeroClass, heroes, Resource } from "heroes-homm1";
 
 interface SelectOptions {
   [s: string]: string;
@@ -6,6 +6,12 @@ interface SelectOptions {
 
 export const alignmentOptions = Object.keys(Alignment).reduce<SelectOptions>((p, c: any) => {
   p[c] = Alignment[c];
+
+  return p;
+}, {});
+
+export const resourceOptions = Object.keys(Resource).reduce<SelectOptions>((p, c: any) => {
+  p[c] = Resource[c];
 
   return p;
 }, {});
