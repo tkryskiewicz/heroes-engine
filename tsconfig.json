@@ -1,11 +1,17 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es6",
     "lib": [
       "es6"
     ],
     "module": "commonjs",
     "moduleResolution": "node",
+    "paths": {
+      "heroes-*": [
+        "packages/*/src"
+      ]
+    },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noUnusedLocals": true,

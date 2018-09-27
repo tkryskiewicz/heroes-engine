@@ -3,6 +3,8 @@ import { select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
+import { HeroId } from "heroes-homm1";
+
 import { heroOptions } from "../stories";
 import { HeroPortrait, HeroPortraitProps } from "./HeroPortrait";
 
@@ -15,7 +17,7 @@ storiesOf(HeroPortrait.name, module)
   .add("default", () => (
     <HeroPortrait
       size={select("Size", sizeOptions, "large")}
-      hero={select("Hero", heroOptions, "agar")}
+      hero={select("Hero", heroOptions, HeroId.LordKilburn)}
       onClick={action("Click")}
     />
   ));

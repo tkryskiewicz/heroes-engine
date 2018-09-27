@@ -1,0 +1,10 @@
+{
+  "name": "heroes-homm1-react",
+  "version": "0.0.0",
+  "devDependencies": {
+    "typescript": "^3.1.1"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}
