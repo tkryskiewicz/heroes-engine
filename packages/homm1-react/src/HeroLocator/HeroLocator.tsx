@@ -71,7 +71,7 @@ export class HeroLocator extends React.Component<HeroLocatorProps> {
 
     return (
       <div style={style}>
-        // TODO: add background
+        {/* // TODO: add background */}
         <img
           style={mobilityStyle}
           src={`assets/ui/locators/mobility/${mobility}.png`}
