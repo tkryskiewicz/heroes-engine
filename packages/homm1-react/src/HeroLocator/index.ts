@@ -1,0 +1,1 @@
+export { HeroLocator } from "./HeroLocator";
