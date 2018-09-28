@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { HeroPortrait } from "../HeroPortrait";
 import { Locator } from "../Locator";
 
 export interface HeroLocatorProps {
@@ -54,9 +53,8 @@ export class HeroLocator extends React.Component<HeroLocatorProps> {
           src={`assets/ui/locators/mobility/${mobility}.png`}
         />
         <div style={portraitStyle} >
-          <HeroPortrait
-            size="small"
-            hero={hero}
+          <img
+            src={`assets/heroes/${hero}/locator.jpg`}
           />
         </div>
       </div>

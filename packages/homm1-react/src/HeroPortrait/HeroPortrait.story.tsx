@@ -6,18 +6,17 @@ import * as React from "react";
 import { HeroId } from "heroes-homm1";
 
 import { heroOptions } from "../stories";
-import { HeroPortrait, HeroPortraitProps } from "./HeroPortrait";
-
-const sizeOptions: { [s: string]: HeroPortraitProps["size"] } = {
-  Large: "large",
-  Small: "small",
-};
+import { HeroPortrait } from "./HeroPortrait";
 
 storiesOf(HeroPortrait.name, module)
   .add("default", () => (
     <HeroPortrait
-      size={select("Size", sizeOptions, "large")}
       hero={select("Hero", heroOptions, HeroId.LordKilburn)}
+      onClick={action("Click")}
+    />
+  ))
+  .add("empty", () => (
+    <HeroPortrait
       onClick={action("Click")}
     />
   ));

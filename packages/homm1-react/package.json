@@ -30,6 +30,6 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server",
-    "storybook": "start-storybook -c storybook -s ."
+    "storybook": "start-storybook -c storybook -p 9001 -s ."
   }
 }
