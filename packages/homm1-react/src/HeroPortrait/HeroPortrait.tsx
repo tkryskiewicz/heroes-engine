@@ -6,6 +6,7 @@ export interface HeroPortraitProps {
   onClick?: (hero: string) => void;
 }
 
+// TODO: make small portrait a locator image? would allow empty large hero portrait
 export class HeroPortrait extends React.Component<HeroPortraitProps> {
   public render() {
     return (

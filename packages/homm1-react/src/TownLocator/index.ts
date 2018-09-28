@@ -1,0 +1,1 @@
+export { TownLocator } from "./TownLocator";

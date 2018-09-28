@@ -1,23 +1,16 @@
 import * as React from "react";
 
-import { HeroPortrait } from "../HeroPortrait";
-
-export interface HeroLocatorProps {
+export interface TownLocatorProps {
   index: number;
-  hero?: {
-    id: string;
-    mobility: number;
-  };
-  mobility?: number;
+  town?: string;
+  isCastleBuilt?: boolean;
   selected?: boolean;
   onClick?: (index: number) => void;
 }
 
 // TODO: refactor to use a common locator component
-export class HeroLocator extends React.Component<HeroLocatorProps> {
+export class TownLocator extends React.Component<TownLocatorProps> {
   public render() {
-    const { hero } = this.props;
-
     const style: React.CSSProperties = {
       height: 32,
       position: "relative",
@@ -30,7 +23,7 @@ export class HeroLocator extends React.Component<HeroLocatorProps> {
         onClick={this.onClick}
       >
         {this.renderBackground(this.props.index)}
-        {hero && this.renderHero(hero.id, hero.mobility)}
+        {this.props.town && this.renderTown(this.props.town, this.props.isCastleBuilt)}
         {this.props.selected && this.renderSelection()}
       </div>
     );
@@ -51,39 +44,18 @@ export class HeroLocator extends React.Component<HeroLocatorProps> {
     );
   }
 
-  private renderHero(hero: string, mobility: number) {
+  private renderTown(town: string, isCastleBuilt?: boolean) {
     const style: React.CSSProperties = {
-      height: 23,
-      left: 5,
+      left: 1,
       position: "absolute",
-      top: 5,
-      width: 46,
-    };
-
-    const mobilityStyle: React.CSSProperties = {
-      position: "absolute",
-      top: 0,
-    };
-
-    const portraitStyle: React.CSSProperties = {
-      left: 8,
-      position: "absolute",
+      top: 1,
     };
 
     return (
-      <div style={style}>
-        {/* // TODO: add background */}
-        <img
-          style={mobilityStyle}
-          src={`assets/ui/locators/mobility/${mobility}.png`}
-        />
-        <div style={portraitStyle} >
-          <HeroPortrait
-            size="small"
-            hero={hero}
-          />
-        </div>
-      </div>
+      <img
+        style={style}
+        src={`assets/towns/${town}/${isCastleBuilt ? "castle" : "town"}-locator.jpg`}
+      />
     );
   }
 
