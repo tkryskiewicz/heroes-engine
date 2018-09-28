@@ -11,16 +11,9 @@ import { TownLocator } from "./TownLocator";
 storiesOf(TownLocator.name, module)
   .add("default", () => (
     <TownLocator
-      index={0}
+      index={number("Index", 0, { range: true, min: 0, max: TownLimit - 1, step: 1 })}
       town={select("Town", townOptions, TownId.Farm)}
       isCastleBuilt={boolean("Is Castle Built", false)}
-      selected={boolean("Selected", false)}
-      onClick={action("Click")}
-    />
-  ))
-  .add("empty", () => (
-    <TownLocator
-      index={number("Index", 0, { range: true, min: 0, max: TownLimit - 1, step: 1 })}
       selected={boolean("Selected", false)}
       onClick={action("Click")}
     />

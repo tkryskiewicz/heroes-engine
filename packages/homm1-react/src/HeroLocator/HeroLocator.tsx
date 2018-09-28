@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { HeroPortrait } from "../HeroPortrait";
+import { Locator } from "../Locator";
 
 export interface HeroLocatorProps {
   index: number;
@@ -13,41 +14,16 @@ export interface HeroLocatorProps {
   onClick?: (index: number) => void;
 }
 
-// TODO: refactor to use a common locator component
 export class HeroLocator extends React.Component<HeroLocatorProps> {
   public render() {
-    const { hero } = this.props;
-
-    const style: React.CSSProperties = {
-      height: 32,
-      position: "relative",
-      width: 56,
-    };
-
     return (
-      <div
-        style={style}
-        onClick={this.onClick}
+      <Locator
+        index={this.props.index}
+        selected={this.props.selected}
+        onClick={this.props.onClick}
       >
-        {this.renderBackground(this.props.index)}
-        {hero && this.renderHero(hero.id, hero.mobility)}
-        {this.props.selected && this.renderSelection()}
-      </div>
-    );
-  }
-
-  private renderBackground(index: number) {
-    const style: React.CSSProperties = {
-      left: 1,
-      position: "absolute",
-      top: 1,
-    };
-
-    return (
-      <img
-        style={style}
-        src={`assets/ui/locators/background-${index}.jpg`}
-      />
+        {this.props.hero && this.renderHero(this.props.hero.id, this.props.hero.mobility)}
+      </Locator>
     );
   }
 
@@ -55,7 +31,7 @@ export class HeroLocator extends React.Component<HeroLocatorProps> {
     const style: React.CSSProperties = {
       height: 23,
       left: 5,
-      position: "absolute",
+      position: "relative",
       top: 5,
       width: 46,
     };
@@ -85,28 +61,5 @@ export class HeroLocator extends React.Component<HeroLocatorProps> {
         </div>
       </div>
     );
-  }
-
-  private renderSelection() {
-    const style: React.CSSProperties = {
-      left: 0,
-      position: "absolute",
-      top: 0,
-    };
-
-    return (
-      <img
-        style={style}
-        src="assets/ui/locators/selection.png"
-      />
-    );
-  }
-
-  private onClick = () => {
-    if (!this.props.onClick) {
-      return;
-    }
-
-    this.props.onClick(this.props.index);
   }
 }

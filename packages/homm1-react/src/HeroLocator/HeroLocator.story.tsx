@@ -17,17 +17,10 @@ storiesOf(HeroLocator.name, module)
 
     return (
       <HeroLocator
-        index={0}
+        index={number("Index", 0, { range: true, min: 0, max: HeroLimit - 1, step: 1 })}
         hero={hero}
         selected={boolean("Selected", false)}
         onClick={action("Click")}
       />
     );
-  })
-  .add("empty", () => (
-    <HeroLocator
-      index={number("Index", 0, { range: true, min: 0, max: HeroLimit - 1, step: 1 })}
-      selected={boolean("Selected", false)}
-      onClick={action("Click")}
-    />
-  ));
+  });
