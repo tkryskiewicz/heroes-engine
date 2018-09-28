@@ -1,4 +1,4 @@
-import { Alignment, HeroClass, heroes, Resource, TownId } from "heroes-homm1";
+import { Alignment, HeroClass, heroes, Resource, TownId, Skill } from "heroes-homm1";
 
 interface SelectOptions {
   [s: string]: string;
@@ -18,6 +18,13 @@ export const resourceOptions = Object.keys(Resource).reduce<SelectOptions>((p, c
 
 export const heroClassOptions = Object.keys(HeroClass).reduce<SelectOptions>((p, c: any) => {
   p[c] = HeroClass[c];
+
+  return p;
+}, {});
+
+// TODO: names should have spaces
+export const skillOptions = Object.keys(Skill).reduce<SelectOptions>((p, c: any) => {
+  p[c] = Skill[c];
 
   return p;
 }, {});

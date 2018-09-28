@@ -2,6 +2,7 @@ export { Alignment } from "./Alignment";
 export { HeroClass } from "./HeroClass";
 export { HeroInfo, HeroId, heroes } from "./heroes";
 export { Resource } from "./Resource";
+export { Skill } from "./Skill";
 export { TownId } from "./towns";
 
 export const HeroLimit = 8;
