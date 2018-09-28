@@ -2,6 +2,7 @@
   "name": "heroes-homm1-react",
   "version": "0.0.0",
   "dependencies": {
+    "antd": "^3.9.3",
     "moment": "^2.22.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"

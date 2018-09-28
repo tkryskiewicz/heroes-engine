@@ -1,0 +1,1 @@
+export { HeroWindow } from "./HeroWindow";
