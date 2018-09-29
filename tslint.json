@@ -12,6 +12,7 @@
     "no-implicit-dependencies": false,
     "no-submodule-imports": [
       true,
+      "antd",
       "@storybook"
     ],
     "variable-name": [

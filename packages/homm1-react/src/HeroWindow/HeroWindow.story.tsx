@@ -14,6 +14,7 @@ storiesOf(HeroWindow.name, module)
       alignment: select("Alignment", alignmentOptions, Alignment.Red),
       heroClass: select("Hero Class", heroClassOptions, HeroClass.Knight),
       id: select("Hero", heroOptions, HeroId.LordKilburn),
+      skills: {},
     };
 
     return (

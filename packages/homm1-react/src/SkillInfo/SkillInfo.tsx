@@ -1,4 +1,8 @@
+import { Modal } from "antd";
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
+
+import { getSkillDescriptionMessage, getSkillNameMessage } from "./messages";
 
 export interface SkillInfoProps {
   skill: string;
@@ -13,7 +17,10 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
     };
 
     return (
-      <div style={style}>
+      <div
+        style={style}
+        onClick={this.onClick}
+      >
         {this.renderBackground(this.props.skill)}
         {this.renderName(this.props.skill)}
         {this.renderValue(this.props.value)}
@@ -40,7 +47,7 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
 
     return (
       <div style={style}>
-        {skill}
+        <FormattedMessage {...getSkillNameMessage(skill)} />
       </div>
     );
   }
@@ -59,5 +66,13 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
         {value}
       </div>
     );
+  }
+
+  // TODO: extract?
+  private onClick = () => {
+    Modal.info({
+      content: <FormattedMessage {...getSkillDescriptionMessage(this.props.skill)} />,
+      title: <FormattedMessage {...getSkillNameMessage(this.props.skill)} />,
+    });
   }
 }

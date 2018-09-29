@@ -1,4 +1,4 @@
-import { Alignment, HeroClass, heroes, Resource, TownId, Skill } from "heroes-homm1";
+import { Alignment, HeroClass, heroes, Resource, Skill, TownId } from "heroes-homm1";
 
 interface SelectOptions {
   [s: string]: string;
