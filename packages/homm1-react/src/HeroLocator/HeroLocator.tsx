@@ -8,7 +8,6 @@ export interface HeroLocatorProps {
     id: string;
     mobility: number;
   };
-  mobility?: number;
   selected?: boolean;
   onClick?: (index: number) => void;
 }

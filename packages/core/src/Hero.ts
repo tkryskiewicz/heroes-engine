@@ -7,4 +7,5 @@ export interface Hero {
   alignment: string;
   heroClass: string;
   skills: HeroSkills;
+  mobility: number;
 }

@@ -1,0 +1,35 @@
+import { action } from "@storybook/addon-actions";
+import { number } from "@storybook/addon-knobs";
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+
+import { Hero } from "heroes-core";
+import { Alignment, HeroClass, HeroId, HeroLimit, MaxMobility } from "heroes-homm1";
+
+import { HeroLocators } from "./HeroLocators";
+
+const heroes: Hero[] = [
+  {
+    alignment: Alignment.Red,
+    heroClass: HeroClass.Knight,
+    id: HeroId.LordKilburn,
+    mobility: MaxMobility,
+    skills: {},
+  },
+];
+
+storiesOf(HeroLocators.name, module)
+  .add("default", () => (
+    <HeroLocators
+      heroes={heroes}
+      selectedIndex={number("Selected Index", 0, { range: true, min: 0, max: HeroLimit - 1, step: 1 })}
+      onLocatorClick={action("Locator Click")}
+    />
+  ))
+  .add("empty", () => (
+    <HeroLocators
+      heroes={[]}
+      selectedIndex={number("Selected Index", 0, { range: true, min: 0, max: HeroLimit - 1, step: 1 })}
+      onLocatorClick={action("Locator Click")}
+    />
+  ));
