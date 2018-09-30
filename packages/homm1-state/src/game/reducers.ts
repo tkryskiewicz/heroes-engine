@@ -28,6 +28,18 @@ const heroes: Hero[] = [
       [Skill.Knowledge]: 1,
     },
   },
+  {
+    alignment: Alignment.Red,
+    heroClass: HeroClass.Sorceress,
+    id: HeroId.Ariel,
+    mobility: 0,
+    skills: {
+      [Skill.AttackSkill]: 0,
+      [Skill.DefenseSkill]: 0,
+      [Skill.SpellPower]: 3,
+      [Skill.Knowledge]: 2,
+    },
+  },
 ];
 
 const towns: Town[] = [

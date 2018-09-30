@@ -1,6 +1,7 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
+import { AdventureButtons } from "./AdventureButtons";
 import { HeroLocators } from "./HeroLocators";
 import { TownLocators } from "./TownLocators";
 
@@ -22,6 +23,7 @@ export class App extends React.Component {
             <TownLocators />
           </Col>
         </Row>
+        <AdventureButtons />
       </>
     );
   }

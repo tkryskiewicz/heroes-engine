@@ -59,6 +59,7 @@ export class PuzzleWindow extends React.Component<PuzzleWindowProps> {
     );
   }
 
+  // TODO: find better name than legend
   private renderLegend() {
     const style: React.CSSProperties = {
       height: 144,

@@ -9,3 +9,10 @@ export interface Hero {
   skills: HeroSkills;
   mobility: number;
 }
+
+export const getNextHeroIndex = (heroes: Hero[], selectedIndex?: number) => {
+  // TODO: take mobility into account
+  const index = (selectedIndex !== undefined ? selectedIndex + 1 : 0) % heroes.length;
+
+  return index !== selectedIndex ? index : undefined;
+};

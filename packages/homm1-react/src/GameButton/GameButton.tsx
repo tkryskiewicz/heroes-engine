@@ -1,6 +1,16 @@
 import * as React from "react";
 
-export type GameButtonType = "exit";
+type AdventureButtonType =
+  "next-hero" |
+  "move" |
+  "kingdom-overview" |
+  "end-turn" |
+  "adventure-options" |
+  "game-options";
+
+export type GameButtonType =
+  AdventureButtonType |
+  "exit";
 
 export interface GameButtonProps {
   type: GameButtonType;
