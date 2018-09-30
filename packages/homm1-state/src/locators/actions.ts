@@ -1,3 +1,5 @@
+import { Locator } from "./state";
+
 export enum LocatorsActionType {
   Select = "locators/select",
 }
@@ -7,10 +9,10 @@ export type LocatorsAction =
 
 export interface SelectLocatorAction {
   type: LocatorsActionType.Select;
-  index: number;
+  locator: Locator;
 }
 
-export const selectLocator = (index: number): SelectLocatorAction => ({
-  index,
+export const selectLocator = (locator: Locator): SelectLocatorAction => ({
+  locator,
   type: LocatorsActionType.Select,
 });

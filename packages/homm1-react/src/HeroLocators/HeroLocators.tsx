@@ -11,6 +11,7 @@ export interface HeroLocatorsProps {
   onSelectLocator?: (index: number) => void;
 }
 
+// TODO: unify hero and town locators?
 export class HeroLocators extends React.Component<HeroLocatorsProps> {
   public render() {
     return [...new Array(HeroLimit).keys()].map((i) => {

@@ -8,7 +8,7 @@ export const locatorsReducer = (state: LocatorsState = initialState, action: Loc
     case LocatorsActionType.Select:
       return {
         ...state,
-        selectedIndex: action.index,
+        selectedLocator: action.locator,
       };
     default:
       return state;
