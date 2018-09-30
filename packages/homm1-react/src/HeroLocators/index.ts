@@ -1,1 +1,1 @@
-export { HeroLocators } from "./HeroLocators";
+export { HeroLocatorsConnected as HeroLocators } from "./HeroLocatorsConnected";

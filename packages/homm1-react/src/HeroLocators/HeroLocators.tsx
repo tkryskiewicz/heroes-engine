@@ -8,7 +8,7 @@ import { HeroLocator } from "../HeroLocator";
 export interface HeroLocatorsProps {
   heroes: Hero[];
   selectedIndex?: number;
-  onLocatorClick?: (index: number) => void;
+  onSelectLocator?: (index: number) => void;
 }
 
 export class HeroLocators extends React.Component<HeroLocatorsProps> {
@@ -22,9 +22,19 @@ export class HeroLocators extends React.Component<HeroLocatorsProps> {
           index={i}
           hero={hero ? { id: hero.id, mobility: hero.mobility } : undefined}
           selected={i === this.props.selectedIndex}
-          onClick={this.props.onLocatorClick}
+          onClick={this.onLocatorClick}
         />
       );
     });
+  }
+
+  private onLocatorClick = (index: number) => {
+    if (!this.props.onSelectLocator) {
+      return;
+    }
+
+    if (index !== this.props.selectedIndex && this.props.heroes[index]) {
+      this.props.onSelectLocator(index);
+    }
   }
 }
