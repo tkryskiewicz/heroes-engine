@@ -1,4 +1,4 @@
-import { Alignment, creatures, HeroClass, heroes, Resource, Skill, TownId } from "heroes-homm1";
+import { Alignment, creatures, HeroClass, heroes, MovementSpeed, Resource, Skill, TownId } from "heroes-homm1";
 
 interface SelectOptions {
   [s: string]: string;
@@ -43,6 +43,12 @@ export const townOptions = Object.keys(TownId).reduce<SelectOptions>((p, c: any)
 
 export const creatureOptions = creatures.reduce<SelectOptions>((p, c) => {
   p[c.id] = c.id;
+
+  return p;
+}, {});
+
+export const movementSpeedOptions = Object.keys(MovementSpeed).reduce<SelectOptions>((p, c: any) => {
+  p[c] = MovementSpeed[c];
 
   return p;
 }, {});

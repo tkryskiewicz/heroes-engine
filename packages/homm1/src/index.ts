@@ -2,8 +2,10 @@ export { Alignment } from "./Alignment";
 export { CreatureId, creatures } from "./creatures";
 export { HeroClass } from "./HeroClass";
 export { HeroInfo, HeroId, heroes } from "./heroes";
+export { MovementSpeed, changeMovementSpeed } from "./MovementSpeed";
 export { Resource } from "./Resource";
 export { Skill } from "./Skill";
+export { SoundVolume, changeVolume } from "./SoundVolume";
 export { TownId } from "./towns";
 
 export const HeroLimit = 8;
