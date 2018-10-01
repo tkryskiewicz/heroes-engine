@@ -1,7 +1,7 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
-import { getNextHeroIndex, Hero } from "heroes-core";
+import { canSelectNextHero, getNextHeroIndex, Hero } from "heroes-core";
 
 import { GameButton } from "../GameButton";
 
@@ -18,12 +18,15 @@ export interface AdventureButtonsProps {
 
 export class AdventureButtons extends React.Component<AdventureButtonsProps> {
   public render() {
+    const nextHeroEnabled = canSelectNextHero(this.props.heroes);
+
     return (
       <>
         <Row>
           <Col span={8}>
             <GameButton
               type="next-hero"
+              disabled={!nextHeroEnabled}
               onClick={this.onNextHeroClick}
             />
           </Col>

@@ -1,14 +1,32 @@
-import { getNextHeroIndex, Hero } from "./Hero";
+import { canSelectNextHero, getNextHeroIndex, Hero } from "./Hero";
 
-describe("getNextHeroIndex", () => {
-  const getHero = (): Hero => ({
-    alignment: "alignment",
-    heroClass: "heroClass",
-    id: "id",
-    mobility: 0,
-    skills: {},
+const getHero = (mobility: number = 1): Hero => ({
+  alignment: "alignment",
+  heroClass: "heroClass",
+  id: "id",
+  mobility,
+  skills: {},
+});
+
+describe("canSelectNextHero", () => {
+  it("should return false when no heroes", () => {
+    const result = canSelectNextHero([]);
+
+    expect(result).toBe(false);
   });
 
+  it("should return true when there are heroes with mobility", () => {
+    const heroes: Hero[] = [
+      getHero(),
+    ];
+
+    const result = canSelectNextHero(heroes);
+
+    expect(result).toBe(true);
+  });
+});
+
+describe("getNextHeroIndex", () => {
   it("should return nothing when no heroes", () => {
     const result = getNextHeroIndex([]);
 
@@ -55,5 +73,16 @@ describe("getNextHeroIndex", () => {
     const result = getNextHeroIndex(heroes, 0);
 
     expect(result).toBeUndefined();
+  });
+
+  it("should ignore heroes with no mobility", () => {
+    const heroes: Hero[] = [
+      getHero(0),
+      getHero(),
+    ];
+
+    const result = getNextHeroIndex(heroes);
+
+    expect(result).toBe(1);
   });
 });

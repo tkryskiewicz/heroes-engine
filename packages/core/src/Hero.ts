@@ -10,13 +10,19 @@ export interface Hero {
   mobility: number;
 }
 
+export const canSelectNextHero = (heroes: Hero[]): boolean =>
+  heroes.filter((h) => h.mobility).length !== 0;
+
 export const getNextHeroIndex = (heroes: Hero[], selectedIndex?: number): number | undefined => {
-  if (!heroes.length) {
-    return undefined;
+  const startIndex = selectedIndex !== undefined ? selectedIndex + 1 : 0;
+
+  for (let i = 0; i < heroes.length; i++) {
+    const index = (startIndex + i) % heroes.length;
+
+    if (heroes[index].mobility && index !== selectedIndex) {
+      return index;
+    }
   }
 
-  // TODO: take mobility into account
-  const index = (selectedIndex !== undefined ? selectedIndex + 1 : 0) % heroes.length;
-
-  return index !== selectedIndex ? index : undefined;
+  return undefined;
 };
