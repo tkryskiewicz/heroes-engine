@@ -15,14 +15,23 @@ type AdventureButtonType =
   "adventure-options" |
   "game-options";
 
+type AdventureOptionButtonType =
+  "view-world" |
+  "view-puzzle" |
+  "cast-spell" |
+  "dig" |
+  "okay";
+
 export type GameButtonType =
   MainMenuButtonType |
   AdventureButtonType |
+  AdventureOptionButtonType |
   "exit";
 
 export type GameButtonGroup =
   "main-menu" |
-  "adventure";
+  "adventure" |
+  "adventure-options";
 
 // TODO: improve intellisense when using groups
 export interface GameButtonProps {
