@@ -9,9 +9,14 @@ describe("getNextHeroIndex", () => {
     skills: {},
   });
 
+  it("should return nothing when no heroes", () => {
+    const result = getNextHeroIndex([]);
+
+    expect(result).toBeUndefined();
+  });
+
   it("should return first hero index when none selected", () => {
     const heroes: Hero[] = [
-      getHero(),
       getHero(),
     ];
 
@@ -40,5 +45,15 @@ describe("getNextHeroIndex", () => {
     const result = getNextHeroIndex(heroes, 1);
 
     expect(result).toBe(0);
+  });
+
+  it("should return nothing when only hero already selected", () => {
+    const heroes: Hero[] = [
+      getHero(),
+    ];
+
+    const result = getNextHeroIndex(heroes, 0);
+
+    expect(result).toBeUndefined();
   });
 });
