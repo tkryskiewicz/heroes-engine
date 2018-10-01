@@ -7,6 +7,13 @@ type MainMenuButtonType =
   "view-credits" |
   "quit";
 
+type CampaignMenuButtonType =
+  "play-red" |
+  "play-green" |
+  "play-yellow" |
+  "play-blue" |
+  "cancel";
+
 type AdventureButtonType =
   "next-hero" |
   "move" |
@@ -24,12 +31,14 @@ type AdventureOptionButtonType =
 
 export type GameButtonType =
   MainMenuButtonType |
+  CampaignMenuButtonType |
   AdventureButtonType |
   AdventureOptionButtonType |
   "exit";
 
 export type GameButtonGroup =
   "main-menu" |
+  "campaign-menu" |
   "adventure" |
   "adventure-options";
 
