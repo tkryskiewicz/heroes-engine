@@ -25,6 +25,7 @@ export class AdventureButtons extends React.Component<AdventureButtonsProps> {
         <Row>
           <Col span={8}>
             <GameButton
+              group="adventure"
               type="next-hero"
               disabled={!nextHeroEnabled}
               onClick={this.onNextHeroClick}
@@ -32,12 +33,14 @@ export class AdventureButtons extends React.Component<AdventureButtonsProps> {
           </Col>
           <Col span={8}>
             <GameButton
+              group="adventure"
               type="move"
               onClick={this.props.onMoveClick}
             />
           </Col>
           <Col span={8}>
             <GameButton
+              group="adventure"
               type="kingdom-overview"
               onClick={this.props.onKingdomOverviewClick}
             />
@@ -46,18 +49,21 @@ export class AdventureButtons extends React.Component<AdventureButtonsProps> {
         <Row>
           <Col span={8}>
             <GameButton
+              group="adventure"
               type="end-turn"
               onClick={this.props.onEndTurnClick}
             />
           </Col>
           <Col span={8}>
             <GameButton
+              group="adventure"
               type="adventure-options"
               onClick={this.props.onAdventureOptionsClick}
             />
           </Col>
           <Col span={8}>
             <GameButton
+              group="adventure"
               type="game-options"
               onClick={this.props.onGameOptionsClick}
             />

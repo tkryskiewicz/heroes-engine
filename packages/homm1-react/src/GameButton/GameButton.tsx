@@ -1,5 +1,12 @@
 import * as React from "react";
 
+type MainMenuButtonType =
+  "new-game" |
+  "load-game" |
+  "view-high-scores" |
+  "view-credits" |
+  "quit";
+
 type AdventureButtonType =
   "next-hero" |
   "move" |
@@ -9,10 +16,17 @@ type AdventureButtonType =
   "game-options";
 
 export type GameButtonType =
+  MainMenuButtonType |
   AdventureButtonType |
   "exit";
 
+export type GameButtonGroup =
+  "main-menu" |
+  "adventure";
+
+// TODO: improve intellisense when using groups
 export interface GameButtonProps {
+  group?: GameButtonGroup;
   type: GameButtonType;
   disabled?: boolean;
   onClick?: () => void;
@@ -28,7 +42,9 @@ export class GameButton extends React.Component<GameButtonProps, GameButtonState
   };
 
   public render() {
-    const enabled = !this.props.disabled && !this.state.pressed;
+    const { type, group, disabled } = this.props;
+
+    const renderEnabled = !disabled && !this.state.pressed;
 
     // TODO: are those styles needed?
     const style: React.CSSProperties = {
@@ -45,20 +61,21 @@ export class GameButton extends React.Component<GameButtonProps, GameButtonState
         onMouseUp={this.onMouseUp}
         onClick={this.onClick}
       >
-        {enabled ? this.renderEnabled(this.props.type) : this.renderDisabled(this.props.type)}
+        {renderEnabled ? this.renderEnabled(type, group) : this.renderDisabled(type, group)}
       </button>
     );
   }
 
-  private renderEnabled(type: string) {
+  // TODO: simplify
+  private renderEnabled(type: GameButtonType, group?: GameButtonGroup) {
     return (
-      <img src={`assets/buttons/${type}/enabled.png`} />
+      <img src={`assets/buttons/${group ? `${group}/` : ""}${type}/enabled.png`} />
     );
   }
 
-  private renderDisabled(type: string) {
+  private renderDisabled(type: GameButtonType, group?: GameButtonGroup) {
     return (
-      <img src={`assets/buttons/${type}/disabled.png`} />
+      <img src={`assets/buttons/${group ? `${group}/` : ""}${type}/disabled.png`} />
     );
   }
 
