@@ -1,0 +1,1 @@
+export { NewGameMenu } from "./NewGameMenu";
