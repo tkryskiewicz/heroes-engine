@@ -1,5 +1,6 @@
-export { Army } from "./Army";
+export { Army, swapArmyTroops } from "./Army";
 export { Creature } from "./Creature";
-export { Hero, HeroSkills, canSelectNextHero, getNextHeroIndex } from "./Hero";
+export { Game, swapGameHeroTroops } from "./Game";
+export { Hero, HeroSkills, swapHeroTroops, canSelectNextHero, getNextHeroIndex } from "./Hero";
 export { Town } from "./Town";
 export { Troop } from "./Troop";

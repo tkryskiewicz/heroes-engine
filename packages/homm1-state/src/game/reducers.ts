@@ -1,6 +1,7 @@
-import { Hero, Town } from "heroes-core";
+import { Hero, swapGameHeroTroops, Town } from "heroes-core";
 import { Alignment, CreatureId, HeroClass, HeroId, MaxMobility, Skill, TownId } from "heroes-homm1";
 
+import { GameAction, GameActionType } from "./actions";
 import { GameState } from "./state";
 
 const heroes: Hero[] = [
@@ -10,6 +11,10 @@ const heroes: Hero[] = [
       {
         count: 1,
         creature: CreatureId.Peasant,
+      },
+      {
+        count: 1,
+        creature: CreatureId.Archer,
       },
     ],
     heroClass: HeroClass.Knight,
@@ -92,6 +97,13 @@ const initialState: GameState = {
   towns,
 };
 
-export const gameReducer = (state: GameState = initialState): GameState => {
-  return state;
+export const gameReducer = (state: GameState = initialState, action: GameAction): GameState => {
+  switch (action.type) {
+    case GameActionType.SwapHeroTroops:
+      return {
+        ...swapGameHeroTroops(state, action.hero, action.index, action.withIndex),
+      };
+    default:
+      return state;
+  }
 };

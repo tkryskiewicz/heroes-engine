@@ -15,7 +15,7 @@ export interface HeroWindowProps {
   selectedTroopIndex?: number;
   onSelectTroop?: (index: number) => void;
   onSelectedTroopClick?: (index: number) => void;
-  onSwapTroops?: (index: number, withIndex: number) => void;
+  onSwapTroops?: (hero: string, index: number, withIndex: number) => void;
   onExit?: () => void;
 }
 
@@ -42,7 +42,7 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
             selectedTroopIndex={this.props.selectedTroopIndex}
             onSelectTroop={this.props.onSelectTroop}
             onSelectedTroopClick={this.props.onSelectedTroopClick}
-            onSwapTroops={this.props.onSwapTroops}
+            onSwapTroops={this.onSwapTroops}
           />
         </Row>
         <Row>
@@ -73,5 +73,13 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
         />
       </Col>
     ));
+  }
+
+  private onSwapTroops = (index: number, withIndex: number) => {
+    if (!this.props.onSwapTroops) {
+      return;
+    }
+
+    this.props.onSwapTroops(this.props.hero.id, index, withIndex);
   }
 }

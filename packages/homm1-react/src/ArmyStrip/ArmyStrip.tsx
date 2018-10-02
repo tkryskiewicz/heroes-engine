@@ -29,7 +29,7 @@ export class ArmyStrip extends React.Component<ArmyStripProps> {
   private onTroopClick = (index: number) => {
     const { selectedTroopIndex } = this.props;
 
-    if (index !== selectedTroopIndex && this.props.army[index] && this.props.onSelectTroop) {
+    if (selectedTroopIndex === undefined && this.props.army[index] && this.props.onSelectTroop) {
       this.props.onSelectTroop(index);
     } else if (index === selectedTroopIndex && this.props.onSelectedTroopClick) {
       this.props.onSelectedTroopClick(index);
