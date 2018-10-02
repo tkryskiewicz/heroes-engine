@@ -1,0 +1,1 @@
+export { ArmyStrip } from "./ArmyStrip";
