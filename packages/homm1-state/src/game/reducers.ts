@@ -1,12 +1,17 @@
 import { Hero, Town } from "heroes-core";
-import { Alignment, HeroClass, HeroId, MaxMobility, Skill, TownId } from "heroes-homm1";
+import { Alignment, CreatureId, HeroClass, HeroId, MaxMobility, Skill, TownId } from "heroes-homm1";
 
 import { GameState } from "./state";
 
 const heroes: Hero[] = [
   {
     alignment: Alignment.Red,
-    army: [],
+    army: [
+      {
+        count: 1,
+        creature: CreatureId.Peasant,
+      },
+    ],
     heroClass: HeroClass.Knight,
     id: HeroId.LordKilburn,
     mobility: MaxMobility,
@@ -19,7 +24,12 @@ const heroes: Hero[] = [
   },
   {
     alignment: Alignment.Red,
-    army: [],
+    army: [
+      {
+        count: 1,
+        creature: CreatureId.Goblin,
+      },
+    ],
     heroClass: HeroClass.Barbarian,
     id: HeroId.Antoine,
     mobility: MaxMobility,
@@ -32,7 +42,12 @@ const heroes: Hero[] = [
   },
   {
     alignment: Alignment.Red,
-    army: [],
+    army: [
+      {
+        count: 1,
+        creature: CreatureId.Sprite,
+      },
+    ],
     heroClass: HeroClass.Sorceress,
     id: HeroId.Ariel,
     mobility: 0,
@@ -45,7 +60,12 @@ const heroes: Hero[] = [
   },
   {
     alignment: Alignment.Red,
-    army: [],
+    army: [
+      {
+        count: 1,
+        creature: CreatureId.Centaur,
+      },
+    ],
     heroClass: HeroClass.Warlock,
     id: HeroId.Agar,
     mobility: 10,

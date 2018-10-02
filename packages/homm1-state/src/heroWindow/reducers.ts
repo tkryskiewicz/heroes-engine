@@ -13,9 +13,14 @@ export const heroWindowReducer = (state: HeroWindowState = initialState, action:
         visible: true,
       };
     case HeroWindowActionType.Close:
+      // TODO: is it ok to use initialState???
+      return {
+        ...initialState,
+      };
+    case HeroWindowActionType.SelectTroop:
       return {
         ...state,
-        visible: false,
+        selectedTroopIndex: action.index,
       };
     default:
       return state;

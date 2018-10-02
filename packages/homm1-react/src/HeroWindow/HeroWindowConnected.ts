@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, closeHeroWindow } from "heroes-homm1-state";
+import { AppState, closeHeroWindow, selectHeroWindowTroop } from "heroes-homm1-state";
 
 import { HeroWindow, HeroWindowProps } from "./HeroWindow";
 
@@ -10,7 +10,10 @@ const mapStateToProps = (state: AppState): HeroWindowProps => ({
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, "onExit"> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, "onExit" | "onSelectTroop"> => ({
+  onSelectTroop(index) {
+    dispatch(selectHeroWindowTroop(index));
+  },
   onExit() {
     dispatch(closeHeroWindow());
   },
