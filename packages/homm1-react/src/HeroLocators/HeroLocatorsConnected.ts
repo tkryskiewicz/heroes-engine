@@ -1,11 +1,14 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, Locator, LocatorType, selectLocator } from "heroes-homm1-state";
+import { AppState, Locator, LocatorType, openHeroWindow, selectLocator } from "heroes-homm1-state";
 
 import { HeroLocators, HeroLocatorsProps } from "./HeroLocators";
 
-const mapStateToProps = (state: AppState): HeroLocatorsProps => {
+const mapStateToProps = (state: AppState): Pick<HeroLocatorsProps,
+  "heroes" |
+  "selectedIndex"
+  > => {
   const { selectedLocator } = state.locators;
 
   return {
@@ -14,15 +17,21 @@ const mapStateToProps = (state: AppState): HeroLocatorsProps => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroLocatorsProps, "onSelectLocator"> => ({
-  onSelectLocator(index) {
-    const locator: Locator = {
-      index,
-      type: LocatorType.Hero,
-    };
+const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroLocatorsProps,
+  "onSelectLocator" |
+  "onSelectedLocatorClick"
+  > => ({
+    onSelectLocator(index) {
+      const locator: Locator = {
+        index,
+        type: LocatorType.Hero,
+      };
 
-    dispatch(selectLocator(locator));
-  },
-});
+      dispatch(selectLocator(locator));
+    },
+    onSelectedLocatorClick() {
+      dispatch(openHeroWindow());
+    },
+  });
 
 export const HeroLocatorsConnected = connect(mapStateToProps, mapDispatchToProps)(HeroLocators);

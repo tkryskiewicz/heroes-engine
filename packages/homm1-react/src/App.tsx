@@ -1,9 +1,6 @@
-import { Col, Row } from "antd";
 import * as React from "react";
 
-import { AdventureButtons } from "./AdventureButtons";
-import { HeroLocators } from "./HeroLocators";
-import { TownLocators } from "./TownLocators";
+import { AdventureScreen } from "./AdventureScreen";
 
 export class App extends React.Component {
   public render() {
@@ -15,15 +12,7 @@ export class App extends React.Component {
         <p>
           A Heroes of Might and Magic engine written in TypeScript.
         </p>
-        <Row>
-          <Col span={2}>
-            <HeroLocators />
-          </Col>
-          <Col span={2}>
-            <TownLocators />
-          </Col>
-        </Row>
-        <AdventureButtons />
+        <AdventureScreen />
       </>
     );
   }

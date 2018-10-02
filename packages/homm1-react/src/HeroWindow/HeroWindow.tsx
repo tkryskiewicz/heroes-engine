@@ -6,6 +6,7 @@ import { Skill } from "heroes-homm1";
 
 import { ArmyStrip } from "../ArmyStrip";
 import { Crest } from "../Crest";
+import { GameButton } from "../GameButton";
 import { HeroPortrait } from "../HeroPortrait";
 import { SkillInfo } from "../SkillInfo";
 
@@ -15,6 +16,7 @@ export interface HeroWindowProps {
   onSelectTroop?: (index: number) => void;
   onSelectedTroopClick?: (index: number) => void;
   onSwapTroops?: (index: number, withIndex: number) => void;
+  onExit?: () => void;
 }
 
 export class HeroWindow extends React.Component<HeroWindowProps> {
@@ -42,6 +44,17 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
             onSelectedTroopClick={this.props.onSelectedTroopClick}
             onSwapTroops={this.props.onSwapTroops}
           />
+        </Row>
+        <Row>
+          <Col span={1} />
+          <Col span={22} />
+          <Col span={1}>
+            <GameButton
+              group="hero-window"
+              type="exit"
+              onClick={this.props.onExit}
+            />
+          </Col>
         </Row>
       </div>
     );

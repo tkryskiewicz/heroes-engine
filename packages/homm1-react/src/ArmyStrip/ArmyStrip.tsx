@@ -17,6 +17,7 @@ export class ArmyStrip extends React.Component<ArmyStripProps> {
   public render() {
     return [...new Array(ArmySize).keys()].map((i) => (
       <TroopSlot
+        key={i}
         index={i}
         troop={this.props.army[i]}
         selected={i === this.props.selectedTroopIndex}
