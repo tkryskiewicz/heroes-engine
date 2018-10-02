@@ -1,3 +1,5 @@
+import { Army } from "./Army";
+
 export interface HeroSkills {
   [skill: string]: number;
 }
@@ -8,6 +10,7 @@ export interface Hero {
   heroClass: string;
   skills: HeroSkills;
   mobility: number;
+  army: Army;
 }
 
 export const canSelectNextHero = (heroes: Hero[]): boolean =>

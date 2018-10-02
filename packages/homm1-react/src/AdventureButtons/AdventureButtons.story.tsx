@@ -11,6 +11,7 @@ import { AdventureButtons } from "./AdventureButtons";
 const heroes: Hero[] = [
   {
     alignment: Alignment.Red,
+    army: [],
     heroClass: HeroClass.Knight,
     id: HeroId.LordKilburn,
     mobility: MaxMobility,
@@ -18,6 +19,7 @@ const heroes: Hero[] = [
   },
   {
     alignment: Alignment.Red,
+    army: [],
     heroClass: HeroClass.Barbarian,
     id: HeroId.Antoine,
     mobility: MaxMobility,
@@ -25,6 +27,7 @@ const heroes: Hero[] = [
   },
   {
     alignment: Alignment.Red,
+    army: [],
     heroClass: HeroClass.Sorceress,
     id: HeroId.Ariel,
     mobility: 0,

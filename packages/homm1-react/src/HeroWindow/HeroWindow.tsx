@@ -4,12 +4,17 @@ import * as React from "react";
 import { Hero, HeroSkills } from "heroes-core";
 import { Skill } from "heroes-homm1";
 
+import { ArmyStrip } from "../ArmyStrip";
 import { Crest } from "../Crest";
 import { HeroPortrait } from "../HeroPortrait";
 import { SkillInfo } from "../SkillInfo";
 
 export interface HeroWindowProps {
   hero: Hero;
+  selectedTroopIndex?: number;
+  onSelectTroop?: (index: number) => void;
+  onSelectedTroopClick?: (index: number) => void;
+  onSwapTroops?: (index: number, withIndex: number) => void;
 }
 
 export class HeroWindow extends React.Component<HeroWindowProps> {
@@ -29,6 +34,13 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
             size="large"
             alignment={this.props.hero.alignment}
             heroClass={this.props.hero.heroClass}
+          />
+          <ArmyStrip
+            army={this.props.hero.army}
+            selectedTroopIndex={this.props.selectedTroopIndex}
+            onSelectTroop={this.props.onSelectTroop}
+            onSelectedTroopClick={this.props.onSelectedTroopClick}
+            onSwapTroops={this.props.onSwapTroops}
           />
         </Row>
       </div>

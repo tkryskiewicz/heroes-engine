@@ -11,6 +11,7 @@ import { HeroLocators } from "./HeroLocators";
 const heroes: Hero[] = [
   {
     alignment: Alignment.Red,
+    army: [],
     heroClass: HeroClass.Knight,
     id: HeroId.LordKilburn,
     mobility: MaxMobility,

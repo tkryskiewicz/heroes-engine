@@ -9,6 +9,8 @@ export interface ArmyStripProps {
   army: Army;
   selectedTroopIndex?: number;
   onSelectTroop?: (index: number) => void;
+  onSelectedTroopClick?: (index: number) => void;
+  onSwapTroops?: (index: number, withIndex: number) => void;
 }
 
 export class ArmyStrip extends React.Component<ArmyStripProps> {
@@ -24,12 +26,14 @@ export class ArmyStrip extends React.Component<ArmyStripProps> {
   }
 
   private onTroopClick = (index: number) => {
-    if (!this.props.onSelectTroop) {
-      return;
-    }
+    const { selectedTroopIndex } = this.props;
 
-    if (index !== this.props.selectedTroopIndex && this.props.army[index]) {
+    if (index !== selectedTroopIndex && this.props.army[index] && this.props.onSelectTroop) {
       this.props.onSelectTroop(index);
+    } else if (index === selectedTroopIndex && this.props.onSelectedTroopClick) {
+      this.props.onSelectedTroopClick(index);
+    } else if (selectedTroopIndex !== undefined && index !== selectedTroopIndex && this.props.onSwapTroops) {
+      this.props.onSwapTroops(selectedTroopIndex, index);
     }
   }
 }

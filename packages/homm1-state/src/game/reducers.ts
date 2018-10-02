@@ -6,6 +6,7 @@ import { GameState } from "./state";
 const heroes: Hero[] = [
   {
     alignment: Alignment.Red,
+    army: [],
     heroClass: HeroClass.Knight,
     id: HeroId.LordKilburn,
     mobility: MaxMobility,
@@ -18,6 +19,7 @@ const heroes: Hero[] = [
   },
   {
     alignment: Alignment.Red,
+    army: [],
     heroClass: HeroClass.Barbarian,
     id: HeroId.Antoine,
     mobility: MaxMobility,
@@ -30,6 +32,7 @@ const heroes: Hero[] = [
   },
   {
     alignment: Alignment.Red,
+    army: [],
     heroClass: HeroClass.Sorceress,
     id: HeroId.Ariel,
     mobility: 0,
@@ -38,6 +41,19 @@ const heroes: Hero[] = [
       [Skill.DefenseSkill]: 0,
       [Skill.SpellPower]: 3,
       [Skill.Knowledge]: 2,
+    },
+  },
+  {
+    alignment: Alignment.Red,
+    army: [],
+    heroClass: HeroClass.Warlock,
+    id: HeroId.Agar,
+    mobility: 10,
+    skills: {
+      [Skill.AttackSkill]: 0,
+      [Skill.DefenseSkill]: 0,
+      [Skill.SpellPower]: 2,
+      [Skill.Knowledge]: 3,
     },
   },
 ];
