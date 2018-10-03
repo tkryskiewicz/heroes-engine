@@ -1,5 +1,6 @@
 import { Creature } from "heroes-core";
 
+import { CreatureSpeed } from "./CreatureSpeed";
 import { TownId } from "./towns";
 
 // Farm
@@ -20,7 +21,9 @@ const farmCreatures: Creature[] = [
       min: 1,
     },
     defense: 1,
+    hitPoints: 1,
     id: CreatureId.Peasant,
+    speed: CreatureSpeed.Slow,
     town: TownId.Farm,
   },
   {
@@ -30,7 +33,10 @@ const farmCreatures: Creature[] = [
       min: 3,
     },
     defense: 3,
+    hitPoints: 10,
     id: CreatureId.Archer,
+    shots: 12,
+    speed: CreatureSpeed.Slow,
     town: TownId.Farm,
   },
   {
@@ -40,7 +46,9 @@ const farmCreatures: Creature[] = [
       min: 4,
     },
     defense: 9,
+    hitPoints: 15,
     id: CreatureId.Pikeman,
+    speed: CreatureSpeed.Medium,
     town: TownId.Farm,
   },
   {
@@ -50,7 +58,9 @@ const farmCreatures: Creature[] = [
       min: 6,
     },
     defense: 9,
+    hitPoints: 25,
     id: CreatureId.Swordsman,
+    speed: CreatureSpeed.Medium,
     town: TownId.Farm,
   },
   {
@@ -60,7 +70,9 @@ const farmCreatures: Creature[] = [
       min: 10,
     },
     defense: 9,
+    hitPoints: 30,
     id: CreatureId.Cavalry,
+    speed: CreatureSpeed.Fast,
     town: TownId.Farm,
   },
   {
@@ -70,7 +82,9 @@ const farmCreatures: Creature[] = [
       min: 20,
     },
     defense: 12,
+    hitPoints: 50,
     id: CreatureId.Paladin,
+    speed: CreatureSpeed.Fast,
     town: TownId.Farm,
   },
 ];
@@ -93,7 +107,9 @@ const plainsCreatures: Creature[] = [
       min: 2,
     },
     defense: 1,
+    hitPoints: 3,
     id: CreatureId.Goblin,
+    speed: CreatureSpeed.Medium,
     town: TownId.Plains,
   },
   {
@@ -103,7 +119,10 @@ const plainsCreatures: Creature[] = [
       min: 3,
     },
     defense: 4,
+    hitPoints: 10,
     id: CreatureId.Orc,
+    shots: 8,
+    speed: CreatureSpeed.Slow,
     town: TownId.Plains,
   },
   {
@@ -113,7 +132,9 @@ const plainsCreatures: Creature[] = [
       min: 5,
     },
     defense: 2,
+    hitPoints: 20,
     id: CreatureId.Wolf,
+    speed: CreatureSpeed.Fast,
     town: TownId.Plains,
   },
   {
@@ -123,7 +144,9 @@ const plainsCreatures: Creature[] = [
       min: 6,
     },
     defense: 5,
+    hitPoints: 40,
     id: CreatureId.Ogre,
+    speed: CreatureSpeed.Slow,
     town: TownId.Plains,
   },
   {
@@ -133,7 +156,10 @@ const plainsCreatures: Creature[] = [
       min: 7,
     },
     defense: 5,
+    hitPoints: 40,
     id: CreatureId.Troll,
+    shots: 8,
+    speed: CreatureSpeed.Medium,
     town: TownId.Plains,
   },
   {
@@ -143,7 +169,9 @@ const plainsCreatures: Creature[] = [
       min: 24,
     },
     defense: 9,
+    hitPoints: 80,
     id: CreatureId.Cyclops,
+    speed: CreatureSpeed.Medium,
     town: TownId.Plains,
   },
 ];
@@ -166,7 +194,9 @@ const forestCreatures: Creature[] = [
       min: 2,
     },
     defense: 2,
+    hitPoints: 2,
     id: CreatureId.Sprite,
+    speed: CreatureSpeed.Medium,
     town: TownId.Forest,
   },
   {
@@ -176,7 +206,9 @@ const forestCreatures: Creature[] = [
       min: 4,
     },
     defense: 5,
+    hitPoints: 20,
     id: CreatureId.Dwarf,
+    speed: CreatureSpeed.Slow,
     town: TownId.Forest,
   },
   {
@@ -186,7 +218,10 @@ const forestCreatures: Creature[] = [
       min: 3,
     },
     defense: 3,
+    hitPoints: 15,
     id: CreatureId.Elf,
+    shots: 24,
+    speed: CreatureSpeed.Medium,
     town: TownId.Forest,
   },
   {
@@ -196,7 +231,10 @@ const forestCreatures: Creature[] = [
       min: 8,
     },
     defense: 5,
+    hitPoints: 25,
     id: CreatureId.Druid,
+    shots: 8,
+    speed: CreatureSpeed.Fast,
     town: TownId.Forest,
   },
   {
@@ -206,7 +244,9 @@ const forestCreatures: Creature[] = [
       min: 14,
     },
     defense: 9,
+    hitPoints: 40,
     id: CreatureId.Unicorn,
+    speed: CreatureSpeed.Medium,
     town: TownId.Forest,
   },
   {
@@ -216,7 +256,9 @@ const forestCreatures: Creature[] = [
       min: 40,
     },
     defense: 10,
+    hitPoints: 100,
     id: CreatureId.Phoenix,
+    speed: CreatureSpeed.Fast,
     town: TownId.Forest,
   },
 ];
@@ -239,7 +281,10 @@ const mountainsCreatures: Creature[] = [
       min: 2,
     },
     defense: 1,
+    hitPoints: 5,
     id: CreatureId.Centaur,
+    shots: 8,
+    speed: CreatureSpeed.Medium,
     town: TownId.Mountains,
   },
   {
@@ -249,7 +294,9 @@ const mountainsCreatures: Creature[] = [
       min: 3,
     },
     defense: 7,
+    hitPoints: 15,
     id: CreatureId.Gargoyle,
+    speed: CreatureSpeed.Fast,
     town: TownId.Mountains,
   },
   {
@@ -259,7 +306,9 @@ const mountainsCreatures: Creature[] = [
       min: 5,
     },
     defense: 6,
+    hitPoints: 25,
     id: CreatureId.Griffin,
+    speed: CreatureSpeed.Medium,
     town: TownId.Mountains,
   },
   {
@@ -269,7 +318,9 @@ const mountainsCreatures: Creature[] = [
       min: 10,
     },
     defense: 8,
+    hitPoints: 35,
     id: CreatureId.Minotaur,
+    speed: CreatureSpeed.Medium,
     town: TownId.Mountains,
   },
   {
@@ -279,7 +330,9 @@ const mountainsCreatures: Creature[] = [
       min: 12,
     },
     defense: 9,
+    hitPoints: 75,
     id: CreatureId.Hydra,
+    speed: CreatureSpeed.Slow,
     town: TownId.Mountains,
   },
   {
@@ -289,7 +342,9 @@ const mountainsCreatures: Creature[] = [
       min: 50,
     },
     defense: 12,
+    hitPoints: 200,
     id: CreatureId.Dragon,
+    speed: CreatureSpeed.Medium,
     town: TownId.Mountains,
   },
 ];
@@ -310,7 +365,9 @@ const neutralCreatures: Creature[] = [
       min: 2,
     },
     defense: 1,
+    hitPoints: 4,
     id: CreatureId.Rogue,
+    speed: CreatureSpeed.Fast,
   },
   {
     attack: 7,
@@ -319,7 +376,9 @@ const neutralCreatures: Creature[] = [
       min: 5,
     },
     defense: 6,
+    hitPoints: 20,
     id: CreatureId.Nomad,
+    speed: CreatureSpeed.Fast,
   },
   {
     attack: 10,
@@ -328,7 +387,9 @@ const neutralCreatures: Creature[] = [
       min: 30,
     },
     defense: 9,
+    hitPoints: 50,
     id: CreatureId.Genie,
+    speed: CreatureSpeed.Fast,
   },
   {
     attack: 8,
@@ -337,7 +398,9 @@ const neutralCreatures: Creature[] = [
       min: 6,
     },
     defense: 7,
+    hitPoints: 20,
     id: CreatureId.Ghost,
+    speed: CreatureSpeed.Medium,
   },
 ];
 
@@ -348,3 +411,9 @@ export const creatures = [
   ...mountainsCreatures,
   ...neutralCreatures,
 ];
+
+export const creaturesById = creatures.reduce<{ [id: string]: Creature }>((p, c) => {
+  p[c.id] = c;
+
+  return p;
+}, {});

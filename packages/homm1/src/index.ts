@@ -1,5 +1,6 @@
 export { Alignment } from "./Alignment";
-export { CreatureId, creatures } from "./creatures";
+export { CreatureId, creatures, creaturesById } from "./creatures";
+export { CreatureSpeed } from "./CreatureSpeed";
 export { HeroClass } from "./HeroClass";
 export { HeroInfo, HeroId, heroes } from "./heroes";
 export { MovementSpeed, changeMovementSpeed } from "./MovementSpeed";

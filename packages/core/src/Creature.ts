@@ -1,10 +1,15 @@
+export interface Damage {
+  min: number;
+  max: number;
+}
+
 export interface Creature {
   id: string;
   town?: string;
   attack: number;
   defense: number;
-  damage: {
-    min: number;
-    max: number;
-  };
+  shots?: number;
+  damage: Damage;
+  hitPoints: number;
+  speed: number;
 }

@@ -2,7 +2,7 @@ import { Col, Modal, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Hero, HeroSkills } from "heroes-core";
+import { Hero, HeroSkills, Troop } from "heroes-core";
 import { Skill } from "heroes-homm1";
 
 import { ArmyStrip } from "../ArmyStrip";
@@ -10,6 +10,7 @@ import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
 import { HeroPortrait } from "../HeroPortrait";
 import { SkillInfo } from "../SkillInfo";
+import { TroopWindow } from "../TroopWindow";
 import { messages } from "./messages";
 
 export interface HeroWindowProps {
@@ -18,6 +19,8 @@ export interface HeroWindowProps {
   onSelectTroop?: (index: number) => void;
   onSelectedTroopClick?: (index: number) => void;
   onSwapTroops?: (hero: string, index: number, withIndex: number) => void;
+  troopDetailsVisible?: boolean;
+  onExitTroopDetails?: () => void;
   dismissHeroPromptVisible?: boolean;
   onDismissHeroClick?: () => void;
   onCancelDismissHeroClick?: () => void;
@@ -27,29 +30,34 @@ export interface HeroWindowProps {
 
 export class HeroWindow extends React.Component<HeroWindowProps> {
   public render() {
+    const { hero } = this.props;
+
+    const selectedTroop = this.props.selectedTroopIndex ? hero.army[this.props.selectedTroopIndex] : undefined;
+
     return (
       <div>
         <Row>
           <Col span={4}>
             <HeroPortrait
-              hero={this.props.hero.id}
+              hero={hero.id}
             />
           </Col>
-          {this.renderSkills(this.props.hero.skills)}
+          {this.renderSkills(hero.skills)}
         </Row>
         <Row>
           <Crest
             size="large"
-            alignment={this.props.hero.alignment}
-            heroClass={this.props.hero.heroClass}
+            alignment={hero.alignment}
+            heroClass={hero.heroClass}
           />
           <ArmyStrip
-            army={this.props.hero.army}
+            army={hero.army}
             selectedTroopIndex={this.props.selectedTroopIndex}
             onSelectTroop={this.props.onSelectTroop}
             onSelectedTroopClick={this.props.onSelectedTroopClick}
             onSwapTroops={this.onSwapTroops}
           />
+          {selectedTroop && this.props.troopDetailsVisible && this.renderTroopDetails(selectedTroop)}
         </Row>
         <Row>
           <Col span={1}>
@@ -58,7 +66,7 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
               type="dismiss"
               onClick={this.onDismissHeroClick}
             />
-            {this.props.dismissHeroPromptVisible && this.renderDismissPrompt(this.props.dismissHeroPromptVisible)}
+            {this.props.dismissHeroPromptVisible && this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
           </Col>
           <Col span={22} />
           <Col span={1}>
@@ -96,7 +104,19 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
     this.props.onSwapTroops(this.props.hero.id, index, withIndex);
   }
 
-  private renderDismissPrompt(visible: boolean) {
+  private renderTroopDetails(troop: Troop) {
+    return (
+      <Modal
+        visible={true}
+      >
+        <TroopWindow
+          troop={troop}
+        />
+      </Modal>
+    );
+  }
+
+  private renderDismissHeroPrompt(visible: boolean) {
     return (
       <Modal
         footer={[]}

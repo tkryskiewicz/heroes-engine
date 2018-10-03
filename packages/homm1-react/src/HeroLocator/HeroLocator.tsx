@@ -27,11 +27,16 @@ export class HeroLocator extends React.Component<HeroLocatorProps> {
 
   private renderHero(hero: string, mobility: number) {
     const style: React.CSSProperties = {
-      height: 23,
+      height: 22,
       left: 5,
       position: "relative",
       top: 5,
       width: 46,
+    };
+
+    const backgroundStyle: React.CSSProperties = {
+      position: "absolute",
+      top: 0,
     };
 
     const mobilityStyle: React.CSSProperties = {
@@ -42,11 +47,15 @@ export class HeroLocator extends React.Component<HeroLocatorProps> {
     const portraitStyle: React.CSSProperties = {
       left: 8,
       position: "absolute",
+      top: -1,
     };
 
     return (
       <div style={style}>
-        {/* // TODO: add background */}
+        <img
+          style={backgroundStyle}
+          src="assets/ui/locators/hero-locator-background.png"
+        />
         <img
           style={mobilityStyle}
           src={`assets/ui/locators/mobility/${mobility}.png`}

@@ -1,0 +1,1 @@
+export { TroopWindow } from "./TroopWindow";
