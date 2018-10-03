@@ -1,5 +1,6 @@
-import { Col, Row } from "antd";
+import { Col, Modal, Row } from "antd";
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { Hero, HeroSkills } from "heroes-core";
 import { Skill } from "heroes-homm1";
@@ -9,6 +10,7 @@ import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
 import { HeroPortrait } from "../HeroPortrait";
 import { SkillInfo } from "../SkillInfo";
+import { messages } from "./messages";
 
 export interface HeroWindowProps {
   hero: Hero;
@@ -16,7 +18,11 @@ export interface HeroWindowProps {
   onSelectTroop?: (index: number) => void;
   onSelectedTroopClick?: (index: number) => void;
   onSwapTroops?: (hero: string, index: number, withIndex: number) => void;
-  onExit?: () => void;
+  dismissHeroPromptVisible?: boolean;
+  onDismissHeroClick?: () => void;
+  onCancelDismissHeroClick?: () => void;
+  onDismissHero?: (hero: string) => void;
+  onExitClick?: () => void;
 }
 
 export class HeroWindow extends React.Component<HeroWindowProps> {
@@ -46,13 +52,20 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
           />
         </Row>
         <Row>
-          <Col span={1} />
+          <Col span={1}>
+            <GameButton
+              group="hero-window"
+              type="dismiss"
+              onClick={this.onDismissHeroClick}
+            />
+            {this.props.dismissHeroPromptVisible && this.renderDismissPrompt(this.props.dismissHeroPromptVisible)}
+          </Col>
           <Col span={22} />
           <Col span={1}>
             <GameButton
               group="hero-window"
               type="exit"
-              onClick={this.props.onExit}
+              onClick={this.props.onExitClick}
             />
           </Col>
         </Row>
@@ -81,5 +94,54 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
     }
 
     this.props.onSwapTroops(this.props.hero.id, index, withIndex);
+  }
+
+  private renderDismissPrompt(visible: boolean) {
+    return (
+      <Modal
+        footer={[]}
+        visible={visible}
+      >
+        <Row>
+          <FormattedMessage {...messages.dismissHeroMessage} />
+        </Row>
+        <Row>
+          <Col
+            style={{ textAlign: "left" }}
+            span={12}
+          >
+            <GameButton
+              type="yes"
+              onClick={this.onDismissHero}
+            />
+          </Col>
+          <Col
+            style={{ textAlign: "right" }}
+            span={12}
+          >
+            <GameButton
+              type="no"
+              onClick={this.props.onCancelDismissHeroClick}
+            />
+          </Col>
+        </Row>
+      </Modal>
+    );
+  }
+
+  private onDismissHeroClick = () => {
+    if (!this.props.onDismissHeroClick) {
+      return;
+    }
+
+    this.props.onDismissHeroClick();
+  }
+
+  private onDismissHero = () => {
+    if (!this.props.onDismissHero) {
+      return;
+    }
+
+    this.props.onDismissHero(this.props.hero.id);
   }
 }

@@ -1,5 +1,10 @@
 import * as React from "react";
 
+type SharedButtonType =
+  "yes" |
+  "no" |
+  "exit";
+
 type MainMenuButtonType =
   "new-game" |
   "load-game" |
@@ -48,14 +53,14 @@ type HeroWindowButtonType =
   "exit";
 
 export type GameButtonType =
+  SharedButtonType |
   MainMenuButtonType |
   NewGameMenuButtonType |
   CampaignMenuButtonType |
   AdventureButtonType |
   AdventureOptionButtonType |
   GameOptionButtonType |
-  HeroWindowButtonType |
-  "exit";
+  HeroWindowButtonType;
 
 export type GameButtonGroup =
   "main-menu" |

@@ -10,3 +10,8 @@ export const swapGameHeroTroops = (game: Game, hero: string, index: number, with
   ...game,
   heroes: game.heroes.map((h) => h.id === hero ? swapHeroTroops(h, index, withIndex) : h),
 });
+
+export const dismissGameHero = (game: Game, hero: string): Game => ({
+  ...game,
+  heroes: game.heroes.filter((h) => h.id !== hero),
+});

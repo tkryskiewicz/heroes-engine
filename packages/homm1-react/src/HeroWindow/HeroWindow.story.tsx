@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { number, select } from "@storybook/addon-knobs";
+import { boolean, number, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -32,6 +32,11 @@ storiesOf(HeroWindow.name, module)
         onSelectTroop={action("Select Troop")}
         onSelectedTroopClick={action("Selected Troop Click")}
         onSwapTroops={action("Swap Troops")}
+        dismissHeroPromptVisible={boolean("Dismiss Hero Prompt Visible", false)}
+        onDismissHeroClick={action("Dismiss Hero Click")}
+        onCancelDismissHeroClick={action("Cancel Dismiss Hero Click")}
+        onDismissHero={action("Dismiss Hero")}
+        onExitClick={action("Exit Click")}
       />
     );
   });

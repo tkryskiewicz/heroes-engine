@@ -1,4 +1,4 @@
-import { Hero, swapGameHeroTroops, Town } from "heroes-core";
+import { dismissGameHero, Hero, swapGameHeroTroops, Town } from "heroes-core";
 import { Alignment, CreatureId, HeroClass, HeroId, MaxMobility, Skill, TownId } from "heroes-homm1";
 
 import { GameAction, GameActionType } from "./actions";
@@ -102,6 +102,10 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
     case GameActionType.SwapHeroTroops:
       return {
         ...swapGameHeroTroops(state, action.hero, action.index, action.withIndex),
+      };
+    case GameActionType.DismissHero:
+      return {
+        ...dismissGameHero(state, action.hero),
       };
     default:
       return state;

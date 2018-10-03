@@ -3,6 +3,7 @@ import { HeroWindowAction, HeroWindowActionType } from "./actions";
 import { HeroWindowState } from "./state";
 
 const initialState: HeroWindowState = {
+  dismissHeroPromptVisible: false,
   visible: false,
 };
 
@@ -30,6 +31,20 @@ export const heroWindowReducer = (
       return {
         ...state,
         selectedTroopIndex: undefined,
+      };
+    case HeroWindowActionType.OpenDismissHeroPrompt:
+      return {
+        ...state,
+        dismissHeroPromptVisible: true,
+      };
+    case HeroWindowActionType.CloseDismissHeroPrompt:
+      return {
+        ...state,
+        dismissHeroPromptVisible: false,
+      };
+    case GameActionType.DismissHero:
+      return {
+        ...initialState,
       };
     default:
       return state;
