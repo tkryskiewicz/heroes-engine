@@ -2,6 +2,7 @@ import { canSelectNextHero, getNextHeroIndex, Hero } from "./Hero";
 
 const getHero = (mobility: number = 1): Hero => ({
   alignment: "alignment",
+  army: [],
   heroClass: "heroClass",
   id: "id",
   mobility,
