@@ -1,4 +1,26 @@
-import { defineMessages, FormattedMessage } from "react-intl";
+import { defineMessages, Messages } from "react-intl";
+
+export const gameDifficultyMessages: Messages = defineMessages({
+  easy: {
+    defaultMessage: "Easy",
+    id: "game.gameDifficulty.easy",
+  },
+  expert: {
+    defaultMessage: "Expert",
+    id: "game.gameDifficulty.expert",
+  },
+  hard: {
+    defaultMessage: "Hard",
+    id: "game.gameDifficulty.hard",
+  },
+  normal: {
+    defaultMessage: "Normal",
+    id: "game.gameDifficulty.normal",
+  },
+});
+
+export const getGameDifficultyMessage = (difficulty: string) =>
+  gameDifficultyMessages[difficulty];
 
 export const farmCreatureMessages = defineMessages({
   archer: {
@@ -127,7 +149,7 @@ export const neutralCreatureMessages = defineMessages({
   },
 });
 
-export const creatureMessages: { [creature: string]: FormattedMessage.MessageDescriptor } = {
+export const creatureMessages: Messages = {
   ...farmCreatureMessages,
   ...plainsCreatureMessages,
   ...forestCreatureMessages,

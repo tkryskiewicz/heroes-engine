@@ -8,6 +8,7 @@ type GameOptionSwitchType =
   "view-enemy-movement";
 
 export type GameSwitchType =
+  "checkbox" |
   GameOptionSwitchType;
 
 export interface GameSwitchProps {

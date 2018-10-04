@@ -15,5 +15,5 @@ const MovementSpeeds = [
   MovementSpeed.Jump,
 ];
 
-export const changeMovementSpeed = (value: MovementSpeed) =>
+export const changeMovementSpeed = (value: MovementSpeed): MovementSpeed =>
   MovementSpeeds[(MovementSpeeds.indexOf(value) + 1) % MovementSpeeds.length];

@@ -25,6 +25,10 @@ type CampaignMenuButtonType =
   "play-blue" |
   "cancel";
 
+type NewGameWindowButtonType =
+  "okay" |
+  "cancel";
+
 type AdventureButtonType =
   "next-hero" |
   "move" |
@@ -61,6 +65,7 @@ export type GameButtonType =
   MainMenuButtonType |
   NewGameMenuButtonType |
   CampaignMenuButtonType |
+  NewGameWindowButtonType |
   AdventureButtonType |
   AdventureOptionButtonType |
   GameOptionButtonType |
@@ -71,6 +76,7 @@ export type GameButtonGroup =
   "main-menu" |
   "new-game-menu" |
   "campaign-menu" |
+  "new-game-window" |
   "adventure" |
   "adventure-options" |
   "game-options" |

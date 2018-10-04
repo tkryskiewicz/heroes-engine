@@ -1,8 +1,25 @@
-import { Alignment, creatures, HeroClass, heroes, MovementSpeed, Resource, Skill, TownId } from "heroes-homm1";
+import {
+  Alignment,
+  creatures,
+  GameDifficulty,
+  HeroClass,
+  heroes,
+  MovementSpeed,
+  OpponentSetting,
+  Resource,
+  Skill,
+  TownId,
+} from "heroes-homm1";
 
 interface SelectOptions {
   [s: string]: string;
 }
+
+export const gameDifficultyOptions = Object.keys(GameDifficulty).reduce<SelectOptions>((p, c: any) => {
+  p[c] = GameDifficulty[c];
+
+  return p;
+}, {});
 
 export const alignmentOptions = Object.keys(Alignment).reduce<SelectOptions>((p, c: any) => {
   p[c] = Alignment[c];
@@ -49,6 +66,12 @@ export const creatureOptions = creatures.reduce<SelectOptions>((p, c) => {
 
 export const movementSpeedOptions = Object.keys(MovementSpeed).reduce<SelectOptions>((p, c: any) => {
   p[c] = MovementSpeed[c];
+
+  return p;
+}, {});
+
+export const opponentSettingOptions = Object.keys(OpponentSetting).reduce<SelectOptions>((p, c: any) => {
+  p[c] = OpponentSetting[c];
 
   return p;
 }, {});
