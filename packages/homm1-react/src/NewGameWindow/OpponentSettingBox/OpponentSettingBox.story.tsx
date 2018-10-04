@@ -5,10 +5,11 @@ import * as React from "react";
 
 import { MaxPlayers, OpponentSetting } from "heroes-homm1";
 
-import { opponentSettingOptions } from "../stories";
+import { opponentSettingOptions } from "../../stories";
+import { NewGameWindow } from "../NewGameWindow";
 import { OpponentSettingBox } from "./OpponentSettingBox";
 
-storiesOf(OpponentSettingBox.name, module)
+storiesOf(`${NewGameWindow.name}/${OpponentSettingBox.name}`, module)
   .add("default", () => (
     <OpponentSettingBox
       index={number("Index", 0, { range: true, min: 0, max: MaxPlayers - 1, step: 1 })}

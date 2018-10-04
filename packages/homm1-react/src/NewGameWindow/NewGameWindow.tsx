@@ -10,13 +10,13 @@ import {
   OpponentSetting,
 } from "heroes-homm1";
 
-import { AlignmentBox } from "../AlignmentBox";
 import { GameButton } from "../GameButton";
-import { GameDifficultyBox } from "../GameDifficultyBox";
 import { GameSwitch } from "../GameSwitch";
 import { getGameDifficultyMessage } from "../messages";
-import { OpponentSettingBox } from "../OpponentSettingBox";
+import { AlignmentBox } from "./AlignmentBox";
+import { GameDifficultyBox } from "./GameDifficultyBox";
 import { messages } from "./messages";
+import { OpponentSettingBox } from "./OpponentSettingBox";
 
 export interface NewGameWindowProps {
   selectedGameDifficulty: GameDifficulty;
