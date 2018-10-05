@@ -12,9 +12,12 @@ const heroes: Hero[] = [
   {
     alignment: Alignment.Red,
     army: [],
+    experience: 0,
     heroClass: HeroClass.Knight,
     id: HeroId.LordKilburn,
+    luck: 0,
     mobility: MaxMobility,
+    morale: 0,
     skills: {},
   },
 ];
