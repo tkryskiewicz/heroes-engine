@@ -1,5 +1,6 @@
 import {
   Alignment,
+  ArtifactId,
   creatures,
   GameDifficulty,
   HeroClass,
@@ -72,6 +73,12 @@ export const movementSpeedOptions = Object.keys(MovementSpeed).reduce<SelectOpti
 
 export const opponentSettingOptions = Object.keys(OpponentSetting).reduce<SelectOptions>((p, c: any) => {
   p[c] = OpponentSetting[c];
+
+  return p;
+}, {});
+
+export const artifactOptions = Object.keys(ArtifactId).reduce<SelectOptions>((p, c: any) => {
+  p[c] = ArtifactId[c];
 
   return p;
 }, {});

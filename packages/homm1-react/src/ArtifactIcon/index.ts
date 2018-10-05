@@ -1,0 +1,1 @@
+export { ArtifactIcon } from "./ArtifactIcon";
