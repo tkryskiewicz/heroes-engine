@@ -3,13 +3,14 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Hero, HeroSkills, Troop } from "heroes-core";
-import { Skill } from "heroes-homm1";
+import { ArtifactLimit, Skill } from "heroes-homm1";
 
 import { ArmyStrip } from "../ArmyStrip";
 import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
 import { HeroPortrait } from "../HeroPortrait";
 import { TroopWindow } from "../TroopWindow";
+import { ArtifactSlot } from "./ArtifactSlot";
 import { messages } from "./messages";
 import { MiscInfo } from "./MiscInfo";
 import { SkillInfo } from "./SkillInfo";
@@ -80,7 +81,11 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
             />
             {this.props.dismissHeroPromptVisible && this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
           </Col>
-          <Col span={22} />
+          <Col span={22}>
+            <Row>
+              {this.renderArtifacts()}
+            </Row>
+          </Col>
           <Col span={1}>
             <GameButton
               group="hero-window"
@@ -126,6 +131,14 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
         />
       </Modal>
     );
+  }
+
+  private renderArtifacts() {
+    return [...new Array(ArtifactLimit).keys()].map((i) => (
+      <ArtifactSlot
+        index={i}
+      />
+    ));
   }
 
   private renderDismissHeroPrompt(visible: boolean) {

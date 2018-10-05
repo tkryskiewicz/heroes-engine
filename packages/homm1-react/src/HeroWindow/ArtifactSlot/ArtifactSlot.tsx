@@ -5,7 +5,7 @@ import { ArtifactIcon } from "../../ArtifactIcon";
 export interface ArtifactSlotProps {
   index: number;
   artifact?: string;
-  onClick: (index: number) => void;
+  onClick?: (index: number) => void;
 }
 
 export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
