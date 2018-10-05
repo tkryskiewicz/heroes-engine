@@ -9,9 +9,9 @@ import { ArmyStrip } from "../ArmyStrip";
 import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
 import { HeroPortrait } from "../HeroPortrait";
-import { SkillInfo } from "../SkillInfo";
 import { TroopWindow } from "../TroopWindow";
 import { messages } from "./messages";
+import { SkillInfo } from "./SkillInfo";
 
 export interface HeroWindowProps {
   hero: Hero;

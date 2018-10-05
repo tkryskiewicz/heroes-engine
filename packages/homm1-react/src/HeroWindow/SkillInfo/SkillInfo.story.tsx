@@ -4,10 +4,11 @@ import * as React from "react";
 
 import { Skill } from "heroes-homm1";
 
-import { skillOptions } from "../stories";
+import { skillOptions } from "../../stories";
+import { HeroWindow } from "../HeroWindow";
 import { SkillInfo } from "./SkillInfo";
 
-storiesOf(SkillInfo.name, module)
+storiesOf(`${HeroWindow.name}/${SkillInfo.name}`, module)
   .add("default", () => (
     <SkillInfo
       skill={select("Skill", skillOptions, Skill.AttackSkill)}
