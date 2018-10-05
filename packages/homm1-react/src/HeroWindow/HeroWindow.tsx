@@ -11,6 +11,7 @@ import { GameButton } from "../GameButton";
 import { HeroPortrait } from "../HeroPortrait";
 import { TroopWindow } from "../TroopWindow";
 import { messages } from "./messages";
+import { MiscInfo } from "./MiscInfo";
 import { SkillInfo } from "./SkillInfo";
 
 export interface HeroWindowProps {
@@ -43,21 +44,32 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
             />
           </Col>
           {this.renderSkills(hero.skills)}
+          <Col span={4}>
+            <MiscInfo
+              morale={hero.morale}
+              luck={hero.luck}
+              experience={hero.experience}
+            />
+          </Col>
         </Row>
         <Row>
-          <Crest
-            size="large"
-            alignment={hero.alignment}
-            heroClass={hero.heroClass}
-          />
-          <ArmyStrip
-            army={hero.army}
-            selectedTroopIndex={this.props.selectedTroopIndex}
-            onSelectTroop={this.props.onSelectTroop}
-            onSelectedTroopClick={this.props.onSelectedTroopClick}
-            onSwapTroops={this.onSwapTroops}
-          />
-          {selectedTroop && this.props.troopDetailsVisible && this.renderTroopDetails(selectedTroop)}
+          <Col span={4}>
+            <Crest
+              size="large"
+              alignment={hero.alignment}
+              heroClass={hero.heroClass}
+            />
+          </Col>
+          <Col span={20}>
+            <ArmyStrip
+              army={hero.army}
+              selectedTroopIndex={this.props.selectedTroopIndex}
+              onSelectTroop={this.props.onSelectTroop}
+              onSelectedTroopClick={this.props.onSelectedTroopClick}
+              onSwapTroops={this.onSwapTroops}
+            />
+            {selectedTroop && this.props.troopDetailsVisible && this.renderTroopDetails(selectedTroop)}
+          </Col>
         </Row>
         <Row>
           <Col span={1}>

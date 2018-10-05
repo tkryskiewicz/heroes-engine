@@ -19,9 +19,12 @@ storiesOf(HeroWindow.name, module)
           creature: CreatureId.Peasant,
         },
       ],
+      experience: number("Experience", 0, { range: true, min: 0, max: 999999, step: 1 }),
       heroClass: select("Hero Class", heroClassOptions, HeroClass.Knight),
       id: select("Hero", heroOptions, HeroId.LordKilburn),
+      luck: number("Luck", 0, { range: true, min: -3, max: 3, step: 1 }),
       mobility: 0,
+      morale: number("Morale", 0, { range: true, min: -3, max: 3, step: 1 }),
       skills: {},
     };
 

@@ -11,6 +11,9 @@ export interface Hero {
   skills: HeroSkills;
   mobility: number;
   army: Army;
+  morale: number;
+  luck: number;
+  experience: number;
 }
 
 export const swapHeroTroops = (hero: Hero, index: number, withIndex: number): Hero => ({

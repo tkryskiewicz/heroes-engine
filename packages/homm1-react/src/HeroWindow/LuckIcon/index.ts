@@ -1,0 +1,1 @@
+export { LuckIcon } from "./LuckIcon";
