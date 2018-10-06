@@ -8,7 +8,9 @@ import { ArtifactLimit, Skill } from "heroes-homm1";
 import { ArmyStrip } from "../ArmyStrip";
 import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
+import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
+import { getHeroNameMessage } from "../messages";
 import { TroopWindow } from "../TroopWindow";
 import { ArtifactSlot } from "./ArtifactSlot";
 import { messages } from "./messages";
@@ -38,6 +40,11 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
 
     return (
       <div>
+        <Row style={{ textAlign: "center" }}>
+          <GameText size="large">
+            <FormattedMessage {...getHeroNameMessage(hero.id)} />
+          </GameText>
+        </Row>
         <Row>
           <Col span={4}>
             <HeroPortrait
@@ -136,6 +143,7 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
   private renderArtifacts() {
     return [...new Array(ArtifactLimit).keys()].map((i) => (
       <ArtifactSlot
+        key={i}
         index={i}
       />
     ));

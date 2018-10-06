@@ -1,6 +1,7 @@
 import { Row } from "antd";
 import * as React from "react";
 
+import { GameText } from "../../GameText";
 import { LuckIcon } from "../LuckIcon";
 import { MoraleIcon } from "../MoraleIcon";
 
@@ -99,9 +100,7 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
     };
 
     const textStyle: React.CSSProperties = {
-      color: "#fff",
       float: "right",
-      fontSize: "10px",
       lineHeight: "32px",
       paddingRight: 5,
     };
@@ -109,9 +108,11 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
     return (
       <Row style={style}>
         <img src="assets/ui/hero-window/experience.png" />
-        <span style={textStyle}>
-          {experience}
-        </span>
+        <div style={textStyle}>
+          <GameText size="small">
+            {experience}
+          </GameText>
+        </div>
       </Row>
     );
   }

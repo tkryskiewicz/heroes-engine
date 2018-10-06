@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { CreatureIcon } from "../CreatureIcon";
+import { GameText } from "../GameText";
 
 interface Troop {
   creature: string;
@@ -72,15 +73,16 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
   private renderTroopCount(count: number) {
     const style: React.CSSProperties = {
       bottom: 2,
-      color: "#fff",
       position: "absolute",
       right: 7,
     };
 
     return (
-      <span style={style}>
-        {count}
-      </span>
+      <div style={style}>
+        <GameText size="normal">
+          {count}
+        </GameText>
+      </div>
     );
   }
 
