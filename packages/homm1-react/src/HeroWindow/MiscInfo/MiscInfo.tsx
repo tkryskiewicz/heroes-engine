@@ -55,8 +55,9 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
       <MoraleIcon
         type="neutral"
       />
-    ) : [...new Array(Math.abs(morale)).keys()].map(() => (
+    ) : [...new Array(Math.abs(morale)).keys()].map((i) => (
       <MoraleIcon
+        key={i}
         type={morale > 0 ? "good" : "bad"}
       />
     ));
@@ -78,8 +79,9 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
       <LuckIcon
         type="neutral"
       />
-    ) : [...new Array(Math.abs(luck)).keys()].map(() => (
+    ) : [...new Array(Math.abs(luck)).keys()].map((i) => (
       <LuckIcon
+        key={i}
         type={luck > 0 ? "good" : "bad"}
       />
     ));
