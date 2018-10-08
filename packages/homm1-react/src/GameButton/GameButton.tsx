@@ -60,6 +60,9 @@ type TroopWindowButtonType =
   "dismiss" |
   "exit";
 
+type TownWindowButtonType =
+  "exit";
+
 export type GameButtonType =
   SharedButtonType |
   MainMenuButtonType |
@@ -70,7 +73,8 @@ export type GameButtonType =
   AdventureOptionButtonType |
   GameOptionButtonType |
   HeroWindowButtonType |
-  TroopWindowButtonType;
+  TroopWindowButtonType |
+  TownWindowButtonType;
 
 export type GameButtonGroup =
   "main-menu" |
@@ -81,7 +85,8 @@ export type GameButtonGroup =
   "adventure-options" |
   "game-options" |
   "hero-window" |
-  "troop-window";
+  "troop-window" |
+  "town-window";
 
 // TODO: improve intellisense when using groups
 export interface GameButtonProps {
