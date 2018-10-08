@@ -1,7 +1,10 @@
 import { Hero, swapHeroTroops } from "./Hero";
+import { Resources } from "./Resource";
 import { Town } from "./Town";
 
 export interface Game {
+  alignment: string;
+  resources: Resources;
   heroes: Hero[];
   towns: Town[];
 }

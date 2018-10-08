@@ -1,1 +1,1 @@
-export { KingdomOverviewWindow } from "./KingdomOverviewWindow";
+export { KingdomOverviewWindowConnected as KingdomOverviewWindow } from "./KingdomOverviewWindowConnected";

@@ -6,5 +6,6 @@ export interface Town {
   alignment: string;
   heroClass: string;
   garrison: Army;
+  isCastleBuilt?: boolean;
   visitingHero?: Hero;
 }

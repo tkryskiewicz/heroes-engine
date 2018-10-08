@@ -3,14 +3,14 @@ export { ArtifactId } from "./artifacts";
 export { CreatureId, creatures, creaturesById } from "./creatures";
 export { CreatureSpeed } from "./CreatureSpeed";
 export { GameDifficulty, getGameDifficultyRating } from "./GameDifficulty";
-export { HeroClass } from "./HeroClass";
+export { HeroClass, HeroClassIds } from "./HeroClass";
 export { HeroInfo, HeroId, heroes } from "./heroes";
 export { MovementSpeed, changeMovementSpeed } from "./MovementSpeed";
 export { OpponentSetting, changeOpponentSetting, getOpponentSettingRating } from "./OpponentSetting";
 export { Resource } from "./Resource";
 export { Skill } from "./Skill";
 export { SoundVolume, changeVolume } from "./SoundVolume";
-export { TownId } from "./towns";
+export { TownId, TownIds } from "./towns";
 
 export const MaxPlayers = 4;
 export const HeroLimit = 8;

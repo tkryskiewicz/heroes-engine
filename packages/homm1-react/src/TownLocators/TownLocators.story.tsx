@@ -3,12 +3,11 @@ import { number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { Town } from "heroes-core";
 import { TownId, TownLimit } from "heroes-homm1";
 
 import { TownLocators } from "./TownLocators";
 
-const towns: Town[] = [
+const towns = [
   {
     id: TownId.Farm,
   },

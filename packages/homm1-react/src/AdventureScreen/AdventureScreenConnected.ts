@@ -6,6 +6,7 @@ import { AdventureScreen, AdventureScreenProps } from "./AdventureScreen";
 
 const mapStateToProps = (state: AppState): AdventureScreenProps => ({
   heroWindowVisible: state.heroWindow.visible,
+  kingdomOverviewWindowVisible: state.kingdomOverviewWindow.visible,
 });
 
 export const AdventureScreenConnected = connect(mapStateToProps)(AdventureScreen);

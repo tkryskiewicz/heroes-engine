@@ -1,12 +1,14 @@
 import * as React from "react";
 
-import { Town } from "heroes-core";
 import { TownLimit } from "heroes-homm1";
 
 import { TownLocator } from "../TownLocator";
 
 export interface TownLocatorsProps {
-  towns: Town[];
+  towns: Array<{
+    id: string,
+    isCastleBuilt?: boolean;
+  }>;
   selectedIndex?: number;
   onSelectLocator?: (index: number) => void;
 }
@@ -22,6 +24,7 @@ export class TownLocators extends React.Component<TownLocatorsProps> {
           key={i}
           index={i}
           town={town ? town.id : undefined}
+          isCastleBuilt={town ? town.isCastleBuilt : undefined}
           selected={i === this.props.selectedIndex}
           onClick={this.onLocatorClick}
         />

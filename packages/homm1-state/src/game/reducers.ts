@@ -1,5 +1,5 @@
 import { dismissGameHero, Hero, swapGameHeroTroops, Town } from "heroes-core";
-import { Alignment, CreatureId, HeroClass, HeroId, MaxMobility, Skill, TownId } from "heroes-homm1";
+import { Alignment, CreatureId, HeroClass, HeroId, MaxMobility, Resource, Skill, TownId } from "heroes-homm1";
 
 import { GameAction, GameActionType } from "./actions";
 import { GameState } from "./state";
@@ -97,15 +97,32 @@ const heroes: Hero[] = [
 
 const towns: Town[] = [
   {
+    alignment: Alignment.Red,
+    garrison: [],
+    heroClass: HeroClass.Knight,
     id: TownId.Farm,
   },
   {
+    alignment: Alignment.Red,
+    garrison: [],
+    heroClass: HeroClass.Barbarian,
     id: TownId.Plains,
+    isCastleBuilt: true,
   },
 ];
 
 const initialState: GameState = {
+  alignment: Alignment.Red,
   heroes,
+  resources: {
+    [Resource.Gold]: 10000,
+    [Resource.Wood]: 20,
+    [Resource.Ore]: 20,
+    [Resource.Crystal]: 10,
+    [Resource.Sulfur]: 10,
+    [Resource.Gems]: 10,
+    [Resource.Mercury]: 10,
+  },
   towns,
 };
 

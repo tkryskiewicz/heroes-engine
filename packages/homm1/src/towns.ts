@@ -13,3 +13,10 @@ export enum TownId {
 export enum TownId {
   Mountains = "mountains",
 }
+
+export const TownIds: TownId[] = [
+  TownId.Farm,
+  TownId.Plains,
+  TownId.Forest,
+  TownId.Mountains,
+];

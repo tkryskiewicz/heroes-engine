@@ -2,7 +2,8 @@ import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { HeroClass, Resource, TownId } from "heroes-homm1";
+import { Resources } from "heroes-core";
+import { HeroClassIds, Resource, TownIds } from "heroes-homm1";
 
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
@@ -11,20 +12,6 @@ import { messages } from "./messages";
 import { MineOverview } from "./MineOverview";
 import { ResourceOverview } from "./ResourceOverview";
 import { TownOverview } from "./TownOverview";
-
-const heroClassOrder = [
-  HeroClass.Knight,
-  HeroClass.Barbarian,
-  HeroClass.Sorceress,
-  HeroClass.Warlock,
-];
-
-const townOrder = [
-  TownId.Farm,
-  TownId.Plains,
-  TownId.Forest,
-  TownId.Mountains,
-];
 
 const resourceOrder = [
   Resource.Wood,
@@ -35,13 +22,22 @@ const resourceOrder = [
   Resource.Gems,
   Resource.Gold,
 ];
+
+export interface HeroClassSummary {
+  [heroClass: string]: number;
+}
+
+export interface TownSummary {
+  [town: string]: number;
+}
+
 export interface KingdomOverviewWindowProps {
   alignment: string;
-  heroClasses: { [heroClass: string]: number };
-  castles: { [town: string]: number };
-  towns: { [town: string]: number };
+  heroClasses: HeroClassSummary;
+  castles: TownSummary;
+  towns: TownSummary;
   mines: { [resource: string]: number };
-  resources: { [resource: string]: number };
+  resources: Resources;
   goldPerDay: number;
   onExitClick?: () => void;
 }
@@ -49,6 +45,7 @@ export interface KingdomOverviewWindowProps {
 export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> {
   public render() {
     const style: React.CSSProperties = {
+      backgroundImage: "url('assets/ui/kingdom-overview/background.jpg')",
       position: "relative",
       textAlign: "center",
     };
@@ -144,7 +141,7 @@ export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindow
   }
 
   private renderHeroClasses(heroClasses: { [heroClass: string]: number }) {
-    return heroClassOrder.map((c) => (
+    return HeroClassIds.map((c) => (
       <Col
         key={c}
         span={5}
@@ -158,21 +155,7 @@ export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindow
   }
 
   private renderCastles(castles: { [town: string]: number }) {
-    return townOrder.map((t) => (
-      <Col
-        key={t}
-        span={5}
-      >
-        <TownOverview
-          town={t}
-          count={castles[t] || 0}
-        />
-      </Col>
-    ));
-  }
-
-  private renderTowns(towns: { [town: string]: number }) {
-    return townOrder.map((t) => (
+    return TownIds.map((t) => (
       <Col
         key={t}
         span={5}
@@ -180,6 +163,20 @@ export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindow
         <TownOverview
           town={t}
           isCastleBuilt={true}
+          count={castles[t] || 0}
+        />
+      </Col>
+    ));
+  }
+
+  private renderTowns(towns: { [town: string]: number }) {
+    return TownIds.map((t) => (
+      <Col
+        key={t}
+        span={5}
+      >
+        <TownOverview
+          town={t}
           count={towns[t] || 0}
         />
       </Col>
