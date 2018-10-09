@@ -22,6 +22,7 @@ storiesOf(TownLocators.name, module)
       towns={towns}
       selectedIndex={number("Selected Index", 0, { range: true, min: 0, max: TownLimit - 1, step: 1 })}
       onSelectLocator={action("Select Locator")}
+      onSelectedLocatorClick={action("Selected Locator Click")}
     />
   ))
   .add("empty", () => (
@@ -29,5 +30,6 @@ storiesOf(TownLocators.name, module)
       towns={[]}
       selectedIndex={number("Selected Index", 0, { range: true, min: 0, max: TownLimit - 1, step: 1 })}
       onSelectLocator={action("Select Locator")}
+      onSelectedLocatorClick={action("Selected Locator Click")}
     />
   ));

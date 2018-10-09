@@ -6,15 +6,17 @@ import { HeroLocators } from "../HeroLocators";
 import { HeroWindow } from "../HeroWindow";
 import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
 import { TownLocators } from "../TownLocators";
+import { TownWindow } from "../TownWindow";
 
 export interface AdventureScreenProps {
   heroWindowVisible?: boolean;
   kingdomOverviewWindowVisible?: boolean;
+  townWindowVisible?: boolean;
 }
 
 export class AdventureScreen extends React.Component<AdventureScreenProps> {
   public render() {
-    const { heroWindowVisible, kingdomOverviewWindowVisible } = this.props;
+    const { heroWindowVisible, kingdomOverviewWindowVisible, townWindowVisible } = this.props;
 
     return (
       <Row>
@@ -39,6 +41,7 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
             </Col>
             <Col span={12}>
               <TownLocators />
+              {townWindowVisible && this.renderTownWindow(townWindowVisible)}
             </Col>
           </Row>
           <Row>
@@ -80,6 +83,19 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
         visible={visible}
       >
         <KingdomOverviewWindow />
+      </Modal>
+    );
+  }
+
+  private renderTownWindow(visible: boolean) {
+    return (
+      <Modal
+        width="75%"
+        closable={false}
+        footer={null}
+        visible={visible}
+      >
+        <TownWindow />
       </Modal>
     );
   }

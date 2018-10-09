@@ -10,3 +10,4 @@ export { openKingdomOverviewWindow, closeKingdomOverviewWindow } from "./kingdom
 export * from "./locators";
 export { rootReducer } from "./reducers";
 export { AppState } from "./state";
+export { openTownWindow, closeTownWindow } from "./townWindow";

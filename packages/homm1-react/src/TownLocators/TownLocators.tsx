@@ -11,6 +11,7 @@ export interface TownLocatorsProps {
   }>;
   selectedIndex?: number;
   onSelectLocator?: (index: number) => void;
+  onSelectedLocatorClick?: (index: number) => void;
 }
 
 // TODO: unify hero and town locators?
@@ -33,12 +34,16 @@ export class TownLocators extends React.Component<TownLocatorsProps> {
   }
 
   private onLocatorClick = (index: number) => {
-    if (!this.props.onSelectLocator) {
+    const town = this.props.towns[index];
+
+    if (!town) {
       return;
     }
 
-    if (index !== this.props.selectedIndex && this.props.towns[index]) {
+    if (index !== this.props.selectedIndex && this.props.onSelectLocator) {
       this.props.onSelectLocator(index);
+    } else if (this.props.onSelectedLocatorClick) {
+      this.props.onSelectedLocatorClick(index);
     }
   }
 }
