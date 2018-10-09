@@ -4,3 +4,10 @@ export enum Skill {
   SpellPower = "spell-power",
   Knowledge = "knowledge",
 }
+
+export const SkillIds: Skill[] = [
+  Skill.AttackSkill,
+  Skill.DefenseSkill,
+  Skill.SpellPower,
+  Skill.Knowledge,
+];

@@ -108,6 +108,7 @@ const towns: Town[] = [
     heroClass: HeroClass.Barbarian,
     id: TownId.Plains,
     isCastleBuilt: true,
+    visitingHero: heroes[3],
   },
 ];
 

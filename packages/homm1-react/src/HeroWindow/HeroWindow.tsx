@@ -3,7 +3,7 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Hero, HeroSkills, Troop } from "heroes-core";
-import { ArtifactLimit, Skill } from "heroes-homm1";
+import { ArtifactLimit, SkillIds } from "heroes-homm1";
 
 import { ArmyStrip } from "../ArmyStrip";
 import { Crest } from "../Crest";
@@ -106,8 +106,7 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
   }
 
   private renderSkills(skills: HeroSkills) {
-    // TODO: extract skill order?
-    return [Skill.AttackSkill, Skill.DefenseSkill, Skill.SpellPower, Skill.Knowledge].map((s) => (
+    return SkillIds.map((s) => (
       <Col
         key={s}
         span={4}

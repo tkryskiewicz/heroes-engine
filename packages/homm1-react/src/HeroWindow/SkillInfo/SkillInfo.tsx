@@ -3,7 +3,7 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { GameText } from "../../GameText";
-import { getSkillDescriptionMessage, getSkillNameMessage } from "./messages";
+import { getSkillDescriptionMessage, getSkillNameMessage } from "../../messages";
 
 export interface SkillInfoProps {
   skill: string;
