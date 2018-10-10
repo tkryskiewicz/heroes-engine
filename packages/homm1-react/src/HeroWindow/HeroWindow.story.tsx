@@ -31,6 +31,7 @@ storiesOf(HeroWindow.name, module)
     return (
       <HeroWindow
         hero={hero}
+        onCrestClick={action("Crest Click")}
         selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
         onSelectTroop={action("Select Troop")}
         onSelectedTroopClick={action("Selected Troop Click")}

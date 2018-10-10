@@ -1,3 +1,4 @@
+import { AdventureOptionsState } from "./adventureOptions";
 import { GameState } from "./game";
 import { HeroWindowState } from "./heroWindow";
 import { KingdomOverviewWindowState } from "./kingdomOverviewWindow";
@@ -10,4 +11,5 @@ export interface AppState {
   heroWindow: HeroWindowState;
   kingdomOverviewWindow: KingdomOverviewWindowState;
   townWindow: TownWindowState;
+  adventureOptions: AdventureOptionsState;
 }

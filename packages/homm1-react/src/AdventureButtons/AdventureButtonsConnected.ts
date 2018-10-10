@@ -1,7 +1,14 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, Locator, LocatorType, openKingdomOverviewWindow, selectLocator } from "heroes-homm1-state";
+import {
+  AppState,
+  Locator,
+  LocatorType,
+  openAdventureOptions,
+  openKingdomOverviewWindow,
+  selectLocator,
+} from "heroes-homm1-state";
 
 import { AdventureButtons, AdventureButtonsProps } from "./AdventureButtons";
 
@@ -18,7 +25,8 @@ const mapStateToProps = (state: AppState): Pick<AdventureButtonsProps, "heroes" 
 
 type DispatchProp =
   "onSelectHero" |
-  "onKingdomOverviewClick";
+  "onKingdomOverviewClick" |
+  "onAdventureOptionsClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsProps, DispatchProp> => ({
   onSelectHero(index) {
@@ -31,6 +39,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsProps, Dis
   },
   onKingdomOverviewClick() {
     dispatch(openKingdomOverviewWindow());
+  },
+  onAdventureOptionsClick() {
+    dispatch(openAdventureOptions());
   },
 });
 

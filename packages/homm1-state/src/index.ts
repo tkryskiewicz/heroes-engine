@@ -1,3 +1,4 @@
+export { openAdventureOptions, closeAdventureOptions } from "./adventureOptions";
 export { swapHeroTroops, dismissHero } from "./game";
 export {
   openHeroWindow,
