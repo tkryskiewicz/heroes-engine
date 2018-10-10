@@ -7,6 +7,7 @@ import {
   closeHeroWindow,
   dismissHero,
   openDismissHeroPrompt,
+  openKingdomOverviewWindow,
   selectHeroWindowTroop,
   swapHeroTroops,
 } from "heroes-homm1-state";
@@ -25,6 +26,7 @@ const mapStateToProps = (state: AppState): Pick<HeroWindowProps, StateProp> => (
 });
 
 type DispatchProp =
+  "onCrestClick" |
   "onSelectTroop" |
   "onSwapTroops" |
   "onDismissHeroClick" |
@@ -33,6 +35,9 @@ type DispatchProp =
   "onExitClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchProp> => ({
+  onCrestClick() {
+    dispatch(openKingdomOverviewWindow());
+  },
   onSelectTroop(index) {
     dispatch(selectHeroWindowTroop(index));
   },

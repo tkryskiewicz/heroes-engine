@@ -19,6 +19,7 @@ import { SkillInfo } from "./SkillInfo";
 
 export interface HeroWindowProps {
   hero: Hero;
+  onCrestClick?: () => void;
   selectedTroopIndex?: number;
   onSelectTroop?: (index: number) => void;
   onSelectedTroopClick?: (index: number) => void;
@@ -66,6 +67,7 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
               size="large"
               alignment={hero.alignment}
               heroClass={hero.heroClass}
+              onClick={this.props.onCrestClick}
             />
           </Col>
           <Col span={20}>
