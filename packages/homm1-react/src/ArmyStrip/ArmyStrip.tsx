@@ -3,7 +3,7 @@ import * as React from "react";
 import { Army } from "heroes-core";
 import { ArmySize } from "heroes-homm1";
 
-import { TroopSlot } from "../TroopSlot";
+import { TroopSlot } from "./TroopSlot";
 
 export interface ArmyStripProps {
   army: Army;

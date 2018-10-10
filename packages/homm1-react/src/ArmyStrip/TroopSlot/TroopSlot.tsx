@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { CreatureIcon } from "../CreatureIcon";
-import { GameText } from "../GameText";
+import { CreatureIcon } from "../../CreatureIcon";
+import { GameText } from "../../GameText";
 
 interface Troop {
   creature: string;
