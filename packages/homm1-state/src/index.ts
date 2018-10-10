@@ -1,5 +1,14 @@
 export { openAdventureOptions, closeAdventureOptions } from "./adventureOptions";
 export { swapHeroTroops, dismissHero } from "./game";
+export { openGameOptions, closeGameOptions } from "./gameOptions";
+export {
+  changeAutoSave,
+  changeEffectsVolume,
+  changeMovementSpeed,
+  changeMusicVolume,
+  changeShowPath,
+  changeViewEnemyMovement,
+} from "./gameSettings";
 export {
   openHeroWindow,
   closeHeroWindow,

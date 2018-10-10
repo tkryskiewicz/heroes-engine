@@ -1,1 +1,1 @@
-export { GameOptions } from "./GameOptions";
+export { GameOptionsConnected as GameOptions } from "./GameOptionsConnected";

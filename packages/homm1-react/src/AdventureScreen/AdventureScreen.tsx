@@ -3,6 +3,7 @@ import * as React from "react";
 
 import { AdventureButtons } from "../AdventureButtons";
 import { AdventureOptions } from "../AdventureOptions";
+import { GameOptions } from "../GameOptions";
 import { HeroLocators } from "../HeroLocators";
 import { HeroWindow } from "../HeroWindow";
 import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
@@ -14,11 +15,18 @@ export interface AdventureScreenProps {
   kingdomOverviewWindowVisible?: boolean;
   townWindowVisible?: boolean;
   adventureOptionsVisible?: boolean;
+  gameOptionsVisible?: boolean;
 }
 
 export class AdventureScreen extends React.Component<AdventureScreenProps> {
   public render() {
-    const { heroWindowVisible, kingdomOverviewWindowVisible, townWindowVisible, adventureOptionsVisible } = this.props;
+    const {
+      heroWindowVisible,
+      kingdomOverviewWindowVisible,
+      townWindowVisible,
+      adventureOptionsVisible,
+      gameOptionsVisible,
+    } = this.props;
 
     return (
       <Row>
@@ -53,6 +61,7 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
             <AdventureButtons />
             {kingdomOverviewWindowVisible && this.renderKingdomOverviewWindow(kingdomOverviewWindowVisible)}
             {adventureOptionsVisible && this.renderAdventureOptions(adventureOptionsVisible)}
+            {gameOptionsVisible && this.renderGameOptions(gameOptionsVisible)}
           </Row>
           <Row>
             <h1>
@@ -112,6 +121,19 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
         visible={visible}
       >
         <AdventureOptions />
+      </Modal>
+    );
+  }
+
+  private renderGameOptions(visible: boolean) {
+    return (
+      <Modal
+        title="Game options"
+        footer={null}
+        closable={false}
+        visible={visible}
+      >
+        <GameOptions />
       </Modal>
     );
   }

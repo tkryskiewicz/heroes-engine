@@ -6,6 +6,7 @@ import {
   Locator,
   LocatorType,
   openAdventureOptions,
+  openGameOptions,
   openKingdomOverviewWindow,
   selectLocator,
 } from "heroes-homm1-state";
@@ -26,7 +27,8 @@ const mapStateToProps = (state: AppState): Pick<AdventureButtonsProps, "heroes" 
 type DispatchProp =
   "onSelectHero" |
   "onKingdomOverviewClick" |
-  "onAdventureOptionsClick";
+  "onAdventureOptionsClick" |
+  "onGameOptionsClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsProps, DispatchProp> => ({
   onSelectHero(index) {
@@ -42,6 +44,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsProps, Dis
   },
   onAdventureOptionsClick() {
     dispatch(openAdventureOptions());
+  },
+  onGameOptionsClick() {
+    dispatch(openGameOptions());
   },
 });
 

@@ -3,6 +3,7 @@ export { ArtifactId } from "./artifacts";
 export { CreatureId, creatures, creaturesById } from "./creatures";
 export { CreatureSpeed } from "./CreatureSpeed";
 export { GameDifficulty, getGameDifficultyRating } from "./GameDifficulty";
+export { GameSettings } from "./GameSettings";
 export { HeroClass, HeroClassIds } from "./HeroClass";
 export { HeroInfo, HeroId, heroes } from "./heroes";
 export { MovementSpeed, changeMovementSpeed } from "./MovementSpeed";
