@@ -114,6 +114,7 @@ const towns: Town[] = [
 
 const initialState: GameState = {
   alignment: Alignment.Red,
+  discoveredPuzzlePieces: 0,
   heroes,
   resources: {
     [Resource.Gold]: 10000,

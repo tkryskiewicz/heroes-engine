@@ -7,6 +7,7 @@ export interface Game {
   resources: Resources;
   heroes: Hero[];
   towns: Town[];
+  discoveredPuzzlePieces: number;
 }
 
 export const swapGameHeroTroops = (game: Game, hero: string, index: number, withIndex: number): Game => ({

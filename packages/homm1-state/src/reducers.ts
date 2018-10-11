@@ -7,6 +7,7 @@ import { gameSettingsReducer } from "./gameSettings";
 import { heroWindowReducer } from "./heroWindow";
 import { kingdomOverviewWindowReducer } from "./kingdomOverviewWindow";
 import { locatorsReducer } from "./locators";
+import { puzzleWindowReducer } from "./puzzleWindow";
 import { AppState } from "./state";
 import { townWindowReducer } from "./townWindow";
 
@@ -18,5 +19,6 @@ export const rootReducer = combineReducers<AppState>({
   heroWindow: heroWindowReducer,
   kingdomOverviewWindow: kingdomOverviewWindowReducer,
   locators: locatorsReducer,
+  puzzleWindow: puzzleWindowReducer,
   townWindow: townWindowReducer,
 });

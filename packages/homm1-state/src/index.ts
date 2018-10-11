@@ -18,6 +18,7 @@ export {
 } from "./heroWindow";
 export { openKingdomOverviewWindow, closeKingdomOverviewWindow } from "./kingdomOverviewWindow";
 export * from "./locators";
+export { openPuzzleWindow, closePuzzleWindow } from "./puzzleWindow";
 export { rootReducer } from "./reducers";
 export { AppState } from "./state";
 export { openTownWindow, closeTownWindow } from "./townWindow";

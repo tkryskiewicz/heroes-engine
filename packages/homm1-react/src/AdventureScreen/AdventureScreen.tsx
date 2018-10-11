@@ -7,6 +7,7 @@ import { GameOptions } from "../GameOptions";
 import { HeroLocators } from "../HeroLocators";
 import { HeroWindow } from "../HeroWindow";
 import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
+import { PuzzleWindow } from "../PuzzleWindow";
 import { TownLocators } from "../TownLocators";
 import { TownWindow } from "../TownWindow";
 
@@ -16,6 +17,7 @@ export interface AdventureScreenProps {
   townWindowVisible?: boolean;
   adventureOptionsVisible?: boolean;
   gameOptionsVisible?: boolean;
+  puzzleWindowVisible?: boolean;
 }
 
 export class AdventureScreen extends React.Component<AdventureScreenProps> {
@@ -26,6 +28,7 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
       townWindowVisible,
       adventureOptionsVisible,
       gameOptionsVisible,
+      puzzleWindowVisible,
     } = this.props;
 
     return (
@@ -62,6 +65,7 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
             {kingdomOverviewWindowVisible && this.renderKingdomOverviewWindow(kingdomOverviewWindowVisible)}
             {adventureOptionsVisible && this.renderAdventureOptions(adventureOptionsVisible)}
             {gameOptionsVisible && this.renderGameOptions(gameOptionsVisible)}
+            {puzzleWindowVisible && this.renderPuzzleWindow(puzzleWindowVisible)}
           </Row>
           <Row>
             <h1>
@@ -134,6 +138,20 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
         visible={visible}
       >
         <GameOptions />
+      </Modal>
+    );
+  }
+
+  private renderPuzzleWindow(visible: boolean) {
+    return (
+      <Modal
+        title="Puzzle Window"
+        width="75%"
+        footer={null}
+        closable={false}
+        visible={visible}
+      >
+        <PuzzleWindow />
       </Modal>
     );
   }

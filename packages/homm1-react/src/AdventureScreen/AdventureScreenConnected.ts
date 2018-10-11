@@ -9,6 +9,7 @@ const mapStateToProps = (state: AppState): AdventureScreenProps => ({
   gameOptionsVisible: state.gameOptions.visible,
   heroWindowVisible: state.heroWindow.visible,
   kingdomOverviewWindowVisible: state.kingdomOverviewWindow.visible,
+  puzzleWindowVisible: state.puzzleWindow.visible,
   townWindowVisible: state.townWindow.visible,
 });
 
