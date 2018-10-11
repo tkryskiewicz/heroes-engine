@@ -17,10 +17,6 @@ export const locatorsReducer = (
         selectedLocator: action.locator,
       };
     case HeroWindowActionType.Close:
-      return {
-        ...state,
-        selectedLocator: undefined,
-      };
     case GameActionType.DismissHero:
       return {
         ...state,

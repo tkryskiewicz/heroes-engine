@@ -18,6 +18,7 @@ export const heroWindowReducer = (
         visible: true,
       };
     case HeroWindowActionType.Close:
+    case GameActionType.DismissHero:
       // TODO: is it ok to use initialState???
       return {
         ...initialState,
@@ -41,10 +42,6 @@ export const heroWindowReducer = (
       return {
         ...state,
         dismissHeroPromptVisible: false,
-      };
-    case GameActionType.DismissHero:
-      return {
-        ...initialState,
       };
     default:
       return state;
