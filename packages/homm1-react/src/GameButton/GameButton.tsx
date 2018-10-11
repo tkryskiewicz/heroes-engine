@@ -63,6 +63,10 @@ type TroopWindowButtonType =
 type TownWindowButtonType =
   "exit";
 
+type CampaignScenarioInfoWindowButtonType =
+  "okay" |
+  "restart-scenario";
+
 export type GameButtonType =
   SharedButtonType |
   MainMenuButtonType |
@@ -74,7 +78,8 @@ export type GameButtonType =
   GameOptionButtonType |
   HeroWindowButtonType |
   TroopWindowButtonType |
-  TownWindowButtonType;
+  TownWindowButtonType |
+  CampaignScenarioInfoWindowButtonType;
 
 export type GameButtonGroup =
   "main-menu" |
@@ -86,7 +91,8 @@ export type GameButtonGroup =
   "game-options" |
   "hero-window" |
   "troop-window" |
-  "town-window";
+  "town-window" |
+  "campaign-scenario-info-window";
 
 // TODO: improve intellisense when using groups
 export interface GameButtonProps {
