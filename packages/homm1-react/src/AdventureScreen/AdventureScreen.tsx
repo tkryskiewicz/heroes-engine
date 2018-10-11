@@ -3,6 +3,7 @@ import * as React from "react";
 
 import { AdventureButtons } from "../AdventureButtons";
 import { AdventureOptions } from "../AdventureOptions";
+import { CampaignScenarioInfoWindow } from "../CampaignScenarioInfoWindow";
 import { GameOptions } from "../GameOptions";
 import { HeroLocators } from "../HeroLocators";
 import { HeroWindow } from "../HeroWindow";
@@ -18,6 +19,7 @@ export interface AdventureScreenProps {
   adventureOptionsVisible?: boolean;
   gameOptionsVisible?: boolean;
   puzzleWindowVisible?: boolean;
+  scenarioInfoWindowVisible?: boolean;
 }
 
 export class AdventureScreen extends React.Component<AdventureScreenProps> {
@@ -29,6 +31,7 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
       adventureOptionsVisible,
       gameOptionsVisible,
       puzzleWindowVisible,
+      scenarioInfoWindowVisible,
     } = this.props;
 
     return (
@@ -66,6 +69,7 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
             {adventureOptionsVisible && this.renderAdventureOptions(adventureOptionsVisible)}
             {gameOptionsVisible && this.renderGameOptions(gameOptionsVisible)}
             {puzzleWindowVisible && this.renderPuzzleWindow(puzzleWindowVisible)}
+            {scenarioInfoWindowVisible && this.renderScenarioInfoWindow(scenarioInfoWindowVisible)}
           </Row>
           <Row>
             <h1>
@@ -152,6 +156,20 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
         visible={visible}
       >
         <PuzzleWindow />
+      </Modal>
+    );
+  }
+
+  private renderScenarioInfoWindow(visible: boolean) {
+    return (
+      <Modal
+        title="Scenario Info Window"
+        width="50%"
+        footer={null}
+        closable={false}
+        visible={visible}
+      >
+        <CampaignScenarioInfoWindow />
       </Modal>
     );
   }

@@ -21,4 +21,5 @@ export * from "./locators";
 export { openPuzzleWindow, closePuzzleWindow } from "./puzzleWindow";
 export { rootReducer } from "./reducers";
 export { AppState } from "./state";
+export { openScenarioInfoWindow, closeScenarioInfoWindow } from "./scenarioInfoWindow";
 export { openTownWindow, closeTownWindow } from "./townWindow";

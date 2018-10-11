@@ -1,5 +1,15 @@
 import { dismissGameHero, Hero, swapGameHeroTroops, Town } from "heroes-core";
-import { Alignment, CreatureId, HeroClass, HeroId, MaxMobility, Resource, Skill, TownId } from "heroes-homm1";
+import {
+  Alignment,
+  campaignScenarios,
+  CreatureId,
+  HeroClass,
+  HeroId,
+  MaxMobility,
+  Resource,
+  Skill,
+  TownId,
+} from "heroes-homm1";
 
 import { GameAction, GameActionType } from "./actions";
 import { GameState } from "./state";
@@ -125,6 +135,7 @@ const initialState: GameState = {
     [Resource.Gems]: 10,
     [Resource.Mercury]: 10,
   },
+  scenario: campaignScenarios[0],
   towns,
 };
 

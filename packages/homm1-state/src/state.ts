@@ -6,6 +6,7 @@ import { HeroWindowState } from "./heroWindow";
 import { KingdomOverviewWindowState } from "./kingdomOverviewWindow";
 import { LocatorsState } from "./locators";
 import { PuzzleWindowState } from "./puzzleWindow";
+import { ScenarioInfoWindowState } from "./scenarioInfoWindow";
 import { TownWindowState } from "./townWindow";
 
 export interface AppState {
@@ -18,4 +19,5 @@ export interface AppState {
   adventureOptions: AdventureOptionsState;
   gameOptions: GameOptionsState;
   puzzleWindow: PuzzleWindowState;
+  scenarioInfoWindow: ScenarioInfoWindowState;
 }

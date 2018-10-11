@@ -17,7 +17,7 @@ export const adventureOptionsReducer = (
         visible: true,
       };
     case AdventureOptionsActionType.Close:
-    case PuzzleWindowActionType.Close:
+    case PuzzleWindowActionType.Open:
       return {
         ...state,
         visible: false,

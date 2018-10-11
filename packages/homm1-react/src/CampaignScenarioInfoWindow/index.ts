@@ -1,1 +1,3 @@
-export { CampaignScenarioInfoWindow } from "./CampaignScenarioInfoWindow";
+export {
+  CampaignScenarioInfoWindowConnected as CampaignScenarioInfoWindow,
+} from "./CampaignScenarioInfoWindowConnected";
