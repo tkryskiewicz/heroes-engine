@@ -67,6 +67,11 @@ type CampaignScenarioInfoWindowButtonType =
   "okay" |
   "restart-scenario";
 
+type HighScoresWindowButtonType =
+  "standard" |
+  "campaign" |
+  "exit";
+
 export type GameButtonType =
   SharedButtonType |
   MainMenuButtonType |
@@ -79,7 +84,8 @@ export type GameButtonType =
   HeroWindowButtonType |
   TroopWindowButtonType |
   TownWindowButtonType |
-  CampaignScenarioInfoWindowButtonType;
+  CampaignScenarioInfoWindowButtonType |
+  HighScoresWindowButtonType;
 
 export type GameButtonGroup =
   "main-menu" |
@@ -92,7 +98,8 @@ export type GameButtonGroup =
   "hero-window" |
   "troop-window" |
   "town-window" |
-  "campaign-scenario-info-window";
+  "campaign-scenario-info-window" |
+  "high-scores-window";
 
 // TODO: improve intellisense when using groups
 export interface GameButtonProps {
@@ -118,6 +125,7 @@ export class GameButton extends React.Component<GameButtonProps, GameButtonState
 
     // TODO: are those styles needed?
     const style: React.CSSProperties = {
+      background: "transparent",
       border: "none",
       outline: 0,
       padding: 0,

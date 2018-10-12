@@ -1,15 +1,25 @@
 export { Alignment, changeAlignment } from "./Alignment";
 export { ArtifactId } from "./artifacts";
+export { CampaignId } from "./campaigns";
 export { CreatureId, creatures, creaturesById } from "./creatures";
 export { CreatureSpeed } from "./CreatureSpeed";
 export { GameDifficulty, getGameDifficultyRating } from "./GameDifficulty";
 export { GameSettings } from "./GameSettings";
+export { GameType } from "./GameType";
 export { HeroClass, HeroClassIds } from "./HeroClass";
 export { HeroInfo, HeroId, heroes } from "./heroes";
 export { MovementSpeed, changeMovementSpeed } from "./MovementSpeed";
 export { OpponentSetting, changeOpponentSetting, getOpponentSettingRating } from "./OpponentSetting";
 export { Resource } from "./Resource";
 export { campaignScenarios } from "./scenarios";
+export {
+  CampaignGameScore,
+  initialCampaignGameScores,
+  getCampaignGameRating,
+  StandardGameScore,
+  initialStandardGameScores,
+  getStandardGameRating,
+} from "./scores";
 export { Skill, SkillIds } from "./Skill";
 export { SoundVolume, changeVolume } from "./SoundVolume";
 export { TownId, TownIds } from "./towns";

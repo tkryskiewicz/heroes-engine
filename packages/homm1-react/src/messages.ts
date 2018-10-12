@@ -1,6 +1,6 @@
 import { defineMessages, Messages } from "react-intl";
 
-import { HeroId, Skill } from "heroes-homm1";
+import { CampaignId, HeroId, Skill } from "heroes-homm1";
 
 export const gameDifficultyMessages: Messages = defineMessages({
   easy: {
@@ -485,5 +485,42 @@ export const getSkillDescriptionMessage = (skill: string) => {
       return skillMessages.knowledgeDescription;
     default:
       return skillMessages.unknownDescription;
+  }
+};
+
+const campaignMessages = defineMessages({
+  lordAlamar: {
+    defaultMessage: "Lord Alamar",
+    id: "game.campaign.lordAlamar",
+  },
+  lordIronfist: {
+    defaultMessage: "Lord Ironfist",
+    id: "game.campaign.lordIronfist",
+  },
+  lordSlayer: {
+    defaultMessage: "Lord Slayer",
+    id: "game.campaign.lordSlayer",
+  },
+  queenLamanda: {
+    defaultMessage: "Queen Lamanda",
+    id: "game.campaign.queenLamanda",
+  },
+});
+
+export const getCampaignNameMessage = (campaign: string) => {
+  switch (campaign) {
+    case CampaignId.LordIronfist:
+      return campaignMessages.lordIronfist;
+    case CampaignId.LordSlayer:
+      return campaignMessages.lordSlayer;
+    case CampaignId.QueenLamanda:
+      return campaignMessages.queenLamanda;
+    case CampaignId.LordAlamar:
+      return campaignMessages.lordAlamar;
+    default:
+      return {
+        defaultMessage: "Unknown",
+        id: "game.campaign.unknown",
+      };
   }
 };
