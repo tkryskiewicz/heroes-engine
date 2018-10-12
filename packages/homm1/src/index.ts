@@ -1,6 +1,6 @@
 export { Alignment, changeAlignment } from "./Alignment";
 export { ArtifactId } from "./artifacts";
-export { CampaignId } from "./campaigns";
+export { CampaignId, CampaignIds } from "./campaigns";
 export { CreatureId, creatures, creaturesById } from "./creatures";
 export { CreatureSpeed } from "./CreatureSpeed";
 export { GameDifficulty, getGameDifficultyRating } from "./GameDifficulty";

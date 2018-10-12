@@ -1,12 +1,12 @@
 import { Row } from "antd";
 import * as React from "react";
 
-import { Alignment } from "heroes-homm1";
+import { CampaignIds } from "heroes-homm1";
 
 import { GameButton } from "../GameButton";
 
 export interface CampaignMenuProps {
-  onPlayClick?: (alignment: string) => void;
+  onPlayClick?: (campaign: string) => void;
   onCancelClick?: () => void;
 }
 
@@ -14,34 +14,7 @@ export class CampaignMenu extends React.Component<CampaignMenuProps> {
   public render() {
     return (
       <>
-        <Row>
-          <GameButton
-            group="campaign-menu"
-            type="play-red"
-            onClick={this.onPlayRedClick}
-          />
-        </Row>
-        <Row>
-          <GameButton
-            group="campaign-menu"
-            type="play-green"
-            onClick={this.onPlayGreenClick}
-          />
-        </Row>
-        <Row>
-          <GameButton
-            group="campaign-menu"
-            type="play-yellow"
-            onClick={this.onPlayYellowClick}
-          />
-        </Row>
-        <Row>
-          <GameButton
-            group="campaign-menu"
-            type="play-blue"
-            onClick={this.onPlayBlueClick}
-          />
-        </Row>
+        {CampaignIds.map((campaign) => this.renderPlayButton(campaign))}
         <Row>
           <GameButton
             group="campaign-menu"
@@ -53,19 +26,25 @@ export class CampaignMenu extends React.Component<CampaignMenuProps> {
     );
   }
 
-  private onPlayRedClick = () => this.onPlayClick(Alignment.Red);
+  private renderPlayButton(campaign: string) {
+    const onClick = () => this.onPlayClick(campaign);
 
-  private onPlayGreenClick = () => this.onPlayClick(Alignment.Green);
+    return (
+      <Row key={campaign}>
+        <GameButton
+          group="campaign-menu"
+          type={`play-${campaign}` as any}
+          onClick={onClick}
+        />
+      </Row>
+    );
+  }
 
-  private onPlayYellowClick = () => this.onPlayClick(Alignment.Yellow);
-
-  private onPlayBlueClick = () => this.onPlayClick(Alignment.Blue);
-
-  private onPlayClick(alignment: string) {
+  private onPlayClick(campaign: string) {
     if (!this.props.onPlayClick) {
       return;
     }
 
-    this.props.onPlayClick(alignment);
+    this.props.onPlayClick(campaign);
   }
 }

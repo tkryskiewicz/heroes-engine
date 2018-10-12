@@ -13,3 +13,10 @@ export enum CampaignId {
 export enum CampaignId {
   LordAlamar = "lord-alamar",
 }
+
+export const CampaignIds: CampaignId[] = [
+  CampaignId.LordIronfist,
+  CampaignId.LordSlayer,
+  CampaignId.QueenLamanda,
+  CampaignId.LordAlamar,
+];
