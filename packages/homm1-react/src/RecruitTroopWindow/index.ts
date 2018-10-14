@@ -1,0 +1,1 @@
+export { RecruitTroopWindow } from "./RecruitTroopWindow";
