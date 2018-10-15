@@ -22,6 +22,7 @@ export {
 } from "./scores";
 export { Skill, SkillIds } from "./Skill";
 export { SoundVolume, changeVolume } from "./SoundVolume";
+export { StructureId } from "./structures";
 export { TownId, TownIds } from "./towns";
 
 export const MaxPlayers = 4;

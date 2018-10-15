@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { HeroClassIds, TownIds } from "heroes-homm1";
+import { isStructureBuilt } from "heroes-core";
+import { HeroClassIds, StructureId, TownIds } from "heroes-homm1";
 import { AppState, closeKingdomOverviewWindow } from "heroes-homm1-state";
 
 import {
@@ -23,7 +24,7 @@ type StateProp =
 const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowProps, StateProp> => ({
   alignment: state.game.alignment,
   castles: TownIds.reduce<TownSummary>((p, c) => {
-    p[c] = state.game.towns.filter((t) => t.id === c && t.isCastleBuilt).length;
+    p[c] = state.game.towns.filter((t) => t.id === c && isStructureBuilt(t, StructureId.Castle)).length;
 
     return p;
   }, {}),
@@ -37,7 +38,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowProps, Stat
   mines: {},
   resources: state.game.resources,
   towns: TownIds.reduce<TownSummary>((p, c) => {
-    p[c] = state.game.towns.filter((t) => t.id === c && !t.isCastleBuilt).length;
+    p[c] = state.game.towns.filter((t) => t.id === c && !isStructureBuilt(t, StructureId.Castle)).length;
 
     return p;
   }, {}),

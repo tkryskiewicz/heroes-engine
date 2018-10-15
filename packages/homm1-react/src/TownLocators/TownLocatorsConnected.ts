@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { isStructureBuilt } from "heroes-core";
+import { StructureId } from "heroes-homm1";
 import { AppState, Locator, LocatorType, openTownWindow, selectLocator } from "heroes-homm1-state";
 
 import { TownLocators, TownLocatorsProps } from "./TownLocators";
@@ -10,7 +12,10 @@ const mapStateToProps = (state: AppState): TownLocatorsProps => {
 
   return {
     selectedIndex: selectedLocator && selectedLocator.type === LocatorType.Town ? selectedLocator.index : undefined,
-    towns: state.game.towns,
+    towns: state.game.towns.map((t) => ({
+      id: t.id,
+      isCastleBuilt: isStructureBuilt(t, StructureId.Castle),
+    })),
   };
 };
 

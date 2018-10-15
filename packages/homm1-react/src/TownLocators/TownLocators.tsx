@@ -7,7 +7,7 @@ import { TownLocator } from "../TownLocator";
 export interface TownLocatorsProps {
   towns: Array<{
     id: string,
-    isCastleBuilt?: boolean;
+    isCastleBuilt: boolean;
   }>;
   selectedIndex?: number;
   onSelectLocator?: (index: number) => void;

@@ -8,6 +8,7 @@ import {
   MaxMobility,
   Resource,
   Skill,
+  StructureId,
   TownId,
 } from "heroes-homm1";
 
@@ -111,13 +112,19 @@ const towns: Town[] = [
     garrison: [],
     heroClass: HeroClass.Knight,
     id: TownId.Farm,
+    structures: [],
   },
   {
     alignment: Alignment.Red,
     garrison: [],
     heroClass: HeroClass.Barbarian,
     id: TownId.Plains,
-    isCastleBuilt: true,
+    structures: [
+      {
+        id: StructureId.Castle,
+        isBuilt: true,
+      },
+    ],
     visitingHero: heroes[3],
   },
 ];

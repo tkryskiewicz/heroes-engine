@@ -5,14 +5,16 @@ import * as React from "react";
 
 import { TownId, TownLimit } from "heroes-homm1";
 
-import { TownLocators } from "./TownLocators";
+import { TownLocators, TownLocatorsProps } from "./TownLocators";
 
-const towns = [
+const towns: TownLocatorsProps["towns"] = [
   {
     id: TownId.Farm,
+    isCastleBuilt: false,
   },
   {
     id: TownId.Plains,
+    isCastleBuilt: true,
   },
 ];
 

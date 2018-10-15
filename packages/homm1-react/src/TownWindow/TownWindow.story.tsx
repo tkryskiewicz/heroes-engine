@@ -16,6 +16,7 @@ storiesOf(TownWindow.name, module)
       garrison: [],
       heroClass: select("Hero Class", heroClassOptions, HeroClass.Knight),
       id: select("Town", townOptions, TownId.Farm),
+      structures: [],
     };
 
     return (
