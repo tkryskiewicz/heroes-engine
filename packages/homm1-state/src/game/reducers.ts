@@ -127,6 +127,20 @@ const towns: Town[] = [
     ],
     visitingHero: heroes[3],
   },
+  {
+    alignment: Alignment.Red,
+    garrison: [],
+    heroClass: HeroClass.Sorceress,
+    id: TownId.Forest,
+    structures: [],
+  },
+  {
+    alignment: Alignment.Red,
+    garrison: [],
+    heroClass: HeroClass.Warlock,
+    id: TownId.Mountains,
+    structures: [],
+  },
 ];
 
 const initialState: GameState = {

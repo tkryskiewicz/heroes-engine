@@ -1,13 +1,14 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
+import { Resources } from "heroes-core";
 import { Resource } from "heroes-homm1";
 
 import { GameText } from "../../GameText";
 import { ResourceIcon } from "../../ResourceIcon";
 
 export interface TreasuryProps {
-  resources: { [resource: string]: number };
+  resources: Resources;
 }
 
 export class Treasury extends React.Component<TreasuryProps> {
@@ -42,7 +43,7 @@ export class Treasury extends React.Component<TreasuryProps> {
     );
   }
 
-  private renderResource(resource: string, resources: { [resource: string]: number }) {
+  private renderResource(resource: string, resources: Resources) {
     const style: React.CSSProperties = {
       textAlign: "center",
     };

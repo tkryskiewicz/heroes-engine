@@ -197,7 +197,7 @@ export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindow
     ));
   }
 
-  private renderResources(resources: { [resource: string]: number }) {
+  private renderResources(resources: Resources) {
     return resourceOrder.map((r) => (
       <Col
         key={r}

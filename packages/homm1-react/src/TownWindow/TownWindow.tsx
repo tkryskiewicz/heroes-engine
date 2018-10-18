@@ -1,17 +1,18 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
-import { Town } from "heroes-core";
+import { Resources, Town } from "heroes-core";
 
 import { ArmyStrip } from "../ArmyStrip";
 import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
 import { HeroPortrait } from "../HeroPortrait";
+import { TownView } from "../TownView";
 import { Treasury } from "./Treasury";
 
 export interface TownWindowProps {
   town: Town;
-  resources: { [resource: string]: number };
+  resources: Resources;
   onExitClick?: () => void;
 }
 
@@ -21,6 +22,11 @@ export class TownWindow extends React.Component<TownWindowProps> {
 
     return (
       <div>
+        <Row>
+          <TownView
+            town={town}
+          />
+        </Row>
         <Row>
           <Col span={20}>
             <Row>
