@@ -112,7 +112,12 @@ const towns: Town[] = [
     garrison: [],
     heroClass: HeroClass.Knight,
     id: TownId.Farm,
-    structures: [],
+    structures: [
+      {
+        id: StructureId.Tent,
+        isBuilt: true,
+      },
+    ],
   },
   {
     alignment: Alignment.Red,
@@ -132,14 +137,24 @@ const towns: Town[] = [
     garrison: [],
     heroClass: HeroClass.Sorceress,
     id: TownId.Forest,
-    structures: [],
+    structures: [
+      {
+        id: StructureId.Tent,
+        isBuilt: true,
+      },
+    ],
   },
   {
     alignment: Alignment.Red,
     garrison: [],
     heroClass: HeroClass.Warlock,
     id: TownId.Mountains,
-    structures: [],
+    structures: [
+      {
+        id: StructureId.Tent,
+        isBuilt: true,
+      },
+    ],
   },
 ];
 
