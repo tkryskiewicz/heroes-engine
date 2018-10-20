@@ -1,6 +1,9 @@
 {
   "name": "heroes-homm1",
   "version": "0.0.0",
+  "dependencies": {
+    "heroes-core": "0.0.0"
+  },
   "devDependencies": {
     "typescript": "^3.1.1"
   },
