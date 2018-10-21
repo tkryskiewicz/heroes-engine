@@ -116,6 +116,7 @@ export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindow
             span={4}
           >
             <GameButton
+              group="kingdom-overview-window"
               type="exit"
               onClick={this.props.onExitClick}
             />

@@ -67,6 +67,9 @@ type CampaignScenarioInfoWindowButtonType =
   "okay" |
   "restart-scenario";
 
+type KingdomOverviewWindowButtonType =
+  "exit";
+
 type HighScoresWindowButtonType =
   "standard" |
   "campaign" |
@@ -90,6 +93,7 @@ export type GameButtonType =
   TroopWindowButtonType |
   TownWindowButtonType |
   CampaignScenarioInfoWindowButtonType |
+  KingdomOverviewWindowButtonType |
   HighScoresWindowButtonType |
   RecruitTroopWindowButtonType;
 
@@ -105,6 +109,7 @@ export type GameButtonGroup =
   "troop-window" |
   "town-window" |
   "campaign-scenario-info-window" |
+  "kingdom-overview-window" |
   "high-scores-window" |
   "recruit-troop-window";
 
