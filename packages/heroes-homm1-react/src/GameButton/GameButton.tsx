@@ -80,6 +80,9 @@ type RecruitTroopWindowButtonType =
   "okay" |
   "cancel";
 
+type LegendButtonType =
+  "exit";
+
 export type GameButtonType =
   SharedButtonType |
   MainMenuButtonType |
@@ -95,7 +98,8 @@ export type GameButtonType =
   CampaignScenarioInfoWindowButtonType |
   KingdomOverviewWindowButtonType |
   HighScoresWindowButtonType |
-  RecruitTroopWindowButtonType;
+  RecruitTroopWindowButtonType |
+  LegendButtonType;
 
 export type GameButtonGroup =
   "main-menu" |
@@ -111,7 +115,8 @@ export type GameButtonGroup =
   "campaign-scenario-info-window" |
   "kingdom-overview-window" |
   "high-scores-window" |
-  "recruit-troop-window";
+  "recruit-troop-window" |
+  "legend";
 
 // TODO: improve intellisense when using groups
 export interface GameButtonProps {

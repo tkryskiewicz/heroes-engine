@@ -89,6 +89,7 @@ export class PuzzleWindow extends React.Component<PuzzleWindowProps> {
         />
         <div style={buttonStyle}>
           <GameButton
+            group="legend"
             type="exit"
             onClick={this.props.onExitClick}
           />

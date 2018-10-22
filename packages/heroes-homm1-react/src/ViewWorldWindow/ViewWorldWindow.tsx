@@ -57,6 +57,7 @@ export class ViewWorldWindow extends React.Component<ViewWorldWindowProps> {
         />
         <div style={buttonStyle}>
           <GameButton
+            group="legend"
             type="exit"
             onClick={this.props.onExitClick}
           />
