@@ -11,7 +11,7 @@ export class Crest extends React.Component<CrestProps> {
   public render() {
     return (
       <img
-        src={`assets/heroClasses/${this.props.heroClass}/crest-${this.props.alignment}-${this.props.size}.jpg`}
+        src={`assets/heroClasses/${this.props.heroClass}/crests/${this.props.alignment}/${this.props.size}.jpg`}
         onClick={this.onClick}
       />
     );
