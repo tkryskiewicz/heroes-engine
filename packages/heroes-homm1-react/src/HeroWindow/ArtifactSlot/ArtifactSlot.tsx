@@ -5,6 +5,7 @@ import { ArtifactIcon } from "../../ArtifactIcon";
 export interface ArtifactSlotProps {
   index: number;
   artifact?: string;
+  isUltimate?: boolean;
   onClick?: (index: number) => void;
 }
 
@@ -26,7 +27,7 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
         style={style}
         onClick={this.onClick}
       >
-        {this.renderBorder()}
+        {this.renderBorder(this.props.isUltimate || false)}
         <div style={contentStyle}>
           {this.props.artifact ? this.renderArtifact(this.props.artifact) : this.renderEmpty()}
         </div>
@@ -34,10 +35,10 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
     );
   }
 
-  private renderBorder() {
+  private renderBorder(isUltimate: boolean) {
     return (
       <img
-        src="assets/ui/hero-window/artifact-slot-border.png"
+        src={`assets/ui/hero-window/artifact${isUltimate ? "-ultimate" : ""}-slot-border.png`}
       />
     );
   }
