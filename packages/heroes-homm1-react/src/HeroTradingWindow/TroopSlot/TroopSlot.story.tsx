@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { number, select } from "@storybook/addon-knobs";
+import { boolean, number, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -21,6 +21,7 @@ storiesOf(`${HeroTradingWindow.name}/${TroopSlot.name}`, module)
       <TroopSlot
         index={number("Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
         troop={troop}
+        selected={boolean("Selected", false)}
         onClick={action("Click")}
       />
     );
@@ -28,6 +29,7 @@ storiesOf(`${HeroTradingWindow.name}/${TroopSlot.name}`, module)
   .add("empty", () => (
     <TroopSlot
       index={number("Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
+      selected={boolean("Selected", false)}
       onClick={action("Click")}
     />
   ));

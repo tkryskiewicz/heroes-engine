@@ -68,6 +68,7 @@ export class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
         </Row>
         <Row style={{ textAlign: "center" }}>
           <GameButton
+            group="hero-trading-window"
             type="exit"
             onClick={this.props.onExitClick}
           />

@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { number, select } from "@storybook/addon-knobs";
+import { boolean, number, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -14,12 +14,14 @@ storiesOf(`${HeroTradingWindow.name}/${ArtifactSlot.name}`, module)
     <ArtifactSlot
       index={number("Index", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 })}
       artifact={select("Artifact", artifactOptions, ArtifactId.GiantFlailOfDominion)}
+      selected={boolean("Selected", false)}
       onClick={action("Click")}
     />
   ))
   .add("empty", () => (
     <ArtifactSlot
       index={number("Index", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 })}
+      selected={boolean("Selected", false)}
       onClick={action("Click")}
     />
   ));

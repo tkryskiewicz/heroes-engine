@@ -8,6 +8,7 @@ import { GameText } from "../../GameText";
 export interface TroopSlotProps {
   index: number;
   troop?: Troop;
+  selected?: boolean;
   onClick?: (index: number) => void;
 }
 
@@ -26,22 +27,22 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
         {this.renderBackground()}
         {this.props.troop && this.renderTroop(this.props.troop)}
         {this.props.troop && this.renderCount(this.props.troop.count)}
+        {this.props.selected && this.renderSelection()}
       </div>
     );
   }
 
   private renderBackground() {
     return (
-      <img
-        src="assets/ui/hero-trade-window/troop-background.jpg"
-      />
+      <img src="assets/ui/hero-trading-window/troop-background.jpg" />
     );
   }
 
   private renderTroop(troop: Troop) {
     const style: React.CSSProperties = {
+      left: 1,
       position: "absolute",
-      top: 0,
+      top: 1,
     };
 
     return (
@@ -65,6 +66,21 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
           {count}
         </GameText>
       </div>
+    );
+  }
+
+  private renderSelection() {
+    const style: React.CSSProperties = {
+      left: 0,
+      position: "absolute",
+      top: 0,
+    };
+
+    return (
+      <img
+        style={style}
+        src="assets/ui/hero-trading-window/selection.png"
+      />
     );
   }
 

@@ -60,6 +60,9 @@ type TroopWindowButtonType =
   "dismiss" |
   "exit";
 
+type HeroTradingWindowButtonType =
+  "exit";
+
 type TownWindowButtonType =
   "exit";
 
@@ -94,6 +97,7 @@ export type GameButtonType =
   GameOptionButtonType |
   HeroWindowButtonType |
   TroopWindowButtonType |
+  HeroTradingWindowButtonType |
   TownWindowButtonType |
   CampaignScenarioInfoWindowButtonType |
   KingdomOverviewWindowButtonType |
@@ -111,6 +115,7 @@ export type GameButtonGroup =
   "game-options" |
   "hero-window" |
   "troop-window" |
+  "hero-trading-window" |
   "town-window" |
   "campaign-scenario-info-window" |
   "kingdom-overview-window" |
