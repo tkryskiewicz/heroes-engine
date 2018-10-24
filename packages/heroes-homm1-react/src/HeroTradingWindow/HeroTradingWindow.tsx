@@ -94,7 +94,7 @@ export class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
 
   private renderSkillNames() {
     return SkillIds.map((s) => (
-      <Row>
+      <Row key={s}>
         <GameText size="normal">
           <FormattedMessage {...getSkillNameMessage(s)} />
         </GameText>
