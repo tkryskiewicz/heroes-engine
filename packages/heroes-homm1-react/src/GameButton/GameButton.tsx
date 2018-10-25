@@ -1,9 +1,8 @@
 import * as React from "react";
 
-type SharedButtonType =
+type SystemButtonType =
   "yes" |
-  "no" |
-  "exit";
+  "no";
 
 type MainMenuButtonType =
   "new-game" |
@@ -87,7 +86,7 @@ type LegendButtonType =
   "exit";
 
 export type GameButtonType =
-  SharedButtonType |
+  SystemButtonType |
   MainMenuButtonType |
   NewGameMenuButtonType |
   CampaignMenuButtonType |
@@ -106,6 +105,7 @@ export type GameButtonType =
   LegendButtonType;
 
 export type GameButtonGroup =
+  "system" |
   "main-menu" |
   "new-game-menu" |
   "campaign-menu" |

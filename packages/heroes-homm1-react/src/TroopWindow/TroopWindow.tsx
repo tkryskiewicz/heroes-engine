@@ -7,6 +7,7 @@ import { creaturesById } from "heroes-homm1";
 
 import { CreatureIcon } from "../CreatureIcon";
 import { GameButton } from "../GameButton";
+import { GameText } from "../GameText";
 import { getCreatureNameMessage } from "../messages";
 import { getSpeedMessage, messages } from "./messages";
 
@@ -23,57 +24,69 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
   public render() {
     const creature = creaturesById[this.props.troop.creature];
 
+    const style: React.CSSProperties = {
+      background: "url('assets/ui/troop-window/background.png')",
+      height: 229,
+      padding: "20px 35px",
+      position: "relative",
+      width: 402,
+    };
+
     return (
-      <Row>
-        <Col span={12}>
+      <Row style={style}>
+        <Col style={{ textAlign: "center" }} span={12}>
           <CreatureIcon
             size="large"
             creature={this.props.troop.creature}
           />
-          {this.renderCount(this.props.troop.count)}
         </Col>
         <Col span={12}>
-          <Row>
-            <FormattedMessage {...getCreatureNameMessage(creature.id)} />
+          <Row style={{ textAlign: "center" }}>
+            <GameText size="normal">
+              <FormattedMessage {...getCreatureNameMessage(creature.id)} />
+            </GameText>
           </Row>
           <Row>
-            <FormattedMessage {...messages.attack} />
-            :
-            {creature.attack} (?)
+            <GameText size="normal">
+              <FormattedMessage {...messages.attack} />: {creature.attack} (?)
+            </GameText>
           </Row>
           <Row>
-            <FormattedMessage {...messages.defense} />
-            :
-            {creature.defense} (?)
+            <GameText size="normal">
+              <FormattedMessage {...messages.defense} />: {creature.defense} (?)
+            </GameText>
           </Row>
           {creature.shots && this.renderShots(creature.shots)}
           <Row>
-            <FormattedMessage {...messages.damage} />
-            :
-            {this.renderDamage(creature.damage)}
+            <GameText size="normal">
+              <FormattedMessage {...messages.damage} />: {this.renderDamage(creature.damage)}
+            </GameText>
           </Row>
           <Row>
-            <FormattedMessage {...messages.hitPoints} />
-            :
-             {creature.hitPoints}
+            <GameText size="normal">
+              <FormattedMessage {...messages.hitPoints} />: {creature.hitPoints}
+            </GameText>
           </Row>
           <Row>
-            <FormattedMessage {...messages.speed} />
-            :
-            <FormattedMessage {...getSpeedMessage(creature.speed)} />
+            <GameText size="normal">
+              <FormattedMessage {...messages.speed} />: <FormattedMessage {...getSpeedMessage(creature.speed)} />
+            </GameText>
           </Row>
           <Row>
-            <FormattedMessage {...messages.morale} />
-            :
-            ?
+            <GameText size="normal">
+              <FormattedMessage {...messages.morale} />: ?
+            </GameText>
           </Row>
           <Row>
-            <FormattedMessage {...messages.luck} />
-            :
-            ?
+            <GameText size="normal">
+              <FormattedMessage {...messages.luck} />: ?
+            </GameText>
           </Row>
           <Row>
-            <Col span={12}>
+            <Col
+              style={{ textAlign: "left" }}
+              span={12}
+            >
               <GameButton
                 group="troop-window"
                 type="dismiss"
@@ -81,7 +94,10 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
               />
               {this.props.dismissPromptVisible && this.renderDismissPrompt()}
             </Col>
-            <Col span={12}>
+            <Col
+              style={{ textAlign: "right" }}
+              span={12}
+            >
               <GameButton
                 group="troop-window"
                 type="exit"
@@ -90,14 +106,29 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
             </Col>
           </Row>
         </Col>
+        {this.renderCount(this.props.troop.count)}
       </Row>
     );
   }
 
   private renderCount(value: number) {
+    const style: React.CSSProperties = {
+      background: "url('assets/ui/troop-window/count-background.jpg')",
+      bottom: 17,
+      display: "inline-block",
+      height: 38,
+      left: 41,
+      paddingTop: 5,
+      position: "absolute",
+      textAlign: "center",
+      width: 142,
+    };
+
     return (
-      <div>
-        {value}
+      <div style={style}>
+        <GameText size="normal">
+          {value}
+        </GameText>
       </div>
     );
   }
@@ -105,9 +136,11 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
   private renderShots(value: number) {
     return (
       <Row>
-        <FormattedMessage {...messages.shots} />
-        :
-        {value}
+        <GameText size="normal">
+          <FormattedMessage {...messages.shots} />
+          :
+          {value}
+        </GameText>
       </Row>
     );
   }
@@ -134,6 +167,7 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
             span={12}
           >
             <GameButton
+              group="system"
               type="yes"
               onClick={this.props.onDismiss}
             />
@@ -143,6 +177,7 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
             span={12}
           >
             <GameButton
+              group="system"
               type="no"
               onClick={this.props.onCancelDismiss}
             />
