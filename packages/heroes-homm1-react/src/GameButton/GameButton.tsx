@@ -130,7 +130,7 @@ export type GameButtonGroup =
 
 // TODO: improve intellisense when using groups
 export interface GameButtonProps {
-  group?: GameButtonGroup;
+  group: GameButtonGroup;
   type: GameButtonType;
   disabled?: boolean;
   onClick?: () => void;

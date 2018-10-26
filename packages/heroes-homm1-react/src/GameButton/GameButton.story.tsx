@@ -6,13 +6,15 @@ import * as React from "react";
 import { GameButton, GameButtonType } from "./GameButton";
 
 const typeOptions: { [s: string]: GameButtonType } = {
-  Exit: "exit",
+  No: "no",
+  Yes: "yes",
 };
 
 storiesOf(GameButton.name, module)
   .add("default", () => (
     <GameButton
-      type={select("Type", typeOptions, "exit")}
+      group={select("Group", { System: "system" }, "system")}
+      type={select("Type", typeOptions, "yes")}
       disabled={boolean("Disabled", false)}
       onClick={action("Click")}
     />

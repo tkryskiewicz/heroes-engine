@@ -165,6 +165,7 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
             span={12}
           >
             <GameButton
+              group="system"
               type="yes"
               onClick={this.onDismissHero}
             />
@@ -174,6 +175,7 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
             span={12}
           >
             <GameButton
+              group="system"
               type="no"
               onClick={this.props.onCancelDismissHeroClick}
             />
