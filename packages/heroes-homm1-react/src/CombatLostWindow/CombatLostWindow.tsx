@@ -10,15 +10,14 @@ import { GameText } from "../GameText";
 import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 
-export interface CombatWonWindowProps {
+export interface CombatLostWindowProps {
   hero: string;
-  rewardedExperience: number;
   attackerCasualties: Army;
   defenderCasualties: Army;
   onOkayClick?: () => void;
 }
 
-export class CombatWonWindow extends React.Component<CombatWonWindowProps> {
+export class CombatLostWindow extends React.Component<CombatLostWindowProps> {
   public render() {
     return (
       <CombatSummaryWindow
@@ -31,13 +30,8 @@ export class CombatWonWindow extends React.Component<CombatWonWindowProps> {
         </Row>
         <Row>
           <GameText size="large">
-            <FormattedMessage {...messages.title} />
-          </GameText>
-        </Row>
-        <Row>
-          <GameText size="large">
             <FormattedMessage {...getHeroNameMessage(this.props.hero)}>
-              {(heroName) => this.renderRewards(heroName.toString(), this.props.rewardedExperience)}
+              {(heroName) => <FormattedMessage {...messages.title} values={{ heroName }} />}
             </FormattedMessage>
           </GameText>
         </Row>
@@ -46,21 +40,34 @@ export class CombatWonWindow extends React.Component<CombatWonWindowProps> {
   }
 
   private renderAnimation() {
-    return (
-      <img src="assets/ui/combat-won-window/animation.jpg" />
-    );
-  }
+    const style: React.CSSProperties = {
+      background: "url('assets/ui/combat-lost-window/animation-background.jpg')",
+      display: "inline-block",
+      height: 125,
+      position: "relative",
+      width: 223,
+    };
 
-  private renderRewards(heroName: string, experience: number) {
+    const animationStyle: React.CSSProperties = {
+      left: 50,
+      position: "absolute",
+      top: 60,
+    };
+
     return (
-      <FormattedMessage {...messages.rewardsMessage} values={{ heroName, experience }} />
+      <div style={style}>
+        <img
+          style={animationStyle}
+          src="assets/ui/combat-lost-window/animation.png"
+        />
+      </div>
     );
   }
 
   private renderActions(onOkayClick?: () => void) {
     return (
       <GameButton
-        group="combat-won-window"
+        group="combat-lost-window"
         type="okay"
         onClick={onOkayClick}
       />

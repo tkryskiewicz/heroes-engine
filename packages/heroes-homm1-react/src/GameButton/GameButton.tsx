@@ -88,6 +88,9 @@ type LegendButtonType =
 type CombatWonWindowButtonType =
   "okay";
 
+type CombatLostWindowButtonType =
+  "okay";
+
 export type GameButtonType =
   SystemButtonType |
   MainMenuButtonType |
@@ -106,7 +109,8 @@ export type GameButtonType =
   HighScoresWindowButtonType |
   RecruitTroopWindowButtonType |
   LegendButtonType |
-  CombatWonWindowButtonType;
+  CombatWonWindowButtonType |
+  CombatLostWindowButtonType;
 
 export type GameButtonGroup =
   "system" |
@@ -126,7 +130,8 @@ export type GameButtonGroup =
   "high-scores-window" |
   "recruit-troop-window" |
   "legend" |
-  "combat-won-window";
+  "combat-won-window" |
+  "combat-lost-window";
 
 // TODO: improve intellisense when using groups
 export interface GameButtonProps {
