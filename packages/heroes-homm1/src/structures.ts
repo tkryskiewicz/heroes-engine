@@ -11,7 +11,7 @@ export enum StructureId {
 }
 
 // Farm Structures
-export enum StructureId {
+export enum FarmStructureId {
   ThatchedHut = "thatched-hut",
   ArcheryRange = "archery-range",
   Blacksmith = "blacksmith",
@@ -21,7 +21,7 @@ export enum StructureId {
 }
 
 // Plains Structures
-export enum StructureId {
+export enum PlainsStructureId {
   Hut = "hut",
   StickHut = "stick-hut",
   Den = "den",
@@ -31,17 +31,17 @@ export enum StructureId {
 }
 
 // Forest Structures
-export enum StructureId {
+export enum ForestStructureId {
   Treehouse = "treehouse",
   Cottage = "cottage",
-  // ArcheryRange = "archery-range",
+  ArcheryRange = "archery-range",
   Stonehenge = "stonehenge",
   FencedMeadow = "fenced-meadow",
   RedTower = "red-tower",
 }
 
 // Mountains Structures
-export enum StructureId {
+export enum MountainsStructureId {
   Cave = "cave",
   Crypt = "crypt",
   Nest = "nest",

@@ -1,7 +1,14 @@
 import * as React from "react";
 
 import { Structure } from "heroes-core";
-import { StructureId, TownId } from "heroes-homm1";
+import {
+  FarmStructureId,
+  ForestStructureId,
+  MountainsStructureId,
+  PlainsStructureId,
+  StructureId,
+  TownId,
+} from "heroes-homm1";
 
 const CommonStructures: string[] = [
   StructureId.MageGuild,
@@ -69,37 +76,37 @@ const FarmStructuresInfo: { [structure: string]: StructureInfo } = {
     },
   },
   ...CommonStructuresInfo,
-  [StructureId.ThatchedHut]: {
+  [FarmStructureId.ThatchedHut]: {
     position: {
       left: 81,
       top: 90,
     },
   },
-  [StructureId.ArcheryRange]: {
+  [FarmStructureId.ArcheryRange]: {
     position: {
       left: 0,
       top: 89,
     },
   },
-  [StructureId.Blacksmith]: {
+  [FarmStructureId.Blacksmith]: {
     position: {
       left: 406,
       top: 124,
     },
   },
-  [StructureId.Armory]: {
+  [FarmStructureId.Armory]: {
     position: {
       left: 308,
       top: 144,
     },
   },
-  [StructureId.JoustingArena]: {
+  [FarmStructureId.JoustingArena]: {
     position: {
       left: 388,
       top: 71,
     },
   },
-  [StructureId.Cathedral]: {
+  [FarmStructureId.Cathedral]: {
     position: {
       left: 556,
       top: 9,
@@ -121,37 +128,37 @@ const PlainsStructuresInfo: { [structure: string]: StructureInfo } = {
     },
   },
   ...CommonStructuresInfo,
-  [StructureId.Hut]: {
+  [PlainsStructureId.Hut]: {
     position: {
       left: 82,
       top: 72,
     },
   },
-  [StructureId.StickHut]: {
+  [PlainsStructureId.StickHut]: {
     position: {
       left: 334,
       top: 126,
     },
   },
-  [StructureId.Den]: {
+  [PlainsStructureId.Den]: {
     position: {
       left: 532,
       top: 30,
     },
   },
-  [StructureId.Adobe]: {
+  [PlainsStructureId.Adobe]: {
     position: {
       left: 437,
       top: 82,
     },
   },
-  [StructureId.Bridge]: {
+  [PlainsStructureId.Bridge]: {
     position: {
       left: 8,
       top: 102,
     },
   },
-  [StructureId.Pyramid]: {
+  [PlainsStructureId.Pyramid]: {
     position: {
       left: 478,
       top: 75,
@@ -173,37 +180,37 @@ const ForestStructuresInfo: { [structure: string]: StructureInfo } = {
     },
   },
   ...CommonStructuresInfo,
-  [StructureId.Treehouse]: {
+  [ForestStructureId.Treehouse]: {
     position: {
       left: 512,
       top: 24,
     },
   },
-  [StructureId.Cottage]: {
+  [ForestStructureId.Cottage]: {
     position: {
       left: 83,
       top: 41,
     },
   },
-  [StructureId.ArcheryRange]: {
+  [ForestStructureId.ArcheryRange]: {
     position: {
       left: 10,
       top: 24,
     },
   },
-  [StructureId.Stonehenge]: {
+  [ForestStructureId.Stonehenge]: {
     position: {
       left: 389,
       top: 107,
     },
   },
-  [StructureId.FencedMeadow]: {
+  [ForestStructureId.FencedMeadow]: {
     position: {
       left: 324,
       top: 24,
     },
   },
-  [StructureId.RedTower]: {
+  [ForestStructureId.RedTower]: {
     position: {
       left: 506,
       top: 14,
@@ -225,37 +232,37 @@ const MountainsStructuresInfo: { [structure: string]: StructureInfo } = {
     },
   },
   ...CommonStructuresInfo,
-  [StructureId.Cave]: {
+  [MountainsStructureId.Cave]: {
     position: {
       left: 528,
       top: 9,
     },
   },
-  [StructureId.Crypt]: {
+  [MountainsStructureId.Crypt]: {
     position: {
       left: 562,
       top: 106,
     },
   },
-  [StructureId.Nest]: {
+  [MountainsStructureId.Nest]: {
     position: {
       left: 423,
       top: 0,
     },
   },
-  [StructureId.Maze]: {
+  [MountainsStructureId.Maze]: {
     position: {
       left: 0,
       top: 0,
     },
   },
-  [StructureId.Swamp]: {
+  [MountainsStructureId.Swamp]: {
     position: {
       left: 0,
       top: 116,
     },
   },
-  [StructureId.BlackTower]: {
+  [MountainsStructureId.BlackTower]: {
     position: {
       left: 44,
       top: 7,

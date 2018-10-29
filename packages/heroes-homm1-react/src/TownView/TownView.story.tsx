@@ -2,7 +2,14 @@ import { boolean, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { StructureId, TownId } from "heroes-homm1";
+import {
+  FarmStructureId,
+  ForestStructureId,
+  MountainsStructureId,
+  PlainsStructureId,
+  StructureId,
+  TownId,
+} from "heroes-homm1";
 
 import { townOptions } from "../stories";
 import { TownView, TownViewProps } from "./TownView";
@@ -32,108 +39,108 @@ const commonStructures = [
 
 const farmStructures = [
   {
-    id: StructureId.ThatchedHut,
+    id: FarmStructureId.ThatchedHut,
     isBuilt: true,
   },
   {
-    id: StructureId.ArcheryRange,
+    id: FarmStructureId.ArcheryRange,
     isBuilt: true,
   },
   {
-    id: StructureId.Blacksmith,
+    id: FarmStructureId.Blacksmith,
     isBuilt: true,
   },
   {
-    id: StructureId.Armory,
+    id: FarmStructureId.Armory,
     isBuilt: true,
   },
   {
-    id: StructureId.JoustingArena,
+    id: FarmStructureId.JoustingArena,
     isBuilt: true,
   },
   {
-    id: StructureId.Cathedral,
+    id: FarmStructureId.Cathedral,
     isBuilt: true,
   },
 ];
 
 const plainsStructures = [
   {
-    id: StructureId.Hut,
+    id: PlainsStructureId.Hut,
     isBuilt: true,
   },
   {
-    id: StructureId.StickHut,
+    id: PlainsStructureId.StickHut,
     isBuilt: true,
   },
   {
-    id: StructureId.Den,
+    id: PlainsStructureId.Den,
     isBuilt: true,
   },
   {
-    id: StructureId.Adobe,
+    id: PlainsStructureId.Adobe,
     isBuilt: true,
   },
   {
-    id: StructureId.Bridge,
+    id: PlainsStructureId.Bridge,
     isBuilt: true,
   },
   {
-    id: StructureId.Pyramid,
+    id: PlainsStructureId.Pyramid,
     isBuilt: true,
   },
 ];
 
 const forestStructures = [
   {
-    id: StructureId.Treehouse,
+    id: ForestStructureId.Treehouse,
     isBuilt: true,
   },
   {
-    id: StructureId.Cottage,
+    id: ForestStructureId.Cottage,
     isBuilt: true,
   },
   {
-    id: StructureId.ArcheryRange,
+    id: ForestStructureId.ArcheryRange,
     isBuilt: true,
   },
   {
-    id: StructureId.Stonehenge,
+    id: ForestStructureId.Stonehenge,
     isBuilt: true,
   },
   {
-    id: StructureId.FencedMeadow,
+    id: ForestStructureId.FencedMeadow,
     isBuilt: true,
   },
   {
-    id: StructureId.RedTower,
+    id: ForestStructureId.RedTower,
     isBuilt: true,
   },
 ];
 
 const mountainsStructures = [
   {
-    id: StructureId.Cave,
+    id: MountainsStructureId.Cave,
     isBuilt: true,
   },
   {
-    id: StructureId.Crypt,
+    id: MountainsStructureId.Crypt,
     isBuilt: true,
   },
   {
-    id: StructureId.Nest,
+    id: MountainsStructureId.Nest,
     isBuilt: true,
   },
   {
-    id: StructureId.Maze,
+    id: MountainsStructureId.Maze,
     isBuilt: true,
   },
   {
-    id: StructureId.Swamp,
+    id: MountainsStructureId.Swamp,
     isBuilt: true,
   },
   {
-    id: StructureId.BlackTower,
+    id: MountainsStructureId.BlackTower,
     isBuilt: true,
   },
 ];
