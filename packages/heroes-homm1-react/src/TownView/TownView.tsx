@@ -3,12 +3,56 @@ import * as React from "react";
 import { Structure } from "heroes-core";
 import { StructureId, TownId } from "heroes-homm1";
 
+const CommonStructures: string[] = [
+  StructureId.MageGuild,
+  StructureId.ThievesGuild,
+  StructureId.Tavern,
+  StructureId.Shipyard,
+  StructureId.Well,
+];
+
+const isCommonStructure = (structure: string) =>
+  CommonStructures.indexOf(structure) !== -1;
+
 interface StructureInfo {
   position: {
     left: number;
     top: number;
   };
 }
+
+const CommonStructuresInfo: { [structure: string]: StructureInfo } = {
+  [StructureId.MageGuild]: {
+    position: {
+      left: 297,
+      top: 4,
+    },
+  },
+  [StructureId.ThievesGuild]: {
+    position: {
+      left: 132,
+      top: 81,
+    },
+  },
+  [StructureId.Tavern]: {
+    position: {
+      left: 204,
+      top: 74,
+    },
+  },
+  [StructureId.Shipyard]: {
+    position: {
+      left: 0,
+      top: 165,
+    },
+  },
+  [StructureId.Well]: {
+    position: {
+      left: 174,
+      top: 200,
+    },
+  },
+};
 
 const FarmStructuresInfo: { [structure: string]: StructureInfo } = {
   [StructureId.Tent]: {
@@ -24,6 +68,7 @@ const FarmStructuresInfo: { [structure: string]: StructureInfo } = {
       top: 0,
     },
   },
+  ...CommonStructuresInfo,
 };
 
 const PlainsStructuresInfo: { [structure: string]: StructureInfo } = {
@@ -39,6 +84,7 @@ const PlainsStructuresInfo: { [structure: string]: StructureInfo } = {
       top: 0,
     },
   },
+  ...CommonStructuresInfo,
 };
 
 const ForestStructuresInfo: { [structure: string]: StructureInfo } = {
@@ -54,6 +100,7 @@ const ForestStructuresInfo: { [structure: string]: StructureInfo } = {
       top: 1,
     },
   },
+  ...CommonStructuresInfo,
 };
 
 const MountainsStructuresInfo: { [structure: string]: StructureInfo } = {
@@ -69,6 +116,7 @@ const MountainsStructuresInfo: { [structure: string]: StructureInfo } = {
       top: 0,
     },
   },
+  ...CommonStructuresInfo,
 };
 
 const StructuresInfo: { [town: string]: { [structure: string]: StructureInfo } } = {
@@ -110,11 +158,13 @@ export class TownView extends React.Component<TownViewProps> {
       ...structureInfo.position,
     };
 
+    const townPath = isCommonStructure(structure.id) ? "common" : town;
+
     return (
       <img
         style={style}
         key={structure.id}
-        src={`assets/towns/${town}/structures/${structure.id}/image.png`}
+        src={`assets/towns/${townPath}/structures/${structure.id}/image.png`}
       />
     );
   }

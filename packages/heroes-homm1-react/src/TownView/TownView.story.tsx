@@ -16,6 +16,26 @@ storiesOf(TownView.name, module)
           id: boolean("Is Castle Built", false) ? StructureId.Castle : StructureId.Tent,
           isBuilt: true,
         },
+        {
+          id: StructureId.MageGuild,
+          isBuilt: true,
+        },
+        {
+          id: StructureId.ThievesGuild,
+          isBuilt: true,
+        },
+        {
+          id: StructureId.Tavern,
+          isBuilt: true,
+        },
+        {
+          id: StructureId.Shipyard,
+          isBuilt: true,
+        },
+        {
+          id: StructureId.Well,
+          isBuilt: true,
+        },
       ],
     };
 
