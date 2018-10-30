@@ -2,13 +2,18 @@ import {
   Alignment,
   ArtifactId,
   creatures,
+  FarmStructureId,
+  ForestStructureId,
   GameDifficulty,
   HeroClass,
   heroes,
+  MountainsStructureId,
   MovementSpeed,
   OpponentSetting,
+  PlainsStructureId,
   Resource,
   Skill,
+  StructureId,
   TownId,
 } from "heroes-homm1";
 
@@ -58,6 +63,14 @@ export const townOptions = Object.keys(TownId).reduce<SelectOptions>((p, c: any)
 
   return p;
 }, {});
+
+export const structureOptions = {
+  ...StructureId,
+  ...FarmStructureId,
+  ...PlainsStructureId,
+  ...ForestStructureId,
+  ...MountainsStructureId,
+};
 
 export const creatureOptions = creatures.reduce<SelectOptions>((p, c) => {
   p[c.id] = c.id;

@@ -11,6 +11,7 @@ import {
   TownId,
 } from "heroes-homm1";
 
+import { action } from "@storybook/addon-actions";
 import { townOptions } from "../stories";
 import { TownView, TownViewProps } from "./TownView";
 
@@ -171,6 +172,7 @@ storiesOf(TownView.name, module)
     return (
       <TownView
         town={town}
+        onStructureClick={action("Structure Click")}
       />
     );
   });

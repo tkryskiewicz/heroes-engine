@@ -10,6 +10,17 @@ export enum StructureId {
   Well = "well",
 }
 
+const CommonStructures: string[] = [
+  StructureId.MageGuild,
+  StructureId.ThievesGuild,
+  StructureId.Tavern,
+  StructureId.Shipyard,
+  StructureId.Well,
+];
+
+export const isCommonStructure = (structure: string) =>
+  CommonStructures.indexOf(structure) !== -1;
+
 // Farm Structures
 export enum FarmStructureId {
   ThatchedHut = "thatched-hut",

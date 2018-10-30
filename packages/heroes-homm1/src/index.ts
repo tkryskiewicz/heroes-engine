@@ -22,7 +22,14 @@ export {
 } from "./scores";
 export { Skill, SkillIds } from "./Skill";
 export { SoundVolume, changeVolume } from "./SoundVolume";
-export { StructureId, FarmStructureId, PlainsStructureId, ForestStructureId, MountainsStructureId } from "./structures";
+export {
+  StructureId,
+  isCommonStructure,
+  FarmStructureId,
+  PlainsStructureId,
+  ForestStructureId,
+  MountainsStructureId,
+} from "./structures";
 export { TownId, TownIds } from "./towns";
 
 export const MaxPlayers = 4;

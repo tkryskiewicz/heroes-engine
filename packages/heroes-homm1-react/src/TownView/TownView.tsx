@@ -10,16 +10,7 @@ import {
   TownId,
 } from "heroes-homm1";
 
-const CommonStructures: string[] = [
-  StructureId.MageGuild,
-  StructureId.ThievesGuild,
-  StructureId.Tavern,
-  StructureId.Shipyard,
-  StructureId.Well,
-];
-
-const isCommonStructure = (structure: string) =>
-  CommonStructures.indexOf(structure) !== -1;
+import { StructureView } from "./StructureView";
 
 interface StructureInfo {
   position: {
@@ -282,6 +273,7 @@ export interface TownViewProps {
     id: string;
     structures: Structure[];
   };
+  onStructureClick?: (structure: string) => void;
 }
 
 export class TownView extends React.Component<TownViewProps> {
@@ -309,14 +301,14 @@ export class TownView extends React.Component<TownViewProps> {
       ...structureInfo.position,
     };
 
-    const townPath = isCommonStructure(structure.id) ? "common" : town;
-
     return (
-      <img
-        style={style}
-        key={structure.id}
-        src={`assets/towns/${townPath}/structures/${structure.id}/image.png`}
-      />
+      <div style={style}>
+        <StructureView
+          town={town}
+          structure={structure.id}
+          onClick={this.props.onStructureClick}
+        />
+      </div>
     );
   }
 }
