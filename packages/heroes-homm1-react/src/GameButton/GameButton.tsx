@@ -2,7 +2,9 @@ import * as React from "react";
 
 type SystemButtonType =
   "yes" |
-  "no";
+  "no" |
+  "okay" |
+  "cancel";
 
 type MainMenuButtonType =
   "new-game" |

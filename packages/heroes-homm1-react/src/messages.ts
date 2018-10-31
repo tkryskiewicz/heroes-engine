@@ -1,6 +1,6 @@
 import { defineMessages, Messages } from "react-intl";
 
-import { CampaignId, HeroId, Skill } from "heroes-homm1";
+import { CampaignId, HeroId, Skill, StructureId } from "heroes-homm1";
 
 export const gameDifficultyMessages: Messages = defineMessages({
   easy: {
@@ -521,6 +521,41 @@ export const getCampaignNameMessage = (campaign: string) => {
       return {
         defaultMessage: "Unknown",
         id: "game.campaign.unknown",
+      };
+  }
+};
+
+const structureMessages: Messages = defineMessages({
+  tavern: {
+    defaultMessage: "Tavern",
+    id: "game.structure.tavern",
+  },
+  tavernDescription: {
+    defaultMessage: "The tavern increases the morale of all garrisoned troops.",
+    id: "game.structure.tavern.description",
+  },
+});
+
+export const getStructureNameMessage = (structure: string) => {
+  switch (structure) {
+    case StructureId.Tavern:
+      return structureMessages.tavern;
+    default:
+      return {
+        defaultMessage: "Unknown",
+        id: "game.structure.unknown",
+      };
+  }
+};
+
+export const getStructureDescriptionMessage = (structure: string) => {
+  switch (structure) {
+    case StructureId.Tavern:
+      return structureMessages.tavernDescription;
+    default:
+      return {
+        defaultMessage: "Unknown",
+        id: "game.structure.unknown.description",
       };
   }
 };
