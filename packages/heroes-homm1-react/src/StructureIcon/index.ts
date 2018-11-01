@@ -1,0 +1,1 @@
+export { StructureIcon } from "./StructureIcon";
