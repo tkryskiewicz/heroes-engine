@@ -1,3 +1,4 @@
+import { GameAction, GameActionType } from "../game";
 import { TownWindowAction, TownWindowActionType } from "./actions";
 import { TownWindowState } from "./state";
 
@@ -7,7 +8,7 @@ const initialState: TownWindowState = {
 
 export const townWindowReducer = (
   state: TownWindowState = initialState,
-  action: TownWindowAction,
+  action: TownWindowAction | GameAction,
 ): TownWindowState => {
   switch (action.type) {
     case TownWindowActionType.Open:
@@ -19,6 +20,17 @@ export const townWindowReducer = (
       return {
         ...state,
         visible: false,
+      };
+    case TownWindowActionType.OpenStructureDetails:
+      return {
+        ...state,
+        visibleStructureDetails: action.structure,
+      };
+    case TownWindowActionType.CloseStructureDetails:
+    case GameActionType.BuildStructure:
+      return {
+        ...state,
+        visibleStructureDetails: undefined,
       };
     default:
       return state;

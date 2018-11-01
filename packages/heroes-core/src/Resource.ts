@@ -11,3 +11,12 @@ export const multiplyResources = (resources: Resources, multiplier: number): Res
 
 export const enoughResources = (resourcesA: Resources, resourcesB: Resources): boolean =>
   Object.keys(resourcesB).every((r) => resourcesB[r] <= resourcesA[r]);
+
+export const subtractResources = (resourcesA: Resources, resourcesB: Resources): Resources => ({
+  ...resourcesA,
+  ...Object.keys(resourcesB).reduce<Resources>((p, c) => {
+    p[c] = resourcesA[c] - resourcesB[c];
+
+    return p;
+  }, {}),
+});

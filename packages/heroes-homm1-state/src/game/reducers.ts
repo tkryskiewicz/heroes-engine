@@ -1,4 +1,4 @@
-import { dismissGameHero, Hero, swapGameHeroTroops, Town } from "heroes-core";
+import { buildGameStructure, dismissGameHero, Hero, swapGameHeroTroops, Town } from "heroes-core";
 import {
   Alignment,
   campaignScenarios,
@@ -114,6 +114,11 @@ const towns: Town[] = [
     id: TownId.Farm,
     structures: [
       {
+        cost: {
+          [Resource.Gold]: 10000,
+          [Resource.Wood]: 20,
+          [Resource.Ore]: 20,
+        },
         id: StructureId.Tent,
         isBuilt: true,
       },
@@ -126,7 +131,16 @@ const towns: Town[] = [
     id: TownId.Plains,
     structures: [
       {
+        cost: {},
         id: StructureId.Castle,
+        isBuilt: true,
+      },
+      {
+        cost: {
+          [Resource.Gold]: 1000,
+          [Resource.Wood]: 10,
+        },
+        id: StructureId.Tavern,
         isBuilt: true,
       },
     ],
@@ -139,6 +153,11 @@ const towns: Town[] = [
     id: TownId.Forest,
     structures: [
       {
+        cost: {
+          [Resource.Gold]: 10000,
+          [Resource.Wood]: 20,
+          [Resource.Ore]: 20,
+        },
         id: StructureId.Tent,
         isBuilt: true,
       },
@@ -151,6 +170,11 @@ const towns: Town[] = [
     id: TownId.Mountains,
     structures: [
       {
+        cost: {
+          [Resource.Gold]: 10000,
+          [Resource.Wood]: 20,
+          [Resource.Ore]: 20,
+        },
         id: StructureId.Tent,
         isBuilt: true,
       },
@@ -184,6 +208,10 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
     case GameActionType.DismissHero:
       return {
         ...dismissGameHero(state, action.hero),
+      };
+    case GameActionType.BuildStructure:
+      return {
+        ...buildGameStructure(state, action.town, action.structure),
       };
     default:
       return state;

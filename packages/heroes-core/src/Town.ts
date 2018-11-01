@@ -1,6 +1,6 @@
 import { Army } from "./Army";
 import { Hero } from "./Hero";
-import { Structure } from "./Structure";
+import { buildStructure, Structure } from "./Structure";
 
 export interface Town {
   id: string;
@@ -19,3 +19,8 @@ export const isStructureBuilt = (town: Town, structure: string): boolean => {
 
   return s !== undefined && s.isBuilt;
 };
+
+export const buildTownStructure = (town: Town, structure: string): Town => ({
+  ...town,
+  structures: town.structures.map((s) => s.id === structure ? buildStructure(s) : s),
+});

@@ -302,7 +302,10 @@ export class TownView extends React.Component<TownViewProps> {
     };
 
     return (
-      <div style={style}>
+      <div
+        key={structure.id}
+        style={style}
+      >
         <StructureView
           town={town}
           structure={structure.id}
