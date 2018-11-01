@@ -2,13 +2,18 @@ import { buildGameStructure, dismissGameHero, Hero, swapGameHeroTroops, Town } f
 import {
   Alignment,
   campaignScenarios,
+  commonStructures,
+  coreStructures,
   CreatureId,
+  farmStructures,
+  forestStructures,
   HeroClass,
   HeroId,
   MaxMobility,
+  mountainsStructures,
+  plainsStructures,
   Resource,
   Skill,
-  StructureId,
   TownId,
 } from "heroes-homm1";
 
@@ -106,6 +111,12 @@ const heroes: Hero[] = [
   },
 ];
 
+// FIXME
+const constructStructure = (s: any) => ({
+  ...s,
+  isBuilt: false,
+});
+
 const towns: Town[] = [
   {
     alignment: Alignment.Red,
@@ -113,16 +124,10 @@ const towns: Town[] = [
     heroClass: HeroClass.Knight,
     id: TownId.Farm,
     structures: [
-      {
-        cost: {
-          [Resource.Gold]: 10000,
-          [Resource.Wood]: 20,
-          [Resource.Ore]: 20,
-        },
-        id: StructureId.Tent,
-        isBuilt: true,
-      },
-    ],
+      ...coreStructures,
+      ...commonStructures,
+      ...farmStructures,
+    ].map(constructStructure),
   },
   {
     alignment: Alignment.Red,
@@ -130,20 +135,10 @@ const towns: Town[] = [
     heroClass: HeroClass.Barbarian,
     id: TownId.Plains,
     structures: [
-      {
-        cost: {},
-        id: StructureId.Castle,
-        isBuilt: true,
-      },
-      {
-        cost: {
-          [Resource.Gold]: 1000,
-          [Resource.Wood]: 10,
-        },
-        id: StructureId.Tavern,
-        isBuilt: true,
-      },
-    ],
+      ...coreStructures,
+      ...commonStructures,
+      ...plainsStructures,
+    ].map(constructStructure),
     visitingHero: heroes[3],
   },
   {
@@ -152,16 +147,10 @@ const towns: Town[] = [
     heroClass: HeroClass.Sorceress,
     id: TownId.Forest,
     structures: [
-      {
-        cost: {
-          [Resource.Gold]: 10000,
-          [Resource.Wood]: 20,
-          [Resource.Ore]: 20,
-        },
-        id: StructureId.Tent,
-        isBuilt: true,
-      },
-    ],
+      ...coreStructures,
+      ...commonStructures,
+      ...forestStructures,
+    ].map(constructStructure),
   },
   {
     alignment: Alignment.Red,
@@ -169,16 +158,10 @@ const towns: Town[] = [
     heroClass: HeroClass.Warlock,
     id: TownId.Mountains,
     structures: [
-      {
-        cost: {
-          [Resource.Gold]: 10000,
-          [Resource.Wood]: 20,
-          [Resource.Ore]: 20,
-        },
-        id: StructureId.Tent,
-        isBuilt: true,
-      },
-    ],
+      ...coreStructures,
+      ...commonStructures,
+      ...mountainsStructures,
+    ].map(constructStructure),
   },
 ];
 

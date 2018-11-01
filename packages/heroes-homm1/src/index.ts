@@ -24,11 +24,17 @@ export { Skill, SkillIds } from "./Skill";
 export { SoundVolume, changeVolume } from "./SoundVolume";
 export {
   StructureId,
+  coreStructures,
   isCommonStructure,
+  commonStructures,
   FarmStructureId,
+  farmStructures,
   PlainsStructureId,
+  plainsStructures,
   ForestStructureId,
+  forestStructures,
   MountainsStructureId,
+  mountainsStructures,
 } from "./structures";
 export { TownId, TownIds } from "./towns";
 
