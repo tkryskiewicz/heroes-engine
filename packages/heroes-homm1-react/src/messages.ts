@@ -1,6 +1,9 @@
 import { defineMessages, Messages } from "react-intl";
 
-import { CampaignId, HeroId, Skill, StructureId } from "heroes-homm1";
+import { CampaignId, HeroId, Skill } from "heroes-homm1";
+
+const convertValue = (value: string): string =>
+  value.replace(/-\w/, (str) => str[1].toUpperCase());
 
 export const gameDifficultyMessages: Messages = defineMessages({
   easy: {
@@ -525,7 +528,31 @@ export const getCampaignNameMessage = (campaign: string) => {
   }
 };
 
-const structureMessages: Messages = defineMessages({
+const commonStructureMessages = defineMessages({
+  castle: {
+    defaultMessage: "Castle",
+    id: "game.structure.castle",
+  },
+  castleDescription: {
+    defaultMessage: "The Castle improves town defense and income.",
+    id: "game.structure.castle.description",
+  },
+  mageGuild: {
+    defaultMessage: "Mage Guild",
+    id: "game.structure.mageGuild",
+  },
+  mageGuildDescription: {
+    defaultMessage: "The Mage Guild allows heroes to learn and replenish spells.",
+    id: "game.structure.mageGuild.description",
+  },
+  shipyard: {
+    defaultMessage: "Shipyard",
+    id: "game.structure.shipyard",
+  },
+  shipyardDescription: {
+    defaultMessage: "The Shipyard allows ships to be built.",
+    id: "game.structure.shipyard.description",
+  },
   tavern: {
     defaultMessage: "Tavern",
     id: "game.structure.tavern",
@@ -534,28 +561,150 @@ const structureMessages: Messages = defineMessages({
     defaultMessage: "The tavern increases the morale of all garrisoned troops.",
     id: "game.structure.tavern.description",
   },
+  thievesGuild: {
+    defaultMessage: "Thieves' Guild",
+    id: "game.structure.thievesGuild",
+  },
+  thievesGuildDescription: {
+    defaultMessage: "The Thieves' Guild provides information on enemy players. " +
+      "Thieves' Guilds can also provide scouting information on enemy towns. " +
+      "Additional Guilds provide more information.",
+    id: "game.structure.thievesGuild.description",
+  },
+  well: {
+    defaultMessage: "Well",
+    id: "game.structure.well",
+  },
+  wellDescription: {
+    defaultMessage: "The Well increases the growth rate of all dwellings by 2 creatures per week.",
+    id: "game.structure.well.description",
+  },
 });
 
-export const getStructureNameMessage = (structure: string) => {
-  switch (structure) {
-    case StructureId.Tavern:
-      return structureMessages.tavern;
-    default:
-      return {
-        defaultMessage: "Unknown",
-        id: "game.structure.unknown",
-      };
-  }
-};
+const farmStructureMessages = defineMessages({
+  archeryRange: {
+    defaultMessage: "Archery Range",
+    id: "game.structure.farm.archeryRange",
+  },
+  armory: {
+    defaultMessage: "Armory",
+    id: "game.structure.farm.armory",
+  },
+  blacksmith: {
+    defaultMessage: "Blacksmith",
+    id: "game.structure.farm.blacksmith",
+  },
+  cathedral: {
+    defaultMessage: "Cathedral",
+    id: "game.structure.farm.cathedral",
+  },
+  joustingArena: {
+    defaultMessage: "Jousting Arena",
+    id: "game.structure.farm.joustingArena",
+  },
+  thatchedHut: {
+    defaultMessage: "Thatched Hut",
+    id: "game.structure.farm.thatchedHut",
+  },
+});
 
-export const getStructureDescriptionMessage = (structure: string) => {
-  switch (structure) {
-    case StructureId.Tavern:
-      return structureMessages.tavernDescription;
-    default:
-      return {
-        defaultMessage: "Unknown",
-        id: "game.structure.unknown.description",
-      };
-  }
-};
+const plainsStructureMessages = defineMessages({
+  adobe: {
+    defaultMessage: "Adobe",
+    id: "game.structure.plains.adobe",
+  },
+  bridge: {
+    defaultMessage: "Bridge",
+    id: "game.structure.plains.bridge",
+  },
+  den: {
+    defaultMessage: "Den",
+    id: "game.structure.plains.den",
+  },
+  hut: {
+    defaultMessage: "Hut",
+    id: "game.structure.plains.hut",
+  },
+  pyramid: {
+    defaultMessage: "Pyramid",
+    id: "game.structure.plains.pyramid",
+  },
+  stickHut: {
+    defaultMessage: "Stick Hut",
+    id: "game.structure.plains.stickHut",
+  },
+});
+
+const forestStructureMessages = defineMessages({
+  archeryRange: {
+    defaultMessage: "Archery Range",
+    id: "game.structure.forest.archeryRange",
+  },
+  cottage: {
+    defaultMessage: "Cottage",
+    id: "game.structure.forest.cottage",
+  },
+  fencedMeadow: {
+    defaultMessage: "Fenced Meadow",
+    id: "game.structure.forest.fencedMeadow",
+  },
+  redTower: {
+    defaultMessage: "Red Tower",
+    id: "game.structure.forest.redTower",
+  },
+  stonehenge: {
+    defaultMessage: "Stonehenge",
+    id: "game.structure.forest.stonehenge",
+  },
+  treehouse: {
+    defaultMessage: "Treehouse",
+    id: "game.structure.forest.treehouse",
+  },
+});
+
+const mountainsStructureMessages = defineMessages({
+  blackTower: {
+    defaultMessage: "Black Tower",
+    id: "game.structure.mountains.blackTower",
+  },
+  cave: {
+    defaultMessage: "Cave",
+    id: "game.structure.mountains.cave",
+  },
+  crypt: {
+    defaultMessage: "Crypt",
+    id: "game.structure.mountains.crypt",
+  },
+  maze: {
+    defaultMessage: "Maze",
+    id: "game.structure.mountains.maze",
+  },
+  nest: {
+    defaultMessage: "Nest",
+    id: "game.structure.mountains.nest",
+  },
+  swamp: {
+    defaultMessage: "Swamp",
+    id: "game.structure.mountains.swamp",
+  },
+});
+
+const structureMessages: Messages = defineMessages({
+  ...commonStructureMessages,
+  ...farmStructureMessages,
+  ...plainsStructureMessages,
+  ...forestStructureMessages,
+  ...mountainsStructureMessages,
+});
+
+export const getStructureNameMessage = (structure: string) =>
+  structureMessages[convertValue(structure)] || {
+    defaultMessage: "Unknown",
+    id: "game.structure.unknown",
+  };
+
+export const getStructureDescriptionMessage = (structure: string) =>
+  structureMessages[convertValue(structure) + "Description"] || {
+    defaultMessage: "Unknown",
+    id: "game.structure.unknown.description",
+  };

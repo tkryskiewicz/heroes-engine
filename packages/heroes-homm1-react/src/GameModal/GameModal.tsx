@@ -22,6 +22,7 @@ export class GameModal extends React.Component<GameModalProps> {
       padding: "45px 20px 30px 20px",
       position: "absolute",
       top: 0,
+      width: "100%",
     };
 
     return (
@@ -38,7 +39,7 @@ export class GameModal extends React.Component<GameModalProps> {
     return (
       <div>
         {this.renderHeader()}
-        {[...new Array(size).keys()].map(() => this.renderBody())}
+        {[...new Array(size).keys()].map((i) => this.renderBody(i))}
         {this.renderFooter()}
       </div>
     );
@@ -58,7 +59,7 @@ export class GameModal extends React.Component<GameModalProps> {
     );
   }
 
-  private renderBody() {
+  private renderBody(index: number) {
     const style: React.CSSProperties = {
       background: "url('assets/ui/game-modal/body.png')",
       backgroundRepeat: "no-repeat",
@@ -66,7 +67,7 @@ export class GameModal extends React.Component<GameModalProps> {
     };
 
     return (
-      <Row>
+      <Row key={index}>
         <Col style={{ ...style, transform: "scaleX(-1)" }} span={12} />
         <Col style={style} span={12} />
       </Row>
