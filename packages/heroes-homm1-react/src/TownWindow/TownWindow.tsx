@@ -1,7 +1,7 @@
 import { Col, Modal, Row } from "antd";
 import * as React from "react";
 
-import { Resources, Town } from "heroes-core";
+import { enoughResources, Resources, Town } from "heroes-core";
 import { StructureId } from "heroes-homm1";
 
 import { ArmyStrip } from "../ArmyStrip";
@@ -23,7 +23,7 @@ export interface TownWindowProps {
 
 export class TownWindow extends React.Component<TownWindowProps> {
   public render() {
-    const { town } = this.props;
+    const { town, resources, visibleStructureDetails } = this.props;
 
     return (
       <div>
@@ -67,7 +67,7 @@ export class TownWindow extends React.Component<TownWindowProps> {
             onClick={this.props.onExitClick}
           />
         </Row>
-        {this.props.visibleStructureDetails && this.renderStructureDetails(town, this.props.visibleStructureDetails)}
+        {visibleStructureDetails && this.renderStructureDetails(town, resources, visibleStructureDetails)}
       </div>
     );
   }
@@ -80,7 +80,7 @@ export class TownWindow extends React.Component<TownWindowProps> {
     this.props.onOpenStructureDetails(structure);
   }
 
-  private renderStructureDetails(town: Town, structure: string) {
+  private renderStructureDetails(town: Town, resources: Resources, structure: string) {
     const struc = town.structures.find((s) => s.id === structure)!;
 
     let StructureDetails: React.ReactNode | undefined;
@@ -92,6 +92,7 @@ export class TownWindow extends React.Component<TownWindowProps> {
             town={town.id}
             structure={structure}
             cost={struc.cost}
+            canBuild={enoughResources(resources, struc.cost)}
           />);
         break;
       case StructureId.Tavern:

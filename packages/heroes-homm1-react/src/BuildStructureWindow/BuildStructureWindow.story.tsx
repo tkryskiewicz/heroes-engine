@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { select } from "@storybook/addon-knobs";
+import { boolean, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -14,6 +14,7 @@ storiesOf(BuildStructureWindow.name, module)
       town={select("Town", townOptions, TownId.Farm)}
       structure={select("Structure", structureOptions, StructureId.Castle)}
       cost={{ [Resource.Gold]: 2000, [Resource.Ore]: 20 }}
+      canBuild={boolean("Can Build", true)}
       onOkayClick={action("Okay Click")}
       onCancelClick={action("Cancel Click")}
     />

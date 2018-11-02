@@ -16,6 +16,7 @@ export interface BuildStructureWindowProps {
   town: string;
   structure: string;
   cost: Resources;
+  canBuild: boolean;
   onOkayClick?: (town: string, structure: string) => void;
   onCancelClick?: () => void;
 }
@@ -54,6 +55,7 @@ export class BuildStructureWindow extends React.Component<BuildStructureWindowPr
               <GameButton
                 group="system"
                 type="okay"
+                disabled={!this.props.canBuild}
                 onClick={this.onOkayClick}
               />
             </Col>
