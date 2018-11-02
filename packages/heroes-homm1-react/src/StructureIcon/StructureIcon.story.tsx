@@ -11,6 +11,6 @@ storiesOf(StructureIcon.name, module)
   .add("default", () => (
     <StructureIcon
       town={select("Town", townOptions, TownId.Farm)}
-      structure={select("Structure", structureOptions, StructureId.Tent)}
+      structure={select("Structure", structureOptions, StructureId.Castle)}
     />
   ));

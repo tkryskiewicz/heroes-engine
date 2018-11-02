@@ -86,7 +86,7 @@ export class TownWindow extends React.Component<TownWindowProps> {
     let StructureDetails: React.ReactNode | undefined;
 
     switch (structure) {
-      case StructureId.Tent:
+      case StructureId.Castle:
         StructureDetails = (
           <BuildStructureWindow
             town={town.id}

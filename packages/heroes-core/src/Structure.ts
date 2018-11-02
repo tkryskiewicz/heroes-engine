@@ -6,9 +6,7 @@ export interface Structure {
   isBuilt: boolean;
 }
 
-// FIXME
 export const buildStructure = (structure: Structure): Structure => ({
   ...structure,
-  id: structure.id === "tent" ? "castle" : structure.id,
   isBuilt: true,
 });

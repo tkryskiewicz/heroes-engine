@@ -5,19 +5,21 @@ import { isCommonStructure } from "heroes-homm1";
 export interface StructureViewProps {
   town: string;
   structure: string;
+  placeholder?: boolean;
   onClick?: (structure: string) => void;
 }
 
 export class StructureView extends React.Component<StructureViewProps> {
   public render() {
-    const { town, structure } = this.props;
+    const { town, structure, placeholder } = this.props;
 
     const townPath = isCommonStructure(structure) ? "common" : town;
+    const imagePath = placeholder ? "placeholder" : "image";
 
     return (
       <img
         key={structure}
-        src={`assets/towns/${townPath}/structures/${structure}/image.png`}
+        src={`assets/towns/${townPath}/structures/${structure}/${imagePath}.png`}
         onClick={this.onClick}
       />
     );

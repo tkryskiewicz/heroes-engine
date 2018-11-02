@@ -8,7 +8,6 @@ interface StructureType {
 }
 
 export enum StructureId {
-  Tent = "tent",
   Castle = "castle",
 
   // Common Structures
@@ -20,14 +19,6 @@ export enum StructureId {
 }
 
 export const coreStructures: StructureType[] = [
-  {
-    cost: {
-      [Resource.Gold]: 10000,
-      [Resource.Wood]: 20,
-      [Resource.Ore]: 20,
-    },
-    id: StructureId.Tent,
-  },
   {
     cost: {
       [Resource.Gold]: 10000,

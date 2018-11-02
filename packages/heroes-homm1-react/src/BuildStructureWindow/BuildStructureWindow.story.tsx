@@ -12,7 +12,7 @@ storiesOf(BuildStructureWindow.name, module)
   .add("default", () => (
     <BuildStructureWindow
       town={select("Town", townOptions, TownId.Farm)}
-      structure={select("Structure", structureOptions, StructureId.Tent)}
+      structure={select("Structure", structureOptions, StructureId.Castle)}
       cost={{ [Resource.Gold]: 2000, [Resource.Ore]: 20 }}
       onOkayClick={action("Okay Click")}
       onCancelClick={action("Cancel Click")}

@@ -12,11 +12,14 @@ import {
 
 import { StructureView } from "./StructureView";
 
+interface StructurePosition {
+  left: number;
+  top: number;
+}
+
 interface StructureInfo {
-  position: {
-    left: number;
-    top: number;
-  };
+  position: StructurePosition;
+  placeholderPosition?: StructurePosition;
 }
 
 const CommonStructuresInfo: { [structure: string]: StructureInfo } = {
@@ -53,14 +56,12 @@ const CommonStructuresInfo: { [structure: string]: StructureInfo } = {
 };
 
 const FarmStructuresInfo: { [structure: string]: StructureInfo } = {
-  [StructureId.Tent]: {
+  [StructureId.Castle]: {
     // FIXME: fix position
-    position: {
+    placeholderPosition: {
       left: 57,
       top: 32,
     },
-  },
-  [StructureId.Castle]: {
     position: {
       left: 171,
       top: 0,
@@ -106,13 +107,11 @@ const FarmStructuresInfo: { [structure: string]: StructureInfo } = {
 };
 
 const PlainsStructuresInfo: { [structure: string]: StructureInfo } = {
-  [StructureId.Tent]: {
-    position: {
+  [StructureId.Castle]: {
+    placeholderPosition: {
       left: 380,
       top: 57,
     },
-  },
-  [StructureId.Castle]: {
     position: {
       left: 220,
       top: 0,
@@ -158,13 +157,11 @@ const PlainsStructuresInfo: { [structure: string]: StructureInfo } = {
 };
 
 const ForestStructuresInfo: { [structure: string]: StructureInfo } = {
-  [StructureId.Tent]: {
-    position: {
+  [StructureId.Castle]: {
+    placeholderPosition: {
       left: 378,
       top: 77,
     },
-  },
-  [StructureId.Castle]: {
     position: {
       left: 268,
       top: 1,
@@ -210,13 +207,11 @@ const ForestStructuresInfo: { [structure: string]: StructureInfo } = {
 };
 
 const MountainsStructuresInfo: { [structure: string]: StructureInfo } = {
-  [StructureId.Tent]: {
-    position: {
+  [StructureId.Castle]: {
+    placeholderPosition: {
       left: 372,
       top: 84,
     },
-  },
-  [StructureId.Castle]: {
     position: {
       left: 172,
       top: 0,
@@ -296,9 +291,17 @@ export class TownView extends React.Component<TownViewProps> {
   private renderStructure(town: string, structure: Structure) {
     const structureInfo = StructuresInfo[town][structure.id];
 
+    const hasPlaceholder = structureInfo.placeholderPosition !== undefined;
+
+    if (!structure.isBuilt && !hasPlaceholder) {
+      return;
+    }
+
+    const renderPlaceholder = !structure.isBuilt && hasPlaceholder;
+
     const style: React.CSSProperties = {
       position: "absolute",
-      ...structureInfo.position,
+      ...renderPlaceholder ? structureInfo.placeholderPosition : structureInfo.position,
     };
 
     return (
@@ -309,6 +312,7 @@ export class TownView extends React.Component<TownViewProps> {
         <StructureView
           town={town}
           structure={structure.id}
+          placeholder={renderPlaceholder}
           onClick={this.props.onStructureClick}
         />
       </div>
