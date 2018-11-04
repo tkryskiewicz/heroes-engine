@@ -84,6 +84,9 @@ type RecruitTroopWindowButtonType =
   "okay" |
   "cancel";
 
+type RecruitHeroWindowButtonType =
+  "recruit";
+
 type LegendButtonType =
   "exit";
 
@@ -110,6 +113,7 @@ export type GameButtonType =
   KingdomOverviewWindowButtonType |
   HighScoresWindowButtonType |
   RecruitTroopWindowButtonType |
+  RecruitHeroWindowButtonType |
   LegendButtonType |
   CombatWonWindowButtonType |
   CombatLostWindowButtonType;
@@ -131,6 +135,7 @@ export type GameButtonGroup =
   "kingdom-overview-window" |
   "high-scores-window" |
   "recruit-troop-window" |
+  "recruit-hero-window" |
   "legend" |
   "combat-won-window" |
   "combat-lost-window";
