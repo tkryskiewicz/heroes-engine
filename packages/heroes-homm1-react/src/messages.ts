@@ -1,6 +1,6 @@
 import { defineMessages, Messages } from "react-intl";
 
-import { CampaignId, HeroId, Skill } from "heroes-homm1";
+import { CampaignId, HeroClass, HeroId, Skill } from "heroes-homm1";
 
 const convertValue = (value: string): string =>
   value.replace(/-\w/, (str) => str[1].toUpperCase());
@@ -165,6 +165,28 @@ export const creatureMessages: Messages = {
 export const getCreatureNameMessage = (creature: string) => {
   return creatureMessages[creature];
 };
+
+const heroClassMessages: Messages = defineMessages({
+  [HeroClass.Knight]: {
+    defaultMessage: "Knight",
+    id: "game.heroClass.knight",
+  },
+  [HeroClass.Barbarian]: {
+    defaultMessage: "Barbarian",
+    id: "game.heroClass.barbarian",
+  },
+  [HeroClass.Sorceress]: {
+    defaultMessage: "Sorceress",
+    id: "game.heroClass.sorceress",
+  },
+  [HeroClass.Warlock]: {
+    defaultMessage: "Warlock",
+    id: "game.heroClass.warlock",
+  },
+});
+
+export const getHeroClassNameMessage = (heroClass: string) =>
+  heroClassMessages[heroClass];
 
 export const knightHeroMessages = defineMessages({
   ambrose: {

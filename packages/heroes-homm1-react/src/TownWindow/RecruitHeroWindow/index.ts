@@ -1,0 +1,1 @@
+export { RecruitHeroWindow } from "./RecruitHeroWindow";

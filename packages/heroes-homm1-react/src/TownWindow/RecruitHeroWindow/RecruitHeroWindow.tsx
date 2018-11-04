@@ -1,0 +1,73 @@
+import { Col, Row } from "antd";
+import * as React from "react";
+import { FormattedMessage } from "react-intl";
+
+import { enoughResources, Resources } from "heroes-core";
+import { HeroClass } from "heroes-homm1";
+
+import { GameButton } from "../../GameButton";
+import { GameModal } from "../../GameModal";
+import { GameText } from "../../GameText";
+import { ResourceCost } from "../../ResourceCost";
+import { RecruitHero } from "../RecruitHero";
+import { messages } from "./messages";
+
+interface Hero {
+  id: string;
+  heroClass: HeroClass;
+}
+
+export interface RecruitHeroWindowProps {
+  heroes: Hero[];
+  resources: Resources;
+  cost: Resources;
+  onHeroPortraitClick?: (id: string) => void;
+  onRecruitHeroClick?: (id: string) => void;
+  onCancelClick?: () => void;
+}
+
+export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {
+  public render() {
+    return (
+      <GameModal size={4}>
+        <Row style={{ textAlign: "center" }}>
+          <GameText size="large">
+            <FormattedMessage {...messages.title} />
+          </GameText>
+        </Row>
+        <Row>
+          {this.props.heroes.map((h) => this.renderHero(h, this.props.resources, this.props.cost))}
+        </Row>
+        <Row style={{ textAlign: "center" }}>
+          <ResourceCost
+            cost={this.props.cost}
+          />
+        </Row>
+        <Row style={{ textAlign: "center" }}>
+          <GameButton
+            group="system"
+            type="cancel"
+            onClick={this.props.onCancelClick}
+          />
+        </Row>
+      </GameModal>
+    );
+  }
+
+  private renderHero(hero: Hero, resources: Resources, cost: Resources) {
+    return (
+      <Col
+        style={{ textAlign: "center" }}
+        span={12}
+      >
+        <RecruitHero
+          heroId={hero.id}
+          heroClass={hero.heroClass}
+          disabled={!enoughResources(resources, cost)}
+          onPortraitClick={this.props.onHeroPortraitClick}
+          onRecruitClick={this.props.onRecruitHeroClick}
+        />
+      </Col>
+    );
+  }
+}
