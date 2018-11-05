@@ -162,7 +162,6 @@ export class GameButton extends React.Component<GameButtonProps, GameButtonState
 
     const renderEnabled = !disabled && !this.state.pressed;
 
-    // TODO: are those styles needed?
     const style: React.CSSProperties = {
       background: "transparent",
       border: "none",
@@ -178,21 +177,14 @@ export class GameButton extends React.Component<GameButtonProps, GameButtonState
         onMouseUp={this.onMouseUp}
         onClick={this.onClick}
       >
-        {renderEnabled ? this.renderEnabled(type, group) : this.renderDisabled(type, group)}
+        {this.renderImage(group, type, renderEnabled)}
       </button>
     );
   }
 
-  // TODO: simplify
-  private renderEnabled(type: GameButtonType, group?: GameButtonGroup) {
+  private renderImage(group: GameButtonGroup, type: GameButtonType, enabled: boolean) {
     return (
-      <img src={`assets/buttons/${group ? `${group}/` : ""}${type}/enabled.png`} />
-    );
-  }
-
-  private renderDisabled(type: GameButtonType, group?: GameButtonGroup) {
-    return (
-      <img src={`assets/buttons/${group ? `${group}/` : ""}${type}/disabled.png`} />
+      <img src={`assets/buttons/${group}/${type}/${enabled ? "enabled" : "disabled"}.png`} />
     );
   }
 
