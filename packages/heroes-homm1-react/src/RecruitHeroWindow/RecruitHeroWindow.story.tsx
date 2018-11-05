@@ -5,10 +5,9 @@ import * as React from "react";
 
 import { HeroClass, HeroId, Resource } from "heroes-homm1";
 
-import { TownWindow } from "../TownWindow";
-import { RecruitHeroWindow, RecruitHeroWindowProps } from "./RecruitHeroWindow";
+import { Hero, RecruitHeroWindow } from "./RecruitHeroWindow";
 
-const heroes: RecruitHeroWindowProps["heroes"] = [
+const heroes: Hero[] = [
   {
     heroClass: HeroClass.Knight,
     id: HeroId.LordKilburn,
@@ -19,7 +18,7 @@ const heroes: RecruitHeroWindowProps["heroes"] = [
   },
 ];
 
-storiesOf(`${TownWindow.name}/${RecruitHeroWindow.name}`, module)
+storiesOf(RecruitHeroWindow.name, module)
   .add("default", () => (
     <RecruitHeroWindow
       heroes={heroes}

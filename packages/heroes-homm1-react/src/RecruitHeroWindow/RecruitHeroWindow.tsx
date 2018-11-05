@@ -5,14 +5,14 @@ import { FormattedMessage } from "react-intl";
 import { enoughResources, Resources } from "heroes-core";
 import { HeroClass } from "heroes-homm1";
 
-import { GameButton } from "../../GameButton";
-import { GameModal } from "../../GameModal";
-import { GameText } from "../../GameText";
-import { ResourceCost } from "../../ResourceCost";
-import { RecruitHero } from "../RecruitHero";
+import { GameButton } from "../GameButton";
+import { GameModal } from "../GameModal";
+import { GameText } from "../GameText";
+import { ResourceCost } from "../ResourceCost";
 import { messages } from "./messages";
+import { RecruitHero } from "./RecruitHero";
 
-interface Hero {
+export interface Hero {
   id: string;
   heroClass: HeroClass;
 }
