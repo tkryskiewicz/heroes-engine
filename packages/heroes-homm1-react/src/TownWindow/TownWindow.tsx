@@ -9,6 +9,7 @@ import { BuildStructureWindow } from "../BuildStructureWindow";
 import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
 import { HeroPortrait } from "../HeroPortrait";
+import { RecruitTroopWindow } from "../RecruitTroopWindow";
 import { TavernWindow } from "../TavernWindow";
 import { TownView } from "../TownView";
 import { StructuresWindow } from "./StructuresWindow";
@@ -106,6 +107,18 @@ export class TownWindow extends React.Component<TownWindowProps> {
         break;
       case StructureId.Tavern:
         StructureDetails = <TavernWindow />;
+        break;
+      default:
+        if (struc.dwelling) {
+          StructureDetails = (
+            <RecruitTroopWindow
+              creature={struc.dwelling.creature}
+              cost={struc.dwelling.cost}
+              availableCount={struc.dwelling.availableCount}
+              count={0}
+            />
+          );
+        }
         break;
     }
 

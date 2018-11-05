@@ -4,6 +4,6 @@ export { Game, swapGameHeroTroops, dismissGameHero, buildGameStructure } from ".
 export { Hero, HeroSkills, swapHeroTroops, canSelectNextHero, getNextHeroIndex } from "./Hero";
 export { Resources, multiplyResources, enoughResources } from "./Resource";
 export { Scenario } from "./Scenario";
-export { Structure } from "./Structure";
+export { Structure, Dwelling, buildStructure } from "./Structure";
 export { Town, isStructureBuilt } from "./Town";
 export { Troop } from "./Troop";

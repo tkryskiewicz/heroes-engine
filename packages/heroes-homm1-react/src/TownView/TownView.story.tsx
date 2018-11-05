@@ -3,8 +3,10 @@ import { select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
+import { buildStructure } from "heroes-core";
 import {
   commonStructures,
+  constructStructure,
   coreStructures,
   farmStructures,
   forestStructures,
@@ -16,17 +18,11 @@ import {
 import { townOptions } from "../stories";
 import { TownView, TownViewProps } from "./TownView";
 
-// FIXME
-const constructStructure = (s: any) => ({
-  ...s,
-  isBuilt: true,
-});
-
 const structures = {
-  [TownId.Farm]: farmStructures.map(constructStructure),
-  [TownId.Plains]: plainsStructures.map(constructStructure),
-  [TownId.Forest]: forestStructures.map(constructStructure),
-  [TownId.Mountains]: mountainsStructures.map(constructStructure),
+  [TownId.Farm]: farmStructures,
+  [TownId.Plains]: plainsStructures,
+  [TownId.Forest]: forestStructures,
+  [TownId.Mountains]: mountainsStructures,
 };
 
 storiesOf(TownView.name, module)
@@ -39,7 +35,7 @@ storiesOf(TownView.name, module)
         ...coreStructures,
         ...commonStructures,
         ...structures[townId],
-      ].map(constructStructure),
+      ].map(constructStructure).map(buildStructure),
     };
 
     return (

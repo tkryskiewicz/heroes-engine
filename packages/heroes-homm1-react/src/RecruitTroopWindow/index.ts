@@ -1,1 +1,1 @@
-export { RecruitTroopWindow } from "./RecruitTroopWindow";
+export { RecruitTroopWindowConnected as RecruitTroopWindow } from "./RecruitTroopWindowConnected";

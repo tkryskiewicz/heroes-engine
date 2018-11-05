@@ -1,8 +1,9 @@
-import { buildGameStructure, dismissGameHero, Hero, swapGameHeroTroops, Town } from "heroes-core";
+import { buildGameStructure, buildStructure, dismissGameHero, Hero, swapGameHeroTroops, Town } from "heroes-core";
 import {
   Alignment,
   campaignScenarios,
   commonStructures,
+  constructStructure,
   coreStructures,
   CreatureId,
   farmStructures,
@@ -111,12 +112,6 @@ const heroes: Hero[] = [
   },
 ];
 
-// FIXME
-const constructStructure = (s: any) => ({
-  ...s,
-  isBuilt: false,
-});
-
 const towns: Town[] = [
   {
     alignment: Alignment.Red,
@@ -127,7 +122,7 @@ const towns: Town[] = [
       ...coreStructures,
       ...commonStructures,
       ...farmStructures,
-    ].map(constructStructure),
+    ].map(constructStructure).map(buildStructure),
   },
   {
     alignment: Alignment.Red,
@@ -170,7 +165,7 @@ const initialState: GameState = {
   discoveredPuzzlePieces: 0,
   heroes,
   resources: {
-    [Resource.Gold]: 10000,
+    [Resource.Gold]: 20000,
     [Resource.Wood]: 20,
     [Resource.Ore]: 20,
     [Resource.Crystal]: 10,
