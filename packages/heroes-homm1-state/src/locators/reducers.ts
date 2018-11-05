@@ -1,6 +1,7 @@
 import { GameAction, GameActionType } from "../game";
 import { HeroWindowAction } from "../heroWindow";
 import { HeroWindowActionType } from "../heroWindow/actions";
+import { TownWindowAction, TownWindowActionType } from "../townWindow";
 import { LocatorsAction, LocatorsActionType } from "./actions";
 import { LocatorsState } from "./state";
 
@@ -8,7 +9,7 @@ const initialState: LocatorsState = {};
 
 export const locatorsReducer = (
   state: LocatorsState = initialState,
-  action: LocatorsAction | HeroWindowAction | GameAction,
+  action: LocatorsAction | HeroWindowAction | TownWindowAction | GameAction,
 ): LocatorsState => {
   switch (action.type) {
     case LocatorsActionType.Select:
@@ -18,6 +19,7 @@ export const locatorsReducer = (
       };
     case HeroWindowActionType.Close:
     case GameActionType.DismissHero:
+    case TownWindowActionType.Close:
       return {
         ...state,
         selectedLocator: undefined,

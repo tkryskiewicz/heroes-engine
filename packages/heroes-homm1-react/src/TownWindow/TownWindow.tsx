@@ -11,6 +11,7 @@ import { GameButton } from "../GameButton";
 import { HeroPortrait } from "../HeroPortrait";
 import { TavernWindow } from "../TavernWindow";
 import { TownView } from "../TownView";
+import { StructuresWindow } from "./StructuresWindow";
 import { Treasury } from "./Treasury";
 
 export interface TownWindowProps {
@@ -87,13 +88,19 @@ export class TownWindow extends React.Component<TownWindowProps> {
 
     switch (structure) {
       case StructureId.Castle:
-        StructureDetails = (
+        StructureDetails = !struc.isBuilt ? (
           <BuildStructureWindow
             town={town.id}
             structure={structure}
             cost={struc.cost}
             canBuild={enoughResources(resources, struc.cost)}
-          />);
+          />) : (
+            <StructuresWindow
+              town={town.id}
+              resources={resources}
+              structures={town.structures}
+            />
+          );
         break;
       case StructureId.Tavern:
         StructureDetails = <TavernWindow />;
