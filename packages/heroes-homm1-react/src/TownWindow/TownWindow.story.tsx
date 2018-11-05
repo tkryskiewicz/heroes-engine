@@ -23,6 +23,7 @@ storiesOf(TownWindow.name, module)
       <TownWindow
         town={town}
         resources={{}}
+        onCrestClick={action("Crest Click")}
         onExitClick={action("Exit Click")}
       />
     );

@@ -18,6 +18,7 @@ export interface TownWindowProps {
   town: Town;
   resources: Resources;
   visibleStructureDetails?: string;
+  onCrestClick?: () => void;
   onOpenStructureDetails?: (structure: string) => void;
   onExitClick?: () => void;
 }
@@ -41,6 +42,7 @@ export class TownWindow extends React.Component<TownWindowProps> {
                 size="large"
                 alignment={town.alignment}
                 heroClass={town.heroClass}
+                onClick={this.props.onCrestClick}
               />
               <ArmyStrip
                 army={town.garrison}
