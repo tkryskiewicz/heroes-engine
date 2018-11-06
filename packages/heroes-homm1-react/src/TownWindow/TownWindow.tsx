@@ -21,6 +21,7 @@ export interface TownWindowProps {
   visibleStructureDetails?: string;
   onCrestClick?: () => void;
   onOpenStructureDetails?: (structure: string) => void;
+  onRecruitTroop?: (town: string, structure: string, count: number) => void;
   onExitClick?: () => void;
 }
 
@@ -110,12 +111,14 @@ export class TownWindow extends React.Component<TownWindowProps> {
         break;
       default:
         if (struc.dwelling) {
+          const onOkayClick = (count: number) => this.onRecruitTroop(struc.id, count);
+
           StructureDetails = (
             <RecruitTroopWindow
               creature={struc.dwelling.creature}
               cost={struc.dwelling.cost}
               availableCount={struc.dwelling.availableCount}
-              count={0}
+              onOkayClick={onOkayClick}
             />
           );
         }
@@ -132,5 +135,13 @@ export class TownWindow extends React.Component<TownWindowProps> {
         {StructureDetails}
       </Modal>
     );
+  }
+
+  private onRecruitTroop = (structure: string, count: number) => {
+    if (!this.props.onRecruitTroop) {
+      return;
+    }
+
+    this.props.onRecruitTroop(this.props.town.id, structure, count);
   }
 }

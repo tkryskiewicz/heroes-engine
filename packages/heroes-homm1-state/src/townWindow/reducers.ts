@@ -3,6 +3,7 @@ import { TownWindowAction, TownWindowActionType } from "./actions";
 import { TownWindowState } from "./state";
 
 const initialState: TownWindowState = {
+  recruitTroopCount: 0,
   visible: false,
 };
 
@@ -28,9 +29,16 @@ export const townWindowReducer = (
       };
     case TownWindowActionType.CloseStructureDetails:
     case GameActionType.BuildStructure:
+    case GameActionType.RecruitTroop:
       return {
         ...state,
+        recruitTroopCount: 0,
         visibleStructureDetails: undefined,
+      };
+    case TownWindowActionType.ChangeRecruitTroopCount:
+      return {
+        ...state,
+        recruitTroopCount: action.count,
       };
     default:
       return state;

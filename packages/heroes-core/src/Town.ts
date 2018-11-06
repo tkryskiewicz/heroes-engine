@@ -1,6 +1,6 @@
-import { Army } from "./Army";
+import { appendArmyTroop, Army } from "./Army";
 import { Hero } from "./Hero";
-import { buildStructure, Structure } from "./Structure";
+import { buildStructure, getTroop, recruitTroop, Structure } from "./Structure";
 
 export interface Town {
   id: string;
@@ -24,3 +24,23 @@ export const buildTownStructure = (town: Town, structure: string): Town => ({
   ...town,
   structures: town.structures.map((s) => s.id === structure ? buildStructure(s) : s),
 });
+
+export const recruitTownTroop = (town: Town, structureId: string, count: number): Town => {
+  const structure = town.structures.find((s) => s.id === structureId);
+
+  if (!structure) {
+    return town;
+  }
+
+  const troop = getTroop(structure, count);
+
+  if (!troop) {
+    return town;
+  }
+
+  return {
+    ...town,
+    garrison: appendArmyTroop(town.garrison, troop),
+    structures: town.structures.map((s) => s === structure ? recruitTroop(structure, count) : s),
+  };
+};

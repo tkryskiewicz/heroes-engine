@@ -1,4 +1,5 @@
 import { Resources } from "./Resource";
+import { Troop } from "./Troop";
 
 export interface Dwelling {
   creature: string;
@@ -26,3 +27,28 @@ export const buildStructure = (structure: Structure): Structure => ({
     undefined,
   isBuilt: true,
 });
+
+export const getTroop = (structure: Structure, count: number): Troop | undefined => {
+  if (!structure.dwelling) {
+    return;
+  }
+
+  return {
+    count,
+    creature: structure.dwelling.creature,
+  };
+};
+
+export const recruitTroop = (structure: Structure, count: number): Structure => {
+  if (!structure.dwelling) {
+    return structure;
+  }
+
+  return {
+    ...structure,
+    dwelling: {
+      ...structure.dwelling,
+      availableCount: structure.dwelling.availableCount - count,
+    },
+  };
+};

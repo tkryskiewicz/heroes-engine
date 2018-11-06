@@ -1,21 +1,27 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, closeStructureDetails } from "heroes-homm1-state";
+import { AppState, changeRecruitTroopCount, closeStructureDetails } from "heroes-homm1-state";
 
 import { RecruitTroopWindow, RecruitTroopWindowProps } from "./RecruitTroopWindow";
 
 type StateProp =
-  "resources";
+  "resources" |
+  "count";
 
 const mapStateToProps = (state: AppState): Pick<RecruitTroopWindowProps, StateProp> => ({
+  count: state.townWindow.recruitTroopCount,
   resources: state.game.resources,
 });
 
 type DispatchProp =
+  "onCountChange" |
   "onCancelClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<RecruitTroopWindowProps, DispatchProp> => ({
+  onCountChange(count) {
+    dispatch(changeRecruitTroopCount(count));
+  },
   onCancelClick() {
     dispatch(closeStructureDetails());
   },

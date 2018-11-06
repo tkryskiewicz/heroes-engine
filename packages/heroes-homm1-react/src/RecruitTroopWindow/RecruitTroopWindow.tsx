@@ -19,7 +19,7 @@ export interface RecruitTroopWindowProps {
   availableCount: number;
   count: number;
   onCountChange?: (value: number) => void;
-  onOkayClick?: () => void;
+  onOkayClick?: (count: number) => void;
   onCancelClick?: () => void;
 }
 
@@ -96,7 +96,7 @@ export class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps>
               group="recruit-troop-window"
               type="okay"
               disabled={this.props.availableCount === 0}
-              onClick={this.props.onOkayClick}
+              onClick={this.onOkayClick}
             />
           </Col>
           <Col span={12}>
@@ -155,5 +155,13 @@ export class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps>
     }
 
     this.props.onCountChange(count);
+  }
+
+  private onOkayClick = () => {
+    if (!this.props.onOkayClick) {
+      return;
+    }
+
+    this.props.onOkayClick(this.props.count);
   }
 }

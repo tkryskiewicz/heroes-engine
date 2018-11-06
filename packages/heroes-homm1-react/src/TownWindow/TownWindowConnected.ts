@@ -1,7 +1,13 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, closeTownWindow, openKingdomOverviewWindow, openStructureDetails } from "heroes-homm1-state";
+import {
+  AppState,
+  closeTownWindow,
+  openKingdomOverviewWindow,
+  openStructureDetails,
+  recruitTroop,
+} from "heroes-homm1-state";
 
 import { TownWindow, TownWindowProps } from "./TownWindow";
 
@@ -19,6 +25,7 @@ const mapStateToProps = (state: AppState): Pick<TownWindowProps, StateProp> => (
 type DispatchProp =
   "onCrestClick" |
   "onOpenStructureDetails" |
+  "onRecruitTroop" |
   "onExitClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchProp> => ({
@@ -27,6 +34,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchP
   },
   onOpenStructureDetails(structure) {
     dispatch(openStructureDetails(structure));
+  },
+  onRecruitTroop(town, structure, count) {
+    dispatch(recruitTroop(town, structure, count));
   },
   onExitClick() {
     dispatch(closeTownWindow());

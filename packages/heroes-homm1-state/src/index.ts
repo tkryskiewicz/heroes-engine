@@ -1,5 +1,5 @@
 export { openAdventureOptions, closeAdventureOptions } from "./adventureOptions";
-export { swapHeroTroops, dismissHero, buildStructure } from "./game";
+export { swapHeroTroops, dismissHero, buildStructure, recruitTroop } from "./game";
 export { openGameOptions, closeGameOptions } from "./gameOptions";
 export {
   changeAutoSave,
@@ -22,4 +22,10 @@ export { openPuzzleWindow, closePuzzleWindow } from "./puzzleWindow";
 export { rootReducer } from "./reducers";
 export { AppState } from "./state";
 export { openScenarioInfoWindow, closeScenarioInfoWindow } from "./scenarioInfoWindow";
-export { openTownWindow, closeTownWindow, openStructureDetails, closeStructureDetails } from "./townWindow";
+export {
+  openTownWindow,
+  closeTownWindow,
+  openStructureDetails,
+  closeStructureDetails,
+  changeRecruitTroopCount,
+} from "./townWindow";

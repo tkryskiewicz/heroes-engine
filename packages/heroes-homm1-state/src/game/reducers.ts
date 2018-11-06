@@ -1,4 +1,12 @@
-import { buildGameStructure, buildStructure, dismissGameHero, Hero, swapGameHeroTroops, Town } from "heroes-core";
+import {
+  buildGameStructure,
+  buildStructure,
+  dismissGameHero,
+  Hero,
+  recruitGameTroop,
+  swapGameHeroTroops,
+  Town,
+} from "heroes-core";
 import {
   Alignment,
   campaignScenarios,
@@ -190,6 +198,10 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
     case GameActionType.BuildStructure:
       return {
         ...buildGameStructure(state, action.town, action.structure),
+      };
+    case GameActionType.RecruitTroop:
+      return {
+        ...recruitGameTroop(state, action.town, action.structure, action.count),
       };
     default:
       return state;

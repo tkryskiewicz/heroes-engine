@@ -3,13 +3,16 @@ export enum TownWindowActionType {
   Close = "townWindow/close",
   OpenStructureDetails = "townWindow/openStructureDetails",
   CloseStructureDetails = "townWindow/closeStructureDetails",
+  // FIXME: does this action fit here?
+  ChangeRecruitTroopCount = "townWindow/changeRecruitTroopCount",
 }
 
 export type TownWindowAction =
   OpenTownWindowAction |
   CloseTownWindowAction |
   OpenStructureDetailsAction |
-  CloseStructureDetailsAction;
+  CloseStructureDetailsAction |
+  ChangeRecruitTroopCountAction;
 
 export interface OpenTownWindowAction {
   type: TownWindowActionType.Open;
@@ -43,4 +46,14 @@ export interface CloseStructureDetailsAction {
 
 export const closeStructureDetails = (): CloseStructureDetailsAction => ({
   type: TownWindowActionType.CloseStructureDetails,
+});
+
+export interface ChangeRecruitTroopCountAction {
+  type: TownWindowActionType.ChangeRecruitTroopCount;
+  count: number;
+}
+
+export const changeRecruitTroopCount = (count: number): ChangeRecruitTroopCountAction => ({
+  count,
+  type: TownWindowActionType.ChangeRecruitTroopCount,
 });

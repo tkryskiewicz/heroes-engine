@@ -1,7 +1,7 @@
 import { Hero, swapHeroTroops } from "./Hero";
-import { Resources, subtractResources } from "./Resource";
+import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
-import { buildTownStructure, Town } from "./Town";
+import { buildTownStructure, recruitTownTroop, Town } from "./Town";
 
 export interface Game {
   scenario: Scenario;
@@ -39,5 +39,27 @@ export const buildGameStructure = (game: Game, town: string, structure: string):
     ...game,
     resources: subtractResources(game.resources, struct.cost),
     towns: game.towns.map((t) => t.id === town ? buildTownStructure(twn, structure) : t),
+  };
+};
+
+export const recruitGameTroop = (game: Game, townId: string, structureId: string, count: number): Game => {
+  const town = game.towns.find((t) => t.id === townId);
+
+  if (!town) {
+    return game;
+  }
+
+  const structure = town.structures.find((s) => s.id === structureId);
+
+  if (!structure || !structure.dwelling) {
+    return game;
+  }
+
+  const cost = multiplyResources(structure.dwelling.cost, count);
+
+  return {
+    ...game,
+    resources: subtractResources(game.resources, cost),
+    towns: game.towns.map((t) => t === town ? recruitTownTroop(town, structureId, count) : t),
   };
 };
