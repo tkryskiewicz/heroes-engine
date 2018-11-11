@@ -22,6 +22,11 @@ export const townWindowReducer = (
         ...state,
         visible: false,
       };
+    case TownWindowActionType.SelectGarrisonTroop:
+      return {
+        ...state,
+        selectedGarrisonTroopIndex: action.index,
+      };
     case TownWindowActionType.OpenStructureDetails:
       return {
         ...state,

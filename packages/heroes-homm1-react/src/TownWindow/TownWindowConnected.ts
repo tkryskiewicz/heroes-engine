@@ -7,6 +7,7 @@ import {
   openKingdomOverviewWindow,
   openStructureDetails,
   recruitTroop,
+  selectTownWindowGarrisonTroop,
 } from "heroes-homm1-state";
 
 import { TownWindow, TownWindowProps } from "./TownWindow";
@@ -14,16 +15,19 @@ import { TownWindow, TownWindowProps } from "./TownWindow";
 type StateProp =
   "town" |
   "resources" |
+  "selectedGarrisonTroopIndex" |
   "visibleStructureDetails";
 
 const mapStateToProps = (state: AppState): Pick<TownWindowProps, StateProp> => ({
   resources: state.game.resources,
+  selectedGarrisonTroopIndex: state.townWindow.selectedGarrisonTroopIndex,
   town: state.game.towns[state.locators.selectedLocator!.index],
   visibleStructureDetails: state.townWindow.visibleStructureDetails,
 });
 
 type DispatchProp =
   "onCrestClick" |
+  "onSelectGarrisonTroop" |
   "onOpenStructureDetails" |
   "onRecruitTroop" |
   "onExitClick";
@@ -31,6 +35,9 @@ type DispatchProp =
 const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchProp> => ({
   onCrestClick() {
     dispatch(openKingdomOverviewWindow());
+  },
+  onSelectGarrisonTroop(index) {
+    dispatch(selectTownWindowGarrisonTroop(index));
   },
   onOpenStructureDetails(structure) {
     dispatch(openStructureDetails(structure));

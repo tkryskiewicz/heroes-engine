@@ -123,7 +123,12 @@ const heroes: Hero[] = [
 const towns: Town[] = [
   {
     alignment: Alignment.Red,
-    garrison: [],
+    garrison: [
+      {
+        count: 1,
+        creature: CreatureId.Peasant,
+      },
+    ],
     heroClass: HeroClass.Knight,
     id: TownId.Farm,
     structures: [

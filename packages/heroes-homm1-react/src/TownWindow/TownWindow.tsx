@@ -18,6 +18,8 @@ import { Treasury } from "./Treasury";
 export interface TownWindowProps {
   town: Town;
   resources: Resources;
+  selectedGarrisonTroopIndex?: number;
+  onSelectGarrisonTroop?: (index: number) => void;
   visibleStructureDetails?: string;
   onCrestClick?: () => void;
   onOpenStructureDetails?: (structure: string) => void;
@@ -48,6 +50,8 @@ export class TownWindow extends React.Component<TownWindowProps> {
               />
               <ArmyStrip
                 army={town.garrison}
+                selectedTroopIndex={this.props.selectedGarrisonTroopIndex}
+                onSelectTroop={this.props.onSelectGarrisonTroop}
               />
             </Row>
             <Row>
