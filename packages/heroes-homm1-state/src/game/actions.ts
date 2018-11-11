@@ -1,6 +1,7 @@
 export enum GameActionType {
   SwapHeroTroops = "game/swapHeroTroops",
   DismissHero = "game/dismissHero",
+  SwapGarrisonTroops = "game/swapGarrisonTroops",
   BuildStructure = "game/buildStructure",
   RecruitTroop = "game/recruitTroop",
 }
@@ -8,6 +9,7 @@ export enum GameActionType {
 export type GameAction =
   SwapHeroTroopsAction |
   DismissHeroAction |
+  SwapGarrisonTroopsAction |
   BuildStructureAction |
   RecruitTroopAction;
 
@@ -33,6 +35,20 @@ export interface DismissHeroAction {
 export const dismissHero = (hero: string): DismissHeroAction => ({
   hero,
   type: GameActionType.DismissHero,
+});
+
+export interface SwapGarrisonTroopsAction {
+  type: GameActionType.SwapGarrisonTroops;
+  town: string;
+  index: number;
+  withIndex: number;
+}
+
+export const swapGarrisonTroops = (town: string, index: number, withIndex: number): SwapGarrisonTroopsAction => ({
+  index,
+  town,
+  type: GameActionType.SwapGarrisonTroops,
+  withIndex,
 });
 
 export interface BuildStructureAction {

@@ -1,7 +1,7 @@
 import { Hero, swapHeroTroops } from "./Hero";
 import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
-import { buildTownStructure, recruitTownTroop, Town } from "./Town";
+import { buildTownStructure, recruitTownTroop, swapGarrisonTroops, Town } from "./Town";
 
 export interface Game {
   scenario: Scenario;
@@ -21,6 +21,19 @@ export const dismissGameHero = (game: Game, hero: string): Game => ({
   ...game,
   heroes: game.heroes.filter((h) => h.id !== hero),
 });
+
+export const swapGameGarrisonTroops = (game: Game, townId: string, index: number, withIndex: number): Game => {
+  const town = game.towns.find((t) => t.id === townId);
+
+  if (!town) {
+    return game;
+  }
+
+  return {
+    ...game,
+    towns: game.towns.map((t) => t === town ? swapGarrisonTroops(town, index, withIndex) : t),
+  };
+};
 
 export const buildGameStructure = (game: Game, town: string, structure: string): Game => {
   const twn = game.towns.find((t) => t.id === town);

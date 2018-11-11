@@ -8,6 +8,7 @@ import {
   openStructureDetails,
   recruitTroop,
   selectTownWindowGarrisonTroop,
+  swapGarrisonTroops,
 } from "heroes-homm1-state";
 
 import { TownWindow, TownWindowProps } from "./TownWindow";
@@ -28,6 +29,7 @@ const mapStateToProps = (state: AppState): Pick<TownWindowProps, StateProp> => (
 type DispatchProp =
   "onCrestClick" |
   "onSelectGarrisonTroop" |
+  "onSwapGarrisonTroops" |
   "onOpenStructureDetails" |
   "onRecruitTroop" |
   "onExitClick";
@@ -38,6 +40,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchP
   },
   onSelectGarrisonTroop(index) {
     dispatch(selectTownWindowGarrisonTroop(index));
+  },
+  onSwapGarrisonTroops(town, index, withIndex) {
+    dispatch(swapGarrisonTroops(town, index, withIndex));
   },
   onOpenStructureDetails(structure) {
     dispatch(openStructureDetails(structure));

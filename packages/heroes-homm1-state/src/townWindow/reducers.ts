@@ -27,6 +27,11 @@ export const townWindowReducer = (
         ...state,
         selectedGarrisonTroopIndex: action.index,
       };
+    case GameActionType.SwapGarrisonTroops:
+      return {
+        ...state,
+        selectedGarrisonTroopIndex: undefined,
+      };
     case TownWindowActionType.OpenStructureDetails:
       return {
         ...state,

@@ -4,6 +4,7 @@ import {
   dismissGameHero,
   Hero,
   recruitGameTroop,
+  swapGameGarrisonTroops,
   swapGameHeroTroops,
   Town,
 } from "heroes-core";
@@ -199,6 +200,10 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
     case GameActionType.DismissHero:
       return {
         ...dismissGameHero(state, action.hero),
+      };
+    case GameActionType.SwapGarrisonTroops:
+      return {
+        ...swapGameGarrisonTroops(state, action.town, action.index, action.withIndex),
       };
     case GameActionType.BuildStructure:
       return {

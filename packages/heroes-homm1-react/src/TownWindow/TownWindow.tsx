@@ -20,6 +20,7 @@ export interface TownWindowProps {
   resources: Resources;
   selectedGarrisonTroopIndex?: number;
   onSelectGarrisonTroop?: (index: number) => void;
+  onSwapGarrisonTroops?: (town: string, index: number, withIndex: number) => void;
   visibleStructureDetails?: string;
   onCrestClick?: () => void;
   onOpenStructureDetails?: (structure: string) => void;
@@ -52,6 +53,7 @@ export class TownWindow extends React.Component<TownWindowProps> {
                 army={town.garrison}
                 selectedTroopIndex={this.props.selectedGarrisonTroopIndex}
                 onSelectTroop={this.props.onSelectGarrisonTroop}
+                onSwapTroops={this.onSwapGarrisonTroops}
               />
             </Row>
             <Row>
@@ -79,6 +81,14 @@ export class TownWindow extends React.Component<TownWindowProps> {
         {visibleStructureDetails && this.renderStructureDetails(town, resources, visibleStructureDetails)}
       </div>
     );
+  }
+
+  private onSwapGarrisonTroops = (index: number, withIndex: number) => {
+    if (!this.props.onSwapGarrisonTroops) {
+      return;
+    }
+
+    this.props.onSwapGarrisonTroops(this.props.town.id, index, withIndex);
   }
 
   private onStructureClick = (structure: string) => {
