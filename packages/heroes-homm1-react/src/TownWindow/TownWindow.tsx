@@ -1,7 +1,7 @@
 import { Col, Modal, Row } from "antd";
 import * as React from "react";
 
-import { enoughResources, Resources, Town } from "heroes-core";
+import { enoughResources, Hero, Resources, Town } from "heroes-core";
 import { StructureId } from "heroes-homm1";
 
 import { ArmyStrip } from "../ArmyStrip";
@@ -17,10 +17,14 @@ import { Treasury } from "./Treasury";
 
 export interface TownWindowProps {
   town: Town;
+  visitingHero?: Hero;
   resources: Resources;
   selectedGarrisonTroopIndex?: number;
   onSelectGarrisonTroop?: (index: number) => void;
   onSwapGarrisonTroops?: (town: string, index: number, withIndex: number) => void;
+  selectedHeroTroopIndex?: number;
+  onSelectHeroTroop?: (index: number) => void;
+  onSwapHeroTroops?: (hero: string, index: number, withIndex: number) => void;
   visibleStructureDetails?: string;
   onCrestClick?: () => void;
   onOpenStructureDetails?: (structure: string) => void;
@@ -58,10 +62,13 @@ export class TownWindow extends React.Component<TownWindowProps> {
             </Row>
             <Row>
               <HeroPortrait
-                hero={town.visitingHero ? town.visitingHero.id : undefined}
+                hero={this.props.visitingHero ? this.props.visitingHero.id : undefined}
               />
               <ArmyStrip
-                army={town.visitingHero ? town.visitingHero.army : []}
+                army={this.props.visitingHero ? this.props.visitingHero.army : []}
+                selectedTroopIndex={this.props.selectedHeroTroopIndex}
+                onSelectTroop={this.props.onSelectHeroTroop}
+                onSwapTroops={this.onSwapHeroTroops}
               />
             </Row>
           </Col>
@@ -89,6 +96,14 @@ export class TownWindow extends React.Component<TownWindowProps> {
     }
 
     this.props.onSwapGarrisonTroops(this.props.town.id, index, withIndex);
+  }
+
+  private onSwapHeroTroops = (index: number, withIndex: number) => {
+    if (!this.props.onSwapHeroTroops) {
+      return;
+    }
+
+    this.props.onSwapHeroTroops(this.props.visitingHero!.id, index, withIndex);
   }
 
   private onStructureClick = (structure: string) => {

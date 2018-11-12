@@ -148,7 +148,6 @@ const towns: Town[] = [
       ...commonStructures,
       ...plainsStructures,
     ].map(constructStructure),
-    visitingHero: heroes[3],
   },
   {
     alignment: Alignment.Red,

@@ -29,4 +29,5 @@ export {
   closeStructureDetails,
   changeRecruitTroopCount,
   selectTownWindowGarrisonTroop,
+  selectTownWindowHeroTroop,
 } from "./townWindow";

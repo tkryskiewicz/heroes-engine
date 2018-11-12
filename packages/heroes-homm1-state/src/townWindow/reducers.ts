@@ -32,6 +32,16 @@ export const townWindowReducer = (
         ...state,
         selectedGarrisonTroopIndex: undefined,
       };
+    case TownWindowActionType.SelectHeroTroop:
+      return {
+        ...state,
+        selectedHeroTroopIndex: action.index,
+      };
+    case GameActionType.SwapHeroTroops:
+      return {
+        ...state,
+        selectedHeroTroopIndex: undefined,
+      };
     case TownWindowActionType.OpenStructureDetails:
       return {
         ...state,

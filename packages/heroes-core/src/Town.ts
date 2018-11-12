@@ -1,5 +1,4 @@
 import { appendArmyTroop, Army, swapArmyTroops } from "./Army";
-import { Hero } from "./Hero";
 import { buildStructure, getTroop, recruitTroop, Structure } from "./Structure";
 
 export interface Town {
@@ -8,7 +7,6 @@ export interface Town {
   heroClass: string;
   garrison: Army;
   structures: Structure[];
-  visitingHero?: Hero;
 }
 
 const getStructure = (town: Town, structure: string): Structure | undefined =>
