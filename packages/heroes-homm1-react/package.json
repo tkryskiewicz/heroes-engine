@@ -5,6 +5,7 @@
     "antd": "^3.9.3",
     "heroes-core": "0.0.0",
     "heroes-homm1": "0.0.0",
+    "heroes-homm1-state": "0.0.0",
     "moment": "^2.22.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",

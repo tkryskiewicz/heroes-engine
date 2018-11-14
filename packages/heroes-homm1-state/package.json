@@ -2,6 +2,7 @@
   "name": "heroes-homm1-state",
   "version": "0.0.0",
   "dependencies": {
+    "heroes-core": "0.0.0",
     "heroes-homm1": "0.0.0",
     "redux": "^4.0.0"
   },
