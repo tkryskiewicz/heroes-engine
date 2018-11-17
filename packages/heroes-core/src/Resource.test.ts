@@ -1,11 +1,62 @@
 import {
+  areResourcesValid,
   enoughResources,
   multiplyResources,
   Resources,
   subtractResources,
 } from "./Resource";
 
+describe("areResourcesValid", () => {
+  it("should return true when resources are empty", () => {
+    const resources: Resources = {};
+
+    const result = areResourcesValid(resources);
+
+    expect(result).toBe(true);
+  });
+
+  it("should return true when amount is zero", () => {
+    const resources: Resources = {
+      resource: 0,
+    };
+
+    const result = areResourcesValid(resources);
+
+    expect(result).toBe(true);
+  });
+
+  it("should return true when amount is positive", () => {
+    const resources: Resources = {
+      resource: 1,
+    };
+
+    const result = areResourcesValid(resources);
+
+    expect(result).toBe(true);
+  });
+
+  it("should return false when amount is negative", () => {
+    const resources: Resources = {
+      resource: -1,
+    };
+
+    const result = areResourcesValid(resources);
+
+    expect(result).toBe(false);
+  });
+});
+
 describe("multiplyResources", () => {
+  it("should return empty resources when resources are empty", () => {
+    const resources: Resources = {};
+
+    const result = multiplyResources(resources, 2);
+
+    const expected: Resources = {};
+
+    expect(result).toEqual(expected);
+  });
+
   it("should correctly calculate amount", () => {
     const resources: Resources = {
       resource: 1,
@@ -36,17 +87,7 @@ describe("multiplyResources", () => {
     expect(result).toEqual(expected);
   });
 
-  it("should return empty when no resources", () => {
-    const resources: Resources = {};
-
-    const result = multiplyResources(resources, 1);
-
-    const expected: Resources = {};
-
-    expect(result).toEqual(expected);
-  });
-
-  it("should clear all resources when multiplying by zero", () => {
+  it("should zero amount when multiplying by zero", () => {
     const resources: Resources = {
       resource: 1,
     };
@@ -60,18 +101,20 @@ describe("multiplyResources", () => {
     expect(result).toEqual(expected);
   });
 
-  it("should allow negative multiplier", () => {
+  it("should throw when multiplier is negative", () => {
     const resources: Resources = {
       resource: 1,
     };
 
-    const result = multiplyResources(resources, -1);
+    expect(() => multiplyResources(resources, -1)).toThrowError();
+  });
 
-    const expected: Resources = {
+  it("shoud throw when resources are invalid", () => {
+    const resources: Resources = {
       resource: -1,
     };
 
-    expect(result).toEqual(expected);
+    expect(() => multiplyResources(resources, 2)).toThrowError();
   });
 });
 
@@ -81,7 +124,25 @@ describe("enoughResources", () => {
       resource: 1,
     };
 
-    const result = enoughResources(resources, { resource: 1 });
+    const amount: Resources = {
+      resource: 1,
+    };
+
+    const result = enoughResources(resources, amount);
+
+    expect(result).toBe(true);
+  });
+
+  it("should return true when more than enough resources", () => {
+    const resources: Resources = {
+      resource: 2,
+    };
+
+    const amount: Resources = {
+      resource: 1,
+    };
+
+    const result = enoughResources(resources, amount);
 
     expect(result).toBe(true);
   });
@@ -91,7 +152,23 @@ describe("enoughResources", () => {
       resource: 0,
     };
 
-    const result = enoughResources(resources, { resource: 1 });
+    const amount: Resources = {
+      resource: 1,
+    };
+
+    const result = enoughResources(resources, amount);
+
+    expect(result).toBe(false);
+  });
+
+  it("should return false when required resource is missing", () => {
+    const resources: Resources = {};
+
+    const amount: Resources = {
+      resource: 1,
+    };
+
+    const result = enoughResources(resources, amount);
 
     expect(result).toBe(false);
   });
@@ -99,7 +176,11 @@ describe("enoughResources", () => {
   it("should return false when resource is missing", () => {
     const resources: Resources = {};
 
-    const result = enoughResources(resources, { resource: 1 });
+    const amount: Resources = {
+      resource: 1,
+    };
+
+    const result = enoughResources(resources, amount);
 
     expect(result).toBe(false);
   });
@@ -107,7 +188,11 @@ describe("enoughResources", () => {
   it("should return true when resource is missing but not required", () => {
     const resources: Resources = {};
 
-    const result = enoughResources(resources, { resource: 0 });
+    const amount: Resources = {
+      resource: 0,
+    };
+
+    const result = enoughResources(resources, amount);
 
     expect(result).toBe(true);
   });
@@ -117,29 +202,35 @@ describe("enoughResources", () => {
       resource: 1,
     };
 
-    const result = enoughResources(resources, {});
+    const amount: Resources = {};
+
+    const result = enoughResources(resources, amount);
 
     expect(result).toBe(true);
   });
 
-  it("should return true when negative amount required", () => {
-    const resources: Resources = {
-      resource: 0,
-    };
-
-    const result = enoughResources(resources, { resource: -1 });
-
-    expect(result).toBe(true);
-  });
-
-  it("should return true when negative amount and none required", () => {
+  it("should throw when resources are invalid", () => {
     const resources: Resources = {
       resource: -1,
     };
 
-    const result = enoughResources(resources, { resource: 0 });
+    const amount: Resources = {
+      resource: 1,
+    };
 
-    expect(result).toBe(true);
+    expect(() => enoughResources(resources, amount)).toThrowError();
+  });
+
+  it("should throw when amount resources are invalid", () => {
+    const resources: Resources = {
+      resource: 1,
+    };
+
+    const amount: Resources = {
+      resource: -1,
+    };
+
+    expect(() => enoughResources(resources, amount)).toThrowError();
   });
 });
 
@@ -149,7 +240,11 @@ describe("subtractResources", () => {
       resource: 1,
     };
 
-    const result = subtractResources(resources, { resource: 1 });
+    const amount: Resources = {
+      resource: 1,
+    };
+
+    const result = subtractResources(resources, amount);
 
     const expected: Resources = {
       resource: 0,
@@ -161,7 +256,11 @@ describe("subtractResources", () => {
   it("should handle missing resources", () => {
     const resources: Resources = {};
 
-    const result = subtractResources(resources, { resource: 1 });
+    const amount: Resources = {
+      resource: 1,
+    };
+
+    const result = subtractResources(resources, amount);
 
     const expected: Resources = {
       resource: -1,
@@ -175,7 +274,9 @@ describe("subtractResources", () => {
       resource: 1,
     };
 
-    const result = subtractResources(resources, {});
+    const amount: Resources = {};
+
+    const result = subtractResources(resources, amount);
 
     const expected: Resources = {
       resource: 1,
@@ -184,17 +285,27 @@ describe("subtractResources", () => {
     expect(result).toEqual(expected);
   });
 
-  it("should add resources when negative amount", () => {
+  it("should throw when resources are invalid", () => {
+    const resources: Resources = {
+      resource: -1,
+    };
+
+    const amount: Resources = {
+      resource: 1,
+    };
+
+    expect(() => subtractResources(resources, amount)).toThrow();
+  });
+
+  it("should throw when amount resources are invalid", () => {
     const resources: Resources = {
       resource: 1,
     };
 
-    const result = subtractResources(resources, { resource: -1 });
-
-    const expected: Resources = {
-      resource: 2,
+    const amount: Resources = {
+      resource: -1,
     };
 
-    expect(result).toEqual(expected);
+    expect(() => subtractResources(resources, amount)).toThrowError();
   });
 });

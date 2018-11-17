@@ -2,21 +2,54 @@ export interface Resources {
   [resource: string]: number;
 }
 
-export const multiplyResources = (resources: Resources, multiplier: number): Resources =>
-  Object.keys(resources).reduce<Resources>((p, c) => {
+export const areResourcesValid = (resources: Resources) =>
+  Object.keys(resources).every((r) => resources[r] >= 0);
+
+export const multiplyResources = (resources: Resources, multiplier: number): Resources => {
+  if (!areResourcesValid(resources)) {
+    throw new Error("Resources are not valid");
+  }
+
+  if (multiplier < 0) {
+    throw new Error("Multiplier must be non-negative");
+  }
+
+  return Object.keys(resources).reduce<Resources>((p, c) => {
     p[c] = resources[c] * multiplier;
 
     return p;
   }, {});
+};
 
-export const enoughResources = (resourcesA: Resources, resourcesB: Resources): boolean =>
-  Object.keys(resourcesB).every((r) => resourcesB[r] <= resourcesA[r]);
+export const enoughResources = (resources: Resources, amount: Resources): boolean => {
+  if (!areResourcesValid(resources)) {
+    throw new Error("Resources are not valid");
+  }
 
-export const subtractResources = (resourcesA: Resources, resourcesB: Resources): Resources => ({
-  ...resourcesA,
-  ...Object.keys(resourcesB).reduce<Resources>((p, c) => {
-    p[c] = resourcesA[c] - resourcesB[c];
+  if (!areResourcesValid(amount)) {
+    throw new Error("Amount resources are not valid");
+  }
 
-    return p;
-  }, {}),
-});
+  return Object.keys(amount)
+    .filter((r) => amount[r] !== 0)
+    .every((r) => amount[r] <= resources[r]);
+};
+
+export const subtractResources = (resources: Resources, amount: Resources): Resources => {
+  if (!areResourcesValid(resources)) {
+    throw new Error("Resources are not valid");
+  }
+
+  if (!areResourcesValid(amount)) {
+    throw new Error("Amount resources are not valid");
+  }
+
+  return {
+    ...resources,
+    ...Object.keys(amount).reduce<Resources>((p, c) => {
+      p[c] = (resources[c] || 0) - amount[c];
+
+      return p;
+    }, {}),
+  };
+};
