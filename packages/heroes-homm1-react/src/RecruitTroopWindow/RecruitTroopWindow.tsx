@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 
 import { enoughResources, multiplyResources, Resources } from "heroes-core";
 
+import "./RecruitTroopWindow.scss";
+
 import { CreatureIcon } from "../CreatureIcon";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
@@ -25,28 +27,16 @@ export interface RecruitTroopWindowProps {
 
 export class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
   public render() {
-    const style: React.CSSProperties = {
-      background: "url('assets/ui/recruit-troop-window/background.jpg')",
-      height: 294,
-      padding: 20,
-      width: 320,
-    };
-
-    const rowStyle: React.CSSProperties = {
-      marginBottom: 6,
-      textAlign: "center",
-    };
-
     return (
-      <div style={style}>
-        <Row style={rowStyle}>
+      <div className="recruit-troop-window">
+        <Row>
           <GameText size="large">
             <FormattedMessage {...getCreatureNameMessage(this.props.creature)}>
               {(creature) => (<FormattedMessage {...messages.title} values={{ creature }} />)}
             </FormattedMessage>
           </GameText>
         </Row>
-        <Row style={rowStyle}>
+        <Row>
           <Col span={8}>
             <CreatureIcon
               size="medium"
@@ -60,7 +50,7 @@ export class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps>
             {this.renderCostPerTroop()}
           </Col>
         </Row>
-        <Row style={rowStyle}>
+        <Row>
           <Col span={8}>
             <GameText size="normal">
               <FormattedMessage {...messages.count} />:
@@ -82,7 +72,7 @@ export class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps>
             />
           </Col>
         </Row>
-        <Row style={rowStyle}>
+        <Row>
           <GameText size="large">
             <FormattedMessage {...messages.totalCost} />:
           </GameText>
@@ -90,7 +80,7 @@ export class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps>
             cost={multiplyResources(this.props.cost, this.props.count)}
           />
         </Row>
-        <Row style={rowStyle}>
+        <Row>
           <Col span={12}>
             <GameButton
               group="recruit-troop-window"

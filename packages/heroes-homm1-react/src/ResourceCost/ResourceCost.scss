@@ -1,0 +1,12 @@
+.resource-cost {
+  display: inline-block;
+
+  &-resource {
+    display: inline-block;
+    margin-right: 6px;
+  }
+
+  &-resource-amount {
+    text-align: center;
+  }
+}

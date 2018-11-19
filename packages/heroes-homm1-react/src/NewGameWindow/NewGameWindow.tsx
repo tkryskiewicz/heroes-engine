@@ -10,6 +10,8 @@ import {
   OpponentSetting,
 } from "heroes-homm1";
 
+import "./NewGameWindow.scss";
+
 import { GameButton } from "../GameButton";
 import { GameSwitch } from "../GameSwitch";
 import { getGameDifficultyMessage } from "../messages";
@@ -37,7 +39,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
       this.props.opponentSettings.reduce((p, c) => p + getOpponentSettingRating(c), 0);
 
     return (
-      <div style={{ textAlign: "center" }}>
+      <div className="new-game-window">
         <Row>
           <FormattedMessage {...messages.difficultyTitle} />
         </Row>
@@ -82,7 +84,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
         </Row>
         <Row>
           <Col
-            style={{ textAlign: "left" }}
+            className="new-game-window-okay"
             span={12}
           >
             <GameButton
@@ -92,7 +94,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
             />
           </Col>
           <Col
-            style={{ textAlign: "right" }}
+            className="new-game-window-cancel"
             span={12}
           >
             <GameButton
@@ -124,7 +126,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
   private renderDifficulty(difficulty: GameDifficulty, selectedDifficulty?: GameDifficulty) {
     return (
       <Col
-        style={{ textAlign: "center" }}
+        className="new-game-window-game-difficutly"
         key={difficulty}
         span={6}
       >

@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import "./GameSwitch.scss";
+
 type GameOptionSwitchType =
   "music" |
   "effects" |
@@ -19,13 +21,9 @@ export interface GameSwitchProps {
 
 export class GameSwitch extends React.Component<GameSwitchProps> {
   public render() {
-    const style: React.CSSProperties = {
-      display: "inline-block",
-    };
-
     return (
       <div
-        style={style}
+        className="game-switch"
         onClick={this.onClick}
       >
         {this.props.checked ? this.renderChecked(this.props.type) : this.renderUnchecked(this.props.type)}

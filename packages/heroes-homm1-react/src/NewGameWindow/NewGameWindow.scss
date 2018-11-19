@@ -1,0 +1,15 @@
+.new-game-window {
+  text-align: center;
+
+  &-game-difficulty {
+    text-align: center;
+  }
+
+  &-okay {
+    text-align: left;
+  }
+
+  &-cancel {
+    text-align: right;
+  }
+}
