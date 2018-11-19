@@ -12,10 +12,11 @@ const config: Webpack.Configuration = {
         test: /\.tsx?$/,
       },
       {
-        test: /\.css$/,
+        test: /\.(scss|css)$/,
         use: [
           "style-loader",
           "css-loader",
+          "sass-loader",
         ],
       },
     ],
