@@ -1,6 +1,8 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
+import "./AdventureOptions.scss";
+
 import { GameButton } from "../GameButton";
 
 export interface AdventureOptionsProps {
@@ -13,12 +15,8 @@ export interface AdventureOptionsProps {
 
 export class AdventureOptions extends React.Component<AdventureOptionsProps> {
   public render() {
-    const style: React.CSSProperties = {
-      textAlign: "center",
-    };
-
     return (
-      <div style={style}>
+      <div className="adventure-options">
         {/* TODO: Add background */}
         <Row>
           <Col span={12}>

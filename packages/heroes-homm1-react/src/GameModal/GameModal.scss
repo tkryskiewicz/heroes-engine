@@ -1,0 +1,33 @@
+.game-modal {
+  position: relative;
+  width: 2 * 143px;
+
+  &-content {
+    left: 0px;
+    padding: 45px 20px 30px 20px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+
+  &-reverse {
+    transform: scaleX(-1);
+  }
+
+  &-header {
+    background: url("/assets/ui/game-modal/header.png");
+    height: 77px;
+  }
+
+  &-body {
+    background: url("/assets/ui/game-modal/body.png");
+    background-repeat: no-repeat;
+    height: 45px;
+  }
+
+  &-footer {
+    background: url("/assets/ui/game-modal/footer.png");
+    background-repeat: no-repeat;
+    height: 48px;
+  }
+}

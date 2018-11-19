@@ -1,6 +1,8 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
+import "./GameModal.scss";
+
 export interface GameModalProps {
   size: number;
 }
@@ -11,24 +13,10 @@ export class GameModal extends React.Component<GameModalProps> {
   };
 
   public render() {
-    const style: React.CSSProperties = {
-      height: 77 + this.props.size * 45 + 48,
-      position: "relative",
-      width: 143 * 2,
-    };
-
-    const contentStyle: React.CSSProperties = {
-      left: 0,
-      padding: "45px 20px 30px 20px",
-      position: "absolute",
-      top: 0,
-      width: "100%",
-    };
-
     return (
-      <div style={style}>
+      <div className="game-modal">
         {this.renderBackground(this.props.size)}
-        <div style={contentStyle}>
+        <div className="game-modal-content">
           {this.props.children}
         </div>
       </div>
@@ -46,45 +34,28 @@ export class GameModal extends React.Component<GameModalProps> {
   }
 
   private renderHeader() {
-    const style: React.CSSProperties = {
-      background: "url('assets/ui/game-modal/header.png')",
-      height: 77,
-    };
-
     return (
       <Row>
-        <Col style={{ ...style, transform: "scaleX(-1)" }} span={12} />
-        <Col style={style} span={12} />
+        <Col className="game-modal-header game-modal-reverse" span={12} />
+        <Col className="game-modal-header" span={12} />
       </Row>
     );
   }
 
   private renderBody(index: number) {
-    const style: React.CSSProperties = {
-      background: "url('assets/ui/game-modal/body.png')",
-      backgroundRepeat: "no-repeat",
-      height: 45,
-    };
-
     return (
       <Row key={index}>
-        <Col style={{ ...style, transform: "scaleX(-1)" }} span={12} />
-        <Col style={style} span={12} />
+        <Col className="game-modal-body game-modal-reverse" span={12} />
+        <Col className="game-modal-body" span={12} />
       </Row>
     );
   }
 
   private renderFooter() {
-    const style: React.CSSProperties = {
-      background: "url('assets/ui/game-modal/footer.png')",
-      backgroundRepeat: "no-repeat",
-      height: 48,
-    };
-
     return (
       <Row>
-        <Col style={{ ...style, transform: "scaleX(-1)" }} span={12} />
-        <Col style={style} span={12} />
+        <Col className="game-modal-footer game-modal-reverse" span={12} />
+        <Col className="game-modal-footer" span={12} />
       </Row>
     );
   }

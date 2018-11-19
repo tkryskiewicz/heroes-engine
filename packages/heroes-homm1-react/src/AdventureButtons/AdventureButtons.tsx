@@ -3,6 +3,8 @@ import * as React from "react";
 
 import { canSelectNextHero, getNextHeroIndex, Hero } from "heroes-core";
 
+import "./AdventureButtons.scss";
+
 import { GameButton } from "../GameButton";
 
 export interface AdventureButtonsProps {
@@ -21,7 +23,7 @@ export class AdventureButtons extends React.Component<AdventureButtonsProps> {
     const nextHeroEnabled = canSelectNextHero(this.props.heroes);
 
     return (
-      <>
+      <div className="adventure-buttons">
         <Row>
           <Col span={8}>
             <GameButton
@@ -69,7 +71,7 @@ export class AdventureButtons extends React.Component<AdventureButtonsProps> {
             />
           </Col>
         </Row>
-      </>
+      </div>
     );
   }
 
