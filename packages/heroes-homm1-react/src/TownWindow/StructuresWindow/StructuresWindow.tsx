@@ -33,7 +33,10 @@ export class StructuresWindow extends React.Component<StructuresWindowProps> {
 
   private renderStructure(town: string, structure: Structure) {
     return (
-      <Col span={4}>
+      <Col
+        key={structure.id}
+        span={4}
+      >
         <StructureIcon
           town={town}
           structure={structure.id}
