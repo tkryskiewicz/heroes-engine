@@ -1,0 +1,11 @@
+.structure-icon {
+  display: inline-block;
+
+  &-name {
+    background: url("/assets/ui/structure-icon/name-background.jpg");
+    height: 14px;
+    line-height: 1;
+    text-align: center;
+    width: 137px;
+  }
+}

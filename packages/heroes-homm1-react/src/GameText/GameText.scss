@@ -1,0 +1,15 @@
+.game-text {
+  color: #fff;
+
+  &-large {
+    font-size: 14px;
+  }
+
+  &-normal {
+    font-size: 12px;
+  }
+
+  &-small {
+    font-size: 10px;
+  }
+}

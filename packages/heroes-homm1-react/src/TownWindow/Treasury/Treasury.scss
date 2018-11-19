@@ -1,0 +1,12 @@
+.treasury {
+  background: url("/assets/ui/town-window/treasury-border.png");
+  background-color: #000;
+  display: inline-block;
+  height: 204px;
+  padding: 5px;
+  width: 94px;
+
+  &-resource {
+    text-align: center;
+  }
+}

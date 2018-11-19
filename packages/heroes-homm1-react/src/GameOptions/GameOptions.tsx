@@ -4,6 +4,8 @@ import { FormattedMessage } from "react-intl";
 
 import { changeMovementSpeed, changeVolume, MovementSpeed, SoundVolume } from "heroes-homm1";
 
+import "./GameOptions.scss";
+
 import { GameButton } from "../GameButton";
 import { GameSwitch } from "../GameSwitch";
 import { getMovementSpeedMessage, messages } from "./messages";
@@ -31,20 +33,8 @@ export interface GameOptionsProps {
 
 export class GameOptions extends React.Component<GameOptionsProps> {
   public render() {
-    const style: React.CSSProperties = {
-      textAlign: "center",
-    };
-
-    const okayStyle: React.CSSProperties = {
-      textAlign: "left",
-    };
-
-    const infoStyle: React.CSSProperties = {
-      textAlign: "right",
-    };
-
     return (
-      <div style={style}>
+      <div className="game-options">
         <Row>
           <Col span={12}>
             <GameButton
@@ -147,7 +137,7 @@ export class GameOptions extends React.Component<GameOptionsProps> {
         </Row>
         <Row>
           <Col
-            style={okayStyle}
+            className="game-options-okay"
             span={12}
           >
             <GameButton
@@ -157,7 +147,7 @@ export class GameOptions extends React.Component<GameOptionsProps> {
             />
           </Col>
           <Col
-            style={infoStyle}
+            className="game-options-info"
             span={12}
           >
             <GameButton

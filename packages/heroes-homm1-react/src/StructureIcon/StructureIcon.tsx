@@ -3,6 +3,8 @@ import { FormattedMessage } from "react-intl";
 
 import { isCommonStructure } from "heroes-homm1";
 
+import "./StructureIcon.scss";
+
 import { GameText } from "../GameText";
 import { getStructureNameMessage } from "../messages";
 
@@ -15,12 +17,8 @@ export class StructureIcon extends React.Component<StructureIconProps> {
   public render() {
     const { town, structure } = this.props;
 
-    const style: React.CSSProperties = {
-      display: "inline-block",
-    };
-
     return (
-      <div style={style}>
+      <div className="structure-icon">
         <img src={`assets/towns/${isCommonStructure(structure) ? "common" : town}/structures/${structure}/icon.jpg`} />
         {this.renderName(structure)}
       </div>
@@ -28,16 +26,8 @@ export class StructureIcon extends React.Component<StructureIconProps> {
   }
 
   private renderName(structure: string) {
-    const style: React.CSSProperties = {
-      background: "url('assets/ui/structure-icon/name-background.jpg')",
-      height: 14,
-      lineHeight: 1,
-      textAlign: "center",
-      width: 137,
-    };
-
     return (
-      <div style={style}>
+      <div className="structure-icon-name">
         <GameText size="small">
           <FormattedMessage {...getStructureNameMessage(structure)} />
         </GameText>

@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import "./GameButton.scss";
+
 type SystemButtonType =
   "yes" |
   "no" |
@@ -162,16 +164,9 @@ export class GameButton extends React.Component<GameButtonProps, GameButtonState
 
     const renderEnabled = !disabled && !this.state.pressed;
 
-    const style: React.CSSProperties = {
-      background: "transparent",
-      border: "none",
-      outline: 0,
-      padding: 0,
-    };
-
     return (
       <button
-        style={style}
+        className="game-button"
         disabled={this.props.disabled}
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseUp}

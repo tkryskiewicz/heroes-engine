@@ -4,6 +4,8 @@ import * as React from "react";
 import { Resources } from "heroes-core";
 import { Resource } from "heroes-homm1";
 
+import "./Treasury.scss";
+
 import { GameText } from "../../GameText";
 import { ResourceIcon } from "../../ResourceIcon";
 
@@ -13,17 +15,8 @@ export interface TreasuryProps {
 
 export class Treasury extends React.Component<TreasuryProps> {
   public render() {
-    const style: React.CSSProperties = {
-      background: "url('assets/ui/town-window/treasury-border.png')",
-      backgroundColor: "#000",
-      display: "inline-block",
-      height: 204,
-      padding: 5,
-      width: 94,
-    };
-
     return (
-      <div style={style}>
+      <div className="treasury">
         <Row>
           {this.renderResource(Resource.Wood, this.props.resources)}
           {this.renderResource(Resource.Sulfur, this.props.resources)}
@@ -44,13 +37,9 @@ export class Treasury extends React.Component<TreasuryProps> {
   }
 
   private renderResource(resource: string, resources: Resources) {
-    const style: React.CSSProperties = {
-      textAlign: "center",
-    };
-
     return (
       <Col
-        style={style}
+        className="treasury-resource"
         key={resource}
         span={resource !== Resource.Gold ? 12 : 24}
       >
