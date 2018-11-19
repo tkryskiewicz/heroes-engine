@@ -1,0 +1,15 @@
+.recruit-hero {
+  display: inline-block;
+
+  &-hero-portrait {
+    background: url("/assets/ui/recruit-hero-window/portrait-border.png");
+    height: 105;
+    padding: 6px 5px;
+    text-align: center;
+    width: 111;
+  }
+
+  &-hero-name {
+    text-align: center;
+  }
+}

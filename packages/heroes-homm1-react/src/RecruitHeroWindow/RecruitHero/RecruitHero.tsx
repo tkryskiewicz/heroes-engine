@@ -4,6 +4,8 @@ import { FormattedMessage } from "react-intl";
 
 import { HeroClass } from "heroes-homm1";
 
+import "./RecruitHero.scss";
+
 import { GameButton } from "../../GameButton";
 import { GameText } from "../../GameText";
 import { HeroPortrait } from "../../HeroPortrait";
@@ -19,29 +21,17 @@ export interface RecruitHeroProps {
 
 export class RecruitHero extends React.Component<RecruitHeroProps> {
   public render() {
-    const style: React.CSSProperties = {
-      display: "inline-block",
-    };
-
-    const portraitStyle: React.CSSProperties = {
-      background: "url('assets/ui/recruit-hero-window/portrait-border.png')",
-      height: 105,
-      padding: "6px 5px 6px 5px",
-      textAlign: "center",
-      width: 111,
-    };
-
     return (
-      <div style={style}>
+      <div className="recruit-hero">
         <Row>
-          <div style={portraitStyle}>
+          <div className="recruit-hero-hero-portrait">
             <HeroPortrait
               hero={this.props.heroId}
               onClick={this.onPortraitClick}
             />
           </div>
         </Row>
-        <Row style={{ textAlign: "center" }}>
+        <Row className="recruit-hero-hero-name">
           <GameText size="normal">
             <FormattedMessage {...getHeroClassNameMessage(this.props.heroClass)} />
           </GameText>

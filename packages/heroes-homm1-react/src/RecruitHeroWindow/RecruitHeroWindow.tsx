@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 import { enoughResources, Resources } from "heroes-core";
 import { HeroClass } from "heroes-homm1";
 
+import "./RecruitHeroWindow.scss";
+
 import { GameButton } from "../GameButton";
 import { GameModal } from "../GameModal";
 import { GameText } from "../GameText";
@@ -30,7 +32,7 @@ export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {
   public render() {
     return (
       <GameModal size={4}>
-        <Row style={{ textAlign: "center" }}>
+        <Row className="recruit-hero-window-title">
           <GameText size="large">
             <FormattedMessage {...messages.title} />
           </GameText>
@@ -38,12 +40,12 @@ export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {
         <Row>
           {this.props.heroes.map((h) => this.renderHero(h, this.props.resources, this.props.cost))}
         </Row>
-        <Row style={{ textAlign: "center" }}>
+        <Row className="recruit-hero-window-cost">
           <ResourceCost
             cost={this.props.cost}
           />
         </Row>
-        <Row style={{ textAlign: "center" }}>
+        <Row className="recruit-hero-window-actions">
           <GameButton
             group="system"
             type="cancel"
@@ -57,7 +59,7 @@ export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {
   private renderHero(hero: Hero, resources: Resources, cost: Resources) {
     return (
       <Col
-        style={{ textAlign: "center" }}
+        className="recruit-hero-window-hero"
         span={12}
       >
         <RecruitHero
