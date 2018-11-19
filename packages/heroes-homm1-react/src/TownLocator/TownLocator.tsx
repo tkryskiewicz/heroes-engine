@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import "./TownLocator.scss";
+
 import { Locator } from "../Locator";
 
 export interface TownLocatorProps {
@@ -24,15 +26,9 @@ export class TownLocator extends React.Component<TownLocatorProps> {
   }
 
   private renderTown(town: string, isCastleBuilt?: boolean) {
-    const style: React.CSSProperties = {
-      left: 1,
-      position: "absolute",
-      top: 1,
-    };
-
     return (
       <img
-        style={style}
+        className="town-locator"
         src={`assets/towns/${town}/${isCastleBuilt ? "castle" : "town"}-locator.jpg`}
       />
     );

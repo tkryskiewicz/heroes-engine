@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import "./Locator.scss";
+
 export interface LocatorProps {
   index: number;
   selected?: boolean;
@@ -9,15 +11,9 @@ export interface LocatorProps {
 // TODO: town locators have borders, without them we could limit locator size and center content
 export class Locator extends React.Component<LocatorProps> {
   public render() {
-    const style: React.CSSProperties = {
-      height: 32,
-      position: "relative",
-      width: 56,
-    };
-
     return (
       <div
-        style={style}
+        className="locator"
         onClick={this.onClick}
       >
         {this.renderBackground(this.props.index)}
@@ -28,15 +24,9 @@ export class Locator extends React.Component<LocatorProps> {
   }
 
   private renderBackground(index: number) {
-    const style: React.CSSProperties = {
-      left: 1,
-      position: "absolute",
-      top: 1,
-    };
-
     return (
       <img
-        style={style}
+        className="locator-background"
         // TODO: if more than 8 locators are possible should be index % 8
         src={`assets/ui/locators/background-${index}.jpg`}
       />
@@ -44,15 +34,9 @@ export class Locator extends React.Component<LocatorProps> {
   }
 
   private renderSelection() {
-    const style: React.CSSProperties = {
-      left: 0,
-      position: "absolute",
-      top: 0,
-    };
-
     return (
       <img
-        style={style}
+        className="locator-selection"
         src="assets/ui/locators/selection.png"
       />
     );
