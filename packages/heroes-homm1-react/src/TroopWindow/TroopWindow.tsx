@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 import { Damage, Troop } from "heroes-core";
 import { creaturesById } from "heroes-homm1";
 
+import "./TroopWindow.scss";
+
 import { CreatureIcon } from "../CreatureIcon";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
@@ -24,24 +26,19 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
   public render() {
     const creature = creaturesById[this.props.troop.creature];
 
-    const style: React.CSSProperties = {
-      background: "url('assets/ui/troop-window/background.png')",
-      height: 229,
-      padding: "20px 35px",
-      position: "relative",
-      width: 402,
-    };
-
     return (
-      <Row style={style}>
-        <Col style={{ textAlign: "center" }} span={12}>
+      <Row className="troop-window">
+        <Col
+          className="troop-window-creature"
+          span={12}
+        >
           <CreatureIcon
             size="large"
             creature={this.props.troop.creature}
           />
         </Col>
         <Col span={12}>
-          <Row style={{ textAlign: "center" }}>
+          <Row className="troop-window-creature-name">
             <GameText size="normal">
               <FormattedMessage {...getCreatureNameMessage(creature.id)} />
             </GameText>
@@ -84,7 +81,7 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
           </Row>
           <Row>
             <Col
-              style={{ textAlign: "left" }}
+              className="troop-window-dismiss"
               span={12}
             >
               <GameButton
@@ -95,7 +92,7 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
               {this.props.dismissPromptVisible && this.renderDismissPrompt()}
             </Col>
             <Col
-              style={{ textAlign: "right" }}
+              className="troop-window-exit"
               span={12}
             >
               <GameButton
@@ -112,20 +109,8 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
   }
 
   private renderCount(value: number) {
-    const style: React.CSSProperties = {
-      background: "url('assets/ui/troop-window/count-background.jpg')",
-      bottom: 17,
-      display: "inline-block",
-      height: 38,
-      left: 41,
-      paddingTop: 5,
-      position: "absolute",
-      textAlign: "center",
-      width: 142,
-    };
-
     return (
-      <div style={style}>
+      <div className="troop-window-count">
         <GameText size="normal">
           {value}
         </GameText>
@@ -163,7 +148,7 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
         </Row>
         <Row>
           <Col
-            style={{ textAlign: "left" }}
+            className="troop-window-dismiss-yes"
             span={12}
           >
             <GameButton
@@ -173,7 +158,7 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
             />
           </Col>
           <Col
-            style={{ textAlign: "right" }}
+            className="troop-window-dismiss-no"
             span={12}
           >
             <GameButton
