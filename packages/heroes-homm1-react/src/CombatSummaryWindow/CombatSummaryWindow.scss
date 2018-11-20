@@ -1,0 +1,23 @@
+.combat-summary-window {
+  background: url('/assets/ui/combat-summary-window/background.jpg');
+  height: 459px;
+  padding: 38px 22px 20px 18px;
+  position: relative;
+  text-align: center;
+  width: 324px;
+
+  &-summary {
+    bottom: 25px;
+    position: absolute;
+    width: 324px - (22px + 18px);
+  }
+
+  &-casulaties {
+    line-height: 50px;
+  }
+
+  &-casualty {
+    margin-right: 5px;
+    padding: 0px 5px;
+  }
+}

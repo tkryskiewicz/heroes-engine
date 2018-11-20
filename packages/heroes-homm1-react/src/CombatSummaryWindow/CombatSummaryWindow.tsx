@@ -4,6 +4,8 @@ import { FormattedMessage } from "react-intl";
 
 import { Army, Troop } from "heroes-core";
 
+import "./CombatSummaryWindow.scss";
+
 import { CreatureIcon } from "../CreatureIcon";
 import { GameText } from "../GameText";
 import { messages } from "./messages";
@@ -16,25 +18,10 @@ export interface CombatSummaryWindowProps {
 
 export class CombatSummaryWindow extends React.Component<CombatSummaryWindowProps> {
   public render() {
-    const style: React.CSSProperties = {
-      background: "url('assets/ui/combat-summary-window/background.jpg')",
-      height: 459,
-      padding: "38px 22px 20px 18px",
-      position: "relative",
-      textAlign: "center",
-      width: 324,
-    };
-
-    const summaryStyle: React.CSSProperties = {
-      bottom: 25,
-      position: "absolute",
-      width: 324 - (22 + 18),
-    };
-
     return (
-      <div style={style}>
+      <div className="combat-summary-window">
         {this.props.children}
-        <div style={summaryStyle}>
+        <div className="combat-summary-window-summary">
           <Row>
             <GameText size="normal">
               <FormattedMessage {...messages.casualtiesTitle} />
@@ -62,12 +49,8 @@ export class CombatSummaryWindow extends React.Component<CombatSummaryWindowProp
 
   private renderCasualties(casualties: Army) {
     if (casualties.length === 0) {
-      const style: React.CSSProperties = {
-        lineHeight: "50px",
-      };
-
       return (
-        <div style={style}>
+        <div className="combat-summary-window-casualties">
           <GameText size="normal">
             <FormattedMessage {...messages.noCasualties} />
           </GameText>
@@ -77,19 +60,17 @@ export class CombatSummaryWindow extends React.Component<CombatSummaryWindowProp
 
     return (
       <div>
-        {casualties.map((t) => t && this.renderCasualty(t))}
+        {casualties.map((t, i) => t && this.renderCasualty(i, t))}
       </div>
     );
   }
 
-  private renderCasualty(troop: Troop) {
-    const style: React.CSSProperties = {
-      marginRight: 5,
-      padding: "0px 5px",
-    };
-
+  private renderCasualty(index: number, troop: Troop) {
     return (
-      <div style={style}>
+      <div
+        className="combat-summary-window-casualty"
+        key={index}
+      >
         <CreatureIcon
           size="small"
           creature={troop.creature}
