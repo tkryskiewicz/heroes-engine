@@ -1,6 +1,8 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
+import "./CampaignScenarioInfoWindow.scss";
+
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
 
@@ -16,20 +18,12 @@ export interface CampaignScenarioInfoWindowProps {
 
 export class CampaignScenarioInfoWindow extends React.Component<CampaignScenarioInfoWindowProps> {
   public render() {
-    const style: React.CSSProperties = {
-      height: 287,
-      padding: 30,
-      paddingTop: 43,
-      position: "relative",
-      width: 428,
-    };
-
     return (
-      <div style={style}>
+      <div className="campaign-scenario-info-window">
         {this.renderBackground()}
-        <Row style={{ marginBottom: 10 }}>
+        <Row className="campaign-scenario-info-window-title">
           <Col
-            style={{ textAlign: "right" }}
+            className="campaign-scenario-info-window-number"
             span={10}
           >
             {this.renderNumber(this.props.scenario.number)}
@@ -43,14 +37,14 @@ export class CampaignScenarioInfoWindow extends React.Component<CampaignScenario
             </GameText>
           </Col>
         </Row>
-        <Row style={{ height: 160, textAlign: "center" }}>
+        <Row className="campaign-scenario-info-window-description">
           <GameText size="large">
             {this.props.scenario.description}
           </GameText>
         </Row>
         <Row>
           <Col
-            style={{ textAlign: "left" }}
+            className="campaign-scenario-info-window-okay"
             span={9}
           >
             <GameButton
@@ -60,7 +54,7 @@ export class CampaignScenarioInfoWindow extends React.Component<CampaignScenario
             />
           </Col>
           <Col
-            style={{ textAlign: "right" }}
+            className="campaign-scenario-info-window-restart"
             span={15}
           >
             <GameButton
@@ -75,15 +69,9 @@ export class CampaignScenarioInfoWindow extends React.Component<CampaignScenario
   }
 
   private renderBackground() {
-    const style: React.CSSProperties = {
-      left: 0,
-      position: "absolute",
-      top: 0,
-    };
-
     return (
       <img
-        style={style}
+        className="campaign-scenario-info-window-background"
         src="assets/ui/campaign-scenario-info-window/background.jpg"
       />
     );

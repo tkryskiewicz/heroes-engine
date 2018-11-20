@@ -1,0 +1,34 @@
+.campaign-scenario-info-window {
+  height: 287px;
+  padding: 30px;
+  padding-top: 43px;
+  position: relative;
+  width: 428px;
+
+  &-background {
+    left: 0px;
+    position: absolute;
+    top: 0px;
+  }
+
+  &-title {
+    margin-bottom: 10px;
+  }
+
+  &-number {
+    text-align: right;
+  }
+
+  &-description {
+    height: 160px;
+    text-align: center;
+  }
+
+  &-okay {
+    text-align: left;
+  }
+
+  &-restart {
+    text-align: right;
+  }
+}
