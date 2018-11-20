@@ -4,6 +4,8 @@ import { FormattedMessage } from "react-intl";
 
 import { Resources } from "heroes-core";
 
+import "./BuildStructureWindow.scss";
+
 import { GameButton } from "../GameButton";
 import { GameModal } from "../GameModal";
 import { GameText } from "../GameText";
@@ -25,7 +27,7 @@ export class BuildStructureWindow extends React.Component<BuildStructureWindowPr
   public render() {
     return (
       <GameModal size={5}>
-        <div style={{ textAlign: "center" }}>
+        <div className="build-structure-window">
           <Row>
             <GameText size="large">
               <FormattedMessage {...messages.title} />
@@ -49,7 +51,7 @@ export class BuildStructureWindow extends React.Component<BuildStructureWindowPr
           </Row>
           <Row>
             <Col
-              style={{ textAlign: "left" }}
+              className="build-structure-window-okay"
               span={12}
             >
               <GameButton
@@ -60,7 +62,7 @@ export class BuildStructureWindow extends React.Component<BuildStructureWindowPr
               />
             </Col>
             <Col
-              style={{ textAlign: "right" }}
+              className="build-structure-window-cancel"
               span={12}
             >
               <GameButton
