@@ -1,0 +1,15 @@
+.combat-lost-window {
+  &-animation-background {
+    background: url('/assets/ui/combat-lost-window/animation-background.jpg');
+    display: inline-block;
+    height: 125px;
+    position: relative;
+    width: 223px;
+  }
+
+  &-animation {
+    left: 50px;
+    position: absolute;
+    top: 60px;
+  }
+}

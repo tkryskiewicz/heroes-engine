@@ -4,6 +4,8 @@ import { FormattedMessage } from "react-intl";
 
 import { Army } from "heroes-core";
 
+import "./CombatLostWindow.scss";
+
 import { CombatSummaryWindow } from "../CombatSummaryWindow";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
@@ -40,24 +42,10 @@ export class CombatLostWindow extends React.Component<CombatLostWindowProps> {
   }
 
   private renderAnimation() {
-    const style: React.CSSProperties = {
-      background: "url('assets/ui/combat-lost-window/animation-background.jpg')",
-      display: "inline-block",
-      height: 125,
-      position: "relative",
-      width: 223,
-    };
-
-    const animationStyle: React.CSSProperties = {
-      left: 50,
-      position: "absolute",
-      top: 60,
-    };
-
     return (
-      <div style={style}>
+      <div className="combat-lost-window-animation-background">
         <img
-          style={animationStyle}
+          className="combat-lost-window-animation"
           src="assets/ui/combat-lost-window/animation.png"
         />
       </div>
