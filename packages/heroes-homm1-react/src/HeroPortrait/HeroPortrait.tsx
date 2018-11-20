@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import "./HeroPortrait.scss";
+
 export interface HeroPortraitProps {
   hero?: string;
   onClick?: (hero?: string) => void;
@@ -7,13 +9,9 @@ export interface HeroPortraitProps {
 
 export class HeroPortrait extends React.Component<HeroPortraitProps> {
   public render() {
-    const style: React.CSSProperties = {
-      display: "inline-block",
-    };
-
     return (
       <div
-        style={style}
+        className="hero-portrait"
         onClick={this.onClick}
       >
         {this.props.hero ? this.renderPortrait(this.props.hero) : this.renderEmpty()}
