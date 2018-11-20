@@ -10,6 +10,8 @@ import {
   StandardGameScore,
 } from "heroes-homm1";
 
+import "./HighScoresWindow.scss";
+
 import { CreatureIcon } from "../CreatureIcon";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
@@ -27,49 +29,23 @@ export interface HighScoresWindowProps {
 
 export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
   public render() {
-    const style: React.CSSProperties = {
-      background: "url('assets/ui/high-scores-window/background.jpg')",
-      height: 480,
-      position: "relative",
-      width: 640,
-    };
-
-    const scoresStyle: React.CSSProperties = {
-      left: 80,
-      position: "absolute",
-      top: 29,
-      width: 505,
-    };
-
-    const categoryButtonStyle: React.CSSProperties = {
-      left: 8,
-      position: "absolute",
-      top: 314,
-    };
-
-    const exitButtonStyle: React.CSSProperties = {
-      left: 603,
-      position: "absolute",
-      top: 314,
-    };
-
     const scores = this.props.gameType === GameType.Campaign ?
       this.renderCampaignGameScores(this.props.scores[GameType.Campaign]) :
       this.renderStandardGameScores(this.props.scores[GameType.Standard]);
 
     return (
-      <div style={style}>
-        <div style={scoresStyle}>
+      <div className="high-scores-window">
+        <div className="high-scores-window-scores">
           {scores}
         </div>
-        <div style={categoryButtonStyle}>
+        <div className="high-scores-window-category">
           <GameButton
             group="high-scores-window"
             type={this.props.gameType === GameType.Campaign ? "campaign" : "standard"}
             onClick={this.onCategoryClick}
           />
         </div>
-        <div style={exitButtonStyle}>
+        <div className="high-scores-window-exit">
           <GameButton
             group="high-scores-window"
             type="exit"
@@ -81,13 +57,9 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
   }
 
   private renderCampaignGameScores(scores: CampaignGameScore[]) {
-    const headerStyle: React.CSSProperties = {
-      marginBottom: 13,
-    };
-
     return (
       <div>
-        <Row style={headerStyle}>
+        <Row className="high-scores-window-header">
           <Col span={1} />
           <Col span={8}>
             <img src="assets/ui/high-scores-window/player.jpg" />
@@ -110,13 +82,9 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
   private renderCampaignScore(score: CampaignGameScore, index: number) {
     const rating = getCampaignGameRating(score.daysCount);
 
-    const style: React.CSSProperties = {
-      marginBottom: 8,
-    };
-
     return (
       <Row
-        style={style}
+        className="high-scores-window-score"
         key={index}
       >
         <Col span={1} />
@@ -151,13 +119,9 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
   }
 
   private renderStandardGameScores(scores: StandardGameScore[]) {
-    const headerStyle: React.CSSProperties = {
-      marginBottom: 13,
-    };
-
     return (
       <div>
-        <Row style={headerStyle}>
+        <Row className="high-scores-window-header">
           <Col span={1} />
           <Col span={9}>
             <img src="assets/ui/high-scores-window/player.jpg" />
@@ -180,13 +144,9 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
   private renderStandardScore(score: StandardGameScore, index: number) {
     const rating = getStandardGameRating(score.score);
 
-    const style: React.CSSProperties = {
-      marginBottom: 8,
-    };
-
     return (
       <Row
-        style={style}
+        className="high-scores-window-score"
         key={index}
       >
         <Col span={1} />
