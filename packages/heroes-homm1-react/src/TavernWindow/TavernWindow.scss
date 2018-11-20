@@ -1,0 +1,11 @@
+.tavern-window {
+  text-align: center;
+
+  &-structure-name, &-animation {
+    margin-bottom: 5px;
+  }
+
+  &-structure-description {
+    margin-bottom: 40px;
+  }
+}

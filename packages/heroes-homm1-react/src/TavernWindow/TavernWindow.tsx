@@ -4,6 +4,8 @@ import { FormattedMessage } from "react-intl";
 
 import { StructureId } from "heroes-homm1";
 
+import "./TavernWindow.scss";
+
 import { GameButton } from "../GameButton";
 import { GameModal } from "../GameModal";
 import { GameText } from "../GameText";
@@ -17,16 +19,16 @@ export class TavernWindow extends React.Component<TavernWindowProps> {
   public render() {
     return (
       <GameModal size={4}>
-        <div style={{ textAlign: "center" }}>
-          <Row style={{ marginBottom: 5 }}>
+        <div className="tavern-window">
+          <Row className="tavern-window-structure-name">
             <GameText size="large">
               <FormattedMessage {...getStructureNameMessage(StructureId.Tavern)} />
             </GameText>
           </Row>
-          <Row style={{ marginBottom: 5 }}>
+          <Row className="tavern-window-animation">
             <img src="assets/ui/tavern-window/animation.jpg" />
           </Row>
-          <Row style={{ marginBottom: 40 }}>
+          <Row className="tavern-window-structure-description">
             <GameText size="large">
               <FormattedMessage {...getStructureDescriptionMessage(StructureId.Tavern)} />
             </GameText>
