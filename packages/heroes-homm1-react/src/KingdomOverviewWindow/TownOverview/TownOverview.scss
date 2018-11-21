@@ -1,0 +1,13 @@
+.town-overview {
+  height: 80px;
+  position: relative;
+  width: 132px;
+
+  &-count {
+    bottom: 0px;
+    left: 0px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+}

@@ -1,0 +1,26 @@
+.hero-class-overview {
+  display: inline-block;
+  vertical-align: bottom;
+
+  &-count {
+    display: inline-block;
+    height: 38px;
+    margin-left: 10px;
+    position: relative;
+    width: 33px;
+  }
+
+  &-count-image {
+    left: 0px;
+    position: absolute;
+    top: 0px;
+  }
+
+  &-count-value {
+    left: 0px;
+    position: absolute;
+    text-align: center;
+    top: 7px;
+    width: 100%;
+  }
+}

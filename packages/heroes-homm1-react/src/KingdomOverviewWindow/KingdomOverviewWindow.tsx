@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 import { Resources } from "heroes-core";
 import { HeroClassIds, Resource, TownIds } from "heroes-homm1";
 
+import "./KingdomOverviewWindow.scss";
+
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
 import { HeroClassOverview } from "./HeroClassOverview";
@@ -44,14 +46,8 @@ export interface KingdomOverviewWindowProps {
 
 export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> {
   public render() {
-    const style: React.CSSProperties = {
-      backgroundImage: "url('assets/ui/kingdom-overview/background.jpg')",
-      position: "relative",
-      textAlign: "center",
-    };
-
     return (
-      <div style={style}>
+      <div className="kingdom-overview-window">
         {this.renderBanner(this.props.alignment)}
         <Row>
           <Col span={3} />
@@ -112,7 +108,7 @@ export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindow
             {this.renderGoldPerDay(this.props.goldPerDay)}
           </Col>
           <Col
-            style={{ textAlign: "right" }}
+            className="kingdom-overview-window-exit"
             span={4}
           >
             <GameButton
@@ -127,15 +123,9 @@ export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindow
   }
 
   private renderBanner(alignment: string) {
-    const style: React.CSSProperties = {
-      left: 0,
-      position: "absolute",
-      top: 0,
-    };
-
     return (
       <img
-        style={style}
+        className="kingdom-overview-window-banner"
         src={`assets/alignments/${alignment}/banner.jpg`}
       />
     );
@@ -213,19 +203,10 @@ export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindow
   }
 
   private renderGoldPerDay(amount: number) {
-    const textStyle: React.CSSProperties = {
-      bottom: 2,
-      left: 0,
-      paddingRight: "20px",
-      position: "absolute",
-      textAlign: "right",
-      width: "100%",
-    };
-
     return (
-      <div style={{ display: "inline-block", position: "relative", width: 201, height: 46 }}>
+      <div className="kingdom-overview-window-gold-per-day">
         <img src="assets/ui/kingdom-overview/gold-per-day.jpg" />
-        <div style={textStyle}>
+        <div className="kingdom-overview-window-gold-per-day-text">
           <GameText size="normal">
             <FormattedMessage {...messages.goldPerDay} />:<br />
             {amount}

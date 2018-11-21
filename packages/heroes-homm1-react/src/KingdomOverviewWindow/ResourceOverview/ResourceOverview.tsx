@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import "./ResourceOverview.scss";
+
 import { GameText } from "../../GameText";
 import { ResourceIcon } from "../../ResourceIcon";
 
@@ -10,21 +12,13 @@ export interface ResourceOverviewProps {
 
 export class ResourceOverview extends React.Component<ResourceOverviewProps> {
   public render() {
-    const style: React.CSSProperties = {
-      display: "inline-block",
-    };
-
-    const countStyle: React.CSSProperties = {
-      textAlign: "center",
-    };
-
     return (
-      <div style={style}>
+      <div className="resource-overview">
         <ResourceIcon
           size="large"
           resource={this.props.resource}
         />
-        <div style={countStyle}>
+        <div className="resource-overview-count">
           <GameText size="normal">
             {this.props.count}
           </GameText>

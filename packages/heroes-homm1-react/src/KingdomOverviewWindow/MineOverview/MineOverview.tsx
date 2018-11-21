@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import "./MineOverview.scss";
+
 import { GameText } from "../../GameText";
 
 export interface MineOverviewProps {
@@ -9,20 +11,12 @@ export interface MineOverviewProps {
 
 export class MineOverview extends React.Component<MineOverviewProps> {
   public render() {
-    const style: React.CSSProperties = {
-      display: "inline-block",
-    };
-
-    const countStyle: React.CSSProperties = {
-      textAlign: "center",
-    };
-
     return (
-      <div style={style}>
+      <div className="mine-overview">
         <img
           src={`assets/resources/${this.props.resource}/mine-icon.png`}
         />
-        <div style={countStyle}>
+        <div className="mine-overview-count">
           <GameText size="normal">
             {this.props.count}
           </GameText>
