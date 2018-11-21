@@ -1,6 +1,8 @@
 import { Row } from "antd";
 import * as React from "react";
 
+import "./MiscInfo.scss";
+
 import { GameText } from "../../GameText";
 import { LuckIcon } from "../LuckIcon";
 import { MoraleIcon } from "../MoraleIcon";
@@ -13,15 +15,8 @@ export interface MiscInfoProps {
 
 export class MiscInfo extends React.Component<MiscInfoProps> {
   public render() {
-    const style: React.CSSProperties = {
-      display: "inline-block",
-      height: 93,
-      position: "relative",
-      width: 82,
-    };
-
     return (
-      <div style={style}>
+      <div className="misc-info">
         {this.renderBackground()}
         {this.renderMorale(this.props.morale)}
         {this.renderLuck(this.props.luck)}
@@ -31,26 +26,15 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
   }
 
   private renderBackground() {
-    const style: React.CSSProperties = {
-      position: "absolute",
-      top: 0,
-    };
-
     return (
       <img
-        style={style}
+        className="misc-info-background"
         src="assets/ui/hero-window/stats-background.jpg"
       />
     );
   }
 
   private renderMorale(morale: number) {
-    const style: React.CSSProperties = {
-      left: 3,
-      position: "absolute",
-      top: 5,
-    };
-
     const content = morale === 0 ? (
       <MoraleIcon
         type="neutral"
@@ -63,18 +47,13 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
     ));
 
     return (
-      <div style={style}>
+      <div className="misc-info-morale">
         {content}
       </div>
     );
   }
 
   private renderLuck(luck: number) {
-    const style: React.CSSProperties = {
-      position: "absolute",
-      top: 30,
-    };
-
     const content = luck === 0 ? (
       <LuckIcon
         type="neutral"
@@ -87,30 +66,17 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
     ));
 
     return (
-      <div style={style} >
+      <div className="misc-info-luck">
         {content}
       </div>
     );
   }
 
   private renderExperience(experience: number) {
-    const style: React.CSSProperties = {
-      height: 32,
-      position: "absolute",
-      top: 55,
-      width: "100%",
-    };
-
-    const textStyle: React.CSSProperties = {
-      float: "right",
-      lineHeight: "32px",
-      paddingRight: 5,
-    };
-
     return (
-      <Row style={style}>
+      <Row className="misc-info-experience">
         <img src="assets/ui/hero-window/experience.png" />
-        <div style={textStyle}>
+        <div className="misc-info-experience-value">
           <GameText size="small">
             {experience}
           </GameText>

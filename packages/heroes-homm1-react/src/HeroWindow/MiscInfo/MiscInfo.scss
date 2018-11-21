@@ -1,0 +1,35 @@
+.misc-info {
+  display: inline-block;
+  height: 93px;
+  position: relative;
+  width: 82px;
+
+  &-background {
+    position: absolute;
+    top: 0px;
+  }
+
+  &-morale {
+    left: 3px;
+    position: absolute;
+    top: 5px;
+  }
+
+  &-luck {
+    position: absolute;
+    top: 30px;
+  }
+
+  &-experience {
+    height: 32px;
+    position: absolute;
+    top: 55px;
+    width: 100%;
+  }
+
+  &-experience-value {
+    float: right;
+    line-height: 32px;
+    padding-right: 5px;
+  }
+}

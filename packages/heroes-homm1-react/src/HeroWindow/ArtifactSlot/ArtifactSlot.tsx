@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import "./ArtifactSlot.scss";
+
 import { ArtifactIcon } from "../../ArtifactIcon";
 
 export interface ArtifactSlotProps {
@@ -11,24 +13,13 @@ export interface ArtifactSlotProps {
 
 export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
   public render() {
-    const style: React.CSSProperties = {
-      display: "inline-block",
-      position: "relative",
-    };
-
-    const contentStyle: React.CSSProperties = {
-      left: 6,
-      position: "absolute",
-      top: 6,
-    };
-
     return (
       <div
-        style={style}
+        className="artifact-slot"
         onClick={this.onClick}
       >
         {this.renderBorder(this.props.isUltimate || false)}
-        <div style={contentStyle}>
+        <div className="artifact-slot-content">
           {this.props.artifact ? this.renderArtifact(this.props.artifact) : this.renderEmpty()}
         </div>
       </div>

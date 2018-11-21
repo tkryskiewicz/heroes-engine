@@ -1,0 +1,13 @@
+.hero-window {
+  &-name {
+    text-align: center;
+  }
+
+  &-dismiss-yes {
+    text-align: left;
+  }
+
+  &-dismiss-no {
+    text-align: right;
+  }
+}

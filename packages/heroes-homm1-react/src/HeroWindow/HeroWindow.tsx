@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 import { Hero, HeroSkills, Troop } from "heroes-core";
 import { ArtifactLimit, SkillIds } from "heroes-homm1";
 
+import "./HeroWindow.scss";
+
 import { ArmyStrip } from "../ArmyStrip";
 import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
@@ -40,8 +42,8 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
     const selectedTroop = this.props.selectedTroopIndex ? hero.army[this.props.selectedTroopIndex] : undefined;
 
     return (
-      <div>
-        <Row style={{ textAlign: "center" }}>
+      <div className="hero-window">
+        <Row className="hero-window-name">
           <GameText size="large">
             <FormattedMessage {...getHeroNameMessage(hero.id)} />
           </GameText>
@@ -161,7 +163,7 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
         </Row>
         <Row>
           <Col
-            style={{ textAlign: "left" }}
+            className="hero-window-dismiss-yes"
             span={12}
           >
             <GameButton
@@ -171,7 +173,7 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
             />
           </Col>
           <Col
-            style={{ textAlign: "right" }}
+            className="hero-window-dismiss-no"
             span={12}
           >
             <GameButton

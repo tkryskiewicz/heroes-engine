@@ -2,6 +2,8 @@ import { Modal } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
+import "./SkillInfo.scss";
+
 import { GameText } from "../../GameText";
 import { getSkillDescriptionMessage, getSkillNameMessage } from "../../messages";
 
@@ -12,14 +14,9 @@ export interface SkillInfoProps {
 
 export class SkillInfo extends React.Component<SkillInfoProps> {
   public render() {
-    const style: React.CSSProperties = {
-      position: "relative",
-      width: "82px",
-    };
-
     return (
       <div
-        style={style}
+        className="skill-info"
         onClick={this.onClick}
       >
         {this.renderBackground(this.props.skill)}
@@ -38,15 +35,8 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
   }
 
   private renderName(skill: string) {
-    const style: React.CSSProperties = {
-      position: "absolute",
-      textAlign: "center",
-      top: 2,
-      width: "100%",
-    };
-
     return (
-      <div style={style}>
+      <div className="skill-info-name">
         <GameText size="normal">
           <FormattedMessage {...getSkillNameMessage(skill)} />
         </GameText>
@@ -55,15 +45,8 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
   }
 
   private renderValue(value: number) {
-    const style: React.CSSProperties = {
-      bottom: 2,
-      position: "absolute",
-      textAlign: "center",
-      width: "100%",
-    };
-
     return (
-      <div style={style}>
+      <div className="skill-info-value">
         <GameText size="normal">
           {value}
         </GameText>
