@@ -2,6 +2,8 @@ import * as React from "react";
 
 import { PuzzlePieceCount } from "heroes-homm1";
 
+import "./PuzzleWindow.scss";
+
 import { ViewWindow } from "../ViewWindow";
 
 export interface PuzzleWindowProps {
@@ -22,14 +24,8 @@ export class PuzzleWindow extends React.Component<PuzzleWindowProps> {
   }
 
   private renderPuzzle(discoveredPieces: number) {
-    const style: React.CSSProperties = {
-      height: 448,
-      position: "relative",
-      width: 448,
-    };
-
     return (
-      <div style={style}>
+      <div className="puzzle-window-puzzle">
         {this.renderPieces(PuzzlePieceCount - discoveredPieces)}
       </div>
     );
@@ -41,16 +37,10 @@ export class PuzzleWindow extends React.Component<PuzzleWindowProps> {
   }
 
   private renderPiece(index: number) {
-    const style: React.CSSProperties = {
-      left: 0,
-      position: "absolute",
-      top: 0,
-    };
-
     return (
       <img
+        className="puzzle-window-puzzle-piece"
         key={index}
-        style={style}
         src={`assets/ui/puzzle-window/puzzle-${index}.png`}
       />
     );
