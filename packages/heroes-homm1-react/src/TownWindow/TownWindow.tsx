@@ -4,6 +4,8 @@ import * as React from "react";
 import { enoughResources, Hero, Resources, Town } from "heroes-core";
 import { StructureId } from "heroes-homm1";
 
+import "./TownWindow.scss";
+
 import { ArmyStrip } from "../ArmyStrip";
 import { BuildStructureWindow } from "../BuildStructureWindow";
 import { Crest } from "../Crest";
@@ -37,7 +39,7 @@ export class TownWindow extends React.Component<TownWindowProps> {
     const { town, resources, visibleStructureDetails } = this.props;
 
     return (
-      <div>
+      <div className="town-window">
         <Row>
           <TownView
             town={town}
@@ -78,7 +80,7 @@ export class TownWindow extends React.Component<TownWindowProps> {
             />
           </Col>
         </Row>
-        <Row style={{ textAlign: "right" }}>
+        <Row className="town-window-exit">
           <GameButton
             group="town-window"
             type="exit"
