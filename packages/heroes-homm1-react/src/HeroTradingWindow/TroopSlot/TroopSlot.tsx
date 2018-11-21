@@ -2,6 +2,8 @@ import * as React from "react";
 
 import { Troop } from "heroes-core";
 
+import "./TroopSlot.scss";
+
 import { CreatureIcon } from "../../CreatureIcon";
 import { GameText } from "../../GameText";
 
@@ -14,14 +16,9 @@ export interface TroopSlotProps {
 
 export class TroopSlot extends React.Component<TroopSlotProps> {
   public render() {
-    const style: React.CSSProperties = {
-      display: "inline-block",
-      position: "relative",
-    };
-
     return (
       <div
-        style={style}
+        className="troop-slot"
         onClick={this.onClick}
       >
         {this.renderBackground()}
@@ -39,14 +36,8 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
   }
 
   private renderTroop(troop: Troop) {
-    const style: React.CSSProperties = {
-      left: 1,
-      position: "absolute",
-      top: 1,
-    };
-
     return (
-      <div style={style}>
+      <div className="troop-slot-troop">
         <CreatureIcon
           size="small"
           creature={troop.creature}
@@ -56,12 +47,8 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
   }
 
   private renderCount(count: number) {
-    const style: React.CSSProperties = {
-      textAlign: "center",
-    };
-
     return (
-      <div style={style}>
+      <div className="troop-slot-count">
         <GameText size="small">
           {count}
         </GameText>
@@ -70,15 +57,9 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
   }
 
   private renderSelection() {
-    const style: React.CSSProperties = {
-      left: 0,
-      position: "absolute",
-      top: 0,
-    };
-
     return (
       <img
-        style={style}
+        className="troop-slot-selection"
         src="assets/ui/hero-trading-window/selection.png"
       />
     );

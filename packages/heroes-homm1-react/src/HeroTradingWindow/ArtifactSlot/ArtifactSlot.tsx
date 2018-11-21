@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import "./ArtifactSlot.scss";
+
 import { ArtifactIcon } from "../../ArtifactIcon";
 
 export interface ArtifactSlotProps {
@@ -11,14 +13,9 @@ export interface ArtifactSlotProps {
 
 export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
   public render() {
-    const style: React.CSSProperties = {
-      display: "inline-block",
-      position: "relative",
-    };
-
     return (
       <div
-        style={style}
+        className="artifact-slot"
         onClick={this.onClick}
       >
         {this.renderBackground()}
@@ -35,14 +32,8 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
   }
 
   private renderArtifact(artifact: string) {
-    const style: React.CSSProperties = {
-      left: 1,
-      position: "absolute",
-      top: 1,
-    };
-
     return (
-      <div style={style}>
+      <div className="artifact-slot-artifact">
         <ArtifactIcon
           size="small"
           artifact={artifact}
@@ -52,15 +43,9 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
   }
 
   private renderSelection() {
-    const style: React.CSSProperties = {
-      left: 0,
-      position: "absolute",
-      top: 0,
-    };
-
     return (
       <img
-        style={style}
+        className="artifact-slot-selection"
         src="assets/ui/hero-trading-window/selection.png"
       />
     );

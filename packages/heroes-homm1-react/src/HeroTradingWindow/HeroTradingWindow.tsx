@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 import { Army, Hero, HeroSkills } from "heroes-core";
 import { ArmySize, ArtifactLimit, SkillIds } from "heroes-homm1";
 
+import "./HeroTradingWindow.scss";
+
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
@@ -20,14 +22,8 @@ export interface HeroTradingWindowProps {
 
 export class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
   public render() {
-    const style: React.CSSProperties = {
-      background: "#000",
-      position: "relative",
-      textAlign: "center",
-    };
-
     return (
-      <div style={style}>
+      <div className="hero-trading-window">
         <Row>
           <Col span={6}>
             <HeroPortrait
@@ -66,7 +62,7 @@ export class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
             {this.renderArtifacts()}
           </Col>
         </Row>
-        <Row style={{ textAlign: "center" }}>
+        <Row className="hero-trading-window-exit">
           <GameButton
             group="hero-trading-window"
             type="exit"
