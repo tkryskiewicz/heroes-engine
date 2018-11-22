@@ -39,86 +39,84 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
   public render() {
     const { hero } = this.props;
 
-    const selectedTroop = this.props.selectedTroopIndex ? hero.army[this.props.selectedTroopIndex] : undefined;
+    const selectedTroop = this.props.selectedTroopIndex ?
+      hero.army[this.props.selectedTroopIndex] :
+      undefined;
 
     return (
       <div className="hero-window">
-        <Row className="hero-window-name">
+        <div className="hero-window-name">
           <GameText size="large">
             <FormattedMessage {...getHeroNameMessage(hero.id)} />
           </GameText>
-        </Row>
-        <Row>
-          <Col span={4}>
-            <HeroPortrait
-              hero={hero.id}
-            />
-          </Col>
+        </div>
+        <div className="hero-window-portrait">
+          <HeroPortrait
+            hero={hero.id}
+          />
+        </div>
+        <div className="hero-window-skills">
           {this.renderSkills(hero.skills)}
-          <Col span={4}>
-            <MiscInfo
-              morale={hero.morale}
-              luck={hero.luck}
-              experience={hero.experience}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col span={4}>
-            <Crest
-              alignment={hero.alignment}
-              heroClass={hero.heroClass}
-              onClick={this.props.onCrestClick}
-            />
-          </Col>
-          <Col span={20}>
-            <ArmyStrip
-              army={hero.army}
-              selectedTroopIndex={this.props.selectedTroopIndex}
-              onSelectTroop={this.props.onSelectTroop}
-              onSelectedTroopClick={this.props.onSelectedTroopClick}
-              onSwapTroops={this.onSwapTroops}
-            />
-            {selectedTroop && this.props.troopDetailsVisible && this.renderTroopDetails(selectedTroop)}
-          </Col>
-        </Row>
-        <Row>
-          <Col span={1}>
-            <GameButton
-              group="hero-window"
-              type="dismiss"
-              onClick={this.onDismissHeroClick}
-            />
-            {this.props.dismissHeroPromptVisible && this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
-          </Col>
-          <Col span={22}>
-            <Row>
-              {this.renderArtifacts()}
-            </Row>
-          </Col>
-          <Col span={1}>
-            <GameButton
-              group="hero-window"
-              type="exit"
-              onClick={this.props.onExitClick}
-            />
-          </Col>
-        </Row>
+        </div>
+        <div className="hero-window-misc-info">
+          <MiscInfo
+            morale={hero.morale}
+            luck={hero.luck}
+            experience={hero.experience}
+          />
+        </div>
+        <div className="hero-window-crest">
+          <Crest
+            alignment={hero.alignment}
+            heroClass={hero.heroClass}
+            onClick={this.props.onCrestClick}
+          />
+        </div>
+        <div className="hero-window-army">
+          <ArmyStrip
+            army={hero.army}
+            selectedTroopIndex={this.props.selectedTroopIndex}
+            onSelectTroop={this.props.onSelectTroop}
+            onSelectedTroopClick={this.props.onSelectedTroopClick}
+            onSwapTroops={this.onSwapTroops}
+          />
+          {selectedTroop && this.props.troopDetailsVisible && this.renderTroopDetails(selectedTroop)}
+        </div>
+        <div className="hero-window-dismiss">
+          <GameButton
+            group="hero-window"
+            type="dismiss"
+            onClick={this.onDismissHeroClick}
+          />
+          {this.props.dismissHeroPromptVisible && this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
+        </div>
+        <div className="hero-window-artifacts">
+          {this.renderArtifacts()}
+        </div>
+        <div className="hero-window-exit">
+          <GameButton
+            group="hero-window"
+            type="exit"
+            onClick={this.props.onExitClick}
+          />
+        </div>
+        <div className="hero-window-title">
+          <GameText size="large">
+            <FormattedMessage {...messages.title} />
+          </GameText>
+        </div>
       </div>
     );
   }
 
   private renderSkills(skills: HeroSkills) {
     return SkillIds.map((s) => (
-      <Col
-        key={s}
-        span={4}
-      >
+      <div className="hero-window-skill">
         <SkillInfo
           skill={s}
           value={skills[s] || 0}
         />
-      </Col>
+      </div>
     ));
   }
 
@@ -144,10 +142,14 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
 
   private renderArtifacts() {
     return [...new Array(ArtifactLimit).keys()].map((i) => (
-      <ArtifactSlot
+      <div
+        className="hero-window-artifact"
         key={i}
-        index={i}
-      />
+      >
+        <ArtifactSlot
+          index={i}
+        />
+      </div>
     ));
   }
 

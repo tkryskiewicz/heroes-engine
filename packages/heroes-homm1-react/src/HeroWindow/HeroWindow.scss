@@ -1,6 +1,55 @@
 .hero-window {
+  position: relative;
+  width: 640px;
+  height: 480px;
+  background: url("./background.jpg");
+
   &-name {
+    position: absolute;
+    width: 100%;
+    top: 68px;
     text-align: center;
+  }
+
+  &-portrait {
+    position: absolute;
+    top: 101px;
+    left: 49px;
+  }
+
+  &-skills {
+    position: absolute;
+    top: 101px;
+    left: 156px;
+  }
+
+  &-skill {
+    display: inline-block;
+    margin-right: 6px;
+  }
+
+  &-misc-info {
+    position: absolute;
+    top: 101px;
+    left: 508px;
+  }
+
+  &-crest {
+    position: absolute;
+    top: 200px;
+    left: 49px;
+  }
+
+  &-army {
+    position:absolute;
+    top: 200px;
+    left: 156px;
+  }
+
+  &-dismiss {
+    position: absolute;
+    top: 317px;
+    left: 10px;
   }
 
   &-dismiss-yes {
@@ -9,5 +58,30 @@
 
   &-dismiss-no {
     text-align: right;
+  }
+
+  &-artifacts {
+    position: absolute;
+    top: 302px;
+    left: 45px;
+  }
+
+  &-artifact {
+    display: inline-block;
+    margin-right: 3px;
+    margin-bottom: 3px;
+  }
+
+  &-exit {
+    position: absolute;
+    top: 317px;
+    left: 602px;
+  }
+
+  &-title {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    text-align: center;
   }
 }
