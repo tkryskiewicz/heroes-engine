@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { Frame } from "../Frame";
 import "./HeroPortrait.scss";
 
 export interface HeroPortraitProps {
@@ -15,9 +14,7 @@ export class HeroPortrait extends React.Component<HeroPortraitProps> {
         className="hero-portrait"
         onClick={this.onClick}
       >
-        <Frame>
-          {this.props.hero ? this.renderPortrait(this.props.hero) : this.renderEmpty()}
-        </Frame>
+        {this.props.hero ? this.renderPortrait(this.props.hero) : this.renderEmpty()}
       </div>
     );
   }

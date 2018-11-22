@@ -6,6 +6,7 @@ import { HeroClass } from "heroes-homm1";
 
 import "./RecruitHero.scss";
 
+import { Frame } from "../../Frame";
 import { GameButton } from "../../GameButton";
 import { GameText } from "../../GameText";
 import { HeroPortrait } from "../../HeroPortrait";
@@ -24,10 +25,12 @@ export class RecruitHero extends React.Component<RecruitHeroProps> {
     return (
       <div className="recruit-hero">
         <Row>
-          <HeroPortrait
-            hero={this.props.heroId}
-            onClick={this.onPortraitClick}
-          />
+          <Frame>
+            <HeroPortrait
+              hero={this.props.heroId}
+              onClick={this.onPortraitClick}
+            />
+          </Frame>
         </Row>
         <Row className="recruit-hero-hero-name">
           <GameText size="normal">

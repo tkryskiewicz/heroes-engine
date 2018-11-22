@@ -7,6 +7,7 @@ import { ArmySize, ArtifactLimit, SkillIds } from "heroes-homm1";
 
 import "./HeroTradingWindow.scss";
 
+import { Frame } from "../Frame";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
@@ -26,17 +27,21 @@ export class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
       <div className="hero-trading-window">
         <Row>
           <Col span={6}>
-            <HeroPortrait
-              hero={this.props.hero.id}
-            />
+            <Frame>
+              <HeroPortrait
+                hero={this.props.hero.id}
+              />
+            </Frame>
           </Col>
           <Col span={12}>
             {this.renderSkills(this.props.hero, this.props.otherHero)}
           </Col>
           <Col span={6}>
-            <HeroPortrait
-              hero={this.props.otherHero.id}
-            />
+            <Frame>
+              <HeroPortrait
+                hero={this.props.otherHero.id}
+              />
+            </Frame>
           </Col>
         </Row>
         <Row>
