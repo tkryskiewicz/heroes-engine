@@ -3,6 +3,7 @@ import { buildStructure, getTroop, recruitTroop, Structure } from "./Structure";
 
 export interface Town {
   id: string;
+  name: string;
   alignment: string;
   heroClass: string;
   garrison: Army;

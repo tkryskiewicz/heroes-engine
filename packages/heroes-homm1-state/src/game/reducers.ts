@@ -132,6 +132,7 @@ const towns: Town[] = [
     ],
     heroClass: HeroClass.Knight,
     id: TownId.Farm,
+    name: "Farm Town",
     structures: [
       ...coreStructures,
       ...commonStructures,
@@ -143,6 +144,7 @@ const towns: Town[] = [
     garrison: [],
     heroClass: HeroClass.Barbarian,
     id: TownId.Plains,
+    name: "Plains Town",
     structures: [
       ...coreStructures,
       ...commonStructures,
@@ -154,6 +156,7 @@ const towns: Town[] = [
     garrison: [],
     heroClass: HeroClass.Sorceress,
     id: TownId.Forest,
+    name: "Forest Town",
     structures: [
       ...coreStructures,
       ...commonStructures,
@@ -165,6 +168,7 @@ const towns: Town[] = [
     garrison: [],
     heroClass: HeroClass.Warlock,
     id: TownId.Mountains,
+    name: "Mountains Town",
     structures: [
       ...coreStructures,
       ...commonStructures,

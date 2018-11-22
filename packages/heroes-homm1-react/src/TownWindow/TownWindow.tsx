@@ -1,4 +1,4 @@
-import { Col, Modal, Row } from "antd";
+import { Modal } from "antd";
 import * as React from "react";
 
 import { enoughResources, Hero, Resources, Town } from "heroes-core";
@@ -7,9 +7,11 @@ import { StructureId } from "heroes-homm1";
 import "./TownWindow.scss";
 
 import { ArmyStrip } from "../ArmyStrip";
+import { BigBar } from "../BigBar";
 import { BuildStructureWindow } from "../BuildStructureWindow";
 import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
+import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
 import { RecruitTroopWindow } from "../RecruitTroopWindow";
 import { TavernWindow } from "../TavernWindow";
@@ -40,52 +42,58 @@ export class TownWindow extends React.Component<TownWindowProps> {
 
     return (
       <div className="town-window">
-        <Row>
-          <TownView
-            town={town}
-            onStructureClick={this.onStructureClick}
-          />
-        </Row>
-        <Row>
-          <Col span={20}>
-            <Row>
-              <Crest
-                alignment={town.alignment}
-                heroClass={town.heroClass}
-                onClick={this.props.onCrestClick}
-              />
-              <ArmyStrip
-                army={town.garrison}
-                selectedTroopIndex={this.props.selectedGarrisonTroopIndex}
-                onSelectTroop={this.props.onSelectGarrisonTroop}
-                onSwapTroops={this.onSwapGarrisonTroops}
-              />
-            </Row>
-            <Row>
-              <HeroPortrait
-                hero={this.props.visitingHero ? this.props.visitingHero.id : undefined}
-              />
-              <ArmyStrip
-                army={this.props.visitingHero ? this.props.visitingHero.army : []}
-                selectedTroopIndex={this.props.selectedHeroTroopIndex}
-                onSelectTroop={this.props.onSelectHeroTroop}
-                onSwapTroops={this.onSwapHeroTroops}
-              />
-            </Row>
-          </Col>
-          <Col span={4}>
+        <TownView
+          town={town}
+          onStructureClick={this.onStructureClick}
+        />
+        <div className="town-window-strip">
+          <div className="town-window-town-name">
+            <GameText size="small">
+              {town.name}
+            </GameText>
+          </div>
+          <div className="town-window-crest">
+            <Crest
+              alignment={town.alignment}
+              heroClass={town.heroClass}
+              onClick={this.props.onCrestClick}
+            />
+          </div>
+          <div className="town-window-garrison-army">
+            <ArmyStrip
+              army={town.garrison}
+              selectedTroopIndex={this.props.selectedGarrisonTroopIndex}
+              onSelectTroop={this.props.onSelectGarrisonTroop}
+              onSwapTroops={this.onSwapGarrisonTroops}
+            />
+          </div>
+          <div className="town-window-hero-portrait">
+            <HeroPortrait
+              hero={this.props.visitingHero ? this.props.visitingHero.id : undefined}
+            />
+          </div>
+          <div className="town-window-hero-army">
+            <ArmyStrip
+              army={this.props.visitingHero ? this.props.visitingHero.army : []}
+              selectedTroopIndex={this.props.selectedHeroTroopIndex}
+              onSelectTroop={this.props.onSelectHeroTroop}
+              onSwapTroops={this.onSwapHeroTroops}
+            />
+          </div>
+          <div className="town-window-treasury">
             <Treasury
               resources={this.props.resources}
             />
-          </Col>
-        </Row>
-        <Row className="town-window-exit">
-          <GameButton
-            group="town-window"
-            type="exit"
-            onClick={this.props.onExitClick}
-          />
-        </Row>
+          </div>
+          <div className="town-window-exit">
+            <GameButton
+              group="town-window"
+              type="exit"
+              onClick={this.props.onExitClick}
+            />
+          </div>
+        </div>
+        <BigBar />
         {visibleStructureDetails && this.renderStructureDetails(town, resources, visibleStructureDetails)}
       </div>
     );

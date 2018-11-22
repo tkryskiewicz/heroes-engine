@@ -1,4 +1,3 @@
-import { Col, Row } from "antd";
 import * as React from "react";
 
 import { Resources } from "heroes-core";
@@ -15,33 +14,28 @@ export interface TreasuryProps {
 
 export class Treasury extends React.Component<TreasuryProps> {
   public render() {
+    const content = [
+      Resource.Wood,
+      Resource.Sulfur,
+      Resource.Crystal,
+      Resource.Mercury,
+      Resource.Ore,
+      Resource.Gems,
+      Resource.Gold,
+    ].map((r) => this.renderResource(r, this.props.resources || 0));
+
     return (
       <div className="treasury">
-        <Row>
-          {this.renderResource(Resource.Wood, this.props.resources)}
-          {this.renderResource(Resource.Sulfur, this.props.resources)}
-        </Row>
-        <Row>
-          {this.renderResource(Resource.Crystal, this.props.resources)}
-          {this.renderResource(Resource.Mercury, this.props.resources)}
-        </Row>
-        <Row>
-          {this.renderResource(Resource.Ore, this.props.resources)}
-          {this.renderResource(Resource.Gems, this.props.resources)}
-        </Row>
-        <Row>
-          {this.renderResource(Resource.Gold, this.props.resources)}
-        </Row>
+        {content}
       </div>
     );
   }
 
   private renderResource(resource: string, resources: Resources) {
     return (
-      <Col
+      <div
         className="treasury-resource"
         key={resource}
-        span={resource !== Resource.Gold ? 12 : 24}
       >
         <ResourceIcon
           size="large"
@@ -52,7 +46,7 @@ export class Treasury extends React.Component<TreasuryProps> {
             {resources[resource] || 0}
           </GameText>
         </div>
-      </Col>
+      </div>
     );
   }
 }

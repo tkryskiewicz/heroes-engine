@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { number, select } from "@storybook/addon-knobs";
+import { number, select, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -16,6 +16,7 @@ storiesOf(TownWindow.name, module)
       garrison: [],
       heroClass: select("Hero Class", heroClassOptions, HeroClass.Knight),
       id: select("Town", townOptions, TownId.Farm),
+      name: text("Town Name", "Town Name"),
       structures: [],
     };
 
