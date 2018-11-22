@@ -10,7 +10,6 @@ import { ArmyStrip } from "../ArmyStrip";
 import { BigBar } from "../BigBar";
 import { BuildStructureWindow } from "../BuildStructureWindow";
 import { Crest } from "../Crest";
-import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
 import { RecruitTroopWindow } from "../RecruitTroopWindow";
@@ -83,13 +82,7 @@ export class TownWindow extends React.Component<TownWindowProps> {
           <div className="town-window-treasury">
             <Treasury
               resources={this.props.resources}
-            />
-          </div>
-          <div className="town-window-exit">
-            <GameButton
-              group="town-window"
-              type="exit"
-              onClick={this.props.onExitClick}
+              onExitClick={this.props.onExitClick}
             />
           </div>
         </div>

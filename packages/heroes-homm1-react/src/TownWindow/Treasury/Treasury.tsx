@@ -5,10 +5,12 @@ import { Resource } from "heroes-homm1";
 
 import "./Treasury.scss";
 
+import { GameButton } from "../../GameButton";
 import { ResourceAmount } from "../../ResourceAmount";
 
 export interface TreasuryProps {
   resources: Resources;
+  onExitClick?: () => void;
 }
 
 export class Treasury extends React.Component<TreasuryProps> {
@@ -25,7 +27,16 @@ export class Treasury extends React.Component<TreasuryProps> {
 
     return (
       <div className="treasury">
-        {content}
+        <div>
+          {content}
+        </div>
+        <div className="treasury-exit">
+          <GameButton
+            group="town-window"
+            type="exit"
+            onClick={this.props.onExitClick}
+          />
+        </div>
       </div>
     );
   }
