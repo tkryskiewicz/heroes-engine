@@ -24,12 +24,10 @@ export class RecruitHero extends React.Component<RecruitHeroProps> {
     return (
       <div className="recruit-hero">
         <Row>
-          <div className="recruit-hero-hero-portrait">
-            <HeroPortrait
-              hero={this.props.heroId}
-              onClick={this.onPortraitClick}
-            />
-          </div>
+          <HeroPortrait
+            hero={this.props.heroId}
+            onClick={this.onPortraitClick}
+          />
         </Row>
         <Row className="recruit-hero-hero-name">
           <GameText size="normal">
