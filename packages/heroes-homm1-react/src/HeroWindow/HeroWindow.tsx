@@ -55,9 +55,7 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
             hero={hero.id}
           />
         </div>
-        <div className="hero-window-skills">
-          {this.renderSkills(hero.skills)}
-        </div>
+        {this.renderSkills(hero.skills)}
         <div className="hero-window-misc-info">
           <MiscInfo
             morale={hero.morale}
@@ -90,9 +88,7 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
           />
           {this.props.dismissHeroPromptVisible && this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
         </div>
-        <div className="hero-window-artifacts">
-          {this.renderArtifacts()}
-        </div>
+        {this.renderArtifacts()}
         <div className="hero-window-exit">
           <GameButton
             group="hero-window"
@@ -110,14 +106,27 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
   }
 
   private renderSkills(skills: HeroSkills) {
-    return SkillIds.map((s) => (
-      <div className="hero-window-skill">
+    const content = SkillIds.map((s) => this.renderSkill(s, skills[s] || 0));
+
+    return (
+      <div className="hero-window-skills">
+        {content}
+      </div>
+    );
+  }
+
+  private renderSkill(skill: string, value: number) {
+    return (
+      <div
+        className="hero-window-skill"
+        key={skill}
+      >
         <SkillInfo
-          skill={s}
-          value={skills[s] || 0}
+          skill={skill}
+          value={value}
         />
       </div>
-    ));
+    );
   }
 
   private onSwapTroops = (index: number, withIndex: number) => {
@@ -141,16 +150,26 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
   }
 
   private renderArtifacts() {
-    return [...new Array(ArtifactLimit).keys()].map((i) => (
+    const content = [...new Array(ArtifactLimit).keys()].map((i) => this.renderArtifact(i));
+
+    return (
+      <div className="hero-window-artifacts">
+        {content}
+      </div>
+    );
+  }
+
+  private renderArtifact(index: number) {
+    return (
       <div
         className="hero-window-artifact"
-        key={i}
+        key={index}
       >
         <ArtifactSlot
-          index={i}
+          index={index}
         />
       </div>
-    ));
+    );
   }
 
   private renderDismissHeroPrompt(visible: boolean) {
