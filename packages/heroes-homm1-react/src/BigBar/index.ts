@@ -1,0 +1,1 @@
+export { BigBar } from "./BigBar";

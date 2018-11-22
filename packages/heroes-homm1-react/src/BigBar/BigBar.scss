@@ -1,0 +1,29 @@
+.big-bar {
+  position: relative;
+  width: 640px;
+  height: 20px;
+  text-align: center;
+
+  &-left, &-right {
+    position: absolute;
+    width: 320px;
+    height: 20px;
+    background: url("./background.jpg");
+  }
+
+  &-left {
+    left: 0px;
+    transform: scaleX(-1);
+  }
+
+  &-right {
+    right: 0px;
+  }
+
+  &-text {
+    position: absolute;
+    width: 100%;
+    top: -1px;
+    text-align: center;
+  }
+}
