@@ -15,18 +15,18 @@
   }
 
   &-header {
-    background: url("/assets/ui/game-modal/header.png");
+    background: url("./header.png");
     height: 77px;
   }
 
   &-body {
-    background: url("/assets/ui/game-modal/body.png");
+    background: url("./body.png");
     background-repeat: no-repeat;
     height: 45px;
   }
 
   &-footer {
-    background: url("/assets/ui/game-modal/footer.png");
+    background: url("./footer.png");
     background-repeat: no-repeat;
     height: 48px;
   }
