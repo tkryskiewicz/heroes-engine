@@ -5,8 +5,7 @@ import { Resource } from "heroes-homm1";
 
 import "./Treasury.scss";
 
-import { GameText } from "../../GameText";
-import { ResourceIcon } from "../../ResourceIcon";
+import { ResourceAmount } from "../../ResourceAmount";
 
 export interface TreasuryProps {
   resources: Resources;
@@ -22,7 +21,7 @@ export class Treasury extends React.Component<TreasuryProps> {
       Resource.Ore,
       Resource.Gems,
       Resource.Gold,
-    ].map((r) => this.renderResource(r, this.props.resources || 0));
+    ].map((r) => this.renderResource(r, this.props.resources[r] || 0));
 
     return (
       <div className="treasury">
@@ -31,21 +30,16 @@ export class Treasury extends React.Component<TreasuryProps> {
     );
   }
 
-  private renderResource(resource: string, resources: Resources) {
+  private renderResource(resource: string, amount: number) {
     return (
       <div
         className="treasury-resource"
         key={resource}
       >
-        <ResourceIcon
-          size="large"
+        <ResourceAmount
           resource={resource}
+          amount={amount}
         />
-        <div>
-          <GameText size="small">
-            {resources[resource] || 0}
-          </GameText>
-        </div>
       </div>
     );
   }

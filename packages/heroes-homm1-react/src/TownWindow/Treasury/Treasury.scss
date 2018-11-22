@@ -3,13 +3,12 @@
   background-color: #000;
   display: inline-block;
   height: 204px;
-  padding: 6px 5px;
+  padding: 6px;
   width: 94px;
 
   &-resource {
     display: inline-block;
     width: 50%;
-    line-height: 0.5;
     text-align: center;
 
     &:last-of-type {

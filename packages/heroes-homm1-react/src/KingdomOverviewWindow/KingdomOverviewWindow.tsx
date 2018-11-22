@@ -9,10 +9,10 @@ import "./KingdomOverviewWindow.scss";
 
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
+import { ResourceAmount } from "../ResourceAmount";
 import { HeroClassOverview } from "./HeroClassOverview";
 import { messages } from "./messages";
 import { MineOverview } from "./MineOverview";
-import { ResourceOverview } from "./ResourceOverview";
 import { TownOverview } from "./TownOverview";
 
 const resourceOrder = [
@@ -194,9 +194,9 @@ export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindow
         key={r}
         span={3}
       >
-        <ResourceOverview
+        <ResourceAmount
           resource={r}
-          count={resources[r] || 0}
+          amount={resources[r] || 0}
         />
       </Col>
     ));
