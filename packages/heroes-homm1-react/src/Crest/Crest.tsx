@@ -1,7 +1,8 @@
 import * as React from "react";
 
+import { Frame } from "../Frame";
+
 export interface CrestProps {
-  size: "large" | "small";
   alignment: string;
   heroClass: string;
   onClick?: (alignment: string, heroClass: string) => void;
@@ -10,10 +11,12 @@ export interface CrestProps {
 export class Crest extends React.Component<CrestProps> {
   public render() {
     return (
-      <img
-        src={`assets/heroClasses/${this.props.heroClass}/crests/${this.props.alignment}/${this.props.size}.jpg`}
-        onClick={this.onClick}
-      />
+      <Frame>
+        <img
+          src={`assets/heroClasses/${this.props.heroClass}/crests/${this.props.alignment}/large.jpg`}
+          onClick={this.onClick}
+        />
+      </Frame>
     );
   }
 

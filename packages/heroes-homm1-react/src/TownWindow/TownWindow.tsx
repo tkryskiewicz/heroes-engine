@@ -50,7 +50,6 @@ export class TownWindow extends React.Component<TownWindowProps> {
           <Col span={20}>
             <Row>
               <Crest
-                size="large"
                 alignment={town.alignment}
                 heroClass={town.heroClass}
                 onClick={this.props.onCrestClick}

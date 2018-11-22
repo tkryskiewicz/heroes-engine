@@ -66,7 +66,6 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
         <Row>
           <Col span={4}>
             <Crest
-              size="large"
               alignment={hero.alignment}
               heroClass={hero.heroClass}
               onClick={this.props.onCrestClick}
