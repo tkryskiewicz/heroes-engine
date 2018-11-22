@@ -19,6 +19,10 @@ const config: Webpack.Configuration = {
           "sass-loader",
         ],
       },
+      {
+        loader: "file-loader",
+        test: /\.(jpg|png)$/,
+      },
     ],
   },
   plugins: [
