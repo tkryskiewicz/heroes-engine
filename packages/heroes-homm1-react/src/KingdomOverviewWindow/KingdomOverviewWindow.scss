@@ -1,6 +1,9 @@
 .kingdom-overview-window {
-  background-image: url("/assets/ui/kingdom-overview/background.jpg");
+  background-image: url("./background.jpg");
+  background-position-x: 96px;
   position: relative;
+  width: 640px;
+  height: 480px;
   text-align: center;
 
   &-banner {
@@ -14,6 +17,7 @@
     position: relative;
     width: 201px;
     height: 46px;
+    background: url("./gold-per-day-background.jpg");
   }
 
   &-gold-per-day-text {

@@ -205,7 +205,6 @@ export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindow
   private renderGoldPerDay(amount: number) {
     return (
       <div className="kingdom-overview-window-gold-per-day">
-        <img src="assets/ui/kingdom-overview/gold-per-day.jpg" />
         <div className="kingdom-overview-window-gold-per-day-text">
           <GameText size="normal">
             <FormattedMessage {...messages.goldPerDay} />:<br />

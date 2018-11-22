@@ -28,15 +28,9 @@ export class HeroClassOverview extends React.Component<HeroClassOverviewProps> {
   private renderCount(count: number) {
     return (
       <div className="hero-class-overview-count">
-        <img
-          className="hero-class-overview-count-image"
-          src="assets/ui/kingdom-overview/hero-count.png"
-        />
-        <div className="hero-class-overview-count-value">
-          <GameText size="normal">
-            {count}
-          </GameText>
-        </div>
+        <GameText size="normal">
+          {count}
+        </GameText>
       </div>
     );
   }
