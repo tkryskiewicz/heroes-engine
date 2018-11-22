@@ -4,12 +4,7 @@
   padding-top: 43px;
   position: relative;
   width: 428px;
-
-  &-background {
-    left: 0px;
-    position: absolute;
-    top: 0px;
-  }
+  background: url("./background.jpg");
 
   &-title {
     margin-bottom: 10px;

@@ -20,7 +20,6 @@ export class CampaignScenarioInfoWindow extends React.Component<CampaignScenario
   public render() {
     return (
       <div className="campaign-scenario-info-window">
-        {this.renderBackground()}
         <Row className="campaign-scenario-info-window-title">
           <Col
             className="campaign-scenario-info-window-number"
@@ -65,15 +64,6 @@ export class CampaignScenarioInfoWindow extends React.Component<CampaignScenario
           </Col>
         </Row>
       </div>
-    );
-  }
-
-  private renderBackground() {
-    return (
-      <img
-        className="campaign-scenario-info-window-background"
-        src="assets/ui/campaign-scenario-info-window/background.jpg"
-      />
     );
   }
 
