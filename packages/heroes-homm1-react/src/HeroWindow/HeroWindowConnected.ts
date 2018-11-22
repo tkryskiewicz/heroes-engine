@@ -31,7 +31,7 @@ type DispatchProp =
   "onSwapTroops" |
   "onDismissHeroClick" |
   "onCancelDismissHeroClick" |
-  "onDismissHero" |
+  "onConfirmDismissHeroClick" |
   "onExitClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchProp> => ({
@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchP
   onCancelDismissHeroClick() {
     dispatch(closeDismissHeroPrompt());
   },
-  onDismissHero(hero) {
+  onConfirmDismissHeroClick(hero) {
     dispatch(dismissHero(hero));
   },
   onExitClick() {

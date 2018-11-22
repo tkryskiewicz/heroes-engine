@@ -31,7 +31,7 @@ export interface HeroWindowProps {
   dismissHeroPromptVisible?: boolean;
   onDismissHeroClick?: () => void;
   onCancelDismissHeroClick?: () => void;
-  onDismissHero?: (hero: string) => void;
+  onConfirmDismissHeroClick?: (hero: string) => void;
   onExitClick?: () => void;
 }
 
@@ -216,10 +216,10 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
   }
 
   private onDismissHero = () => {
-    if (!this.props.onDismissHero) {
+    if (!this.props.onConfirmDismissHeroClick) {
       return;
     }
 
-    this.props.onDismissHero(this.props.hero.id);
+    this.props.onConfirmDismissHeroClick(this.props.hero.id);
   }
 }

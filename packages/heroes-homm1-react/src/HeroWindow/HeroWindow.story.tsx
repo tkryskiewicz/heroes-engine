@@ -39,7 +39,7 @@ storiesOf(HeroWindow.name, module)
         dismissHeroPromptVisible={boolean("Dismiss Hero Prompt Visible", false)}
         onDismissHeroClick={action("Dismiss Hero Click")}
         onCancelDismissHeroClick={action("Cancel Dismiss Hero Click")}
-        onDismissHero={action("Dismiss Hero")}
+        onConfirmDismissHeroClick={action("Confirm Dismiss Hero Click")}
         onExitClick={action("Exit Click")}
       />
     );
