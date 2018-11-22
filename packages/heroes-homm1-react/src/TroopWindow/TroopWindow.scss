@@ -1,14 +1,14 @@
 .troop-window {
-  background: url("/assets/ui/troop-window/background.png");
+  background: url("./background.png");
   height: 229px;
   padding: 20px 35px;
   position: relative;
   width: 402px;
 
   &-count {
-    background: url("/assets/ui/troop-window/count-background.jpg");
+    background: url("./count-background.jpg");
     bottom: 17px;
-    display: "inline-block";
+    display: inline-block;
     height: 38px;
     left: 41px;
     padding-top: 5px;
