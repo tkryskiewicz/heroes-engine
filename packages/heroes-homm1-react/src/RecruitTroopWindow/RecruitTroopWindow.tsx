@@ -93,7 +93,7 @@ export class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps>
             <GameButton
               group="recruit-troop-window"
               type="cancel"
-              onClick={this.props.onCancelClick}
+              onClick={this.onCancelClick}
             />
           </Col>
         </Row>
@@ -148,10 +148,25 @@ export class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps>
   }
 
   private onOkayClick = () => {
+    // FIXME: should this be handled here?
+    if (this.props.count === 0) {
+      this.onCancelClick();
+
+      return;
+    }
+
     if (!this.props.onOkayClick) {
       return;
     }
 
     this.props.onOkayClick(this.props.count);
+  }
+
+  private onCancelClick = () => {
+    if (!this.props.onCancelClick) {
+      return;
+    }
+
+    this.props.onCancelClick();
   }
 }
