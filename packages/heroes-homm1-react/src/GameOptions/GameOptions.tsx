@@ -110,7 +110,7 @@ export class GameOptions extends React.Component<GameOptionsProps> {
                 onChange={this.props.onAutoSaveChange}
               />
             </div>
-            {this.renderOnOff(this.props.viewEnemyMovement)}
+            {this.renderOnOff(this.props.autoSave)}
           </Col>
           <Col span={8}>
             <FormattedMessage {...messages.showPath} />
@@ -121,7 +121,7 @@ export class GameOptions extends React.Component<GameOptionsProps> {
                 onChange={this.props.onShowPathChange}
               />
             </div>
-            {this.renderOnOff(this.props.viewEnemyMovement)}
+            {this.renderOnOff(this.props.showPath)}
           </Col>
           <Col span={8}>
             <FormattedMessage {...messages.viewEnemyMovement} />
