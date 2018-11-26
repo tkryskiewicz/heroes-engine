@@ -1,6 +1,6 @@
 import { Col, Modal, Row } from "antd";
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Hero, HeroSkills, Troop } from "heroes-core";
 import { ArtifactLimit, SkillIds } from "heroes-homm1";
@@ -12,7 +12,7 @@ import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
-import { getHeroNameMessage } from "../messages";
+import { getHeroNameMessage, getSkillNameMessage } from "../messages";
 import { TroopWindow } from "../TroopWindow";
 import { ArtifactSlot } from "./ArtifactSlot";
 import { messages } from "./messages";
@@ -32,10 +32,16 @@ export interface HeroWindowProps {
   onDismissHeroClick?: () => void;
   onCancelDismissHeroClick?: () => void;
   onConfirmDismissHeroClick?: (hero: string) => void;
+  statusText: string;
+  onStatusTextChange?: (value: string) => void;
   onExitClick?: () => void;
 }
 
-export class HeroWindow extends React.Component<HeroWindowProps> {
+class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
+  public componentDidMount() {
+    this.setDefaultStatusText();
+  }
+
   public render() {
     const { hero } = this.props;
 
@@ -98,7 +104,7 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
         </div>
         <div className="hero-window-title">
           <GameText size="large">
-            <FormattedMessage {...messages.title} />
+            {this.props.statusText}
           </GameText>
         </div>
       </div>
@@ -124,9 +130,25 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
         <SkillInfo
           skill={skill}
           value={value}
+          onMouseEnter={this.onSkillMouseEnter}
+          onMouseLeave={this.onSkillMouseLeave}
         />
       </div>
     );
+  }
+
+  private onSkillMouseEnter = (skill: string) => {
+    const { formatMessage } = this.props.intl;
+
+    const skillName = formatMessage(getSkillNameMessage(skill));
+
+    const statusText = formatMessage(messages.skillInfo, { skillName });
+
+    this.onStatusTextChange(statusText);
+  }
+
+  private onSkillMouseLeave = () => {
+    this.setDefaultStatusText();
   }
 
   private onSwapTroops = (index: number, withIndex: number) => {
@@ -222,4 +244,22 @@ export class HeroWindow extends React.Component<HeroWindowProps> {
 
     this.props.onConfirmDismissHeroClick(this.props.hero.id);
   }
+
+  private onStatusTextChange(text: string) {
+    if (!this.props.onStatusTextChange) {
+      return;
+    }
+
+    this.props.onStatusTextChange(text);
+  }
+
+  private setDefaultStatusText() {
+    const statusText = this.props.intl.formatMessage(messages.defaultStatusText);
+
+    this.onStatusTextChange(statusText);
+  }
 }
+
+const HeroWindowWrapped = injectIntl(HeroWindow);
+
+export { HeroWindowWrapped as HeroWindow };

@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { boolean, number, select } from "@storybook/addon-knobs";
+import { boolean, number, select, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -9,7 +9,7 @@ import { Alignment, ArmySize, CreatureId, HeroClass, HeroId } from "heroes-homm1
 import { alignmentOptions, heroClassOptions, heroOptions } from "../stories";
 import { HeroWindow } from "./HeroWindow";
 
-storiesOf(HeroWindow.name, module)
+storiesOf("HeroWindow", module)
   .add("default", () => {
     const hero: Hero = {
       alignment: select("Alignment", alignmentOptions, Alignment.Red),
@@ -40,6 +40,8 @@ storiesOf(HeroWindow.name, module)
         onDismissHeroClick={action("Dismiss Hero Click")}
         onCancelDismissHeroClick={action("Cancel Dismiss Hero Click")}
         onConfirmDismissHeroClick={action("Confirm Dismiss Hero Click")}
+        statusText={text("Status Text", "Status Text")}
+        onStatusTextChange={action("Status Text Change")}
         onExitClick={action("Exit Click")}
       />
     );

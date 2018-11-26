@@ -10,6 +10,8 @@ import { getSkillDescriptionMessage, getSkillNameMessage } from "../../messages"
 export interface SkillInfoProps {
   skill: string;
   value: number;
+  onMouseEnter?: (skill: string) => void;
+  onMouseLeave?: (skill: string) => void;
 }
 
 export class SkillInfo extends React.Component<SkillInfoProps> {
@@ -17,6 +19,8 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
     return (
       <div
         className="skill-info"
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
       >
         {this.renderBackground(this.props.skill)}
@@ -52,6 +56,22 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
         </GameText>
       </div>
     );
+  }
+
+  private onMouseEnter = () => {
+    if (!this.props.onMouseEnter) {
+      return;
+    }
+
+    this.props.onMouseEnter(this.props.skill);
+  }
+
+  private onMouseLeave = () => {
+    if (!this.props.onMouseLeave) {
+      return;
+    }
+
+    this.props.onMouseLeave(this.props.skill);
   }
 
   // TODO: extract?
