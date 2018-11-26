@@ -12,7 +12,7 @@ import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
-import { getHeroNameMessage, getSkillNameMessage } from "../messages";
+import { getHeroNameMessage, getSkillDescriptionMessage, getSkillNameMessage } from "../messages";
 import { TroopWindow } from "../TroopWindow";
 import { ArtifactSlot } from "./ArtifactSlot";
 import { messages } from "./messages";
@@ -132,6 +132,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           value={value}
           onMouseEnter={this.onSkillMouseEnter}
           onMouseLeave={this.onSkillMouseLeave}
+          onClick={this.onSkillClick}
         />
       </div>
     );
@@ -149,6 +150,13 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
   private onSkillMouseLeave = () => {
     this.setDefaultStatusText();
+  }
+
+  private onSkillClick = (skill: string) => {
+    Modal.info({
+      content: <FormattedMessage {...getSkillDescriptionMessage(skill)} />,
+      title: <FormattedMessage {...getSkillNameMessage(skill)} />,
+    });
   }
 
   private onSwapTroops = (index: number, withIndex: number) => {

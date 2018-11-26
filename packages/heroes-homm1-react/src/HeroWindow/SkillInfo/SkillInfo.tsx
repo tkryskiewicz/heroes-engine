@@ -1,20 +1,26 @@
-import { Modal } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import "./SkillInfo.scss";
 
 import { GameText } from "../../GameText";
-import { getSkillDescriptionMessage, getSkillNameMessage } from "../../messages";
+import { getSkillNameMessage } from "../../messages";
 
 export interface SkillInfoProps {
   skill: string;
   value: number;
-  onMouseEnter?: (skill: string) => void;
-  onMouseLeave?: (skill: string) => void;
+  onMouseEnter: (skill: string) => void;
+  onMouseLeave: (skill: string) => void;
+  onClick: (skill: string) => void;
 }
 
 export class SkillInfo extends React.Component<SkillInfoProps> {
+  public static defaultProps: Pick<SkillInfoProps, "onMouseEnter" | "onMouseLeave" | "onClick"> = {
+    onClick: () => undefined,
+    onMouseEnter: () => undefined,
+    onMouseLeave: () => undefined,
+  };
+
   public render() {
     return (
       <div
@@ -59,26 +65,14 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
   }
 
   private onMouseEnter = () => {
-    if (!this.props.onMouseEnter) {
-      return;
-    }
-
     this.props.onMouseEnter(this.props.skill);
   }
 
   private onMouseLeave = () => {
-    if (!this.props.onMouseLeave) {
-      return;
-    }
-
     this.props.onMouseLeave(this.props.skill);
   }
 
-  // TODO: extract?
   private onClick = () => {
-    Modal.info({
-      content: <FormattedMessage {...getSkillDescriptionMessage(this.props.skill)} />,
-      title: <FormattedMessage {...getSkillNameMessage(this.props.skill)} />,
-    });
+    this.props.onClick(this.props.skill);
   }
 }
