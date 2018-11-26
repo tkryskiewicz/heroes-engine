@@ -12,7 +12,13 @@ import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
-import { getHeroNameMessage, getSkillDescriptionMessage, getSkillNameMessage } from "../messages";
+import {
+  getHeroNameMessage,
+  getLuckNameMessage,
+  getMoraleNameMessage,
+  getSkillDescriptionMessage,
+  getSkillNameMessage,
+} from "../messages";
 import { TroopWindow } from "../TroopWindow";
 import { ArtifactSlot } from "./ArtifactSlot";
 import { messages } from "./messages";
@@ -62,13 +68,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           />
         </div>
         {this.renderSkills(hero.skills)}
-        <div className="hero-window-misc-info">
-          <MiscInfo
-            morale={hero.morale}
-            luck={hero.luck}
-            experience={hero.experience}
-          />
-        </div>
+        {this.renderMiscInfo(hero)}
         <div className="hero-window-crest">
           <Crest
             alignment={hero.alignment}
@@ -111,6 +111,12 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     );
   }
 
+  private setStatInfoStatusText(statName: string) {
+    const statusText = this.props.intl.formatMessage(messages.statInfo, { statName });
+
+    this.onStatusTextChange(statusText);
+  }
+
   private renderSkills(skills: HeroSkills) {
     const content = SkillIds.map((s) => this.renderSkill(s, skills[s] || 0));
 
@@ -139,13 +145,9 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   }
 
   private onSkillMouseEnter = (skill: string) => {
-    const { formatMessage } = this.props.intl;
+    const skillName = this.props.intl.formatMessage(getSkillNameMessage(skill));
 
-    const skillName = formatMessage(getSkillNameMessage(skill));
-
-    const statusText = formatMessage(messages.skillInfo, { skillName });
-
-    this.onStatusTextChange(statusText);
+    this.setStatInfoStatusText(skillName);
   }
 
   private onSkillMouseLeave = () => {
@@ -157,6 +159,66 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
       content: <FormattedMessage {...getSkillDescriptionMessage(skill)} />,
       title: <FormattedMessage {...getSkillNameMessage(skill)} />,
     });
+  }
+
+  private renderMiscInfo(hero: Hero) {
+    return (
+      <div className="hero-window-misc-info">
+        <MiscInfo
+          onMouseEnter={this.onMiscInfoMouseEnter}
+          onMouseLeave={this.onMiscInfoMouseLeave}
+          morale={hero.morale}
+          onMoraleMouseEnter={this.onMoraleMouseEnter}
+          onMoraleMouseLeave={this.onMoraleMouseLeave}
+          luck={hero.luck}
+          onLuckMouseEnter={this.onLuckMouseEnter}
+          onLuckMouseLeave={this.onLuckMouseLeave}
+          onExperienceMouseEnter={this.onExperienceMouseEnter}
+          onExperienceMouseLeave={this.onExperienceMouseLeave}
+          experience={hero.experience}
+        />
+      </div>
+    );
+  }
+
+  private onMiscInfoMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(messages.miscInfo);
+
+    this.onStatusTextChange(statusText);
+  }
+
+  private onMiscInfoMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
+  private onMoraleMouseEnter = () => {
+    const moraleText = this.props.intl.formatMessage(getMoraleNameMessage(this.props.hero.morale));
+
+    this.setStatInfoStatusText(moraleText);
+  }
+
+  private onMoraleMouseLeave = () => {
+    this.onMiscInfoMouseEnter();
+  }
+
+  private onLuckMouseEnter = () => {
+    const luckText = this.props.intl.formatMessage(getLuckNameMessage(this.props.hero.luck));
+
+    this.setStatInfoStatusText(luckText);
+  }
+
+  private onLuckMouseLeave = () => {
+    this.onMiscInfoMouseEnter();
+  }
+
+  private onExperienceMouseEnter = () => {
+    const experienceText = this.props.intl.formatMessage(messages.experience);
+
+    this.setStatInfoStatusText(experienceText);
+  }
+
+  private onExperienceMouseLeave = () => {
+    this.onMiscInfoMouseEnter();
   }
 
   private onSwapTroops = (index: number, withIndex: number) => {

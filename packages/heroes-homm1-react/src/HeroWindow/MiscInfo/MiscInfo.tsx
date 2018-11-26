@@ -8,15 +8,48 @@ import { LuckIcon } from "../LuckIcon";
 import { MoraleIcon } from "../MoraleIcon";
 
 export interface MiscInfoProps {
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
   morale: number;
+  onMoraleMouseEnter: () => void;
+  onMoraleMouseLeave: () => void;
   luck: number;
+  onLuckMouseEnter: () => void;
+  onLuckMouseLeave: () => void;
   experience: number;
+  onExperienceMouseEnter: () => void;
+  onExperienceMouseLeave: () => void;
 }
 
+type DefaultProp =
+  "onMouseEnter" |
+  "onMouseLeave" |
+  "onMoraleMouseEnter" |
+  "onMoraleMouseLeave" |
+  "onLuckMouseEnter" |
+  "onLuckMouseLeave" |
+  "onExperienceMouseEnter" |
+  "onExperienceMouseLeave";
+
 export class MiscInfo extends React.Component<MiscInfoProps> {
+  public static defaultProps: Pick<MiscInfoProps, DefaultProp> = {
+    onExperienceMouseEnter: () => undefined,
+    onExperienceMouseLeave: () => undefined,
+    onLuckMouseEnter: () => undefined,
+    onLuckMouseLeave: () => undefined,
+    onMoraleMouseEnter: () => undefined,
+    onMoraleMouseLeave: () => undefined,
+    onMouseEnter: () => undefined,
+    onMouseLeave: () => undefined,
+  };
+
   public render() {
     return (
-      <div className="misc-info">
+      <div
+        className="misc-info"
+        onMouseEnter={this.props.onMouseEnter}
+        onMouseLeave={this.props.onMouseLeave}
+      >
         {this.renderBackground()}
         {this.renderMorale(this.props.morale)}
         {this.renderLuck(this.props.luck)}
@@ -47,7 +80,11 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
     ));
 
     return (
-      <div className="misc-info-morale">
+      <div
+        className="misc-info-morale"
+        onMouseEnter={this.props.onMoraleMouseEnter}
+        onMouseLeave={this.props.onMoraleMouseLeave}
+      >
         {content}
       </div>
     );
@@ -66,7 +103,11 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
     ));
 
     return (
-      <div className="misc-info-luck">
+      <div
+        className="misc-info-luck"
+        onMouseEnter={this.props.onLuckMouseEnter}
+        onMouseLeave={this.props.onLuckMouseLeave}
+      >
         {content}
       </div>
     );
@@ -74,7 +115,11 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
 
   private renderExperience(experience: number) {
     return (
-      <Row className="misc-info-experience">
+      <Row
+        className="misc-info-experience"
+        onMouseEnter={this.props.onExperienceMouseEnter}
+        onMouseLeave={this.props.onExperienceMouseLeave}
+      >
         <img src="assets/ui/hero-window/experience.png" />
         <div className="misc-info-experience-value">
           <GameText size="small">

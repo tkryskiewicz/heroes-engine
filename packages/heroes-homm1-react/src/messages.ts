@@ -730,3 +730,57 @@ export const getStructureDescriptionMessage = (structure: string) =>
     defaultMessage: "Unknown",
     id: "game.structure.unknown.description",
   };
+
+export const moraleMessages = defineMessages({
+  bad: {
+    defaultMessage: "Bad Morale",
+    id: "game.morale.bad",
+  },
+  good: {
+    defaultMessage: "Good Morale",
+    id: "game.morale.good",
+  },
+  neutral: {
+    defaultMessage: "Neutral Morale",
+    id: "game.morale.neutral",
+  },
+});
+
+export const getMoraleNameMessage = (morale: number) => {
+  if (morale === 0) {
+    return moraleMessages.neutral;
+  }
+
+  if (morale > 0) {
+    return moraleMessages.good;
+  }
+
+  return moraleMessages.bad;
+};
+
+export const luckMessages = defineMessages({
+  bad: {
+    defaultMessage: "Bad Luck",
+    id: "game.luck.bad",
+  },
+  good: {
+    defaultMessage: "Good Luck",
+    id: "game.luck.good",
+  },
+  neutral: {
+    defaultMessage: "Netural Luck",
+    id: "game.luck.neutral",
+  },
+});
+
+export const getLuckNameMessage = (luck: number) => {
+  if (luck === 0) {
+    return luckMessages.neutral;
+  }
+
+  if (luck > 0) {
+    return luckMessages.good;
+  }
+
+  return luckMessages.bad;
+}
