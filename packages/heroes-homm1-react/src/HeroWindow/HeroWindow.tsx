@@ -27,23 +27,52 @@ import { SkillInfo } from "./SkillInfo";
 
 export interface HeroWindowProps {
   hero: Hero;
-  onCrestClick?: () => void;
+  onCrestClick: () => void;
   selectedTroopIndex?: number;
-  onSelectTroop?: (index: number) => void;
-  onSelectedTroopClick?: (index: number) => void;
-  onSwapTroops?: (hero: string, index: number, withIndex: number) => void;
-  troopDetailsVisible?: boolean;
-  onExitTroopDetails?: () => void;
-  dismissHeroPromptVisible?: boolean;
-  onDismissHeroClick?: () => void;
-  onCancelDismissHeroClick?: () => void;
-  onConfirmDismissHeroClick?: (hero: string) => void;
+  onSelectTroop: (index: number) => void;
+  onSelectedTroopClick: (index: number) => void;
+  onSwapTroops: (hero: string, index: number, withIndex: number) => void;
+  troopDetailsVisible: boolean;
+  onExitTroopDetails: () => void;
+  dismissHeroPromptVisible: boolean;
+  onDismissHeroClick: () => void;
+  onCancelDismissHeroClick: () => void;
+  onConfirmDismissHeroClick: (hero: string) => void;
   statusText: string;
-  onStatusTextChange?: (value: string) => void;
-  onExitClick?: () => void;
+  onStatusTextChange: (value: string) => void;
+  onExitClick: () => void;
 }
 
+type DefaultProp =
+  "onCrestClick" |
+  "onSelectTroop" |
+  "onSelectedTroopClick" |
+  "onSwapTroops" |
+  "troopDetailsVisible" |
+  "onExitTroopDetails" |
+  "dismissHeroPromptVisible" |
+  "onDismissHeroClick" |
+  "onCancelDismissHeroClick" |
+  "onConfirmDismissHeroClick" |
+  "onStatusTextChange" |
+  "onExitClick";
+
 class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
+  public static defaultProps: Pick<HeroWindowProps, DefaultProp> = {
+    dismissHeroPromptVisible: false,
+    onCancelDismissHeroClick: () => undefined,
+    onConfirmDismissHeroClick: () => undefined,
+    onCrestClick: () => undefined,
+    onDismissHeroClick: () => undefined,
+    onExitClick: () => undefined,
+    onExitTroopDetails: () => undefined,
+    onSelectTroop: () => undefined,
+    onSelectedTroopClick: () => undefined,
+    onStatusTextChange: () => undefined,
+    onSwapTroops: () => undefined,
+    troopDetailsVisible: false,
+  };
+
   public componentDidMount() {
     this.setDefaultStatusText();
   }
@@ -90,7 +119,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           <GameButton
             group="hero-window"
             type="dismiss"
-            onClick={this.onDismissHeroClick}
+            onClick={this.props.onDismissHeroClick}
           />
           {this.props.dismissHeroPromptVisible && this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
         </div>
@@ -222,10 +251,6 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   }
 
   private onSwapTroops = (index: number, withIndex: number) => {
-    if (!this.props.onSwapTroops) {
-      return;
-    }
-
     this.props.onSwapTroops(this.props.hero.id, index, withIndex);
   }
 
@@ -299,27 +324,11 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     );
   }
 
-  private onDismissHeroClick = () => {
-    if (!this.props.onDismissHeroClick) {
-      return;
-    }
-
-    this.props.onDismissHeroClick();
-  }
-
   private onDismissHero = () => {
-    if (!this.props.onConfirmDismissHeroClick) {
-      return;
-    }
-
     this.props.onConfirmDismissHeroClick(this.props.hero.id);
   }
 
   private onStatusTextChange(text: string) {
-    if (!this.props.onStatusTextChange) {
-      return;
-    }
-
     this.props.onStatusTextChange(text);
   }
 
@@ -330,6 +339,12 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   }
 }
 
-const HeroWindowWrapped = injectIntl(HeroWindow);
+// FIXME: simpler way to do it? react-intl fixed HOC?
+type ComponentWithDefaultProps<TProps extends TDefaultProps, TDefaultProps> = React.ComponentClass<
+  Partial<Pick<TProps, keyof TDefaultProps>> &
+  Pick<TProps, Exclude<keyof TProps, keyof TDefaultProps>>>;
+
+const HeroWindowWrapped: ComponentWithDefaultProps<HeroWindowProps, typeof HeroWindow.defaultProps> =
+  injectIntl(HeroWindow) as any;
 
 export { HeroWindowWrapped as HeroWindow };

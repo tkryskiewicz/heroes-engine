@@ -23,19 +23,40 @@ export interface TownWindowProps {
   visitingHero?: Hero;
   resources: Resources;
   selectedGarrisonTroopIndex?: number;
-  onSelectGarrisonTroop?: (index: number) => void;
-  onSwapGarrisonTroops?: (town: string, index: number, withIndex: number) => void;
+  onSelectGarrisonTroop: (index: number) => void;
+  onSwapGarrisonTroops: (town: string, index: number, withIndex: number) => void;
   selectedHeroTroopIndex?: number;
-  onSelectHeroTroop?: (index: number) => void;
-  onSwapHeroTroops?: (hero: string, index: number, withIndex: number) => void;
+  onSelectHeroTroop: (index: number) => void;
+  onSwapHeroTroops: (hero: string, index: number, withIndex: number) => void;
   visibleStructureDetails?: string;
-  onCrestClick?: () => void;
-  onOpenStructureDetails?: (structure: string) => void;
-  onRecruitTroop?: (town: string, structure: string, count: number) => void;
-  onExitClick?: () => void;
+  onCrestClick: () => void;
+  onOpenStructureDetails: (structure: string) => void;
+  onRecruitTroop: (town: string, structure: string, count: number) => void;
+  onExitClick: () => void;
 }
 
+type DefaultProp =
+  "onSelectGarrisonTroop" |
+  "onSwapGarrisonTroops" |
+  "onSelectHeroTroop" |
+  "onSwapHeroTroops" |
+  "onCrestClick" |
+  "onOpenStructureDetails" |
+  "onRecruitTroop" |
+  "onExitClick";
+
 export class TownWindow extends React.Component<TownWindowProps> {
+  public static defaultProps: Pick<TownWindowProps, DefaultProp> = {
+    onCrestClick: () => undefined,
+    onExitClick: () => undefined,
+    onOpenStructureDetails: () => undefined,
+    onRecruitTroop: () => undefined,
+    onSelectGarrisonTroop: () => undefined,
+    onSelectHeroTroop: () => undefined,
+    onSwapGarrisonTroops: () => undefined,
+    onSwapHeroTroops: () => undefined,
+  };
+
   public render() {
     const { town, resources, visibleStructureDetails } = this.props;
 
@@ -93,26 +114,14 @@ export class TownWindow extends React.Component<TownWindowProps> {
   }
 
   private onSwapGarrisonTroops = (index: number, withIndex: number) => {
-    if (!this.props.onSwapGarrisonTroops) {
-      return;
-    }
-
     this.props.onSwapGarrisonTroops(this.props.town.id, index, withIndex);
   }
 
   private onSwapHeroTroops = (index: number, withIndex: number) => {
-    if (!this.props.onSwapHeroTroops) {
-      return;
-    }
-
     this.props.onSwapHeroTroops(this.props.visitingHero!.id, index, withIndex);
   }
 
   private onStructureClick = (structure: string) => {
-    if (!this.props.onOpenStructureDetails) {
-      return;
-    }
-
     this.props.onOpenStructureDetails(structure);
   }
 
@@ -169,10 +178,6 @@ export class TownWindow extends React.Component<TownWindowProps> {
   }
 
   private onRecruitTroop = (structure: string, count: number) => {
-    if (!this.props.onRecruitTroop) {
-      return;
-    }
-
     this.props.onRecruitTroop(this.props.town.id, structure, count);
   }
 }

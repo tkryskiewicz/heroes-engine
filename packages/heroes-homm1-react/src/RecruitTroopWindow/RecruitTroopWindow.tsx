@@ -20,12 +20,18 @@ export interface RecruitTroopWindowProps {
   cost: Resources;
   availableCount: number;
   count: number;
-  onCountChange?: (value: number) => void;
-  onOkayClick?: (count: number) => void;
-  onCancelClick?: () => void;
+  onCountChange: (value: number) => void;
+  onOkayClick: (count: number) => void;
+  onCancelClick: () => void;
 }
 
 export class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
+  public static defaultProps: Pick<RecruitTroopWindowProps, "onCountChange" | "onOkayClick" | "onCancelClick"> = {
+    onCancelClick: () => undefined,
+    onCountChange: () => undefined,
+    onOkayClick: () => undefined,
+  };
+
   public render() {
     return (
       <div className="recruit-troop-window">
@@ -117,10 +123,6 @@ export class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps>
   }
 
   private onCountChange: InputNumberProps["onChange"] = (v) => {
-    if (!this.props.onCountChange) {
-      return;
-    }
-
     if (v === undefined) {
       return;
     }
@@ -131,10 +133,6 @@ export class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps>
   }
 
   private onMaxClick = () => {
-    if (!this.props.onCountChange) {
-      return;
-    }
-
     let count = 0;
 
     while (
@@ -155,18 +153,10 @@ export class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps>
       return;
     }
 
-    if (!this.props.onOkayClick) {
-      return;
-    }
-
     this.props.onOkayClick(this.props.count);
   }
 
   private onCancelClick = () => {
-    if (!this.props.onCancelClick) {
-      return;
-    }
-
     this.props.onCancelClick();
   }
 }

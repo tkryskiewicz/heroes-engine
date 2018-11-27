@@ -22,18 +22,35 @@ import { OpponentSettingBox } from "./OpponentSettingBox";
 
 export interface NewGameWindowProps {
   selectedGameDifficulty: GameDifficulty;
-  onGameDifficultyChange?: (value: GameDifficulty) => void;
+  onGameDifficultyChange: (value: GameDifficulty) => void;
   opponentSettings: OpponentSetting[];
-  onOpponentSettingsChange?: (settings: OpponentSetting[]) => void;
+  onOpponentSettingsChange: (settings: OpponentSetting[]) => void;
   selectedAlignment: Alignment;
-  onAlignmentChange?: (value: Alignment) => void;
+  onAlignmentChange: (value: Alignment) => void;
   kingOfTheHill: boolean;
-  onKingOfTheHillChange?: (value: boolean) => void;
-  onOkayClick?: () => void;
-  onCancelClick?: () => void;
+  onKingOfTheHillChange: (value: boolean) => void;
+  onOkayClick: () => void;
+  onCancelClick: () => void;
 }
 
+type DefaultProp =
+  "onGameDifficultyChange" |
+  "onOpponentSettingsChange" |
+  "onAlignmentChange" |
+  "onKingOfTheHillChange" |
+  "onOkayClick" |
+  "onCancelClick";
+
 export class NewGameWindow extends React.Component<NewGameWindowProps> {
+  public static defaultProps: Pick<NewGameWindowProps, DefaultProp> = {
+    onAlignmentChange: () => undefined,
+    onCancelClick: () => undefined,
+    onGameDifficultyChange: () => undefined,
+    onKingOfTheHillChange: () => undefined,
+    onOkayClick: () => undefined,
+    onOpponentSettingsChange: () => undefined,
+  };
+
   public render() {
     const difficultyRating = getGameDifficultyRating(this.props.selectedGameDifficulty) +
       this.props.opponentSettings.reduce((p, c) => p + getOpponentSettingRating(c), 0);
@@ -143,10 +160,6 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
   }
 
   private onGameDifficultyClick = (value: GameDifficulty) => {
-    if (!this.props.onGameDifficultyChange) {
-      return;
-    }
-
     if (value !== this.props.selectedGameDifficulty) {
       this.props.onGameDifficultyChange(value);
     }
@@ -168,10 +181,6 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
   }
 
   private onOpponentSettingChange = (index: number, setting: OpponentSetting) => {
-    if (!this.props.onOpponentSettingsChange) {
-      return;
-    }
-
     const settings = [...this.props.opponentSettings];
 
     settings[index] = setting;

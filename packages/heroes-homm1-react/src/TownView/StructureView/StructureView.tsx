@@ -5,11 +5,16 @@ import { isCommonStructure } from "heroes-homm1";
 export interface StructureViewProps {
   town: string;
   structure: string;
-  placeholder?: boolean;
-  onClick?: (structure: string) => void;
+  placeholder: boolean;
+  onClick: (structure: string) => void;
 }
 
 export class StructureView extends React.Component<StructureViewProps> {
+  public static defaultProps: Pick<StructureViewProps, "placeholder" | "onClick"> = {
+    onClick: () => undefined,
+    placeholder: false,
+  };
+
   public render() {
     const { town, structure, placeholder } = this.props;
 
@@ -26,10 +31,6 @@ export class StructureView extends React.Component<StructureViewProps> {
   }
 
   private onClick = () => {
-    if (!this.props.onClick) {
-      return;
-    }
-
     this.props.onClick(this.props.structure);
   }
 }

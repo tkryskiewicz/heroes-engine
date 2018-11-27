@@ -11,27 +11,56 @@ import { GameSwitch } from "../GameSwitch";
 import { getMovementSpeedMessage, messages } from "./messages";
 
 export interface GameOptionsProps {
-  onNewGameClick?: () => void;
-  onLoadGameClick?: () => void;
-  onSaveGameClick?: () => void;
-  onQuitClick?: () => void;
+  onNewGameClick: () => void;
+  onLoadGameClick: () => void;
+  onSaveGameClick: () => void;
+  onQuitClick: () => void;
   musicVolume: SoundVolume;
-  onMusicVolumeChange?: (volume: SoundVolume) => void;
+  onMusicVolumeChange: (volume: SoundVolume) => void;
   effectsVolume: SoundVolume;
-  onEffectsVolumeChange?: (volume: SoundVolume) => void;
+  onEffectsVolumeChange: (volume: SoundVolume) => void;
   movementSpeed: MovementSpeed;
-  onMovementSpeedChange?: (value: MovementSpeed) => void;
+  onMovementSpeedChange: (value: MovementSpeed) => void;
   autoSave: boolean;
-  onAutoSaveChange?: (value: boolean) => void;
+  onAutoSaveChange: (value: boolean) => void;
   showPath: boolean;
-  onShowPathChange?: (value: boolean) => void;
+  onShowPathChange: (value: boolean) => void;
   viewEnemyMovement: boolean;
-  onViewEnemyMovementChange?: (value: boolean) => void;
-  onOkayClick?: () => void;
-  onInfoClick?: () => void;
+  onViewEnemyMovementChange: (value: boolean) => void;
+  onOkayClick: () => void;
+  onInfoClick: () => void;
 }
 
+type DefaultProp =
+  "onNewGameClick" |
+  "onLoadGameClick" |
+  "onSaveGameClick" |
+  "onQuitClick" |
+  "onMusicVolumeChange" |
+  "onEffectsVolumeChange" |
+  "onMovementSpeedChange" |
+  "onAutoSaveChange" |
+  "onShowPathChange" |
+  "onViewEnemyMovementChange" |
+  "onOkayClick" |
+  "onInfoClick";
+
 export class GameOptions extends React.Component<GameOptionsProps> {
+  public static defaultProps: Pick<GameOptionsProps, DefaultProp> = {
+    onAutoSaveChange: () => undefined,
+    onEffectsVolumeChange: () => undefined,
+    onInfoClick: () => undefined,
+    onLoadGameClick: () => undefined,
+    onMovementSpeedChange: () => undefined,
+    onMusicVolumeChange: () => undefined,
+    onNewGameClick: () => undefined,
+    onOkayClick: () => undefined,
+    onQuitClick: () => undefined,
+    onSaveGameClick: () => undefined,
+    onShowPathChange: () => undefined,
+    onViewEnemyMovementChange: () => undefined,
+  };
+
   public render() {
     return (
       <div className="game-options">
@@ -186,30 +215,18 @@ export class GameOptions extends React.Component<GameOptionsProps> {
   }
 
   private onMusicVolumeChange = () => {
-    if (!this.props.onMusicVolumeChange) {
-      return;
-    }
-
     const value = changeVolume(this.props.musicVolume);
 
     this.props.onMusicVolumeChange(value);
   }
 
   private onEffectsVolumeChange = () => {
-    if (!this.props.onEffectsVolumeChange) {
-      return;
-    }
-
     const value = changeVolume(this.props.effectsVolume);
 
     this.props.onEffectsVolumeChange(value);
   }
 
   private onMovementSpeedChange = () => {
-    if (!this.props.onMovementSpeedChange) {
-      return;
-    }
-
     const movementSpeed = changeMovementSpeed(this.props.movementSpeed);
 
     this.props.onMovementSpeedChange(movementSpeed);
