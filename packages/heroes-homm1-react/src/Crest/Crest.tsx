@@ -9,7 +9,7 @@ export interface CrestProps {
 export class Crest extends React.Component<CrestProps> {
   public static defaultProps: Pick<CrestProps, "onClick"> = {
     onClick: () => undefined,
-  }
+  };
 
   public render() {
     return (

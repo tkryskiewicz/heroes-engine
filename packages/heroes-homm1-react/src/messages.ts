@@ -783,4 +783,4 @@ export const getLuckNameMessage = (luck: number) => {
   }
 
   return luckMessages.bad;
-}
+};

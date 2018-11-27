@@ -10,7 +10,7 @@ export interface HeroPortraitProps {
 export class HeroPortrait extends React.Component<HeroPortraitProps> {
   public static defaultProps: Pick<HeroPortraitProps, "onClick"> = {
     onClick: () => undefined,
-  }
+  };
 
   public render() {
     return (

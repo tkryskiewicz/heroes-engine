@@ -25,9 +25,9 @@ export interface BuildStructureWindowProps {
 
 export class BuildStructureWindow extends React.Component<BuildStructureWindowProps> {
   public static defaultProps: Pick<BuildStructureWindowProps, "onOkayClick" | "onCancelClick"> = {
-    onOkayClick: () => undefined,
     onCancelClick: () => undefined,
-  }
+    onOkayClick: () => undefined,
+  };
 
   public render() {
     return (

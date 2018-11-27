@@ -29,9 +29,9 @@ export interface HighScoresWindowProps {
 
 export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
   public static defaultProps: Pick<HighScoresWindowProps, "onGameTypeChange" | "onExitClick"> = {
-    onGameTypeChange: () => undefined,
     onExitClick: () => undefined,
-  }
+    onGameTypeChange: () => undefined,
+  };
 
   public render() {
     const scores = this.props.gameType === GameType.Campaign ?

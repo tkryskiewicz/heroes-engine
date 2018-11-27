@@ -12,9 +12,9 @@ export interface CampaignMenuProps {
 
 export class CampaignMenu extends React.Component<CampaignMenuProps> {
   public static defaultProps: Pick<CampaignMenuProps, "onPlayClick" | "onCancelClick"> = {
-    onPlayClick: () => undefined,
     onCancelClick: () => undefined,
-  }
+    onPlayClick: () => undefined,
+  };
 
   public render() {
     return (

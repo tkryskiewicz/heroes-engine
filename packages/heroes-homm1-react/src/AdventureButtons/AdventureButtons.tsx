@@ -18,15 +18,23 @@ export interface AdventureButtonsProps {
   onGameOptionsClick: () => void;
 }
 
+type DefaultProp =
+  "onSelectHero" |
+  "onMoveClick" |
+  "onKingdomOverviewClick" |
+  "onEndTurnClick" |
+  "onAdventureOptionsClick" |
+  "onGameOptionsClick";
+
 export class AdventureButtons extends React.Component<AdventureButtonsProps> {
-  public static defaultProps: Pick<AdventureButtonsProps, "onSelectHero" | "onMoveClick" | "onKingdomOverviewClick" | "onEndTurnClick" | "onAdventureOptionsClick" | "onGameOptionsClick"> = {
-    onSelectHero: () => undefined,
-    onMoveClick: () => undefined,
-    onKingdomOverviewClick: () => undefined,
-    onEndTurnClick: () => undefined,
+  public static defaultProps: Pick<AdventureButtonsProps, DefaultProp> = {
     onAdventureOptionsClick: () => undefined,
+    onEndTurnClick: () => undefined,
     onGameOptionsClick: () => undefined,
-  }
+    onKingdomOverviewClick: () => undefined,
+    onMoveClick: () => undefined,
+    onSelectHero: () => undefined,
+  };
 
   public render() {
     const nextHeroEnabled = canSelectNextHero(this.props.heroes);

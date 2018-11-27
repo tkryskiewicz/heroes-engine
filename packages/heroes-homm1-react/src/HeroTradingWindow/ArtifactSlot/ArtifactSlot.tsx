@@ -14,7 +14,7 @@ export interface ArtifactSlotProps {
 export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
   public static defaultProps: Pick<ArtifactSlotProps, "onClick"> = {
     onClick: () => undefined,
-  }
+  };
 
   public render() {
     return (

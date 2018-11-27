@@ -146,8 +146,8 @@ export type GameButtonGroup =
 export interface GameButtonProps {
   group: GameButtonGroup;
   type: GameButtonType;
-  disabled?: boolean;
-  onClick?: () => void;
+  disabled: boolean;
+  onClick: () => void;
 }
 
 interface GameButtonState {
@@ -155,6 +155,11 @@ interface GameButtonState {
 }
 
 export class GameButton extends React.Component<GameButtonProps, GameButtonState> {
+  public static defaultProps: Pick<GameButtonProps, "disabled" | "onClick"> = {
+    disabled: false,
+    onClick: () => undefined,
+  };
+
   public state: GameButtonState = {
     pressed: false,
   };
@@ -170,7 +175,7 @@ export class GameButton extends React.Component<GameButtonProps, GameButtonState
         disabled={this.props.disabled}
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseUp}
-        onClick={this.onClick}
+        onClick={this.props.onClick}
       >
         {this.renderImage(group, type, renderEnabled)}
       </button>
@@ -193,13 +198,5 @@ export class GameButton extends React.Component<GameButtonProps, GameButtonState
     this.setState({
       pressed: false,
     });
-  }
-
-  private onClick = () => {
-    if (!this.props.onClick) {
-      return;
-    }
-
-    this.props.onClick();
   }
 }
