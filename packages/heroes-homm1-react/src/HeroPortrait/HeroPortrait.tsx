@@ -4,10 +4,14 @@ import "./HeroPortrait.scss";
 
 export interface HeroPortraitProps {
   hero?: string;
-  onClick?: (hero?: string) => void;
+  onClick: (hero?: string) => void;
 }
 
 export class HeroPortrait extends React.Component<HeroPortraitProps> {
+  public static defaultProps: Pick<HeroPortraitProps, "onClick"> = {
+    onClick: () => undefined,
+  }
+
   public render() {
     return (
       <div
@@ -32,10 +36,6 @@ export class HeroPortrait extends React.Component<HeroPortraitProps> {
   }
 
   private onClick = () => {
-    if (!this.props.onClick) {
-      return;
-    }
-
     this.props.onClick(this.props.hero);
   }
 }

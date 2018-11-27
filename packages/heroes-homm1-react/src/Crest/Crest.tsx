@@ -3,10 +3,14 @@ import * as React from "react";
 export interface CrestProps {
   alignment: string;
   heroClass: string;
-  onClick?: (alignment: string, heroClass: string) => void;
+  onClick: (alignment: string, heroClass: string) => void;
 }
 
 export class Crest extends React.Component<CrestProps> {
+  public static defaultProps: Pick<CrestProps, "onClick"> = {
+    onClick: () => undefined,
+  }
+
   public render() {
     return (
       <img
@@ -17,10 +21,6 @@ export class Crest extends React.Component<CrestProps> {
   }
 
   private onClick = () => {
-    if (!this.props.onClick) {
-      return;
-    }
-
     this.props.onClick(this.props.alignment, this.props.heroClass);
   }
 }

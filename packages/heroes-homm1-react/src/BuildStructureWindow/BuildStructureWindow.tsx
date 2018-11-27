@@ -19,11 +19,16 @@ export interface BuildStructureWindowProps {
   structure: string;
   cost: Resources;
   canBuild: boolean;
-  onOkayClick?: (town: string, structure: string) => void;
-  onCancelClick?: () => void;
+  onOkayClick: (town: string, structure: string) => void;
+  onCancelClick: () => void;
 }
 
 export class BuildStructureWindow extends React.Component<BuildStructureWindowProps> {
+  public static defaultProps: Pick<BuildStructureWindowProps, "onOkayClick" | "onCancelClick"> = {
+    onOkayClick: () => undefined,
+    onCancelClick: () => undefined,
+  }
+
   public render() {
     return (
       <GameModal size={5}>
@@ -78,10 +83,6 @@ export class BuildStructureWindow extends React.Component<BuildStructureWindowPr
   }
 
   private onOkayClick = () => {
-    if (!this.props.onOkayClick) {
-      return;
-    }
-
     this.props.onOkayClick(this.props.town, this.props.structure);
   }
 }

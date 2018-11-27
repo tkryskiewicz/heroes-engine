@@ -8,10 +8,14 @@ export interface ArtifactSlotProps {
   index: number;
   artifact?: string;
   selected?: boolean;
-  onClick?: (index: number) => void;
+  onClick: (index: number) => void;
 }
 
 export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
+  public static defaultProps: Pick<ArtifactSlotProps, "onClick"> = {
+    onClick: () => undefined,
+  }
+
   public render() {
     return (
       <div
@@ -52,10 +56,6 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
   }
 
   private onClick = () => {
-    if (!this.props.onClick) {
-      return;
-    }
-
     this.props.onClick(this.props.index);
   }
 }

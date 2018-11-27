@@ -23,11 +23,16 @@ export interface HighScoresWindowProps {
     [GameType.Standard]: StandardGameScore[];
   };
   gameType: GameType;
-  onGameTypeChange?: (value: GameType) => void;
-  onExitClick?: () => void;
+  onGameTypeChange: (value: GameType) => void;
+  onExitClick: () => void;
 }
 
 export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
+  public static defaultProps: Pick<HighScoresWindowProps, "onGameTypeChange" | "onExitClick"> = {
+    onGameTypeChange: () => undefined,
+    onExitClick: () => undefined,
+  }
+
   public render() {
     const scores = this.props.gameType === GameType.Campaign ?
       this.renderCampaignGameScores(this.props.scores[GameType.Campaign]) :
@@ -181,10 +186,6 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
   }
 
   private onCategoryClick = () => {
-    if (!this.props.onGameTypeChange) {
-      return;
-    }
-
     const value = this.props.gameType === GameType.Campaign ?
       GameType.Standard :
       GameType.Campaign;

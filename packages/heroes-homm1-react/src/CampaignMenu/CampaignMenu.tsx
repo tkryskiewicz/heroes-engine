@@ -6,11 +6,16 @@ import { CampaignIds } from "heroes-homm1";
 import { GameButton } from "../GameButton";
 
 export interface CampaignMenuProps {
-  onPlayClick?: (campaign: string) => void;
-  onCancelClick?: () => void;
+  onPlayClick: (campaign: string) => void;
+  onCancelClick: () => void;
 }
 
 export class CampaignMenu extends React.Component<CampaignMenuProps> {
+  public static defaultProps: Pick<CampaignMenuProps, "onPlayClick" | "onCancelClick"> = {
+    onPlayClick: () => undefined,
+    onCancelClick: () => undefined,
+  }
+
   public render() {
     return (
       <>
@@ -41,10 +46,6 @@ export class CampaignMenu extends React.Component<CampaignMenuProps> {
   }
 
   private onPlayClick(campaign: string) {
-    if (!this.props.onPlayClick) {
-      return;
-    }
-
     this.props.onPlayClick(campaign);
   }
 }

@@ -10,15 +10,24 @@ import { GameButton } from "../GameButton";
 export interface AdventureButtonsProps {
   heroes: Hero[];
   selectedIndex?: number;
-  onSelectHero?: (index: number) => void;
-  onMoveClick?: () => void;
-  onKingdomOverviewClick?: () => void;
-  onEndTurnClick?: () => void;
-  onAdventureOptionsClick?: () => void;
-  onGameOptionsClick?: () => void;
+  onSelectHero: (index: number) => void;
+  onMoveClick: () => void;
+  onKingdomOverviewClick: () => void;
+  onEndTurnClick: () => void;
+  onAdventureOptionsClick: () => void;
+  onGameOptionsClick: () => void;
 }
 
 export class AdventureButtons extends React.Component<AdventureButtonsProps> {
+  public static defaultProps: Pick<AdventureButtonsProps, "onSelectHero" | "onMoveClick" | "onKingdomOverviewClick" | "onEndTurnClick" | "onAdventureOptionsClick" | "onGameOptionsClick"> = {
+    onSelectHero: () => undefined,
+    onMoveClick: () => undefined,
+    onKingdomOverviewClick: () => undefined,
+    onEndTurnClick: () => undefined,
+    onAdventureOptionsClick: () => undefined,
+    onGameOptionsClick: () => undefined,
+  }
+
   public render() {
     const nextHeroEnabled = canSelectNextHero(this.props.heroes);
 
@@ -76,10 +85,6 @@ export class AdventureButtons extends React.Component<AdventureButtonsProps> {
   }
 
   private onNextHeroClick = () => {
-    if (!this.props.onSelectHero) {
-      return;
-    }
-
     const index = getNextHeroIndex(this.props.heroes, this.props.selectedIndex);
 
     if (index !== undefined) {

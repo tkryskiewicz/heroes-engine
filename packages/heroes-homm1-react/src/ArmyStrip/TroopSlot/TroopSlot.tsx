@@ -15,10 +15,14 @@ export interface TroopSlotProps {
   index: number;
   troop?: Troop;
   selected?: boolean;
-  onClick?: (index: number) => void;
+  onClick: (index: number) => void;
 }
 
 export class TroopSlot extends React.Component<TroopSlotProps> {
+  public static defaultProps: Pick<TroopSlotProps, "onClick"> = {
+    onClick: () => undefined,
+  };
+
   public render() {
     return (
       <div
@@ -84,10 +88,6 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
   }
 
   private onClick = () => {
-    if (!this.props.onClick) {
-      return;
-    }
-
     this.props.onClick(this.props.index);
   }
 }
