@@ -4,12 +4,17 @@ import "./Locator.scss";
 
 export interface LocatorProps {
   index: number;
-  selected?: boolean;
-  onClick?: (index: number) => void;
+  selected: boolean;
+  onClick: (index: number) => void;
 }
 
 // TODO: town locators have borders, without them we could limit locator size and center content
 export class Locator extends React.Component<LocatorProps> {
+  public static defaultProps: Pick<LocatorProps, "selected" | "onClick"> = {
+    onClick: () => undefined,
+    selected: false,
+  };
+
   public render() {
     return (
       <div
@@ -43,10 +48,6 @@ export class Locator extends React.Component<LocatorProps> {
   }
 
   private onClick = () => {
-    if (!this.props.onClick) {
-      return;
-    }
-
     this.props.onClick(this.props.index);
   }
 }

@@ -15,11 +15,16 @@ export type GameSwitchType =
 
 export interface GameSwitchProps {
   type: GameSwitchType;
-  checked?: boolean;
-  onChange?: (checked: boolean) => void;
+  checked: boolean;
+  onChange: (checked: boolean) => void;
 }
 
 export class GameSwitch extends React.Component<GameSwitchProps> {
+  public static defaultProps: Pick<GameSwitchProps, "checked" | "onChange"> = {
+    checked: false,
+    onChange: () => undefined,
+  };
+
   public render() {
     return (
       <div
@@ -44,10 +49,6 @@ export class GameSwitch extends React.Component<GameSwitchProps> {
   }
 
   private onClick = () => {
-    if (!this.props.onChange) {
-      return;
-    }
-
     this.props.onChange(!this.props.checked);
   }
 }

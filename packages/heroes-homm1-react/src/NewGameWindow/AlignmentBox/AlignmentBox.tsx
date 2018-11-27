@@ -4,10 +4,14 @@ import { Alignment, changeAlignment } from "heroes-homm1";
 
 export interface AlignmentBoxProps {
   value: Alignment;
-  onChange?: (value: Alignment) => void;
+  onChange: (value: Alignment) => void;
 }
 
 export class AlignmentBox extends React.Component<AlignmentBoxProps> {
+  public static defaultProps: Pick<AlignmentBoxProps, "onChange"> = {
+    onChange: () => undefined,
+  };
+
   public render() {
     return (
       <img
@@ -18,10 +22,6 @@ export class AlignmentBox extends React.Component<AlignmentBoxProps> {
   }
 
   private onClick = () => {
-    if (!this.props.onChange) {
-      return;
-    }
-
     const value = changeAlignment(this.props.value);
 
     this.props.onChange(value);

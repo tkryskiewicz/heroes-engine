@@ -7,18 +7,23 @@ import { ArtifactIcon } from "../../ArtifactIcon";
 export interface ArtifactSlotProps {
   index: number;
   artifact?: string;
-  isUltimate?: boolean;
-  onClick?: (index: number) => void;
+  isUltimate: boolean;
+  onClick: (index: number) => void;
 }
 
 export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
+  public static defaultProps: Pick<ArtifactSlotProps, "isUltimate" | "onClick"> = {
+    isUltimate: false,
+    onClick: () => undefined,
+  };
+
   public render() {
     return (
       <div
         className="artifact-slot"
         onClick={this.onClick}
       >
-        {this.renderBorder(this.props.isUltimate || false)}
+        {this.renderBorder(this.props.isUltimate)}
         <div className="artifact-slot-content">
           {this.props.artifact ? this.renderArtifact(this.props.artifact) : this.renderEmpty()}
         </div>
@@ -50,10 +55,6 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
   }
 
   private onClick = () => {
-    if (!this.props.onClick) {
-      return;
-    }
-
     this.props.onClick(this.props.index);
   }
 }

@@ -15,12 +15,18 @@ import { getHeroClassNameMessage } from "../../messages";
 export interface RecruitHeroProps {
   heroId: string;
   heroClass: HeroClass;
-  disabled?: boolean;
-  onPortraitClick?: (id: string) => void;
-  onRecruitClick?: (id: string) => void;
+  disabled: boolean;
+  onPortraitClick: (id: string) => void;
+  onRecruitClick: (id: string) => void;
 }
 
 export class RecruitHero extends React.Component<RecruitHeroProps> {
+  public static defaultProps: Pick<RecruitHeroProps, "disabled" | "onPortraitClick" | "onRecruitClick"> = {
+    disabled: false,
+    onPortraitClick: () => undefined,
+    onRecruitClick: () => undefined,
+  };
+
   public render() {
     return (
       <div className="recruit-hero">
@@ -50,18 +56,10 @@ export class RecruitHero extends React.Component<RecruitHeroProps> {
   }
 
   private onPortraitClick = () => {
-    if (!this.props.onPortraitClick) {
-      return;
-    }
-
     this.props.onPortraitClick(this.props.heroId);
   }
 
   private onRecruitClick = () => {
-    if (!this.props.onRecruitClick) {
-      return;
-    }
-
     this.props.onRecruitClick(this.props.heroId);
   }
 }

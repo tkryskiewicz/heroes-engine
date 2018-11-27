@@ -6,11 +6,16 @@ import "./GameDifficultyBox.scss";
 
 export interface GameDifficultyBoxProps {
   value: GameDifficulty;
-  selected?: boolean;
-  onClick?: (value: GameDifficulty) => void;
+  selected: boolean;
+  onClick: (value: GameDifficulty) => void;
 }
 
 export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
+  public static defaultProps: Pick<GameDifficultyBoxProps, "selected" | "onClick"> = {
+    onClick: () => undefined,
+    selected: false,
+  };
+
   public render() {
     return (
       <div
@@ -42,10 +47,6 @@ export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
   }
 
   private onClick = () => {
-    if (!this.props.onClick) {
-      return;
-    }
-
     this.props.onClick(this.props.value);
   }
 }
