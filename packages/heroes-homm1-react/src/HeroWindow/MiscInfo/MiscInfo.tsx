@@ -3,6 +3,9 @@ import * as React from "react";
 
 import "./MiscInfo.scss";
 
+import BackgroundImage = require("./background.jpg");
+import ExperienceImage = require("./experience.png");
+
 import { GameText } from "../../GameText";
 import { LuckIcon } from "../LuckIcon";
 import { MoraleIcon } from "../MoraleIcon";
@@ -62,7 +65,7 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
     return (
       <img
         className="misc-info-background"
-        src="assets/ui/hero-window/stats-background.jpg"
+        src={BackgroundImage}
       />
     );
   }
@@ -120,7 +123,7 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
         onMouseEnter={this.props.onExperienceMouseEnter}
         onMouseLeave={this.props.onExperienceMouseLeave}
       >
-        <img src="assets/ui/hero-window/experience.png" />
+        <img src={ExperienceImage} />
         <div className="misc-info-experience-value">
           <GameText size="small">
             {experience}

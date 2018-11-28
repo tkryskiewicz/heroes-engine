@@ -1,5 +1,9 @@
 import * as React from "react";
 
+import BadImage = require("./morale-bad.png");
+import GoodImage = require("./morale-good.png");
+import NeutralImage = require("./morale-neutral.png");
+
 export interface MoraleIconProps {
   type: "good" | "neutral" | "bad";
   onClick?: () => void;
@@ -7,9 +11,15 @@ export interface MoraleIconProps {
 
 export class MoraleIcon extends React.Component<MoraleIconProps> {
   public render() {
+    const images = {
+      bad: BadImage,
+      good: GoodImage,
+      neutral: NeutralImage,
+    };
+
     return (
       <img
-        src={`assets/ui/hero-window/morale-${this.props.type}.png`}
+        src={images[this.props.type]}
         onClick={this.props.onClick}
       />
     );

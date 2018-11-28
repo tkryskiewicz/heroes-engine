@@ -2,6 +2,10 @@ import * as React from "react";
 
 import "./ArtifactSlot.scss";
 
+import BorderImage = require("./artifact-slot-border.png");
+import EmptyImage = require("./artifact-slot-empty.jpg");
+import UltimateBorderImage = require("./artifact-ultimate-slot-border.png");
+
 import { ArtifactIcon } from "../../ArtifactIcon";
 
 export interface ArtifactSlotProps {
@@ -34,7 +38,7 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
   private renderBorder(isUltimate: boolean) {
     return (
       <img
-        src={`assets/ui/hero-window/artifact${isUltimate ? "-ultimate" : ""}-slot-border.png`}
+        src={isUltimate ? UltimateBorderImage : BorderImage}
       />
     );
   }
@@ -50,7 +54,7 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
 
   private renderEmpty() {
     return (
-      <img src="assets/ui/hero-window/artifact-slot-empty.jpg" />
+      <img src={EmptyImage} />
     );
   }
 
