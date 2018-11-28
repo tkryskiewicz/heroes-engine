@@ -2,6 +2,9 @@ import * as React from "react";
 
 import "./TroopSlot.scss";
 
+import EmptyImage = require("./empty.jpg");
+import SelectionImage = require("./selection.png");
+
 import { CreatureIcon } from "../../CreatureIcon";
 import { GameText } from "../../GameText";
 
@@ -74,7 +77,7 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
 
   private renderEmpty() {
     return (
-      <img src="assets/ui/troop-slot/empty.jpg" />
+      <img src={EmptyImage} />
     );
   }
 
@@ -82,7 +85,7 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
     return (
       <img
         className="troop-slot-selection"
-        src="assets/ui/troop-slot/selection.png"
+        src={SelectionImage}
       />
     );
   }

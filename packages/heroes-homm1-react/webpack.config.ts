@@ -21,6 +21,9 @@ const config: Webpack.Configuration = {
       },
       {
         loader: "file-loader",
+        options: {
+          name: "[name]-[hash].[ext]",
+        },
         test: /\.(jpg|png)$/,
       },
     ],
