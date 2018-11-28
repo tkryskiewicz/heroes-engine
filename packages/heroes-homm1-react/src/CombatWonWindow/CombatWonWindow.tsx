@@ -4,6 +4,8 @@ import { FormattedMessage } from "react-intl";
 
 import { Army } from "heroes-core";
 
+import AnimationImage = require("./animation.jpg");
+
 import { CombatSummaryWindow } from "../CombatSummaryWindow";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
@@ -47,7 +49,7 @@ export class CombatWonWindow extends React.Component<CombatWonWindowProps> {
 
   private renderAnimation() {
     return (
-      <img src="assets/ui/combat-won-window/animation.jpg" />
+      <img src={AnimationImage} />
     );
   }
 
