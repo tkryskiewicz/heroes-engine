@@ -6,6 +6,8 @@ import { Army } from "heroes-core";
 
 import "./CombatLostWindow.scss";
 
+import AnimationImage = require("./animation.png");
+
 import { CombatSummaryWindow } from "../CombatSummaryWindow";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
@@ -46,7 +48,7 @@ export class CombatLostWindow extends React.Component<CombatLostWindowProps> {
       <div className="combat-lost-window-animation-background">
         <img
           className="combat-lost-window-animation"
-          src="assets/ui/combat-lost-window/animation.png"
+          src={AnimationImage}
         />
       </div>
     );
