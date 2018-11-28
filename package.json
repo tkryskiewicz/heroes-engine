@@ -16,6 +16,8 @@
     "typescript": "^3.0.3"
   },
   "scripts": {
+    "build": "yarn workspaces run build",
+    "clean": "yarn workspaces run clean",
     "lint": "tslint -p .",
     "test": "jest",
     "test:watch": "jest --watch"
