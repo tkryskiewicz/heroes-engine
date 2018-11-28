@@ -12,6 +12,13 @@ import {
 
 import "./HighScoresWindow.scss";
 
+import DaysImage = require("./days.jpg");
+import LandImage = require("./land.jpg");
+import LeaderImage = require("./leader.jpg");
+import PlayerImage = require("./player.jpg");
+import ScoreImage = require("./score.jpg");
+import TitleImage = require("./title.jpg");
+
 import { CreatureIcon } from "../CreatureIcon";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
@@ -67,16 +74,16 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
         <Row className="high-scores-window-header">
           <Col span={1} />
           <Col span={8}>
-            <img src="assets/ui/high-scores-window/player.jpg" />
+            <img src={PlayerImage} />
           </Col>
           <Col span={5}>
-            <img src="assets/ui/high-scores-window/leader.jpg" />
+            <img src={LeaderImage} />
           </Col>
           <Col span={4}>
-            <img src="assets/ui/high-scores-window/days.jpg" />
+            <img src={DaysImage} />
           </Col>
           <Col span={5}>
-            <img src="assets/ui/high-scores-window/title.jpg" />
+            <img src={TitleImage} />
           </Col>
         </Row>
         {scores.map(this.renderCampaignScore)}
@@ -129,16 +136,16 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
         <Row className="high-scores-window-header">
           <Col span={1} />
           <Col span={9}>
-            <img src="assets/ui/high-scores-window/player.jpg" />
+            <img src={PlayerImage} />
           </Col>
           <Col span={5}>
-            <img src="assets/ui/high-scores-window/land.jpg" />
+            <img src={LandImage} />
           </Col>
           <Col span={4}>
-            <img src="assets/ui/high-scores-window/score.jpg" />
+            <img src={ScoreImage} />
           </Col>
           <Col span={5}>
-            <img src="assets/ui/high-scores-window/title.jpg" />
+            <img src={TitleImage} />
           </Col>
         </Row>
         {scores.map(this.renderStandardScore)}
