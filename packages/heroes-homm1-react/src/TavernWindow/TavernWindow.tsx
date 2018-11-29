@@ -6,6 +6,8 @@ import { StructureId } from "heroes-homm1";
 
 import "./TavernWindow.scss";
 
+import AnimationImage = require("./animation.jpg");
+
 import { GameButton } from "../GameButton";
 import { GameModal } from "../GameModal";
 import { GameText } from "../GameText";
@@ -26,7 +28,7 @@ export class TavernWindow extends React.Component<TavernWindowProps> {
             </GameText>
           </Row>
           <Row className="tavern-window-animation">
-            <img src="assets/ui/tavern-window/animation.jpg" />
+            <img src={AnimationImage} />
           </Row>
           <Row className="tavern-window-structure-description">
             <GameText size="large">
