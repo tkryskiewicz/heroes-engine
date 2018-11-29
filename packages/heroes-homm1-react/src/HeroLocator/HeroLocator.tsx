@@ -2,6 +2,9 @@ import * as React from "react";
 
 import "./HeroLocator.scss";
 
+import BackgroundImage = require("./hero-locator-background.png");
+import { mobilityImages } from "./mobility";
+
 import { Locator } from "../Locator";
 
 export interface HeroLocatorProps {
@@ -32,11 +35,11 @@ export class HeroLocator extends React.Component<HeroLocatorProps> {
       <div className="hero-locator">
         <img
           className="hero-locator-background"
-          src="assets/ui/locators/hero-locator-background.png"
+          src={BackgroundImage}
         />
         <img
           className="hero-locator-mobility"
-          src={`assets/ui/locators/mobility/${mobility}.png`}
+          src={mobilityImages[mobility]}
         />
         <div className="hero-locator-portrait">
           <img
