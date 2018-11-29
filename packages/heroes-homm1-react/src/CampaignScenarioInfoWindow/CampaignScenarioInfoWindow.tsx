@@ -3,12 +3,14 @@ import * as React from "react";
 
 import "./CampaignScenarioInfoWindow.scss";
 
+import { scenarioNumberImages } from "./scenarioNumber";
+
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
 
 export interface CampaignScenarioInfoWindowProps {
   scenario: {
-    number: number; // TODO: rename
+    scenarioNumber: number;
     name: string;
     description: string;
   };
@@ -25,7 +27,7 @@ export class CampaignScenarioInfoWindow extends React.Component<CampaignScenario
             className="campaign-scenario-info-window-number"
             span={10}
           >
-            {this.renderNumber(this.props.scenario.number)}
+            {this.renderNumber(this.props.scenario.scenarioNumber)}
           </Col>
           <Col
             push={1}
@@ -67,9 +69,9 @@ export class CampaignScenarioInfoWindow extends React.Component<CampaignScenario
     );
   }
 
-  private renderNumber(num: number) {
+  private renderNumber(scenarioNumber: number) {
     return (
-      <img src={`assets/ui/campaign-scenario-info-window/${num}.png`} />
+      <img src={scenarioNumberImages[scenarioNumber]} />
     );
   }
 }

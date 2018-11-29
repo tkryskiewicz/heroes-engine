@@ -11,7 +11,7 @@ type StateProp =
 const mapStateToProps = (state: AppState): Pick<CampaignScenarioInfoWindowProps, StateProp> => ({
   scenario: {
     ...state.game.scenario,
-    number: 1,
+    scenarioNumber: 1,
   },
 });
 
