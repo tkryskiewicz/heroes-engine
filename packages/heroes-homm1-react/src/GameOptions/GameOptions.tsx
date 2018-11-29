@@ -6,6 +6,8 @@ import { changeMovementSpeed, changeVolume, MovementSpeed, SoundVolume } from "h
 
 import "./GameOptions.scss";
 
+import { CanterImage, GallopImage, JumpImage, TrotImage, WalkImage } from "./movement-speed";
+
 import { GameButton } from "../GameButton";
 import { GameSwitch } from "../GameSwitch";
 import { getMovementSpeedMessage, messages } from "./messages";
@@ -204,11 +206,18 @@ export class GameOptions extends React.Component<GameOptionsProps> {
     );
   }
 
-  // TODO: extract this somehow?
   private renderMovementSpeed(value: MovementSpeed) {
+    const images = {
+      [MovementSpeed.Canter]: CanterImage,
+      [MovementSpeed.Gallop]: GallopImage,
+      [MovementSpeed.Jump]: JumpImage,
+      [MovementSpeed.Trot]: TrotImage,
+      [MovementSpeed.Walk]: WalkImage,
+    };
+
     return (
       <img
-        src={`assets/ui/game-options/movement-speed/${value}.jpg`}
+        src={images[value]}
         onClick={this.onMovementSpeedChange}
       />
     );
