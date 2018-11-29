@@ -4,6 +4,12 @@ import { GameDifficulty } from "heroes-homm1";
 
 import "./GameDifficultyBox.scss";
 
+import EasyImage = require("./difficulty-easy.jpg");
+import ExpertImage = require("./difficulty-expert.jpg");
+import HardImage = require("./difficulty-hard.jpg");
+import NormalImage = require("./difficulty-normal.jpg");
+import SelectionImage = require("./selection.png");
+
 export interface GameDifficultyBoxProps {
   value: GameDifficulty;
   selected: boolean;
@@ -29,10 +35,17 @@ export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
   }
 
   private renderIcon(difficulty: string) {
+    const images: { [index: string]: string } = {
+      easy: EasyImage,
+      expert: ExpertImage,
+      hard: HardImage,
+      normal: NormalImage,
+    };
+
     return (
       <img
         className="game-difficulty-box-icon"
-        src={`assets/ui/new-game-window/difficulty-${difficulty}.jpg`}
+        src={images[difficulty]}
       />
     );
   }
@@ -41,7 +54,7 @@ export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
     return (
       <img
         className="game-difficulty-box-selection"
-        src="assets/ui/new-game-window/selection.png"
+        src={SelectionImage}
       />
     );
   }

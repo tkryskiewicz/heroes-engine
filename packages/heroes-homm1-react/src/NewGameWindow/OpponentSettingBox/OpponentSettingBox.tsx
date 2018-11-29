@@ -2,6 +2,12 @@ import * as React from "react";
 
 import { changeOpponentSetting, OpponentSetting } from "heroes-homm1";
 
+import AverageImage = require("./opponent-average.jpg");
+import DumbImage = require("./opponent-dumb.jpg");
+import GeniusImage = require("./opponent-genius.jpg");
+import NoneImage = require("./opponent-none.jpg");
+import SmartImage = require("./opponent-smart.jpg");
+
 export interface OpponentSettingBoxProps {
   index: number;
   value: OpponentSetting;
@@ -14,9 +20,17 @@ export class OpponentSettingBox extends React.Component<OpponentSettingBoxProps>
   };
 
   public render() {
+    const images = {
+      average: AverageImage,
+      dumb: DumbImage,
+      genius: GeniusImage,
+      none: NoneImage,
+      smart: SmartImage,
+    };
+
     return (
       <img
-        src={`assets/ui/new-game-window/opponent-${this.props.value}.jpg`}
+        src={images[this.props.value]}
         onClick={this.onClick}
       />
     );
