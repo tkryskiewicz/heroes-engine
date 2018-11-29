@@ -2,6 +2,9 @@ import * as React from "react";
 
 import "./Locator.scss";
 
+import { backgroundImages } from "./background";
+import SelectionImage = require("./selection.png");
+
 export interface LocatorProps {
   index: number;
   selected: boolean;
@@ -33,7 +36,7 @@ export class Locator extends React.Component<LocatorProps> {
       <img
         className="locator-background"
         // TODO: if more than 8 locators are possible should be index % 8
-        src={`assets/ui/locators/background-${index}.jpg`}
+        src={backgroundImages[index]}
       />
     );
   }
@@ -42,7 +45,7 @@ export class Locator extends React.Component<LocatorProps> {
     return (
       <img
         className="locator-selection"
-        src="assets/ui/locators/selection.png"
+        src={SelectionImage}
       />
     );
   }
