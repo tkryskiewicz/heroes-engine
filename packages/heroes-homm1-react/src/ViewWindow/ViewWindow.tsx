@@ -3,11 +3,13 @@ import * as React from "react";
 
 import "./ViewWindow.scss";
 
+import { legendImages } from "./legend";
+
 import { GameButton } from "../GameButton";
 
 export interface ViewWindowProps {
   // FIXME: inject background
-  type: "view-world" | "puzzle";
+  type: "world" | "puzzle";
   onExitClick?: () => void;
 }
 
@@ -30,7 +32,7 @@ export class ViewWindow extends React.Component<ViewWindowProps> {
       <div className="view-window-legend">
         <img
           className="view-window-legend-background"
-          src={`assets/ui/${type}-window/legend-background.jpg`}
+          src={legendImages[type]}
         />
         <div className="view-window-exit">
           <GameButton

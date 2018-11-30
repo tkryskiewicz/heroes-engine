@@ -10,7 +10,7 @@ export class ViewWorldWindow extends React.Component<ViewWorldWindowProps> {
   public render() {
     return (
       <ViewWindow
-        type="view-world"
+        type="world"
         onExitClick={this.props.onExitClick}
       >
         {this.renderWorld()}

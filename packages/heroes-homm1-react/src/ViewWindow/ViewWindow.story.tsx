@@ -7,13 +7,13 @@ import { ViewWindow, ViewWindowProps } from "./ViewWindow";
 
 const typeOptions: { [s: string]: ViewWindowProps["type"] } = {
   Puzzle: "puzzle",
-  World: "view-world",
+  World: "world",
 };
 
 storiesOf(ViewWindow.name, module)
   .add("default", () => (
     <ViewWindow
-      type={select("Type", typeOptions, "view-world")}
+      type={select("Type", typeOptions, "world")}
       onExitClick={action("Exit Click")}
     >
       {text("Content", "Content")}
