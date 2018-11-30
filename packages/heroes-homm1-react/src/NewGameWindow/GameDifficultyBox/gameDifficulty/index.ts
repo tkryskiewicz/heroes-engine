@@ -1,11 +1,11 @@
-import EasyImage = require("./difficulty-easy.jpg");
-import ExpertImage = require("./difficulty-expert.jpg");
-import HardImage = require("./difficulty-hard.jpg");
-import NormalImage = require("./difficulty-normal.jpg");
+const pattern = /difficulty-([a-z]+)\.jpg/;
 
-export const difficultyImages: { [index: string]: string } = {
-  easy: EasyImage,
-  expert: ExpertImage,
-  hard: HardImage,
-  normal: NormalImage,
-};
+const req = require.context(".", false, /difficulty-([a-z]+)\.jpg/);
+
+export const difficultyImages = req.keys().reduce<{ [index: string]: string }>((p, key) => {
+  const index = key.match(pattern)![1];
+
+  p[index] = req(key);
+
+  return p;
+}, {});

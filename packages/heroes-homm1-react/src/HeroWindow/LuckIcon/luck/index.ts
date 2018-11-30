@@ -1,9 +1,11 @@
-import BadImage = require("./luck-bad.png");
-import GoodImage = require("./luck-good.png");
-import NeturalImage = require("./luck-neutral.png");
+const pattern = /luck-([a-z]+)\.png/;
 
-export const luckImages = {
-  bad: BadImage,
-  good: GoodImage,
-  neutral: NeturalImage,
-};
+const req = require.context(".", false, /luck-([a-z]+)\.png/);
+
+export const luckImages = req.keys().reduce<{ [index: string]: string }>((p, key) => {
+  const index = key.match(pattern)![1];
+
+  p[index] = req(key);
+
+  return p;
+}, {});

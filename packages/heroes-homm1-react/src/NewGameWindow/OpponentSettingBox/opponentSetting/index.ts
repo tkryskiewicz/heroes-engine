@@ -1,13 +1,11 @@
-import AverageImage = require("./opponent-average.jpg");
-import DumbImage = require("./opponent-dumb.jpg");
-import GeniusImage = require("./opponent-genius.jpg");
-import NoneImage = require("./opponent-none.jpg");
-import SmartImage = require("./opponent-smart.jpg");
+const pattern = /opponent-([a-z]+)\.jpg$/;
 
-export const opponentSettingImages = {
-  average: AverageImage,
-  dumb: DumbImage,
-  genius: GeniusImage,
-  none: NoneImage,
-  smart: SmartImage,
-};
+const req = require.context(".", false, /opponent-([a-z]+)\.jpg$/);
+
+export const opponentSettingImages = req.keys().reduce<{ [index: string]: string }>((p, key) => {
+  const index = key.match(pattern)![1];
+
+  p[index] = req(key);
+
+  return p;
+}, {});

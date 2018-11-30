@@ -1,15 +1,11 @@
-import { MovementSpeed } from "heroes-homm1";
+const pattern = /([a-z]+)\.jpg$/;
 
-import CanterImage = require("./canter.jpg");
-import GallopImage = require("./gallop.jpg");
-import JumpImage = require("./jump.jpg");
-import TrotImage = require("./trot.jpg");
-import WalkImage = require("./walk.jpg");
+const req = require.context(".", false, /([a-z]+)\.jpg$/);
 
-export const movementSpeedImages = {
-  [MovementSpeed.Canter]: CanterImage,
-  [MovementSpeed.Gallop]: GallopImage,
-  [MovementSpeed.Jump]: JumpImage,
-  [MovementSpeed.Trot]: TrotImage,
-  [MovementSpeed.Walk]: WalkImage,
-};
+export const movementSpeedImages = req.keys().reduce<{ [index: string]: string }>((p, key) => {
+  const index = key.match(pattern)![1];
+
+  p[index] = req(key);
+
+  return p;
+}, {});

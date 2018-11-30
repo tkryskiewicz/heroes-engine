@@ -1,13 +1,11 @@
-import { Skill } from "heroes-homm1";
+const pattern = /([a-z-]+)\.jpg$/;
 
-import AttackSkillImage = require("./attack-skill.jpg");
-import DefenseSkillImage = require("./defense-skill.jpg");
-import KnowledgeImage = require("./knowledge.jpg");
-import SpellPowerImage = require("./spell-power.jpg");
+const req = require.context(".", false, /([a-z-]+)\.jpg$/);
 
-export const skillImages: { [index: string]: string } = {
-  [Skill.AttackSkill]: AttackSkillImage,
-  [Skill.DefenseSkill]: DefenseSkillImage,
-  [Skill.Knowledge]: KnowledgeImage,
-  [Skill.SpellPower]: SpellPowerImage,
-};
+export const skillImages = req.keys().reduce<{ [index: string]: string }>((p, key) => {
+  const index = key.match(pattern)![1];
+
+  p[index] = req(key);
+
+  return p;
+}, {});
