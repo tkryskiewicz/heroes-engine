@@ -4,6 +4,8 @@ import { PuzzlePieceCount } from "heroes-homm1";
 
 import "./PuzzleWindow.scss";
 
+import { puzzleImages } from "./puzzle";
+
 import { ViewWindow } from "../ViewWindow";
 
 export interface PuzzleWindowProps {
@@ -41,7 +43,7 @@ export class PuzzleWindow extends React.Component<PuzzleWindowProps> {
       <img
         className="puzzle-window-puzzle-piece"
         key={index}
-        src={`assets/ui/puzzle-window/puzzle-${index}.png`}
+        src={puzzleImages[index]}
       />
     );
   }
