@@ -6,7 +6,7 @@ import { changeMovementSpeed, changeVolume, MovementSpeed, SoundVolume } from "h
 
 import "./GameOptions.scss";
 
-import { CanterImage, GallopImage, JumpImage, TrotImage, WalkImage } from "./movement-speed";
+import { movementSpeedImages } from "./movement-speed";
 
 import { GameButton } from "../GameButton";
 import { GameSwitch } from "../GameSwitch";
@@ -207,17 +207,9 @@ export class GameOptions extends React.Component<GameOptionsProps> {
   }
 
   private renderMovementSpeed(value: MovementSpeed) {
-    const images = {
-      [MovementSpeed.Canter]: CanterImage,
-      [MovementSpeed.Gallop]: GallopImage,
-      [MovementSpeed.Jump]: JumpImage,
-      [MovementSpeed.Trot]: TrotImage,
-      [MovementSpeed.Walk]: WalkImage,
-    };
-
     return (
       <img
-        src={images[value]}
+        src={movementSpeedImages[value]}
         onClick={this.onMovementSpeedChange}
       />
     );

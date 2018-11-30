@@ -1,8 +1,6 @@
 import * as React from "react";
 
-import BadImage = require("./luck-bad.png");
-import GoodImage = require("./luck-good.png");
-import NeturalImage = require("./luck-neutral.png");
+import { luckImages } from "./luck";
 
 // TODO: is bad luck even possible?
 export interface LuckIconProps {
@@ -12,15 +10,9 @@ export interface LuckIconProps {
 
 export class LuckIcon extends React.Component<LuckIconProps> {
   public render() {
-    const images = {
-      bad: BadImage,
-      good: GoodImage,
-      neutral: NeturalImage,
-    };
-
     return (
       <img
-        src={images[this.props.type]}
+        src={luckImages[this.props.type]}
         onClick={this.props.onClick}
       />
     );

@@ -1,14 +1,9 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Skill } from "heroes-homm1";
-
 import "./SkillInfo.scss";
 
-import AttackSkillImage = require("./attack-skill.jpg");
-import DefenseSkillImage = require("./defense-skill.jpg");
-import KnowledgeImage = require("./knowledge.jpg");
-import SpellPowerImage = require("./spell-power.jpg");
+import { skillImages } from "./skill";
 
 import { GameText } from "../../GameText";
 import { getSkillNameMessage } from "../../messages";
@@ -44,16 +39,9 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
   }
 
   private renderBackground(skill: string) {
-    const images: { [index: string]: string } = {
-      [Skill.AttackSkill]: AttackSkillImage,
-      [Skill.DefenseSkill]: DefenseSkillImage,
-      [Skill.Knowledge]: KnowledgeImage,
-      [Skill.SpellPower]: SpellPowerImage,
-    };
-
     return (
       <img
-        src={images[skill]}
+        src={skillImages[skill]}
       />
     );
   }
