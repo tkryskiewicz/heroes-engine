@@ -2,36 +2,42 @@ import * as React from "react";
 
 import "./ArtifactSlot.scss";
 
+import BackgroundImage = require("./background.jpg");
+
 import { ArtifactIcon } from "../../ArtifactIcon";
+import { Slot } from "../Slot";
 
 export interface ArtifactSlotProps {
   index: number;
   artifact?: string;
-  selected?: boolean;
+  selected: boolean;
   onClick: (index: number) => void;
 }
 
 export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
-  public static defaultProps: Pick<ArtifactSlotProps, "onClick"> = {
+  public static defaultProps: Pick<ArtifactSlotProps, "selected" | "onClick"> = {
     onClick: () => undefined,
+    selected: false,
   };
 
   public render() {
     return (
-      <div
-        className="artifact-slot"
-        onClick={this.onClick}
+      <Slot
+        index={this.props.index}
+        selected={this.props.selected}
+        onClick={this.props.onClick}
       >
-        {this.renderBackground()}
-        {this.props.artifact && this.renderArtifact(this.props.artifact)}
-        {this.props.selected && this.renderSelection()}
-      </div>
+        <div className="artifact-slot">
+          {this.renderBackground()}
+          {this.props.artifact && this.renderArtifact(this.props.artifact)}
+        </div>
+      </Slot>
     );
   }
 
   private renderBackground() {
     return (
-      <img src="assets/ui/hero-trading-window/artifact-background.jpg" />
+      <img src={BackgroundImage} />
     );
   }
 
@@ -44,18 +50,5 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
         />
       </div>
     );
-  }
-
-  private renderSelection() {
-    return (
-      <img
-        className="artifact-slot-selection"
-        src="assets/ui/hero-trading-window/selection.png"
-      />
-    );
-  }
-
-  private onClick = () => {
-    this.props.onClick(this.props.index);
   }
 }

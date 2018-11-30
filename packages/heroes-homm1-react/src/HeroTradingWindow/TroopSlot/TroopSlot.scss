@@ -1,5 +1,4 @@
 .troop-slot {
-  display: inline-block;
   position: relative;
 
   &-troop {
@@ -10,11 +9,5 @@
 
   &-count {
     text-align: center;
-  }
-
-  &-selection {
-    left: 0px;
-    position: absolute;
-    top: 0px;
   }
 }

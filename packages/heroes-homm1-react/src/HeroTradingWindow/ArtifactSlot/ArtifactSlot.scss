@@ -1,16 +1,9 @@
 .artifact-slot {
-  display: inline-block;
   position: relative;
 
   &-artifact {
     left: 1px;
     position: absolute;
     top: 1px;
-  }
-
-  &-selection {
-    left: 0px;
-    position: absolute;
-    top: 0px;
   }
 }

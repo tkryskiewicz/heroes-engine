@@ -4,8 +4,11 @@ import { Troop } from "heroes-core";
 
 import "./TroopSlot.scss";
 
+import BackgroundImage = require("./background.jpg");
+
 import { CreatureIcon } from "../../CreatureIcon";
 import { GameText } from "../../GameText";
+import { Slot } from "../Slot";
 
 export interface TroopSlotProps {
   index: number;
@@ -22,21 +25,23 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
 
   public render() {
     return (
-      <div
-        className="troop-slot"
-        onClick={this.onClick}
+      <Slot
+        index={this.props.index}
+        selected={this.props.selected}
+        onClick={this.props.onClick}
       >
-        {this.renderBackground()}
-        {this.props.troop && this.renderTroop(this.props.troop)}
-        {this.props.troop && this.renderCount(this.props.troop.count)}
-        {this.props.selected && this.renderSelection()}
-      </div>
+        <div className="troop-slot">
+          {this.renderBackground()}
+          {this.props.troop && this.renderTroop(this.props.troop)}
+          {this.props.troop && this.renderCount(this.props.troop.count)}
+        </div>
+      </Slot>
     );
   }
 
   private renderBackground() {
     return (
-      <img src="assets/ui/hero-trading-window/troop-background.jpg" />
+      <img src={BackgroundImage} />
     );
   }
 
@@ -59,18 +64,5 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
         </GameText>
       </div>
     );
-  }
-
-  private renderSelection() {
-    return (
-      <img
-        className="troop-slot-selection"
-        src="assets/ui/hero-trading-window/selection.png"
-      />
-    );
-  }
-
-  private onClick = () => {
-    this.props.onClick(this.props.index);
   }
 }

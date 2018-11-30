@@ -1,0 +1,12 @@
+.slot {
+  display: inline-block;
+  position: relative;
+  width: 34px;
+  height: 34px;
+
+  &-selection {
+    left: 0px;
+    position: absolute;
+    top: 0px;
+  }
+}
