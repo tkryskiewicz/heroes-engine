@@ -6,7 +6,7 @@ import { StructureId } from "heroes-homm1";
 
 import "./TavernWindow.scss";
 
-import AnimationImage = require("./animation.jpg");
+import { AnimationImage } from "./assets";
 
 import { GameButton } from "../GameButton";
 import { GameModal } from "../GameModal";

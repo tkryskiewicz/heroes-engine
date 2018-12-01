@@ -4,8 +4,7 @@ import { GameDifficulty } from "heroes-homm1";
 
 import "./GameDifficultyBox.scss";
 
-import { difficultyImages } from "./gameDifficulty";
-import SelectionImage = require("./selection.png");
+import { difficultyImages, SelectionImage } from "./assets";
 
 export interface GameDifficultyBoxProps {
   value: GameDifficulty;

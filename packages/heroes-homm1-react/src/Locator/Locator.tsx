@@ -2,8 +2,7 @@ import * as React from "react";
 
 import "./Locator.scss";
 
-import { backgroundImages } from "./background";
-import SelectionImage = require("./selection.png");
+import { backgroundImages, SelectionImage } from "./assets";
 
 export interface LocatorProps {
   index: number;

@@ -3,7 +3,7 @@ import * as React from "react";
 
 import "./ViewWindow.scss";
 
-import { legendImages } from "./legend";
+import { legendImages } from "./assets";
 
 import { GameButton } from "../GameButton";
 
