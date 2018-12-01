@@ -3,7 +3,7 @@ import * as React from "react";
 
 import "./CampaignScenarioInfoWindow.scss";
 
-import { scenarioNumberImages } from "./scenarioNumber";
+import { scenarioNumberImages } from "./assets";
 
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";

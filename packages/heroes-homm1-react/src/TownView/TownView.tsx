@@ -276,7 +276,7 @@ export class TownView extends React.Component<TownViewProps> {
     const { town } = this.props;
 
     const style: React.CSSProperties = {
-      background: `url('assets/towns/${town.id}/background.jpg')`,
+      background: `url("assets/towns/${town.id}/background.jpg")`,
       height: 256,
       width: 640,
     };
