@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 
 import { Army } from "heroes-core";
 
-import AnimationImage = require("./animation.jpg");
+import { AnimationImage } from "./assets";
 
 import { CombatSummaryWindow } from "../CombatSummaryWindow";
 import { GameButton } from "../GameButton";

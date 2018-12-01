@@ -2,7 +2,7 @@ import * as React from "react";
 
 import "./ArtifactSlot.scss";
 
-import BackgroundImage = require("./background.jpg");
+import { BackgroundImage } from "./assets";
 
 import { ArtifactIcon } from "../../ArtifactIcon";
 import { Slot } from "../Slot";

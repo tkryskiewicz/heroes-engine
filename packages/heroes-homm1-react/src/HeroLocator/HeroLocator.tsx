@@ -2,8 +2,7 @@ import * as React from "react";
 
 import "./HeroLocator.scss";
 
-import BackgroundImage = require("./hero-locator-background.png");
-import { mobilityImages } from "./mobility";
+import { BackgroundImage, mobilityImages } from "./assets";
 
 import { Locator } from "../Locator";
 

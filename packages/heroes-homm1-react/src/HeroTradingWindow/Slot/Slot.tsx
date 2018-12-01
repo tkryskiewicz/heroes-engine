@@ -2,7 +2,7 @@ import * as React from "react";
 
 import "./Slot.scss";
 
-import SelectionImage = require("./selection.png");
+import { SelectionImage } from "./assets";
 
 export interface SlotProps {
   index: number;

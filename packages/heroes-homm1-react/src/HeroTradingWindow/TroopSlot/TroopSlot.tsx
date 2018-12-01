@@ -4,7 +4,7 @@ import { Troop } from "heroes-core";
 
 import "./TroopSlot.scss";
 
-import BackgroundImage = require("./background.jpg");
+import { BackgroundImage } from "./assets";
 
 import { CreatureIcon } from "../../CreatureIcon";
 import { GameText } from "../../GameText";
