@@ -6,7 +6,7 @@ import { Army } from "heroes-core";
 
 import "./CombatLostWindow.scss";
 
-import AnimationImage = require("./animation.png");
+import { AnimationImage } from "./assets";
 
 import { CombatSummaryWindow } from "../CombatSummaryWindow";
 import { GameButton } from "../GameButton";
