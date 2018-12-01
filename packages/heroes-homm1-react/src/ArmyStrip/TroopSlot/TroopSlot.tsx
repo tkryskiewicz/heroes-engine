@@ -2,8 +2,7 @@ import * as React from "react";
 
 import "./TroopSlot.scss";
 
-import EmptyImage = require("./empty.jpg");
-import SelectionImage = require("./selection.png");
+import { EmptyImage, SelectionImage } from "./assets";
 
 import { CreatureIcon } from "../../CreatureIcon";
 import { GameText } from "../../GameText";
