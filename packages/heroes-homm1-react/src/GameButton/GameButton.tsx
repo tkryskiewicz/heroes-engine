@@ -2,6 +2,8 @@ import * as React from "react";
 
 import "./GameButton.scss";
 
+import { buttonImages } from "./assets";
+
 type SystemButtonType =
   "yes" |
   "no" |
@@ -183,8 +185,10 @@ export class GameButton extends React.Component<GameButtonProps, GameButtonState
   }
 
   private renderImage(group: GameButtonGroup, type: GameButtonType, enabled: boolean) {
+    const images = buttonImages[group][type];
+
     return (
-      <img src={`assets/buttons/${group}/${type}/${enabled ? "enabled" : "disabled"}.png`} />
+      <img src={enabled ? images.enabled : images.disabled} />
     );
   }
 
