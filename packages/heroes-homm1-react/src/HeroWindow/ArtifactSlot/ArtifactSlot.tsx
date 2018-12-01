@@ -2,9 +2,7 @@ import * as React from "react";
 
 import "./ArtifactSlot.scss";
 
-import BorderImage = require("./artifact-slot-border.png");
-import EmptyImage = require("./artifact-slot-empty.jpg");
-import UltimateBorderImage = require("./artifact-ultimate-slot-border.png");
+import { BorderImage, EmptyImage, UltimateBorderImage } from "./assets";
 
 import { ArtifactIcon } from "../../ArtifactIcon";
 

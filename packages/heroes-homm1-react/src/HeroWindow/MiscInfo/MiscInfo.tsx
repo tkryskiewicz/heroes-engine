@@ -3,8 +3,7 @@ import * as React from "react";
 
 import "./MiscInfo.scss";
 
-import BackgroundImage = require("./background.jpg");
-import ExperienceImage = require("./experience.png");
+import { BackgroundImage, ExperienceImage } from "./assets";
 
 import { GameText } from "../../GameText";
 import { LuckIcon } from "../LuckIcon";

@@ -12,12 +12,7 @@ import {
 
 import "./HighScoresWindow.scss";
 
-import DaysImage = require("./days.jpg");
-import LandImage = require("./land.jpg");
-import LeaderImage = require("./leader.jpg");
-import PlayerImage = require("./player.jpg");
-import ScoreImage = require("./score.jpg");
-import TitleImage = require("./title.jpg");
+import { DaysImage, LandImage, LeaderImage, PlayerImage, ScoreImage, TitleImage } from "./assets";
 
 import { CreatureIcon } from "../CreatureIcon";
 import { GameButton } from "../GameButton";
