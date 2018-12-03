@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { buttonImages } from "./assets";
 
-import { GameButton, GameButtonGroup, GameButtonType } from "./GameButton";
+import { GameButton } from "./GameButton";
 
 const groupOptions = Object.keys(buttonImages).reduce<{ [group: string]: string }>((p, c) => {
   p[c] = c;
@@ -15,20 +15,20 @@ const groupOptions = Object.keys(buttonImages).reduce<{ [group: string]: string 
 
 storiesOf(GameButton.name, module)
   .add("default", () => {
-    const group: GameButtonGroup = select("Group", groupOptions, "system");
+    const group = select("Group", groupOptions, "system");
 
-    const typeOptions = Object.keys(buttonImages[group]).reduce<{ [type: string]: GameButtonType }>((p, c) => {
-      p[c] = c as any; // FIXME: ???
+    const typeOptions = Object.keys(buttonImages[group]).reduce<{ [type: string]: string }>((p, c) => {
+      p[c] = c;
 
       return p;
     }, {});
 
-    const type: GameButtonType = select("Type", typeOptions, typeOptions[Object.keys(typeOptions)[0]]);
+    const type = select("Type", typeOptions, typeOptions[Object.keys(typeOptions)[0]]);
 
     return (
       <GameButton
         group={group}
-        type={type}
+        type={type as any}
         disabled={boolean("Disabled", false)}
         onClick={action("Click")}
       />
