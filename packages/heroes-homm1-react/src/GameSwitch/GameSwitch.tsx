@@ -2,10 +2,12 @@ import * as React from "react";
 
 import "./GameSwitch.scss";
 
+import { switchImages } from "./assets";
+
 type GameOptionSwitchType =
-  "music" |
-  "effects" |
   "auto-save" |
+  "effects" |
+  "music" |
   "show-path" |
   "view-enemy-movement";
 
@@ -38,13 +40,13 @@ export class GameSwitch extends React.Component<GameSwitchProps> {
 
   private renderChecked(type: string) {
     return (
-      <img src={`assets/switches/${type}/checked.jpg`} />
+      <img src={switchImages[type].checked} />
     );
   }
 
   private renderUnchecked(type: string) {
     return (
-      <img src={`assets/switches/${type}/unchecked.jpg`} />
+      <img src={switchImages[type].unchecked} />
     );
   }
 
