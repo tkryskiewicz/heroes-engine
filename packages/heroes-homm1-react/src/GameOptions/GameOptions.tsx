@@ -6,7 +6,7 @@ import { changeMovementSpeed, changeVolume, MovementSpeed, SoundVolume } from "h
 
 import "./GameOptions.scss";
 
-import { movementSpeedImages } from "./movement-speed";
+import { movementSpeedImages } from "./assets";
 
 import { GameButton } from "../GameButton";
 import { GameSwitch } from "../GameSwitch";

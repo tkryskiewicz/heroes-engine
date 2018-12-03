@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 import "./SkillInfo.scss";
 
-import { skillImages } from "./skill";
+import { skillImages } from "./assets";
 
 import { GameText } from "../../GameText";
 import { getSkillNameMessage } from "../../messages";

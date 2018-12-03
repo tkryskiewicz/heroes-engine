@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { changeOpponentSetting, OpponentSetting } from "heroes-homm1";
 
-import { opponentSettingImages } from "./opponentSetting";
+import { opponentSettingImages } from "./assets";
 
 export interface OpponentSettingBoxProps {
   index: number;

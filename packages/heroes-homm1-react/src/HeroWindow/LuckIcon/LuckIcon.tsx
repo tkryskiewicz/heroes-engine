@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { luckImages } from "./luck";
+import { luckImages } from "./assets";
 
 // TODO: is bad luck even possible?
 export interface LuckIconProps {

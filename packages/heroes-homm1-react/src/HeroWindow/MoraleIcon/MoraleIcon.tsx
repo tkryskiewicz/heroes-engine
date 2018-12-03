@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { moraleImages } from "./morale";
+import { moraleImages } from "./assets";
 
 export interface MoraleIconProps {
   type: "good" | "neutral" | "bad";

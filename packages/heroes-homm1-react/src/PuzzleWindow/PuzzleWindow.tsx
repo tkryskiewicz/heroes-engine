@@ -4,7 +4,7 @@ import { PuzzlePieceCount } from "heroes-homm1";
 
 import "./PuzzleWindow.scss";
 
-import { puzzleImages } from "./puzzle";
+import { puzzleImages } from "./assets";
 
 import { ViewWindow } from "../ViewWindow";
 

@@ -1,0 +1,1 @@
+export { skillImages } from "./skill";
