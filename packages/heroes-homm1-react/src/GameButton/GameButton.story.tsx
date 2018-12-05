@@ -30,6 +30,8 @@ storiesOf(GameButton.name, module)
         group={group}
         type={type as any}
         disabled={boolean("Disabled", false)}
+        onMouseEnter={action("Mouse Enter")}
+        onMouseLeave={action("Mouse Leave")}
         onClick={action("Click")}
       />
     );

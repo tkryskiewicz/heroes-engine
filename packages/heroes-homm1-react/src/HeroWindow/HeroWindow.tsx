@@ -13,6 +13,7 @@ import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
 import {
+  getHeroClassTitleMessage,
   getHeroNameMessage,
   getLuckNameMessage,
   getMoraleNameMessage,
@@ -88,7 +89,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
       <div className="hero-window">
         <div className="hero-window-name">
           <GameText size="large">
-            <FormattedMessage {...getHeroNameMessage(hero.id)} />
+            {this.getHeroTitle()}
           </GameText>
         </div>
         <div className="hero-window-portrait">
@@ -119,6 +120,8 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           <GameButton
             group="hero-window"
             type="dismiss"
+            onMouseEnter={this.onDismissMouseEnter}
+            onMouseLeave={this.onDismissMouseLeave}
             onClick={this.props.onDismissHeroClick}
           />
           {this.props.dismissHeroPromptVisible && this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
@@ -128,6 +131,8 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           <GameButton
             group="hero-window"
             type="exit"
+            onMouseEnter={this.onExitMouseEnter}
+            onMouseLeave={this.onExitMouseLeave}
             onClick={this.props.onExitClick}
           />
         </div>
@@ -144,6 +149,16 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     const statusText = this.props.intl.formatMessage(messages.statInfo, { statName });
 
     this.onStatusTextChange(statusText);
+  }
+
+  private getHeroTitle() {
+    const { formatMessage } = this.props.intl;
+
+    const heroName = formatMessage(getHeroNameMessage(this.props.hero.id));
+
+    const heroTitle = formatMessage(getHeroClassTitleMessage(this.props.hero.heroClass), { heroName });
+
+    return heroTitle;
   }
 
   private renderSkills(skills: HeroSkills) {
@@ -289,6 +304,18 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     );
   }
 
+  private onDismissMouseEnter = () => {
+    const heroTitle = this.getHeroTitle();
+
+    const statusText = this.props.intl.formatMessage(messages.dismiss, { heroName: heroTitle });
+
+    this.onStatusTextChange(statusText);
+  }
+
+  private onDismissMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
   private renderDismissHeroPrompt(visible: boolean) {
     return (
       <Modal
@@ -326,6 +353,16 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
   private onDismissHero = () => {
     this.props.onConfirmDismissHeroClick(this.props.hero.id);
+  }
+
+  private onExitMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(messages.exit);
+
+    this.onStatusTextChange(statusText);
+  }
+
+  private onExitMouseLeave = () => {
+    this.setDefaultStatusText();
   }
 
   private onStatusTextChange(text: string) {

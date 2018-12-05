@@ -8,6 +8,8 @@ export interface GameButtonPropsBase {
   group: string;
   type: string;
   disabled: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
   onClick: () => void;
 }
 
@@ -138,9 +140,11 @@ interface GameButtonState {
 }
 
 export class GameButton extends React.Component<GameButtonProps, GameButtonState> {
-  public static defaultProps: Pick<GameButtonProps, "disabled" | "onClick"> = {
+  public static defaultProps: Pick<GameButtonProps, "disabled" | "onClick" | "onMouseEnter" | "onMouseLeave"> = {
     disabled: false,
     onClick: () => undefined,
+    onMouseEnter: () => undefined,
+    onMouseLeave: () => undefined,
   };
 
   public state: GameButtonState = {
@@ -156,6 +160,8 @@ export class GameButton extends React.Component<GameButtonProps, GameButtonState
       <button
         className="game-button"
         disabled={this.props.disabled}
+        onMouseEnter={this.props.onMouseEnter}
+        onMouseLeave={this.props.onMouseLeave}
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseUp}
         onClick={this.props.onClick}

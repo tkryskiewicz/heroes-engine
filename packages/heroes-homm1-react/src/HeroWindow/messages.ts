@@ -5,9 +5,17 @@ export const messages = defineMessages({
     defaultMessage: "Hero Screen",
     id: "ui.heroWindow.defaultStatusText",
   },
+  dismiss: {
+    defaultMessage: "Dismiss {heroName}",
+    id: "ui.heroWindow.dismiss",
+  },
   dismissHeroMessage: {
     defaultMessage: "Are you sure you want to dismiss this Hero?",
     id: "ui.heroWindow.dismiss.message",
+  },
+  exit: {
+    defaultMessage: "Exit Hero Screen",
+    id: "ui.heroWindow.exit",
   },
   experience: {
     defaultMessage: "Experience",
