@@ -12,6 +12,7 @@ import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
+import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
   getHeroClassTitleMessage,
   getHeroNameMessage,
@@ -103,6 +104,8 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           <Crest
             alignment={hero.alignment}
             heroClass={hero.heroClass}
+            onMouseEnter={this.onCrestMouseEnter}
+            onMouseLeave={this.onCrestMouseLeave}
             onClick={this.props.onCrestClick}
           />
         </div>
@@ -263,6 +266,16 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
   private onExperienceMouseLeave = () => {
     this.onMiscInfoMouseEnter();
+  }
+
+  private onCrestMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(kingdomOverviewWindowMessages.title);
+
+    this.onStatusTextChange(statusText);
+  }
+
+  private onCrestMouseLeave = () => {
+    this.setDefaultStatusText();
   }
 
   private onSwapTroops = (index: number, withIndex: number) => {
