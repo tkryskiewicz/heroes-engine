@@ -17,18 +17,24 @@ export interface TroopSlotProps {
   index: number;
   troop?: Troop;
   selected?: boolean;
+  onMouseEnter: (index: number) => void;
+  onMouseLeave: (index: number) => void;
   onClick: (index: number) => void;
 }
 
 export class TroopSlot extends React.Component<TroopSlotProps> {
-  public static defaultProps: Pick<TroopSlotProps, "onClick"> = {
+  public static defaultProps: Pick<TroopSlotProps, "onMouseEnter" | "onMouseLeave" | "onClick"> = {
     onClick: () => undefined,
+    onMouseEnter: () => undefined,
+    onMouseLeave: () => undefined,
   };
 
   public render() {
     return (
       <div
         className="troop-slot"
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
       >
         {this.props.troop ? this.renderTroop(this.props.troop) : this.renderEmpty()}
@@ -87,6 +93,14 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
         src={SelectionImage}
       />
     );
+  }
+
+  private onMouseEnter = () => {
+    this.props.onMouseEnter(this.props.index);
+  }
+
+  private onMouseLeave = () => {
+    this.props.onMouseLeave(this.props.index);
   }
 
   private onClick = () => {

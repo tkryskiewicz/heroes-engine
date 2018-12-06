@@ -22,6 +22,8 @@ storiesOf(`${ArmyStrip.name}/${TroopSlot.name}`, module)
         index={number("Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
         troop={troop}
         selected={boolean("Selected", false)}
+        onMouseEnter={action("Mouse Enter")}
+        onMouseLeave={action("Mouse Leave")}
         onClick={action("Click")}
       />
     );
@@ -30,6 +32,8 @@ storiesOf(`${ArmyStrip.name}/${TroopSlot.name}`, module)
     <TroopSlot
       index={number("Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
       selected={boolean("Selected", false)}
+      onMouseEnter={action("Mouse Enter")}
+      onMouseLeave={action("Mouse Leave")}
       onClick={action("Click")}
     />
   ));

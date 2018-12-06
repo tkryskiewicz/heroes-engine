@@ -20,6 +20,8 @@ storiesOf(ArmyStrip.name, module)
     return (
       <ArmyStrip
         army={army}
+        onTroopMouseEnter={action("Troop Mouse Enter")}
+        onTroopMouseLeave={action("Troop Mouse Leave")}
         selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
         onSelectTroop={action("Select Troop")}
         onSelectedTroopClick={action("Selected Troop Click")}
@@ -30,6 +32,8 @@ storiesOf(ArmyStrip.name, module)
   .add("empty", () => (
     <ArmyStrip
       army={[]}
+      onTroopMouseEnter={action("Troop Mouse Enter")}
+      onTroopMouseLeave={action("Troop Mouse Leave")}
       selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
       onSelectTroop={action("Select Troop")}
       onSelectedTroopClick={action("Selected Troop Click")}

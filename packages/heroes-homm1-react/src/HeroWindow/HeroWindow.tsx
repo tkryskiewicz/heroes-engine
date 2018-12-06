@@ -7,13 +7,14 @@ import { ArtifactLimit, SkillIds } from "heroes-homm1";
 
 import "./HeroWindow.scss";
 
-import { ArmyStrip } from "../ArmyStrip";
+import { ArmyStrip, armyStripMessages } from "../ArmyStrip";
 import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
+  getCreatureNameMessage,
   getHeroClassTitleMessage,
   getHeroNameMessage,
   getLuckNameMessage,
@@ -80,11 +81,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   }
 
   public render() {
-    const { hero } = this.props;
-
-    const selectedTroop = this.props.selectedTroopIndex ?
-      hero.army[this.props.selectedTroopIndex] :
-      undefined;
+    const { hero, selectedTroopIndex } = this.props;
 
     return (
       <div className="hero-window">
@@ -109,16 +106,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
             onClick={this.props.onCrestClick}
           />
         </div>
-        <div className="hero-window-army">
-          <ArmyStrip
-            army={hero.army}
-            selectedTroopIndex={this.props.selectedTroopIndex}
-            onSelectTroop={this.props.onSelectTroop}
-            onSelectedTroopClick={this.props.onSelectedTroopClick}
-            onSwapTroops={this.onSwapTroops}
-          />
-          {selectedTroop && this.props.troopDetailsVisible && this.renderTroopDetails(selectedTroop)}
-        </div>
+        {this.renderArmy(hero, selectedTroopIndex)}
         <div className="hero-window-dismiss">
           <GameButton
             group="hero-window"
@@ -275,6 +263,47 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   }
 
   private onCrestMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
+  private renderArmy(hero: Hero, selectedTroopIndex?: number) {
+    const selectedTroop = selectedTroopIndex ?
+      hero.army[selectedTroopIndex] :
+      undefined;
+
+    return (
+      <div className="hero-window-army">
+        <ArmyStrip
+          army={hero.army}
+          onTroopMouseEnter={this.onTroopMouseEnter}
+          onTroopMouseLeave={this.onTroopMouseLeave}
+          selectedTroopIndex={this.props.selectedTroopIndex}
+          onSelectTroop={this.props.onSelectTroop}
+          onSelectedTroopClick={this.props.onSelectedTroopClick}
+          onSwapTroops={this.onSwapTroops}
+        />
+        {selectedTroop && this.props.troopDetailsVisible && this.renderTroopDetails(selectedTroop)}
+      </div>
+    );
+  }
+
+  private onTroopMouseEnter = (index: number) => {
+    const { formatMessage } = this.props.intl;
+
+    const troop = this.props.hero.army[index];
+
+    let statusText = formatMessage(armyStripMessages.slotEmpty);
+
+    if (troop) {
+      const creatureName = formatMessage(getCreatureNameMessage(troop.creature));
+
+      statusText = formatMessage(armyStripMessages.selectSlot, { creatureName });
+    }
+
+    this.onStatusTextChange(statusText);
+  }
+
+  private onTroopMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
