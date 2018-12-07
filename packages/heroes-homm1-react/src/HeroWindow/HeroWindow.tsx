@@ -26,7 +26,7 @@ import {
 import { TroopWindow } from "../TroopWindow";
 import { ArtifactSlot } from "./ArtifactSlot";
 import { messages } from "./messages";
-import { MiscInfo } from "./MiscInfo";
+import { MiscInfo, MiscInfoType } from "./MiscInfo";
 import { SkillInfo } from "./SkillInfo";
 
 export interface HeroWindowProps {
@@ -235,20 +235,20 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   }
 
   private renderMiscInfo(hero: Hero) {
+    const values = {
+      [MiscInfoType.Morale]: hero.morale,
+      [MiscInfoType.Luck]: hero.luck,
+      [MiscInfoType.Experience]: hero.experience,
+    };
+
     return (
       <div className="hero-window-misc-info">
         <MiscInfo
+          values={values}
           onMouseEnter={this.onMiscInfoMouseEnter}
           onMouseLeave={this.onMiscInfoMouseLeave}
-          morale={hero.morale}
-          onMoraleMouseEnter={this.onMoraleMouseEnter}
-          onMoraleMouseLeave={this.onMoraleMouseLeave}
-          luck={hero.luck}
-          onLuckMouseEnter={this.onLuckMouseEnter}
-          onLuckMouseLeave={this.onLuckMouseLeave}
-          onExperienceMouseEnter={this.onExperienceMouseEnter}
-          onExperienceMouseLeave={this.onExperienceMouseLeave}
-          experience={hero.experience}
+          onInfoMouseEnter={this.onInfoMouseEnter}
+          onInfoMouseLeave={this.onInfoMouseLeave}
         />
       </div>
     );
@@ -264,33 +264,25 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     this.setDefaultStatusText();
   }
 
-  private onMoraleMouseEnter = () => {
-    const moraleText = this.props.intl.formatMessage(getMoraleNameMessage(this.props.hero.morale));
+  private onInfoMouseEnter = (type: MiscInfoType) => {
+    let infoText = "";
 
-    this.setStatInfoStatusText(moraleText);
+    switch (type) {
+      case MiscInfoType.Morale:
+        infoText = this.props.intl.formatMessage(getMoraleNameMessage(this.props.hero.morale));
+        break;
+      case MiscInfoType.Luck:
+        infoText = this.props.intl.formatMessage(getLuckNameMessage(this.props.hero.luck));
+        break;
+      case MiscInfoType.Experience:
+        infoText = this.props.intl.formatMessage(messages.experience);
+        break;
+    }
+
+    this.setStatInfoStatusText(infoText);
   }
 
-  private onMoraleMouseLeave = () => {
-    this.onMiscInfoMouseEnter();
-  }
-
-  private onLuckMouseEnter = () => {
-    const luckText = this.props.intl.formatMessage(getLuckNameMessage(this.props.hero.luck));
-
-    this.setStatInfoStatusText(luckText);
-  }
-
-  private onLuckMouseLeave = () => {
-    this.onMiscInfoMouseEnter();
-  }
-
-  private onExperienceMouseEnter = () => {
-    const experienceText = this.props.intl.formatMessage(messages.experience);
-
-    this.setStatInfoStatusText(experienceText);
-  }
-
-  private onExperienceMouseLeave = () => {
+  private onInfoMouseLeave = () => {
     this.onMiscInfoMouseEnter();
   }
 

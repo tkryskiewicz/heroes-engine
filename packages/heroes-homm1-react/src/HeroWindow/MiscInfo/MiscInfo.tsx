@@ -9,38 +9,34 @@ import { GameText } from "../../GameText";
 import { LuckIcon } from "../LuckIcon";
 import { MoraleIcon } from "../MoraleIcon";
 
+export enum MiscInfoType {
+  Morale = "morale",
+  Luck = "luck",
+  Experience = "experience",
+}
+
 export interface MiscInfoProps {
+  values: {
+    [MiscInfoType.Morale]: number;
+    [MiscInfoType.Luck]: number;
+    [MiscInfoType.Experience]: number;
+  };
   onMouseEnter: () => void;
   onMouseLeave: () => void;
-  morale: number;
-  onMoraleMouseEnter: () => void;
-  onMoraleMouseLeave: () => void;
-  luck: number;
-  onLuckMouseEnter: () => void;
-  onLuckMouseLeave: () => void;
-  experience: number;
-  onExperienceMouseEnter: () => void;
-  onExperienceMouseLeave: () => void;
+  onInfoMouseEnter: (type: MiscInfoType) => void;
+  onInfoMouseLeave: (type: MiscInfoType) => void;
 }
 
 type DefaultProp =
   "onMouseEnter" |
   "onMouseLeave" |
-  "onMoraleMouseEnter" |
-  "onMoraleMouseLeave" |
-  "onLuckMouseEnter" |
-  "onLuckMouseLeave" |
-  "onExperienceMouseEnter" |
-  "onExperienceMouseLeave";
+  "onInfoMouseEnter" |
+  "onInfoMouseLeave";
 
 export class MiscInfo extends React.Component<MiscInfoProps> {
   public static defaultProps: Pick<MiscInfoProps, DefaultProp> = {
-    onExperienceMouseEnter: () => undefined,
-    onExperienceMouseLeave: () => undefined,
-    onLuckMouseEnter: () => undefined,
-    onLuckMouseLeave: () => undefined,
-    onMoraleMouseEnter: () => undefined,
-    onMoraleMouseLeave: () => undefined,
+    onInfoMouseEnter: () => undefined,
+    onInfoMouseLeave: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,
   };
@@ -53,9 +49,9 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
         onMouseLeave={this.props.onMouseLeave}
       >
         {this.renderBackground()}
-        {this.renderMorale(this.props.morale)}
-        {this.renderLuck(this.props.luck)}
-        {this.renderExperience(this.props.experience)}
+        {this.renderMorale(this.props.values[MiscInfoType.Morale || 0])}
+        {this.renderLuck(this.props.values[MiscInfoType.Luck] || 0)}
+        {this.renderExperience(this.props.values[MiscInfoType.Experience] || 0)}
       </div>
     );
   }
@@ -84,12 +80,20 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
     return (
       <div
         className="misc-info-morale"
-        onMouseEnter={this.props.onMoraleMouseEnter}
-        onMouseLeave={this.props.onMoraleMouseLeave}
+        onMouseEnter={this.onMoraleMouseEnter}
+        onMouseLeave={this.onMoraleMouseLeave}
       >
         {content}
       </div>
     );
+  }
+
+  private onMoraleMouseEnter = () => {
+    this.props.onInfoMouseEnter(MiscInfoType.Morale);
+  }
+
+  private onMoraleMouseLeave = () => {
+    this.props.onInfoMouseLeave(MiscInfoType.Morale);
   }
 
   private renderLuck(luck: number) {
@@ -107,20 +111,28 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
     return (
       <div
         className="misc-info-luck"
-        onMouseEnter={this.props.onLuckMouseEnter}
-        onMouseLeave={this.props.onLuckMouseLeave}
+        onMouseEnter={this.onLuckMouseEnter}
+        onMouseLeave={this.onLuckMouseLeave}
       >
         {content}
       </div>
     );
   }
 
+  private onLuckMouseEnter = () => {
+    this.props.onInfoMouseEnter(MiscInfoType.Luck);
+  }
+
+  private onLuckMouseLeave = () => {
+    this.props.onInfoMouseLeave(MiscInfoType.Luck);
+  }
+
   private renderExperience(experience: number) {
     return (
       <Row
         className="misc-info-experience"
-        onMouseEnter={this.props.onExperienceMouseEnter}
-        onMouseLeave={this.props.onExperienceMouseLeave}
+        onMouseEnter={this.onExperienceMouseEnter}
+        onMouseLeave={this.onExperienceMouseLeave}
       >
         <img src={ExperienceImage} />
         <div className="misc-info-experience-value">
@@ -130,5 +142,13 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
         </div>
       </Row>
     );
+  }
+
+  private onExperienceMouseEnter = () => {
+    this.props.onInfoMouseEnter(MiscInfoType.Experience);
+  }
+
+  private onExperienceMouseLeave = () => {
+    this.props.onInfoMouseLeave(MiscInfoType.Experience);
   }
 }

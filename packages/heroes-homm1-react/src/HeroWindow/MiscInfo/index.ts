@@ -1,1 +1,1 @@
-export { MiscInfo } from "./MiscInfo";
+export { MiscInfo, MiscInfoType } from "./MiscInfo";
