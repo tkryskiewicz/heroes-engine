@@ -10,6 +10,7 @@ import "./HeroWindow.scss";
 import { ArmyStrip, armyStripMessages } from "../ArmyStrip";
 import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
+import { GameModal } from "../GameModal";
 import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
@@ -30,6 +31,8 @@ import { SkillInfo } from "./SkillInfo";
 
 export interface HeroWindowProps {
   hero: Hero;
+  visibleSkillDetails?: string;
+  onVisibleSkillDetailsChange: (skill?: string) => void;
   onCrestClick: () => void;
   selectedTroopIndex?: number;
   onSelectTroop: (index: number) => void;
@@ -48,6 +51,7 @@ export interface HeroWindowProps {
 
 type DefaultProp =
   "onCrestClick" |
+  "onVisibleSkillDetailsChange" |
   "onSelectTroop" |
   "onSelectedTroopClick" |
   "onSwapTroops" |
@@ -73,6 +77,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     onSelectedTroopClick: () => undefined,
     onStatusTextChange: () => undefined,
     onSwapTroops: () => undefined,
+    onVisibleSkillDetailsChange: () => undefined,
     troopDetailsVisible: false,
   };
 
@@ -95,7 +100,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
             hero={hero.id}
           />
         </div>
-        {this.renderSkills(hero.skills)}
+        {this.renderSkills(hero.skills, this.props.visibleSkillDetails)}
         {this.renderMiscInfo(hero)}
         <div className="hero-window-crest">
           <Crest
@@ -152,12 +157,13 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     return heroTitle;
   }
 
-  private renderSkills(skills: HeroSkills) {
+  private renderSkills(skills: HeroSkills, visibleSkillDetails?: string) {
     const content = SkillIds.map((s) => this.renderSkill(s, skills[s] || 0));
 
     return (
       <div className="hero-window-skills">
         {content}
+        {visibleSkillDetails && this.renderSkillDetails(visibleSkillDetails)}
       </div>
     );
   }
@@ -190,10 +196,42 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   }
 
   private onSkillClick = (skill: string) => {
-    Modal.info({
-      content: <FormattedMessage {...getSkillDescriptionMessage(skill)} />,
-      title: <FormattedMessage {...getSkillNameMessage(skill)} />,
-    });
+    this.props.onVisibleSkillDetailsChange(skill);
+  }
+
+  private renderSkillDetails(skill: string) {
+    return (
+      <Modal
+        width="40%"
+        closable={false}
+        footer={null}
+        visible={true}
+      >
+        <GameModal size={2}>
+          <div style={{ textAlign: "center" }}>
+            <GameText size="large">
+              <FormattedMessage {...getSkillNameMessage(skill)} />
+            </GameText>
+            <br />
+            <br />
+            <GameText size="large">
+              <FormattedMessage {...getSkillDescriptionMessage(skill)} />
+            </GameText>
+            <br />
+            <br />
+            <GameButton
+              group="system"
+              type="okay"
+              onClick={this.onCloseSkillDetailsClick}
+            />
+          </div>
+        </GameModal>
+      </Modal>
+    );
+  }
+
+  private onCloseSkillDetailsClick = () => {
+    this.props.onVisibleSkillDetailsChange();
   }
 
   private renderMiscInfo(hero: Hero) {

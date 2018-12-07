@@ -6,7 +6,7 @@ import * as React from "react";
 import { Hero } from "heroes-core";
 import { Alignment, ArmySize, CreatureId, HeroClass, HeroId } from "heroes-homm1";
 
-import { alignmentOptions, heroClassOptions, heroOptions } from "../stories";
+import { alignmentOptions, heroClassOptions, heroOptions, skillOptions } from "../stories";
 import { HeroWindow } from "./HeroWindow";
 
 storiesOf("HeroWindow", module)
@@ -31,6 +31,8 @@ storiesOf("HeroWindow", module)
     return (
       <HeroWindow
         hero={hero}
+        visibleSkillDetails={select("Visible Skill Details", { None: "", ...skillOptions }, "")}
+        onVisibleSkillDetailsChange={action("Visible Skill Details Change")}
         onCrestClick={action("Crest Click")}
         selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
         onSelectTroop={action("Select Troop")}
