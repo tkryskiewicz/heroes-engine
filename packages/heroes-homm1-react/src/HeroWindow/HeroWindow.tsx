@@ -290,15 +290,43 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   private onTroopMouseEnter = (index: number) => {
     const { formatMessage } = this.props.intl;
 
+    const selectedTroop = this.props.selectedTroopIndex !== undefined &&
+      this.props.hero.army[this.props.selectedTroopIndex];
     const troop = this.props.hero.army[index];
 
-    let statusText = formatMessage(armyStripMessages.slotEmpty);
+    const selectedTroopName = selectedTroop && formatMessage(getCreatureNameMessage(selectedTroop.creature));
+    const troopName = troop && formatMessage(getCreatureNameMessage(troop.creature));
 
-    if (troop) {
-      const creatureName = formatMessage(getCreatureNameMessage(troop.creature));
+    let statusText = "";
 
-      statusText = formatMessage(armyStripMessages.selectSlot, { creatureName });
+    if (selectedTroop) {
+      if (troop) {
+        if (troop === selectedTroop) {
+          statusText = formatMessage(armyStripMessages.showTroopDetails, { troopName });
+        } else {
+          statusText = formatMessage(armyStripMessages.swapTroops, {
+            troopName: selectedTroopName,
+            withTroopName: troopName,
+          });
+        }
+      } else {
+        statusText = formatMessage(armyStripMessages.moveTroop, { troopName: selectedTroopName });
+      }
+    } else {
+      if (troop) {
+        statusText = formatMessage(armyStripMessages.selectSlot, { troopName });
+      } else {
+        statusText = formatMessage(armyStripMessages.slotEmpty);
+      }
     }
+
+    // let statusText = formatMessage(armyStripMessages.slotEmpty);
+
+    // if (troop) {
+    //   const creatureName = formatMessage(getCreatureNameMessage(troop.creature));
+
+    //   statusText = formatMessage(armyStripMessages.selectSlot, { creatureName });
+    // }
 
     this.onStatusTextChange(statusText);
   }
