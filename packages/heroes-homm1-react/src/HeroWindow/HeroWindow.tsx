@@ -278,7 +278,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           onTroopMouseEnter={this.onTroopMouseEnter}
           onTroopMouseLeave={this.onTroopMouseLeave}
           selectedTroopIndex={this.props.selectedTroopIndex}
-          onSelectTroop={this.props.onSelectTroop}
+          onSelectTroop={this.onSelectTroop}
           onSelectedTroopClick={this.props.onSelectedTroopClick}
           onSwapTroops={this.onSwapTroops}
         />
@@ -297,6 +297,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     const selectedTroopName = selectedTroop && formatMessage(getCreatureNameMessage(selectedTroop.creature));
     const troopName = troop && formatMessage(getCreatureNameMessage(troop.creature));
 
+    // TODO: simplify??
     let statusText = "";
 
     if (selectedTroop) {
@@ -320,14 +321,6 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
       }
     }
 
-    // let statusText = formatMessage(armyStripMessages.slotEmpty);
-
-    // if (troop) {
-    //   const creatureName = formatMessage(getCreatureNameMessage(troop.creature));
-
-    //   statusText = formatMessage(armyStripMessages.selectSlot, { creatureName });
-    // }
-
     this.onStatusTextChange(statusText);
   }
 
@@ -335,7 +328,31 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     this.setDefaultStatusText();
   }
 
+  private onSelectTroop = (index: number) => {
+    const { formatMessage } = this.props.intl;
+
+    const troop = this.props.hero.army[index]!;
+
+    const troopName = formatMessage(getCreatureNameMessage(troop.creature));
+
+    const statusText = formatMessage(armyStripMessages.showTroopDetails, { troopName });
+
+    this.onStatusTextChange(statusText);
+
+    this.props.onSelectTroop(index);
+  }
+
   private onSwapTroops = (index: number, withIndex: number) => {
+    const { formatMessage } = this.props.intl;
+
+    const troop = this.props.hero.army[index]!;
+
+    const troopName = formatMessage(getCreatureNameMessage(troop.creature));
+
+    const statusText = formatMessage(armyStripMessages.selectSlot, { troopName });
+
+    this.onStatusTextChange(statusText);
+
     this.props.onSwapTroops(this.props.hero.id, index, withIndex);
   }
 
