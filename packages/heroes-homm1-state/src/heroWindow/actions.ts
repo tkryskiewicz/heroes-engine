@@ -12,8 +12,8 @@ export enum HeroWindowActionType {
 export type HeroWindowAction =
   OpenHeroWindowAction |
   CloseHeroWindowAction |
-  ChangeVisibleSkillDetails |
-  ChangeVisibleMiscInfoDetails |
+  ChangeVisibleSkillDetailsAction |
+  ChangeVisibleMiscInfoDetailsAction |
   SelectHeroWindowTroopAction |
   OpenDismissHeroPromptAction |
   CloseDismissHeroPromptAction |
@@ -35,22 +35,22 @@ export const closeHeroWindow = (): CloseHeroWindowAction => ({
   type: HeroWindowActionType.Close,
 });
 
-export interface ChangeVisibleSkillDetails {
+export interface ChangeVisibleSkillDetailsAction {
   type: HeroWindowActionType.ChangeVisibleSkillDetails;
   skill?: string;
 }
 
-export const changeVisibleHeroWindowSkillDetails = (skill?: string): ChangeVisibleSkillDetails => ({
+export const changeVisibleHeroWindowSkillDetails = (skill?: string): ChangeVisibleSkillDetailsAction => ({
   skill,
   type: HeroWindowActionType.ChangeVisibleSkillDetails,
 });
 
-export interface ChangeVisibleMiscInfoDetails {
+export interface ChangeVisibleMiscInfoDetailsAction {
   type: HeroWindowActionType.ChangeVisibleMiscInfoDetails;
   infoType?: string;
 }
 
-export const changeVisibleMiscInfoDetails = (infoType?: string): ChangeVisibleMiscInfoDetails => ({
+export const changeVisibleMiscInfoDetails = (infoType?: string): ChangeVisibleMiscInfoDetailsAction => ({
   infoType,
   type: HeroWindowActionType.ChangeVisibleMiscInfoDetails,
 });
