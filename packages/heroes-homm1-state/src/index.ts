@@ -12,7 +12,8 @@ export {
 export {
   openHeroWindow,
   closeHeroWindow,
-  changeVisibleHeroWindowSkill,
+  changeVisibleHeroWindowSkillDetails,
+  changeVisibleHeroWindowMiscInfoDetails,
   selectHeroWindowTroop,
   openDismissHeroPrompt,
   closeDismissHeroPrompt,

@@ -20,7 +20,6 @@ export const heroWindowReducer = (
       };
     case HeroWindowActionType.Close:
     case GameActionType.DismissHero:
-      // TODO: is it ok to use initialState???
       return {
         ...initialState,
       };
@@ -28,6 +27,11 @@ export const heroWindowReducer = (
       return {
         ...state,
         visibleSkillDetails: action.skill,
+      };
+    case HeroWindowActionType.ChangeVisibleMiscInfoDetails:
+      return {
+        ...state,
+        visibleMiscInfoDetails: action.infoType,
       };
     case HeroWindowActionType.SelectTroop:
       return {

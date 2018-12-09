@@ -3,7 +3,7 @@ import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Hero, HeroSkills, Troop } from "heroes-core";
-import { ArtifactLimit, SkillIds } from "heroes-homm1";
+import { ArtifactLimit, getCurrentLevel, getNextLevelExperience, SkillIds } from "heroes-homm1";
 
 import "./HeroWindow.scss";
 
@@ -15,13 +15,19 @@ import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
+  experienceMessages,
   getCreatureNameMessage,
+  getHeroClassNameMessage,
   getHeroClassTitleMessage,
   getHeroNameMessage,
+  getLuckDescriptionMessage,
   getLuckNameMessage,
+  getMoraleDescriptionMessage,
   getMoraleNameMessage,
   getSkillDescriptionMessage,
   getSkillNameMessage,
+  luckMessages,
+  moraleMessages,
 } from "../messages";
 import { TroopWindow } from "../TroopWindow";
 import { ArtifactSlot } from "./ArtifactSlot";
@@ -33,6 +39,8 @@ export interface HeroWindowProps {
   hero: Hero;
   visibleSkillDetails?: string;
   onVisibleSkillDetailsChange: (skill?: string) => void;
+  visibleMiscInfoDetails?: string;
+  onVisibleMiscInfoDetailsChange: (type?: string) => void;
   onCrestClick: () => void;
   selectedTroopIndex?: number;
   onSelectTroop: (index: number) => void;
@@ -52,6 +60,7 @@ export interface HeroWindowProps {
 type DefaultProp =
   "onCrestClick" |
   "onVisibleSkillDetailsChange" |
+  "onVisibleMiscInfoDetailsChange" |
   "onSelectTroop" |
   "onSelectedTroopClick" |
   "onSwapTroops" |
@@ -77,6 +86,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     onSelectedTroopClick: () => undefined,
     onStatusTextChange: () => undefined,
     onSwapTroops: () => undefined,
+    onVisibleMiscInfoDetailsChange: () => undefined,
     onVisibleSkillDetailsChange: () => undefined,
     troopDetailsVisible: false,
   };
@@ -101,7 +111,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           />
         </div>
         {this.renderSkills(hero.skills, this.props.visibleSkillDetails)}
-        {this.renderMiscInfo(hero)}
+        {this.renderMiscInfo(hero, this.props.visibleMiscInfoDetails)}
         <div className="hero-window-crest">
           <Crest
             alignment={hero.alignment}
@@ -234,7 +244,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     this.props.onVisibleSkillDetailsChange();
   }
 
-  private renderMiscInfo(hero: Hero) {
+  private renderMiscInfo(hero: Hero, visibleMiscInfoDetails?: string) {
     const values = {
       [MiscInfoType.Morale]: hero.morale,
       [MiscInfoType.Luck]: hero.luck,
@@ -249,7 +259,9 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           onMouseLeave={this.onMiscInfoMouseLeave}
           onInfoMouseEnter={this.onInfoMouseEnter}
           onInfoMouseLeave={this.onInfoMouseLeave}
+          onInfoClick={this.onInfoClick}
         />
+        {visibleMiscInfoDetails && this.renderMiscInfoDetails(visibleMiscInfoDetails)}
       </div>
     );
   }
@@ -265,17 +277,19 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   }
 
   private onInfoMouseEnter = (type: MiscInfoType) => {
+    const { formatMessage } = this.props.intl;
+
     let infoText = "";
 
     switch (type) {
       case MiscInfoType.Morale:
-        infoText = this.props.intl.formatMessage(getMoraleNameMessage(this.props.hero.morale));
+        infoText = formatMessage(getMoraleNameMessage(this.props.hero.morale));
         break;
       case MiscInfoType.Luck:
-        infoText = this.props.intl.formatMessage(getLuckNameMessage(this.props.hero.luck));
+        infoText = formatMessage(getLuckNameMessage(this.props.hero.luck));
         break;
       case MiscInfoType.Experience:
-        infoText = this.props.intl.formatMessage(messages.experience);
+        infoText = formatMessage(experienceMessages.title);
         break;
     }
 
@@ -284,6 +298,128 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
   private onInfoMouseLeave = () => {
     this.onMiscInfoMouseEnter();
+  }
+
+  private onInfoClick = (type: string) => {
+    this.props.onVisibleMiscInfoDetailsChange(type);
+  }
+
+  private renderMiscInfoDetails(type: string) {
+    const { hero } = this.props;
+
+    let content;
+
+    switch (type) {
+      case MiscInfoType.Morale:
+        content = this.renderMoraleDetails(hero.morale);
+        break;
+      case MiscInfoType.Luck:
+        content = this.renderLuckDetails(hero.luck);
+        break;
+      case MiscInfoType.Experience:
+        content = this.renderExperienceDetails(hero.experience);
+        break;
+    }
+
+    return (
+      <Modal
+        width="40%"
+        closable={false}
+        footer={null}
+        visible={true}
+      >
+        {content}
+      </Modal>
+    );
+  }
+
+  private renderMoraleDetails(morale: number) {
+    return (
+      <GameModal size={3}>
+        <div style={{ textAlign: "center" }}>
+          <GameText size="large">
+            <FormattedMessage {...getMoraleNameMessage(morale)} />
+            <br />
+            <br />
+            <FormattedMessage {...getMoraleDescriptionMessage(morale)} />
+            <br />
+            <br />
+            <FormattedMessage {...moraleMessages.modifiers} />:
+            <br />
+            <FormattedMessage {...getHeroClassNameMessage(this.props.hero.heroClass)}>
+              {(className) => (<FormattedMessage {...moraleMessages.heroClassBonus} values={{ className }} />)}
+            </FormattedMessage>
+            <br />
+            <FormattedMessage {...moraleMessages.humanTroopsBonus} />
+          </GameText>
+          <br />
+          <br />
+          <GameButton
+            group="system"
+            type="okay"
+            onClick={this.onCloseMiscInfoDetailsClick}
+          />
+        </div>
+      </GameModal>
+    );
+  }
+
+  private renderLuckDetails(luck: number) {
+    return (
+      <GameModal size={4}>
+        <div style={{ textAlign: "center" }}>
+          <GameText size="large">
+            <FormattedMessage {...getLuckNameMessage(luck)} />
+            <br />
+            <br />
+            <FormattedMessage {...getLuckDescriptionMessage(luck)} />
+            <br />
+            <br />
+            <FormattedMessage {...luckMessages.modifiers} />:
+            <br />
+            <FormattedMessage {...messages.noModifiers} />
+          </GameText>
+          <br />
+          <br />
+          <GameButton
+            group="system"
+            type="okay"
+            onClick={this.onCloseMiscInfoDetailsClick}
+          />
+        </div>
+      </GameModal>
+    );
+  }
+
+  private renderExperienceDetails(experience: number) {
+    const currentLevel = getCurrentLevel(experience);
+    const nextLevelExperience = getNextLevelExperience(experience);
+
+    return (
+      <GameModal size={2}>
+        <div style={{ textAlign: "center" }}>
+          <GameText size="large">
+            <FormattedMessage {...experienceMessages.level} values={{ value: currentLevel }} />
+            <br />
+            <br />
+            <FormattedMessage {...experienceMessages.value} values={{ value: experience }} />
+            <br />
+            <FormattedMessage {...experienceMessages.nextLevel} values={{ value: nextLevelExperience }} />
+          </GameText>
+          <br />
+          <br />
+          <GameButton
+            group="system"
+            type="okay"
+            onClick={this.onCloseMiscInfoDetailsClick}
+          />
+        </div>
+      </GameModal>
+    );
+  }
+
+  private onCloseMiscInfoDetailsClick = () => {
+    this.props.onVisibleMiscInfoDetailsChange();
   }
 
   private onCrestMouseEnter = () => {

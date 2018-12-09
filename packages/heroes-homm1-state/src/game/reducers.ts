@@ -106,7 +106,7 @@ const heroes: Hero[] = [
         creature: CreatureId.Centaur,
       },
     ],
-    experience: 17422,
+    experience: 174,
     heroClass: HeroClass.Warlock,
     id: HeroId.Agar,
     luck: 3,

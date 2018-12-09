@@ -25,16 +25,19 @@ export interface MiscInfoProps {
   onMouseLeave: () => void;
   onInfoMouseEnter: (type: MiscInfoType) => void;
   onInfoMouseLeave: (type: MiscInfoType) => void;
+  onInfoClick: (type: MiscInfoType) => void;
 }
 
 type DefaultProp =
   "onMouseEnter" |
   "onMouseLeave" |
   "onInfoMouseEnter" |
-  "onInfoMouseLeave";
+  "onInfoMouseLeave" |
+  "onInfoClick";
 
 export class MiscInfo extends React.Component<MiscInfoProps> {
   public static defaultProps: Pick<MiscInfoProps, DefaultProp> = {
+    onInfoClick: () => undefined,
     onInfoMouseEnter: () => undefined,
     onInfoMouseLeave: () => undefined,
     onMouseEnter: () => undefined,
@@ -82,6 +85,7 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
         className="misc-info-morale"
         onMouseEnter={this.onMoraleMouseEnter}
         onMouseLeave={this.onMoraleMouseLeave}
+        onClick={this.onMoraleClick}
       >
         {content}
       </div>
@@ -94,6 +98,10 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
 
   private onMoraleMouseLeave = () => {
     this.props.onInfoMouseLeave(MiscInfoType.Morale);
+  }
+
+  private onMoraleClick = () => {
+    this.props.onInfoClick(MiscInfoType.Morale);
   }
 
   private renderLuck(luck: number) {
@@ -113,6 +121,7 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
         className="misc-info-luck"
         onMouseEnter={this.onLuckMouseEnter}
         onMouseLeave={this.onLuckMouseLeave}
+        onClick={this.onLuckClick}
       >
         {content}
       </div>
@@ -127,12 +136,17 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
     this.props.onInfoMouseLeave(MiscInfoType.Luck);
   }
 
+  private onLuckClick = () => {
+    this.props.onInfoClick(MiscInfoType.Luck);
+  }
+
   private renderExperience(experience: number) {
     return (
       <Row
         className="misc-info-experience"
         onMouseEnter={this.onExperienceMouseEnter}
         onMouseLeave={this.onExperienceMouseLeave}
+        onClick={this.onExperienceClick}
       >
         <img src={ExperienceImage} />
         <div className="misc-info-experience-value">
@@ -150,5 +164,9 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
 
   private onExperienceMouseLeave = () => {
     this.props.onInfoMouseLeave(MiscInfoType.Experience);
+  }
+
+  private onExperienceClick = () => {
+    this.props.onInfoClick(MiscInfoType.Experience);
   }
 }

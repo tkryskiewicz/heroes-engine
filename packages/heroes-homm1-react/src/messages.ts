@@ -755,13 +755,37 @@ export const moraleMessages = defineMessages({
     defaultMessage: "Bad Morale",
     id: "game.morale.bad",
   },
+  badDescription: {
+    defaultMessage: "???",
+    id: "game.morale.bad.description",
+  },
   good: {
     defaultMessage: "Good Morale",
     id: "game.morale.good",
   },
+  goodDescription: {
+    defaultMessage: "Good morale may give your armies extra attacks in combat.",
+    id: "game.morale.good.description",
+  },
+  heroClassBonus: {
+    defaultMessage: "{className} bonus +1",
+    id: "game.morale.bonus.heroClass",
+  },
+  humanTroopsBonus: {
+    defaultMessage: "All human troops +1",
+    id: "game.morale.bonus.humanTroops",
+  },
+  modifiers: {
+    defaultMessage: "Current morale modifiers",
+    id: "game.morale.modifiers",
+  },
   neutral: {
     defaultMessage: "Neutral Morale",
     id: "game.morale.neutral",
+  },
+  neutralDescription: {
+    defaultMessage: "???",
+    id: "game.morale.neutral.description",
   },
 });
 
@@ -777,18 +801,46 @@ export const getMoraleNameMessage = (morale: number) => {
   return moraleMessages.bad;
 };
 
+export const getMoraleDescriptionMessage = (morale: number) => {
+  if (morale === 0) {
+    return moraleMessages.neutralDescription;
+  }
+
+  if (morale > 0) {
+    return moraleMessages.goodDescription;
+  }
+
+  return moraleMessages.badDescription;
+};
+
 export const luckMessages = defineMessages({
   bad: {
     defaultMessage: "Bad Luck",
     id: "game.luck.bad",
   },
+  badDescription: {
+    defaultMessage: "???",
+    id: "game.luck.bad.description",
+  },
   good: {
     defaultMessage: "Good Luck",
     id: "game.luck.good",
   },
+  goodDescription: {
+    defaultMessage: "???",
+    id: "game.luck.good.description",
+  },
+  modifiers: {
+    defaultMessage: "Current Luck modifiers",
+    id: "game.luck.modifiers",
+  },
   neutral: {
     defaultMessage: "Netural Luck",
     id: "game.luck.neutral",
+  },
+  neutralDescription: {
+    defaultMessage: "Neutral luck means your armies will never get lucky or unlucky attacks on the enemy.",
+    id: "game.luck.neutral.description",
   },
 });
 
@@ -803,3 +855,34 @@ export const getLuckNameMessage = (luck: number) => {
 
   return luckMessages.bad;
 };
+
+export const getLuckDescriptionMessage = (luck: number) => {
+  if (luck === 0) {
+    return luckMessages.neutralDescription;
+  }
+
+  if (luck > 0) {
+    return luckMessages.goodDescription;
+  }
+
+  return luckMessages.badDescription;
+};
+
+export const experienceMessages = defineMessages({
+  level: {
+    defaultMessage: "Level {value}",
+    id: "game.experience.level",
+  },
+  nextLevel: {
+    defaultMessage: "Next level {value}",
+    id: "game.experience.nextLevel",
+  },
+  title: {
+    defaultMessage: "Experience",
+    id: "game.experience",
+  },
+  value: {
+    defaultMessage: "Current Experience {value}",
+    id: "game.experience.value",
+  },
+});

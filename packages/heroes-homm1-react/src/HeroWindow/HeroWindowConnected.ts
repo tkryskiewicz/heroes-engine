@@ -4,7 +4,8 @@ import { Dispatch } from "redux";
 import {
   AppState,
   changeHeroWindowStatusText,
-  changeVisibleHeroWindowSkill,
+  changeVisibleHeroWindowMiscInfoDetails,
+  changeVisibleHeroWindowSkillDetails,
   closeDismissHeroPrompt,
   closeHeroWindow,
   dismissHero,
@@ -19,6 +20,7 @@ import { HeroWindow, HeroWindowProps } from "./HeroWindow";
 type StateProp =
   "hero" |
   "visibleSkillDetails" |
+  "visibleMiscInfoDetails" |
   "selectedTroopIndex" |
   "dismissHeroPromptVisible" |
   "statusText";
@@ -28,11 +30,13 @@ const mapStateToProps = (state: AppState): Pick<HeroWindowProps, StateProp> => (
   hero: state.game.heroes[state.locators.selectedLocator!.index],
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,
   statusText: state.heroWindow.statusText,
+  visibleMiscInfoDetails: state.heroWindow.visibleMiscInfoDetails,
   visibleSkillDetails: state.heroWindow.visibleSkillDetails,
 });
 
 type DispatchProp =
   "onVisibleSkillDetailsChange" |
+  "onVisibleMiscInfoDetailsChange" |
   "onCrestClick" |
   "onSelectTroop" |
   "onSwapTroops" |
@@ -44,7 +48,10 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchProp> => ({
   onVisibleSkillDetailsChange(skill) {
-    dispatch(changeVisibleHeroWindowSkill(skill));
+    dispatch(changeVisibleHeroWindowSkillDetails(skill));
+  },
+  onVisibleMiscInfoDetailsChange(type) {
+    dispatch(changeVisibleHeroWindowMiscInfoDetails(type));
   },
   onCrestClick() {
     dispatch(openKingdomOverviewWindow());

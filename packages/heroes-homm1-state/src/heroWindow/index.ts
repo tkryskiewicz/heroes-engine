@@ -7,7 +7,8 @@ export {
   openDismissHeroPrompt,
   closeDismissHeroPrompt,
   changeStatusText as changeHeroWindowStatusText,
-  changeVisibleSkill as changeVisibleHeroWindowSkill,
+  changeVisibleHeroWindowSkillDetails as changeVisibleHeroWindowSkillDetails,
+  changeVisibleMiscInfoDetails as changeVisibleHeroWindowMiscInfoDetails,
 } from "./actions";
 export { heroWindowReducer } from "./reducers";
 export { HeroWindowState } from "./state";

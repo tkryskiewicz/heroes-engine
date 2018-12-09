@@ -46,3 +46,8 @@ export const ArmySize = 5;
 export const ArtifactLimit = 14;
 export const TownLimit = 8; // TODO: is this true?
 export const PuzzlePieceCount = 48;
+
+// TODO: implement
+export const getCurrentLevel = (_experience: number) => 1;
+
+export const getNextLevelExperience = (_experience: number) => 1000;
