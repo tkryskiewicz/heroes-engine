@@ -8,8 +8,10 @@ import {
   changeVisibleHeroWindowSkillDetails,
   closeDismissHeroPrompt,
   closeHeroWindow,
+  closeHeroWindowTroopDetails,
   dismissHero,
   openDismissHeroPrompt,
+  openHeroWindowTroopDetails,
   openKingdomOverviewWindow,
   selectHeroWindowTroop,
   swapHeroTroops,
@@ -22,6 +24,7 @@ type StateProp =
   "visibleSkillDetails" |
   "visibleMiscInfoDetails" |
   "selectedTroopIndex" |
+  "troopDetailsVisible" |
   "dismissHeroPromptVisible" |
   "statusText";
 
@@ -30,6 +33,7 @@ const mapStateToProps = (state: AppState): Pick<HeroWindowProps, StateProp> => (
   hero: state.game.heroes[state.locators.selectedLocator!.index],
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,
   statusText: state.heroWindow.statusText,
+  troopDetailsVisible: state.heroWindow.visibleTroopDetails,
   visibleMiscInfoDetails: state.heroWindow.visibleMiscInfoDetails,
   visibleSkillDetails: state.heroWindow.visibleSkillDetails,
 });
@@ -39,6 +43,8 @@ type DispatchProp =
   "onVisibleMiscInfoDetailsChange" |
   "onCrestClick" |
   "onSelectTroop" |
+  "onSelectedTroopClick" |
+  "onExitTroopDetails" |
   "onSwapTroops" |
   "onDismissHeroClick" |
   "onCancelDismissHeroClick" |
@@ -58,6 +64,12 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchP
   },
   onSelectTroop(index) {
     dispatch(selectHeroWindowTroop(index));
+  },
+  onSelectedTroopClick(index) {
+    dispatch(openHeroWindowTroopDetails(index));
+  },
+  onExitTroopDetails() {
+    dispatch(closeHeroWindowTroopDetails());
   },
   onSwapTroops(hero, index, withIndex) {
     dispatch(swapHeroTroops(hero, index, withIndex));

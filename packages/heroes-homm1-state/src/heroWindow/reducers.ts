@@ -6,6 +6,7 @@ const initialState: HeroWindowState = {
   dismissHeroPromptVisible: false,
   statusText: "",
   visible: false,
+  visibleTroopDetails: false,
 };
 
 export const heroWindowReducer = (
@@ -37,6 +38,18 @@ export const heroWindowReducer = (
       return {
         ...state,
         selectedTroopIndex: action.index,
+      };
+    case HeroWindowActionType.OpenTroopDetails:
+      return {
+        ...state,
+        selectedTroopIndex: action.index,
+        visibleTroopDetails: true,
+      };
+    case HeroWindowActionType.CloseTroopDetails:
+      return {
+        ...state,
+        selectedTroopIndex: undefined,
+        visibleTroopDetails: false,
       };
     case GameActionType.SwapHeroTroops:
       return {

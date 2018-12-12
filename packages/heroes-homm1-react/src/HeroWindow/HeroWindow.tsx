@@ -46,6 +46,7 @@ export interface HeroWindowProps {
   onCrestClick: () => void;
   selectedTroopIndex?: number;
   onSelectTroop: (index: number) => void;
+  // TODO: should this be onOpenTroopDetails?
   onSelectedTroopClick: (index: number) => void;
   onSwapTroops: (hero: string, index: number, withIndex: number) => void;
   troopDetailsVisible: boolean;
@@ -425,7 +426,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   }
 
   private renderArmy(hero: Hero, selectedTroopIndex?: number) {
-    const selectedTroop = selectedTroopIndex ?
+    const selectedTroop = selectedTroopIndex !== undefined ?
       hero.army[selectedTroopIndex] :
       undefined;
 
@@ -517,10 +518,13 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   private renderTroopDetails(troop: Troop) {
     return (
       <Modal
+        closable={false}
+        footer={null}
         visible={true}
       >
         <TroopWindow
           troop={troop}
+          onExitClick={this.props.onExitTroopDetails}
         />
       </Modal>
     );

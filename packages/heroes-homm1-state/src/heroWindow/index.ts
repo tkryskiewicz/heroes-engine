@@ -4,6 +4,8 @@ export {
   openHeroWindow,
   closeHeroWindow,
   selectHeroWindowTroop,
+  openTroopDetails as openHeroWindowTroopDetails,
+  closeTroopDetails as closeHeroWindowTroopDetails,
   openDismissHeroPrompt,
   closeDismissHeroPrompt,
   changeStatusText as changeHeroWindowStatusText,
