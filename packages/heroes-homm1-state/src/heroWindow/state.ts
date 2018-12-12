@@ -4,6 +4,7 @@ export interface HeroWindowState {
   visibleMiscInfoDetails?: string;
   selectedTroopIndex?: number;
   visibleTroopDetails: boolean;
+  dismissTroopPromptVisisble: boolean;
   dismissHeroPromptVisible: boolean;
   statusText: string;
 }

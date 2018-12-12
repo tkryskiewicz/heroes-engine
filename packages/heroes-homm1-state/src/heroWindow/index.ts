@@ -6,6 +6,8 @@ export {
   selectHeroWindowTroop,
   openTroopDetails as openHeroWindowTroopDetails,
   closeTroopDetails as closeHeroWindowTroopDetails,
+  openDismissTroopPrompt as openDismissHeroWindowTroopPrompt,
+  closeDismissTroopPrompt as closeDismissHeroWindowTroopPrompt,
   openDismissHeroPrompt,
   closeDismissHeroPrompt,
   changeStatusText as changeHeroWindowStatusText,

@@ -50,6 +50,10 @@ export interface HeroWindowProps {
   onSelectedTroopClick: (index: number) => void;
   onSwapTroops: (hero: string, index: number, withIndex: number) => void;
   troopDetailsVisible: boolean;
+  dismissTroopPromptVisible: boolean;
+  onDismissTroopClick: (index: number) => void;
+  onCancelDismissTroopClick: (index: number) => void;
+  onConfirmDismissTroopClick: (hero: string, index: number) => void;
   onExitTroopDetails: () => void;
   dismissHeroPromptVisible: boolean;
   onDismissHeroClick: () => void;
@@ -68,6 +72,7 @@ type DefaultProp =
   "onSelectedTroopClick" |
   "onSwapTroops" |
   "troopDetailsVisible" |
+  "dismissTroopPromptVisible" |
   "onExitTroopDetails" |
   "dismissHeroPromptVisible" |
   "onDismissHeroClick" |
@@ -79,6 +84,7 @@ type DefaultProp =
 class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   public static defaultProps: Pick<HeroWindowProps, DefaultProp> = {
     dismissHeroPromptVisible: false,
+    dismissTroopPromptVisible: false,
     onCancelDismissHeroClick: () => undefined,
     onConfirmDismissHeroClick: () => undefined,
     onCrestClick: () => undefined,
@@ -524,10 +530,38 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
       >
         <TroopWindow
           troop={troop}
+          dismissPromptVisible={this.props.dismissTroopPromptVisible}
+          onDismissClick={this.onDismissTroopClick}
+          onConfirmDismissClick={this.onConfirmDismissTroopClick}
+          onCancelDismissClick={this.onCancelDismissTroopClick}
           onExitClick={this.props.onExitTroopDetails}
         />
       </Modal>
     );
+  }
+
+  private onDismissTroopClick = (troop: Troop) => {
+    const { hero } = this.props;
+
+    const index = hero.army.indexOf(troop);
+
+    this.props.onDismissTroopClick(index);
+  }
+
+  private onConfirmDismissTroopClick = (troop: Troop) => {
+    const { hero } = this.props;
+
+    const index = hero.army.indexOf(troop);
+
+    this.props.onConfirmDismissTroopClick(hero.id, index);
+  }
+
+  private onCancelDismissTroopClick = (troop: Troop) => {
+    const { hero } = this.props;
+
+    const index = hero.army.indexOf(troop);
+
+    this.props.onCancelDismissTroopClick(index);
   }
 
   private renderArtifacts() {

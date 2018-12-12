@@ -1,4 +1,4 @@
-import { Army, swapArmyTroops } from "./Army";
+import { Army, dismissArmyTroop, swapArmyTroops } from "./Army";
 
 export interface HeroSkills {
   [skill: string]: number;
@@ -19,6 +19,11 @@ export interface Hero {
 export const swapHeroTroops = (hero: Hero, index: number, withIndex: number): Hero => ({
   ...hero,
   army: swapArmyTroops(hero.army, index, withIndex),
+});
+
+export const dismissHeroTroop = (hero: Hero, index: number): Hero => ({
+  ...hero,
+  army: dismissArmyTroop(hero.army, index),
 });
 
 // TODO: does this belong to core???

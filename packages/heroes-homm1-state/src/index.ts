@@ -1,5 +1,12 @@
 export { openAdventureOptions, closeAdventureOptions } from "./adventureOptions";
-export { swapHeroTroops, dismissHero, swapGarrisonTroops, buildStructure, recruitTroop } from "./game";
+export {
+  swapHeroTroops,
+  dismissHeroTroop,
+  dismissHero,
+  swapGarrisonTroops,
+  buildStructure,
+  recruitTroop,
+} from "./game";
 export { openGameOptions, closeGameOptions } from "./gameOptions";
 export {
   changeAutoSave,
@@ -17,6 +24,8 @@ export {
   selectHeroWindowTroop,
   openHeroWindowTroopDetails,
   closeHeroWindowTroopDetails,
+  openDismissHeroWindowTroopPrompt,
+  closeDismissHeroWindowTroopPrompt,
   openDismissHeroPrompt,
   closeDismissHeroPrompt,
   changeHeroWindowStatusText,

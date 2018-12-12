@@ -1,4 +1,4 @@
-import { Hero, swapHeroTroops } from "./Hero";
+import { dismissHeroTroop, Hero, swapHeroTroops } from "./Hero";
 import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { buildTownStructure, recruitTownTroop, swapGarrisonTroops, Town } from "./Town";
@@ -20,6 +20,11 @@ export const swapGameHeroTroops = (game: Game, hero: string, index: number, with
 export const dismissGameHero = (game: Game, hero: string): Game => ({
   ...game,
   heroes: game.heroes.filter((h) => h.id !== hero),
+});
+
+export const dismissGameHeroTroop = (game: Game, hero: string, index: number): Game => ({
+  ...game,
+  heroes: game.heroes.map((h) => h.id === hero ? dismissHeroTroop(h, index) : h),
 });
 
 export const swapGameGarrisonTroops = (game: Game, townId: string, index: number, withIndex: number): Game => {

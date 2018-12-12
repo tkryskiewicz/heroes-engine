@@ -38,3 +38,6 @@ export const swapArmyTroops = (army: Army, index: number, withIndex: number): Ar
 
   return clone;
 };
+
+export const dismissArmyTroop = (army: Army, index: number): Army =>
+  army.map((t, i) => i === index ? undefined : t);

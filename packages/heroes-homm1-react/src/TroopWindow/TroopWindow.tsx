@@ -15,14 +15,29 @@ import { getSpeedMessage, messages } from "./messages";
 
 export interface TroopWindowProps {
   troop: Troop;
-  dismissPromptVisible?: boolean;
-  onDismissClick?: () => void;
-  onDismiss?: () => void;
-  onCancelDismiss?: () => void;
-  onExitClick?: () => void;
+  dismissPromptVisible: boolean;
+  onDismissClick: (troop: Troop) => void;
+  onConfirmDismissClick: (troop: Troop) => void;
+  onCancelDismissClick: (troop: Troop) => void;
+  onExitClick: () => void;
 }
 
+type DefaultProp =
+  "dismissPromptVisible" |
+  "onDismissClick" |
+  "onConfirmDismissClick" |
+  "onCancelDismissClick" |
+  "onExitClick";
+
 export class TroopWindow extends React.Component<TroopWindowProps> {
+  public static defaultProps: Pick<TroopWindowProps, DefaultProp> = {
+    dismissPromptVisible: false,
+    onCancelDismissClick: () => undefined,
+    onConfirmDismissClick: () => undefined,
+    onDismissClick: () => undefined,
+    onExitClick: () => undefined,
+  };
+
   public render() {
     const creature = creaturesById[this.props.troop.creature];
 
@@ -87,7 +102,7 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
               <GameButton
                 group="troop-window"
                 type="dismiss"
-                onClick={this.props.onDismissClick}
+                onClick={this.onDismissClick}
               />
               {this.props.dismissPromptVisible && this.renderDismissPrompt()}
             </Col>
@@ -136,6 +151,10 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
       damage.min;
   }
 
+  private onDismissClick = () => {
+    this.props.onDismissClick(this.props.troop);
+  }
+
   private renderDismissPrompt() {
     return (
       <Modal
@@ -154,7 +173,7 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
             <GameButton
               group="system"
               type="yes"
-              onClick={this.props.onDismiss}
+              onClick={this.onConfirmDismiss}
             />
           </Col>
           <Col
@@ -164,11 +183,19 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
             <GameButton
               group="system"
               type="no"
-              onClick={this.props.onCancelDismiss}
+              onClick={this.onCancelDismiss}
             />
           </Col>
         </Row>
       </Modal>
     );
+  }
+
+  private onConfirmDismiss = () => {
+    this.props.onConfirmDismissClick(this.props.troop);
+  }
+
+  private onCancelDismiss = () => {
+    this.props.onCancelDismissClick(this.props.troop);
   }
 }

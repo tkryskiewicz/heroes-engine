@@ -2,6 +2,7 @@ export {
   GameAction,
   GameActionType,
   swapHeroTroops,
+  dismissHeroTroop,
   dismissHero,
   swapGarrisonTroops,
   buildStructure,

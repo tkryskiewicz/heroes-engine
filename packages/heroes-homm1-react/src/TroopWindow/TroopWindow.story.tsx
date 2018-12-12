@@ -21,8 +21,8 @@ storiesOf(TroopWindow.name, module)
         troop={troop}
         dismissPromptVisible={boolean("Dismiss Prompt Visible", false)}
         onDismissClick={action("Dismiss Click")}
-        onCancelDismiss={action("Cancel Dismiss Click")}
-        onDismiss={action("Dismiss")}
+        onCancelDismissClick={action("Cancel Dismiss Click")}
+        onConfirmDismissClick={action("Confirm Dismiss Click")}
         onExitClick={action("Exit Click")}
       />
     );

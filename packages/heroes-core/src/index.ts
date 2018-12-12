@@ -3,6 +3,7 @@ export { Creature, Damage } from "./Creature";
 export {
   Game,
   swapGameHeroTroops,
+  dismissGameHeroTroop,
   dismissGameHero,
   swapGameGarrisonTroops,
   buildGameStructure,

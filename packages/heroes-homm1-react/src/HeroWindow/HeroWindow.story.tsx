@@ -50,6 +50,10 @@ storiesOf("HeroWindow", module)
         onSelectedTroopClick={action("Selected Troop Click")}
         onSwapTroops={action("Swap Troops")}
         troopDetailsVisible={boolean("Troop Details Visible", false)}
+        onDismissTroopClick={action("Dismiss Troop Click")}
+        dismissTroopPromptVisible={boolean("Dismiss Troop Prompt Visible", false)}
+        onCancelDismissTroopClick={action("Cancel Dismiss Troop Click")}
+        onConfirmDismissTroopClick={action("Confirm Dismiss Troop Click")}
         onExitTroopDetails={action("Exit Troop Details")}
         dismissHeroPromptVisible={boolean("Dismiss Hero Prompt Visible", false)}
         onDismissHeroClick={action("Dismiss Hero Click")}
