@@ -9,7 +9,7 @@ import { Alignment, ArmySize, HeroClass, TownId } from "heroes-homm1";
 import { alignmentOptions, heroClassOptions, townOptions } from "../stories";
 import { TownWindow } from "./TownWindow";
 
-storiesOf(TownWindow.name, module)
+storiesOf("TownWindow", module)
   .add("default", () => {
     const town: Town = {
       alignment: select("Alignment", alignmentOptions, Alignment.Red),
@@ -32,6 +32,8 @@ storiesOf(TownWindow.name, module)
         onSwapGarrisonTroops={action("Swap Garrison Troops")}
         onCrestClick={action("Crest Click")}
         onExitClick={action("Exit Click")}
+        statusText={text("Status Text", "Status Text")}
+        onStatusTextChange={action("Status Text Change")}
       />
     );
   });

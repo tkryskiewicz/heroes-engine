@@ -1,5 +1,6 @@
 import { Modal } from "antd";
 import * as React from "react";
+import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { enoughResources, Hero, Resources, Town } from "heroes-core";
 import { StructureId } from "heroes-homm1";
@@ -12,9 +13,12 @@ import { BuildStructureWindow } from "../BuildStructureWindow";
 import { Crest } from "../Crest";
 import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
+import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import { RecruitTroopWindow } from "../RecruitTroopWindow";
 import { TavernWindow } from "../TavernWindow";
 import { TownView } from "../TownView";
+import { ComponentWithDefaultProps } from "../util";
+import { messages } from "./messages";
 import { StructuresWindow } from "./StructuresWindow";
 import { Treasury } from "./Treasury";
 
@@ -32,6 +36,8 @@ export interface TownWindowProps {
   onCrestClick: () => void;
   onOpenStructureDetails: (structure: string) => void;
   onRecruitTroop: (town: string, structure: string, count: number) => void;
+  statusText: string;
+  onStatusTextChange: (value: string) => void;
   onExitClick: () => void;
 }
 
@@ -43,9 +49,10 @@ type DefaultProp =
   "onCrestClick" |
   "onOpenStructureDetails" |
   "onRecruitTroop" |
+  "onStatusTextChange" |
   "onExitClick";
 
-export class TownWindow extends React.Component<TownWindowProps> {
+class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
   public static defaultProps: Pick<TownWindowProps, DefaultProp> = {
     onCrestClick: () => undefined,
     onExitClick: () => undefined,
@@ -53,9 +60,14 @@ export class TownWindow extends React.Component<TownWindowProps> {
     onRecruitTroop: () => undefined,
     onSelectGarrisonTroop: () => undefined,
     onSelectHeroTroop: () => undefined,
+    onStatusTextChange: () => undefined,
     onSwapGarrisonTroops: () => undefined,
     onSwapHeroTroops: () => undefined,
   };
+
+  public componentDidMount() {
+    this.setDefaultStatusText();
+  }
 
   public render() {
     const { town, resources, visibleStructureDetails } = this.props;
@@ -76,6 +88,8 @@ export class TownWindow extends React.Component<TownWindowProps> {
             <Crest
               alignment={town.alignment}
               heroClass={town.heroClass}
+              onMouseEnter={this.onCrestMouseEnter}
+              onMouseLeave={this.onCrestMouseLeave}
               onClick={this.props.onCrestClick}
             />
           </div>
@@ -103,14 +117,28 @@ export class TownWindow extends React.Component<TownWindowProps> {
           <div className="town-window-treasury">
             <Treasury
               resources={this.props.resources}
+              onExitMouseEnter={this.onExitMouseEnter}
+              onExitMouseLeave={this.onExitMouseLeave}
               onExitClick={this.props.onExitClick}
             />
           </div>
         </div>
-        <BigBar />
+        <BigBar>
+          {this.props.statusText}
+        </BigBar>
         {visibleStructureDetails && this.renderStructureDetails(town, resources, visibleStructureDetails)}
       </div>
     );
+  }
+
+  private onCrestMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(kingdomOverviewWindowMessages.title);
+
+    this.onStatusTextChange(statusText);
+  }
+
+  private onCrestMouseLeave = () => {
+    this.setDefaultStatusText();
   }
 
   private onSwapGarrisonTroops = (index: number, withIndex: number) => {
@@ -180,4 +208,31 @@ export class TownWindow extends React.Component<TownWindowProps> {
   private onRecruitTroop = (structure: string, count: number) => {
     this.props.onRecruitTroop(this.props.town.id, structure, count);
   }
+
+  private onExitMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(messages.exit);
+
+    this.onStatusTextChange(statusText);
+  }
+
+  private onExitMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
+  private onStatusTextChange(text: string) {
+    this.props.onStatusTextChange(text);
+  }
+
+  private setDefaultStatusText() {
+    const statusText = this.props.intl.formatMessage(messages.defaultStatusText);
+
+    this.onStatusTextChange(statusText);
+  }
 }
+
+const TownWindowWrapped: ComponentWithDefaultProps<TownWindowProps, typeof TownWindow.defaultProps> =
+  injectIntl(TownWindow) as any;
+
+export {
+  TownWindowWrapped as TownWindow,
+};

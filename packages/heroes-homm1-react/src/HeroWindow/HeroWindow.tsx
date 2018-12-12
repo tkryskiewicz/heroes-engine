@@ -30,6 +30,7 @@ import {
   moraleMessages,
 } from "../messages";
 import { TroopWindow } from "../TroopWindow";
+import { ComponentWithDefaultProps } from "../util";
 import { ArtifactSlot } from "./ArtifactSlot";
 import { messages } from "./messages";
 import { MiscInfo, MiscInfoType } from "./MiscInfo";
@@ -628,11 +629,6 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     this.onStatusTextChange(statusText);
   }
 }
-
-// FIXME: simpler way to do it? react-intl fixed HOC?
-type ComponentWithDefaultProps<TProps extends TDefaultProps, TDefaultProps> = React.ComponentClass<
-  Partial<Pick<TProps, keyof TDefaultProps>> &
-  Pick<TProps, Exclude<keyof TProps, keyof TDefaultProps>>>;
 
 const HeroWindowWrapped: ComponentWithDefaultProps<HeroWindowProps, typeof HeroWindow.defaultProps> =
   injectIntl(HeroWindow) as any;

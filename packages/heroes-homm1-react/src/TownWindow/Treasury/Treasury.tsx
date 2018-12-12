@@ -10,6 +10,8 @@ import { ResourceAmount } from "../../ResourceAmount";
 
 export interface TreasuryProps {
   resources: Resources;
+  onExitMouseEnter?: () => void;
+  onExitMouseLeave?: () => void;
   onExitClick?: () => void;
 }
 
@@ -34,6 +36,8 @@ export class Treasury extends React.Component<TreasuryProps> {
           <GameButton
             group="town-window"
             type="exit"
+            onMouseEnter={this.props.onExitMouseEnter}
+            onMouseLeave={this.props.onExitMouseLeave}
             onClick={this.props.onExitClick}
           />
         </div>

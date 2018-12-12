@@ -5,10 +5,9 @@ import * as React from "react";
 import { buildStructure } from "heroes-core";
 import { commonStructures, constructStructure, farmStructures, TownId } from "heroes-homm1";
 
-import { TownWindow } from "../TownWindow";
 import { StructuresWindow } from "./StructuresWindow";
 
-storiesOf(`${TownWindow.name}/${StructuresWindow.name}`, module)
+storiesOf(`TownWindow/${StructuresWindow.name}`, module)
   .add("default", () => (
     <StructuresWindow
       town={TownId.Farm}

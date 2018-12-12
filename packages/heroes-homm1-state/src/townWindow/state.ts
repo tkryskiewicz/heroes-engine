@@ -4,4 +4,5 @@ export interface TownWindowState {
   selectedHeroTroopIndex?: number;
   visibleStructureDetails?: string;
   recruitTroopCount: number;
+  statusText: string;
 }
