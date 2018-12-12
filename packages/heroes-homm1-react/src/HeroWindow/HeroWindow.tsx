@@ -573,34 +573,41 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   private renderDismissHeroPrompt(visible: boolean) {
     return (
       <Modal
-        footer={[]}
+        closable={false}
+        footer={null}
         visible={visible}
       >
-        <Row>
-          <FormattedMessage {...messages.dismissHeroMessage} />
-        </Row>
-        <Row>
-          <Col
-            className="hero-window-dismiss-yes"
-            span={12}
-          >
-            <GameButton
-              group="system"
-              type="yes"
-              onClick={this.onDismissHero}
-            />
-          </Col>
-          <Col
-            className="hero-window-dismiss-no"
-            span={12}
-          >
-            <GameButton
-              group="system"
-              type="no"
-              onClick={this.props.onCancelDismissHeroClick}
-            />
-          </Col>
-        </Row>
+        <GameModal>
+          <Row style={{ textAlign: "center" }}>
+            <GameText size="large">
+              <FormattedMessage {...messages.dismissHeroMessage} />
+            </GameText>
+            <br />
+            <br />
+          </Row>
+          <Row>
+            <Col
+              className="hero-window-dismiss-yes"
+              span={12}
+            >
+              <GameButton
+                group="system"
+                type="yes"
+                onClick={this.onDismissHero}
+              />
+            </Col>
+            <Col
+              className="hero-window-dismiss-no"
+              span={12}
+            >
+              <GameButton
+                group="system"
+                type="no"
+                onClick={this.props.onCancelDismissHeroClick}
+              />
+            </Col>
+          </Row>
+        </GameModal>
       </Modal>
     );
   }
