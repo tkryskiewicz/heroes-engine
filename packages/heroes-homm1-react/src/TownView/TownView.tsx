@@ -268,6 +268,8 @@ export interface TownViewProps {
     id: string;
     structures: Structure[];
   };
+  onStructureMouseEnter?: (structure: string) => void;
+  onStructureMouseLeave?: (structure: string) => void;
   onStructureClick?: (structure: string) => void;
 }
 
@@ -313,6 +315,8 @@ export class TownView extends React.Component<TownViewProps> {
           town={town}
           structure={structure.id}
           placeholder={renderPlaceholder}
+          onMouseEnter={this.props.onStructureMouseEnter}
+          onMouseLeave={this.props.onStructureMouseLeave}
           onClick={this.props.onStructureClick}
         />
       </div>

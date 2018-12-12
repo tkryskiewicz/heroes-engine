@@ -1,6 +1,11 @@
-import { defineMessages, Messages } from "react-intl";
+import { defineMessages, FormattedMessage, Messages } from "react-intl";
 
 import { CampaignId, HeroClass, HeroId, Skill } from "heroes-homm1";
+
+const unknownMessage: FormattedMessage.MessageDescriptor = {
+  defaultMessage: "Unknown",
+  id: "unknown",
+};
 
 const convertValue = (value: string): string =>
   value.replace(/-\w/, (str) => str[1].toUpperCase());
@@ -450,10 +455,7 @@ export const getHeroNameMessage = (hero: string) => {
       return warlockHeroMessages.vesper;
     // Default
     default:
-      return {
-        defaultMessage: "Unknown",
-        id: "game.hero.unknown",
-      };
+      return unknownMessage;
   }
 };
 
@@ -491,15 +493,6 @@ export const skillMessages = defineMessages({
     defaultMessage: "Your spell power determines the length or power of a spell.",
     id: "game.skill.spellPower.description",
   },
-  // TODO: do we need messages for unknown skills?
-  unknown: {
-    defaultMessage: "Unknown",
-    id: "game.skill.unknown.name",
-  },
-  unknownDescription: {
-    defaultMessage: "No description.",
-    id: "game.skill.unknown.description",
-  },
 });
 
 export const getSkillNameMessage = (skill: string) => {
@@ -513,7 +506,7 @@ export const getSkillNameMessage = (skill: string) => {
     case Skill.Knowledge:
       return skillMessages.knowledge;
     default:
-      return skillMessages.unknown;
+      return unknownMessage;
   }
 };
 
@@ -528,7 +521,7 @@ export const getSkillDescriptionMessage = (skill: string) => {
     case Skill.Knowledge:
       return skillMessages.knowledgeDescription;
     default:
-      return skillMessages.unknownDescription;
+      return unknownMessage;
   }
 };
 
@@ -562,10 +555,7 @@ export const getCampaignNameMessage = (campaign: string) => {
     case CampaignId.LordAlamar:
       return campaignMessages.lordAlamar;
     default:
-      return {
-        defaultMessage: "Unknown",
-        id: "game.campaign.unknown",
-      };
+      return unknownMessage;
   }
 };
 
@@ -577,6 +567,10 @@ const commonStructureMessages = defineMessages({
   castleDescription: {
     defaultMessage: "The Castle improves town defense and income.",
     id: "game.structure.castle.description",
+  },
+  castlePlaceholder: {
+    defaultMessage: "Tent",
+    id: "game.structure.castle.placeholder",
   },
   mageGuild: {
     defaultMessage: "Mage Guild",
@@ -738,17 +732,18 @@ const structureMessages: Messages = defineMessages({
   ...mountainsStructureMessages,
 });
 
-export const getStructureNameMessage = (structure: string) =>
-  structureMessages[convertValue(structure)] || {
-    defaultMessage: "Unknown",
-    id: "game.structure.unknown",
-  };
+// TODO: should isBuilt be always passed?
+export const getStructureNameMessage = (structure: string, isBuilt: boolean = true) => {
+  const index = convertValue(structure);
+
+  const nameMessage = structureMessages[index];
+  const placeholderNameMessage = structureMessages[`${index}Placeholder`];
+
+  return (!isBuilt && placeholderNameMessage) || nameMessage || unknownMessage;
+};
 
 export const getStructureDescriptionMessage = (structure: string) =>
-  structureMessages[convertValue(structure) + "Description"] || {
-    defaultMessage: "Unknown",
-    id: "game.structure.unknown.description",
-  };
+  structureMessages[`${convertValue(structure)}Description`] || unknownMessage;
 
 export const moraleMessages = defineMessages({
   bad: {

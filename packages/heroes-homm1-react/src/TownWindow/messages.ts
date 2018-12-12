@@ -2,11 +2,15 @@ import { defineMessages } from "react-intl";
 
 export const messages = defineMessages({
   defaultStatusText: {
-    defaultMessage: "Town Window",
+    defaultMessage: " ",
     id: "ui.townWindow.defaultStatusText",
   },
   exit: {
-    defaultMessage: "Exit Town Window",
+    defaultMessage: "Exit town",
     id: "ui.townWindow.exit",
+  },
+  viewHero: {
+    defaultMessage: "View Hero",
+    id: "ui.townWindow.viewHero",
   },
 });

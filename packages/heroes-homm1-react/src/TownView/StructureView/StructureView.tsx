@@ -6,12 +6,16 @@ export interface StructureViewProps {
   town: string;
   structure: string;
   placeholder: boolean;
+  onMouseEnter: (structure: string) => void;
+  onMouseLeave: (structure: string) => void;
   onClick: (structure: string) => void;
 }
 
 export class StructureView extends React.Component<StructureViewProps> {
-  public static defaultProps: Pick<StructureViewProps, "placeholder" | "onClick"> = {
+  public static defaultProps: Pick<StructureViewProps, "placeholder" | "onMouseEnter" | "onMouseLeave" | "onClick"> = {
     onClick: () => undefined,
+    onMouseEnter: () => undefined,
+    onMouseLeave: () => undefined,
     placeholder: false,
   };
 
@@ -25,9 +29,19 @@ export class StructureView extends React.Component<StructureViewProps> {
       <img
         key={structure}
         src={`assets/towns/${townPath}/structures/${structure}/${imagePath}.png`}
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
       />
     );
+  }
+
+  private onMouseEnter = () => {
+    this.props.onMouseEnter(this.props.structure);
+  }
+
+  private onMouseLeave = () => {
+    this.props.onMouseLeave(this.props.structure);
   }
 
   private onClick = () => {

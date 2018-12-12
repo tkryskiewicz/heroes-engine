@@ -14,7 +14,8 @@ import { Crest } from "../Crest";
 import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
-import { RecruitTroopWindow } from "../RecruitTroopWindow";
+import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
+import { RecruitTroopWindow, recruitTroopWindowMessages } from "../RecruitTroopWindow";
 import { TavernWindow } from "../TavernWindow";
 import { TownView } from "../TownView";
 import { ComponentWithDefaultProps } from "../util";
@@ -76,6 +77,8 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
       <div className="town-window">
         <TownView
           town={town}
+          onStructureMouseEnter={this.onStructureMouseEnter}
+          onStructureMouseLeave={this.onStructureMouseLeave}
           onStructureClick={this.onStructureClick}
         />
         <div className="town-window-strip">
@@ -104,6 +107,8 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
           <div className="town-window-hero-portrait">
             <HeroPortrait
               hero={this.props.visitingHero ? this.props.visitingHero.id : undefined}
+              onMouseEnter={this.onHeroPortraitMouseEnter}
+              onMouseLeave={this.onHeroPortraitMouseLeave}
             />
           </div>
           <div className="town-window-hero-army">
@@ -141,12 +146,42 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
     this.setDefaultStatusText();
   }
 
+  private onHeroPortraitMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(messages.viewHero);
+
+    this.onStatusTextChange(statusText);
+  }
+
+  private onHeroPortraitMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
   private onSwapGarrisonTroops = (index: number, withIndex: number) => {
     this.props.onSwapGarrisonTroops(this.props.town.id, index, withIndex);
   }
 
   private onSwapHeroTroops = (index: number, withIndex: number) => {
     this.props.onSwapHeroTroops(this.props.visitingHero!.id, index, withIndex);
+  }
+
+  private onStructureMouseEnter = (structure: string) => {
+    const { formatMessage } = this.props.intl;
+
+    const struc = this.props.town.structures.find((s) => s.id === structure)!;
+
+    let statusText = formatMessage(getStructureNameMessage(struc.id, struc.isBuilt));
+
+    if (struc.dwelling) {
+      const creatureName = formatMessage(getCreatureNameMessage(struc.dwelling.creature));
+
+      statusText = formatMessage(recruitTroopWindowMessages.title, { creature: creatureName });
+    }
+
+    this.onStatusTextChange(statusText);
+  }
+
+  private onStructureMouseLeave = () => {
+    this.setDefaultStatusText();
   }
 
   private onStructureClick = (structure: string) => {
