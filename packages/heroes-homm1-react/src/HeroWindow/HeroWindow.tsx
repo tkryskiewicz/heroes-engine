@@ -11,6 +11,7 @@ import { ArmyStrip, armyStripMessages } from "../ArmyStrip";
 import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
 import { GameModal } from "../GameModal";
+import { GameParagraph } from "../GameParagraph";
 import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
@@ -220,16 +221,12 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
       >
         <GameModal size={2}>
           <div style={{ textAlign: "center" }}>
-            <GameText size="large">
+            <GameParagraph textSize="large">
               <FormattedMessage {...getSkillNameMessage(skill)} />
-            </GameText>
-            <br />
-            <br />
-            <GameText size="large">
+            </GameParagraph>
+            <GameParagraph textSize="large">
               <FormattedMessage {...getSkillDescriptionMessage(skill)} />
-            </GameText>
-            <br />
-            <br />
+            </GameParagraph>
             <GameButton
               group="system"
               type="okay"
@@ -338,13 +335,13 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     return (
       <GameModal size={3}>
         <div style={{ textAlign: "center" }}>
-          <GameText size="large">
+          <GameParagraph textSize="large">
             <FormattedMessage {...getMoraleNameMessage(morale)} />
-            <br />
-            <br />
+          </GameParagraph>
+          <GameParagraph textSize="large">
             <FormattedMessage {...getMoraleDescriptionMessage(morale)} />
-            <br />
-            <br />
+          </GameParagraph>
+          <GameParagraph textSize="large">
             <FormattedMessage {...moraleMessages.modifiers} />:
             <br />
             <FormattedMessage {...getHeroClassNameMessage(this.props.hero.heroClass)}>
@@ -352,9 +349,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
             </FormattedMessage>
             <br />
             <FormattedMessage {...moraleMessages.humanTroopsBonus} />
-          </GameText>
-          <br />
-          <br />
+          </GameParagraph>
           <GameButton
             group="system"
             type="okay"
@@ -369,19 +364,17 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     return (
       <GameModal size={4}>
         <div style={{ textAlign: "center" }}>
-          <GameText size="large">
+          <GameParagraph textSize="large">
             <FormattedMessage {...getLuckNameMessage(luck)} />
-            <br />
-            <br />
+          </GameParagraph>
+          <GameParagraph textSize="large">
             <FormattedMessage {...getLuckDescriptionMessage(luck)} />
-            <br />
-            <br />
+          </GameParagraph>
+          <GameParagraph textSize="large">
             <FormattedMessage {...luckMessages.modifiers} />:
             <br />
             <FormattedMessage {...messages.noModifiers} />
-          </GameText>
-          <br />
-          <br />
+          </GameParagraph>
           <GameButton
             group="system"
             type="okay"
@@ -399,16 +392,14 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     return (
       <GameModal size={2}>
         <div style={{ textAlign: "center" }}>
-          <GameText size="large">
+          <GameParagraph textSize="large">
             <FormattedMessage {...experienceMessages.level} values={{ value: currentLevel }} />
-            <br />
-            <br />
+          </GameParagraph>
+          <GameParagraph textSize="large">
             <FormattedMessage {...experienceMessages.value} values={{ value: experience }} />
             <br />
             <FormattedMessage {...experienceMessages.nextLevel} values={{ value: nextLevelExperience }} />
-          </GameText>
-          <br />
-          <br />
+          </GameParagraph>
           <GameButton
             group="system"
             type="okay"
@@ -579,11 +570,9 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
       >
         <GameModal>
           <Row style={{ textAlign: "center" }}>
-            <GameText size="large">
+            <GameParagraph textSize="large">
               <FormattedMessage {...messages.dismissHeroMessage} />
-            </GameText>
-            <br />
-            <br />
+            </GameParagraph>
           </Row>
           <Row>
             <Col

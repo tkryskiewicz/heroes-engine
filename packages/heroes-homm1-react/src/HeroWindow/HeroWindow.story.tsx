@@ -8,6 +8,15 @@ import { Alignment, ArmySize, CreatureId, HeroClass, HeroId } from "heroes-homm1
 
 import { alignmentOptions, heroClassOptions, heroOptions, skillOptions } from "../stories";
 import { HeroWindow } from "./HeroWindow";
+import { MiscInfoType } from "./MiscInfo";
+
+// TODO: move or remove???
+export const miscInfoOptions: { [s: string]: MiscInfoType | "" } = {
+  Experience: MiscInfoType.Experience,
+  Luck: MiscInfoType.Luck,
+  Morale: MiscInfoType.Morale,
+  None: "",
+};
 
 storiesOf("HeroWindow", module)
   .add("default", () => {
@@ -33,6 +42,8 @@ storiesOf("HeroWindow", module)
         hero={hero}
         visibleSkillDetails={select("Visible Skill Details", { None: "", ...skillOptions }, "")}
         onVisibleSkillDetailsChange={action("Visible Skill Details Change")}
+        visibleMiscInfoDetails={select("Visible Misc Info Details", { None: "", ...miscInfoOptions }, "")}
+        onVisibleMiscInfoDetailsChange={action("Visible Misc Info Details Change")}
         onCrestClick={action("Crest Click")}
         selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
         onSelectTroop={action("Select Troop")}
