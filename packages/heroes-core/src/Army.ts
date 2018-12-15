@@ -2,6 +2,9 @@ import { Troop } from "./Troop";
 
 export type Army = Array<Troop | undefined>;
 
+export const getArmySize = (army: Army): number =>
+  army.filter((t) => t !== undefined).length;
+
 // TODO: handle size limit
 export const appendArmyTroop = (army: Army, troop: Troop): Army => {
   const clone = [

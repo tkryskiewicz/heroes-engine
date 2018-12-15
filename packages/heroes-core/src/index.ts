@@ -1,4 +1,4 @@
-export { Army, swapArmyTroops } from "./Army";
+export { Army, getArmySize, swapArmyTroops } from "./Army";
 export { Creature, Damage } from "./Creature";
 export {
   Game,

@@ -2,7 +2,7 @@ import { Col, Modal, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Hero, HeroSkills, Troop } from "heroes-core";
+import { getArmySize, Hero, HeroSkills, Troop } from "heroes-core";
 import { ArtifactLimit, getCurrentLevel, getNextLevelExperience, SkillIds } from "heroes-homm1";
 
 import "./HeroWindow.scss";
@@ -436,6 +436,8 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
       hero.army[selectedTroopIndex] :
       undefined;
 
+    const troopDismissible = getArmySize(hero.army) > 1;
+
     return (
       <div className="hero-window-army">
         <ArmyStrip
@@ -447,7 +449,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           onSelectedTroopClick={this.props.onSelectedTroopClick}
           onSwapTroops={this.onSwapTroops}
         />
-        {selectedTroop && this.props.troopDetailsVisible && this.renderTroopDetails(selectedTroop)}
+        {selectedTroop && this.props.troopDetailsVisible && this.renderTroopDetails(selectedTroop, troopDismissible)}
       </div>
     );
   }
@@ -521,7 +523,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     this.props.onSwapTroops(this.props.hero.id, index, withIndex);
   }
 
-  private renderTroopDetails(troop: Troop) {
+  private renderTroopDetails(troop: Troop, dismissible: boolean) {
     return (
       <Modal
         closable={false}
@@ -530,6 +532,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
       >
         <TroopWindow
           troop={troop}
+          dismissible={dismissible}
           dismissPromptVisible={this.props.dismissTroopPromptVisible}
           onDismissClick={this.onDismissTroopClick}
           onConfirmDismissClick={this.onConfirmDismissTroopClick}

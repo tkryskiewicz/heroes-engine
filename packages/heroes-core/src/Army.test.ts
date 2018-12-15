@@ -1,5 +1,46 @@
-import { appendArmyTroop, Army, swapArmyTroops } from "./Army";
+import { appendArmyTroop, Army, dismissArmyTroop, getArmySize, swapArmyTroops } from "./Army";
 import { Troop } from "./Troop";
+
+describe("getArmySize", () => {
+  it("should return 0 when army is empty", () => {
+    const army: Army = [];
+
+    const result = getArmySize(army);
+
+    expect(result).toBe(0);
+  });
+
+  it("should return 1 when only one troop", () => {
+    const army: Army = [
+      {
+        count: 1,
+        creature: "creature",
+      },
+    ];
+
+    const result = getArmySize(army);
+
+    expect(result).toBe(1);
+  });
+
+  it("should handle empty slots", () => {
+    const army: Army = [
+      {
+        count: 1,
+        creature: "creatureA",
+      },
+      undefined,
+      {
+        count: 1,
+        creature: "creatureB",
+      },
+    ];
+
+    const result = getArmySize(army);
+
+    expect(result).toBe(2);
+  });
+});
 
 describe("appendArmyTroop", () => {
   it("should set as first troop when empty", () => {
@@ -158,6 +199,25 @@ describe("swapArmyTroops", () => {
     const expected: Army = [
       troopB,
       troopA,
+    ];
+
+    expect(result).toEqual(expected);
+  });
+});
+
+describe("dismissArmyTroop", () => {
+  it("should dismiss troop", () => {
+    const army: Army = [
+      {
+        count: 1,
+        creature: "creature",
+      },
+    ];
+
+    const result = dismissArmyTroop(army, 0);
+
+    const expected = [
+      undefined,
     ];
 
     expect(result).toEqual(expected);

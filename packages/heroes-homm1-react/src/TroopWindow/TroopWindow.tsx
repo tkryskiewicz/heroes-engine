@@ -9,12 +9,15 @@ import "./TroopWindow.scss";
 
 import { CreatureIcon } from "../CreatureIcon";
 import { GameButton } from "../GameButton";
+import { GameModal } from "../GameModal";
+import { GameParagraph } from "../GameParagraph";
 import { GameText } from "../GameText";
 import { getCreatureNameMessage } from "../messages";
 import { getSpeedMessage, messages } from "./messages";
 
 export interface TroopWindowProps {
   troop: Troop;
+  dismissible: boolean;
   dismissPromptVisible: boolean;
   onDismissClick: (troop: Troop) => void;
   onConfirmDismissClick: (troop: Troop) => void;
@@ -23,6 +26,7 @@ export interface TroopWindowProps {
 }
 
 type DefaultProp =
+  "dismissible" |
   "dismissPromptVisible" |
   "onDismissClick" |
   "onConfirmDismissClick" |
@@ -32,6 +36,7 @@ type DefaultProp =
 export class TroopWindow extends React.Component<TroopWindowProps> {
   public static defaultProps: Pick<TroopWindowProps, DefaultProp> = {
     dismissPromptVisible: false,
+    dismissible: false,
     onCancelDismissClick: () => undefined,
     onConfirmDismissClick: () => undefined,
     onDismissClick: () => undefined,
@@ -99,12 +104,7 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
               className="troop-window-dismiss"
               span={12}
             >
-              <GameButton
-                group="troop-window"
-                type="dismiss"
-                onClick={this.onDismissClick}
-              />
-              {this.props.dismissPromptVisible && this.renderDismissPrompt()}
+              {this.props.dismissible && this.renderDismissal(this.props.dismissPromptVisible)}
             </Col>
             <Col
               className="troop-window-exit"
@@ -155,6 +155,19 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
     this.props.onDismissClick(this.props.troop);
   }
 
+  private renderDismissal(visible: boolean) {
+    return (
+      <>
+        <GameButton
+          group="troop-window"
+          type="dismiss"
+          onClick={this.onDismissClick}
+        />
+        {visible && this.renderDismissPrompt()}
+      </>
+    );
+  }
+
   private renderDismissPrompt() {
     return (
       <Modal
@@ -162,31 +175,33 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
         closable={false}
         visible={true}
       >
-        <Row>
-          <FormattedMessage {...messages.dismissMessage} />
-        </Row>
-        <Row>
-          <Col
-            className="troop-window-dismiss-yes"
-            span={12}
-          >
-            <GameButton
-              group="system"
-              type="yes"
-              onClick={this.onConfirmDismiss}
-            />
-          </Col>
-          <Col
-            className="troop-window-dismiss-no"
-            span={12}
-          >
-            <GameButton
-              group="system"
-              type="no"
-              onClick={this.onCancelDismiss}
-            />
-          </Col>
-        </Row>
+        <GameModal>
+          <GameParagraph textSize="large">
+            <FormattedMessage {...messages.dismissMessage} />
+          </GameParagraph>
+          <Row>
+            <Col
+              className="troop-window-dismiss-yes"
+              span={12}
+            >
+              <GameButton
+                group="system"
+                type="yes"
+                onClick={this.onConfirmDismiss}
+              />
+            </Col>
+            <Col
+              className="troop-window-dismiss-no"
+              span={12}
+            >
+              <GameButton
+                group="system"
+                type="no"
+                onClick={this.onCancelDismiss}
+              />
+            </Col>
+          </Row>
+        </GameModal>
       </Modal>
     );
   }
