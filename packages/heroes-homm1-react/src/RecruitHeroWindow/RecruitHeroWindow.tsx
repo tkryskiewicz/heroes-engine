@@ -5,8 +5,6 @@ import { FormattedMessage } from "react-intl";
 import { enoughResources, Resources } from "heroes-core";
 import { HeroClass } from "heroes-homm1";
 
-import "./RecruitHeroWindow.scss";
-
 import { GameButton } from "../GameButton";
 import { GameModal } from "../GameModal";
 import { GameText } from "../GameText";

@@ -227,19 +227,17 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
         visible={true}
       >
         <GameModal size={2}>
-          <div style={{ textAlign: "center" }}>
-            <GameParagraph textSize="large">
-              <FormattedMessage {...getSkillNameMessage(skill)} />
-            </GameParagraph>
-            <GameParagraph textSize="large">
-              <FormattedMessage {...getSkillDescriptionMessage(skill)} />
-            </GameParagraph>
-            <GameButton
-              group="system"
-              type="okay"
-              onClick={this.onCloseSkillDetailsClick}
-            />
-          </div>
+          <GameParagraph textSize="large">
+            <FormattedMessage {...getSkillNameMessage(skill)} />
+          </GameParagraph>
+          <GameParagraph textSize="large">
+            <FormattedMessage {...getSkillDescriptionMessage(skill)} />
+          </GameParagraph>
+          <GameButton
+            group="system"
+            type="okay"
+            onClick={this.onCloseSkillDetailsClick}
+          />
         </GameModal>
       </Modal>
     );
@@ -341,28 +339,26 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   private renderMoraleDetails(morale: number) {
     return (
       <GameModal size={3}>
-        <div style={{ textAlign: "center" }}>
-          <GameParagraph textSize="large">
-            <FormattedMessage {...getMoraleNameMessage(morale)} />
-          </GameParagraph>
-          <GameParagraph textSize="large">
-            <FormattedMessage {...getMoraleDescriptionMessage(morale)} />
-          </GameParagraph>
-          <GameParagraph textSize="large">
-            <FormattedMessage {...moraleMessages.modifiers} />:
+        <GameParagraph textSize="large">
+          <FormattedMessage {...getMoraleNameMessage(morale)} />
+        </GameParagraph>
+        <GameParagraph textSize="large">
+          <FormattedMessage {...getMoraleDescriptionMessage(morale)} />
+        </GameParagraph>
+        <GameParagraph textSize="large">
+          <FormattedMessage {...moraleMessages.modifiers} />:
             <br />
-            <FormattedMessage {...getHeroClassNameMessage(this.props.hero.heroClass)}>
-              {(className) => (<FormattedMessage {...moraleMessages.heroClassBonus} values={{ className }} />)}
-            </FormattedMessage>
-            <br />
-            <FormattedMessage {...moraleMessages.humanTroopsBonus} />
-          </GameParagraph>
-          <GameButton
-            group="system"
-            type="okay"
-            onClick={this.onCloseMiscInfoDetailsClick}
-          />
-        </div>
+          <FormattedMessage {...getHeroClassNameMessage(this.props.hero.heroClass)}>
+            {(className) => (<FormattedMessage {...moraleMessages.heroClassBonus} values={{ className }} />)}
+          </FormattedMessage>
+          <br />
+          <FormattedMessage {...moraleMessages.humanTroopsBonus} />
+        </GameParagraph>
+        <GameButton
+          group="system"
+          type="okay"
+          onClick={this.onCloseMiscInfoDetailsClick}
+        />
       </GameModal>
     );
   }
@@ -370,24 +366,22 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   private renderLuckDetails(luck: number) {
     return (
       <GameModal size={4}>
-        <div style={{ textAlign: "center" }}>
-          <GameParagraph textSize="large">
-            <FormattedMessage {...getLuckNameMessage(luck)} />
-          </GameParagraph>
-          <GameParagraph textSize="large">
-            <FormattedMessage {...getLuckDescriptionMessage(luck)} />
-          </GameParagraph>
-          <GameParagraph textSize="large">
-            <FormattedMessage {...luckMessages.modifiers} />:
+        <GameParagraph textSize="large">
+          <FormattedMessage {...getLuckNameMessage(luck)} />
+        </GameParagraph>
+        <GameParagraph textSize="large">
+          <FormattedMessage {...getLuckDescriptionMessage(luck)} />
+        </GameParagraph>
+        <GameParagraph textSize="large">
+          <FormattedMessage {...luckMessages.modifiers} />:
             <br />
-            <FormattedMessage {...messages.noModifiers} />
-          </GameParagraph>
-          <GameButton
-            group="system"
-            type="okay"
-            onClick={this.onCloseMiscInfoDetailsClick}
-          />
-        </div>
+          <FormattedMessage {...messages.noModifiers} />
+        </GameParagraph>
+        <GameButton
+          group="system"
+          type="okay"
+          onClick={this.onCloseMiscInfoDetailsClick}
+        />
       </GameModal>
     );
   }
@@ -398,21 +392,19 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
     return (
       <GameModal size={2}>
-        <div style={{ textAlign: "center" }}>
-          <GameParagraph textSize="large">
-            <FormattedMessage {...experienceMessages.level} values={{ value: currentLevel }} />
-          </GameParagraph>
-          <GameParagraph textSize="large">
-            <FormattedMessage {...experienceMessages.value} values={{ value: experience }} />
-            <br />
-            <FormattedMessage {...experienceMessages.nextLevel} values={{ value: nextLevelExperience }} />
-          </GameParagraph>
-          <GameButton
-            group="system"
-            type="okay"
-            onClick={this.onCloseMiscInfoDetailsClick}
-          />
-        </div>
+        <GameParagraph textSize="large">
+          <FormattedMessage {...experienceMessages.level} values={{ value: currentLevel }} />
+        </GameParagraph>
+        <GameParagraph textSize="large">
+          <FormattedMessage {...experienceMessages.value} values={{ value: experience }} />
+          <br />
+          <FormattedMessage {...experienceMessages.nextLevel} values={{ value: nextLevelExperience }} />
+        </GameParagraph>
+        <GameButton
+          group="system"
+          type="okay"
+          onClick={this.onCloseMiscInfoDetailsClick}
+        />
       </GameModal>
     );
   }
@@ -610,11 +602,9 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
         visible={visible}
       >
         <GameModal>
-          <Row style={{ textAlign: "center" }}>
-            <GameParagraph textSize="large">
-              <FormattedMessage {...messages.dismissHeroMessage} />
-            </GameParagraph>
-          </Row>
+          <GameParagraph textSize="large">
+            <FormattedMessage {...messages.dismissHeroMessage} />
+          </GameParagraph>
           <Row>
             <Col
               className="hero-window-dismiss-yes"
