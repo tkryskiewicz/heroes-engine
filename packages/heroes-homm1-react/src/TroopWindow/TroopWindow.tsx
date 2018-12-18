@@ -1,4 +1,4 @@
-import { Col, Modal, Row } from "antd";
+import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -13,6 +13,7 @@ import { GameModal } from "../GameModal";
 import { GameParagraph } from "../GameParagraph";
 import { GameText } from "../GameText";
 import { getCreatureNameMessage } from "../messages";
+import { Modal } from "../Modal";
 import { getSpeedMessage, messages } from "./messages";
 
 export interface TroopWindowProps {
@@ -171,8 +172,7 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
   private renderDismissPrompt() {
     return (
       <Modal
-        footer={null}
-        closable={false}
+        width={286}
         visible={true}
       >
         <GameModal>

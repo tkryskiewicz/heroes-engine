@@ -1,0 +1,17 @@
+.modal {
+  &.ant-modal {
+    .ant-modal-content {
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .ant-modal-body {
+      padding: 0;
+    }
+  }
+
+  &-container {
+    margin: 0 auto;
+  }
+}

@@ -1,4 +1,4 @@
-import { Col, Modal, Row } from "antd";
+import { Col, Row } from "antd";
 import * as React from "react";
 
 import { AdventureButtons } from "../AdventureButtons";
@@ -8,6 +8,7 @@ import { GameOptions } from "../GameOptions";
 import { HeroLocators } from "../HeroLocators";
 import { HeroWindow } from "../HeroWindow";
 import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
+import { Modal } from "../Modal";
 import { PuzzleWindow } from "../PuzzleWindow";
 import { TownLocators } from "../TownLocators";
 import { TownWindow } from "../TownWindow";
@@ -84,9 +85,7 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
   private renderHeroWindow(visible: boolean) {
     return (
       <Modal
-        width="75%"
-        closable={false}
-        footer={null}
+        width={640}
         visible={visible}
       >
         <HeroWindow />
@@ -97,9 +96,7 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
   private renderKingdomOverviewWindow(visible: boolean) {
     return (
       <Modal
-        width="75%"
-        closable={false}
-        footer={null}
+        width={640}
         visible={visible}
       >
         <KingdomOverviewWindow />
@@ -110,9 +107,7 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
   private renderTownWindow(visible: boolean) {
     return (
       <Modal
-        width="75%"
-        closable={false}
-        footer={null}
+        width={640}
         visible={visible}
       >
         <TownWindow />
@@ -123,9 +118,6 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
   private renderAdventureOptions(visible: boolean) {
     return (
       <Modal
-        title="Adventure options"
-        footer={null}
-        closable={false}
         visible={visible}
       >
         <AdventureOptions />
@@ -136,9 +128,6 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
   private renderGameOptions(visible: boolean) {
     return (
       <Modal
-        title="Game options"
-        footer={null}
-        closable={false}
         visible={visible}
       >
         <GameOptions />
@@ -149,10 +138,7 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
   private renderPuzzleWindow(visible: boolean) {
     return (
       <Modal
-        title="Puzzle Window"
-        width="75%"
-        footer={null}
-        closable={false}
+        width={640}
         visible={visible}
       >
         <PuzzleWindow />
@@ -163,10 +149,7 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
   private renderScenarioInfoWindow(visible: boolean) {
     return (
       <Modal
-        title="Scenario Info Window"
-        width="50%"
-        footer={null}
-        closable={false}
+        width={480}
         visible={visible}
       >
         <CampaignScenarioInfoWindow />

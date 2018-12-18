@@ -1,4 +1,3 @@
-import { Modal } from "antd";
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
@@ -15,6 +14,7 @@ import { GameText } from "../GameText";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
+import { Modal } from "../Modal";
 import { RecruitTroopWindow, recruitTroopWindowMessages } from "../RecruitTroopWindow";
 import { TavernWindow } from "../TavernWindow";
 import { TownView } from "../TownView";
@@ -230,9 +230,6 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
 
     return (
       <Modal
-        width="75%"
-        closable={false}
-        footer={null}
         visible={true}
       >
         {StructureDetails}

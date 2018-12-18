@@ -1,4 +1,4 @@
-import { Col, Modal, Row } from "antd";
+import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
@@ -30,6 +30,7 @@ import {
   luckMessages,
   moraleMessages,
 } from "../messages";
+import { Modal } from "../Modal";
 import { TroopWindow } from "../TroopWindow";
 import { ComponentWithDefaultProps } from "../util";
 import { ArtifactSlot } from "./ArtifactSlot";
@@ -221,9 +222,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   private renderSkillDetails(skill: string) {
     return (
       <Modal
-        width="40%"
-        closable={false}
-        footer={null}
+        width={286}
         visible={true}
       >
         <GameModal size={2}>
@@ -326,9 +325,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
     return (
       <Modal
-        width="40%"
-        closable={false}
-        footer={null}
+        width={286}
         visible={true}
       >
         {content}
@@ -518,8 +515,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   private renderTroopDetails(troop: Troop, dismissible: boolean) {
     return (
       <Modal
-        closable={false}
-        footer={null}
+        width={402}
         visible={true}
       >
         <TroopWindow
@@ -597,8 +593,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   private renderDismissHeroPrompt(visible: boolean) {
     return (
       <Modal
-        closable={false}
-        footer={null}
+        width={286}
         visible={visible}
       >
         <GameModal>
