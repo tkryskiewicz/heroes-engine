@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { number, text } from "@storybook/addon-knobs";
+import { boolean, number, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -16,6 +16,7 @@ storiesOf(CampaignScenarioInfoWindow.name, module)
     return (
       <CampaignScenarioInfoWindow
         scenario={scenario}
+        visible={boolean("Visible", true)}
         onOkayClick={action("Okay Click")}
         onRestartScenarioClick={action("Restart Scenario Click")}
       />

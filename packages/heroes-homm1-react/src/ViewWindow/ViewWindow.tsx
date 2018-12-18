@@ -6,24 +6,31 @@ import "./ViewWindow.scss";
 import { legendImages } from "./assets";
 
 import { GameButton } from "../GameButton";
+import { GameWindow } from "../GameWindow";
 
 export interface ViewWindowProps {
   // FIXME: inject background
   type: "world" | "puzzle";
+  visible?: boolean;
   onExitClick?: () => void;
 }
 
 export class ViewWindow extends React.Component<ViewWindowProps> {
   public render() {
     return (
-      <Row>
-        <Col span={18}>
-          {this.props.children}
-        </Col>
-        <Col span={6}>
-          {this.renderLegend(this.props.type)}
-        </Col>
-      </Row>
+      <GameWindow
+        width={640}
+        visible={this.props.visible}
+      >
+        <Row>
+          <Col span={18}>
+            {this.props.children}
+          </Col>
+          <Col span={6}>
+            {this.renderLegend(this.props.type)}
+          </Col>
+        </Row>
+      </GameWindow>
     );
   }
 

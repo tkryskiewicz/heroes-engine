@@ -40,6 +40,7 @@ storiesOf("HeroWindow", module)
     return (
       <HeroWindow
         hero={hero}
+        visible={boolean("Visible", true)}
         visibleSkillDetails={select("Visible Skill Details", { None: "", ...skillOptions }, "")}
         onVisibleSkillDetailsChange={action("Visible Skill Details Change")}
         visibleMiscInfoDetails={select("Visible Misc Info Details", { None: "", ...miscInfoOptions }, "")}

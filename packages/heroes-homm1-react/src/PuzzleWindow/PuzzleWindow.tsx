@@ -10,6 +10,7 @@ import { ViewWindow } from "../ViewWindow";
 
 export interface PuzzleWindowProps {
   discoveredPieces: number;
+  visible?: boolean;
   onExitClick?: () => void;
 }
 
@@ -18,6 +19,7 @@ export class PuzzleWindow extends React.Component<PuzzleWindowProps> {
     return (
       <ViewWindow
         type="puzzle"
+        visible={this.props.visible}
         onExitClick={this.props.onExitClick}
       >
         {this.renderPuzzle(this.props.discoveredPieces)}

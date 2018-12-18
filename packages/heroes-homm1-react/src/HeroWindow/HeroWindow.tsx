@@ -13,6 +13,7 @@ import { GameButton } from "../GameButton";
 import { GameModal } from "../GameModal";
 import { GameParagraph } from "../GameParagraph";
 import { GameText } from "../GameText";
+import { GameWindow } from "../GameWindow";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
@@ -39,6 +40,7 @@ import { SkillInfo } from "./SkillInfo";
 
 export interface HeroWindowProps {
   hero: Hero;
+  visible?: boolean;
   visibleSkillDetails?: string;
   onVisibleSkillDetailsChange: (skill?: string) => void;
   visibleMiscInfoDetails?: string;
@@ -108,55 +110,60 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     const { hero, selectedTroopIndex } = this.props;
 
     return (
-      <div className="hero-window">
-        <div className="hero-window-name">
-          <GameText size="large">
-            {this.getHeroTitle()}
-          </GameText>
+      <GameWindow
+        width={640}
+        visible={this.props.visible}
+      >
+        <div className="hero-window">
+          <div className="hero-window-name">
+            <GameText size="large">
+              {this.getHeroTitle()}
+            </GameText>
+          </div>
+          <div className="hero-window-portrait">
+            <HeroPortrait
+              hero={hero.id}
+            />
+          </div>
+          {this.renderSkills(hero.skills, this.props.visibleSkillDetails)}
+          {this.renderMiscInfo(hero, this.props.visibleMiscInfoDetails)}
+          <div className="hero-window-crest">
+            <Crest
+              alignment={hero.alignment}
+              heroClass={hero.heroClass}
+              onMouseEnter={this.onCrestMouseEnter}
+              onMouseLeave={this.onCrestMouseLeave}
+              onClick={this.props.onCrestClick}
+            />
+          </div>
+          {this.renderArmy(hero, selectedTroopIndex)}
+          <div className="hero-window-dismiss">
+            <GameButton
+              group="hero-window"
+              type="dismiss"
+              onMouseEnter={this.onDismissMouseEnter}
+              onMouseLeave={this.onDismissMouseLeave}
+              onClick={this.props.onDismissHeroClick}
+            />
+            {this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
+          </div>
+          {this.renderArtifacts()}
+          <div className="hero-window-exit">
+            <GameButton
+              group="hero-window"
+              type="exit"
+              onMouseEnter={this.onExitMouseEnter}
+              onMouseLeave={this.onExitMouseLeave}
+              onClick={this.props.onExitClick}
+            />
+          </div>
+          <div className="hero-window-title">
+            <GameText size="large">
+              {this.props.statusText}
+            </GameText>
+          </div>
         </div>
-        <div className="hero-window-portrait">
-          <HeroPortrait
-            hero={hero.id}
-          />
-        </div>
-        {this.renderSkills(hero.skills, this.props.visibleSkillDetails)}
-        {this.renderMiscInfo(hero, this.props.visibleMiscInfoDetails)}
-        <div className="hero-window-crest">
-          <Crest
-            alignment={hero.alignment}
-            heroClass={hero.heroClass}
-            onMouseEnter={this.onCrestMouseEnter}
-            onMouseLeave={this.onCrestMouseLeave}
-            onClick={this.props.onCrestClick}
-          />
-        </div>
-        {this.renderArmy(hero, selectedTroopIndex)}
-        <div className="hero-window-dismiss">
-          <GameButton
-            group="hero-window"
-            type="dismiss"
-            onMouseEnter={this.onDismissMouseEnter}
-            onMouseLeave={this.onDismissMouseLeave}
-            onClick={this.props.onDismissHeroClick}
-          />
-          {this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
-        </div>
-        {this.renderArtifacts()}
-        <div className="hero-window-exit">
-          <GameButton
-            group="hero-window"
-            type="exit"
-            onMouseEnter={this.onExitMouseEnter}
-            onMouseLeave={this.onExitMouseLeave}
-            onClick={this.props.onExitClick}
-          />
-        </div>
-        <div className="hero-window-title">
-          <GameText size="large">
-            {this.props.statusText}
-          </GameText>
-        </div>
-      </div>
+      </GameWindow>
     );
   }
 

@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { number, select, text } from "@storybook/addon-knobs";
+import { boolean, number, select, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -27,6 +27,7 @@ storiesOf("TownWindow", module)
       <TownWindow
         town={town}
         resources={{}}
+        visible={boolean("Visible", true)}
         selectedGarrisonTroopIndex={selectedGarrisonTroopIndex}
         onSelectGarrisonTroop={action("Select Garrison Troop")}
         onSwapGarrisonTroops={action("Swap Garrison Troops")}

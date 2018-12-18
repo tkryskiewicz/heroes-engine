@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { select, text } from "@storybook/addon-knobs";
+import { boolean, select, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -14,6 +14,7 @@ storiesOf(ViewWindow.name, module)
   .add("default", () => (
     <ViewWindow
       type={select("Type", typeOptions, "world")}
+      visible={boolean("Visible", true)}
       onExitClick={action("Exit Click")}
     >
       {text("Content", "Content")}

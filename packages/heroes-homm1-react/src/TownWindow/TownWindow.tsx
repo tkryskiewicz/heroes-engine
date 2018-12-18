@@ -11,6 +11,7 @@ import { BigBar } from "../BigBar";
 import { BuildStructureWindow } from "../BuildStructureWindow";
 import { Crest } from "../Crest";
 import { GameText } from "../GameText";
+import { GameWindow } from "../GameWindow";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
@@ -26,6 +27,7 @@ export interface TownWindowProps {
   town: Town;
   visitingHero?: Hero;
   resources: Resources;
+  visible?: boolean;
   selectedGarrisonTroopIndex?: number;
   onSelectGarrisonTroop: (index: number) => void;
   onSwapGarrisonTroops: (town: string, index: number, withIndex: number) => void;
@@ -73,65 +75,70 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
     const { town, resources, visibleStructureDetails } = this.props;
 
     return (
-      <div className="town-window">
-        <TownView
-          town={town}
-          onStructureMouseEnter={this.onStructureMouseEnter}
-          onStructureMouseLeave={this.onStructureMouseLeave}
-          onStructureClick={this.onStructureClick}
-        />
-        <div className="town-window-strip">
-          <div className="town-window-town-name">
-            <GameText size="small">
-              {town.name}
-            </GameText>
+      <GameWindow
+        width={640}
+        visible={this.props.visible}
+      >
+        <div className="town-window">
+          <TownView
+            town={town}
+            onStructureMouseEnter={this.onStructureMouseEnter}
+            onStructureMouseLeave={this.onStructureMouseLeave}
+            onStructureClick={this.onStructureClick}
+          />
+          <div className="town-window-strip">
+            <div className="town-window-town-name">
+              <GameText size="small">
+                {town.name}
+              </GameText>
+            </div>
+            <div className="town-window-crest">
+              <Crest
+                alignment={town.alignment}
+                heroClass={town.heroClass}
+                onMouseEnter={this.onCrestMouseEnter}
+                onMouseLeave={this.onCrestMouseLeave}
+                onClick={this.props.onCrestClick}
+              />
+            </div>
+            <div className="town-window-garrison-army">
+              <ArmyStrip
+                army={town.garrison}
+                selectedTroopIndex={this.props.selectedGarrisonTroopIndex}
+                onSelectTroop={this.props.onSelectGarrisonTroop}
+                onSwapTroops={this.onSwapGarrisonTroops}
+              />
+            </div>
+            <div className="town-window-hero-portrait">
+              <HeroPortrait
+                hero={this.props.visitingHero ? this.props.visitingHero.id : undefined}
+                onMouseEnter={this.onHeroPortraitMouseEnter}
+                onMouseLeave={this.onHeroPortraitMouseLeave}
+              />
+            </div>
+            <div className="town-window-hero-army">
+              <ArmyStrip
+                army={this.props.visitingHero ? this.props.visitingHero.army : []}
+                selectedTroopIndex={this.props.selectedHeroTroopIndex}
+                onSelectTroop={this.props.onSelectHeroTroop}
+                onSwapTroops={this.onSwapHeroTroops}
+              />
+            </div>
+            <div className="town-window-treasury">
+              <Treasury
+                resources={this.props.resources}
+                onExitMouseEnter={this.onExitMouseEnter}
+                onExitMouseLeave={this.onExitMouseLeave}
+                onExitClick={this.props.onExitClick}
+              />
+            </div>
           </div>
-          <div className="town-window-crest">
-            <Crest
-              alignment={town.alignment}
-              heroClass={town.heroClass}
-              onMouseEnter={this.onCrestMouseEnter}
-              onMouseLeave={this.onCrestMouseLeave}
-              onClick={this.props.onCrestClick}
-            />
-          </div>
-          <div className="town-window-garrison-army">
-            <ArmyStrip
-              army={town.garrison}
-              selectedTroopIndex={this.props.selectedGarrisonTroopIndex}
-              onSelectTroop={this.props.onSelectGarrisonTroop}
-              onSwapTroops={this.onSwapGarrisonTroops}
-            />
-          </div>
-          <div className="town-window-hero-portrait">
-            <HeroPortrait
-              hero={this.props.visitingHero ? this.props.visitingHero.id : undefined}
-              onMouseEnter={this.onHeroPortraitMouseEnter}
-              onMouseLeave={this.onHeroPortraitMouseLeave}
-            />
-          </div>
-          <div className="town-window-hero-army">
-            <ArmyStrip
-              army={this.props.visitingHero ? this.props.visitingHero.army : []}
-              selectedTroopIndex={this.props.selectedHeroTroopIndex}
-              onSelectTroop={this.props.onSelectHeroTroop}
-              onSwapTroops={this.onSwapHeroTroops}
-            />
-          </div>
-          <div className="town-window-treasury">
-            <Treasury
-              resources={this.props.resources}
-              onExitMouseEnter={this.onExitMouseEnter}
-              onExitMouseLeave={this.onExitMouseLeave}
-              onExitClick={this.props.onExitClick}
-            />
-          </div>
+          <BigBar>
+            {this.props.statusText}
+          </BigBar>
+          {visibleStructureDetails && this.renderStructureDetails(town, resources, visibleStructureDetails)}
         </div>
-        <BigBar>
-          {this.props.statusText}
-        </BigBar>
-        {visibleStructureDetails && this.renderStructureDetails(town, resources, visibleStructureDetails)}
-      </div>
+      </GameWindow>
     );
   }
 

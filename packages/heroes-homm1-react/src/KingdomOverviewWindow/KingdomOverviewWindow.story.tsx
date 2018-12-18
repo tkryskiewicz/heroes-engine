@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { number, select } from "@storybook/addon-knobs";
+import { boolean, number, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -18,6 +18,7 @@ storiesOf(KingdomOverviewWindow.name, module)
       mines={{}}
       resources={{}}
       goldPerDay={number("Gold Per Day", 0, { range: true, min: 0, max: 9999, step: 1 })}
+      visible={boolean("Visible", true)}
       onExitClick={action("Exit Click")}
     />
   ));

@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { number } from "@storybook/addon-knobs";
+import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -11,6 +11,7 @@ storiesOf(PuzzleWindow.name, module)
   .add("default", () => (
     <PuzzleWindow
       discoveredPieces={number("Discovered Pieces", 0, { range: true, min: 0, max: PuzzlePieceCount, step: 1 })}
+      visible={boolean("Visible", true)}
       onExitClick={action("Exit Click")}
     />
   ));

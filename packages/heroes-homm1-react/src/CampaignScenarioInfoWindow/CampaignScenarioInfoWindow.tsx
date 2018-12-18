@@ -7,6 +7,7 @@ import { scenarioNumberImages } from "./assets";
 
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
+import { GameWindow } from "../GameWindow";
 
 export interface CampaignScenarioInfoWindowProps {
   scenario: {
@@ -14,6 +15,7 @@ export interface CampaignScenarioInfoWindowProps {
     name: string;
     description: string;
   };
+  visible?: boolean;
   onOkayClick?: () => void;
   onRestartScenarioClick?: () => void;
 }
@@ -21,51 +23,56 @@ export interface CampaignScenarioInfoWindowProps {
 export class CampaignScenarioInfoWindow extends React.Component<CampaignScenarioInfoWindowProps> {
   public render() {
     return (
-      <div className="campaign-scenario-info-window">
-        <Row className="campaign-scenario-info-window-title">
-          <Col
-            className="campaign-scenario-info-window-number"
-            span={10}
-          >
-            {this.renderNumber(this.props.scenario.scenarioNumber)}
-          </Col>
-          <Col
-            push={1}
-            span={13}
-          >
+      <GameWindow
+        width={480}
+        visible={this.props.visible}
+      >
+        <div className="campaign-scenario-info-window">
+          <Row className="campaign-scenario-info-window-title">
+            <Col
+              className="campaign-scenario-info-window-number"
+              span={10}
+            >
+              {this.renderNumber(this.props.scenario.scenarioNumber)}
+            </Col>
+            <Col
+              push={1}
+              span={13}
+            >
+              <GameText size="large">
+                {this.props.scenario.name}
+              </GameText>
+            </Col>
+          </Row>
+          <Row className="campaign-scenario-info-window-description">
             <GameText size="large">
-              {this.props.scenario.name}
+              {this.props.scenario.description}
             </GameText>
-          </Col>
-        </Row>
-        <Row className="campaign-scenario-info-window-description">
-          <GameText size="large">
-            {this.props.scenario.description}
-          </GameText>
-        </Row>
-        <Row>
-          <Col
-            className="campaign-scenario-info-window-okay"
-            span={9}
-          >
-            <GameButton
-              group="campaign-scenario-info-window"
-              type="okay"
-              onClick={this.props.onOkayClick}
-            />
-          </Col>
-          <Col
-            className="campaign-scenario-info-window-restart"
-            span={15}
-          >
-            <GameButton
-              group="campaign-scenario-info-window"
-              type="restart-scenario"
-              onClick={this.props.onRestartScenarioClick}
-            />
-          </Col>
-        </Row>
-      </div>
+          </Row>
+          <Row>
+            <Col
+              className="campaign-scenario-info-window-okay"
+              span={9}
+            >
+              <GameButton
+                group="campaign-scenario-info-window"
+                type="okay"
+                onClick={this.props.onOkayClick}
+              />
+            </Col>
+            <Col
+              className="campaign-scenario-info-window-restart"
+              span={15}
+            >
+              <GameButton
+                group="campaign-scenario-info-window"
+                type="restart-scenario"
+                onClick={this.props.onRestartScenarioClick}
+              />
+            </Col>
+          </Row>
+        </div>
+      </GameWindow>
     );
   }
 

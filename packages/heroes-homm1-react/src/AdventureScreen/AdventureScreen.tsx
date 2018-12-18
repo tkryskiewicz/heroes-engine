@@ -5,7 +5,6 @@ import { AdventureButtons } from "../AdventureButtons";
 import { AdventureOptions } from "../AdventureOptions";
 import { CampaignScenarioInfoWindow } from "../CampaignScenarioInfoWindow";
 import { GameOptions } from "../GameOptions";
-import { GameWindow } from "../GameWindow";
 import { HeroLocators } from "../HeroLocators";
 import { HeroWindow } from "../HeroWindow";
 import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
@@ -84,76 +83,57 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
 
   private renderHeroWindow(visible: boolean) {
     return (
-      <GameWindow
-        width={640}
+      <HeroWindow
         visible={visible}
-      >
-        <HeroWindow />
-      </GameWindow>
+      />
     );
   }
 
   private renderKingdomOverviewWindow(visible: boolean) {
     return (
-      <GameWindow
-        width={640}
+      <KingdomOverviewWindow
         visible={visible}
-      >
-        <KingdomOverviewWindow />
-      </GameWindow>
+      />
     );
   }
 
   private renderTownWindow(visible: boolean) {
     return (
-      <GameWindow
-        width={640}
+      <TownWindow
         visible={visible}
-      >
-        <TownWindow />
-      </GameWindow>
+      />
     );
   }
 
   private renderAdventureOptions(visible: boolean) {
     return (
-      <GameWindow
+      <AdventureOptions
         visible={visible}
-      >
-        <AdventureOptions />
-      </GameWindow>
+      />
     );
   }
 
   private renderGameOptions(visible: boolean) {
     return (
-      <GameWindow
+      <GameOptions
         visible={visible}
-      >
-        <GameOptions />
-      </GameWindow>
+      />
     );
   }
 
   private renderPuzzleWindow(visible: boolean) {
     return (
-      <GameWindow
-        width={640}
+      <PuzzleWindow
         visible={visible}
-      >
-        <PuzzleWindow />
-      </GameWindow>
+      />
     );
   }
 
   private renderScenarioInfoWindow(visible: boolean) {
     return (
-      <GameWindow
-        width={480}
+      <CampaignScenarioInfoWindow
         visible={visible}
-      >
-        <CampaignScenarioInfoWindow />
-      </GameWindow>
+      />
     );
   }
 }

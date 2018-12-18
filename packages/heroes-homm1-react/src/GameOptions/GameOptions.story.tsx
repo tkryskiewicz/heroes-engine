@@ -26,6 +26,7 @@ storiesOf(GameOptions.name, module)
 
     return (
       <GameOptions
+        visible={boolean("Visible", true)}
         onNewGameClick={action("New Game Click")}
         onLoadGameClick={action("Load Game Click")}
         onSaveGameClick={action("Save Game Click")}
