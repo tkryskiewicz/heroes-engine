@@ -3,23 +3,32 @@ import * as React from "react";
 
 import "./GameModal.scss";
 
+import { GameWindow } from "../GameWindow";
+
 export interface GameModalProps {
   size: number;
+  visible: boolean;
 }
 
 export class GameModal extends React.Component<GameModalProps> {
-  public static defaultProps = {
+  public static defaultProps: Pick<GameModalProps, "size" | "visible"> = {
     size: 1,
+    visible: false,
   };
 
   public render() {
     return (
-      <div className="game-modal">
-        {this.renderBackground(this.props.size)}
-        <div className="game-modal-content">
-          {this.props.children}
+      <GameWindow
+        width={286}
+        visible={this.props.visible}
+      >
+        <div className="game-modal">
+          {this.renderBackground(this.props.size)}
+          <div className="game-modal-content">
+            {this.props.children}
+          </div>
         </div>
-      </div>
+      </GameWindow>
     );
   }
 

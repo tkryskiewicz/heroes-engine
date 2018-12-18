@@ -21,6 +21,7 @@ export interface RecruitHeroWindowProps {
   heroes: Hero[];
   resources: Resources;
   cost: Resources;
+  visible?: boolean;
   onHeroPortraitClick?: (id: string) => void;
   onRecruitHeroClick?: (id: string) => void;
   onCancelClick?: () => void;
@@ -29,7 +30,10 @@ export interface RecruitHeroWindowProps {
 export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {
   public render() {
     return (
-      <GameModal size={4}>
+      <GameModal
+        size={4}
+        visible={this.props.visible}
+      >
         <Row className="recruit-hero-window-title">
           <GameText size="large">
             <FormattedMessage {...messages.title} />

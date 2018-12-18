@@ -11,7 +11,6 @@ import { BigBar } from "../BigBar";
 import { BuildStructureWindow } from "../BuildStructureWindow";
 import { Crest } from "../Crest";
 import { GameText } from "../GameText";
-import { GameWindow } from "../GameWindow";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
@@ -191,36 +190,39 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
   private renderStructureDetails(town: Town, resources: Resources, structure: string) {
     const struc = town.structures.find((s) => s.id === structure)!;
 
-    let StructureDetails: React.ReactNode | undefined;
+    let structureDetails: React.ReactNode | undefined;
 
     switch (structure) {
       case StructureId.Castle:
-        StructureDetails = !struc.isBuilt ? (
+        structureDetails = !struc.isBuilt ? (
           <BuildStructureWindow
             town={town.id}
             structure={structure}
             cost={struc.cost}
             canBuild={enoughResources(resources, struc.cost)}
+            visible={true}
           />) : (
             <StructuresWindow
               town={town.id}
               resources={resources}
               structures={town.structures}
+              visible={true}
             />
           );
         break;
       case StructureId.Tavern:
-        StructureDetails = <TavernWindow />;
+        structureDetails = <TavernWindow visible={true} />;
         break;
       default:
         if (struc.dwelling) {
           const onOkayClick = (count: number) => this.onRecruitTroop(struc.id, count);
 
-          StructureDetails = (
+          structureDetails = (
             <RecruitTroopWindow
               creature={struc.dwelling.creature}
               cost={struc.dwelling.cost}
               availableCount={struc.dwelling.availableCount}
+              visible={true}
               onOkayClick={onOkayClick}
             />
           );
@@ -228,13 +230,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
         break;
     }
 
-    return (
-      <GameWindow
-        visible={true}
-      >
-        {StructureDetails}
-      </GameWindow>
-    );
+    return structureDetails;
   }
 
   private onRecruitTroop = (structure: string, count: number) => {

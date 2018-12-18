@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { number } from "@storybook/addon-knobs";
+import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -24,6 +24,7 @@ storiesOf(RecruitHeroWindow.name, module)
       heroes={heroes}
       resources={{ [Resource.Gold]: number("Gold", 0, { range: true, min: 0, max: 10000, step: 1 }) }}
       cost={{ [Resource.Gold]: number("Cost", 2500, { range: true, min: 0, max: 10000, step: 1 }) }}
+      visible={boolean("Visible", true)}
       onHeroPortraitClick={action("Hero Portrait Click")}
       onRecruitHeroClick={action("Recruit Hero Click")}
       onCancelClick={action("Cancel Click")}

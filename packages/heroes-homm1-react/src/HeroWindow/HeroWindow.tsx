@@ -13,7 +13,6 @@ import { GameButton } from "../GameButton";
 import { GameModal } from "../GameModal";
 import { GameParagraph } from "../GameParagraph";
 import { GameText } from "../GameText";
-import { GameWindow } from "../GameWindow";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
@@ -140,7 +139,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
             onMouseLeave={this.onDismissMouseLeave}
             onClick={this.props.onDismissHeroClick}
           />
-          {this.props.dismissHeroPromptVisible && this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
+          {this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
         </div>
         {this.renderArtifacts()}
         <div className="hero-window-exit">
@@ -221,24 +220,22 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
   private renderSkillDetails(skill: string) {
     return (
-      <GameWindow
-        width={286}
+      <GameModal
+        size={2}
         visible={true}
       >
-        <GameModal size={2}>
-          <GameParagraph textSize="large">
-            <FormattedMessage {...getSkillNameMessage(skill)} />
-          </GameParagraph>
-          <GameParagraph textSize="large">
-            <FormattedMessage {...getSkillDescriptionMessage(skill)} />
-          </GameParagraph>
-          <GameButton
-            group="system"
-            type="okay"
-            onClick={this.onCloseSkillDetailsClick}
-          />
-        </GameModal>
-      </GameWindow>
+        <GameParagraph textSize="large">
+          <FormattedMessage {...getSkillNameMessage(skill)} />
+        </GameParagraph>
+        <GameParagraph textSize="large">
+          <FormattedMessage {...getSkillDescriptionMessage(skill)} />
+        </GameParagraph>
+        <GameButton
+          group="system"
+          type="okay"
+          onClick={this.onCloseSkillDetailsClick}
+        />
+      </GameModal>
     );
   }
 
@@ -323,19 +320,15 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
         break;
     }
 
-    return (
-      <GameWindow
-        width={286}
-        visible={true}
-      >
-        {content}
-      </GameWindow>
-    );
+    return content;
   }
 
   private renderMoraleDetails(morale: number) {
     return (
-      <GameModal size={3}>
+      <GameModal
+        size={3}
+        visible={true}
+      >
         <GameParagraph textSize="large">
           <FormattedMessage {...getMoraleNameMessage(morale)} />
         </GameParagraph>
@@ -362,7 +355,10 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
   private renderLuckDetails(luck: number) {
     return (
-      <GameModal size={4}>
+      <GameModal
+        size={4}
+        visible={true}
+      >
         <GameParagraph textSize="large">
           <FormattedMessage {...getLuckNameMessage(luck)} />
         </GameParagraph>
@@ -388,7 +384,10 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     const nextLevelExperience = getNextLevelExperience(experience);
 
     return (
-      <GameModal size={2}>
+      <GameModal
+        size={2}
+        visible={true}
+      >
         <GameParagraph textSize="large">
           <FormattedMessage {...experienceMessages.level} values={{ value: currentLevel }} />
         </GameParagraph>
@@ -438,7 +437,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           onSelectedTroopClick={this.props.onSelectedTroopClick}
           onSwapTroops={this.onSwapTroops}
         />
-        {selectedTroop && this.props.troopDetailsVisible && this.renderTroopDetails(selectedTroop, troopDismissible)}
+        {selectedTroop && this.renderTroopDetails(selectedTroop, troopDismissible, this.props.troopDetailsVisible)}
       </div>
     );
   }
@@ -512,22 +511,18 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     this.props.onSwapTroops(this.props.hero.id, index, withIndex);
   }
 
-  private renderTroopDetails(troop: Troop, dismissible: boolean) {
+  private renderTroopDetails(troop: Troop, dismissible: boolean, visible: boolean) {
     return (
-      <GameWindow
-        width={402}
-        visible={true}
-      >
-        <TroopWindow
-          troop={troop}
-          dismissible={dismissible}
-          dismissPromptVisible={this.props.dismissTroopPromptVisible}
-          onDismissClick={this.onDismissTroopClick}
-          onConfirmDismissClick={this.onConfirmDismissTroopClick}
-          onCancelDismissClick={this.onCancelDismissTroopClick}
-          onExitClick={this.props.onExitTroopDetails}
-        />
-      </GameWindow>
+      <TroopWindow
+        troop={troop}
+        dismissible={dismissible}
+        visible={visible}
+        dismissPromptVisible={this.props.dismissTroopPromptVisible}
+        onDismissClick={this.onDismissTroopClick}
+        onConfirmDismissClick={this.onConfirmDismissTroopClick}
+        onCancelDismissClick={this.onCancelDismissTroopClick}
+        onExitClick={this.props.onExitTroopDetails}
+      />
     );
   }
 
@@ -592,38 +587,35 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
   private renderDismissHeroPrompt(visible: boolean) {
     return (
-      <GameWindow
-        width={286}
+      <GameModal
         visible={visible}
       >
-        <GameModal>
-          <GameParagraph textSize="large">
-            <FormattedMessage {...messages.dismissHeroMessage} />
-          </GameParagraph>
-          <Row>
-            <Col
-              className="hero-window-dismiss-yes"
-              span={12}
-            >
-              <GameButton
-                group="system"
-                type="yes"
-                onClick={this.onDismissHero}
-              />
-            </Col>
-            <Col
-              className="hero-window-dismiss-no"
-              span={12}
-            >
-              <GameButton
-                group="system"
-                type="no"
-                onClick={this.props.onCancelDismissHeroClick}
-              />
-            </Col>
-          </Row>
-        </GameModal>
-      </GameWindow>
+        <GameParagraph textSize="large">
+          <FormattedMessage {...messages.dismissHeroMessage} />
+        </GameParagraph>
+        <Row>
+          <Col
+            className="hero-window-dismiss-yes"
+            span={12}
+          >
+            <GameButton
+              group="system"
+              type="yes"
+              onClick={this.onDismissHero}
+            />
+          </Col>
+          <Col
+            className="hero-window-dismiss-no"
+            span={12}
+          >
+            <GameButton
+              group="system"
+              type="no"
+              onClick={this.props.onCancelDismissHeroClick}
+            />
+          </Col>
+        </Row>
+      </GameModal>
     );
   }
 

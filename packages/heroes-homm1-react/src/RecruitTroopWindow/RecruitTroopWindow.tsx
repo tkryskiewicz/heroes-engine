@@ -10,6 +10,7 @@ import "./RecruitTroopWindow.scss";
 import { CreatureIcon } from "../CreatureIcon";
 import { GameButton } from "../GameButton";
 import { GameText } from "../GameText";
+import { GameWindow } from "../GameWindow";
 import { getCreatureNameMessage } from "../messages";
 import { ResourceCost } from "../ResourceCost";
 import { messages } from "./messages";
@@ -20,6 +21,7 @@ export interface RecruitTroopWindowProps {
   cost: Resources;
   availableCount: number;
   count: number;
+  visible?: boolean;
   onCountChange: (value: number) => void;
   onOkayClick: (count: number) => void;
   onCancelClick: () => void;
@@ -34,76 +36,81 @@ export class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps>
 
   public render() {
     return (
-      <div className="recruit-troop-window">
-        <Row>
-          <GameText size="large">
-            <FormattedMessage {...getCreatureNameMessage(this.props.creature)}>
-              {(creature) => (<FormattedMessage {...messages.title} values={{ creature }} />)}
-            </FormattedMessage>
-          </GameText>
-        </Row>
-        <Row>
-          <Col span={8}>
-            <CreatureIcon
-              size="medium"
-              creature={this.props.creature}
-            />
-            <GameText size="normal">
-              <FormattedMessage {...messages.available} />: {this.props.availableCount}
+      <GameWindow
+        width={320}
+        visible={this.props.visible}
+      >
+        <div className="recruit-troop-window">
+          <Row>
+            <GameText size="large">
+              <FormattedMessage {...getCreatureNameMessage(this.props.creature)}>
+                {(creature) => (<FormattedMessage {...messages.title} values={{ creature }} />)}
+              </FormattedMessage>
             </GameText>
-          </Col>
-          <Col span={16}>
-            {this.renderCostPerTroop()}
-          </Col>
-        </Row>
-        <Row>
-          <Col span={8}>
-            <GameText size="normal">
-              <FormattedMessage {...messages.count} />:
+          </Row>
+          <Row>
+            <Col span={8}>
+              <CreatureIcon
+                size="medium"
+                creature={this.props.creature}
+              />
+              <GameText size="normal">
+                <FormattedMessage {...messages.available} />: {this.props.availableCount}
+              </GameText>
+            </Col>
+            <Col span={16}>
+              {this.renderCostPerTroop()}
+            </Col>
+          </Row>
+          <Row>
+            <Col span={8}>
+              <GameText size="normal">
+                <FormattedMessage {...messages.count} />:
           </GameText>
-          </Col>
-          <Col span={16}>
-            <InputNumber
-              precision={0}
-              min={0}
-              max={this.props.availableCount}
-              disabled={!this.props.availableCount}
-              value={this.props.count}
-              onChange={this.onCountChange}
-            />
-            <GameButton
-              group="recruit-troop-window"
-              type="max"
-              onClick={this.onMaxClick}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <GameText size="large">
-            <FormattedMessage {...messages.totalCost} />:
+            </Col>
+            <Col span={16}>
+              <InputNumber
+                precision={0}
+                min={0}
+                max={this.props.availableCount}
+                disabled={!this.props.availableCount}
+                value={this.props.count}
+                onChange={this.onCountChange}
+              />
+              <GameButton
+                group="recruit-troop-window"
+                type="max"
+                onClick={this.onMaxClick}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <GameText size="large">
+              <FormattedMessage {...messages.totalCost} />:
           </GameText>
-          <ResourceCost
-            cost={multiplyResources(this.props.cost, this.props.count)}
-          />
-        </Row>
-        <Row>
-          <Col span={12}>
-            <GameButton
-              group="recruit-troop-window"
-              type="okay"
-              disabled={this.props.availableCount === 0}
-              onClick={this.onOkayClick}
+            <ResourceCost
+              cost={multiplyResources(this.props.cost, this.props.count)}
             />
-          </Col>
-          <Col span={12}>
-            <GameButton
-              group="recruit-troop-window"
-              type="cancel"
-              onClick={this.onCancelClick}
-            />
-          </Col>
-        </Row>
-      </div>
+          </Row>
+          <Row>
+            <Col span={12}>
+              <GameButton
+                group="recruit-troop-window"
+                type="okay"
+                disabled={this.props.availableCount === 0}
+                onClick={this.onOkayClick}
+              />
+            </Col>
+            <Col span={12}>
+              <GameButton
+                group="recruit-troop-window"
+                type="cancel"
+                onClick={this.onCancelClick}
+              />
+            </Col>
+          </Row>
+        </div>
+      </GameWindow>
     );
   }
 

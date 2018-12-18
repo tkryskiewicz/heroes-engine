@@ -15,6 +15,7 @@ storiesOf(BuildStructureWindow.name, module)
       structure={select("Structure", structureOptions, StructureId.Castle)}
       cost={{ [Resource.Gold]: 2000, [Resource.Ore]: 20 }}
       canBuild={boolean("Can Build", true)}
+      visible={boolean("Visible", true)}
       onOkayClick={action("Okay Click")}
       onCancelClick={action("Cancel Click")}
     />

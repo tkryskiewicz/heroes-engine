@@ -19,6 +19,7 @@ export interface BuildStructureWindowProps {
   structure: string;
   cost: Resources;
   canBuild: boolean;
+  visible?: boolean;
   onOkayClick: (town: string, structure: string) => void;
   onCancelClick: () => void;
 }
@@ -31,7 +32,10 @@ export class BuildStructureWindow extends React.Component<BuildStructureWindowPr
 
   public render() {
     return (
-      <GameModal size={5}>
+      <GameModal
+        size={5}
+        visible={this.props.visible}
+      >
         <div className="build-structure-window">
           <Row>
             <GameText size="large">

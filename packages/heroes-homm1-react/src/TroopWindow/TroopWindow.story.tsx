@@ -20,6 +20,7 @@ storiesOf(TroopWindow.name, module)
       <TroopWindow
         troop={troop}
         dismissible={boolean("Dismissible", true)}
+        visible={boolean("Visible", true)}
         dismissPromptVisible={boolean("Dismiss Prompt Visible", false)}
         onDismissClick={action("Dismiss Click")}
         onCancelDismissClick={action("Cancel Dismiss Click")}

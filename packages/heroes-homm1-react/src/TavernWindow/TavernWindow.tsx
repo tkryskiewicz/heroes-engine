@@ -14,13 +14,17 @@ import { GameText } from "../GameText";
 import { getStructureDescriptionMessage, getStructureNameMessage } from "../messages";
 
 export interface TavernWindowProps {
+  visible?: boolean;
   onOkayClick?: () => void;
 }
 
 export class TavernWindow extends React.Component<TavernWindowProps> {
   public render() {
     return (
-      <GameModal size={4}>
+      <GameModal
+        size={4}
+        visible={this.props.visible}
+      >
         <div className="tavern-window">
           <Row className="tavern-window-structure-name">
             <GameText size="large">

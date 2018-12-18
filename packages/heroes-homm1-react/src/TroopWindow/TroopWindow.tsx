@@ -19,6 +19,7 @@ import { getSpeedMessage, messages } from "./messages";
 export interface TroopWindowProps {
   troop: Troop;
   dismissible: boolean;
+  visible?: boolean;
   dismissPromptVisible: boolean;
   onDismissClick: (troop: Troop) => void;
   onConfirmDismissClick: (troop: Troop) => void;
@@ -48,79 +49,84 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
     const creature = creaturesById[this.props.troop.creature];
 
     return (
-      <Row className="troop-window">
-        <Col
-          className="troop-window-creature"
-          span={12}
-        >
-          <CreatureIcon
-            size="large"
-            creature={this.props.troop.creature}
-          />
-        </Col>
-        <Col span={12}>
-          <Row className="troop-window-creature-name">
-            <GameText size="normal">
-              <FormattedMessage {...getCreatureNameMessage(creature.id)} />
+      <GameWindow
+        width={402}
+        visible={this.props.visible}
+      >
+        <Row className="troop-window">
+          <Col
+            className="troop-window-creature"
+            span={12}
+          >
+            <CreatureIcon
+              size="large"
+              creature={this.props.troop.creature}
+            />
+          </Col>
+          <Col span={12}>
+            <Row className="troop-window-creature-name">
+              <GameText size="normal">
+                <FormattedMessage {...getCreatureNameMessage(creature.id)} />
+              </GameText>
+            </Row>
+            <Row>
+              <GameText size="normal">
+                <FormattedMessage {...messages.attack} />: {creature.attack} (?)
             </GameText>
-          </Row>
-          <Row>
-            <GameText size="normal">
-              <FormattedMessage {...messages.attack} />: {creature.attack} (?)
+            </Row>
+            <Row>
+              <GameText size="normal">
+                <FormattedMessage {...messages.defense} />: {creature.defense} (?)
             </GameText>
-          </Row>
-          <Row>
-            <GameText size="normal">
-              <FormattedMessage {...messages.defense} />: {creature.defense} (?)
+            </Row>
+            {creature.shots && this.renderShots(creature.shots)}
+            <Row>
+              <GameText size="normal">
+                <FormattedMessage {...messages.damage} />: {this.renderDamage(creature.damage)}
+              </GameText>
+            </Row>
+            <Row>
+              <GameText size="normal">
+                <FormattedMessage {...messages.hitPoints} />: {creature.hitPoints}
+              </GameText>
+            </Row>
+            <Row>
+              <GameText size="normal">
+                <FormattedMessage {...messages.speed} />: <FormattedMessage {...getSpeedMessage(creature.speed)} />
+              </GameText>
+            </Row>
+            <Row>
+              <GameText size="normal">
+                <FormattedMessage {...messages.morale} />: ?
             </GameText>
-          </Row>
-          {creature.shots && this.renderShots(creature.shots)}
-          <Row>
-            <GameText size="normal">
-              <FormattedMessage {...messages.damage} />: {this.renderDamage(creature.damage)}
+            </Row>
+            <Row>
+              <GameText size="normal">
+                <FormattedMessage {...messages.luck} />: ?
             </GameText>
-          </Row>
-          <Row>
-            <GameText size="normal">
-              <FormattedMessage {...messages.hitPoints} />: {creature.hitPoints}
-            </GameText>
-          </Row>
-          <Row>
-            <GameText size="normal">
-              <FormattedMessage {...messages.speed} />: <FormattedMessage {...getSpeedMessage(creature.speed)} />
-            </GameText>
-          </Row>
-          <Row>
-            <GameText size="normal">
-              <FormattedMessage {...messages.morale} />: ?
-            </GameText>
-          </Row>
-          <Row>
-            <GameText size="normal">
-              <FormattedMessage {...messages.luck} />: ?
-            </GameText>
-          </Row>
-          <Row>
-            <Col
-              className="troop-window-dismiss"
-              span={12}
-            >
-              {this.props.dismissible && this.renderDismissal(this.props.dismissPromptVisible)}
-            </Col>
-            <Col
-              className="troop-window-exit"
-              span={12}
-            >
-              <GameButton
-                group="troop-window"
-                type="exit"
-                onClick={this.props.onExitClick}
-              />
-            </Col>
-          </Row>
-        </Col>
-        {this.renderCount(this.props.troop.count)}
-      </Row>
+            </Row>
+            <Row>
+              <Col
+                className="troop-window-dismiss"
+                span={12}
+              >
+                {this.props.dismissible && this.renderDismissal(this.props.dismissPromptVisible)}
+              </Col>
+              <Col
+                className="troop-window-exit"
+                span={12}
+              >
+                <GameButton
+                  group="troop-window"
+                  type="exit"
+                  onClick={this.props.onExitClick}
+                />
+              </Col>
+            </Row>
+          </Col>
+          {this.renderCount(this.props.troop.count)}
+        </Row>
+      </GameWindow>
     );
   }
 
@@ -164,45 +170,40 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
           type="dismiss"
           onClick={this.onDismissClick}
         />
-        {visible && this.renderDismissPrompt()}
+        {this.renderDismissPrompt(visible)}
       </>
     );
   }
 
-  private renderDismissPrompt() {
+  private renderDismissPrompt(visible: boolean) {
     return (
-      <GameWindow
-        width={286}
-        visible={true}
-      >
-        <GameModal>
-          <GameParagraph textSize="large">
-            <FormattedMessage {...messages.dismissMessage} />
-          </GameParagraph>
-          <Row>
-            <Col
-              className="troop-window-dismiss-yes"
-              span={12}
-            >
-              <GameButton
-                group="system"
-                type="yes"
-                onClick={this.onConfirmDismiss}
-              />
-            </Col>
-            <Col
-              className="troop-window-dismiss-no"
-              span={12}
-            >
-              <GameButton
-                group="system"
-                type="no"
-                onClick={this.onCancelDismiss}
-              />
-            </Col>
-          </Row>
-        </GameModal>
-      </GameWindow>
+      <GameModal visible={visible}>
+        <GameParagraph textSize="large">
+          <FormattedMessage {...messages.dismissMessage} />
+        </GameParagraph>
+        <Row>
+          <Col
+            className="troop-window-dismiss-yes"
+            span={12}
+          >
+            <GameButton
+              group="system"
+              type="yes"
+              onClick={this.onConfirmDismiss}
+            />
+          </Col>
+          <Col
+            className="troop-window-dismiss-no"
+            span={12}
+          >
+            <GameButton
+              group="system"
+              type="no"
+              onClick={this.onCancelDismiss}
+            />
+          </Col>
+        </Row>
+      </GameModal>
     );
   }
 

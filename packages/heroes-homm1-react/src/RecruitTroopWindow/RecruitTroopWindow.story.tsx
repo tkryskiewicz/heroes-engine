@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { number, select } from "@storybook/addon-knobs";
+import { boolean, number, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -16,6 +16,7 @@ storiesOf(RecruitTroopWindow.name, module)
       cost={{ [Resource.Gold]: 1000 }}
       availableCount={number("Available Count", 0, { range: true, min: 0, max: 99, step: 1 })}
       count={number("Count", 0, { range: true, min: 0, max: 99, step: 1 })}
+      visible={boolean("Visible", true)}
       onCountChange={action("Count Change")}
       onOkayClick={action("Okay Click")}
       onCancelClick={action("Cancel Click")}
