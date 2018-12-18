@@ -1,30 +1,30 @@
-import { Modal as AntModal } from "antd";
+import { Modal } from "antd";
 import * as React from "react";
 
-import "./Modal.scss";
+import "./GameWindow.scss";
 
-export interface ModalProps {
+export interface GameWindowProps {
   width?: number;
   visible?: boolean;
 }
 
-export class Modal extends React.Component<ModalProps> {
+export class GameWindow extends React.Component<GameWindowProps> {
   public render() {
     return (
-      <AntModal
-        className="modal"
+      <Modal
+        className="game-window"
         closable={false}
         footer={null}
         width={this.props.width}
         visible={this.props.visible}
       >
         <div
-          className="modal-container"
+          className="game-window-container"
           style={{ width: this.props.width }}
         >
           {this.props.children}
         </div>
-      </AntModal>
+      </Modal>
     );
   }
 }

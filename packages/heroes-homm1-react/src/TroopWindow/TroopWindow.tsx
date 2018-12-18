@@ -12,8 +12,8 @@ import { GameButton } from "../GameButton";
 import { GameModal } from "../GameModal";
 import { GameParagraph } from "../GameParagraph";
 import { GameText } from "../GameText";
+import { GameWindow } from "../GameWindow";
 import { getCreatureNameMessage } from "../messages";
-import { Modal } from "../Modal";
 import { getSpeedMessage, messages } from "./messages";
 
 export interface TroopWindowProps {
@@ -171,7 +171,7 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
 
   private renderDismissPrompt() {
     return (
-      <Modal
+      <GameWindow
         width={286}
         visible={true}
       >
@@ -202,7 +202,7 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
             </Col>
           </Row>
         </GameModal>
-      </Modal>
+      </GameWindow>
     );
   }
 

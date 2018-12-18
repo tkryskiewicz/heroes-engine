@@ -11,10 +11,10 @@ import { BigBar } from "../BigBar";
 import { BuildStructureWindow } from "../BuildStructureWindow";
 import { Crest } from "../Crest";
 import { GameText } from "../GameText";
+import { GameWindow } from "../GameWindow";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
-import { Modal } from "../Modal";
 import { RecruitTroopWindow, recruitTroopWindowMessages } from "../RecruitTroopWindow";
 import { TavernWindow } from "../TavernWindow";
 import { TownView } from "../TownView";
@@ -229,11 +229,11 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
     }
 
     return (
-      <Modal
+      <GameWindow
         visible={true}
       >
         {StructureDetails}
-      </Modal>
+      </GameWindow>
     );
   }
 

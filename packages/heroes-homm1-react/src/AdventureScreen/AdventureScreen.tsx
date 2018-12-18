@@ -5,10 +5,10 @@ import { AdventureButtons } from "../AdventureButtons";
 import { AdventureOptions } from "../AdventureOptions";
 import { CampaignScenarioInfoWindow } from "../CampaignScenarioInfoWindow";
 import { GameOptions } from "../GameOptions";
+import { GameWindow } from "../GameWindow";
 import { HeroLocators } from "../HeroLocators";
 import { HeroWindow } from "../HeroWindow";
 import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
-import { Modal } from "../Modal";
 import { PuzzleWindow } from "../PuzzleWindow";
 import { TownLocators } from "../TownLocators";
 import { TownWindow } from "../TownWindow";
@@ -84,76 +84,76 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
 
   private renderHeroWindow(visible: boolean) {
     return (
-      <Modal
+      <GameWindow
         width={640}
         visible={visible}
       >
         <HeroWindow />
-      </Modal>
+      </GameWindow>
     );
   }
 
   private renderKingdomOverviewWindow(visible: boolean) {
     return (
-      <Modal
+      <GameWindow
         width={640}
         visible={visible}
       >
         <KingdomOverviewWindow />
-      </Modal>
+      </GameWindow>
     );
   }
 
   private renderTownWindow(visible: boolean) {
     return (
-      <Modal
+      <GameWindow
         width={640}
         visible={visible}
       >
         <TownWindow />
-      </Modal>
+      </GameWindow>
     );
   }
 
   private renderAdventureOptions(visible: boolean) {
     return (
-      <Modal
+      <GameWindow
         visible={visible}
       >
         <AdventureOptions />
-      </Modal>
+      </GameWindow>
     );
   }
 
   private renderGameOptions(visible: boolean) {
     return (
-      <Modal
+      <GameWindow
         visible={visible}
       >
         <GameOptions />
-      </Modal>
+      </GameWindow>
     );
   }
 
   private renderPuzzleWindow(visible: boolean) {
     return (
-      <Modal
+      <GameWindow
         width={640}
         visible={visible}
       >
         <PuzzleWindow />
-      </Modal>
+      </GameWindow>
     );
   }
 
   private renderScenarioInfoWindow(visible: boolean) {
     return (
-      <Modal
+      <GameWindow
         width={480}
         visible={visible}
       >
         <CampaignScenarioInfoWindow />
-      </Modal>
+      </GameWindow>
     );
   }
 }

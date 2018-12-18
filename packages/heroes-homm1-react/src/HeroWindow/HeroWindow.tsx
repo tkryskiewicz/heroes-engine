@@ -13,6 +13,7 @@ import { GameButton } from "../GameButton";
 import { GameModal } from "../GameModal";
 import { GameParagraph } from "../GameParagraph";
 import { GameText } from "../GameText";
+import { GameWindow } from "../GameWindow";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
@@ -30,7 +31,6 @@ import {
   luckMessages,
   moraleMessages,
 } from "../messages";
-import { Modal } from "../Modal";
 import { TroopWindow } from "../TroopWindow";
 import { ComponentWithDefaultProps } from "../util";
 import { ArtifactSlot } from "./ArtifactSlot";
@@ -221,7 +221,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
   private renderSkillDetails(skill: string) {
     return (
-      <Modal
+      <GameWindow
         width={286}
         visible={true}
       >
@@ -238,7 +238,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
             onClick={this.onCloseSkillDetailsClick}
           />
         </GameModal>
-      </Modal>
+      </GameWindow>
     );
   }
 
@@ -324,12 +324,12 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     }
 
     return (
-      <Modal
+      <GameWindow
         width={286}
         visible={true}
       >
         {content}
-      </Modal>
+      </GameWindow>
     );
   }
 
@@ -514,7 +514,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
   private renderTroopDetails(troop: Troop, dismissible: boolean) {
     return (
-      <Modal
+      <GameWindow
         width={402}
         visible={true}
       >
@@ -527,7 +527,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           onCancelDismissClick={this.onCancelDismissTroopClick}
           onExitClick={this.props.onExitTroopDetails}
         />
-      </Modal>
+      </GameWindow>
     );
   }
 
@@ -592,7 +592,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
   private renderDismissHeroPrompt(visible: boolean) {
     return (
-      <Modal
+      <GameWindow
         width={286}
         visible={visible}
       >
@@ -623,7 +623,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
             </Col>
           </Row>
         </GameModal>
-      </Modal>
+      </GameWindow>
     );
   }
 
