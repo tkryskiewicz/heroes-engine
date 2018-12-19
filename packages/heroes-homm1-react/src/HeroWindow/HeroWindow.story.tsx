@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Hero } from "heroes-core";
-import { Alignment, ArmySize, CreatureId, HeroClass, HeroId } from "heroes-homm1";
+import { Alignment, ArmySize, CreatureId, HeroClass, HeroId, Skill } from "heroes-homm1";
 
 import { alignmentOptions, heroClassOptions, heroOptions, skillOptions } from "../stories";
 import { HeroWindow } from "./HeroWindow";
@@ -18,51 +18,129 @@ export const miscInfoOptions: { [s: string]: MiscInfoType | "" } = {
   None: "",
 };
 
+const heroBase: Hero = {
+  alignment: Alignment.Red,
+  army: [
+    {
+      count: 1,
+      creature: CreatureId.Peasant,
+    },
+    undefined,
+    {
+      count: 1,
+      creature: CreatureId.Archer,
+    },
+  ],
+  experience: 0,
+  heroClass: HeroClass.Knight,
+  id: HeroId.LordKilburn,
+  luck: 0,
+  mobility: 0,
+  morale: 0,
+  skills: {},
+};
+
 storiesOf("HeroWindow", module)
   .add("default", () => {
     const hero: Hero = {
+      ...heroBase,
       alignment: select("Alignment", alignmentOptions, Alignment.Red),
-      army: [
-        {
-          count: 1,
-          creature: CreatureId.Peasant,
-        },
-      ],
-      experience: number("Experience", 0, { range: true, min: 0, max: 999999, step: 1 }),
       heroClass: select("Hero Class", heroClassOptions, HeroClass.Knight),
       id: select("Hero", heroOptions, HeroId.LordKilburn),
-      luck: number("Luck", 0, { range: true, min: -3, max: 3, step: 1 }),
-      mobility: 0,
-      morale: number("Morale", 0, { range: true, min: -3, max: 3, step: 1 }),
-      skills: {},
     };
 
     return (
       <HeroWindow
         hero={hero}
         visible={boolean("Visible", true)}
-        visibleSkillDetails={select("Visible Skill Details", { None: "", ...skillOptions }, "")}
-        onVisibleSkillDetailsChange={action("Visible Skill Details Change")}
-        visibleMiscInfoDetails={select("Visible Misc Info Details", { None: "", ...miscInfoOptions }, "")}
-        onVisibleMiscInfoDetailsChange={action("Visible Misc Info Details Change")}
         onCrestClick={action("Crest Click")}
-        selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
-        onSelectTroop={action("Select Troop")}
-        onSelectedTroopClick={action("Selected Troop Click")}
-        onSwapTroops={action("Swap Troops")}
-        troopDetailsVisible={boolean("Troop Details Visible", false)}
-        onDismissTroopClick={action("Dismiss Troop Click")}
-        dismissTroopPromptVisible={boolean("Dismiss Troop Prompt Visible", false)}
-        onCancelDismissTroopClick={action("Cancel Dismiss Troop Click")}
-        onConfirmDismissTroopClick={action("Confirm Dismiss Troop Click")}
-        onExitTroopDetails={action("Exit Troop Details")}
-        dismissHeroPromptVisible={boolean("Dismiss Hero Prompt Visible", false)}
-        onDismissHeroClick={action("Dismiss Hero Click")}
-        onCancelDismissHeroClick={action("Cancel Dismiss Hero Click")}
-        onConfirmDismissHeroClick={action("Confirm Dismiss Hero Click")}
-        statusText={text("Status Text", "Status Text")}
-        onStatusTextChange={action("Status Text Change")}
         onExitClick={action("Exit Click")}
       />
     );
-  });
+  })
+  .add("skills", () => {
+    const hero: Hero = {
+      ...heroBase,
+      skills: {
+        [Skill.AttackSkill]: number("Attack Skill", 0, { range: true, min: 0, max: 999, step: 1 }),
+        [Skill.DefenseSkill]: number("Defense Skill", 0, { range: true, min: 0, max: 999, step: 1 }),
+        [Skill.SpellPower]: number("Spell Power", 0, { range: true, min: 0, max: 999, step: 1 }),
+        [Skill.Knowledge]: number("Knowledge", 0, { range: true, min: 0, max: 999, step: 1 }),
+      },
+    };
+
+    return (
+      <HeroWindow
+        hero={hero}
+        visible={true}
+        visibleSkillDetails={select("Visible Skill Details", { None: "", ...skillOptions }, "")}
+        onVisibleSkillDetailsChange={action("Visible Skill Details Change")}
+      />
+    );
+  })
+  .add("additional characteristics", () => {
+    const hero: Hero = {
+      ...heroBase,
+      experience: number("Experience", 0, { range: true, min: 0, max: 999999, step: 1 }),
+      luck: number("Luck", 0, { range: true, min: -3, max: 3, step: 1 }),
+      morale: number("Morale", 0, { range: true, min: -3, max: 3, step: 1 }),
+    };
+
+    return (
+      <HeroWindow
+        hero={hero}
+        visible={true}
+        visibleMiscInfoDetails={select("Visible Misc Info Details", { None: "", ...miscInfoOptions }, "")}
+        onVisibleMiscInfoDetailsChange={action("Visible Misc Info Details Change")}
+      />
+    );
+  })
+  .add("army", () => {
+    const troopSelected = boolean("Troop Selected", false);
+
+    const troopIndex = troopSelected ?
+      number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 }) :
+      undefined;
+
+    return (
+      <HeroWindow
+        hero={heroBase}
+        visible={true}
+        selectedTroopIndex={troopIndex}
+        onSelectTroop={action("Select Troop")}
+        onSelectedTroopClick={action("Selected Troop Click")}
+        onSwapTroops={action("Swap Troops")}
+      />
+    );
+  })
+  .add("troop details", () => (
+    <HeroWindow
+      hero={heroBase}
+      visible={true}
+      selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
+      troopDetailsVisible={boolean("Troop Details Visible", false)}
+      onExitTroopDetails={action("Exit Troop Details")}
+      onDismissTroopClick={action("Dismiss Troop Click")}
+      dismissTroopPromptVisible={boolean("Dismiss Troop Prompt Visible", false)}
+      onCancelDismissTroopClick={action("Cancel Dismiss Troop Click")}
+      onConfirmDismissTroopClick={action("Confirm Dismiss Troop Click")}
+    />
+  ))
+  .add("dismissal", () => (
+    <HeroWindow
+      hero={heroBase}
+      visible={true}
+      dismissHeroPromptVisible={boolean("Dismiss Hero Prompt Visible", false)}
+      onDismissHeroClick={action("Dismiss Hero Click")}
+      onCancelDismissHeroClick={action("Cancel Dismiss Hero Click")}
+      onConfirmDismissHeroClick={action("Confirm Dismiss Hero Click")}
+    />
+  ))
+  .add("status text", () => (
+    <HeroWindow
+      hero={heroBase}
+      visible={true}
+      statusText={text("Status Text", "Status Text")}
+      onStatusTextChange={action("Status Text Change")}
+    />
+  ));

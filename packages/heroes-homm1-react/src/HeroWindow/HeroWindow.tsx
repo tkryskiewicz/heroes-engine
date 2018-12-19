@@ -75,11 +75,15 @@ type DefaultProp =
   "onSwapTroops" |
   "troopDetailsVisible" |
   "dismissTroopPromptVisible" |
+  "onDismissTroopClick" |
+  "onCancelDismissTroopClick" |
+  "onConfirmDismissTroopClick" |
   "onExitTroopDetails" |
   "dismissHeroPromptVisible" |
   "onDismissHeroClick" |
   "onCancelDismissHeroClick" |
   "onConfirmDismissHeroClick" |
+  "statusText" |
   "onStatusTextChange" |
   "onExitClick";
 
@@ -88,9 +92,12 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     dismissHeroPromptVisible: false,
     dismissTroopPromptVisible: false,
     onCancelDismissHeroClick: () => undefined,
+    onCancelDismissTroopClick: () => undefined,
     onConfirmDismissHeroClick: () => undefined,
+    onConfirmDismissTroopClick: () => undefined,
     onCrestClick: () => undefined,
     onDismissHeroClick: () => undefined,
+    onDismissTroopClick: () => undefined,
     onExitClick: () => undefined,
     onExitTroopDetails: () => undefined,
     onSelectTroop: () => undefined,
@@ -99,6 +106,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     onSwapTroops: () => undefined,
     onVisibleMiscInfoDetailsChange: () => undefined,
     onVisibleSkillDetailsChange: () => undefined,
+    statusText: "",
     troopDetailsVisible: false,
   };
 
