@@ -40,6 +40,7 @@ import { SkillInfo } from "./SkillInfo";
 
 export interface HeroWindowProps {
   hero: Hero;
+  dismissible: boolean;
   visible?: boolean;
   visibleSkillDetails?: string;
   onVisibleSkillDetailsChange: (skill?: string) => void;
@@ -67,6 +68,7 @@ export interface HeroWindowProps {
 }
 
 type DefaultProp =
+  "dismissible" |
   "onCrestClick" |
   "onVisibleSkillDetailsChange" |
   "onVisibleMiscInfoDetailsChange" |
@@ -91,6 +93,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   public static defaultProps: Pick<HeroWindowProps, DefaultProp> = {
     dismissHeroPromptVisible: false,
     dismissTroopPromptVisible: false,
+    dismissible: false,
     onCancelDismissHeroClick: () => undefined,
     onCancelDismissTroopClick: () => undefined,
     onConfirmDismissHeroClick: () => undefined,
@@ -145,16 +148,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
             />
           </div>
           {this.renderArmy(hero, selectedTroopIndex)}
-          <div className="hero-window-dismiss">
-            <GameButton
-              group="hero-window"
-              type="dismiss"
-              onMouseEnter={this.onDismissMouseEnter}
-              onMouseLeave={this.onDismissMouseLeave}
-              onClick={this.props.onDismissHeroClick}
-            />
-            {this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
-          </div>
+          {this.props.dismissible && this.renderDismissal(this.props.dismissHeroPromptVisible)}
           {this.renderArtifacts()}
           <div className="hero-window-exit">
             <GameButton
@@ -584,6 +578,21 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
         <ArtifactSlot
           index={index}
         />
+      </div>
+    );
+  }
+
+  private renderDismissal(dismissHeroPromptVisible: boolean) {
+    return (
+      <div className="hero-window-dismiss">
+        <GameButton
+          group="hero-window"
+          type="dismiss"
+          onMouseEnter={this.onDismissMouseEnter}
+          onMouseLeave={this.onDismissMouseLeave}
+          onClick={this.props.onDismissHeroClick}
+        />
+        {this.renderDismissHeroPrompt(dismissHeroPromptVisible)}
       </div>
     );
   }

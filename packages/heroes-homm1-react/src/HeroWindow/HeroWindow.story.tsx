@@ -130,6 +130,7 @@ storiesOf("HeroWindow", module)
     <HeroWindow
       hero={heroBase}
       visible={true}
+      dismissible={boolean("Dismissible", true)}
       dismissHeroPromptVisible={boolean("Dismiss Hero Prompt Visible", false)}
       onDismissHeroClick={action("Dismiss Hero Click")}
       onCancelDismissHeroClick={action("Cancel Dismiss Hero Click")}
