@@ -5,10 +5,10 @@ import * as React from "react";
 
 import { HeroId } from "heroes-homm1";
 
-import { heroOptions } from "../stories";
+import { heroOptions } from "../../stories";
 import { HeroPortrait } from "./HeroPortrait";
 
-storiesOf(HeroPortrait.name, module)
+storiesOf(`base/${HeroPortrait.name}`, module)
   .add("default", () => (
     <HeroPortrait
       hero={select("Hero", heroOptions, HeroId.LordKilburn)}
