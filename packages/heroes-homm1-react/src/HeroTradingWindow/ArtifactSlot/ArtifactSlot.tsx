@@ -4,7 +4,7 @@ import "./ArtifactSlot.scss";
 
 import { BackgroundImage } from "./assets";
 
-import { ArtifactIcon } from "../../ArtifactIcon";
+import { ArtifactIcon } from "../../base";
 import { Slot } from "../Slot";
 
 export interface ArtifactSlotProps {

@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { ArtifactId } from "heroes-homm1";
 
-import { artifactOptions } from "../stories";
+import { artifactOptions } from "../../stories";
 import { ArtifactIcon, ArtifactIconProps } from "./ArtifactIcon";
 
 const sizeOptions: { [s: string]: ArtifactIconProps["size"] } = {
@@ -13,7 +13,7 @@ const sizeOptions: { [s: string]: ArtifactIconProps["size"] } = {
   Small: "small",
 };
 
-storiesOf(ArtifactIcon.name, module)
+storiesOf(`base/${ArtifactIcon.name}`, module)
   .add("default", () => (
     <ArtifactIcon
       size={select("Size", sizeOptions, "large")}
