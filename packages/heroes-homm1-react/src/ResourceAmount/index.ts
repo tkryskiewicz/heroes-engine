@@ -1,1 +1,0 @@
-export { ResourceAmount } from "./ResourceAmount";

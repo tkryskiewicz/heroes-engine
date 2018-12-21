@@ -4,10 +4,10 @@ import * as React from "react";
 
 import { Resource } from "heroes-homm1";
 
-import { resourceOptions } from "../stories";
+import { resourceOptions } from "../../stories";
 import { ResourceAmount } from "./ResourceAmount";
 
-storiesOf(ResourceAmount.name, module)
+storiesOf(`base/${ResourceAmount.name}`, module)
   .add("default", () => (
     <ResourceAmount
       resource={select("Resource", resourceOptions, Resource.Gold)}
