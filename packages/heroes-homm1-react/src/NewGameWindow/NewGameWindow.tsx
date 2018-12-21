@@ -12,8 +12,7 @@ import {
 
 import "./NewGameWindow.scss";
 
-import { GameButton } from "../base";
-import { GameSwitch } from "../GameSwitch";
+import { GameButton, GameSwitch } from "../base";
 import { getGameDifficultyMessage } from "../messages";
 import { AlignmentBox } from "./AlignmentBox";
 import { GameDifficultyBox } from "./GameDifficultyBox";
