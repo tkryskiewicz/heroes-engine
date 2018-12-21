@@ -1,1 +1,0 @@
-export { GameParagraph } from "./GameParagraph";
