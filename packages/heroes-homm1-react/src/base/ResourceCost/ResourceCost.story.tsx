@@ -11,7 +11,7 @@ const cost: Resources = {
   [Resource.Mercury]: 10,
 };
 
-storiesOf(ResourceCost.name, module)
+storiesOf(`base/${ResourceCost.name}`, module)
   .add("default", () => (
     <ResourceCost
       cost={cost}
