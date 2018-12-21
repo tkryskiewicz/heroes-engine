@@ -7,8 +7,8 @@ import { ArmySize, ArtifactLimit, SkillIds } from "heroes-homm1";
 
 import "./HeroTradingWindow.scss";
 
+import { Frame } from "../base";
 import { GameText } from "../core";
-import { Frame } from "../Frame";
 import { GameButton } from "../GameButton";
 import { HeroPortrait } from "../HeroPortrait";
 import { getSkillNameMessage } from "../messages";
