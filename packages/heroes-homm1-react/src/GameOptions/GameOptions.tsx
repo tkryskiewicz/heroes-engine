@@ -1,4 +1,3 @@
-import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -9,7 +8,7 @@ import "./GameOptions.scss";
 import { movementSpeedImages } from "./assets";
 
 import { GameButton, GameSwitch } from "../base";
-import { GameWindow } from "../core";
+import { GameText, GameWindow } from "../core";
 import { getMovementSpeedMessage, messages } from "./messages";
 
 export interface GameOptionsProps {
@@ -67,131 +66,130 @@ export class GameOptions extends React.Component<GameOptionsProps> {
   public render() {
     return (
       <GameWindow
+        width={322}
         visible={this.props.visible}
       >
         <div className="game-options">
-          <Row>
-            <Col span={12}>
-              <GameButton
-                group="game-options"
-                type="new-game"
-                onClick={this.props.onNewGameClick}
-              />
-            </Col>
-            <Col span={12}>
-              <GameButton
-                group="game-options"
-                type="load-game"
-                onClick={this.props.onLoadGameClick}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col span={12}>
-              <GameButton
-                group="game-options"
-                type="save-game"
-                onClick={this.props.onSaveGameClick}
-              />
-            </Col>
-            <Col span={12}>
-              <GameButton
-                group="game-options"
-                type="quit"
-                onClick={this.props.onQuitClick}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col span={8}>
+          <div className="game-options-new-game">
+            <GameButton
+              group="game-options"
+              type="new-game"
+              onClick={this.props.onNewGameClick}
+            />
+          </div>
+          <div className="game-options-load-game">
+            <GameButton
+              group="game-options"
+              type="load-game"
+              onClick={this.props.onLoadGameClick}
+            />
+          </div>
+          <div className="game-options-save-game">
+            <GameButton
+              group="game-options"
+              type="save-game"
+              onClick={this.props.onSaveGameClick}
+            />
+          </div>
+          <div className="game-options-quit">
+            <GameButton
+              group="game-options"
+              type="quit"
+              onClick={this.props.onQuitClick}
+            />
+          </div>
+          <div className="game-options-music-volume">
+            <GameText size="normal">
               <FormattedMessage {...messages.musicVolume} />
-              <div>
-                <GameSwitch
-                  type="music"
-                  checked={this.props.musicVolume !== SoundVolume.Off}
-                  onChange={this.onMusicVolumeChange}
-                />
-              </div>
-              {this.renderOnOff(this.props.musicVolume !== SoundVolume.Off)}
-              {this.renderVolume(this.props.musicVolume)}
-            </Col>
-            <Col span={8}>
+            </GameText>
+            <div>
+              <GameSwitch
+                type="music"
+                checked={this.props.musicVolume !== SoundVolume.Off}
+                onChange={this.onMusicVolumeChange}
+              />
+            </div>
+            {this.renderOnOff(this.props.musicVolume !== SoundVolume.Off)}
+            {this.renderVolume(this.props.musicVolume)}
+          </div>
+          <div className="game-options-effects-volume">
+            <GameText size="normal">
               <FormattedMessage {...messages.effectsVolume} />
-              <div>
-                <GameSwitch
-                  type="effects"
-                  checked={this.props.effectsVolume !== SoundVolume.Off}
-                  onChange={this.onEffectsVolumeChange}
-                />
-              </div>
-              {this.renderOnOff(this.props.effectsVolume !== SoundVolume.Off)}
-              {this.renderVolume(this.props.effectsVolume)}
-            </Col>
-            <Col span={8}>
+            </GameText>
+            <div>
+              <GameSwitch
+                type="effects"
+                checked={this.props.effectsVolume !== SoundVolume.Off}
+                onChange={this.onEffectsVolumeChange}
+              />
+            </div>
+            {this.renderOnOff(this.props.effectsVolume !== SoundVolume.Off)}
+            {this.renderVolume(this.props.effectsVolume)}
+          </div>
+          <div className="game-options-movement-speed">
+            <GameText size="normal">
               <FormattedMessage {...messages.movementSpeed} />
-              <div>
-                {this.renderMovementSpeed(this.props.movementSpeed)}
-              </div>
+            </GameText>
+            <div>
+              {this.renderMovementSpeed(this.props.movementSpeed)}
+            </div>
+            <GameText size="normal">
               <FormattedMessage {...getMovementSpeedMessage(this.props.movementSpeed)} />
-            </Col>
-          </Row>
-          <Row>
-            <Col span={8}>
+            </GameText>
+          </div>
+          <div className="game-options-auto-save">
+            <GameText size="normal">
               <FormattedMessage {...messages.autoSave} />
-              <div>
-                <GameSwitch
-                  type="auto-save"
-                  checked={this.props.autoSave}
-                  onChange={this.props.onAutoSaveChange}
-                />
-              </div>
-              {this.renderOnOff(this.props.autoSave)}
-            </Col>
-            <Col span={8}>
+            </GameText>
+            <div>
+              <GameSwitch
+                type="auto-save"
+                checked={this.props.autoSave}
+                onChange={this.props.onAutoSaveChange}
+              />
+            </div>
+            {this.renderOnOff(this.props.autoSave)}
+          </div>
+          <div className="game-options-show-path">
+            <GameText size="normal">
               <FormattedMessage {...messages.showPath} />
-              <div>
-                <GameSwitch
-                  type="show-path"
-                  checked={this.props.showPath}
-                  onChange={this.props.onShowPathChange}
-                />
-              </div>
-              {this.renderOnOff(this.props.showPath)}
-            </Col>
-            <Col span={8}>
+            </GameText>
+            <div>
+              <GameSwitch
+                type="show-path"
+                checked={this.props.showPath}
+                onChange={this.props.onShowPathChange}
+              />
+            </div>
+            {this.renderOnOff(this.props.showPath)}
+          </div>
+          <div className="game-options-view-enemy-movement">
+            <GameText size="normal">
               <FormattedMessage {...messages.viewEnemyMovement} />
-              <div>
-                <GameSwitch
-                  type="view-enemy-movement"
-                  checked={this.props.viewEnemyMovement}
-                  onChange={this.props.onViewEnemyMovementChange}
-                />
-              </div>
-              {this.renderOnOff(this.props.viewEnemyMovement)}
-            </Col>
-          </Row>
-          <Row>
-            <Col
-              className="game-options-okay"
-              span={12}
-            >
-              <GameButton
-                group="game-options"
-                type="okay"
-                onClick={this.props.onOkayClick}
+            </GameText>
+            <div>
+              <GameSwitch
+                type="view-enemy-movement"
+                checked={this.props.viewEnemyMovement}
+                onChange={this.props.onViewEnemyMovementChange}
               />
-            </Col>
-            <Col
-              className="game-options-info"
-              span={12}
-            >
-              <GameButton
-                group="game-options"
-                type="info"
-                onClick={this.props.onInfoClick}
-              />
-            </Col>
-          </Row>
+            </div>
+            {this.renderOnOff(this.props.viewEnemyMovement)}
+          </div>
+          <div className="game-options-okay">
+            <GameButton
+              group="game-options"
+              type="okay"
+              onClick={this.props.onOkayClick}
+            />
+          </div>
+          <div className="game-options-info">
+            <GameButton
+              group="game-options"
+              type="info"
+              onClick={this.props.onInfoClick}
+            />
+          </div>
         </div>
       </GameWindow>
     );
@@ -199,14 +197,18 @@ export class GameOptions extends React.Component<GameOptionsProps> {
 
   private renderOnOff(value: boolean) {
     return (
-      <FormattedMessage {...value ? messages.on : messages.off} />
+      <GameText size="normal">
+        <FormattedMessage {...value ? messages.on : messages.off} />
+      </GameText>
     );
   }
 
   private renderVolume(value: SoundVolume) {
     return value !== SoundVolume.On && value !== SoundVolume.Off && (
       <div>
-        <FormattedMessage {...messages.volume} values={{ value }} />
+        <GameText size="normal">
+          <FormattedMessage {...messages.volume} values={{ value }} />
+        </GameText>
       </div>
     );
   }

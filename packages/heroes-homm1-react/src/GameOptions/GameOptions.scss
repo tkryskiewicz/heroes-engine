@@ -1,11 +1,73 @@
 .game-options {
-  text-align: center;
+  position: relative;
+  width: 322px;
+  height: 459px;
+  background: url("./assets/background.jpg");
+
+  > div {
+    position: absolute;
+    text-align: center;
+  }
+
+  &-new-game {
+    top: 31px;
+    left: 46px;
+  }
+
+  &-load-game {
+    top: 31px;
+    left: 179px;
+  }
+
+  &-save-game {
+    top: 107px;
+    left: 46px;
+  }
+
+  &-quit {
+    top: 107px;
+    left: 179px;
+  }
+
+  &-music-volume {
+    top: 173px;
+    left: 36px;
+  }
+
+  &-effects-volume {
+    top: 173px;
+    left: 128px;
+  }
+
+  &-movement-speed {
+    top: 173px;
+    left: 220px;
+  }
+
+  &-auto-save {
+    top: 293px;
+    left: 36px;
+  }
+
+  &-show-path {
+    top: 293px;
+    left: 128px;
+  }
+
+  &-view-enemy-movement {
+    top: 293px;
+    left: 220px;
+    // FIXME: multiline label breaks position
+    margin: 0 -33px;
+  }
 
   &-okay {
-    text-align: left;
+    top: 408px;
+    left: 24px;
   }
 
   &-info {
-    text-align: right;
+    top: 408px;
+    left: 203px;
   }
 }
