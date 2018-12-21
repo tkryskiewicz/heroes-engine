@@ -1,4 +1,3 @@
-import { Col, Row } from "antd";
 import * as React from "react";
 
 import "./AdventureOptions.scss";
@@ -19,51 +18,45 @@ export class AdventureOptions extends React.Component<AdventureOptionsProps> {
   public render() {
     return (
       <GameWindow
+        width={322}
         visible={this.props.visible}
       >
         <div className="adventure-options">
-          {/* TODO: Add background */}
-          <Row>
-            <Col span={12}>
-              <GameButton
-                group="adventure-options"
-                type="view-world"
-                onClick={this.props.onViewWorldClick}
-              />
-            </Col>
-            <Col span={12}>
-              <GameButton
-                group="adventure-options"
-                type="view-puzzle"
-                onClick={this.props.onViewPuzzleClick}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col span={12}>
-              <GameButton
-                group="adventure-options"
-                type="cast-spell"
-                onClick={this.props.onCastSpellClick}
-              />
-            </Col>
-            <Col span={12}>
-              <GameButton
-                group="adventure-options"
-                type="dig"
-                onClick={this.props.onDigClick}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col span={24}>
-              <GameButton
-                group="adventure-options"
-                type="okay"
-                onClick={this.props.onOkayClick}
-              />
-            </Col>
-          </Row>
+          <div className="adventure-options-view-world">
+            <GameButton
+              group="adventure-options"
+              type="view-world"
+              onClick={this.props.onViewWorldClick}
+            />
+          </div>
+          <div className="adventure-options-view-puzzle">
+            <GameButton
+              group="adventure-options"
+              type="view-puzzle"
+              onClick={this.props.onViewPuzzleClick}
+            />
+          </div>
+          <div className="adventure-options-cast-spell">
+            <GameButton
+              group="adventure-options"
+              type="cast-spell"
+              onClick={this.props.onCastSpellClick}
+            />
+          </div>
+          <div className="adventure-options-dig">
+            <GameButton
+              group="adventure-options"
+              type="dig"
+              onClick={this.props.onDigClick}
+            />
+          </div>
+          <div className="adventure-options-okay">
+            <GameButton
+              group="adventure-options"
+              type="okay"
+              onClick={this.props.onOkayClick}
+            />
+          </div>
         </div>
       </GameWindow>
     );
