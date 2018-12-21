@@ -1,4 +1,5 @@
 export { ArtifactIcon, ArtifactIconProps } from "./ArtifactIcon";
+export { BigBar } from "./BigBar";
 export { CreatureIcon, CreatureIconProps } from "./CreatureIcon";
 export { Crest, CrestProps } from "./Crest";
 export { Frame } from "./Frame";

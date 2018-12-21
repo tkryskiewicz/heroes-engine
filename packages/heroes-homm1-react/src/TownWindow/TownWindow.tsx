@@ -7,8 +7,7 @@ import { StructureId } from "heroes-homm1";
 import "./TownWindow.scss";
 
 import { ArmyStrip } from "../ArmyStrip";
-import { Crest, HeroPortrait } from "../base";
-import { BigBar } from "../BigBar";
+import { BigBar, Crest, HeroPortrait } from "../base";
 import { BuildStructureWindow } from "../BuildStructureWindow";
 import { GameText, GameWindow } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
