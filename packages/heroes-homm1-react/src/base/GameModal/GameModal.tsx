@@ -3,7 +3,7 @@ import * as React from "react";
 
 import "./GameModal.scss";
 
-import { GameWindow } from "../core";
+import { GameWindow } from "../../core";
 
 export interface GameModalProps {
   size: number;

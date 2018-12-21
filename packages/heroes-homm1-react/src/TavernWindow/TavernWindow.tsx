@@ -8,9 +8,8 @@ import "./TavernWindow.scss";
 
 import { AnimationImage } from "./assets";
 
-import { GameButton } from "../base";
+import { GameButton, GameModal } from "../base";
 import { GameText } from "../core";
-import { GameModal } from "../GameModal";
 import { getStructureDescriptionMessage, getStructureNameMessage } from "../messages";
 
 export interface TavernWindowProps {

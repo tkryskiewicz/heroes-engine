@@ -6,9 +6,8 @@ import { Resources } from "heroes-core";
 
 import "./BuildStructureWindow.scss";
 
-import { GameButton, ResourceCost } from "../base";
+import { GameButton, GameModal, ResourceCost } from "../base";
 import { GameText } from "../core";
-import { GameModal } from "../GameModal";
 import { getStructureDescriptionMessage } from "../messages";
 import { StructureIcon } from "../StructureIcon";
 import { messages } from "./messages";

@@ -7,9 +7,8 @@ import { creaturesById } from "heroes-homm1";
 
 import "./TroopWindow.scss";
 
-import { CreatureIcon, GameButton } from "../base";
+import { CreatureIcon, GameButton, GameModal } from "../base";
 import { GameParagraph, GameText, GameWindow } from "../core";
-import { GameModal } from "../GameModal";
 import { getCreatureNameMessage } from "../messages";
 import { getSpeedMessage, messages } from "./messages";
 
