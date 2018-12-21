@@ -1,7 +1,7 @@
 import { Row } from "antd";
 import * as React from "react";
 
-import { GameButton } from "../base";
+import { GameButton, Menu } from "../base";
 
 export interface MainMenuProps {
   onNewGameClick?: () => void;
@@ -14,7 +14,7 @@ export interface MainMenuProps {
 export class MainMenu extends React.Component<MainMenuProps> {
   public render() {
     return (
-      <>
+      <Menu>
         <Row>
           <GameButton
             group="main-menu"
@@ -50,7 +50,7 @@ export class MainMenu extends React.Component<MainMenuProps> {
             onClick={this.props.onQuitClick}
           />
         </Row>
-      </>
+      </Menu>
     );
   }
 }
