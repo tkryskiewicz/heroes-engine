@@ -5,10 +5,10 @@ import * as React from "react";
 
 import { Alignment, HeroClass } from "heroes-homm1";
 
-import { alignmentOptions, heroClassOptions } from "../stories";
+import { alignmentOptions, heroClassOptions } from "../../stories";
 import { Crest } from "./Crest";
 
-storiesOf(Crest.name, module)
+storiesOf(`base/${Crest.name}`, module)
   .add("default", () => (
     <Crest
       alignment={select("Alignment", alignmentOptions, Alignment.Red)}

@@ -7,10 +7,10 @@ import { StructureId } from "heroes-homm1";
 import "./TownWindow.scss";
 
 import { ArmyStrip } from "../ArmyStrip";
+import { Crest } from "../base";
 import { BigBar } from "../BigBar";
 import { BuildStructureWindow } from "../BuildStructureWindow";
 import { GameText, GameWindow } from "../core";
-import { Crest } from "../Crest";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
