@@ -2,7 +2,7 @@ import * as React from "react";
 
 import "./BigBar.scss";
 
-import { GameText } from "../GameText";
+import { GameText } from "../core";
 
 export class BigBar extends React.Component {
   public render() {

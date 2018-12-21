@@ -2,7 +2,7 @@ import * as React from "react";
 
 import "./TownOverview.scss";
 
-import { GameText } from "../../GameText";
+import { GameText } from "../../core";
 
 export interface TownOverviewProps {
   town: string;

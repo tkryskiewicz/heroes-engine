@@ -2,7 +2,7 @@ import * as React from "react";
 
 import "./MineOverview.scss";
 
-import { GameText } from "../../GameText";
+import { GameText } from "../../core";
 
 export interface MineOverviewProps {
   resource: string;

@@ -6,8 +6,8 @@ import "./TroopSlot.scss";
 
 import { BackgroundImage } from "./assets";
 
+import { GameText } from "../../core";
 import { CreatureIcon } from "../../CreatureIcon";
-import { GameText } from "../../GameText";
 import { Slot } from "../Slot";
 
 export interface TroopSlotProps {

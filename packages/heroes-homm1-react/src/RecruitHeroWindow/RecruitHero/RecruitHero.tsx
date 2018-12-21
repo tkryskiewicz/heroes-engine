@@ -6,9 +6,9 @@ import { HeroClass } from "heroes-homm1";
 
 import "./RecruitHero.scss";
 
+import { GameText } from "../../core";
 import { Frame } from "../../Frame";
 import { GameButton } from "../../GameButton";
-import { GameText } from "../../GameText";
 import { HeroPortrait } from "../../HeroPortrait";
 import { getHeroClassNameMessage } from "../../messages";
 

@@ -7,8 +7,8 @@ import { HeroClassIds, Resource, TownIds } from "heroes-homm1";
 
 import "./KingdomOverviewWindow.scss";
 
+import { GameText } from "../core";
 import { GameButton } from "../GameButton";
-import { GameText } from "../GameText";
 import { GameWindow } from "../GameWindow";
 import { ResourceAmount } from "../ResourceAmount";
 import { HeroClassOverview } from "./HeroClassOverview";

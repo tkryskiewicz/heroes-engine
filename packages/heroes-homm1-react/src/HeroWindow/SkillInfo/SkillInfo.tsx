@@ -5,7 +5,7 @@ import "./SkillInfo.scss";
 
 import { skillImages } from "./assets";
 
-import { GameText } from "../../GameText";
+import { GameText } from "../../core";
 import { getSkillNameMessage } from "../../messages";
 
 export interface SkillInfoProps {

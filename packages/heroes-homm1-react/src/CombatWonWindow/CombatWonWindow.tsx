@@ -7,8 +7,8 @@ import { Army } from "heroes-core";
 import { AnimationImage } from "./assets";
 
 import { CombatSummaryWindow } from "../CombatSummaryWindow";
+import { GameText } from "../core";
 import { GameButton } from "../GameButton";
-import { GameText } from "../GameText";
 import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 

@@ -5,7 +5,7 @@ import "./MiscInfo.scss";
 
 import { BackgroundImage, ExperienceImage } from "./assets";
 
-import { GameText } from "../../GameText";
+import { GameText } from "../../core";
 import { LuckIcon } from "../LuckIcon";
 import { MoraleIcon } from "../MoraleIcon";
 

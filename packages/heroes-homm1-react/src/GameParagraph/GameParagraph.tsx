@@ -2,8 +2,7 @@ import * as React from "react";
 
 import "./GameParagraph.scss";
 
-import { GameText } from "../GameText";
-import { GameTextProps } from "../GameText/GameText";
+import { GameText, GameTextProps } from "../core";
 
 export interface GameParagraphProps {
   textSize: GameTextProps["size"];

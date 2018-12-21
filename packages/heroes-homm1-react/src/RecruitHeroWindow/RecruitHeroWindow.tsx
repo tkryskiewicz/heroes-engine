@@ -5,9 +5,9 @@ import { FormattedMessage } from "react-intl";
 import { enoughResources, Resources } from "heroes-core";
 import { HeroClass } from "heroes-homm1";
 
+import { GameText } from "../core";
 import { GameButton } from "../GameButton";
 import { GameModal } from "../GameModal";
-import { GameText } from "../GameText";
 import { ResourceCost } from "../ResourceCost";
 import { messages } from "./messages";
 import { RecruitHero } from "./RecruitHero";

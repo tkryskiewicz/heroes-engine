@@ -5,8 +5,8 @@ import "./CampaignScenarioInfoWindow.scss";
 
 import { scenarioNumberImages } from "./assets";
 
+import { GameText } from "../core";
 import { GameButton } from "../GameButton";
-import { GameText } from "../GameText";
 import { GameWindow } from "../GameWindow";
 
 export interface CampaignScenarioInfoWindowProps {

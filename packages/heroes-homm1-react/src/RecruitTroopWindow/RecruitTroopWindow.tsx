@@ -7,9 +7,9 @@ import { enoughResources, multiplyResources, Resources } from "heroes-core";
 
 import "./RecruitTroopWindow.scss";
 
+import { GameText } from "../core";
 import { CreatureIcon } from "../CreatureIcon";
 import { GameButton } from "../GameButton";
-import { GameText } from "../GameText";
 import { GameWindow } from "../GameWindow";
 import { getCreatureNameMessage } from "../messages";
 import { ResourceCost } from "../ResourceCost";

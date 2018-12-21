@@ -2,7 +2,7 @@ import { boolean, number, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { GameText } from "../GameText";
+import { GameText } from "../core";
 import { GameModal } from "./GameModal";
 
 storiesOf(GameModal.name, module)

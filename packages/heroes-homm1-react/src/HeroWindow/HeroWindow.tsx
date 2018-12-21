@@ -8,11 +8,11 @@ import { ArtifactLimit, getCurrentLevel, getNextLevelExperience, SkillIds } from
 import "./HeroWindow.scss";
 
 import { ArmyStrip, armyStripMessages } from "../ArmyStrip";
+import { GameText } from "../core";
 import { Crest } from "../Crest";
 import { GameButton } from "../GameButton";
 import { GameModal } from "../GameModal";
 import { GameParagraph } from "../GameParagraph";
-import { GameText } from "../GameText";
 import { GameWindow } from "../GameWindow";
 import { HeroPortrait } from "../HeroPortrait";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";

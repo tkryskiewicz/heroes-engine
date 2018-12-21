@@ -5,7 +5,7 @@ import { isCommonStructure } from "heroes-homm1";
 
 import "./StructureIcon.scss";
 
-import { GameText } from "../GameText";
+import { GameText } from "../core";
 import { getStructureNameMessage } from "../messages";
 
 export interface StructureIconProps {

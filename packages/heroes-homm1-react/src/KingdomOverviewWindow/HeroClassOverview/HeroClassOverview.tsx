@@ -2,7 +2,7 @@ import * as React from "react";
 
 import "./HeroClassOverview.scss";
 
-import { GameText } from "../../GameText";
+import { GameText } from "../../core";
 
 export interface HeroClassOverviewProps {
   heroClass: string;
