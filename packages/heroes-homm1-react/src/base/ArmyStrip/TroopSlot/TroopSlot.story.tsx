@@ -5,11 +5,11 @@ import * as React from "react";
 
 import { ArmySize, CreatureId, TownId } from "heroes-homm1";
 
-import { creatureOptions, townOptions } from "../../stories";
+import { creatureOptions, townOptions } from "../../../stories";
 import { ArmyStrip } from "../ArmyStrip";
 import { TroopSlot } from "./TroopSlot";
 
-storiesOf(`${ArmyStrip.name}/${TroopSlot.name}`, module)
+storiesOf(`base/${ArmyStrip.name}/${TroopSlot.name}`, module)
   .add("default", () => {
     const troop = {
       count: number("Count", 1, { range: true, min: 0, max: 9999, step: 1 }),

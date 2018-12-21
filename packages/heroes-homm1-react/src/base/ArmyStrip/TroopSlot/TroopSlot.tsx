@@ -4,8 +4,8 @@ import "./TroopSlot.scss";
 
 import { EmptyImage, SelectionImage } from "./assets";
 
-import { CreatureIcon } from "../../base";
-import { GameText } from "../../core";
+import { GameText } from "../../../core";
+import { CreatureIcon } from "../../CreatureIcon";
 
 interface Troop {
   creature: string;
