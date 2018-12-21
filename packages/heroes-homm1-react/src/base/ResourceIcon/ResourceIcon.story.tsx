@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { Resource } from "heroes-homm1";
 
-import { resourceOptions } from "../stories";
+import { resourceOptions } from "../../stories";
 import { ResourceIcon, ResourceIconProps } from "./ResourceIcon";
 
 const sizeOptions: { [s: string]: ResourceIconProps["size"] } = {
@@ -13,7 +13,7 @@ const sizeOptions: { [s: string]: ResourceIconProps["size"] } = {
   Small: "small",
 };
 
-storiesOf(ResourceIcon.name, module)
+storiesOf(`base/${ResourceIcon.name}`, module)
   .add("default", () => (
     <ResourceIcon
       size={select("Size", sizeOptions, "large")}

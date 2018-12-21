@@ -5,8 +5,8 @@ import { Resource } from "heroes-homm1";
 
 import "./ResourceCost.scss";
 
+import { ResourceIcon } from "../base";
 import { GameText } from "../core";
-import { ResourceIcon } from "../ResourceIcon";
 
 export interface ResourceCostProps {
   cost: Resources;

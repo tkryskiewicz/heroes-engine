@@ -2,8 +2,8 @@ import * as React from "react";
 
 import "./ResourceAmount.scss";
 
+import { ResourceIcon } from "../base";
 import { GameText } from "../core";
-import { ResourceIcon } from "../ResourceIcon";
 
 export interface ResourceAmountProps {
   resource: string;
