@@ -14,8 +14,8 @@ import "./HighScoresWindow.scss";
 
 import { DaysImage, LandImage, LeaderImage, PlayerImage, ScoreImage, TitleImage } from "./assets";
 
+import { CreatureIcon } from "../base";
 import { GameText } from "../core";
-import { CreatureIcon } from "../CreatureIcon";
 import { GameButton } from "../GameButton";
 import { getCampaignNameMessage, getCreatureNameMessage } from "../messages";
 

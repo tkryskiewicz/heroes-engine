@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { CreatureId } from "heroes-homm1";
 
-import { creatureOptions } from "../stories";
+import { creatureOptions } from "../../stories";
 import { CreatureIcon, CreatureIconProps } from "./CreatureIcon";
 
 const sizeOptions: { [s: string]: CreatureIconProps["size"] } = {
@@ -14,7 +14,7 @@ const sizeOptions: { [s: string]: CreatureIconProps["size"] } = {
   Tiny: "tiny",
 };
 
-storiesOf(CreatureIcon.name, module)
+storiesOf(`base/${CreatureIcon.name}`, module)
   .add("default", () => (
     <CreatureIcon
       size={select("Size", sizeOptions, "large")}

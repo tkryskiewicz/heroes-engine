@@ -6,8 +6,8 @@ import { Army, Troop } from "heroes-core";
 
 import "./CombatSummaryWindow.scss";
 
+import { CreatureIcon } from "../base";
 import { GameText } from "../core";
-import { CreatureIcon } from "../CreatureIcon";
 import { messages } from "./messages";
 
 export interface CombatSummaryWindowProps {
