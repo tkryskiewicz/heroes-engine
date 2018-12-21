@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { CampaignIds } from "heroes-homm1";
 
-import { GameButton } from "../GameButton";
+import { GameButton } from "../base";
 
 export interface CampaignMenuProps {
   onPlayClick: (campaign: string) => void;

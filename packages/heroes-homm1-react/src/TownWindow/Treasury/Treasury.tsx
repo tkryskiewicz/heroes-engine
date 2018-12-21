@@ -5,8 +5,7 @@ import { Resource } from "heroes-homm1";
 
 import "./Treasury.scss";
 
-import { ResourceAmount } from "../../base";
-import { GameButton } from "../../GameButton";
+import { GameButton, ResourceAmount } from "../../base";
 
 export interface TreasuryProps {
   resources: Resources;

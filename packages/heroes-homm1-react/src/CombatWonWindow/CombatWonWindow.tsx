@@ -6,9 +6,9 @@ import { Army } from "heroes-core";
 
 import { AnimationImage } from "./assets";
 
+import { GameButton } from "../base";
 import { CombatSummaryWindow } from "../CombatSummaryWindow";
 import { GameText } from "../core";
-import { GameButton } from "../GameButton";
 import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 

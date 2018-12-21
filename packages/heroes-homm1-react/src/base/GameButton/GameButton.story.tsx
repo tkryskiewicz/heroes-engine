@@ -13,7 +13,7 @@ const groupOptions = Object.keys(buttonImages).reduce<{ [group: string]: string 
   return p;
 }, {});
 
-storiesOf(GameButton.name, module)
+storiesOf(`base/${GameButton.name}`, module)
   .add("default", () => {
     const group = select("Group", groupOptions, "system");
 

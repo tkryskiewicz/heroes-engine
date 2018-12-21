@@ -3,8 +3,8 @@ import * as React from "react";
 
 import "./AdventureOptions.scss";
 
+import { GameButton } from "../base";
 import { GameWindow } from "../core";
-import { GameButton } from "../GameButton";
 
 export interface AdventureOptionsProps {
   visible?: boolean;

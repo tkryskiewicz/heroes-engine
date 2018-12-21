@@ -5,8 +5,8 @@ import "./ViewWindow.scss";
 
 import { legendImages } from "./assets";
 
+import { GameButton } from "../base";
 import { GameWindow } from "../core";
-import { GameButton } from "../GameButton";
 
 export interface ViewWindowProps {
   // FIXME: inject background

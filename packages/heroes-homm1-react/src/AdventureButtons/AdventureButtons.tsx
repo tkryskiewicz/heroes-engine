@@ -5,7 +5,7 @@ import { canSelectNextHero, getNextHeroIndex, Hero } from "heroes-core";
 
 import "./AdventureButtons.scss";
 
-import { GameButton } from "../GameButton";
+import { GameButton } from "../base";
 
 export interface AdventureButtonsProps {
   heroes: Hero[];

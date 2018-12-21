@@ -8,8 +8,8 @@ import "./GameOptions.scss";
 
 import { movementSpeedImages } from "./assets";
 
+import { GameButton } from "../base";
 import { GameWindow } from "../core";
-import { GameButton } from "../GameButton";
 import { GameSwitch } from "../GameSwitch";
 import { getMovementSpeedMessage, messages } from "./messages";
 

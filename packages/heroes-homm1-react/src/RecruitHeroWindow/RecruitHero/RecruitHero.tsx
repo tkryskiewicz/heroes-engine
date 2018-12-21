@@ -6,9 +6,8 @@ import { HeroClass } from "heroes-homm1";
 
 import "./RecruitHero.scss";
 
-import { Frame, HeroPortrait } from "../../base";
+import { Frame, GameButton, HeroPortrait } from "../../base";
 import { GameText } from "../../core";
-import { GameButton } from "../../GameButton";
 import { getHeroClassNameMessage } from "../../messages";
 
 export interface RecruitHeroProps {

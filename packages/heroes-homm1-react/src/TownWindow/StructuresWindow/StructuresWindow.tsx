@@ -5,8 +5,8 @@ import { Resources, Structure } from "heroes-core";
 
 import "./StructuresWindow.scss";
 
+import { GameButton } from "../../base";
 import { GameWindow } from "../../core";
-import { GameButton } from "../../GameButton";
 import { StructureIcon } from "../../StructureIcon";
 
 export interface StructuresWindowProps {

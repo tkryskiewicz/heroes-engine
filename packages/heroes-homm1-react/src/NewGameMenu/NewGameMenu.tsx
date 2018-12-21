@@ -1,7 +1,7 @@
 import { Row } from "antd";
 import * as React from "react";
 
-import { GameButton } from "../GameButton";
+import { GameButton } from "../base";
 
 export interface NewGameMenuProps {
   onStandardGameClick?: () => void;
