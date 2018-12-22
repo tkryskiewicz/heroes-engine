@@ -113,6 +113,11 @@ interface TroopWindowButtonProps extends GameButtonPropsBase {
   type: "dismiss" | "exit";
 }
 
+interface HeroCombatOptionsButtonProps extends GameButtonPropsBase {
+  group: "hero-combat-options";
+  type: "cast-spell" | "retreat" | "surrender" | "exit";
+}
+
 type GameButtonProps =
   AdventureButtonProps |
   AdventureOptionsButtonProps |
@@ -133,7 +138,8 @@ type GameButtonProps =
   RecruitTroopWindowButtonProps |
   SystemButtonProps |
   TownWindowButtonProps |
-  TroopWindowButtonProps;
+  TroopWindowButtonProps |
+  HeroCombatOptionsButtonProps;
 
 interface GameButtonState {
   pressed: boolean;
