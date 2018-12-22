@@ -7,10 +7,9 @@ import { Troop } from "heroes-core";
 import { ArmySize, CreatureId } from "heroes-homm1";
 
 import { creatureOptions } from "../../stories";
-import { HeroTradingWindow } from "../HeroTradingWindow";
 import { TroopSlot } from "./TroopSlot";
 
-storiesOf(`${HeroTradingWindow.name}/${TroopSlot.name}`, module)
+storiesOf(`HeroTradingWindow/${TroopSlot.name}`, module)
   .add("default", () => {
     const troop: Troop = {
       count: number("Count", 0, { range: true, min: 0, max: 9999, step: 1 }),
