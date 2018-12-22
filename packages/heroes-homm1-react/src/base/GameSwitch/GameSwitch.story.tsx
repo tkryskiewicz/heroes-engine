@@ -13,7 +13,7 @@ const typeOptions = Object.keys(switchImages).reduce<{ [type: string]: GameSwitc
   return p;
 }, {});
 
-storiesOf(GameSwitch.name, module)
+storiesOf(`base/${GameSwitch.name}`, module)
   .add("default", () => (
     <GameSwitch
       type={select("Type", typeOptions, "checkbox")}
