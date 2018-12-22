@@ -1,4 +1,5 @@
 import { action } from "@storybook/addon-actions";
+import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -36,9 +37,10 @@ const otherHero: Hero = {
   skills: {},
 };
 
-storiesOf(HeroTradingWindow.name, module)
+storiesOf("HeroTradingWindow", module)
   .add("default", () => (
     <HeroTradingWindow
+      visible={boolean("Visible", true)}
       hero={hero}
       otherHero={otherHero}
       onExitClick={action("Exit Click")}

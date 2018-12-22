@@ -1,1 +1,1 @@
-export { HeroTradingWindow } from "./HeroTradingWindow";
+export { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindow";

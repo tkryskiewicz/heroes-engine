@@ -1,79 +1,94 @@
 import { Col, Row } from "antd";
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Army, Hero, HeroSkills } from "heroes-core";
 import { ArmySize, ArtifactLimit, SkillIds } from "heroes-homm1";
 
 import "./HeroTradingWindow.scss";
 
-import { Frame, GameButton, HeroPortrait } from "../base";
-import { GameText } from "../core";
-import { getSkillNameMessage } from "../messages";
+import { GameButton, HeroPortrait } from "../base";
+import { GameText, GameWindow } from "../core";
+import { getHeroNameMessage, getSkillNameMessage } from "../messages";
+import { ComponentWithDefaultProps } from "../util";
 import { ArtifactSlot } from "./ArtifactSlot";
+import { messages } from "./messages";
 import { TroopSlot } from "./TroopSlot";
 
 export interface HeroTradingWindowProps {
   hero: Hero;
   otherHero: Hero;
-  onExitClick?: () => void;
+  visible?: boolean;
+  onExitClick: () => void;
 }
 
-export class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
+class HeroTradingWindow extends React.Component<HeroTradingWindowProps & InjectedIntlProps> {
+  public static defaultProps: Pick<HeroTradingWindowProps, "onExitClick"> = {
+    onExitClick: () => undefined,
+  };
+
   public render() {
+    const { hero, otherHero } = this.props;
+
     return (
-      <div className="hero-trading-window">
-        <Row>
-          <Col span={6}>
-            <Frame>
-              <HeroPortrait
-                hero={this.props.hero.id}
-              />
-            </Frame>
-          </Col>
-          <Col span={12}>
-            {this.renderSkills(this.props.hero, this.props.otherHero)}
-          </Col>
-          <Col span={6}>
-            <Frame>
-              <HeroPortrait
-                hero={this.props.otherHero.id}
-              />
-            </Frame>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={10}>
+      <GameWindow
+        width={448}
+        visible={this.props.visible}
+      >
+        <div className="hero-trading-window">
+          <div className="hero-trading-window-title">
+            <GameText size="large">
+              {this.getTitle(hero.id, otherHero.id)}
+            </GameText>
+          </div>
+          <div className="hero-trading-window-portrait">
+            <HeroPortrait
+              hero={this.props.hero.id}
+            />
+          </div>
+          <div className="hero-trading-window-other-portrait">
+            <HeroPortrait
+              hero={this.props.otherHero.id}
+            />
+          </div>
+          <div className="hero-trading-window-army">
             {this.renderHeroArmy(this.props.hero.army)}
-          </Col>
-          <Col span={4} />
-          <Col span={10}>
+          </div>
+          <div className="hero-trading-window-other-army">
             {this.renderHeroArmy(this.props.otherHero.army)}
-          </Col>
-        </Row>
-        <Row>
-          <Col
-            push={4}
-            span={2}
-          >
+          </div>
+          <div className="hero-trading-window-skills">
+            <div className="hero-trading-window-skills-container">
+              {this.renderSkills(this.props.hero, this.props.otherHero)}
+            </div>
+          </div>
+          <div className="hero-trading-window-artifacts">
             {this.renderArtifacts()}
-          </Col>
-          <Col
-            push={14}
-            span={2}
-          >
+          </div>
+          <div className="hero-trading-window-other-artifacts">
             {this.renderArtifacts()}
-          </Col>
-        </Row>
-        <Row className="hero-trading-window-exit">
-          <GameButton
-            group="hero-trading-window"
-            type="exit"
-            onClick={this.props.onExitClick}
-          />
-        </Row>
-      </div>
+          </div>
+          <div className="hero-trading-window-exit">
+            <GameButton
+              group="hero-trading-window"
+              type="exit"
+              onClick={this.props.onExitClick}
+            />
+          </div>
+        </div>
+      </GameWindow>
     );
+  }
+
+  private getTitle(hero: string, otherHero: string) {
+    const { formatMessage } = this.props.intl;
+
+    const heroName = formatMessage(getHeroNameMessage(hero));
+    const otherHeroName = formatMessage(getHeroNameMessage(otherHero));
+
+    const title = formatMessage(messages.title, { heroName, otherHeroName });
+
+    return title;
   }
 
   private renderSkills(hero: Hero, otherHero: Hero) {
@@ -114,28 +129,36 @@ export class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
 
   private renderHeroArmy(army: Army) {
     return [...new Array(ArmySize).keys()].map((i) => (
-      <Col
+      <div
         key={i}
-        span={4}
+        className="hero-trading-window-troop"
       >
         <TroopSlot
           index={i}
           troop={army[i]}
         />
-      </Col>
+      </div>
     ));
   }
 
   private renderArtifacts() {
     return [...new Array(ArtifactLimit).keys()].map((i) => (
-      <Col
+      <div
         key={i}
-        span={12}
+        className="hero-trading-window-artifact"
       >
         <ArtifactSlot
           index={i}
         />
-      </Col>
+      </div>
     ));
   }
 }
+
+const HeroTradingWindowWrapped: ComponentWithDefaultProps<HeroTradingWindowProps,
+  typeof HeroTradingWindow.defaultProps> =
+  injectIntl(HeroTradingWindow) as any;
+
+export {
+  HeroTradingWindowWrapped as HeroTradingWindow,
+};
