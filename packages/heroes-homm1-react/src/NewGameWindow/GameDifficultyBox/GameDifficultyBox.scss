@@ -1,8 +1,11 @@
 .game-difficulty-box {
   display: inline-block;
-  height: 71px;
-  position: relative;
-  width: 71px;
+
+  &-image {
+    height: 71px;
+    position: relative;
+    width: 71px;
+  }
 
   &-icon {
     left: 3px;

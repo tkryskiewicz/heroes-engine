@@ -1,4 +1,3 @@
-import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -13,7 +12,7 @@ import {
 import "./NewGameWindow.scss";
 
 import { GameButton, GameSwitch } from "../base";
-import { getGameDifficultyMessage } from "../messages";
+import { GameText } from "../core";
 import { AlignmentBox } from "./AlignmentBox";
 import { GameDifficultyBox } from "./GameDifficultyBox";
 import { messages } from "./messages";
@@ -56,70 +55,70 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
 
     return (
       <div className="new-game-window">
-        <Row>
-          <FormattedMessage {...messages.difficultyTitle} />
-        </Row>
-        <Row>
-          {this.renderDifficulties()}
-        </Row>
-        <Row>
-          <FormattedMessage {...messages.opponentsTitle} />
-          <Row>
-            {this.renderOpponentSettings(this.props.opponentSettings)}
-          </Row>
-        </Row>
-        <Row>
-          <Col span={12}>
+        <div className="new-game-window-game-difficulties-title">
+          <GameText size="large">
+            <FormattedMessage {...messages.difficultyTitle} />
+          </GameText>
+        </div>
+        {this.renderDifficulties()}
+        <div className="new-game-window-opponent-settings-title">
+          <GameText size="large">
+            <FormattedMessage {...messages.opponentsTitle} />
+          </GameText>
+        </div>
+        <div className="new-game-window-opponent-settings">
+          {this.renderOpponentSettings(this.props.opponentSettings)}
+        </div>
+        <div className="new-game-window-alignment">
+          <GameText size="large">
             <FormattedMessage {...messages.alignmentTitle} />
-            <div>
-              <AlignmentBox
-                value={this.props.selectedAlignment}
-                onChange={this.props.onAlignmentChange}
-              />
-            </div>
-          </Col>
-          <Col span={12}>
+          </GameText>
+          <div>
+            <AlignmentBox
+              value={this.props.selectedAlignment}
+              onChange={this.props.onAlignmentChange}
+            />
+          </div>
+        </div>
+        <div className="new-game-window-king-of-the-hill">
+          <GameText size="large">
             <FormattedMessage {...messages.kingOfTheHill} />
-            <div>
-              <GameSwitch
-                type="checkbox"
-                checked={this.props.kingOfTheHill}
-                onChange={this.props.onKingOfTheHillChange}
-              />
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <FormattedMessage {...messages.scenarioTitle} />
-        </Row>
-        <Row>
+          </GameText>
+          <div>
+            <GameSwitch
+              type="checkbox"
+              checked={this.props.kingOfTheHill}
+              onChange={this.props.onKingOfTheHillChange}
+            />
+          </div>
+        </div>
+        <div className="new-game-window-scenario">
+          <GameText size="large">
+            <FormattedMessage {...messages.scenarioTitle} />
+          </GameText>
+        </div>
+        <div>
           {/* TODO: implement scenario selection */}
-        </Row>
-        <Row>
-          <FormattedMessage {...messages.difficultyRatingTitle} /> {difficultyRating}%
-        </Row>
-        <Row>
-          <Col
-            className="new-game-window-okay"
-            span={12}
-          >
-            <GameButton
-              group="new-game-window"
-              type="okay"
-              onClick={this.props.onOkayClick}
-            />
-          </Col>
-          <Col
-            className="new-game-window-cancel"
-            span={12}
-          >
-            <GameButton
-              group="new-game-window"
-              type="cancel"
-              onClick={this.props.onCancelClick}
-            />
-          </Col>
-        </Row>
+        </div>
+        <div className="new-game-window-difficulty-rating">
+          <GameText size="large">
+            <FormattedMessage {...messages.difficultyRatingTitle} /> {difficultyRating}%
+          </GameText>
+        </div>
+        <div className="new-game-window-okay">
+          <GameButton
+            group="new-game-window"
+            type="okay"
+            onClick={this.props.onOkayClick}
+          />
+        </div>
+        <div className="new-game-window-cancel">
+          <GameButton
+            group="new-game-window"
+            type="cancel"
+            onClick={this.props.onCancelClick}
+          />
+        </div>
       </div>
     );
   }
@@ -133,28 +132,24 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
     ];
 
     return (
-      <Row>
+      <div className="new-game-window-game-difficulties">
         {difficulties.map((d) => this.renderDifficulty(d, this.props.selectedGameDifficulty))}
-      </Row>
+      </div>
     );
   }
 
   private renderDifficulty(difficulty: GameDifficulty, selectedDifficulty?: GameDifficulty) {
     return (
-      <Col
-        className="new-game-window-game-difficutly"
+      <div
+        className="new-game-window-game-difficulty"
         key={difficulty}
-        span={6}
       >
         <GameDifficultyBox
           value={difficulty}
           selected={difficulty === selectedDifficulty}
           onClick={this.onGameDifficultyClick}
         />
-        <div>
-          <FormattedMessage {...getGameDifficultyMessage(difficulty)} />
-        </div>
-      </Col>
+      </div>
     );
   }
 
@@ -166,16 +161,16 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
 
   private renderOpponentSettings(settings: OpponentSetting[]) {
     return settings.map((s, i) => (
-      <Col
+      <div
         key={i}
-        span={8}
+        className="new-game-window-opponent-setting"
       >
         <OpponentSettingBox
           index={i}
           value={s}
           onChange={this.onOpponentSettingChange}
         />
-      </Col>
+      </div>
     ));
   }
 

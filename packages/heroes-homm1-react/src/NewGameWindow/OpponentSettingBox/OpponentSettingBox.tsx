@@ -1,8 +1,13 @@
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { changeOpponentSetting, OpponentSetting } from "heroes-homm1";
 
+import "./OpponentSettingBox.scss";
+
+import { GameParagraph } from "../../core";
 import { opponentSettingImages } from "./assets";
+import { getOpponentSettingNameMessage } from "./messages";
 
 export interface OpponentSettingBoxProps {
   index: number;
@@ -17,10 +22,15 @@ export class OpponentSettingBox extends React.Component<OpponentSettingBoxProps>
 
   public render() {
     return (
-      <img
-        src={opponentSettingImages[this.props.value]}
-        onClick={this.onClick}
-      />
+      <div className="opponent-setting-box">
+        <img
+          src={opponentSettingImages[this.props.value]}
+          onClick={this.onClick}
+        />
+        <GameParagraph textSize="normal">
+          <FormattedMessage {...getOpponentSettingNameMessage(this.props.value)} />
+        </GameParagraph>
+      </div>
     );
   }
 
