@@ -2,15 +2,17 @@ import { Col, Row } from "antd";
 import * as React from "react";
 
 import { Resources, Structure } from "heroes-core";
+import { getStructureStatus } from "heroes-homm1";
 
 import "./StructuresWindow.scss";
 
 import { GameButton } from "../../base";
 import { GameWindow } from "../../core";
-import { StructureIcon } from "../../StructureIcon";
+import { StructureStatusImage } from "../StructureStatusImage";
 
 export interface StructuresWindowProps {
   town: string;
+  canConstructStructures: boolean;
   structures: Structure[];
   resources: Resources;
   visible?: boolean;
@@ -19,6 +21,8 @@ export interface StructuresWindowProps {
 
 export class StructuresWindow extends React.Component<StructuresWindowProps> {
   public render() {
+    const { town, structures, canConstructStructures, resources } = this.props;
+
     return (
       <GameWindow
         width={640}
@@ -26,7 +30,7 @@ export class StructuresWindow extends React.Component<StructuresWindowProps> {
       >
         <div className="structures-window">
           <Row>
-            {this.props.structures.map((s) => this.renderStructure(this.props.town, s))}
+            {structures.map((s) => this.renderStructure(town, s, canConstructStructures, resources))}
           </Row>
           <Row className="structures-window-exit">
             <GameButton
@@ -40,15 +44,18 @@ export class StructuresWindow extends React.Component<StructuresWindowProps> {
     );
   }
 
-  private renderStructure(town: string, structure: Structure) {
+  private renderStructure(town: string, structure: Structure, canConstructStrucutes: boolean, resources: Resources) {
+    const status = getStructureStatus(structure, canConstructStrucutes, resources);
+
     return (
       <Col
         key={structure.id}
         span={6}
       >
-        <StructureIcon
+        <StructureStatusImage
           town={town}
           structure={structure.id}
+          status={status}
         />
       </Col>
     );

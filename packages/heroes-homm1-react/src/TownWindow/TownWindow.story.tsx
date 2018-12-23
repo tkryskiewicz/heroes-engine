@@ -13,6 +13,7 @@ storiesOf("TownWindow", module)
   .add("default", () => {
     const town: Town = {
       alignment: select("Alignment", alignmentOptions, Alignment.Red),
+      canConstructStructures: boolean("Can Construct Structures", true),
       garrison: [],
       heroClass: select("Hero Class", heroClassOptions, HeroClass.Knight),
       id: select("Town", townOptions, TownId.Farm),

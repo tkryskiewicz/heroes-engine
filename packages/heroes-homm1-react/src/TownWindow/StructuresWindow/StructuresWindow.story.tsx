@@ -12,6 +12,7 @@ storiesOf(`TownWindow/${StructuresWindow.name}`, module)
   .add("default", () => (
     <StructuresWindow
       town={TownId.Farm}
+      canConstructStructures={boolean("Can Construct Structures", true)}
       structures={[...commonStructures, ...farmStructures].map(constructStructure).map(buildStructure)}
       resources={{}}
       visible={boolean("Visible", true)}

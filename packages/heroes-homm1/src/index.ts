@@ -24,6 +24,7 @@ export { Skill, SkillIds } from "./Skill";
 export { SoundVolume, changeVolume } from "./SoundVolume";
 export {
   constructStructure,
+  getStructureStatus,
   StructureId,
   coreStructures,
   isCommonStructure,

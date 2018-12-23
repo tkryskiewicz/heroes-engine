@@ -1,7 +1,8 @@
-import { Dwelling, Resources, Structure } from "heroes-core";
+import { Dwelling, enoughResources, Resources, Structure } from "heroes-core";
 
 import { CreatureId } from "./creatures";
 import { Resource } from "./Resource";
+import { StructureStatus } from "./StructureStatus";
 
 interface DwellingType {
   creature: string;
@@ -30,6 +31,24 @@ export const constructStructure = (structureType: StructureType): Structure => (
   id: structureType.id,
   isBuilt: false,
 });
+
+export const getStructureStatus = (
+  structure: Structure,
+  canConstructStructures: boolean,
+  resources: Resources,
+): StructureStatus => {
+  let status = StructureStatus.Available;
+
+  if (structure.isBuilt) {
+    status = StructureStatus.Built;
+  } else if (!canConstructStructures) {
+    status = StructureStatus.Unavailable;
+  } else if (!enoughResources(resources, structure.cost)) {
+    status = StructureStatus.NotEnoughResources;
+  }
+
+  return status;
+};
 
 export enum StructureId {
   Castle = "castle",

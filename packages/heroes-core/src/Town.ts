@@ -8,6 +8,7 @@ export interface Town {
   heroClass: string;
   garrison: Army;
   structures: Structure[];
+  canConstructStructures: boolean;
 }
 
 const getStructure = (town: Town, structure: string): Structure | undefined =>
@@ -24,10 +25,17 @@ export const isStructureBuilt = (town: Town, structure: string): boolean => {
   return s !== undefined && s.isBuilt;
 };
 
-export const buildTownStructure = (town: Town, structure: string): Town => ({
-  ...town,
-  structures: town.structures.map((s) => s.id === structure ? buildStructure(s) : s),
-});
+export const buildTownStructure = (town: Town, structure: string): Town => {
+  if (!town.canConstructStructures) {
+    return town;
+  }
+
+  return {
+    ...town,
+    canConstructStructures: false,
+    structures: town.structures.map((s) => s.id === structure ? buildStructure(s) : s),
+  };
+};
 
 export const recruitTownTroop = (town: Town, structureId: string, count: number): Town => {
   const structure = town.structures.find((s) => s.id === structureId);

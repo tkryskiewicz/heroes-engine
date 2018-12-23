@@ -207,6 +207,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
           />) : (
             <StructuresWindow
               town={town.id}
+              canConstructStructures={town.canConstructStructures}
               resources={resources}
               structures={town.structures}
               visible={true}

@@ -125,6 +125,7 @@ const heroes: Hero[] = [
 const towns: Town[] = [
   {
     alignment: Alignment.Red,
+    canConstructStructures: true,
     garrison: [
       {
         count: 1,
@@ -142,6 +143,7 @@ const towns: Town[] = [
   },
   {
     alignment: Alignment.Red,
+    canConstructStructures: true,
     garrison: [],
     heroClass: HeroClass.Barbarian,
     id: TownId.Plains,
@@ -154,6 +156,7 @@ const towns: Town[] = [
   },
   {
     alignment: Alignment.Red,
+    canConstructStructures: true,
     garrison: [],
     heroClass: HeroClass.Sorceress,
     id: TownId.Forest,
@@ -166,6 +169,7 @@ const towns: Town[] = [
   },
   {
     alignment: Alignment.Red,
+    canConstructStructures: true,
     garrison: [],
     heroClass: HeroClass.Warlock,
     id: TownId.Mountains,
