@@ -14,6 +14,7 @@ import {
   Resource,
   Skill,
   StructureId,
+  StructureStatus,
   TownId,
 } from "heroes-homm1";
 
@@ -71,6 +72,12 @@ export const structureOptions = {
   ...ForestStructureId,
   ...MountainsStructureId,
 };
+
+export const structureStatusOptions = Object.keys(StructureStatus).reduce<SelectOptions>((p, c: any) => {
+  p[c] = StructureStatus[c];
+
+  return p;
+}, {});
 
 export const creatureOptions = creatures.reduce<SelectOptions>((p, c) => {
   p[c.id] = c.id;
