@@ -29,8 +29,8 @@ const farmCreatures: Creature[] = [
   {
     attack: 5,
     damage: {
-      max: 2,
-      min: 3,
+      max: 3,
+      min: 2,
     },
     defense: 3,
     hitPoints: 10,
@@ -42,8 +42,8 @@ const farmCreatures: Creature[] = [
   {
     attack: 5,
     damage: {
-      max: 3,
-      min: 4,
+      max: 4,
+      min: 3,
     },
     defense: 9,
     hitPoints: 15,
@@ -54,8 +54,8 @@ const farmCreatures: Creature[] = [
   {
     attack: 7,
     damage: {
-      max: 4,
-      min: 6,
+      max: 6,
+      min: 4,
     },
     defense: 9,
     hitPoints: 25,
@@ -66,8 +66,8 @@ const farmCreatures: Creature[] = [
   {
     attack: 10,
     damage: {
-      max: 5,
-      min: 10,
+      max: 10,
+      min: 5,
     },
     defense: 9,
     hitPoints: 30,
@@ -78,8 +78,8 @@ const farmCreatures: Creature[] = [
   {
     attack: 11,
     damage: {
-      max: 10,
-      min: 20,
+      max: 20,
+      min: 10,
     },
     defense: 12,
     hitPoints: 50,
@@ -103,8 +103,8 @@ const plainsCreatures: Creature[] = [
   {
     attack: 3,
     damage: {
-      max: 1,
-      min: 2,
+      max: 2,
+      min: 1,
     },
     defense: 1,
     hitPoints: 3,
@@ -115,8 +115,8 @@ const plainsCreatures: Creature[] = [
   {
     attack: 3,
     damage: {
-      max: 2,
-      min: 3,
+      max: 3,
+      min: 2,
     },
     defense: 4,
     hitPoints: 10,
@@ -128,8 +128,8 @@ const plainsCreatures: Creature[] = [
   {
     attack: 6,
     damage: {
-      max: 3,
-      min: 5,
+      max: 5,
+      min: 3,
     },
     defense: 2,
     hitPoints: 20,
@@ -140,8 +140,8 @@ const plainsCreatures: Creature[] = [
   {
     attack: 9,
     damage: {
-      max: 4,
-      min: 6,
+      max: 6,
+      min: 4,
     },
     defense: 5,
     hitPoints: 40,
@@ -152,8 +152,8 @@ const plainsCreatures: Creature[] = [
   {
     attack: 10,
     damage: {
-      max: 5,
-      min: 7,
+      max: 7,
+      min: 5,
     },
     defense: 5,
     hitPoints: 40,
@@ -165,8 +165,8 @@ const plainsCreatures: Creature[] = [
   {
     attack: 12,
     damage: {
-      max: 12,
-      min: 24,
+      max: 24,
+      min: 12,
     },
     defense: 9,
     hitPoints: 80,
@@ -190,8 +190,8 @@ const forestCreatures: Creature[] = [
   {
     attack: 4,
     damage: {
-      max: 1,
-      min: 2,
+      max: 2,
+      min: 1,
     },
     defense: 2,
     hitPoints: 2,
@@ -202,8 +202,8 @@ const forestCreatures: Creature[] = [
   {
     attack: 6,
     damage: {
-      max: 2,
-      min: 4,
+      max: 4,
+      min: 2,
     },
     defense: 5,
     hitPoints: 20,
@@ -214,8 +214,8 @@ const forestCreatures: Creature[] = [
   {
     attack: 4,
     damage: {
-      max: 2,
-      min: 3,
+      max: 3,
+      min: 2,
     },
     defense: 3,
     hitPoints: 15,
@@ -227,8 +227,8 @@ const forestCreatures: Creature[] = [
   {
     attack: 7,
     damage: {
-      max: 5,
-      min: 8,
+      max: 8,
+      min: 5,
     },
     defense: 5,
     hitPoints: 25,
@@ -240,8 +240,8 @@ const forestCreatures: Creature[] = [
   {
     attack: 10,
     damage: {
-      max: 7,
-      min: 14,
+      max: 14,
+      min: 7,
     },
     defense: 9,
     hitPoints: 40,
@@ -252,8 +252,8 @@ const forestCreatures: Creature[] = [
   {
     attack: 12,
     damage: {
-      max: 20,
-      min: 40,
+      max: 40,
+      min: 20,
     },
     defense: 10,
     hitPoints: 100,
@@ -277,8 +277,8 @@ const mountainsCreatures: Creature[] = [
   {
     attack: 3,
     damage: {
-      max: 1,
-      min: 2,
+      max: 2,
+      min: 1,
     },
     defense: 1,
     hitPoints: 5,
@@ -290,8 +290,8 @@ const mountainsCreatures: Creature[] = [
   {
     attack: 4,
     damage: {
-      max: 2,
-      min: 3,
+      max: 3,
+      min: 2,
     },
     defense: 7,
     hitPoints: 15,
@@ -302,8 +302,8 @@ const mountainsCreatures: Creature[] = [
   {
     attack: 6,
     damage: {
-      max: 3,
-      min: 5,
+      max: 5,
+      min: 3,
     },
     defense: 6,
     hitPoints: 25,
@@ -314,8 +314,8 @@ const mountainsCreatures: Creature[] = [
   {
     attack: 9,
     damage: {
-      max: 5,
-      min: 10,
+      max: 10,
+      min: 5,
     },
     defense: 8,
     hitPoints: 35,
@@ -326,8 +326,8 @@ const mountainsCreatures: Creature[] = [
   {
     attack: 8,
     damage: {
-      max: 6,
-      min: 12,
+      max: 12,
+      min: 6,
     },
     defense: 9,
     hitPoints: 75,
@@ -338,8 +338,8 @@ const mountainsCreatures: Creature[] = [
   {
     attack: 12,
     damage: {
-      max: 25,
-      min: 50,
+      max: 50,
+      min: 25,
     },
     defense: 12,
     hitPoints: 200,
@@ -361,8 +361,8 @@ const neutralCreatures: Creature[] = [
   {
     attack: 6,
     damage: {
-      max: 1,
-      min: 2,
+      max: 2,
+      min: 1,
     },
     defense: 1,
     hitPoints: 4,
@@ -372,8 +372,8 @@ const neutralCreatures: Creature[] = [
   {
     attack: 7,
     damage: {
-      max: 2,
-      min: 5,
+      max: 5,
+      min: 2,
     },
     defense: 6,
     hitPoints: 20,
@@ -383,8 +383,8 @@ const neutralCreatures: Creature[] = [
   {
     attack: 10,
     damage: {
-      max: 20,
-      min: 30,
+      max: 30,
+      min: 20,
     },
     defense: 9,
     hitPoints: 50,
@@ -394,8 +394,8 @@ const neutralCreatures: Creature[] = [
   {
     attack: 8,
     damage: {
-      max: 4,
-      min: 6,
+      max: 6,
+      min: 4,
     },
     defense: 7,
     hitPoints: 20,
