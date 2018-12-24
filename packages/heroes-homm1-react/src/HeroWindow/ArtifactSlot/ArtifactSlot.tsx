@@ -10,19 +10,31 @@ export interface ArtifactSlotProps {
   index: number;
   artifact?: string;
   isUltimate: boolean;
+  onMouseEnter: (index: number) => void;
+  onMouseLeave: (index: number) => void;
   onClick: (index: number) => void;
 }
 
+type DefaultProp =
+  "isUltimate" |
+  "onMouseEnter" |
+  "onMouseLeave" |
+  "onClick";
+
 export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
-  public static defaultProps: Pick<ArtifactSlotProps, "isUltimate" | "onClick"> = {
+  public static defaultProps: Pick<ArtifactSlotProps, DefaultProp> = {
     isUltimate: false,
     onClick: () => undefined,
+    onMouseEnter: () => undefined,
+    onMouseLeave: () => undefined,
   };
 
   public render() {
     return (
       <div
         className="artifact-slot"
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
       >
         {this.renderBorder(this.props.isUltimate)}
@@ -54,6 +66,14 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
     return (
       <img src={EmptyImage} />
     );
+  }
+
+  private onMouseEnter = () => {
+    this.props.onMouseEnter(this.props.index);
+  }
+
+  private onMouseLeave = () => {
+    this.props.onMouseLeave(this.props.index);
   }
 
   private onClick = () => {

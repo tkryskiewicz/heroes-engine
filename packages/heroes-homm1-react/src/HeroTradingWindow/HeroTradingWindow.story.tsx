@@ -16,6 +16,7 @@ const hero: Hero = {
       creature: CreatureId.Peasant,
     },
   ],
+  artifacts: [],
   experience: 0,
   heroClass: HeroClass.Knight,
   id: HeroId.LordKilburn,
@@ -28,6 +29,7 @@ const hero: Hero = {
 const otherHero: Hero = {
   alignment: Alignment.Red,
   army: [],
+  artifacts: [],
   experience: 0,
   heroClass: HeroClass.Knight,
   id: HeroId.Antoine,

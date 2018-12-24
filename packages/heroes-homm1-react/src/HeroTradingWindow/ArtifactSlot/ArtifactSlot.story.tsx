@@ -12,7 +12,7 @@ storiesOf(`HeroTradingWindow/${ArtifactSlot.name}`, module)
   .add("default", () => (
     <ArtifactSlot
       index={number("Index", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 })}
-      artifact={select("Artifact", artifactOptions, ArtifactId.GiantFlailOfDominion)}
+      artifact={select("Artifact", artifactOptions, ArtifactId.ThunderMaceOfDominion)}
       selected={boolean("Selected", false)}
       onClick={action("Click")}
     />

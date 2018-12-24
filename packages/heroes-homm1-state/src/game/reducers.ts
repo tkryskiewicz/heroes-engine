@@ -11,6 +11,7 @@ import {
 } from "heroes-core";
 import {
   Alignment,
+  ArtifactId,
   campaignScenarios,
   commonStructures,
   constructStructure,
@@ -44,6 +45,9 @@ const heroes: Hero[] = [
         creature: CreatureId.Archer,
       },
     ],
+    artifacts: [
+      ArtifactId.ThunderMaceOfDominion,
+    ],
     experience: 10,
     heroClass: HeroClass.Knight,
     id: HeroId.LordKilburn,
@@ -65,6 +69,7 @@ const heroes: Hero[] = [
         creature: CreatureId.Goblin,
       },
     ],
+    artifacts: [],
     experience: 125,
     heroClass: HeroClass.Barbarian,
     id: HeroId.Antoine,
@@ -86,6 +91,7 @@ const heroes: Hero[] = [
         creature: CreatureId.Sprite,
       },
     ],
+    artifacts: [],
     experience: 642,
     heroClass: HeroClass.Sorceress,
     id: HeroId.Ariel,
@@ -107,6 +113,7 @@ const heroes: Hero[] = [
         creature: CreatureId.Centaur,
       },
     ],
+    artifacts: [],
     experience: 174,
     heroClass: HeroClass.Warlock,
     id: HeroId.Agar,

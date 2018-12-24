@@ -12,8 +12,10 @@ storiesOf(`HeroWindow/${ArtifactSlot.name}`, module)
   .add("default", () => (
     <ArtifactSlot
       index={number("Index", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 })}
-      artifact={select("Artifact", artifactOptions, ArtifactId.GiantFlailOfDominion)}
+      artifact={select("Artifact", artifactOptions, ArtifactId.ThunderMaceOfDominion)}
       isUltimate={boolean("Is Ultimate", false)}
+      onMouseEnter={action("Mouse Enter")}
+      onMouseLeave={action("Mouse Leave")}
       onClick={action("Click")}
     />
   ))

@@ -4,9 +4,9 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Hero } from "heroes-core";
-import { Alignment, ArmySize, CreatureId, HeroClass, HeroId, Skill } from "heroes-homm1";
+import { Alignment, ArmySize, ArtifactId, CreatureId, HeroClass, HeroId, Skill } from "heroes-homm1";
 
-import { alignmentOptions, heroClassOptions, heroOptions, skillOptions } from "../stories";
+import { alignmentOptions, artifactOptions, heroClassOptions, heroOptions, skillOptions } from "../stories";
 import { HeroWindow } from "./HeroWindow";
 import { MiscInfoType } from "./MiscInfo";
 
@@ -31,6 +31,7 @@ const heroBase: Hero = {
       creature: CreatureId.Archer,
     },
   ],
+  artifacts: [],
   experience: 0,
   heroClass: HeroClass.Knight,
   id: HeroId.LordKilburn,
@@ -126,6 +127,21 @@ storiesOf("HeroWindow", module)
       onConfirmDismissTroopClick={action("Confirm Dismiss Troop Click")}
     />
   ))
+  .add("artifacts", () => {
+    const hero: Hero = {
+      ...heroBase,
+      artifacts: [
+        select("Artifact", artifactOptions, ArtifactId.ThunderMaceOfDominion),
+      ],
+    };
+
+    return (
+      <HeroWindow
+        hero={hero}
+        visible={true}
+      />
+    );
+  })
   .add("dismissal", () => (
     <HeroWindow
       hero={heroBase}

@@ -12,6 +12,7 @@ import { GameParagraph, GameText, GameWindow } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
   experienceMessages,
+  getArtifactNameMessage,
   getCreatureNameMessage,
   getHeroClassNameMessage,
   getHeroClassTitleMessage,
@@ -27,7 +28,7 @@ import {
 } from "../messages";
 import { TroopWindow } from "../TroopWindow";
 import { ComponentWithDefaultProps } from "../util";
-import { ArtifactSlot } from "./ArtifactSlot";
+import { ArtifactSlot, artifactSlotMessages } from "./ArtifactSlot";
 import { messages } from "./messages";
 import { MiscInfo, MiscInfoType } from "./MiscInfo";
 import { SkillInfo } from "./SkillInfo";
@@ -143,7 +144,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           </div>
           {this.renderArmy(hero, selectedTroopIndex)}
           {this.props.dismissible && this.renderDismissal(this.props.dismissHeroPromptVisible)}
-          {this.renderArtifacts()}
+          {this.renderArtifacts(hero.artifacts)}
           <div className="hero-window-exit">
             <GameButton
               group="hero-window"
@@ -553,8 +554,8 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     this.props.onCancelDismissTroopClick(index);
   }
 
-  private renderArtifacts() {
-    const content = [...new Array(ArtifactLimit).keys()].map((i) => this.renderArtifact(i));
+  private renderArtifacts(artifacts: string[]) {
+    const content = [...new Array(ArtifactLimit).keys()].map((i) => this.renderArtifact(i, artifacts[i]));
 
     return (
       <div className="hero-window-artifacts">
@@ -563,7 +564,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     );
   }
 
-  private renderArtifact(index: number) {
+  private renderArtifact(index: number, artifact: string) {
     return (
       <div
         className="hero-window-artifact"
@@ -571,9 +572,28 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
       >
         <ArtifactSlot
           index={index}
+          artifact={artifact}
+          onMouseEnter={this.onArtifactMouseEnter}
+          onMouseLeave={this.onArtifactMouseLeave}
         />
       </div>
     );
+  }
+
+  private onArtifactMouseEnter = (index: number) => {
+    const artifact = this.props.hero.artifacts[index];
+
+    const message = artifact ?
+      getArtifactNameMessage(artifact) :
+      artifactSlotMessages.empty;
+
+    const statusText = this.props.intl.formatMessage(message);
+
+    this.onStatusTextChange(statusText);
+  }
+
+  private onArtifactMouseLeave = () => {
+    this.setDefaultStatusText();
   }
 
   private renderDismissal(dismissHeroPromptVisible: boolean) {

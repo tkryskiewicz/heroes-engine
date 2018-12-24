@@ -14,6 +14,7 @@ export interface Hero {
   morale: number;
   luck: number;
   experience: number;
+  artifacts: string[];
 }
 
 export const swapHeroTroops = (hero: Hero, index: number, withIndex: number): Hero => ({
