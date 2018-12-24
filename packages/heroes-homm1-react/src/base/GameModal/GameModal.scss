@@ -11,6 +11,14 @@
     text-align: center;
   }
 
+  &-actions {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 0 20px 20px 20px;
+    text-align: center;
+  }
+
   &-reverse {
     transform: scaleX(-1);
   }

@@ -172,33 +172,39 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
   }
 
   private renderDismissPrompt(visible: boolean) {
+    const actions = (
+      <Row>
+        <Col
+          className="troop-window-dismiss-yes"
+          span={12}
+        >
+          <GameButton
+            group="system"
+            type="yes"
+            onClick={this.onConfirmDismiss}
+          />
+        </Col>
+        <Col
+          className="troop-window-dismiss-no"
+          span={12}
+        >
+          <GameButton
+            group="system"
+            type="no"
+            onClick={this.onCancelDismiss}
+          />
+        </Col>
+      </Row>
+    );
+
     return (
-      <GameModal visible={visible}>
+      <GameModal
+        actions={actions}
+        visible={visible}
+      >
         <GameParagraph textSize="large">
           <FormattedMessage {...messages.dismissMessage} />
         </GameParagraph>
-        <Row>
-          <Col
-            className="troop-window-dismiss-yes"
-            span={12}
-          >
-            <GameButton
-              group="system"
-              type="yes"
-              onClick={this.onConfirmDismiss}
-            />
-          </Col>
-          <Col
-            className="troop-window-dismiss-no"
-            span={12}
-          >
-            <GameButton
-              group="system"
-              type="no"
-              onClick={this.onCancelDismiss}
-            />
-          </Col>
-        </Row>
       </GameModal>
     );
   }

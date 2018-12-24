@@ -7,6 +7,7 @@ import { GameWindow } from "../../core";
 
 export interface GameModalProps {
   size: number;
+  actions: React.ReactNode;
   visible: boolean;
 }
 
@@ -26,6 +27,9 @@ export class GameModal extends React.Component<GameModalProps> {
           {this.renderBackground(this.props.size)}
           <div className="game-modal-content">
             {this.props.children}
+          </div>
+          <div className="game-modal-actions">
+            {this.props.actions}
           </div>
         </div>
       </GameWindow>

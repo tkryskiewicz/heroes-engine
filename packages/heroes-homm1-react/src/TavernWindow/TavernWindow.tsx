@@ -19,9 +19,18 @@ export interface TavernWindowProps {
 
 export class TavernWindow extends React.Component<TavernWindowProps> {
   public render() {
+    const actions = (
+      <GameButton
+        group="system"
+        type="okay"
+        onClick={this.props.onOkayClick}
+      />
+    );
+
     return (
       <GameModal
         size={4}
+        actions={actions}
         visible={this.props.visible}
       >
         <div className="tavern-window">
@@ -37,13 +46,6 @@ export class TavernWindow extends React.Component<TavernWindowProps> {
             <GameText size="large">
               <FormattedMessage {...getStructureDescriptionMessage(StructureId.Tavern)} />
             </GameText>
-          </Row>
-          <Row>
-            <GameButton
-              group="system"
-              type="okay"
-              onClick={this.props.onOkayClick}
-            />
           </Row>
         </div>
       </GameModal>

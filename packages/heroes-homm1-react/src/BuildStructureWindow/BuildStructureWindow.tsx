@@ -29,9 +29,36 @@ export class BuildStructureWindow extends React.Component<BuildStructureWindowPr
   };
 
   public render() {
+    const actions = (
+      <Row>
+        <Col
+          className="build-structure-window-okay"
+          span={12}
+        >
+          <GameButton
+            group="system"
+            type="okay"
+            disabled={!this.props.canBuild}
+            onClick={this.onOkayClick}
+          />
+        </Col>
+        <Col
+          className="build-structure-window-cancel"
+          span={12}
+        >
+          <GameButton
+            group="system"
+            type="cancel"
+            onClick={this.props.onCancelClick}
+          />
+        </Col>
+      </Row>
+    );
+
     return (
       <GameModal
         size={5}
+        actions={actions}
         visible={this.props.visible}
       >
         <div className="build-structure-window">
@@ -55,29 +82,6 @@ export class BuildStructureWindow extends React.Component<BuildStructureWindowPr
             <ResourceCost
               cost={this.props.cost}
             />
-          </Row>
-          <Row>
-            <Col
-              className="build-structure-window-okay"
-              span={12}
-            >
-              <GameButton
-                group="system"
-                type="okay"
-                disabled={!this.props.canBuild}
-                onClick={this.onOkayClick}
-              />
-            </Col>
-            <Col
-              className="build-structure-window-cancel"
-              span={12}
-            >
-              <GameButton
-                group="system"
-                type="cancel"
-                onClick={this.props.onCancelClick}
-              />
-            </Col>
           </Row>
         </div>
       </GameModal>

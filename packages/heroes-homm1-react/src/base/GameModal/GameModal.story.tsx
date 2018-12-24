@@ -9,6 +9,7 @@ storiesOf(`base/${GameModal.name}`, module)
   .add("default", () => (
     <GameModal
       size={number("Size", 1, { range: true, min: 0, max: 5, step: 1 })}
+      actions={text("Actions", "Actions")}
       visible={boolean("Visible", true)}
     >
       <GameText size="large">

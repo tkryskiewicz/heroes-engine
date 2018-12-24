@@ -27,9 +27,18 @@ export interface RecruitHeroWindowProps {
 
 export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {
   public render() {
+    const actions = (
+      <GameButton
+        group="system"
+        type="cancel"
+        onClick={this.props.onCancelClick}
+      />
+    );
+
     return (
       <GameModal
         size={4}
+        actions={actions}
         visible={this.props.visible}
       >
         <Row className="recruit-hero-window-title">
@@ -43,13 +52,6 @@ export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {
         <Row className="recruit-hero-window-cost">
           <ResourceCost
             cost={this.props.cost}
-          />
-        </Row>
-        <Row className="recruit-hero-window-actions">
-          <GameButton
-            group="system"
-            type="cancel"
-            onClick={this.props.onCancelClick}
           />
         </Row>
       </GameModal>

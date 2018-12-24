@@ -223,9 +223,18 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   }
 
   private renderSkillDetails(skill: string) {
+    const actions = (
+      <GameButton
+        group="system"
+        type="okay"
+        onClick={this.onCloseSkillDetailsClick}
+      />
+    );
+
     return (
       <GameModal
         size={2}
+        actions={actions}
         visible={true}
       >
         <GameParagraph textSize="large">
@@ -234,11 +243,6 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
         <GameParagraph textSize="large">
           <FormattedMessage {...getSkillDescriptionMessage(skill)} />
         </GameParagraph>
-        <GameButton
-          group="system"
-          type="okay"
-          onClick={this.onCloseSkillDetailsClick}
-        />
       </GameModal>
     );
   }
@@ -328,9 +332,18 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   }
 
   private renderMoraleDetails(morale: number) {
+    const actions = (
+      <GameButton
+        group="system"
+        type="okay"
+        onClick={this.onCloseMiscInfoDetailsClick}
+      />
+    );
+
     return (
       <GameModal
         size={3}
+        actions={actions}
         visible={true}
       >
         <GameParagraph textSize="large">
@@ -348,19 +361,23 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           <br />
           <FormattedMessage {...moraleMessages.humanTroopsBonus} />
         </GameParagraph>
-        <GameButton
-          group="system"
-          type="okay"
-          onClick={this.onCloseMiscInfoDetailsClick}
-        />
       </GameModal>
     );
   }
 
   private renderLuckDetails(luck: number) {
+    const actions = (
+      <GameButton
+        group="system"
+        type="okay"
+        onClick={this.onCloseMiscInfoDetailsClick}
+      />
+    );
+
     return (
       <GameModal
         size={4}
+        actions={actions}
         visible={true}
       >
         <GameParagraph textSize="large">
@@ -374,11 +391,6 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
             <br />
           <FormattedMessage {...messages.noModifiers} />
         </GameParagraph>
-        <GameButton
-          group="system"
-          type="okay"
-          onClick={this.onCloseMiscInfoDetailsClick}
-        />
       </GameModal>
     );
   }
@@ -387,9 +399,18 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     const currentLevel = getCurrentLevel(experience);
     const nextLevelExperience = getNextLevelExperience(experience);
 
+    const actions = (
+      <GameButton
+        group="system"
+        type="okay"
+        onClick={this.onCloseMiscInfoDetailsClick}
+      />
+    );
+
     return (
       <GameModal
         size={2}
+        actions={actions}
         visible={true}
       >
         <GameParagraph textSize="large">
@@ -400,11 +421,6 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           <br />
           <FormattedMessage {...experienceMessages.nextLevel} values={{ value: nextLevelExperience }} />
         </GameParagraph>
-        <GameButton
-          group="system"
-          type="okay"
-          onClick={this.onCloseMiscInfoDetailsClick}
-        />
       </GameModal>
     );
   }
@@ -624,35 +640,39 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   }
 
   private renderDismissHeroPrompt(visible: boolean) {
+    const actions = (
+      <Row>
+        <Col
+          className="hero-window-dismiss-yes"
+          span={12}
+        >
+          <GameButton
+            group="system"
+            type="yes"
+            onClick={this.onDismissHero}
+          />
+        </Col>
+        <Col
+          className="hero-window-dismiss-no"
+          span={12}
+        >
+          <GameButton
+            group="system"
+            type="no"
+            onClick={this.props.onCancelDismissHeroClick}
+          />
+        </Col>
+      </Row>
+    );
+
     return (
       <GameModal
+        actions={actions}
         visible={visible}
       >
         <GameParagraph textSize="large">
           <FormattedMessage {...messages.dismissHeroMessage} />
         </GameParagraph>
-        <Row>
-          <Col
-            className="hero-window-dismiss-yes"
-            span={12}
-          >
-            <GameButton
-              group="system"
-              type="yes"
-              onClick={this.onDismissHero}
-            />
-          </Col>
-          <Col
-            className="hero-window-dismiss-no"
-            span={12}
-          >
-            <GameButton
-              group="system"
-              type="no"
-              onClick={this.props.onCancelDismissHeroClick}
-            />
-          </Col>
-        </Row>
       </GameModal>
     );
   }
