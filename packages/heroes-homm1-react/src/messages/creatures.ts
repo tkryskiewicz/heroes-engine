@@ -1,127 +1,131 @@
 import { defineMessages, Messages } from "react-intl";
 
+import { CreatureId } from "heroes-homm1";
+
+import { unknownMessage } from "./util";
+
 export const farmCreatureMessages = defineMessages({
-  archer: {
+  [CreatureId.Archer]: {
     defaultMessage: "Archer",
     id: "game.creature.archer",
   },
-  cavalry: {
+  [CreatureId.Cavalry]: {
     defaultMessage: "Cavalry",
     id: "game.creature.cavalry",
   },
-  paladin: {
+  [CreatureId.Paladin]: {
     defaultMessage: "Paladin",
     id: "game.creature.paladin",
   },
-  peasant: {
+  [CreatureId.Peasant]: {
     defaultMessage: "Peasant",
     id: "game.creature.peasant",
   },
-  pikeman: {
+  [CreatureId.Pikeman]: {
     defaultMessage: "Pikeman",
     id: "game.creature.pikeman",
   },
-  swordsman: {
+  [CreatureId.Swordsman]: {
     defaultMessage: "Swordsman",
     id: "game.creature.swordsman",
   },
 });
 
 export const plainsCreatureMessages = defineMessages({
-  cyclops: {
+  [CreatureId.Cyclops]: {
     defaultMessage: "Cyclops",
     id: "game.creature.cyclops",
   },
-  goblin: {
+  [CreatureId.Goblin]: {
     defaultMessage: "Goblin",
     id: "game.creature.goblin",
   },
-  ogre: {
+  [CreatureId.Ogre]: {
     defaultMessage: "Ogre",
     id: "game.creature.ogre",
   },
-  orc: {
+  [CreatureId.Orc]: {
     defaultMessage: "Orc",
     id: "game.creature.orc",
   },
-  troll: {
+  [CreatureId.Troll]: {
     defaultMessage: "Troll",
     id: "game.creature.troll",
   },
-  wolf: {
+  [CreatureId.Wolf]: {
     defaultMessage: "Wolf",
     id: "game.creature.wolf",
   },
 });
 
 export const forestCreatureMessages = defineMessages({
-  druid: {
+  [CreatureId.Druid]: {
     defaultMessage: "Druid",
     id: "game.creautre.druid",
   },
-  dwarf: {
+  [CreatureId.Dwarf]: {
     defaultMessage: "Dwarf",
     id: "game.creature.dwarf",
   },
-  elf: {
+  [CreatureId.Elf]: {
     defaultMessage: "Elf",
     id: "game.creature.elf",
   },
-  phoenix: {
+  [CreatureId.Phoenix]: {
     defaultMessage: "Phoenix",
     id: "game.creature.phoenix",
   },
-  sprite: {
+  [CreatureId.Sprite]: {
     defaultMessage: "Sprite",
     id: "game.creature.sprite",
   },
-  unicorn: {
+  [CreatureId.Unicorn]: {
     defaultMessage: "Unicorn",
     id: "game.creature.unicorn",
   },
 });
 
 export const mountainsCreatureMessages = defineMessages({
-  centaur: {
+  [CreatureId.Centaur]: {
     defaultMessage: "Centaur",
     id: "game.creature.centaur",
   },
-  dragon: {
+  [CreatureId.Dragon]: {
     defaultMessage: "Dragon",
     id: "game.creature.dragon",
   },
-  gargoyle: {
+  [CreatureId.Gargoyle]: {
     defaultMessage: "Gargoyle",
     id: "game.creature.gargoyle",
   },
-  griffin: {
+  [CreatureId.Griffin]: {
     defaultMessage: "Griffin",
     id: "game.creature.griffin",
   },
-  hydra: {
+  [CreatureId.Hydra]: {
     defaultMessage: "Hydra",
     id: "game.creature.hydra",
   },
-  minotaur: {
+  [CreatureId.Minotaur]: {
     defaultMessage: "Minotaur",
     id: "game.creature.minotaur",
   },
 });
 
 export const neutralCreatureMessages = defineMessages({
-  genie: {
+  [CreatureId.Genie]: {
     defaultMessage: "Genie",
     id: "game.creature.genie",
   },
-  ghost: {
+  [CreatureId.Ghost]: {
     defaultMessage: "Ghost",
     id: "game.creature.ghost",
   },
-  nomad: {
+  [CreatureId.Nomad]: {
     defaultMessage: "Nomad",
     id: "game.creature.nomad",
   },
-  rogue: {
+  [CreatureId.Rogue]: {
     defaultMessage: "Rogue",
     id: "game.creature.rogue",
   },
@@ -135,6 +139,5 @@ export const creatureMessages: Messages = {
   ...neutralCreatureMessages,
 };
 
-export const getCreatureNameMessage = (creature: string) => {
-  return creatureMessages[creature];
-};
+export const getCreatureNameMessage = (creature: string) =>
+  creatureMessages[creature] || unknownMessage;

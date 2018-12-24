@@ -2,6 +2,8 @@ import { defineMessages, Messages } from "react-intl";
 
 import { HeroClass } from "heroes-homm1";
 
+import { unknownMessage } from "./util";
+
 const heroClassMessages: Messages = defineMessages({
   [HeroClass.Knight]: {
     defaultMessage: "Knight",
@@ -38,7 +40,7 @@ const heroClassMessages: Messages = defineMessages({
 });
 
 export const getHeroClassNameMessage = (heroClass: string) =>
-  heroClassMessages[heroClass];
+  heroClassMessages[heroClass] || unknownMessage;
 
 export const getHeroClassTitleMessage = (heroCLass: string) =>
-  heroClassMessages[`${heroCLass}Title`];
+  heroClassMessages[`${heroCLass}Title`] || unknownMessage;

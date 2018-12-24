@@ -5,156 +5,156 @@ import { HeroId } from "heroes-homm1";
 import { unknownMessage } from "./util";
 
 export const knightHeroMessages = defineMessages({
-  ambrose: {
+  [HeroId.Ambrose]: {
     defaultMessage: "Ambrose",
     id: "game.hero.ambrose",
   },
-  arturius: {
+  [HeroId.Arturius]: {
     defaultMessage: "Arturius",
     id: "game.hero.arturius",
   },
-  dimitri: {
+  [HeroId.Dimitri]: {
     defaultMessage: "Dimitri",
     id: "game.hero.dimitri",
   },
-  ector: {
+  [HeroId.Ector]: {
     defaultMessage: "Ector",
     id: "game.hero.ector",
   },
-  lordHaart: {
+  [HeroId.LordHaart]: {
     defaultMessage: "Lord Haart",
     id: "game.hero.lordHaart",
   },
-  lordKilburn: {
+  [HeroId.LordKilburn]: {
     defaultMessage: "Lord Kilburn",
     id: "game.hero.lordKilburn",
   },
-  maximus: {
+  [HeroId.Maximus]: {
     defaultMessage: "Maximus",
     id: "game.hero.maximus",
   },
-  sirGalant: {
+  [HeroId.SirGallant]: {
     defaultMessage: "Sir Galant",
     id: "game.hero.sirGalant",
   },
-  tyro: {
+  [HeroId.Tyro]: {
     defaultMessage: "Tyro",
     id: "game.hero.tyro",
   },
 });
 
 export const barbarianHeroMessages = defineMessages({
-  antoine: {
+  [HeroId.Antoine]: {
     defaultMessage: "Antoine",
     id: "game.hero.antoine",
   },
-  atlas: {
+  [HeroId.Atlas]: {
     defaultMessage: "Atlas",
     id: "game.hero.atlas",
   },
-  cragHack: {
+  [HeroId.CragHack]: {
     defaultMessage: "Crag Hack",
     id: "game.hero.cragHack",
   },
-  ergon: {
+  [HeroId.Ergon]: {
     defaultMessage: "Ergon",
     id: "game.hero.ergon",
   },
-  joJosh: {
+  [HeroId.JoJosh]: {
     defaultMessage: "Jo Josh",
     id: "game.hero.joJosh",
   },
-  kelzen: {
+  [HeroId.Kelzen]: {
     defaultMessage: "Kelzen",
     id: "game.hero.kelzen",
   },
-  thundax: {
+  [HeroId.Thundax]: {
     defaultMessage: "Thundax",
     id: "game.hero.thundax",
   },
-  tsabu: {
+  [HeroId.Tsabu]: {
     defaultMessage: "Tsabu",
     id: "game.hero.tsabu",
   },
-  yog: {
+  [HeroId.Yog]: {
     defaultMessage: "Yog",
     id: "game.hero.yog",
   },
 });
 
 export const sorceressHeroMessages = defineMessages({
-  ariel: {
+  [HeroId.Ariel]: {
     defaultMessage: "Ariel",
     id: "game.hero.ariel",
   },
-  astra: {
+  [HeroId.Astra]: {
     defaultMessage: "Astra",
     id: "game.hero.astra",
   },
-  carlawn: {
+  [HeroId.Carlawn]: {
     defaultMessage: "Carlawn",
     id: "game.hero.carlawn",
   },
-  gem: {
+  [HeroId.Gem]: {
     defaultMessage: "Gem",
     id: "game.hero.gem",
   },
-  luna: {
+  [HeroId.Luna]: {
     defaultMessage: "Luna",
     id: "game.hero.luna",
   },
-  natasha: {
+  [HeroId.Natasha]: {
     defaultMessage: "Natasha",
     id: "game.hero.natasha",
   },
-  rebecca: {
+  [HeroId.Rebecca]: {
     defaultMessage: "Rebecca",
     id: "game.hero.rebecca",
   },
-  troyan: {
+  [HeroId.Troyan]: {
     defaultMessage: "Troyan",
     id: "game.hero.troyan",
   },
-  vatawna: {
+  [HeroId.Vatawna]: {
     defaultMessage: "Vatawna",
     id: "game.hero.vatawna",
   },
 });
 
 export const warlockHeroMessages = defineMessages({
-  agar: {
+  [HeroId.Agar]: {
     defaultMessage: "Agar",
     id: "game.hero.agar",
   },
-  arie: {
+  [HeroId.Arie]: {
     defaultMessage: "Arie",
     id: "game.hero.arie",
   },
-  barok: {
+  [HeroId.Barok]: {
     defaultMessage: "Barok",
     id: "game.hero.barok",
   },
-  crodo: {
+  [HeroId.Crodo]: {
     defaultMessage: "Crodo",
     id: "game.hero.crodo",
   },
-  falagar: {
+  [HeroId.Falagar]: {
     defaultMessage: "Falagar",
     id: "game.hero.falagar",
   },
-  kastore: {
+  [HeroId.Kastore]: {
     defaultMessage: "Kastore",
     id: "game.hero.kastore",
   },
-  sandro: {
+  [HeroId.Sandro]: {
     defaultMessage: "Sandro",
     id: "game.hero.sandro",
   },
-  vesper: {
+  [HeroId.Vesper]: {
     defaultMessage: "Vesper",
     id: "game.hero.vesper",
   },
-  wrathmont: {
+  [HeroId.Wrathmont]: {
     defaultMessage: "Wrathmont",
     id: "game.hero.wrathmont",
   },
@@ -167,86 +167,5 @@ export const heroMessages: Messages = {
   ...warlockHeroMessages,
 };
 
-export const getHeroNameMessage = (hero: string) => {
-  switch (hero) {
-    // Knights
-    case HeroId.LordKilburn:
-      return knightHeroMessages.lordKilburn;
-    case HeroId.LordHaart:
-      return knightHeroMessages.lordHaart;
-    case HeroId.SirGallant:
-      return knightHeroMessages.sirGalant;
-    case HeroId.Arturius:
-      return knightHeroMessages.arturius;
-    case HeroId.Tyro:
-      return knightHeroMessages.tyro;
-    case HeroId.Maximus:
-      return knightHeroMessages.maximus;
-    case HeroId.Ector:
-      return knightHeroMessages.ector;
-    case HeroId.Dimitri:
-      return knightHeroMessages.dimitri;
-    case HeroId.Ambrose:
-      return knightHeroMessages.ambrose;
-    // Barbarians
-    case HeroId.Thundax:
-      return barbarianHeroMessages.thundax;
-    case HeroId.Ergon:
-      return barbarianHeroMessages.ergon;
-    case HeroId.Kelzen:
-      return barbarianHeroMessages.kelzen;
-    case HeroId.Tsabu:
-      return barbarianHeroMessages.tsabu;
-    case HeroId.CragHack:
-      return barbarianHeroMessages.cragHack;
-    case HeroId.JoJosh:
-      return barbarianHeroMessages.joJosh;
-    case HeroId.Atlas:
-      return barbarianHeroMessages.atlas;
-    case HeroId.Yog:
-      return barbarianHeroMessages.yog;
-    case HeroId.Antoine:
-      return barbarianHeroMessages.antoine;
-    // Sorceresses
-    case HeroId.Ariel:
-      return sorceressHeroMessages.ariel;
-    case HeroId.Vatawna:
-      return sorceressHeroMessages.vatawna;
-    case HeroId.Carlawn:
-      return sorceressHeroMessages.carlawn;
-    case HeroId.Rebecca:
-      return sorceressHeroMessages.rebecca;
-    case HeroId.Luna:
-      return sorceressHeroMessages.luna;
-    case HeroId.Astra:
-      return sorceressHeroMessages.astra;
-    case HeroId.Natasha:
-      return sorceressHeroMessages.natasha;
-    case HeroId.Gem:
-      return sorceressHeroMessages.gem;
-    case HeroId.Troyan:
-      return sorceressHeroMessages.troyan;
-    // Warlocks
-    case HeroId.Agar:
-      return warlockHeroMessages.agar;
-    case HeroId.Crodo:
-      return warlockHeroMessages.crodo;
-    case HeroId.Falagar:
-      return warlockHeroMessages.falagar;
-    case HeroId.Barok:
-      return warlockHeroMessages.barok;
-    case HeroId.Arie:
-      return warlockHeroMessages.arie;
-    case HeroId.Kastore:
-      return warlockHeroMessages.kastore;
-    case HeroId.Sandro:
-      return warlockHeroMessages.sandro;
-    case HeroId.Wrathmont:
-      return warlockHeroMessages.wrathmont;
-    case HeroId.Vesper:
-      return warlockHeroMessages.vesper;
-    // Default
-    default:
-      return unknownMessage;
-  }
-};
+export const getHeroNameMessage = (hero: string) =>
+  heroMessages[hero] || unknownMessage;
