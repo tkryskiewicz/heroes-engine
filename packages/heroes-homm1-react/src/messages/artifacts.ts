@@ -173,3 +173,6 @@ export const artifactMessages: Messages = defineMessages({
 
 export const getArtifactNameMessage = (artifact: string) =>
   artifactMessages[artifact] || unknownMessage;
+
+export const getArtifactDescriptionMessage = (artifact: string) =>
+  artifactMessages[`${artifact}Description`] || unknownMessage;

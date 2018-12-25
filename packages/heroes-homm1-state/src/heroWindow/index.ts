@@ -8,6 +8,7 @@ export {
   closeTroopDetails as closeHeroWindowTroopDetails,
   openDismissTroopPrompt as openDismissHeroWindowTroopPrompt,
   closeDismissTroopPrompt as closeDismissHeroWindowTroopPrompt,
+  changeVisibleArtifactDescription as changeVisibleHeroWindowArtifactDescription,
   openDismissHeroPrompt,
   closeDismissHeroPrompt,
   changeStatusText as changeHeroWindowStatusText,

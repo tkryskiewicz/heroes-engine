@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Hero } from "heroes-core";
-import { Alignment, ArmySize, ArtifactId, CreatureId, HeroClass, HeroId, Skill } from "heroes-homm1";
+import { Alignment, ArmySize, ArtifactId, ArtifactLimit, CreatureId, HeroClass, HeroId, Skill } from "heroes-homm1";
 
 import { alignmentOptions, artifactOptions, heroClassOptions, heroOptions, skillOptions } from "../stories";
 import { HeroWindow } from "./HeroWindow";
@@ -135,10 +135,16 @@ storiesOf("HeroWindow", module)
       ],
     };
 
+    const visibleArtifactDescription = boolean("Show Artifact Description", false) ?
+      number("Visible Artifact Description", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 }) :
+      undefined;
+
     return (
       <HeroWindow
         hero={hero}
         visible={true}
+        visibleArtifactDescription={visibleArtifactDescription}
+        onVisibleArtifactDescriptionChange={action("Visible Artifact Description Index Change")}
       />
     );
   })

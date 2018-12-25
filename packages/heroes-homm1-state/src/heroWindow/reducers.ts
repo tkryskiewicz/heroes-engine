@@ -74,6 +74,11 @@ export const heroWindowReducer = (
         ...state,
         selectedTroopIndex: undefined,
       };
+    case HeroWindowActionType.ChangeVisibleArtifactDescription:
+      return {
+        ...state,
+        visibleArtifactDescription: action.index,
+      };
     case HeroWindowActionType.OpenDismissHeroPrompt:
       return {
         ...state,

@@ -12,6 +12,7 @@ import { GameParagraph, GameText, GameWindow } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
   experienceMessages,
+  getArtifactDescriptionMessage,
   getArtifactNameMessage,
   getCreatureNameMessage,
   getHeroClassNameMessage,
@@ -53,6 +54,8 @@ export interface HeroWindowProps {
   onCancelDismissTroopClick: (index: number) => void;
   onConfirmDismissTroopClick: (hero: string, index: number) => void;
   onExitTroopDetails: () => void;
+  visibleArtifactDescription?: number;
+  onVisibleArtifactDescriptionChange: (index?: number) => void;
   dismissHeroPromptVisible: boolean;
   onDismissHeroClick: () => void;
   onCancelDismissHeroClick: () => void;
@@ -76,6 +79,7 @@ type DefaultProp =
   "onCancelDismissTroopClick" |
   "onConfirmDismissTroopClick" |
   "onExitTroopDetails" |
+  "onVisibleArtifactDescriptionChange" |
   "dismissHeroPromptVisible" |
   "onDismissHeroClick" |
   "onCancelDismissHeroClick" |
@@ -102,6 +106,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     onSelectedTroopClick: () => undefined,
     onStatusTextChange: () => undefined,
     onSwapTroops: () => undefined,
+    onVisibleArtifactDescriptionChange: () => undefined,
     onVisibleMiscInfoDetailsChange: () => undefined,
     onVisibleSkillDetailsChange: () => undefined,
     statusText: "",
@@ -144,7 +149,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           </div>
           {this.renderArmy(hero, selectedTroopIndex)}
           {this.props.dismissible && this.renderDismissal(this.props.dismissHeroPromptVisible)}
-          {this.renderArtifacts(hero.artifacts)}
+          {this.renderArtifacts(hero.artifacts, this.props.visibleArtifactDescription)}
           <div className="hero-window-exit">
             <GameButton
               group="hero-window"
@@ -570,12 +575,17 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     this.props.onCancelDismissTroopClick(index);
   }
 
-  private renderArtifacts(artifacts: string[]) {
+  private renderArtifacts(artifacts: string[], visibleArtifactDescription?: number) {
     const content = [...new Array(ArtifactLimit).keys()].map((i) => this.renderArtifact(i, artifacts[i]));
+
+    const description = visibleArtifactDescription !== undefined &&
+      artifacts[visibleArtifactDescription] &&
+      this.renderArtifactDescription(artifacts[visibleArtifactDescription]);
 
     return (
       <div className="hero-window-artifacts">
         {content}
+        {description}
       </div>
     );
   }
@@ -591,6 +601,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           artifact={artifact}
           onMouseEnter={this.onArtifactMouseEnter}
           onMouseLeave={this.onArtifactMouseLeave}
+          onClick={this.onArtifactClick}
         />
       </div>
     );
@@ -610,6 +621,40 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
   private onArtifactMouseLeave = () => {
     this.setDefaultStatusText();
+  }
+
+  private onArtifactClick = (index: number) => {
+    if (this.props.hero.artifacts[index]) {
+      this.props.onVisibleArtifactDescriptionChange(index);
+    }
+  }
+
+  private renderArtifactDescription(artifact: string) {
+    const actions = (
+      <GameButton
+        group="system"
+        type="okay"
+        onClick={this.onCloseArtifactDescriptionClick}
+      />
+    );
+
+    return (
+      <GameModal
+        actions={actions}
+        visible={true}
+      >
+        <GameParagraph textSize="large">
+          <FormattedMessage {...getArtifactNameMessage(artifact)} />
+        </GameParagraph>
+        <GameParagraph textSize="large">
+          <FormattedMessage {...getArtifactDescriptionMessage(artifact)} />
+        </GameParagraph>
+      </GameModal>
+    );
+  }
+
+  private onCloseArtifactDescriptionClick = () => {
+    this.props.onVisibleArtifactDescriptionChange();
   }
 
   private renderDismissal(dismissHeroPromptVisible: boolean) {

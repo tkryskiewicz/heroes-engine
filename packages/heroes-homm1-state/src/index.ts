@@ -26,6 +26,7 @@ export {
   closeHeroWindowTroopDetails,
   openDismissHeroWindowTroopPrompt,
   closeDismissHeroWindowTroopPrompt,
+  changeVisibleHeroWindowArtifactDescription,
   openDismissHeroPrompt,
   closeDismissHeroPrompt,
   changeHeroWindowStatusText,
