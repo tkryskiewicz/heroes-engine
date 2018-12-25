@@ -1,6 +1,6 @@
-const pattern = /([a-z-]+)\/([a-z-]+)\/(enabled|disabled)\.png$/;
+const pattern = /([a-z-]+)\/([a-z0-9-]+)\/(enabled|disabled)\.png$/;
 
-const req = require.context(".", true, /([a-z-]+)\/([a-z-]+)\/(enabled|disabled)\.png$/);
+const req = require.context(".", true, /([a-z-]+)\/([a-z0-9-]+)\/(enabled|disabled)\.png$/);
 
 interface ButtonImages {
   enabled: string;

@@ -83,6 +83,11 @@ interface NewGameMenuButtonProps extends GameButtonPropsBase {
   type: "campaign-game" | "cancel" | "multi-player-game" | "standard-game";
 }
 
+interface BaudMenuButtonProps extends GameButtonPropsBase {
+  group: "baud-menu";
+  type: "2400-baud" | "9600-baud" | "19200-baud" | "38400-baud" | "cancel";
+}
+
 interface NewGameWindowButtonProps extends GameButtonPropsBase {
   group: "new-game-window";
   type: "cancel" | "okay";
@@ -133,6 +138,7 @@ type GameButtonProps =
   LegendButtonProps |
   MainMenuButtonProps |
   NewGameMenuButtonProps |
+  BaudMenuButtonProps |
   NewGameWindowButtonProps |
   RecruitHeroWindowButtonProps |
   RecruitTroopWindowButtonProps |
