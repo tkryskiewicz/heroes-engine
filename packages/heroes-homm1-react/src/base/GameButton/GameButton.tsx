@@ -88,6 +88,11 @@ interface MultiPlayerMenuButtonProps extends GameButtonPropsBase {
   type: "hot-seat" | "direct-connect" | "modem" | "network" | "cancel";
 }
 
+interface HotSeatMenuButtonProps extends GameButtonPropsBase {
+  group: "hot-seat-menu";
+  type: "2-players" | "3-players" | "4-players" | "cancel";
+}
+
 interface ComMenuButtonProps extends GameButtonPropsBase {
   group: "com-menu";
   type: "com-1" | "com-2" | "com-3" | "com-4" | "cancel";
@@ -149,6 +154,7 @@ type GameButtonProps =
   MainMenuButtonProps |
   NewGameMenuButtonProps |
   MultiPlayerMenuButtonProps |
+  HotSeatMenuButtonProps |
   ComMenuButtonProps |
   BaudMenuButtonProps |
   NewGameWindowButtonProps |
