@@ -1,0 +1,49 @@
+.combat-bar {
+  position: relative;
+  width: 640px;
+  height: 20px;
+
+  &-status-bar {
+    position: absolute;
+    width: 2 * 272px;
+    height: 20px;
+    left: 48px;
+    text-align: center;
+  }
+
+  &-status-bar-container {
+    position: relative;
+  }
+
+  &-status-bar-background {
+    position: absolute;
+    width: 272px;
+    height: 20px;
+    top: 0;
+    left: 272px;
+    background: url("./assets/background.jpg");
+    z-index: -1;
+  }
+
+  &-reverse {
+    left: 0;
+    transform: scaleX(-1);
+  }
+
+  &-auto, &-skip {
+    // FIXME: height turns out to be like 21.33px
+    line-height: 20px;
+  }
+
+  &-auto {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &-skip {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

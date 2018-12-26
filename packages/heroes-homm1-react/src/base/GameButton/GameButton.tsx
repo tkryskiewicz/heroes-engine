@@ -133,6 +133,11 @@ interface TroopWindowButtonProps extends GameButtonPropsBase {
   type: "dismiss" | "exit";
 }
 
+interface CombatBarButtonProps extends GameButtonPropsBase {
+  group: "combat-bar";
+  type: "auto" | "skip";
+}
+
 interface HeroCombatOptionsButtonProps extends GameButtonPropsBase {
   group: "hero-combat-options";
   type: "cast-spell" | "retreat" | "surrender" | "exit";
@@ -163,6 +168,7 @@ type GameButtonProps =
   SystemButtonProps |
   TownWindowButtonProps |
   TroopWindowButtonProps |
+  CombatBarButtonProps |
   HeroCombatOptionsButtonProps;
 
 interface GameButtonState {
