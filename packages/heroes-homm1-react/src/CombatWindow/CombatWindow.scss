@@ -1,0 +1,15 @@
+.combat-window {
+  position: relative;
+  width: 640px;
+  height: 480px;
+
+  &-attacker-tent {
+    position: absolute;
+    top: 95px;
+  }
+
+  &-bar {
+    position: absolute;
+    bottom: 0;
+  }
+}

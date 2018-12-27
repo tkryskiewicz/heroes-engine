@@ -1,0 +1,24 @@
+.tent {
+  position: relative;
+  width: 81px;
+  height: 170px;
+
+  &-banner {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  &-banner-container {
+    position: relative;
+    width: 33px;
+    height: 104px;
+  }
+
+  &-banner-letter {
+    position: absolute;
+    width: 100%;
+    top: 10px;
+    text-align: center;
+  }
+}
