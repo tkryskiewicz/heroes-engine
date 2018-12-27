@@ -1,0 +1,22 @@
+.combat-troop {
+  display: inline-block;
+  position: relative;
+
+  &-count {
+    position: absolute;
+    width: 20px;
+    height: 11px;
+    bottom: 0;
+    background: url("./assets/count-background.jpg");
+    text-align: center;
+  }
+
+  &-attacker &-count {
+      right: 0;
+  }
+
+  &-defender &-creature {
+    transform: scaleX(-1);
+  }
+}
+

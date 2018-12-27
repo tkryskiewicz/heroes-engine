@@ -3,7 +3,7 @@ import * as React from "react";
 import "./GameText.scss";
 
 export interface GameTextProps {
-  size: "large" | "normal" | "small";
+  size: "large" | "normal" | "small" | "tiny";
 }
 
 export class GameText extends React.Component<GameTextProps> {
