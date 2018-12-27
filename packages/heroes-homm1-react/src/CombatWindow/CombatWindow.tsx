@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { CombatSide, HeroSkills } from "heroes-core";
+import { BattlefieldHeigth, BattlefieldWidth } from "heroes-homm1";
 
 import "./CombatWindow.scss";
 
@@ -19,14 +20,18 @@ interface Hero {
   luck: number;
 }
 
+interface BattleSide {
+  hero: Hero;
+}
+
 interface Terrain {
   type: "graveyard" | string;
   woody?: boolean;
 }
 
 export interface CombatWindowProps {
-  attacker: Hero;
-  defender: Hero;
+  attacker: BattleSide;
+  defender: BattleSide;
   terrain: Terrain;
   visible?: boolean;
   visibleHeroCombatOptions?: CombatSide;
@@ -51,20 +56,9 @@ export class CombatWindow extends React.Component<CombatWindowProps> {
       >
         <div className="combat-window">
           {this.renderBackground(terrain)}
-          <div className="combat-window-tent-attacker">
-            <Tent
-              side={CombatSide.Attacker}
-              alignment={attacker.alignment}
-              heroClass={attacker.heroClass}
-            />
-          </div>
-          <div className="combat-window-tent-defender">
-            <Tent
-              side={CombatSide.Defender}
-              alignment={defender.alignment}
-              heroClass={defender.heroClass}
-            />
-          </div>
+          {this.renderBattlefield(terrain)}
+          {this.renderTent(CombatSide.Attacker, attacker.hero)}
+          {this.renderTent(CombatSide.Defender, defender.hero)}
           <div className="combat-window-bar">
             <CombatBar />
           </div>
@@ -80,14 +74,70 @@ export class CombatWindow extends React.Component<CombatWindowProps> {
       `/assets/terrains/${terrain.type}/combat-background${terrain.woody ? "-woody" : ""}.jpg`;
 
     return (
-      <img src={imageUrl} />
+      <img
+        className="combat-window-background"
+        src={imageUrl}
+      />
     );
+  }
+
+  private renderBattlefield(terrain: Terrain) {
+    const content = new Array(BattlefieldHeigth).fill(undefined).map((_row, rowIndex) => {
+      const rowContent = new Array(BattlefieldWidth).fill(undefined).map((_cell, cellIndex) => (
+        <div
+          className="combat-window-battlefield-cell"
+          key={cellIndex}
+        >
+          <img src={`assets/terrains/${terrain.type}/cell-1.png`} />
+        </div>
+      ));
+
+      const evenRow = rowIndex % 2 === 0;
+
+      return (
+        <div
+          className="combat-window-battlefield-row"
+          key={rowIndex}
+        >
+          <div className="combat-window-battlefield-cell">
+            <img src={`assets/terrains/${terrain.type}/cell-right-${evenRow ? 2 : 1}.png`} />
+          </div>
+          {rowContent}
+          <div className="combat-window-battlefield-cell">
+            <img src={`assets/terrains/${terrain.type}/cell-left-${evenRow ? 1 : 2}.png`} />
+          </div>
+        </div>
+      );
+    });
+
+    return (
+      <div className="combat-window-battlefield">
+        {content}
+      </div>
+    );
+  }
+
+  private renderTent(side: CombatSide, hero: Hero) {
+    return (
+      <div className={`combat-window-tent-${side}`}>
+        <Tent
+          side={side}
+          alignment={hero.alignment}
+          heroClass={hero.heroClass}
+          onClick={this.onTentClick}
+        />
+      </div>
+    );
+  }
+
+  private onTentClick = (side: CombatSide) => {
+    this.props.onVisibleHeroCombatOptionsChange(side);
   }
 
   private renderHeroCombatOptions(side: CombatSide) {
     const hero = side === CombatSide.Attacker ?
-      this.props.attacker :
-      this.props.defender;
+      this.props.attacker.hero :
+      this.props.defender.hero;
 
     return (
       <HeroCombatOptions

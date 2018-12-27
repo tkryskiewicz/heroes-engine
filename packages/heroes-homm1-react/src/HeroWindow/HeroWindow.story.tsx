@@ -82,7 +82,7 @@ storiesOf("HeroWindow", module)
   .add("additional characteristics", () => {
     const hero: Hero = {
       ...heroBase,
-      experience: number("Experience", 0, { range: true, min: 0, max: 999999, step: 1 }),
+      experience: number("Experience", 0, { range: true, min: 0, max: 3000000000, step: 1 }),
       luck: number("Luck", 0, { range: true, min: -3, max: 3, step: 1 }),
       morale: number("Morale", 0, { range: true, min: -3, max: 3, step: 1 }),
     };

@@ -8,7 +8,7 @@ export interface TentProps {
   side: CombatSide;
   alignment: string;
   heroClass: string;
-  onClick: () => void;
+  onClick: (side: CombatSide) => void;
 }
 
 export class Tent extends React.Component<TentProps> {
@@ -20,7 +20,7 @@ export class Tent extends React.Component<TentProps> {
     return (
       <div
         className="tent"
-        onClick={this.props.onClick}
+        onClick={this.onClick}
       >
         <img
           className={`tent-background tent-background-${this.props.side}`}
@@ -38,5 +38,9 @@ export class Tent extends React.Component<TentProps> {
         </div>
       </div>
     );
+  }
+
+  private onClick = () => {
+    this.props.onClick(this.props.side);
   }
 }

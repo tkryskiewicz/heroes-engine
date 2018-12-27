@@ -2,6 +2,25 @@
   position: relative;
   width: 640px;
   height: 480px;
+  overflow: hidden;
+
+  &-background {
+    position: absolute;
+    z-index: 1;
+  }
+
+  &-battlefield {
+    position: absolute;
+    top: 82px;
+  }
+
+  &-battlefield-row {
+    height: 80px;
+  }
+
+  &-battlefield-cell {
+    display: inline-block;
+  }
 
   &-tent-attacker {
     position: absolute;
@@ -17,5 +36,6 @@
   &-bar {
     position: absolute;
     bottom: 0;
+    z-index: 1;
   }
 }

@@ -21,21 +21,25 @@ const combatSideOptions = {
 storiesOf(CombatWindow.name, module)
   .add("default", () => {
     const attacker: CombatWindowProps["attacker"] = {
-      alignment: Alignment.Red,
-      heroClass: HeroClass.Knight,
-      id: HeroId.LordKilburn,
-      luck: 0,
-      morale: 0,
-      skills: {},
+      hero: {
+        alignment: Alignment.Red,
+        heroClass: HeroClass.Knight,
+        id: HeroId.LordKilburn,
+        luck: 0,
+        morale: 0,
+        skills: {},
+      },
     };
 
     const defender: CombatWindowProps["defender"] = {
-      alignment: Alignment.Green,
-      heroClass: HeroClass.Barbarian,
-      id: HeroId.LordHaart,
-      luck: 0,
-      morale: 0,
-      skills: {},
+      hero: {
+        alignment: Alignment.Green,
+        heroClass: HeroClass.Barbarian,
+        id: HeroId.LordHaart,
+        luck: 0,
+        morale: 0,
+        skills: {},
+      },
     };
 
     const terrain: CombatWindowProps["terrain"] = {
