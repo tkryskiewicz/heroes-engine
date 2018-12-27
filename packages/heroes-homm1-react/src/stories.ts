@@ -1,3 +1,4 @@
+import { CombatSide } from "heroes-core";
 import {
   Alignment,
   ArtifactId,
@@ -106,6 +107,12 @@ export const artifactOptions = Object.keys(ArtifactId).reduce<SelectOptions>((p,
 
 export const terrainTypeOptions = Object.keys(TerrainType).reduce<SelectOptions>((p, c: any) => {
   p[c] = TerrainType[c];
+
+  return p;
+}, {});
+
+export const combatSideOptions = Object.keys(CombatSide).reduce<SelectOptions>((p, c: any) => {
+  p[c] = CombatSide[c];
 
   return p;
 }, {});

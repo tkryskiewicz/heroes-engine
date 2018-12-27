@@ -3,9 +3,15 @@
   width: 640px;
   height: 480px;
 
-  &-attacker-tent {
+  &-tent-attacker {
     position: absolute;
     top: 95px;
+  }
+
+  &-tent-defender {
+    position: absolute;
+    top: 115px;
+    right: 0;
   }
 
   &-bar {

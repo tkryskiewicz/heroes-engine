@@ -119,11 +119,11 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
 
   private renderCharacteristics(alignment: string, skills: HeroSkills, morale: number, luck: number) {
     const content = SkillIds.map((s) => (
-      <>
+      <span key={s}>
         <FormattedMessage {...getSkillNameMessage(s)} />
         : {skills[s] || 0}
         <br />
-      </>
+      </span>
     ));
 
     return (

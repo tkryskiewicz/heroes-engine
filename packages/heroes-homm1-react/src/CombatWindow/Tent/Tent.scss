@@ -3,10 +3,17 @@
   width: 81px;
   height: 170px;
 
+  &-background-defender {
+    transform: scaleX(-1);
+  }
+
   &-banner {
     position: absolute;
-    right: 0;
     bottom: 0;
+  }
+
+  &-banner-attacker {
+    right: 0;
   }
 
   &-banner-container {
