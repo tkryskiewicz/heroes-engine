@@ -39,6 +39,7 @@ export {
   mountainsStructures,
 } from "./structures";
 export { StructureStatus } from "./StructureStatus";
+export { TerrainType } from "./TerrainType";
 export { TownId, TownIds } from "./towns";
 
 export const MaxPlayers = 4;

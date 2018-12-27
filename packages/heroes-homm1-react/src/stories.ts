@@ -15,6 +15,7 @@ import {
   Skill,
   StructureId,
   StructureStatus,
+  TerrainType,
   TownId,
 } from "heroes-homm1";
 
@@ -99,6 +100,12 @@ export const opponentSettingOptions = Object.keys(OpponentSetting).reduce<Select
 
 export const artifactOptions = Object.keys(ArtifactId).reduce<SelectOptions>((p, c: any) => {
   p[c] = ArtifactId[c];
+
+  return p;
+}, {});
+
+export const terrainTypeOptions = Object.keys(TerrainType).reduce<SelectOptions>((p, c: any) => {
+  p[c] = TerrainType[c];
 
   return p;
 }, {});
