@@ -92,6 +92,7 @@ export class CombatWindow extends React.Component<CombatWindowProps> {
               index={cellIndex}
               terrainType={battlefield.terrainType}
               terrainVariant={cell.terrainVariant}
+              object={cell.object}
             />
           </div>
         );

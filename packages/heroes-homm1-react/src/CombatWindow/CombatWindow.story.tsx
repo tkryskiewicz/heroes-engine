@@ -59,6 +59,16 @@ storiesOf(CombatWindow.name, module)
       TerrainVariants,
     );
 
+    battlefield.cells[3].object = {
+      variant: 0,
+    };
+    battlefield.cells[20].object = {
+      variant: 1,
+    };
+    battlefield.cells[30].object = {
+      variant: 2,
+    };
+
     return (
       <CombatWindow
         visible={boolean("Visible", true)}

@@ -1,5 +1,10 @@
+export interface BattlefieldObstacleObject {
+  variant: number;
+}
+
 export interface BattlefieldCell {
   terrainVariant: number;
+  object?: BattlefieldObstacleObject;
 }
 
 export interface Battlefield {
