@@ -1,7 +1,6 @@
 import * as React from "react";
 
-import { CombatSide, HeroSkills } from "heroes-core";
-import { BattlefieldHeigth, BattlefieldWidth } from "heroes-homm1";
+import { Battlefield, CombatSide, HeroSkills } from "heroes-core";
 
 import "./CombatWindow.scss";
 
@@ -25,15 +24,10 @@ interface BattleSide {
   hero: Hero;
 }
 
-interface Terrain {
-  type: "graveyard" | string;
-  woody?: boolean;
-}
-
 export interface CombatWindowProps {
   attacker: BattleSide;
   defender: BattleSide;
-  terrain: Terrain;
+  battlefield: Battlefield;
   visible?: boolean;
   visibleHeroCombatOptions?: CombatSide;
   onVisibleHeroCombatOptionsChange: (value?: CombatSide) => void;
@@ -48,7 +42,7 @@ export class CombatWindow extends React.Component<CombatWindowProps> {
   };
 
   public render() {
-    const { attacker, defender, terrain, visibleHeroCombatOptions } = this.props;
+    const { attacker, defender, battlefield, visibleHeroCombatOptions } = this.props;
 
     return (
       <GameWindow
@@ -56,8 +50,8 @@ export class CombatWindow extends React.Component<CombatWindowProps> {
         visible={this.props.visible}
       >
         <div className="combat-window">
-          {this.renderBackground(terrain)}
-          {this.renderBattlefield(terrain)}
+          {this.renderBackground(battlefield.terrainType, battlefield.woodyTerrain)}
+          {this.renderBattlefield(battlefield)}
           {this.renderTent(CombatSide.Attacker, attacker.hero)}
           {this.renderTent(CombatSide.Defender, defender.hero)}
           <div className="combat-window-bar">
@@ -69,10 +63,10 @@ export class CombatWindow extends React.Component<CombatWindowProps> {
     );
   }
 
-  private renderBackground(terrain: Terrain) {
-    const imageUrl = terrainBackgrounds[terrain.type] ?
-      terrainBackgrounds[terrain.type] :
-      `/assets/terrains/${terrain.type}/combat-background${terrain.woody ? "-woody" : ""}.jpg`;
+  private renderBackground(terrainType: string, woodyTerrain?: boolean) {
+    const imageUrl = terrainBackgrounds[terrainType] ?
+      terrainBackgrounds[terrainType] :
+      `/assets/terrains/${terrainType}/combat-background${woodyTerrain ? "-woody" : ""}.jpg`;
 
     return (
       <img
@@ -82,20 +76,26 @@ export class CombatWindow extends React.Component<CombatWindowProps> {
     );
   }
 
-  private renderBattlefield(terrain: Terrain) {
-    const content = new Array(BattlefieldHeigth).fill(undefined).map((_row, rowIndex) => {
-      const rowContent = new Array(BattlefieldWidth).fill(undefined).map((_cell, cellIndex) => (
-        <div
-          className="combat-window-battlefield-cell"
-          key={cellIndex}
-        >
-          <CombatCell
-            index={rowIndex * BattlefieldWidth + cellIndex}
-            terrainType={terrain.type}
-            terrainVariant={0}
-          />
-        </div>
-      ));
+  private renderBattlefield(battlefield: Battlefield) {
+    const content = new Array(battlefield.height).fill(undefined).map((_row, rowIndex) => {
+      const rowContent = new Array(battlefield.width).fill(undefined).map((_column, columnIndex) => {
+        const cellIndex = rowIndex * battlefield.width + columnIndex;
+
+        const cell = battlefield.cells[cellIndex];
+
+        return (
+          <div
+            className="combat-window-battlefield-cell"
+            key={cellIndex}
+          >
+            <CombatCell
+              index={cellIndex}
+              terrainType={battlefield.terrainType}
+              terrainVariant={cell.terrainVariant}
+            />
+          </div>
+        );
+      });
 
       const evenRow = rowIndex % 2 === 0;
 
@@ -105,11 +105,11 @@ export class CombatWindow extends React.Component<CombatWindowProps> {
           key={rowIndex}
         >
           <div className="combat-window-battlefield-cell">
-            <img src={`assets/terrains/${terrain.type}/cell-right-${evenRow ? 2 : 1}.png`} />
+            <img src={`assets/terrains/${battlefield.terrainType}/cell-right-${evenRow ? 2 : 1}.png`} />
           </div>
           {rowContent}
           <div className="combat-window-battlefield-cell">
-            <img src={`assets/terrains/${terrain.type}/cell-left-${evenRow ? 1 : 2}.png`} />
+            <img src={`assets/terrains/${battlefield.terrainType}/cell-left-${evenRow ? 1 : 2}.png`} />
           </div>
         </div>
       );

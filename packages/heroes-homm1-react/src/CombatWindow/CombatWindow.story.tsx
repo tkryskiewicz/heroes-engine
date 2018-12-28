@@ -3,8 +3,17 @@ import { boolean, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { Alignment, HeroClass, HeroId, TerrainType } from "heroes-homm1";
+import {
+  Alignment,
+  BattlefieldHeigth,
+  BattlefieldWidth,
+  HeroClass,
+  HeroId,
+  TerrainType,
+  TerrainVariants,
+} from "heroes-homm1";
 
+import { createBattlefield } from "heroes-core";
 import { combatSideOptions as combatSideOptionsBase, terrainTypeOptions as terrainTypeOptionsBase } from "../stories";
 import { CombatWindow, CombatWindowProps } from "./CombatWindow";
 
@@ -42,17 +51,20 @@ storiesOf(CombatWindow.name, module)
       },
     };
 
-    const terrain: CombatWindowProps["terrain"] = {
-      type: select("Terrain Type", terrainOptions, TerrainType.Water),
-      woody: boolean("Woody Terrain", false),
-    };
+    const battlefield = createBattlefield(
+      BattlefieldWidth,
+      BattlefieldHeigth,
+      select("Terrain Type", terrainOptions, TerrainType.Water),
+      boolean("Woody Terrain", false),
+      TerrainVariants,
+    );
 
     return (
       <CombatWindow
         visible={boolean("Visible", true)}
         attacker={attacker}
         defender={defender}
-        terrain={terrain}
+        battlefield={battlefield}
         visibleHeroCombatOptions={select("Visible Hero Combat Options", combatSideOptions, "" as any)}
         onVisibleHeroCombatOptionsChange={action("Visible Hero Combat Options Change")}
       />

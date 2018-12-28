@@ -1,4 +1,5 @@
 export { Army, getArmySize, swapArmyTroops } from "./Army";
+export { Battlefield, BattlefieldCell, createBattlefield } from "./Battlefield";
 export { CombatSide } from "./CombatSide";
 export { Creature, Damage } from "./Creature";
 export {

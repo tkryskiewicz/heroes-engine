@@ -51,6 +51,7 @@ export const TownLimit = 8; // TODO: is this true?
 export const PuzzlePieceCount = 48;
 export const BattlefieldHeigth = 5;
 export const BattlefieldWidth = 7;
+export const TerrainVariants = 7;
 
 // NOTE: can this be turned into a function?
 const experienceLevels: { [level: number]: number } = {
