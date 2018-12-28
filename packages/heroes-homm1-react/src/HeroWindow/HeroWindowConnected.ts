@@ -3,7 +3,6 @@ import { Dispatch } from "redux";
 
 import {
   AppState,
-  changeHeroWindowStatusText,
   changeVisibleHeroWindowArtifactDescription,
   changeVisibleHeroWindowMiscInfoDetails,
   changeVisibleHeroWindowSkillDetails,
@@ -31,15 +30,13 @@ type StateProp =
   "troopDetailsVisible" |
   "dismissTroopPromptVisible" |
   "visibleArtifactDescription" |
-  "dismissHeroPromptVisible" |
-  "statusText";
+  "dismissHeroPromptVisible";
 
 const mapStateToProps = (state: AppState): Pick<HeroWindowProps, StateProp> => ({
   dismissHeroPromptVisible: state.heroWindow.dismissHeroPromptVisible,
   dismissTroopPromptVisible: state.heroWindow.dismissTroopPromptVisisble,
   hero: state.game.heroes[state.locators.selectedLocator!.index],
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,
-  statusText: state.heroWindow.statusText,
   troopDetailsVisible: state.heroWindow.visibleTroopDetails,
   visibleArtifactDescription: state.heroWindow.visibleArtifactDescription,
   visibleMiscInfoDetails: state.heroWindow.visibleMiscInfoDetails,
@@ -61,7 +58,6 @@ type DispatchProp =
   "onDismissHeroClick" |
   "onCancelDismissHeroClick" |
   "onConfirmDismissHeroClick" |
-  "onStatusTextChange" |
   "onExitClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchProp> => ({
@@ -106,9 +102,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchP
   },
   onConfirmDismissHeroClick(hero) {
     dispatch(dismissHero(hero));
-  },
-  onStatusTextChange(value: string) {
-    dispatch(changeHeroWindowStatusText(value));
   },
   onExitClick() {
     dispatch(closeHeroWindow());

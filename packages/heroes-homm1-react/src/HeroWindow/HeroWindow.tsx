@@ -60,8 +60,6 @@ export interface HeroWindowProps {
   onDismissHeroClick: () => void;
   onCancelDismissHeroClick: () => void;
   onConfirmDismissHeroClick: (hero: string) => void;
-  statusText: string;
-  onStatusTextChange: (value: string) => void;
   onExitClick: () => void;
 }
 
@@ -84,11 +82,13 @@ type DefaultProp =
   "onDismissHeroClick" |
   "onCancelDismissHeroClick" |
   "onConfirmDismissHeroClick" |
-  "statusText" |
-  "onStatusTextChange" |
   "onExitClick";
 
-class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
+interface HeroWindowState {
+  statusText: string;
+}
+
+class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, HeroWindowState> {
   public static defaultProps: Pick<HeroWindowProps, DefaultProp> = {
     dismissHeroPromptVisible: false,
     dismissTroopPromptVisible: false,
@@ -104,13 +104,15 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
     onExitTroopDetails: () => undefined,
     onSelectTroop: () => undefined,
     onSelectedTroopClick: () => undefined,
-    onStatusTextChange: () => undefined,
     onSwapTroops: () => undefined,
     onVisibleArtifactDescriptionChange: () => undefined,
     onVisibleMiscInfoDetailsChange: () => undefined,
     onVisibleSkillDetailsChange: () => undefined,
-    statusText: "",
     troopDetailsVisible: false,
+  };
+
+  public state: HeroWindowState = {
+    statusText: "",
   };
 
   public componentDidMount() {
@@ -161,7 +163,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
           </div>
           <div className="hero-window-title">
             <GameText size="large">
-              {this.props.statusText}
+              {this.state.statusText}
             </GameText>
           </div>
         </div>
@@ -172,7 +174,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   private setStatInfoStatusText(statName: string) {
     const statusText = this.props.intl.formatMessage(messages.statInfo, { statName });
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
   }
 
   private getHeroTitle() {
@@ -281,7 +283,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   private onMiscInfoMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(messages.miscInfo);
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
   }
 
   private onMiscInfoMouseLeave = () => {
@@ -437,7 +439,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   private onCrestMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(kingdomOverviewWindowMessages.title);
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
   }
 
   private onCrestMouseLeave = () => {
@@ -501,7 +503,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
       }
     }
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
   }
 
   private onTroopMouseLeave = () => {
@@ -517,7 +519,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
     const statusText = formatMessage(armyStripMessages.showTroopDetails, { troopName });
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
 
     this.props.onSelectTroop(index);
   }
@@ -531,7 +533,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
     const statusText = formatMessage(armyStripMessages.selectSlot, { troopName });
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
 
     this.props.onSwapTroops(this.props.hero.id, index, withIndex);
   }
@@ -616,7 +618,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
     const statusText = this.props.intl.formatMessage(message);
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
   }
 
   private onArtifactMouseLeave = () => {
@@ -677,7 +679,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
 
     const statusText = this.props.intl.formatMessage(messages.dismiss, { heroName: heroTitle });
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
   }
 
   private onDismissMouseLeave = () => {
@@ -729,21 +731,23 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps> {
   private onExitMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(messages.exit);
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
   }
 
   private onExitMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
-  private onStatusTextChange(text: string) {
-    this.props.onStatusTextChange(text);
+  private setStatusText(statusText: string) {
+    this.setState({
+      statusText,
+    });
   }
 
   private setDefaultStatusText() {
     const statusText = this.props.intl.formatMessage(messages.defaultStatusText);
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
   }
 }
 

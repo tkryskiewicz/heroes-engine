@@ -11,7 +11,6 @@ export enum HeroWindowActionType {
   ChangeVisibleArtifactDescription = "hero/changeVisibleArtifactDescription",
   OpenDismissHeroPrompt = "heroWindow/openDismissHeroPrompt",
   CloseDismissHeroPrompt = "heroWindow/closeDismissHeroPrompt",
-  ChangeStatusText = "heroWindow/changeStatusText",
 }
 
 export type HeroWindowAction =
@@ -26,8 +25,7 @@ export type HeroWindowAction =
   CloseDismissTroopPromptAction |
   ChangeVisibleArtifactDescriptionAction |
   OpenDismissHeroPromptAction |
-  CloseDismissHeroPromptAction |
-  ChangeStatusTextAction;
+  CloseDismissHeroPromptAction;
 
 export interface OpenHeroWindowAction {
   type: HeroWindowActionType.Open;
@@ -137,14 +135,4 @@ export interface CloseDismissHeroPromptAction {
 
 export const closeDismissHeroPrompt = (): CloseDismissHeroPromptAction => ({
   type: HeroWindowActionType.CloseDismissHeroPrompt,
-});
-
-export interface ChangeStatusTextAction {
-  type: HeroWindowActionType.ChangeStatusText;
-  value: string;
-}
-
-export const changeStatusText = (value: string): ChangeStatusTextAction => ({
-  type: HeroWindowActionType.ChangeStatusText,
-  value,
 });

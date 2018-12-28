@@ -11,7 +11,6 @@ export {
   changeVisibleArtifactDescription as changeVisibleHeroWindowArtifactDescription,
   openDismissHeroPrompt,
   closeDismissHeroPrompt,
-  changeStatusText as changeHeroWindowStatusText,
   changeVisibleHeroWindowSkillDetails as changeVisibleHeroWindowSkillDetails,
   changeVisibleMiscInfoDetails as changeVisibleHeroWindowMiscInfoDetails,
 } from "./actions";

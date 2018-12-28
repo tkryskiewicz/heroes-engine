@@ -7,5 +7,4 @@ export interface HeroWindowState {
   dismissTroopPromptVisisble: boolean;
   visibleArtifactDescription?: number;
   dismissHeroPromptVisible: boolean;
-  statusText: string;
 }

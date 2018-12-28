@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { boolean, number, select, text } from "@storybook/addon-knobs";
+import { boolean, number, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -157,13 +157,5 @@ storiesOf("HeroWindow", module)
       onDismissHeroClick={action("Dismiss Hero Click")}
       onCancelDismissHeroClick={action("Cancel Dismiss Hero Click")}
       onConfirmDismissHeroClick={action("Confirm Dismiss Hero Click")}
-    />
-  ))
-  .add("status text", () => (
-    <HeroWindow
-      hero={heroBase}
-      visible={true}
-      statusText={text("Status Text", "Status Text")}
-      onStatusTextChange={action("Status Text Change")}
     />
   ));

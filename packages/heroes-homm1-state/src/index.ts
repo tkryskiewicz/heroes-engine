@@ -29,7 +29,6 @@ export {
   changeVisibleHeroWindowArtifactDescription,
   openDismissHeroPrompt,
   closeDismissHeroPrompt,
-  changeHeroWindowStatusText,
 } from "./heroWindow";
 export { openKingdomOverviewWindow, closeKingdomOverviewWindow } from "./kingdomOverviewWindow";
 export * from "./locators";

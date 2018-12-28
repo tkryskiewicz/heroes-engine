@@ -5,7 +5,6 @@ import { HeroWindowState } from "./state";
 const initialState: HeroWindowState = {
   dismissHeroPromptVisible: false,
   dismissTroopPromptVisisble: false,
-  statusText: "",
   visible: false,
   visibleTroopDetails: false,
 };
@@ -88,11 +87,6 @@ export const heroWindowReducer = (
       return {
         ...state,
         dismissHeroPromptVisible: false,
-      };
-    case HeroWindowActionType.ChangeStatusText:
-      return {
-        ...state,
-        statusText: action.value,
       };
     default:
       return state;
