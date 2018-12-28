@@ -11,9 +11,14 @@ export interface CombatTroopProps {
   side: CombatSide;
   creature: string;
   count: number;
+  selected: boolean;
 }
 
 export class CombatTroop extends React.Component<CombatTroopProps> {
+  public static defaultProps: Pick<CombatTroopProps, "selected"> = {
+    selected: false,
+  };
+
   public render() {
     return (
       <div className={`combat-troop combat-troop-${this.props.side}`}>
@@ -24,6 +29,7 @@ export class CombatTroop extends React.Component<CombatTroopProps> {
           />
         </div>
         {this.renderCount(this.props.count)}
+        {this.props.selected && this.renderSelection(this.props.creature)}
       </div>
     );
   }
@@ -35,6 +41,15 @@ export class CombatTroop extends React.Component<CombatTroopProps> {
           {value}
         </GameParagraph>
       </div>
+    );
+  }
+
+  private renderSelection(creature: string) {
+    return (
+      <img
+        className="combat-troop-selection"
+        src={`assets/creatures/${creature}/selection.png`}
+      />
     );
   }
 }

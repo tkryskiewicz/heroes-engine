@@ -9,6 +9,7 @@
     bottom: 0;
     background: url("./assets/count-background.jpg");
     text-align: center;
+    z-index: 1;
   }
 
   &-attacker &-count {
@@ -17,6 +18,13 @@
 
   &-defender &-creature {
     transform: scaleX(-1);
+  }
+
+  &-selection {
+    position: absolute;
+    // FIXME
+    top: -2px;
+    left: -2px;
   }
 }
 

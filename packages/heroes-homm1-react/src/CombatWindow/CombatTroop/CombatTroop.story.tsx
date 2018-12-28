@@ -1,4 +1,4 @@
-import { number, select } from "@storybook/addon-knobs";
+import { boolean, number, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -16,6 +16,7 @@ storiesOf(`${CombatWindow.name}/${CombatTroop.name}`, module)
         side={select("Side", combatSideOptions, CombatSide.Attacker)}
         creature={select("Creature", creatureOptions, CreatureId.Peasant)}
         count={number("Count", 1, { range: true, min: 1, max: 9999, step: 1 })}
+        selected={boolean("Selected", false)}
       />
     );
   });
