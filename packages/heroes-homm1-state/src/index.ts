@@ -44,5 +44,4 @@ export {
   changeRecruitTroopCount,
   selectTownWindowGarrisonTroop,
   selectTownWindowHeroTroop,
-  changeTownWindowStatusText,
 } from "./townWindow";

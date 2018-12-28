@@ -4,7 +4,6 @@ import { Dispatch } from "redux";
 import { TownId } from "heroes-homm1";
 import {
   AppState,
-  changeTownWindowStatusText,
   closeTownWindow,
   openKingdomOverviewWindow,
   openStructureDetails,
@@ -23,8 +22,7 @@ type StateProp =
   "resources" |
   "selectedGarrisonTroopIndex" |
   "selectedHeroTroopIndex" |
-  "visibleStructureDetails" |
-  "statusText";
+  "visibleStructureDetails";
 
 const mapStateToProps = (state: AppState): Pick<TownWindowProps, StateProp> => {
   const town = state.game.towns[state.locators.selectedLocator!.index];
@@ -33,7 +31,6 @@ const mapStateToProps = (state: AppState): Pick<TownWindowProps, StateProp> => {
     resources: state.game.resources,
     selectedGarrisonTroopIndex: state.townWindow.selectedGarrisonTroopIndex,
     selectedHeroTroopIndex: state.townWindow.selectedHeroTroopIndex,
-    statusText: state.townWindow.statusText,
     town,
     visibleStructureDetails: state.townWindow.visibleStructureDetails,
     visitingHero: town.id === TownId.Farm ? state.game.heroes[3] : undefined,
@@ -48,8 +45,7 @@ type DispatchProp =
   "onSwapHeroTroops" |
   "onOpenStructureDetails" |
   "onRecruitTroop" |
-  "onExitClick" |
-  "onStatusTextChange";
+  "onExitClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchProp> => ({
   onCrestClick() {
@@ -75,9 +71,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchP
   },
   onExitClick() {
     dispatch(closeTownWindow());
-  },
-  onStatusTextChange(value) {
-    dispatch(changeTownWindowStatusText(value));
   },
 });
 

@@ -34,8 +34,6 @@ export interface TownWindowProps {
   onCrestClick: () => void;
   onOpenStructureDetails: (structure: string) => void;
   onRecruitTroop: (town: string, structure: string, count: number) => void;
-  statusText: string;
-  onStatusTextChange: (value: string) => void;
   onExitClick: () => void;
 }
 
@@ -47,10 +45,13 @@ type DefaultProp =
   "onCrestClick" |
   "onOpenStructureDetails" |
   "onRecruitTroop" |
-  "onStatusTextChange" |
   "onExitClick";
 
-class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
+interface TownWindowState {
+  statusText: string;
+}
+
+class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, TownWindowState> {
   public static defaultProps: Pick<TownWindowProps, DefaultProp> = {
     onCrestClick: () => undefined,
     onExitClick: () => undefined,
@@ -58,9 +59,12 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
     onRecruitTroop: () => undefined,
     onSelectGarrisonTroop: () => undefined,
     onSelectHeroTroop: () => undefined,
-    onStatusTextChange: () => undefined,
     onSwapGarrisonTroops: () => undefined,
     onSwapHeroTroops: () => undefined,
+  };
+
+  public state: TownWindowState = {
+    statusText: "",
   };
 
   public componentDidMount() {
@@ -130,7 +134,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
             </div>
           </div>
           <BigBar>
-            {this.props.statusText}
+            {this.state.statusText}
           </BigBar>
           {visibleStructureDetails && this.renderStructureDetails(town, resources, visibleStructureDetails)}
         </div>
@@ -141,7 +145,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
   private onCrestMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(kingdomOverviewWindowMessages.title);
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
   }
 
   private onCrestMouseLeave = () => {
@@ -151,7 +155,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
   private onHeroPortraitMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(messages.viewHero);
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
   }
 
   private onHeroPortraitMouseLeave = () => {
@@ -179,7 +183,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
       statusText = formatMessage(recruitTroopWindowMessages.title, { creature: creatureName });
     }
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
   }
 
   private onStructureMouseLeave = () => {
@@ -244,21 +248,23 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps> {
   private onExitMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(messages.exit);
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
   }
 
   private onExitMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
-  private onStatusTextChange(text: string) {
-    this.props.onStatusTextChange(text);
+  private setStatusText(statusText: string) {
+    this.setState({
+      statusText,
+    });
   }
 
   private setDefaultStatusText() {
     const statusText = this.props.intl.formatMessage(messages.defaultStatusText);
 
-    this.onStatusTextChange(statusText);
+    this.setStatusText(statusText);
   }
 }
 

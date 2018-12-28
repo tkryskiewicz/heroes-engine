@@ -34,8 +34,6 @@ storiesOf("TownWindow", module)
         onSwapGarrisonTroops={action("Swap Garrison Troops")}
         onCrestClick={action("Crest Click")}
         onExitClick={action("Exit Click")}
-        statusText={text("Status Text", "Status Text")}
-        onStatusTextChange={action("Status Text Change")}
       />
     );
   });

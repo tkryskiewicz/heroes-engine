@@ -4,7 +4,6 @@ import { TownWindowState } from "./state";
 
 const initialState: TownWindowState = {
   recruitTroopCount: 0,
-  statusText: "",
   visible: false,
 };
 
@@ -60,11 +59,6 @@ export const townWindowReducer = (
       return {
         ...state,
         recruitTroopCount: action.count,
-      };
-    case TownWindowActionType.ChangeStatusText:
-      return {
-        ...state,
-        statusText: action.value,
       };
     default:
       return state;
