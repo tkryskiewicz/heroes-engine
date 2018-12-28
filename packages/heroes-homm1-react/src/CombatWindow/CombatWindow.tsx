@@ -9,6 +9,7 @@ import { GameWindow } from "../core";
 import { HeroCombatOptions } from "../HeroCombatOptions";
 import { terrainBackgrounds } from "./assets";
 import { CombatBar } from "./CombatBar";
+import { CombatCell } from "./CombatCell";
 import { Tent } from "./Tent";
 
 interface Hero {
@@ -88,7 +89,11 @@ export class CombatWindow extends React.Component<CombatWindowProps> {
           className="combat-window-battlefield-cell"
           key={cellIndex}
         >
-          <img src={`assets/terrains/${terrain.type}/cell-1.png`} />
+          <CombatCell
+            index={rowIndex * BattlefieldWidth + cellIndex}
+            terrainType={terrain.type}
+            terrainVariant={0}
+          />
         </div>
       ));
 
