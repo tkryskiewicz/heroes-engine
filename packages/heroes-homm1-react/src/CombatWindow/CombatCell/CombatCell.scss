@@ -4,5 +4,7 @@
   .combat-cell-object {
     position: absolute;
     bottom: 10px;
+    // FIXME
+    z-index: 2;
   }
 }

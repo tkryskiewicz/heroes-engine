@@ -7,13 +7,14 @@ import {
   Alignment,
   BattlefieldHeigth,
   BattlefieldWidth,
+  CreatureId,
   HeroClass,
   HeroId,
   TerrainType,
   TerrainVariants,
 } from "heroes-homm1";
 
-import { createBattlefield } from "heroes-core";
+import { BattlefieldObjectType, CombatSide, createBattlefield } from "heroes-core";
 import { combatSideOptions as combatSideOptionsBase, terrainTypeOptions as terrainTypeOptionsBase } from "../stories";
 import { CombatWindow, CombatWindowProps } from "./CombatWindow";
 
@@ -60,13 +61,34 @@ storiesOf(CombatWindow.name, module)
     );
 
     battlefield.cells[3].object = {
+      type: BattlefieldObjectType.Obstacle,
       variant: 0,
     };
     battlefield.cells[20].object = {
+      type: BattlefieldObjectType.Obstacle,
       variant: 1,
     };
     battlefield.cells[30].object = {
+      type: BattlefieldObjectType.Obstacle,
       variant: 2,
+    };
+
+    battlefield.cells[0].object = {
+      side: CombatSide.Attacker,
+      troop: {
+        count: 1,
+        creature: CreatureId.Peasant,
+      },
+      type: BattlefieldObjectType.Troop,
+    };
+
+    battlefield.cells[6].object = {
+      side: CombatSide.Defender,
+      troop: {
+        count: 1,
+        creature: CreatureId.Archer,
+      },
+      type: BattlefieldObjectType.Troop,
     };
 
     return (

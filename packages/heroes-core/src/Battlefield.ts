@@ -1,10 +1,29 @@
+import { CombatSide } from "./CombatSide";
+import { Troop } from "./Troop";
+
+export enum BattlefieldObjectType {
+  Obstacle = "obstacle",
+  Troop = "troop",
+}
+
 export interface BattlefieldObstacleObject {
+  type: BattlefieldObjectType.Obstacle;
   variant: number;
 }
 
+export interface BattlefieldTroopObject {
+  type: BattlefieldObjectType.Troop;
+  side: CombatSide;
+  troop: Troop;
+}
+
+export type BattlefieldObject =
+  BattlefieldObstacleObject |
+  BattlefieldTroopObject;
+
 export interface BattlefieldCell {
   terrainVariant: number;
-  object?: BattlefieldObstacleObject;
+  object?: BattlefieldObject;
 }
 
 export interface Battlefield {

@@ -1,14 +1,21 @@
 import * as React from "react";
 
-import { BattlefieldObstacleObject } from "heroes-core";
+import {
+  BattlefieldObject,
+  BattlefieldObjectType,
+  BattlefieldObstacleObject,
+  BattlefieldTroopObject,
+} from "heroes-core";
 
 import "./CombatCell.scss";
+
+import { CombatTroop } from "../CombatTroop";
 
 export interface CombatCellProps {
   index: number;
   terrainType: string;
   terrainVariant: number;
-  object?: BattlefieldObstacleObject;
+  object?: BattlefieldObject;
 }
 
 export class CombatCell extends React.Component<CombatCellProps> {
@@ -21,10 +28,31 @@ export class CombatCell extends React.Component<CombatCellProps> {
     );
   }
 
-  private renderObject(object: BattlefieldObstacleObject) {
+  private renderObject(object: BattlefieldObject) {
+    switch (object.type) {
+      case BattlefieldObjectType.Obstacle:
+        return this.renderObstacle(object);
+      case BattlefieldObjectType.Troop:
+        return this.renderTroop(object);
+    }
+  }
+
+  private renderObstacle(obstacleObject: BattlefieldObstacleObject) {
     return (
       <div className="combat-cell-object">
-        <img src={`assets/terrains/${this.props.terrainType}/obstacle-${object.variant}.png`} />
+        <img src={`assets/terrains/${this.props.terrainType}/obstacle-${obstacleObject.variant}.png`} />
+      </div>
+    );
+  }
+
+  private renderTroop(troopObject: BattlefieldTroopObject) {
+    return (
+      <div className="combat-cell-object">
+        <CombatTroop
+          side={troopObject.side}
+          creature={troopObject.troop.creature}
+          count={troopObject.troop.count}
+        />
       </div>
     );
   }
