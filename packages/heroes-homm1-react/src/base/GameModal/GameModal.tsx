@@ -1,4 +1,3 @@
-import { Col, Row } from "antd";
 import * as React from "react";
 
 import "./GameModal.scss";
@@ -39,37 +38,19 @@ export class GameModal extends React.Component<GameModalProps> {
   private renderBackground(size: number) {
     return (
       <div>
-        {this.renderHeader()}
+        <div className="game-modal-header" />
         {[...new Array(size).keys()].map((i) => this.renderBody(i))}
-        {this.renderFooter()}
+        <div className="game-modal-footer" />
       </div>
-    );
-  }
-
-  private renderHeader() {
-    return (
-      <Row>
-        <Col className="game-modal-header game-modal-reverse" span={12} />
-        <Col className="game-modal-header" span={12} />
-      </Row>
     );
   }
 
   private renderBody(index: number) {
     return (
-      <Row key={index}>
-        <Col className="game-modal-body game-modal-reverse" span={12} />
-        <Col className="game-modal-body" span={12} />
-      </Row>
-    );
-  }
-
-  private renderFooter() {
-    return (
-      <Row>
-        <Col className="game-modal-footer game-modal-reverse" span={12} />
-        <Col className="game-modal-footer" span={12} />
-      </Row>
+      <div
+        key={index}
+        className="game-modal-body"
+      />
     );
   }
 }

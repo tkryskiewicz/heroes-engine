@@ -1,3 +1,5 @@
+@import "../../style/mirror-background";
+
 .game-modal {
   position: relative;
   width: 2 * 143px;
@@ -19,24 +21,24 @@
     text-align: center;
   }
 
-  &-reverse {
-    transform: scaleX(-1);
-  }
-
   &-header {
     background: url("./assets/header.png");
     height: 77px;
+
+    @include mirror-background();
   }
 
   &-body {
     background: url("./assets/body.png");
-    background-repeat: no-repeat;
     height: 45px;
+
+    @include mirror-background();
   }
 
   &-footer {
     background: url("./assets/footer.png");
-    background-repeat: no-repeat;
     height: 48px;
+
+    @include mirror-background();
   }
 }
