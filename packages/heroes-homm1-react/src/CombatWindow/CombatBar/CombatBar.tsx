@@ -34,13 +34,9 @@ export class CombatBar extends React.Component<CombatBarProps> {
           />
         </div>
         <div className="combat-bar-status-bar">
-          <div className="combat-bar-status-bar-container">
-            <div className="combat-bar-status-bar-background combat-bar-reverse" />
-            <div className="combat-bar-status-bar-background" />
-            <GameText size="large">
-              {this.props.statusText}
-            </GameText>
-          </div>
+          <GameText size="large">
+            {this.props.statusText}
+          </GameText>
         </div>
         <div className="combat-bar-skip">
           <GameButton
