@@ -1,0 +1,50 @@
+@mixin mirror-background() {
+  position: relative;
+  background-size: 0;
+
+  &::before, &::after {
+    position: absolute;
+    content: "";
+    width: 50%;
+    height: 100%;
+    background-image: inherit;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+
+  &::before {
+    left: 0;
+    transform: scaleX(-1);
+  }
+
+  &::after {
+    right: 0;
+  }
+}
+
+.spell-book-window {
+  position: relative;
+  width: 2 * 162px;
+  height: 235px;
+  background-image: url("./assets/background.png");
+
+  @include mirror-background();
+
+  &-combat-spells {
+    position: absolute;
+    left: 216px;
+    top: 153px;
+  }
+
+  &-adventure-spells {
+    position: absolute;
+    left: 188px;
+    top: 167px;
+  }
+
+  &-exit {
+    position: absolute;
+    left: 267px;
+    top: 171px;
+  }
+}
