@@ -1,3 +1,3 @@
 export { GameParagraph, GameParagraphProps } from "./GameParagraph";
 export { GameText, GameTextProps } from "./GameText";
-export { GameWindow, GameWindowProps } from "./GameWindow";
+export { GameWindow, GameWindowProps, withGameWindow, WithGameWindowProps } from "./GameWindow";
