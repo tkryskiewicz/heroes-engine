@@ -14,7 +14,6 @@ import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
 import { RecruitTroopWindow, recruitTroopWindowMessages } from "../RecruitTroopWindow";
 import { TavernWindow } from "../TavernWindow";
 import { TownView } from "../TownView";
-import { ComponentWithDefaultProps } from "../util";
 import { messages } from "./messages";
 import { StructuresWindow } from "./StructuresWindow";
 import { Treasury } from "./Treasury";
@@ -268,7 +267,8 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
   }
 }
 
-const TownWindowWrapped: ComponentWithDefaultProps<TownWindowProps, typeof TownWindow.defaultProps> =
+const TownWindowWrapped:
+  React.ComponentType<JSX.LibraryManagedAttributes<typeof TownWindow, TownWindowProps>> =
   injectIntl(TownWindow) as any;
 
 export {

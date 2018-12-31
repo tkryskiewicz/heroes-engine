@@ -10,7 +10,6 @@ import "./HeroTradingWindow.scss";
 import { GameButton, HeroPortrait } from "../base";
 import { GameText, GameWindow } from "../core";
 import { getHeroNameMessage, getSkillNameMessage } from "../messages";
-import { ComponentWithDefaultProps } from "../util";
 import { ArtifactSlot } from "./ArtifactSlot";
 import { messages } from "./messages";
 import { TroopSlot } from "./TroopSlot";
@@ -155,8 +154,8 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
   }
 }
 
-const HeroTradingWindowWrapped: ComponentWithDefaultProps<HeroTradingWindowProps,
-  typeof HeroTradingWindow.defaultProps> =
+const HeroTradingWindowWrapped:
+  React.ComponentType<JSX.LibraryManagedAttributes<typeof HeroTradingWindow, HeroTradingWindowProps>> =
   injectIntl(HeroTradingWindow) as any;
 
 export {

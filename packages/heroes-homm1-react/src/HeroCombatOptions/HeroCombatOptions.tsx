@@ -17,7 +17,6 @@ import {
   luckMessages,
   moraleMessages,
 } from "../messages";
-import { ComponentWithDefaultProps } from "../util";
 
 export interface HeroCombatOptionsProps {
   visible?: boolean;
@@ -144,7 +143,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
 }
 
 const HeroCombatOptionsWrapped:
-  ComponentWithDefaultProps<HeroCombatOptionsProps, typeof HeroCombatOptions.defaultProps> =
+  React.ComponentType<JSX.LibraryManagedAttributes<typeof HeroCombatOptions, HeroCombatOptionsProps>> =
   injectIntl(HeroCombatOptions) as any;
 
 export {

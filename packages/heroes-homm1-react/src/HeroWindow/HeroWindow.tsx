@@ -28,7 +28,6 @@ import {
   moraleMessages,
 } from "../messages";
 import { TroopWindow } from "../TroopWindow";
-import { ComponentWithDefaultProps } from "../util";
 import { ArtifactSlot, artifactSlotMessages } from "./ArtifactSlot";
 import { messages } from "./messages";
 import { MiscInfo, MiscInfoType } from "./MiscInfo";
@@ -751,7 +750,8 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
   }
 }
 
-const HeroWindowWrapped: ComponentWithDefaultProps<HeroWindowProps, typeof HeroWindow.defaultProps> =
+const HeroWindowWrapped:
+  React.ComponentType<JSX.LibraryManagedAttributes<typeof HeroWindow, HeroWindowProps>> =
   injectIntl(HeroWindow) as any;
 
 export { HeroWindowWrapped as HeroWindow };
