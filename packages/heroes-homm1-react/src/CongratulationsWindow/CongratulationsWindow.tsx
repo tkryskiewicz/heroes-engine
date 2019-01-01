@@ -25,7 +25,8 @@ class CongratulationsWindow extends React.Component<CongratulationsWindowProps> 
   }
 }
 
-const CongratulationsWindowWrapped = withGameWindow(640)(CongratulationsWindow);
+const CongratulationsWindowWrapped = withGameWindow(640)
+  <typeof CongratulationsWindow, CongratulationsWindowProps>(CongratulationsWindow);
 
 export {
   CongratulationsWindowWrapped as CongratulationsWindow,

@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { SpellBookWindow } from "./SpellBookWindow";
 
-storiesOf(SpellBookWindow.name, module)
+storiesOf("SpellBookWindow", module)
   .add("default", () => (
     <SpellBookWindow
       visible={boolean("Visible", true)}

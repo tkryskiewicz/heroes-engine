@@ -28,7 +28,7 @@ const combatSideOptions = {
   ...combatSideOptionsBase,
 };
 
-storiesOf(CombatWindow.name, module)
+storiesOf("CombatWindow", module)
   .add("default", () => {
     const attacker: CombatWindowProps["attacker"] = {
       hero: {

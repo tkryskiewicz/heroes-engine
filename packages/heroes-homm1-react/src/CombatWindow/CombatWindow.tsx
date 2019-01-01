@@ -4,7 +4,7 @@ import { Battlefield, CombatSide, HeroSkills } from "heroes-core";
 
 import "./CombatWindow.scss";
 
-import { GameWindow } from "../core";
+import { withGameWindow } from "../core";
 import { HeroCombatOptions } from "../HeroCombatOptions";
 import { terrainBackgrounds } from "./assets";
 import { CombatBar } from "./CombatBar";
@@ -36,7 +36,7 @@ export interface CombatWindowProps {
 type DefaultProp =
   "onVisibleHeroCombatOptionsChange";
 
-export class CombatWindow extends React.Component<CombatWindowProps> {
+class CombatWindow extends React.Component<CombatWindowProps> {
   public static defaultProps: Pick<CombatWindowProps, DefaultProp> = {
     onVisibleHeroCombatOptionsChange: () => undefined,
   };
@@ -45,21 +45,16 @@ export class CombatWindow extends React.Component<CombatWindowProps> {
     const { attacker, defender, battlefield, visibleHeroCombatOptions } = this.props;
 
     return (
-      <GameWindow
-        width={640}
-        visible={this.props.visible}
-      >
-        <div className="combat-window">
-          {this.renderBackground(battlefield.terrainType, battlefield.woodyTerrain)}
-          {this.renderBattlefield(battlefield)}
-          {this.renderTent(CombatSide.Attacker, attacker.hero)}
-          {this.renderTent(CombatSide.Defender, defender.hero)}
-          <div className="combat-window-bar">
-            <CombatBar />
-          </div>
-          {visibleHeroCombatOptions && this.renderHeroCombatOptions(visibleHeroCombatOptions)}
+      <div className="combat-window">
+        {this.renderBackground(battlefield.terrainType, battlefield.woodyTerrain)}
+        {this.renderBattlefield(battlefield)}
+        {this.renderTent(CombatSide.Attacker, attacker.hero)}
+        {this.renderTent(CombatSide.Defender, defender.hero)}
+        <div className="combat-window-bar">
+          <CombatBar />
         </div>
-      </GameWindow>
+        {visibleHeroCombatOptions && this.renderHeroCombatOptions(visibleHeroCombatOptions)}
+      </div>
     );
   }
 
@@ -160,3 +155,9 @@ export class CombatWindow extends React.Component<CombatWindowProps> {
     this.props.onVisibleHeroCombatOptionsChange();
   }
 }
+
+const CombatWindowWrapped = withGameWindow(640)<typeof CombatWindow, CombatWindowProps>(CombatWindow);
+
+export {
+  CombatWindowWrapped as CombatWindow,
+};

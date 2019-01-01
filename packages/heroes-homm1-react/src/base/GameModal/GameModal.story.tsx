@@ -5,12 +5,12 @@ import * as React from "react";
 import { GameText } from "../../core";
 import { GameModal } from "./GameModal";
 
-storiesOf(`base/${GameModal.name}`, module)
+storiesOf("base/GameModal", module)
   .add("default", () => (
     <GameModal
+      visible={boolean("Visible", true)}
       size={number("Size", 1, { range: true, min: 0, max: 5, step: 1 })}
       actions={text("Actions", "Actions")}
-      visible={boolean("Visible", true)}
     >
       <GameText size="large">
         {text("Text", "TEXT")}

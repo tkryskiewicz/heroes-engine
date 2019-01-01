@@ -5,10 +5,14 @@ import "./CreditsWindow.scss";
 import { withGameWindow } from "../core";
 
 export interface CreditsWindowProps {
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 class CreditsWindow extends React.Component<CreditsWindowProps> {
+  public static defaultProps: CreditsWindowProps = {
+    onClick: () => undefined,
+  };
+
   public render() {
     return (
       <div
@@ -19,7 +23,7 @@ class CreditsWindow extends React.Component<CreditsWindowProps> {
   }
 }
 
-const CreditsWindowWrapped = withGameWindow(640)(CreditsWindow);
+const CreditsWindowWrapped = withGameWindow(640)<typeof CreditsWindow, CreditsWindowProps>(CreditsWindow);
 
 export {
   CreditsWindowWrapped as CreditsWindow,

@@ -7,8 +7,8 @@ export interface WithGameWindowProps {
 }
 
 export const withGameWindow = (width?: number) =>
-  <TProps extends object>(Component: React.ComponentClass<TProps>) =>
-    class extends React.Component<TProps & WithGameWindowProps> {
+  <TComponent extends React.ComponentType<TProps>, TProps>(Component: React.ComponentClass<TProps>) =>
+    class extends React.Component<JSX.LibraryManagedAttributes<TComponent, TProps> & WithGameWindowProps> {
       public render() {
         const { visible, ...rest } = this.props as WithGameWindowProps;
 
@@ -17,7 +17,7 @@ export const withGameWindow = (width?: number) =>
             width={width}
             visible={visible}
           >
-            <Component {...rest as TProps} />
+            <Component {...rest as JSX.LibraryManagedAttributes<TComponent, TProps>} />
           </GameWindow>
         );
       }

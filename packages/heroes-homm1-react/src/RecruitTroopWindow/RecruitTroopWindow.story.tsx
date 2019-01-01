@@ -8,7 +8,7 @@ import { CreatureId, Resource } from "heroes-homm1";
 import { creatureOptions } from "../stories";
 import { RecruitTroopWindow } from "./RecruitTroopWindow";
 
-storiesOf(RecruitTroopWindow.name, module)
+storiesOf("RecruitTroopWindow", module)
   .add("default", () => (
     <RecruitTroopWindow
       resources={{ [Resource.Gold]: 3000 }}

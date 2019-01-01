@@ -56,7 +56,7 @@ class StructuresWindow extends React.Component<StructuresWindowProps> {
   }
 }
 
-const StructuresWindowWrapped = withGameWindow(640)(StructuresWindow);
+const StructuresWindowWrapped = withGameWindow(640)<typeof StructuresWindow, StructuresWindowProps>(StructuresWindow);
 
 export {
   StructuresWindowWrapped as StructuresWindow,

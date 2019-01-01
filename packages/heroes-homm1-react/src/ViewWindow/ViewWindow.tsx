@@ -47,7 +47,7 @@ class ViewWindow extends React.Component<ViewWindowProps> {
   }
 }
 
-const ViewWindowWrapped = withGameWindow(640)(ViewWindow);
+const ViewWindowWrapped = withGameWindow(640)<typeof ViewWindow, ViewWindowProps>(ViewWindow);
 
 export {
   ViewWindowWrapped as ViewWindow,

@@ -8,7 +8,7 @@ import { MovementSpeed, SoundVolume } from "heroes-homm1";
 import { movementSpeedOptions } from "../stories";
 import { GameOptions } from "./GameOptions";
 
-storiesOf(GameOptions.name, module)
+storiesOf("GameOptions", module)
   .add("default", () => {
     const musicVolume = number("Music Volume", SoundVolume.On, {
       max: SoundVolume.On,

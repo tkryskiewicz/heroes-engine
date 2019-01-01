@@ -2,36 +2,29 @@ import * as React from "react";
 
 import "./GameModal.scss";
 
-import { GameWindow } from "../../core";
+import { withGameWindow } from "../../core";
 
 export interface GameModalProps {
   size: number;
   actions: React.ReactNode;
-  visible: boolean;
 }
 
-export class GameModal extends React.Component<GameModalProps> {
-  public static defaultProps: Pick<GameModalProps, "size" | "visible"> = {
+class GameModal extends React.Component<GameModalProps> {
+  public static defaultProps: Pick<GameModalProps, "size"> = {
     size: 1,
-    visible: false,
   };
 
   public render() {
     return (
-      <GameWindow
-        width={286}
-        visible={this.props.visible}
-      >
-        <div className="game-modal">
-          {this.renderBackground(this.props.size)}
-          <div className="game-modal-content">
-            {this.props.children}
-          </div>
-          <div className="game-modal-actions">
-            {this.props.actions}
-          </div>
+      <div className="game-modal">
+        {this.renderBackground(this.props.size)}
+        <div className="game-modal-content">
+          {this.props.children}
         </div>
-      </GameWindow>
+        <div className="game-modal-actions">
+          {this.props.actions}
+        </div>
+      </div>
     );
   }
 
@@ -54,3 +47,9 @@ export class GameModal extends React.Component<GameModalProps> {
     );
   }
 }
+
+const GameModalWrapped = withGameWindow(286)<typeof GameModal, GameModalProps>(GameModal);
+
+export {
+  GameModalWrapped as GameModal,
+};

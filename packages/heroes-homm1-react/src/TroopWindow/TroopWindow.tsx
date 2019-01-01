@@ -8,14 +8,13 @@ import { creaturesById } from "heroes-homm1";
 import "./TroopWindow.scss";
 
 import { CreatureIcon, GameButton, GameModal } from "../base";
-import { GameParagraph, GameText, GameWindow } from "../core";
+import { GameParagraph, GameText, withGameWindow } from "../core";
 import { getCreatureNameMessage } from "../messages";
 import { getSpeedMessage, messages } from "./messages";
 
 export interface TroopWindowProps {
   troop: Troop;
   dismissible: boolean;
-  visible?: boolean;
   dismissPromptVisible: boolean;
   onDismissClick: (troop: Troop) => void;
   onConfirmDismissClick: (troop: Troop) => void;
@@ -31,7 +30,7 @@ type DefaultProp =
   "onCancelDismissClick" |
   "onExitClick";
 
-export class TroopWindow extends React.Component<TroopWindowProps> {
+class TroopWindow extends React.Component<TroopWindowProps> {
   public static defaultProps: Pick<TroopWindowProps, DefaultProp> = {
     dismissPromptVisible: false,
     dismissible: false,
@@ -45,84 +44,79 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
     const creature = creaturesById[this.props.troop.creature];
 
     return (
-      <GameWindow
-        width={402}
-        visible={this.props.visible}
-      >
-        <Row className="troop-window">
-          <Col
-            className="troop-window-creature"
-            span={12}
-          >
-            <CreatureIcon
-              size="large"
-              creature={this.props.troop.creature}
-            />
-          </Col>
-          <Col span={12}>
-            <Row className="troop-window-creature-name">
-              <GameText size="normal">
-                <FormattedMessage {...getCreatureNameMessage(creature.id)} />
-              </GameText>
-            </Row>
-            <Row>
-              <GameText size="normal">
-                <FormattedMessage {...messages.attack} />: {creature.attack} (?)
+      <Row className="troop-window">
+        <Col
+          className="troop-window-creature"
+          span={12}
+        >
+          <CreatureIcon
+            size="large"
+            creature={this.props.troop.creature}
+          />
+        </Col>
+        <Col span={12}>
+          <Row className="troop-window-creature-name">
+            <GameText size="normal">
+              <FormattedMessage {...getCreatureNameMessage(creature.id)} />
             </GameText>
-            </Row>
-            <Row>
-              <GameText size="normal">
-                <FormattedMessage {...messages.defense} />: {creature.defense} (?)
+          </Row>
+          <Row>
+            <GameText size="normal">
+              <FormattedMessage {...messages.attack} />: {creature.attack} (?)
             </GameText>
-            </Row>
-            {creature.shots && this.renderShots(creature.shots)}
-            <Row>
-              <GameText size="normal">
-                <FormattedMessage {...messages.damage} />: {this.renderDamage(creature.damage)}
-              </GameText>
-            </Row>
-            <Row>
-              <GameText size="normal">
-                <FormattedMessage {...messages.hitPoints} />: {creature.hitPoints}
-              </GameText>
-            </Row>
-            <Row>
-              <GameText size="normal">
-                <FormattedMessage {...messages.speed} />: <FormattedMessage {...getSpeedMessage(creature.speed)} />
-              </GameText>
-            </Row>
-            <Row>
-              <GameText size="normal">
-                <FormattedMessage {...messages.morale} />: ?
+          </Row>
+          <Row>
+            <GameText size="normal">
+              <FormattedMessage {...messages.defense} />: {creature.defense} (?)
             </GameText>
-            </Row>
-            <Row>
-              <GameText size="normal">
-                <FormattedMessage {...messages.luck} />: ?
+          </Row>
+          {creature.shots && this.renderShots(creature.shots)}
+          <Row>
+            <GameText size="normal">
+              <FormattedMessage {...messages.damage} />: {this.renderDamage(creature.damage)}
             </GameText>
-            </Row>
-            <Row>
-              <Col
-                className="troop-window-dismiss"
-                span={12}
-              >
-                {this.props.dismissible && this.renderDismissal(this.props.dismissPromptVisible)}
-              </Col>
-              <Col
-                className="troop-window-exit"
-                span={12}
-              >
-                <GameButton
-                  group="troop-window"
-                  type="exit"
-                  onClick={this.props.onExitClick}
-                />
-              </Col>
-            </Row>
-          </Col>
-          {this.renderCount(this.props.troop.count)}
-        </Row>
-      </GameWindow>
+          </Row>
+          <Row>
+            <GameText size="normal">
+              <FormattedMessage {...messages.hitPoints} />: {creature.hitPoints}
+            </GameText>
+          </Row>
+          <Row>
+            <GameText size="normal">
+              <FormattedMessage {...messages.speed} />: <FormattedMessage {...getSpeedMessage(creature.speed)} />
+            </GameText>
+          </Row>
+          <Row>
+            <GameText size="normal">
+              <FormattedMessage {...messages.morale} />: ?
+            </GameText>
+          </Row>
+          <Row>
+            <GameText size="normal">
+              <FormattedMessage {...messages.luck} />: ?
+            </GameText>
+          </Row>
+          <Row>
+            <Col
+              className="troop-window-dismiss"
+              span={12}
+            >
+              {this.props.dismissible && this.renderDismissal(this.props.dismissPromptVisible)}
+            </Col>
+            <Col
+              className="troop-window-exit"
+              span={12}
+            >
+              <GameButton
+                group="troop-window"
+                type="exit"
+                onClick={this.props.onExitClick}
+              />
+            </Col>
+          </Row>
+        </Col>
+        {this.renderCount(this.props.troop.count)}
+      </Row>
     );
   }
 
@@ -217,3 +211,9 @@ export class TroopWindow extends React.Component<TroopWindowProps> {
     this.props.onCancelDismissClick(this.props.troop);
   }
 }
+
+const TroopWindowWrapped = withGameWindow(402)<typeof TroopWindow, TroopWindowProps>(TroopWindow);
+
+export {
+  TroopWindowWrapped as TroopWindow,
+};

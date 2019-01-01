@@ -14,7 +14,7 @@ const troopBase: Troop = {
   creature: CreatureId.Peasant,
 };
 
-storiesOf(TroopWindow.name, module)
+storiesOf("TroopWindow", module)
   .add("default", () => {
     const troop: Troop = {
       ...troopBase,
