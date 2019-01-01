@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { CongratulationsWindow } from "./CongratulationsWindow";
 
-storiesOf(CongratulationsWindow.name, module)
+storiesOf("CongratulationsWindow", module)
   .add("default", () => (
     <CongratulationsWindow
       visible={boolean("Visible", true)}

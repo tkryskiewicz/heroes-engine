@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { CampaignScenarioInfoWindow, CampaignScenarioInfoWindowProps } from "./CampaignScenarioInfoWindow";
 
-storiesOf(CampaignScenarioInfoWindow.name, module)
+storiesOf("CampaignScenarioInfoWindow", module)
   .add("default", () => {
     const scenario: CampaignScenarioInfoWindowProps["scenario"] = {
       description: text("Scenario Description", "Description"),
@@ -15,8 +15,8 @@ storiesOf(CampaignScenarioInfoWindow.name, module)
 
     return (
       <CampaignScenarioInfoWindow
-        scenario={scenario}
         visible={boolean("Visible", true)}
+        scenario={scenario}
         onOkayClick={action("Okay Click")}
         onRestartScenarioClick={action("Restart Scenario Click")}
       />

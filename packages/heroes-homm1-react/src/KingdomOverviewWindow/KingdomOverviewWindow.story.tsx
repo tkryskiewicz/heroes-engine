@@ -8,7 +8,7 @@ import { Alignment } from "heroes-homm1";
 import { alignmentOptions } from "../stories";
 import { KingdomOverviewWindow } from "./KingdomOverviewWindow";
 
-storiesOf(KingdomOverviewWindow.name, module)
+storiesOf("KingdomOverviewWindow", module)
   .add("default", () => (
     <KingdomOverviewWindow
       alignment={select("Alignment", alignmentOptions, Alignment.Red)}

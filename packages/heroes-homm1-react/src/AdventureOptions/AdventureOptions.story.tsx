@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { AdventureOptions } from "./AdventureOptions";
 
-storiesOf(AdventureOptions.name, module)
+storiesOf("AdventureOptions", module)
   .add("default", () => (
     <AdventureOptions
       visible={boolean("Visible", true)}

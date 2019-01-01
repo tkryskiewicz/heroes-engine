@@ -5,10 +5,10 @@ import * as React from "react";
 
 import { CreditsWindow } from "./CreditsWindow";
 
-storiesOf(CreditsWindow.name, module)
+storiesOf("CreditsWindow", module)
   .add("default", () => (
     <CreditsWindow
       visible={boolean("Visible", true)}
-      onExitClick={action("Exit Click")}
+      onClick={action("Click")}
     />
   ));

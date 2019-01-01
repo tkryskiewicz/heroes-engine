@@ -8,7 +8,7 @@ import { HeroClassIds, Resource, TownIds } from "heroes-homm1";
 import "./KingdomOverviewWindow.scss";
 
 import { GameButton, ResourceAmount } from "../base";
-import { GameText, GameWindow } from "../core";
+import { GameText, withGameWindow } from "../core";
 import { HeroClassOverview } from "./HeroClassOverview";
 import { messages } from "./messages";
 import { MineOverview } from "./MineOverview";
@@ -40,90 +40,84 @@ export interface KingdomOverviewWindowProps {
   mines: { [resource: string]: number };
   resources: Resources;
   goldPerDay: number;
-  visible?: boolean;
   onExitClick?: () => void;
 }
 
-export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> {
+class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> {
   public render() {
     return (
-      <GameWindow
-        width={640}
-        visible={this.props.visible}
-      >
-        <div className="kingdom-overview-window">
-          {this.renderBanner(this.props.alignment)}
-          <Row>
-            <Col span={3} />
-            <Col span={10}>
-              <GameText size="large">
-                <FormattedMessage {...messages.title} />
-              </GameText>
-            </Col>
-            <Col span={10}>
-              <GameText size="large">
-                Month 1, Week 1, Day 1
+      <div className="kingdom-overview-window">
+        {this.renderBanner(this.props.alignment)}
+        <Row>
+          <Col span={3} />
+          <Col span={10}>
+            <GameText size="large">
+              <FormattedMessage {...messages.title} />
             </GameText>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={3}>
-              <GameText size="normal">
-                <FormattedMessage {...messages.heroClassOverview} />
-              </GameText>
-            </Col>
-            {this.renderHeroClasses(this.props.heroClasses)}
-          </Row>
-          <Row>
-            <Col span={3}>
-              <GameText size="normal">
-                <FormattedMessage {...messages.castleOverview} />
-              </GameText>
-            </Col>
-            {this.renderCastles(this.props.castles)}
-          </Row>
-          <Row>
-            <Col span={3}>
-              <GameText size="normal">
-                <FormattedMessage {...messages.townOverview} />
-              </GameText>
-            </Col>
-            {this.renderTowns(this.props.towns)}
-          </Row>
-          <Row>
-            <Col span={3}>
-              <GameText size="normal">
-                <FormattedMessage {...messages.mineOverview} />
-              </GameText>
-            </Col>
-            {this.renderMines(this.props.mines)}
-          </Row>
-          <Row>
-            <Col span={3}>
-              <GameText size="normal">
-                <FormattedMessage {...messages.resourceOverview} />
-              </GameText>
-            </Col>
-            {this.renderResources(this.props.resources)}
-          </Row>
-          <Row>
-            <Col span={3} />
-            <Col span={16}>
-              {this.renderGoldPerDay(this.props.goldPerDay)}
-            </Col>
-            <Col
-              className="kingdom-overview-window-exit"
-              span={4}
-            >
-              <GameButton
-                group="kingdom-overview-window"
-                type="exit"
-                onClick={this.props.onExitClick}
-              />
-            </Col>
-          </Row>
-        </div>
-      </GameWindow>
+          </Col>
+          <Col span={10}>
+            <GameText size="large">
+              Month 1, Week 1, Day 1
+            </GameText>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={3}>
+            <GameText size="normal">
+              <FormattedMessage {...messages.heroClassOverview} />
+            </GameText>
+          </Col>
+          {this.renderHeroClasses(this.props.heroClasses)}
+        </Row>
+        <Row>
+          <Col span={3}>
+            <GameText size="normal">
+              <FormattedMessage {...messages.castleOverview} />
+            </GameText>
+          </Col>
+          {this.renderCastles(this.props.castles)}
+        </Row>
+        <Row>
+          <Col span={3}>
+            <GameText size="normal">
+              <FormattedMessage {...messages.townOverview} />
+            </GameText>
+          </Col>
+          {this.renderTowns(this.props.towns)}
+        </Row>
+        <Row>
+          <Col span={3}>
+            <GameText size="normal">
+              <FormattedMessage {...messages.mineOverview} />
+            </GameText>
+          </Col>
+          {this.renderMines(this.props.mines)}
+        </Row>
+        <Row>
+          <Col span={3}>
+            <GameText size="normal">
+              <FormattedMessage {...messages.resourceOverview} />
+            </GameText>
+          </Col>
+          {this.renderResources(this.props.resources)}
+        </Row>
+        <Row>
+          <Col span={3} />
+          <Col span={16}>
+            {this.renderGoldPerDay(this.props.goldPerDay)}
+          </Col>
+          <Col
+            className="kingdom-overview-window-exit"
+            span={4}
+          >
+            <GameButton
+              group="kingdom-overview-window"
+              type="exit"
+              onClick={this.props.onExitClick}
+            />
+          </Col>
+        </Row>
+      </div>
     );
   }
 
@@ -220,3 +214,9 @@ export class KingdomOverviewWindow extends React.Component<KingdomOverviewWindow
     );
   }
 }
+
+const KingdomOverviewWindowWrapped = withGameWindow(640)(KingdomOverviewWindow);
+
+export {
+  KingdomOverviewWindowWrapped as KingdomOverviewWindow,
+};

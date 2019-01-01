@@ -8,7 +8,7 @@ import { commonStructures, constructStructure, farmStructures, TownId } from "he
 
 import { StructuresWindow } from "./StructuresWindow";
 
-storiesOf(`TownWindow/${StructuresWindow.name}`, module)
+storiesOf("TownWindow/StructuresWindow", module)
   .add("default", () => (
     <StructuresWindow
       town={TownId.Farm}

@@ -10,11 +10,11 @@ const typeOptions: { [s: string]: ViewWindowProps["type"] } = {
   World: "world",
 };
 
-storiesOf(ViewWindow.name, module)
+storiesOf("ViewWindow", module)
   .add("default", () => (
     <ViewWindow
-      type={select("Type", typeOptions, "world")}
       visible={boolean("Visible", true)}
+      type={select("Type", typeOptions, "world")}
       onExitClick={action("Exit Click")}
     >
       {text("Content", "Content")}

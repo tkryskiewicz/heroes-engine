@@ -2,25 +2,25 @@ import * as React from "react";
 
 import "./CreditsWindow.scss";
 
-import { GameWindow } from "../core";
+import { withGameWindow } from "../core";
 
 export interface CreditsWindowProps {
-  visible?: boolean;
-  onExitClick?: () => void;
+  onClick?: () => void;
 }
 
-export class CreditsWindow extends React.Component<CreditsWindowProps> {
+class CreditsWindow extends React.Component<CreditsWindowProps> {
   public render() {
     return (
-      <GameWindow
-        width={640}
-        visible={this.props.visible}
-      >
-        <div
-          className="credits-window"
-          onClick={this.props.onExitClick}
-        />
-      </GameWindow>
+      <div
+        className="credits-window"
+        onClick={this.props.onClick}
+      />
     );
   }
 }
+
+const CreditsWindowWrapped = withGameWindow(640)(CreditsWindow);
+
+export {
+  CreditsWindowWrapped as CreditsWindow,
+};
