@@ -5,10 +5,9 @@ import * as React from "react";
 import { TerrainType } from "heroes-homm1";
 
 import { terrainTypeOptions } from "../../stories";
-import { CombatWindow } from "../CombatWindow";
 import { CombatCell } from "./CombatCell";
 
-storiesOf(`${CombatWindow.name}/${CombatCell.name}`, module)
+storiesOf(`CombatWindow/${CombatCell.name}`, module)
   .add("default", () => (
     <CombatCell
       index={number("Index", 0, { range: true, min: 0, max: 50, step: 1 })}

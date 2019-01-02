@@ -6,10 +6,9 @@ import * as React from "react";
 import { Alignment } from "heroes-homm1";
 
 import { alignmentOptions } from "../../stories";
-import { NewGameWindow } from "../NewGameWindow";
 import { AlignmentBox } from "./AlignmentBox";
 
-storiesOf(`${NewGameWindow.name}/${AlignmentBox.name}`, module)
+storiesOf(`NewGameWindow/${AlignmentBox.name}`, module)
   .add("default", () => (
     <AlignmentBox
       value={select("Value", alignmentOptions, Alignment.Red)}

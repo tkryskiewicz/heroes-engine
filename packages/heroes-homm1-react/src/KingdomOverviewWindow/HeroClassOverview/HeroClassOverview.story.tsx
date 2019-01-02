@@ -5,10 +5,9 @@ import * as React from "react";
 import { HeroClass, HeroLimit } from "heroes-homm1";
 
 import { heroClassOptions } from "../../stories";
-import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
 import { HeroClassOverview } from "./HeroClassOverview";
 
-storiesOf(`${KingdomOverviewWindow.name}/${HeroClassOverview.name}`, module)
+storiesOf(`KingdomOverviewWindow/${HeroClassOverview.name}`, module)
   .add("default", () => (
     <HeroClassOverview
       heroClass={select("Hero Class", heroClassOptions, HeroClass.Knight)}

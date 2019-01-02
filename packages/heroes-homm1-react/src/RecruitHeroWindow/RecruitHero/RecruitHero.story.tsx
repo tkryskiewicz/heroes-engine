@@ -6,10 +6,9 @@ import * as React from "react";
 import { HeroClass, HeroId } from "heroes-homm1";
 
 import { heroClassOptions, heroOptions } from "../../stories";
-import { RecruitHeroWindow } from "../RecruitHeroWindow";
 import { RecruitHero } from "./RecruitHero";
 
-storiesOf(`${RecruitHeroWindow.name}/${RecruitHero.name}`, module)
+storiesOf(`RecruitHeroWindow/${RecruitHero.name}`, module)
   .add("default", () => (
     <RecruitHero
       heroId={select("Hero", heroOptions, HeroId.LordKilburn)}
