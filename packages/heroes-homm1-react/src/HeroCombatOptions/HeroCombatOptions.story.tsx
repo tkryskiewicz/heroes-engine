@@ -32,7 +32,7 @@ storiesOf("HeroCombatOptions", module)
         onRetreatClick={action("Retreat Click")}
         canSurrender={boolean("Can Surrender", true)}
         onSurrenderClick={action("Surrender Click")}
-        onExitClick={action("Exit Click")}
+        onCancelClick={action("Cancel Click")}
       />
     );
   });

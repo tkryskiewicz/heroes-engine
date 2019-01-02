@@ -33,19 +33,19 @@ export interface HeroCombatOptionsProps {
   onRetreatClick: () => void;
   canSurrender: boolean;
   onSurrenderClick: () => void;
-  onExitClick: () => void;
+  onCancelClick: () => void;
 }
 
 type DefaultProp =
   "onCastSpellClick" |
   "onRetreatClick" |
   "onSurrenderClick" |
-  "onExitClick";
+  "onCancelClick";
 
 class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & InjectedIntlProps> {
   public static defaultProps: Pick<HeroCombatOptionsProps, DefaultProp> = {
+    onCancelClick: () => undefined,
     onCastSpellClick: () => undefined,
-    onExitClick: () => undefined,
     onRetreatClick: () => undefined,
     onSurrenderClick: () => undefined,
   };
@@ -94,11 +94,11 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
               onClick={this.props.onSurrenderClick}
             />
           </div>
-          <div className="hero-combat-options-exit">
+          <div className="hero-combat-options-cancel">
             <GameButton
               group="hero-combat-options"
-              type="exit"
-              onClick={this.props.onExitClick}
+              type="cancel"
+              onClick={this.props.onCancelClick}
             />
           </div>
         </div>

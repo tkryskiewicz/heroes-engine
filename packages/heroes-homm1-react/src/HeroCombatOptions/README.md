@@ -1,1 +1,6 @@
 # Hero's Combat Options
+
+* **Cast Spell/Spells** - ???
+* **Surrender** - ???
+* **Retreat** - ???
+* **Cancel** - ???

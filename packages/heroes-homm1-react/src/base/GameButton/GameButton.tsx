@@ -140,7 +140,7 @@ interface CombatBarButtonProps extends GameButtonPropsBase {
 
 interface HeroCombatOptionsButtonProps extends GameButtonPropsBase {
   group: "hero-combat-options";
-  type: "cast-spell" | "retreat" | "surrender" | "exit";
+  type: "cast-spell" | "retreat" | "surrender" | "cancel";
 }
 
 type GameButtonProps =

@@ -146,7 +146,7 @@ class CombatWindow extends React.Component<CombatWindowProps> {
         canCastSpell={true}
         canSurrender={true}
         visible={true}
-        onExitClick={this.onCloseHeroCombatOptionsClick}
+        onCancelClick={this.onCloseHeroCombatOptionsClick}
       />
     );
   }
