@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { GameButton, Menu } from "../base";
 
-export interface MultiPlayerMenuProps {
+export interface MultiPlayerGameMenuProps {
   onHotSeatClick: () => void;
   onDirectConnectClick: () => void;
   onModemClick: () => void;
@@ -17,8 +17,8 @@ type DefaultProp =
   "onNetworkClick" |
   "onCancelClick";
 
-export class MultiPlayerMenu extends React.Component<MultiPlayerMenuProps> {
-  public static defaultProps: Pick<MultiPlayerMenuProps, DefaultProp> = {
+export class MultiPlayerGameMenu extends React.Component<MultiPlayerGameMenuProps> {
+  public static defaultProps: Pick<MultiPlayerGameMenuProps, DefaultProp> = {
     onCancelClick: () => undefined,
     onDirectConnectClick: () => undefined,
     onHotSeatClick: () => undefined,

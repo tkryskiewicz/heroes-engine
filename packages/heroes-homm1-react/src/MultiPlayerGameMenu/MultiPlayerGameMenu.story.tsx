@@ -2,11 +2,11 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { MultiPlayerMenu } from "./MultiPlayerMenu";
+import { MultiPlayerGameMenu } from "./MultiPlayerGameMenu";
 
-storiesOf(MultiPlayerMenu.name, module)
+storiesOf(MultiPlayerGameMenu.name, module)
   .add("default", () => (
-    <MultiPlayerMenu
+    <MultiPlayerGameMenu
       onHotSeatClick={action("Hot Seat Click")}
       onDirectConnectClick={action("Direct Connect Click")}
       onModemClick={action("Modem Click")}

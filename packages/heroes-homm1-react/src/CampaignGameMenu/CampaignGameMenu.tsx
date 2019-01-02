@@ -5,13 +5,13 @@ import { CampaignIds } from "heroes-homm1";
 
 import { GameButton, Menu } from "../base";
 
-export interface CampaignMenuProps {
+export interface CampaignGameMenuProps {
   onPlayClick: (campaign: string) => void;
   onCancelClick: () => void;
 }
 
-export class CampaignMenu extends React.Component<CampaignMenuProps> {
-  public static defaultProps: Pick<CampaignMenuProps, "onPlayClick" | "onCancelClick"> = {
+export class CampaignGameMenu extends React.Component<CampaignGameMenuProps> {
+  public static defaultProps: Pick<CampaignGameMenuProps, "onPlayClick" | "onCancelClick"> = {
     onCancelClick: () => undefined,
     onPlayClick: () => undefined,
   };

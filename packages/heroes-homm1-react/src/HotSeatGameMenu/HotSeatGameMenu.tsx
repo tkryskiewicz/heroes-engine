@@ -2,12 +2,12 @@ import * as React from "react";
 
 import { GameButton, Menu } from "../base";
 
-export interface HotSeatMenuProps {
+export interface HotSeatGameMenuProps {
   onOptionClick: (value: number) => void;
   onCancelClick: () => void;
 }
 
-export class HotSeatMenu extends React.Component<HotSeatMenuProps> {
+export class HotSeatGameMenu extends React.Component<HotSeatGameMenuProps> {
   public render() {
     return (
       <Menu>
