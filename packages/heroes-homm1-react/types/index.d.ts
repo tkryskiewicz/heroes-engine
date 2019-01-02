@@ -1,9 +1,11 @@
 declare module "*.jpg" {
-  const content: any;
+  const content: string;
+
   export = content;
 }
 
 declare module "*.png" {
-  const content: any;
+  const content: string;
+
   export = content;
 }
