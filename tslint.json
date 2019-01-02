@@ -15,8 +15,7 @@
     ],
     "no-submodule-imports": [
       true,
-      "antd",
-      "@storybook"
+      "antd"
     ],
     "variable-name": [
       true,

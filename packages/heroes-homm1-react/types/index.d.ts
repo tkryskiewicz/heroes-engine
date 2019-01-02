@@ -9,3 +9,9 @@ declare module "*.png" {
 
   export = content;
 }
+
+declare module "*.md" {
+  const content: string;
+
+  export = content;
+}
