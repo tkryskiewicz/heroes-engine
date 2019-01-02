@@ -267,10 +267,6 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
   }
 }
 
-const TownWindowWrapped:
-  React.ComponentType<JSX.LibraryManagedAttributes<typeof TownWindow, TownWindowProps>> =
-  injectIntl(TownWindow) as any;
+const TownWindowWrapped = injectIntl<typeof TownWindow, TownWindowProps & InjectedIntlProps>(TownWindow);
 
-export {
-  TownWindowWrapped as TownWindow,
-};
+export { TownWindowWrapped as TownWindow };
