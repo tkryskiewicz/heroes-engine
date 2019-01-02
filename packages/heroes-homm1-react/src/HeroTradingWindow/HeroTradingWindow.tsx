@@ -154,7 +154,6 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
   }
 }
 
-const HeroTradingWindowWrapped =
-  injectIntl<typeof HeroTradingWindow, HeroTradingWindowProps & InjectedIntlProps>(HeroTradingWindow);
+const HeroTradingWindowWrapped = injectIntl<typeof HeroTradingWindow, HeroTradingWindowProps>(HeroTradingWindow);
 
 export { HeroTradingWindowWrapped as HeroTradingWindow };

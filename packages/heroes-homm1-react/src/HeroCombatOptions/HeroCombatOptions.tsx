@@ -142,7 +142,6 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
   }
 }
 
-const HeroCombatOptionsWrapped =
-  injectIntl<typeof HeroCombatOptions, HeroCombatOptionsProps & InjectedIntlProps>(HeroCombatOptions);
+const HeroCombatOptionsWrapped = injectIntl<typeof HeroCombatOptions, HeroCombatOptionsProps>(HeroCombatOptions);
 
 export { HeroCombatOptionsWrapped as HeroCombatOptions };
