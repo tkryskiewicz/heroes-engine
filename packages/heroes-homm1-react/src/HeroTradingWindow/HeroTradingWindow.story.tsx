@@ -2,9 +2,12 @@ import { action } from "@storybook/addon-actions";
 import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
+import { withReadme } from "storybook-readme";
 
 import { Hero } from "heroes-core";
 import { Alignment, CreatureId, HeroClass, HeroId } from "heroes-homm1";
+
+import Readme = require("./README.md");
 
 import { HeroTradingWindow } from "./HeroTradingWindow";
 
@@ -40,6 +43,7 @@ const otherHero: Hero = {
 };
 
 storiesOf("HeroTradingWindow", module)
+  .addDecorator(withReadme(Readme))
   .add("default", () => (
     <HeroTradingWindow
       visible={boolean("Visible", true)}

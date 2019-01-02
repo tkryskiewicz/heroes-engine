@@ -2,9 +2,12 @@ import { action } from "@storybook/addon-actions";
 import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
+import { withReadme } from "storybook-readme";
 
 import { Hero } from "heroes-core";
 import { Alignment, HeroClass, HeroId, MaxMobility } from "heroes-homm1";
+
+import Readme = require("./README.md");
 
 import { AdventureButtons } from "./AdventureButtons";
 
@@ -48,6 +51,7 @@ const heroes: Hero[] = [
 ];
 
 storiesOf(AdventureButtons.name, module)
+  .addDecorator(withReadme(Readme))
   .add("default", () => {
     const selectHero = boolean("Select Hero", false);
     const selectedIndex = selectHero ?

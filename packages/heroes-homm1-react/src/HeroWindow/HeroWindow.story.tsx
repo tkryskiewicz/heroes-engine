@@ -2,9 +2,12 @@ import { action } from "@storybook/addon-actions";
 import { boolean, number, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
+import { withReadme } from "storybook-readme";
 
 import { Hero } from "heroes-core";
 import { Alignment, ArmySize, ArtifactId, ArtifactLimit, CreatureId, HeroClass, HeroId, Skill } from "heroes-homm1";
+
+import Readme = require("./README.md");
 
 import { alignmentOptions, artifactOptions, heroClassOptions, heroOptions, skillOptions } from "../stories";
 import { HeroWindow } from "./HeroWindow";
@@ -42,6 +45,7 @@ const heroBase: Hero = {
 };
 
 storiesOf("HeroWindow", module)
+  .addDecorator(withReadme(Readme))
   .add("default", () => {
     const hero: Hero = {
       ...heroBase,

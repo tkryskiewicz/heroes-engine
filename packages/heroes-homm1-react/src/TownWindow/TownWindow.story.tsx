@@ -2,14 +2,18 @@ import { action } from "@storybook/addon-actions";
 import { boolean, number, select, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
+import { withReadme } from "storybook-readme";
 
 import { Town } from "heroes-core";
 import { Alignment, ArmySize, HeroClass, TownId } from "heroes-homm1";
+
+import Readme = require("./README.md");
 
 import { alignmentOptions, heroClassOptions, townOptions } from "../stories";
 import { TownWindow } from "./TownWindow";
 
 storiesOf("TownWindow", module)
+  .addDecorator(withReadme(Readme))
   .add("default", () => {
     const town: Town = {
       alignment: select("Alignment", alignmentOptions, Alignment.Red),

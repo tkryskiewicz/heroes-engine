@@ -1,0 +1,6 @@
+# Adventure Options
+
+* **View World** - ???
+* **View Puzzle** - ???
+* **Cast Spell** - ???
+* **Dig/Search** - ???

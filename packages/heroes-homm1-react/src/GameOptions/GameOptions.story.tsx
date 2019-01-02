@@ -2,13 +2,17 @@ import { action } from "@storybook/addon-actions";
 import { boolean, number, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
+import { withReadme } from "storybook-readme";
 
 import { MovementSpeed, SoundVolume } from "heroes-homm1";
+
+import Readme = require("./README.md");
 
 import { movementSpeedOptions } from "../stories";
 import { GameOptions } from "./GameOptions";
 
 storiesOf("GameOptions", module)
+  .addDecorator(withReadme(Readme))
   .add("default", () => {
     const musicVolume = number("Music Volume", SoundVolume.On, {
       max: SoundVolume.On,
