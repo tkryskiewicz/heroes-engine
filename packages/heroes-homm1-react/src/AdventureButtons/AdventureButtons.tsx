@@ -5,7 +5,9 @@ import { canSelectNextHero, getNextHeroIndex, Hero } from "heroes-core";
 
 import "./AdventureButtons.scss";
 
-import { GameButton } from "../base";
+import { buttonImages } from "./assets";
+
+import { ImageButton } from "../base";
 
 export interface AdventureButtonsProps {
   heroes: Hero[];
@@ -43,47 +45,41 @@ export class AdventureButtons extends React.Component<AdventureButtonsProps> {
       <div className="adventure-buttons">
         <Row>
           <Col span={8}>
-            <GameButton
-              group="adventure"
-              type="next-hero"
+            <ImageButton
+              images={buttonImages.nextHero}
               disabled={!nextHeroEnabled}
               onClick={this.onNextHeroClick}
             />
           </Col>
           <Col span={8}>
-            <GameButton
-              group="adventure"
-              type="move"
+            <ImageButton
+              images={buttonImages.move}
               onClick={this.props.onMoveClick}
             />
           </Col>
           <Col span={8}>
-            <GameButton
-              group="adventure"
-              type="kingdom-overview"
+            <ImageButton
+              images={buttonImages.kingdomOverview}
               onClick={this.props.onKingdomOverviewClick}
             />
           </Col>
         </Row>
         <Row>
           <Col span={8}>
-            <GameButton
-              group="adventure"
-              type="end-turn"
+            <ImageButton
+              images={buttonImages.endTurn}
               onClick={this.props.onEndTurnClick}
             />
           </Col>
           <Col span={8}>
-            <GameButton
-              group="adventure"
-              type="adventure-options"
+            <ImageButton
+              images={buttonImages.adventureOptions}
               onClick={this.props.onAdventureOptionsClick}
             />
           </Col>
           <Col span={8}>
-            <GameButton
-              group="adventure"
-              type="game-options"
+            <ImageButton
+              images={buttonImages.gameOptions}
               onClick={this.props.onGameOptionsClick}
             />
           </Col>

@@ -13,11 +13,6 @@ export interface GameButtonPropsBase {
   onClick: () => void;
 }
 
-interface AdventureButtonProps extends GameButtonPropsBase {
-  group: "adventure";
-  type: "adventure-options" | "end-turn" | "game-options" | "kingdom-overview" | "move" | "next-hero";
-}
-
 interface AdventureOptionsButtonProps extends GameButtonPropsBase {
   group: "adventure-options";
   type: "cast-spell" | "dig" | "okay" | "view-puzzle" | "view-world";
@@ -144,7 +139,6 @@ interface HeroCombatOptionsButtonProps extends GameButtonPropsBase {
 }
 
 type GameButtonProps =
-  AdventureButtonProps |
   AdventureOptionsButtonProps |
   CampaignMenuButtonProps |
   CampaignScenarioInfoWindowButtonProps |
