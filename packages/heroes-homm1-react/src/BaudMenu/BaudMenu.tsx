@@ -1,6 +1,8 @@
 import * as React from "react";
 
-import { GameButton, Menu } from "../base";
+import { buttonImages } from "./assets";
+
+import { ImageButton, Menu } from "../base";
 
 export interface BaudMenuProps {
   onOptionClick: (value: number) => void;
@@ -17,37 +19,32 @@ export class BaudMenu extends React.Component<BaudMenuProps> {
     return (
       <Menu>
         <div>
-          <GameButton
-            group="baud-menu"
-            type="2400-baud"
+          <ImageButton
+            images={buttonImages["2400-baud"]}
             onClick={this.on2400BaudClick}
           />
         </div>
         <div>
-          <GameButton
-            group="baud-menu"
-            type="9600-baud"
+          <ImageButton
+            images={buttonImages["9600-baud"]}
             onClick={this.on9600BaudClick}
           />
         </div>
         <div>
-          <GameButton
-            group="baud-menu"
-            type="19200-baud"
+          <ImageButton
+            images={buttonImages["19200-baud"]}
             onClick={this.on19200BaudClick}
           />
         </div>
         <div>
-          <GameButton
-            group="baud-menu"
-            type="38400-baud"
+          <ImageButton
+            images={buttonImages["38400-baud"]}
             onClick={this.on38400BaudClick}
           />
         </div>
         <div>
-          <GameButton
-            group="baud-menu"
-            type="cancel"
+          <ImageButton
+            images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />
         </div>
@@ -64,7 +61,7 @@ export class BaudMenu extends React.Component<BaudMenuProps> {
   }
 
   private on19200BaudClick = () => {
-    this.props.onOptionClick(18200);
+    this.props.onOptionClick(19200);
   }
 
   private on38400BaudClick = () => {
