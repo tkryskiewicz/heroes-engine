@@ -1,6 +1,8 @@
 import * as React from "react";
 
-import { GameButton, Menu } from "../base";
+import { buttonImages } from "./assets";
+
+import { ImageButton, Menu } from "../base";
 
 export interface ComMenuProps {
   onOptionClick: (value: number) => void;
@@ -12,37 +14,32 @@ export class ComMenu extends React.Component<ComMenuProps> {
     return (
       <Menu>
         <div>
-          <GameButton
-            group="com-menu"
-            type="com-1"
+          <ImageButton
+            images={buttonImages.com1}
             onClick={this.onCom1Click}
           />
         </div>
         <div>
-          <GameButton
-            group="com-menu"
-            type="com-2"
+          <ImageButton
+            images={buttonImages.com2}
             onClick={this.onCom2Click}
           />
         </div>
         <div>
-          <GameButton
-            group="com-menu"
-            type="com-3"
+          <ImageButton
+            images={buttonImages.com3}
             onClick={this.onCom3Click}
           />
         </div>
         <div>
-          <GameButton
-            group="com-menu"
-            type="com-4"
+          <ImageButton
+            images={buttonImages.com4}
             onClick={this.onCom4Click}
           />
         </div>
         <div>
-          <GameButton
-            group="com-menu"
-            type="cancel"
+          <ImageButton
+            images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />
         </div>

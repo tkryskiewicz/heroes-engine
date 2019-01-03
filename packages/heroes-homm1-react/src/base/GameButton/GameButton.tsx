@@ -78,11 +78,6 @@ interface HotSeatMenuButtonProps extends GameButtonPropsBase {
   type: "2-players" | "3-players" | "4-players" | "cancel";
 }
 
-interface ComMenuButtonProps extends GameButtonPropsBase {
-  group: "com-menu";
-  type: "com-1" | "com-2" | "com-3" | "com-4" | "cancel";
-}
-
 interface NewGameWindowButtonProps extends GameButtonPropsBase {
   group: "new-game-window";
   type: "cancel" | "okay";
@@ -137,7 +132,6 @@ type GameButtonProps =
   NewGameMenuButtonProps |
   MultiPlayerMenuButtonProps |
   HotSeatMenuButtonProps |
-  ComMenuButtonProps |
   NewGameWindowButtonProps |
   RecruitHeroWindowButtonProps |
   RecruitTroopWindowButtonProps |
