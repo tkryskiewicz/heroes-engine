@@ -3,7 +3,8 @@ import * as React from "react";
 
 import { CampaignIds } from "heroes-homm1";
 
-import { GameButton, Menu } from "../base";
+import { ImageButton, Menu } from "../base";
+import { buttonImages } from "./assets";
 
 export interface CampaignGameMenuProps {
   onPlayClick: (campaign: string) => void;
@@ -21,9 +22,8 @@ export class CampaignGameMenu extends React.Component<CampaignGameMenuProps> {
       <Menu>
         {CampaignIds.map((campaign) => this.renderPlayButton(campaign))}
         <Row>
-          <GameButton
-            group="campaign-menu"
-            type="cancel"
+          <ImageButton
+            images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />
         </Row>
@@ -36,9 +36,8 @@ export class CampaignGameMenu extends React.Component<CampaignGameMenuProps> {
 
     return (
       <Row key={campaign}>
-        <GameButton
-          group="campaign-menu"
-          type={`play-${campaign}` as any}
+        <ImageButton
+          images={buttonImages[`play-${campaign}`]}
           onClick={onClick}
         />
       </Row>

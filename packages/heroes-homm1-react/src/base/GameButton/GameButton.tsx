@@ -13,11 +13,6 @@ export interface GameButtonPropsBase {
   onClick: () => void;
 }
 
-interface CampaignMenuButtonProps extends GameButtonPropsBase {
-  group: "campaign-menu";
-  type: "cancel" | "play-lord-alamar" | "play-lord-ironfist" | "play-lord-slayer" | "play-queen-lamanda";
-}
-
 interface CampaignScenarioInfoWindowButtonProps extends GameButtonPropsBase {
   group: "campaign-scenario-info-window";
   type: "okay" | "restart-scenario";
@@ -129,7 +124,6 @@ interface HeroCombatOptionsButtonProps extends GameButtonPropsBase {
 }
 
 type GameButtonProps =
-  CampaignMenuButtonProps |
   CampaignScenarioInfoWindowButtonProps |
   CombatLostWindowButtonProps |
   CombatWonWindowButtonProps |
