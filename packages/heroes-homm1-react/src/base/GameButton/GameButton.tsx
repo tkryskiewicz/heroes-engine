@@ -13,11 +13,6 @@ export interface GameButtonPropsBase {
   onClick: () => void;
 }
 
-interface AdventureOptionsButtonProps extends GameButtonPropsBase {
-  group: "adventure-options";
-  type: "cast-spell" | "dig" | "okay" | "view-puzzle" | "view-world";
-}
-
 interface CampaignMenuButtonProps extends GameButtonPropsBase {
   group: "campaign-menu";
   type: "cancel" | "play-lord-alamar" | "play-lord-ironfist" | "play-lord-slayer" | "play-queen-lamanda";
@@ -139,7 +134,6 @@ interface HeroCombatOptionsButtonProps extends GameButtonPropsBase {
 }
 
 type GameButtonProps =
-  AdventureOptionsButtonProps |
   CampaignMenuButtonProps |
   CampaignScenarioInfoWindowButtonProps |
   CombatLostWindowButtonProps |

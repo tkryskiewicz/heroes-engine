@@ -2,7 +2,9 @@ import * as React from "react";
 
 import "./AdventureOptions.scss";
 
-import { GameButton } from "../base";
+import { buttonImages } from "./assets";
+
+import { ImageButton } from "../base";
 import { withGameWindow } from "../core";
 
 export interface AdventureOptionsProps {
@@ -18,37 +20,32 @@ class AdventureOptions extends React.Component<AdventureOptionsProps> {
     return (
       <div className="adventure-options">
         <div className="adventure-options-view-world">
-          <GameButton
-            group="adventure-options"
-            type="view-world"
+          <ImageButton
+            images={buttonImages.viewWorld}
             onClick={this.props.onViewWorldClick}
           />
         </div>
         <div className="adventure-options-view-puzzle">
-          <GameButton
-            group="adventure-options"
-            type="view-puzzle"
+          <ImageButton
+            images={buttonImages.viewPuzzle}
             onClick={this.props.onViewPuzzleClick}
           />
         </div>
         <div className="adventure-options-cast-spell">
-          <GameButton
-            group="adventure-options"
-            type="cast-spell"
+          <ImageButton
+            images={buttonImages.castSpell}
             onClick={this.props.onCastSpellClick}
           />
         </div>
         <div className="adventure-options-dig">
-          <GameButton
-            group="adventure-options"
-            type="dig"
+          <ImageButton
+            images={buttonImages.dig}
             onClick={this.props.onDigClick}
           />
         </div>
         <div className="adventure-options-okay">
-          <GameButton
-            group="adventure-options"
-            type="okay"
+          <ImageButton
+            images={buttonImages.okay}
             onClick={this.props.onOkayClick}
           />
         </div>
