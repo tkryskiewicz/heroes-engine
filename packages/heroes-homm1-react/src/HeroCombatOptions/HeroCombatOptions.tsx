@@ -6,7 +6,9 @@ import { SkillIds } from "heroes-homm1";
 
 import "./HeroCombatOptions.scss";
 
-import { GameButton, HeroPortrait } from "../base";
+import { buttonImages } from "./assets";
+
+import { HeroPortrait, ImageButton } from "../base";
 import { GameParagraph, GameText, GameWindow } from "../core";
 import {
   getHeroClassTitleMessage,
@@ -71,33 +73,29 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
           </div>
           {this.renderCharacteristics(hero.alignment, hero.skills, hero.morale, hero.luck)}
           <div className="hero-combat-options-cast-spell">
-            <GameButton
-              group="hero-combat-options"
-              type="cast-spell"
+            <ImageButton
+              images={buttonImages.castSpell}
               disabled={!this.props.canCastSpell}
               onClick={this.props.onCastSpellClick}
             />
           </div>
           <div className="hero-combat-options-retreat">
-            <GameButton
-              group="hero-combat-options"
-              type="retreat"
+            <ImageButton
+              images={buttonImages.retreat}
               disabled={false}
               onClick={this.props.onRetreatClick}
             />
           </div>
           <div className="hero-combat-options-surrender">
-            <GameButton
-              group="hero-combat-options"
-              type="surrender"
+            <ImageButton
+              images={buttonImages.surrender}
               disabled={!this.props.canSurrender}
               onClick={this.props.onSurrenderClick}
             />
           </div>
           <div className="hero-combat-options-cancel">
-            <GameButton
-              group="hero-combat-options"
-              type="cancel"
+            <ImageButton
+              images={buttonImages.cancel}
               onClick={this.props.onCancelClick}
             />
           </div>

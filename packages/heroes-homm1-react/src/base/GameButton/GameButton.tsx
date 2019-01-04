@@ -93,11 +93,6 @@ interface CombatBarButtonProps extends GameButtonPropsBase {
   type: "auto" | "skip";
 }
 
-interface HeroCombatOptionsButtonProps extends GameButtonPropsBase {
-  group: "hero-combat-options";
-  type: "cast-spell" | "retreat" | "surrender" | "cancel";
-}
-
 type GameButtonProps =
   CampaignScenarioInfoWindowButtonProps |
   CombatLostWindowButtonProps |
@@ -114,8 +109,7 @@ type GameButtonProps =
   SystemButtonProps |
   TownWindowButtonProps |
   TroopWindowButtonProps |
-  CombatBarButtonProps |
-  HeroCombatOptionsButtonProps;
+  CombatBarButtonProps;
 
 interface GameButtonState {
   pressed: boolean;
