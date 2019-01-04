@@ -3,9 +3,9 @@ import * as React from "react";
 
 import "./ViewWindow.scss";
 
-import { legendImages } from "./assets";
+import { buttonImages, legendImages } from "./assets";
 
-import { GameButton } from "../base";
+import { ImageButton } from "../base";
 import { withGameWindow } from "../core";
 
 export interface ViewWindowProps {
@@ -36,9 +36,8 @@ class ViewWindow extends React.Component<ViewWindowProps> {
           src={legendImages[type]}
         />
         <div className="view-window-exit">
-          <GameButton
-            group="legend"
-            type="exit"
+          <ImageButton
+            images={buttonImages.exit}
             onClick={this.props.onExitClick}
           />
         </div>

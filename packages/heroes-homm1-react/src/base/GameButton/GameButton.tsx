@@ -13,18 +13,12 @@ export interface GameButtonPropsBase {
   onClick: () => void;
 }
 
-interface LegendButtonProps extends GameButtonPropsBase {
-  group: "legend";
-  type: "exit";
-}
-
 interface SystemButtonProps extends GameButtonPropsBase {
   group: "system";
   type: "cancel" | "no" | "okay" | "yes";
 }
 
 type GameButtonProps =
-  LegendButtonProps |
   SystemButtonProps;
 
 interface GameButtonState {
