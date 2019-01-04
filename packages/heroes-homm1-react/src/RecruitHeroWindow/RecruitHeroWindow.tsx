@@ -62,6 +62,7 @@ export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {
     return (
       <Col
         className="recruit-hero-window-hero"
+        key={hero.id}
         span={12}
       >
         <RecruitHero

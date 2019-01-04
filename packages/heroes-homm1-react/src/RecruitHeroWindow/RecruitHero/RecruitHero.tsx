@@ -6,7 +6,9 @@ import { HeroClass } from "heroes-homm1";
 
 import "./RecruitHero.scss";
 
-import { Frame, GameButton, HeroPortrait } from "../../base";
+import { buttonImages } from "./assets";
+
+import { Frame, HeroPortrait, ImageButton } from "../../base";
 import { GameText } from "../../core";
 import { getHeroClassNameMessage } from "../../messages";
 
@@ -42,9 +44,8 @@ export class RecruitHero extends React.Component<RecruitHeroProps> {
           </GameText>
         </Row>
         <Row>
-          <GameButton
-            group="recruit-hero-window"
-            type="recruit"
+          <ImageButton
+            images={buttonImages.recruit}
             disabled={this.props.disabled}
             onClick={this.onRecruitClick}
           />

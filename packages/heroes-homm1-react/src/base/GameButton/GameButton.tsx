@@ -53,11 +53,6 @@ interface NewGameWindowButtonProps extends GameButtonPropsBase {
   type: "cancel" | "okay";
 }
 
-interface RecruitHeroWindowButtonProps extends GameButtonPropsBase {
-  group: "recruit-hero-window";
-  type: "recruit";
-}
-
 interface RecruitTroopWindowButtonProps extends GameButtonPropsBase {
   group: "recruit-troop-window";
   type: "cancel" | "max" | "okay";
@@ -92,7 +87,6 @@ type GameButtonProps =
   HighScoresWindowButtonProps |
   LegendButtonProps |
   NewGameWindowButtonProps |
-  RecruitHeroWindowButtonProps |
   RecruitTroopWindowButtonProps |
   SystemButtonProps |
   TownWindowButtonProps |
