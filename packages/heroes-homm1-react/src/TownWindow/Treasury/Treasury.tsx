@@ -5,7 +5,9 @@ import { Resource } from "heroes-homm1";
 
 import "./Treasury.scss";
 
-import { GameButton, ResourceAmount } from "../../base";
+import { buttonImages } from "./assets";
+
+import { ImageButton, ResourceAmount } from "../../base";
 
 export interface TreasuryProps {
   resources: Resources;
@@ -32,9 +34,8 @@ export class Treasury extends React.Component<TreasuryProps> {
           {content}
         </div>
         <div className="treasury-exit">
-          <GameButton
-            group="town-window"
-            type="exit"
+          <ImageButton
+            images={buttonImages.exit}
             onMouseEnter={this.props.onExitMouseEnter}
             onMouseLeave={this.props.onExitMouseLeave}
             onClick={this.props.onExitClick}

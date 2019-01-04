@@ -38,11 +38,6 @@ interface SystemButtonProps extends GameButtonPropsBase {
   type: "cancel" | "no" | "okay" | "yes";
 }
 
-interface TownWindowButtonProps extends GameButtonPropsBase {
-  group: "town-window";
-  type: "exit";
-}
-
 interface TroopWindowButtonProps extends GameButtonPropsBase {
   group: "troop-window";
   type: "dismiss" | "exit";
@@ -54,7 +49,6 @@ type GameButtonProps =
   LegendButtonProps |
   RecruitTroopWindowButtonProps |
   SystemButtonProps |
-  TownWindowButtonProps |
   TroopWindowButtonProps;
 
 interface GameButtonState {
