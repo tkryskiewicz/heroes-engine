@@ -7,7 +7,9 @@ import { ArmySize, ArtifactLimit, SkillIds } from "heroes-homm1";
 
 import "./HeroTradingWindow.scss";
 
-import { GameButton, HeroPortrait } from "../base";
+import { buttonImages } from "./assets";
+
+import { HeroPortrait, ImageButton } from "../base";
 import { GameText, GameWindow } from "../core";
 import { getHeroNameMessage, getSkillNameMessage } from "../messages";
 import { ArtifactSlot } from "./ArtifactSlot";
@@ -68,9 +70,8 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
             {this.renderArtifacts()}
           </div>
           <div className="hero-trading-window-exit">
-            <GameButton
-              group="hero-trading-window"
-              type="exit"
+            <ImageButton
+              images={buttonImages.exit}
               onClick={this.props.onExitClick}
             />
           </div>

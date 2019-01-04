@@ -33,11 +33,6 @@ interface GameOptionsButtonProps extends GameButtonPropsBase {
   type: "info" | "load-game" | "new-game" | "okay" | "quit" | "save-game";
 }
 
-interface HeroTradingWindowButtonProps extends GameButtonPropsBase {
-  group: "hero-trading-window";
-  type: "exit";
-}
-
 interface HighScoresWindowButtonProps extends GameButtonPropsBase {
   group: "high-scores-window";
   type: "campaign" | "exit" | "standard";
@@ -83,7 +78,6 @@ type GameButtonProps =
   CombatLostWindowButtonProps |
   CombatWonWindowButtonProps |
   GameOptionsButtonProps |
-  HeroTradingWindowButtonProps |
   HighScoresWindowButtonProps |
   LegendButtonProps |
   NewGameWindowButtonProps |
