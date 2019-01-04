@@ -1,6 +1,8 @@
 import * as React from "react";
 
-import { GameButton, Menu } from "../base";
+import { buttonImages } from "./assets";
+
+import { ImageButton, Menu } from "../base";
 
 export interface HotSeatGameMenuProps {
   onOptionClick: (value: number) => void;
@@ -12,30 +14,26 @@ export class HotSeatGameMenu extends React.Component<HotSeatGameMenuProps> {
     return (
       <Menu>
         <div>
-          <GameButton
-            group="hot-seat-menu"
-            type="2-players"
+          <ImageButton
+            images={buttonImages["2-players"]}
             onClick={this.on2PlayersClick}
           />
         </div>
         <div>
-          <GameButton
-            group="hot-seat-menu"
-            type="2-players"
+          <ImageButton
+            images={buttonImages["3-players"]}
             onClick={this.on3PlayersClick}
           />
         </div>
         <div>
-          <GameButton
-            group="hot-seat-menu"
-            type="2-players"
+          <ImageButton
+            images={buttonImages["4-players"]}
             onClick={this.on4PlayersClick}
           />
         </div>
         <div>
-          <GameButton
-            group="hot-seat-menu"
-            type="cancel"
+          <ImageButton
+            images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />
         </div>
