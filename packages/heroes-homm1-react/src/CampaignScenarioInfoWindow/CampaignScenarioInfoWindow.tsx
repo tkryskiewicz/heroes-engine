@@ -3,9 +3,9 @@ import * as React from "react";
 
 import "./CampaignScenarioInfoWindow.scss";
 
-import { scenarioNumberImages } from "./assets";
+import { buttonImages, scenarioNumberImages } from "./assets";
 
-import { GameButton } from "../base";
+import { ImageButton } from "../base";
 import { GameText, withGameWindow } from "../core";
 
 export interface CampaignScenarioInfoWindowProps {
@@ -48,9 +48,8 @@ class CampaignScenarioInfoWindow extends React.Component<CampaignScenarioInfoWin
             className="campaign-scenario-info-window-okay"
             span={9}
           >
-            <GameButton
-              group="campaign-scenario-info-window"
-              type="okay"
+            <ImageButton
+              images={buttonImages.okay}
               onClick={this.props.onOkayClick}
             />
           </Col>
@@ -58,9 +57,8 @@ class CampaignScenarioInfoWindow extends React.Component<CampaignScenarioInfoWin
             className="campaign-scenario-info-window-restart"
             span={15}
           >
-            <GameButton
-              group="campaign-scenario-info-window"
-              type="restart-scenario"
+            <ImageButton
+              images={buttonImages.restartScenario}
               onClick={this.props.onRestartScenarioClick}
             />
           </Col>

@@ -13,11 +13,6 @@ export interface GameButtonPropsBase {
   onClick: () => void;
 }
 
-interface CampaignScenarioInfoWindowButtonProps extends GameButtonPropsBase {
-  group: "campaign-scenario-info-window";
-  type: "okay" | "restart-scenario";
-}
-
 interface CombatLostWindowButtonProps extends GameButtonPropsBase {
   group: "combat-lost-window";
   type: "okay";
@@ -54,7 +49,6 @@ interface TroopWindowButtonProps extends GameButtonPropsBase {
 }
 
 type GameButtonProps =
-  CampaignScenarioInfoWindowButtonProps |
   CombatLostWindowButtonProps |
   CombatWonWindowButtonProps |
   LegendButtonProps |
