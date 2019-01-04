@@ -33,17 +33,11 @@ interface SystemButtonProps extends GameButtonPropsBase {
   type: "cancel" | "no" | "okay" | "yes";
 }
 
-interface TroopWindowButtonProps extends GameButtonPropsBase {
-  group: "troop-window";
-  type: "dismiss" | "exit";
-}
-
 type GameButtonProps =
   CombatLostWindowButtonProps |
   CombatWonWindowButtonProps |
   LegendButtonProps |
-  SystemButtonProps |
-  TroopWindowButtonProps;
+  SystemButtonProps;
 
 interface GameButtonState {
   pressed: boolean;

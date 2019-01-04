@@ -7,7 +7,9 @@ import { creaturesById } from "heroes-homm1";
 
 import "./TroopWindow.scss";
 
-import { CreatureIcon, GameButton, GameModal } from "../base";
+import { buttonImages } from "./assets";
+
+import { CreatureIcon, GameButton, GameModal, ImageButton } from "../base";
 import { GameParagraph, GameText, withGameWindow } from "../core";
 import { getCreatureNameMessage } from "../messages";
 import { getSpeedMessage, messages } from "./messages";
@@ -107,9 +109,8 @@ class TroopWindow extends React.Component<TroopWindowProps> {
               className="troop-window-exit"
               span={12}
             >
-              <GameButton
-                group="troop-window"
-                type="exit"
+              <ImageButton
+                images={buttonImages.exit}
                 onClick={this.props.onExitClick}
               />
             </Col>
@@ -155,9 +156,8 @@ class TroopWindow extends React.Component<TroopWindowProps> {
   private renderDismissal(visible: boolean) {
     return (
       <>
-        <GameButton
-          group="troop-window"
-          type="dismiss"
+        <ImageButton
+          images={buttonImages.dismiss}
           onClick={this.onDismissClick}
         />
         {this.renderDismissPrompt(visible)}
