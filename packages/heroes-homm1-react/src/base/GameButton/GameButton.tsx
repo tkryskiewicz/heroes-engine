@@ -13,16 +13,6 @@ export interface GameButtonPropsBase {
   onClick: () => void;
 }
 
-interface CombatLostWindowButtonProps extends GameButtonPropsBase {
-  group: "combat-lost-window";
-  type: "okay";
-}
-
-interface CombatWonWindowButtonProps extends GameButtonPropsBase {
-  group: "combat-won-window";
-  type: "okay";
-}
-
 interface LegendButtonProps extends GameButtonPropsBase {
   group: "legend";
   type: "exit";
@@ -34,8 +24,6 @@ interface SystemButtonProps extends GameButtonPropsBase {
 }
 
 type GameButtonProps =
-  CombatLostWindowButtonProps |
-  CombatWonWindowButtonProps |
   LegendButtonProps |
   SystemButtonProps;
 

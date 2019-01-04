@@ -6,9 +6,9 @@ import { Army } from "heroes-core";
 
 import "./CombatLostWindow.scss";
 
-import { AnimationImage } from "./assets";
+import { AnimationImage, buttonImages } from "./assets";
 
-import { GameButton } from "../base";
+import { ImageButton } from "../base";
 import { CombatSummaryWindow } from "../CombatSummaryWindow";
 import { GameText } from "../core";
 import { getHeroNameMessage } from "../messages";
@@ -56,9 +56,8 @@ export class CombatLostWindow extends React.Component<CombatLostWindowProps> {
 
   private renderActions(onOkayClick?: () => void) {
     return (
-      <GameButton
-        group="combat-lost-window"
-        type="okay"
+      <ImageButton
+        images={buttonImages.okay}
         onClick={onOkayClick}
       />
     );

@@ -4,9 +4,9 @@ import { FormattedMessage } from "react-intl";
 
 import { Army } from "heroes-core";
 
-import { AnimationImage } from "./assets";
+import { AnimationImage, buttonImages } from "./assets";
 
-import { GameButton } from "../base";
+import { ImageButton } from "../base";
 import { CombatSummaryWindow } from "../CombatSummaryWindow";
 import { GameText } from "../core";
 import { getHeroNameMessage } from "../messages";
@@ -61,9 +61,8 @@ export class CombatWonWindow extends React.Component<CombatWonWindowProps> {
 
   private renderActions(onOkayClick?: () => void) {
     return (
-      <GameButton
-        group="combat-won-window"
-        type="okay"
+      <ImageButton
+        images={buttonImages.okay}
         onClick={onOkayClick}
       />
     );
