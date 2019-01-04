@@ -7,7 +7,9 @@ import { ArtifactLimit, getCurrentLevel, getNextLevelExperience, SkillIds } from
 
 import "./HeroWindow.scss";
 
-import { ArmyStrip, armyStripMessages, Crest, GameButton, GameModal, HeroPortrait } from "../base";
+import { buttonImages } from "./assets";
+
+import { ArmyStrip, armyStripMessages, Crest, GameButton, GameModal, HeroPortrait, ImageButton } from "../base";
 import { GameParagraph, GameText, GameWindow } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
@@ -152,9 +154,8 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
           {this.props.dismissible && this.renderDismissal(this.props.dismissHeroPromptVisible)}
           {this.renderArtifacts(hero.artifacts, this.props.visibleArtifactDescription)}
           <div className="hero-window-exit">
-            <GameButton
-              group="hero-window"
-              type="exit"
+            <ImageButton
+              images={buttonImages.exit}
               onMouseEnter={this.onExitMouseEnter}
               onMouseLeave={this.onExitMouseLeave}
               onClick={this.props.onExitClick}
@@ -661,9 +662,8 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
   private renderDismissal(dismissHeroPromptVisible: boolean) {
     return (
       <div className="hero-window-dismiss">
-        <GameButton
-          group="hero-window"
-          type="dismiss"
+        <ImageButton
+          images={buttonImages.dismiss}
           onMouseEnter={this.onDismissMouseEnter}
           onMouseLeave={this.onDismissMouseLeave}
           onClick={this.props.onDismissHeroClick}

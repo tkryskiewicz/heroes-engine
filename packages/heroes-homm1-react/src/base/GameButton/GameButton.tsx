@@ -38,11 +38,6 @@ interface HeroTradingWindowButtonProps extends GameButtonPropsBase {
   type: "exit";
 }
 
-interface HeroWindowButtonProps extends GameButtonPropsBase {
-  group: "hero-window";
-  type: "dismiss" | "exit";
-}
-
 interface HighScoresWindowButtonProps extends GameButtonPropsBase {
   group: "high-scores-window";
   type: "campaign" | "exit" | "standard";
@@ -99,7 +94,6 @@ type GameButtonProps =
   CombatWonWindowButtonProps |
   GameOptionsButtonProps |
   HeroTradingWindowButtonProps |
-  HeroWindowButtonProps |
   HighScoresWindowButtonProps |
   KingdomOverviewWindowButtonProps |
   LegendButtonProps |
