@@ -28,11 +28,6 @@ interface CombatWonWindowButtonProps extends GameButtonPropsBase {
   type: "okay";
 }
 
-interface HighScoresWindowButtonProps extends GameButtonPropsBase {
-  group: "high-scores-window";
-  type: "campaign" | "exit" | "standard";
-}
-
 interface LegendButtonProps extends GameButtonPropsBase {
   group: "legend";
   type: "exit";
@@ -72,7 +67,6 @@ type GameButtonProps =
   CampaignScenarioInfoWindowButtonProps |
   CombatLostWindowButtonProps |
   CombatWonWindowButtonProps |
-  HighScoresWindowButtonProps |
   LegendButtonProps |
   NewGameWindowButtonProps |
   RecruitTroopWindowButtonProps |

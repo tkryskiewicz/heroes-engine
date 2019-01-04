@@ -12,9 +12,9 @@ import {
 
 import "./HighScoresWindow.scss";
 
-import { DaysImage, LandImage, LeaderImage, PlayerImage, ScoreImage, TitleImage } from "./assets";
+import { buttonImages, DaysImage, LandImage, LeaderImage, PlayerImage, ScoreImage, TitleImage } from "./assets";
 
-import { CreatureIcon, GameButton } from "../base";
+import { CreatureIcon, ImageButton } from "../base";
 import { GameText } from "../core";
 import { getCampaignNameMessage, getCreatureNameMessage } from "../messages";
 
@@ -45,16 +45,14 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
           {scores}
         </div>
         <div className="high-scores-window-category">
-          <GameButton
-            group="high-scores-window"
-            type={this.props.gameType === GameType.Campaign ? "campaign" : "standard"}
+          <ImageButton
+            images={this.props.gameType === GameType.Campaign ? buttonImages.campaign : buttonImages.standard}
             onClick={this.onCategoryClick}
           />
         </div>
         <div className="high-scores-window-exit">
-          <GameButton
-            group="high-scores-window"
-            type="exit"
+          <ImageButton
+            images={buttonImages.exit}
             onClick={this.props.onExitClick}
           />
         </div>
