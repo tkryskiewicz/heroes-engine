@@ -11,9 +11,10 @@ import {
 
 import "./NewGameWindow.scss";
 
-import { GameButton, GameSwitch } from "../base";
+import { GameSwitch, ImageButton } from "../base";
 import { GameText } from "../core";
 import { AlignmentBox } from "./AlignmentBox";
+import { buttonImages } from "./assets";
 import { GameDifficultyBox } from "./GameDifficultyBox";
 import { messages } from "./messages";
 import { OpponentSettingBox } from "./OpponentSettingBox";
@@ -106,16 +107,14 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
           </GameText>
         </div>
         <div className="new-game-window-okay">
-          <GameButton
-            group="new-game-window"
-            type="okay"
+          <ImageButton
+            images={buttonImages.okay}
             onClick={this.props.onOkayClick}
           />
         </div>
         <div className="new-game-window-cancel">
-          <GameButton
-            group="new-game-window"
-            type="cancel"
+          <ImageButton
+            images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />
         </div>
