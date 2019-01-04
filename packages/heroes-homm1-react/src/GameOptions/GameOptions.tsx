@@ -5,9 +5,9 @@ import { changeMovementSpeed, changeVolume, MovementSpeed, SoundVolume } from "h
 
 import "./GameOptions.scss";
 
-import { movementSpeedImages } from "./assets";
+import { buttonImages, movementSpeedImages } from "./assets";
 
-import { GameButton, GameSwitch } from "../base";
+import { GameSwitch, ImageButton } from "../base";
 import { GameText, withGameWindow } from "../core";
 import { getMovementSpeedMessage, messages } from "./messages";
 
@@ -66,30 +66,26 @@ class GameOptions extends React.Component<GameOptionsProps> {
     return (
       <div className="game-options">
         <div className="game-options-new-game">
-          <GameButton
-            group="game-options"
-            type="new-game"
+          <ImageButton
+            images={buttonImages.newGame}
             onClick={this.props.onNewGameClick}
           />
         </div>
         <div className="game-options-load-game">
-          <GameButton
-            group="game-options"
-            type="load-game"
+          <ImageButton
+            images={buttonImages.loadGame}
             onClick={this.props.onLoadGameClick}
           />
         </div>
         <div className="game-options-save-game">
-          <GameButton
-            group="game-options"
-            type="save-game"
+          <ImageButton
+            images={buttonImages.saveGame}
             onClick={this.props.onSaveGameClick}
           />
         </div>
         <div className="game-options-quit">
-          <GameButton
-            group="game-options"
-            type="quit"
+          <ImageButton
+            images={buttonImages.quit}
             onClick={this.props.onQuitClick}
           />
         </div>
@@ -172,16 +168,14 @@ class GameOptions extends React.Component<GameOptionsProps> {
           {this.renderOnOff(this.props.viewEnemyMovement)}
         </div>
         <div className="game-options-okay">
-          <GameButton
-            group="game-options"
-            type="okay"
+          <ImageButton
+            images={buttonImages.okay}
             onClick={this.props.onOkayClick}
           />
         </div>
         <div className="game-options-info">
-          <GameButton
-            group="game-options"
-            type="info"
+          <ImageButton
+            images={buttonImages.info}
             onClick={this.props.onInfoClick}
           />
         </div>
