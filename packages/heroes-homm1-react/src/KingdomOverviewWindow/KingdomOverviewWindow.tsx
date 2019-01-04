@@ -7,7 +7,9 @@ import { HeroClassIds, Resource, TownIds } from "heroes-homm1";
 
 import "./KingdomOverviewWindow.scss";
 
-import { GameButton, ResourceAmount } from "../base";
+import { buttonImages } from "./assets";
+
+import { ImageButton, ResourceAmount } from "../base";
 import { GameText, withGameWindow } from "../core";
 import { HeroClassOverview } from "./HeroClassOverview";
 import { messages } from "./messages";
@@ -110,9 +112,8 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
             className="kingdom-overview-window-exit"
             span={4}
           >
-            <GameButton
-              group="kingdom-overview-window"
-              type="exit"
+            <ImageButton
+              images={buttonImages.exit}
               onClick={this.props.onExitClick}
             />
           </Col>
