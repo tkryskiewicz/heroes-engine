@@ -7,7 +7,9 @@ import { enoughResources, multiplyResources, Resources } from "heroes-core";
 
 import "./RecruitTroopWindow.scss";
 
-import { CreatureIcon, GameButton, ResourceCost } from "../base";
+import { buttonImages } from "./assets";
+
+import { CreatureIcon, ImageButton, ResourceCost } from "../base";
 import { GameText, withGameWindow } from "../core";
 import { getCreatureNameMessage } from "../messages";
 import { messages } from "./messages";
@@ -69,9 +71,8 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
               value={this.props.count}
               onChange={this.onCountChange}
             />
-            <GameButton
-              group="recruit-troop-window"
-              type="max"
+            <ImageButton
+              images={buttonImages.max}
               onClick={this.onMaxClick}
             />
           </Col>
@@ -86,17 +87,15 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
         </Row>
         <Row>
           <Col span={12}>
-            <GameButton
-              group="recruit-troop-window"
-              type="okay"
+            <ImageButton
+              images={buttonImages.okay}
               disabled={this.props.availableCount === 0}
               onClick={this.onOkayClick}
             />
           </Col>
           <Col span={12}>
-            <GameButton
-              group="recruit-troop-window"
-              type="cancel"
+            <ImageButton
+              images={buttonImages.cancel}
               onClick={this.onCancelClick}
             />
           </Col>
