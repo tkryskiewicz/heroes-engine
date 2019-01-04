@@ -58,21 +58,6 @@ interface LegendButtonProps extends GameButtonPropsBase {
   type: "exit";
 }
 
-interface MainMenuButtonProps extends GameButtonPropsBase {
-  group: "main-menu";
-  type: "load-game" | "new-game" | "quit" | "view-credits" | "view-high-scores";
-}
-
-interface NewGameMenuButtonProps extends GameButtonPropsBase {
-  group: "new-game-menu";
-  type: "campaign-game" | "cancel" | "multi-player-game" | "standard-game";
-}
-
-interface MultiPlayerMenuButtonProps extends GameButtonPropsBase {
-  group: "multi-player-menu";
-  type: "hot-seat" | "direct-connect" | "modem" | "network" | "cancel";
-}
-
 interface NewGameWindowButtonProps extends GameButtonPropsBase {
   group: "new-game-window";
   type: "cancel" | "okay";
@@ -123,9 +108,6 @@ type GameButtonProps =
   HighScoresWindowButtonProps |
   KingdomOverviewWindowButtonProps |
   LegendButtonProps |
-  MainMenuButtonProps |
-  NewGameMenuButtonProps |
-  MultiPlayerMenuButtonProps |
   NewGameWindowButtonProps |
   RecruitHeroWindowButtonProps |
   RecruitTroopWindowButtonProps |

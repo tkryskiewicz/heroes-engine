@@ -1,7 +1,9 @@
 import { Row } from "antd";
 import * as React from "react";
 
-import { GameButton, Menu } from "../base";
+import { buttonImages } from "./assets";
+
+import { ImageButton, Menu } from "../base";
 
 export interface NewGameMenuProps {
   onStandardGameClick?: () => void;
@@ -15,30 +17,26 @@ export class NewGameMenu extends React.Component<NewGameMenuProps> {
     return (
       <Menu>
         <Row>
-          <GameButton
-            group="new-game-menu"
-            type="standard-game"
+          <ImageButton
+            images={buttonImages.standardGame}
             onClick={this.props.onStandardGameClick}
           />
         </Row>
         <Row>
-          <GameButton
-            group="new-game-menu"
-            type="campaign-game"
+          <ImageButton
+            images={buttonImages.campaignGame}
             onClick={this.props.onCampaignGameClick}
           />
         </Row>
         <Row>
-          <GameButton
-            group="new-game-menu"
-            type="multi-player-game"
+          <ImageButton
+            images={buttonImages.multiPlayerGame}
             onClick={this.props.onMultiPlayerGameClick}
           />
         </Row>
         <Row>
-          <GameButton
-            group="new-game-menu"
-            type="cancel"
+          <ImageButton
+            images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />
         </Row>

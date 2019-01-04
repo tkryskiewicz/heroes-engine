@@ -1,6 +1,8 @@
 import * as React from "react";
 
-import { GameButton, Menu } from "../base";
+import { buttonImages } from "./assets";
+
+import { ImageButton, Menu } from "../base";
 
 export interface MultiPlayerGameMenuProps {
   onHotSeatClick: () => void;
@@ -30,37 +32,32 @@ export class MultiPlayerGameMenu extends React.Component<MultiPlayerGameMenuProp
     return (
       <Menu>
         <div>
-          <GameButton
-            group="multi-player-menu"
-            type="hot-seat"
+          <ImageButton
+            images={buttonImages.hotSeat}
             onClick={this.props.onHotSeatClick}
           />
         </div>
         <div>
-          <GameButton
-            group="multi-player-menu"
-            type="direct-connect"
+          <ImageButton
+            images={buttonImages.directConnect}
             onClick={this.props.onDirectConnectClick}
           />
         </div>
         <div>
-          <GameButton
-            group="multi-player-menu"
-            type="modem"
+          <ImageButton
+            images={buttonImages.modem}
             onClick={this.props.onModemClick}
           />
         </div>
         <div>
-          <GameButton
-            group="multi-player-menu"
-            type="network"
+          <ImageButton
+            images={buttonImages.network}
             onClick={this.props.onNetworkClick}
           />
         </div>
         <div>
-          <GameButton
-            group="multi-player-menu"
-            type="cancel"
+          <ImageButton
+            images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />
         </div>
