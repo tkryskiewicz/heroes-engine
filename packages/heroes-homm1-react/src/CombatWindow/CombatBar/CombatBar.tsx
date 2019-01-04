@@ -2,7 +2,9 @@ import * as React from "react";
 
 import "./CombatBar.scss";
 
-import { GameButton } from "../../base";
+import { buttonImages } from "./assets";
+
+import { ImageButton } from "../../base";
 import { GameText } from "../../core";
 
 export interface CombatBarProps {
@@ -27,10 +29,9 @@ export class CombatBar extends React.Component<CombatBarProps> {
     return (
       <div className="combat-bar">
         <div className="combat-bar-auto">
-          <GameButton
-            group="combat-bar"
-            type="auto"
-            onClick={this.props.onSkipClick}
+          <ImageButton
+            images={buttonImages.auto}
+            onClick={this.props.onAutoClick}
           />
         </div>
         <div className="combat-bar-status-bar">
@@ -39,9 +40,8 @@ export class CombatBar extends React.Component<CombatBarProps> {
           </GameText>
         </div>
         <div className="combat-bar-skip">
-          <GameButton
-            group="combat-bar"
-            type="skip"
+          <ImageButton
+            images={buttonImages.skip}
             onClick={this.props.onSkipClick}
           />
         </div>

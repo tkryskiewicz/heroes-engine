@@ -53,11 +53,6 @@ interface TroopWindowButtonProps extends GameButtonPropsBase {
   type: "dismiss" | "exit";
 }
 
-interface CombatBarButtonProps extends GameButtonPropsBase {
-  group: "combat-bar";
-  type: "auto" | "skip";
-}
-
 type GameButtonProps =
   CampaignScenarioInfoWindowButtonProps |
   CombatLostWindowButtonProps |
@@ -66,8 +61,7 @@ type GameButtonProps =
   RecruitTroopWindowButtonProps |
   SystemButtonProps |
   TownWindowButtonProps |
-  TroopWindowButtonProps |
-  CombatBarButtonProps;
+  TroopWindowButtonProps;
 
 interface GameButtonState {
   pressed: boolean;
