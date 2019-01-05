@@ -6,7 +6,10 @@ import { getStructureStatus } from "heroes-homm1";
 
 import "./StructuresWindow.scss";
 
-import { GameButton } from "../../base";
+// FIXME
+import { buttonImages } from "../Treasury/assets";
+
+import { ImageButton } from "../../base";
 import { withGameWindow } from "../../core";
 import { StructureStatusImage } from "../StructureStatusImage";
 
@@ -28,9 +31,8 @@ class StructuresWindow extends React.Component<StructuresWindowProps> {
           {structures.map((s) => this.renderStructure(town, s, canConstructStructures, resources))}
         </Row>
         <Row className="structures-window-exit">
-          <GameButton
-            group="town-window"
-            type="exit"
+          <ImageButton
+            images={buttonImages.exit}
             onClick={this.props.onExitClick}
           />
         </Row>

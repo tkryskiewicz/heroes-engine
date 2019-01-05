@@ -8,7 +8,7 @@ import "./TavernWindow.scss";
 
 import { AnimationImage } from "./assets";
 
-import { GameButton, GameModal } from "../base";
+import { GameModal } from "../base";
 import { GameText } from "../core";
 import { getStructureDescriptionMessage, getStructureNameMessage } from "../messages";
 
@@ -19,19 +19,12 @@ export interface TavernWindowProps {
 
 export class TavernWindow extends React.Component<TavernWindowProps> {
   public render() {
-    const actions = (
-      <GameButton
-        group="system"
-        type="okay"
-        onClick={this.props.onOkayClick}
-      />
-    );
-
     return (
       <GameModal
+        type="okay"
         size={4}
-        actions={actions}
         visible={this.props.visible}
+        onConfirmClick={this.props.onOkayClick}
       >
         <div className="tavern-window">
           <Row className="tavern-window-structure-name">

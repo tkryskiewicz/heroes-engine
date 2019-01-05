@@ -9,7 +9,7 @@ import "./TroopWindow.scss";
 
 import { buttonImages } from "./assets";
 
-import { CreatureIcon, GameButton, GameModal, ImageButton } from "../base";
+import { CreatureIcon, GameModal, ImageButton } from "../base";
 import { GameParagraph, GameText, withGameWindow } from "../core";
 import { getCreatureNameMessage } from "../messages";
 import { getSpeedMessage, messages } from "./messages";
@@ -166,35 +166,12 @@ class TroopWindow extends React.Component<TroopWindowProps> {
   }
 
   private renderDismissPrompt(visible: boolean) {
-    const actions = (
-      <Row>
-        <Col
-          className="troop-window-dismiss-yes"
-          span={12}
-        >
-          <GameButton
-            group="system"
-            type="yes"
-            onClick={this.onConfirmDismiss}
-          />
-        </Col>
-        <Col
-          className="troop-window-dismiss-no"
-          span={12}
-        >
-          <GameButton
-            group="system"
-            type="no"
-            onClick={this.onCancelDismiss}
-          />
-        </Col>
-      </Row>
-    );
-
     return (
       <GameModal
-        actions={actions}
+        type="yesNo"
         visible={visible}
+        onConfirmClick={this.onConfirmDismiss}
+        onCancelClick={this.onCancelDismiss}
       >
         <GameParagraph textSize="large">
           <FormattedMessage {...messages.dismissMessage} />

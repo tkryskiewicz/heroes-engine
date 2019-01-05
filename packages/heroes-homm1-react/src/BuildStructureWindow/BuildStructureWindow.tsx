@@ -1,12 +1,9 @@
-import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Resources } from "heroes-core";
 
-import "./BuildStructureWindow.scss";
-
-import { GameButton, GameModal, ResourceCost } from "../base";
+import { GameModal, ResourceCost } from "../base";
 import { GameText } from "../core";
 import { getStructureDescriptionMessage } from "../messages";
 import { StructureIcon } from "../StructureIcon";
@@ -29,60 +26,35 @@ export class BuildStructureWindow extends React.Component<BuildStructureWindowPr
   };
 
   public render() {
-    const actions = (
-      <Row>
-        <Col
-          className="build-structure-window-okay"
-          span={12}
-        >
-          <GameButton
-            group="system"
-            type="okay"
-            disabled={!this.props.canBuild}
-            onClick={this.onOkayClick}
-          />
-        </Col>
-        <Col
-          className="build-structure-window-cancel"
-          span={12}
-        >
-          <GameButton
-            group="system"
-            type="cancel"
-            onClick={this.props.onCancelClick}
-          />
-        </Col>
-      </Row>
-    );
-
     return (
       <GameModal
+        type="okayCancel"
         size={5}
-        actions={actions}
+        confirmDisabled={!this.props.canBuild}
         visible={this.props.visible}
+        onConfirmClick={this.onOkayClick}
+        onCancelClick={this.props.onCancelClick}
       >
-        <div className="build-structure-window">
-          <Row>
-            <GameText size="large">
-              <FormattedMessage {...messages.title} />
-            </GameText>
-          </Row>
-          <Row>
-            <StructureIcon
-              town={this.props.town}
-              structure={this.props.structure}
-            />
-          </Row>
-          <Row>
-            <GameText size="large">
-              <FormattedMessage {...getStructureDescriptionMessage(this.props.structure)} />
-            </GameText>
-          </Row>
-          <Row>
-            <ResourceCost
-              cost={this.props.cost}
-            />
-          </Row>
+        <div>
+          <GameText size="large">
+            <FormattedMessage {...messages.title} />
+          </GameText>
+        </div>
+        <div>
+          <StructureIcon
+            town={this.props.town}
+            structure={this.props.structure}
+          />
+        </div>
+        <div>
+          <GameText size="large">
+            <FormattedMessage {...getStructureDescriptionMessage(this.props.structure)} />
+          </GameText>
+        </div>
+        <div>
+          <ResourceCost
+            cost={this.props.cost}
+          />
         </div>
       </GameModal>
     );

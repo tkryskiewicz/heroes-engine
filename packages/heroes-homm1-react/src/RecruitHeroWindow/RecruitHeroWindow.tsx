@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { enoughResources, Resources } from "heroes-core";
 import { HeroClass } from "heroes-homm1";
 
-import { GameButton, GameModal, ResourceCost } from "../base";
+import { GameModal, ResourceCost } from "../base";
 import { GameText } from "../core";
 import { messages } from "./messages";
 import { RecruitHero } from "./RecruitHero";
@@ -27,19 +27,12 @@ export interface RecruitHeroWindowProps {
 
 export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {
   public render() {
-    const actions = (
-      <GameButton
-        group="system"
-        type="cancel"
-        onClick={this.props.onCancelClick}
-      />
-    );
-
     return (
       <GameModal
+        type="cancel"
         size={4}
-        actions={actions}
         visible={this.props.visible}
+        onCancelClick={this.props.onCancelClick}
       >
         <Row className="recruit-hero-window-title">
           <GameText size="large">

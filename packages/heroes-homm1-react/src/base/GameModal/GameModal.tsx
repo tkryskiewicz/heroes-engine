@@ -1,16 +1,36 @@
+import { Col, Row } from "antd";
 import * as React from "react";
 
 import "./GameModal.scss";
 
 import { withGameWindow } from "../../core";
+import { GameButton } from "../GameButton";
+
+type GameModalType =
+  "yesNo" |
+  "okayCancel" |
+  "okay" |
+  "cancel";
 
 export interface GameModalProps {
+  type: GameModalType;
   size: number;
-  actions: React.ReactNode;
+  confirmDisabled: boolean;
+  onConfirmClick: () => void;
+  onCancelClick: () => void;
 }
 
+type DefaultProp =
+  "size" |
+  "confirmDisabled" |
+  "onConfirmClick" |
+  "onCancelClick";
+
 class GameModal extends React.Component<GameModalProps> {
-  public static defaultProps: Pick<GameModalProps, "size"> = {
+  public static defaultProps: Pick<GameModalProps, DefaultProp> = {
+    confirmDisabled: false,
+    onCancelClick: () => undefined,
+    onConfirmClick: () => undefined,
     size: 1,
   };
 
@@ -22,7 +42,7 @@ class GameModal extends React.Component<GameModalProps> {
           {this.props.children}
         </div>
         <div className="game-modal-actions">
-          {this.props.actions}
+          {this.renderActions(this.props.type)}
         </div>
       </div>
     );
@@ -44,6 +64,47 @@ class GameModal extends React.Component<GameModalProps> {
         key={index}
         className="game-modal-body"
       />
+    );
+  }
+
+  private renderActions(modalType: GameModalType) {
+    if (modalType === "yesNo" || modalType === "okayCancel") {
+      return (
+        <Row>
+          <Col
+            className="game-modal-actions-confirm"
+            span={12}
+          >
+            <GameButton
+              group="system"
+              type={modalType === "yesNo" ? "yes" : "okay"}
+              disabled={this.props.confirmDisabled}
+              onClick={this.props.onConfirmClick}
+            />
+          </Col>
+          <Col
+            className="game-modal-actions-cancel"
+            span={12}
+          >
+            <GameButton
+              group="system"
+              type={modalType === "okayCancel" ? "no" : "cancel"}
+              onClick={this.props.onCancelClick}
+            />
+          </Col>
+        </Row>
+      );
+    }
+
+    return (
+      <Row>
+        <GameButton
+          group="system"
+          type={modalType === "okay" ? "okay" : "cancel"}
+          disabled={modalType === "okay" ? this.props.confirmDisabled : false}
+          onClick={modalType === "okay" ? this.props.onConfirmClick : this.props.onCancelClick}
+        />
+      </Row>
     );
   }
 }
