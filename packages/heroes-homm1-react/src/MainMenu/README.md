@@ -6,13 +6,13 @@ Main menu of the game.
 
 ![New Game](./assets/new-game/enabled.png "New Game")
 
-Allows you to start a new game. Opens [New Game Menu](/?selectedKind=NewGameMenu).
+Allows you to start a new game. Opens [Game Type Menu](/?selectedKind=GameTypeMenu).
 
 ## Load Game
 
 ![Load Game](./assets/load-game/enabled.png "Load Game")
 
-Allows you to load a previously saved game. Opens [New Game Menu](/?selectedKind=NewGameMenu).
+Allows you to load a previously saved game. Opens [Game Type Menu](/?selectedKind=GameTypeMenu).
 
 ## View High Scores
 

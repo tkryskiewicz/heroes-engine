@@ -4,13 +4,13 @@
 
 ![New Game](./assets/new-game/enabled.png "New Game")
 
-Goes to the [New Game Menu](/?selectedKind=NewGameMenu "New Game Menu").
+Allows you to start a new game. Opens [Game Type Menu](/?selectedKind=GameTypeMenu "Game Type Menu").
 
 ## Load Game
 
 ![Load Game](./assets/load-game/enabled.png "Load Game")
 
-Allows you to load a previously saved game.
+Allows you to load a previously saved game. Opens [Game Type Menu](/?selectedKind=GameTypeMenu "Game Type Menu").
 
 ## Save Game
 

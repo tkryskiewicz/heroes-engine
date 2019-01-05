@@ -5,12 +5,12 @@ import { withReadme } from "storybook-readme";
 
 import Readme = require("./README.md");
 
-import { NewGameMenu } from "./NewGameMenu";
+import { GameTypeMenu } from "./GameTypeMenu";
 
-storiesOf(NewGameMenu.name, module)
+storiesOf("GameTypeMenu", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
-    <NewGameMenu
+    <GameTypeMenu
       onStandardGameClick={action("Standard Game Click")}
       onCampaignGameClick={action("Campaign Game Click")}
       onMultiPlayerGameClick={action("Multi-Player Game Click")}

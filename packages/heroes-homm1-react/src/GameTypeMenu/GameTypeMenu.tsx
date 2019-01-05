@@ -1,45 +1,44 @@
-import { Row } from "antd";
 import * as React from "react";
 
 import { buttonImages } from "./assets";
 
 import { ImageButton, Menu } from "../base";
 
-export interface NewGameMenuProps {
+export interface GameTypeMenuProps {
   onStandardGameClick?: () => void;
   onCampaignGameClick?: () => void;
   onMultiPlayerGameClick?: () => void;
   onCancelClick?: () => void;
 }
 
-export class NewGameMenu extends React.Component<NewGameMenuProps> {
+export class GameTypeMenu extends React.Component<GameTypeMenuProps> {
   public render() {
     return (
       <Menu>
-        <Row>
+        <div>
           <ImageButton
             images={buttonImages.standardGame}
             onClick={this.props.onStandardGameClick}
           />
-        </Row>
-        <Row>
+        </div>
+        <div>
           <ImageButton
             images={buttonImages.campaignGame}
             onClick={this.props.onCampaignGameClick}
           />
-        </Row>
-        <Row>
+        </div>
+        <div>
           <ImageButton
             images={buttonImages.multiPlayerGame}
             onClick={this.props.onMultiPlayerGameClick}
           />
-        </Row>
-        <Row>
+        </div>
+        <div>
           <ImageButton
             images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />
-        </Row>
+        </div>
       </Menu>
     );
   }
