@@ -2,12 +2,12 @@ import * as React from "react";
 
 import { ViewWindow } from "../ViewWindow";
 
-export interface ViewWorldWindowProps {
+export interface WorldWindowProps {
   visible?: boolean;
   onExitClick?: () => void;
 }
 
-export class ViewWorldWindow extends React.Component<ViewWorldWindowProps> {
+export class WorldWindow extends React.Component<WorldWindowProps> {
   public render() {
     return (
       <ViewWindow

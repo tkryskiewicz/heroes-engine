@@ -6,12 +6,12 @@ import { withReadme } from "storybook-readme";
 
 import Readme = require("./README.md");
 
-import { ViewWorldWindow } from "./ViewWorldWindow";
+import { WorldWindow } from "./WorldWindow";
 
-storiesOf(ViewWorldWindow.name, module)
+storiesOf("WorldWindow", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
-    <ViewWorldWindow
+    <WorldWindow
       visible={boolean("Visible", true)}
       onExitClick={action("Exit Click")}
     />

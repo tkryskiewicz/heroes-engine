@@ -6,7 +6,7 @@ Contains various actions to perform in game.
 
 ![View World](./assets/view-world/enabled.png "View World")
 
-Opens [View World Window](/?selectedKind=ViewWorldWindow).
+Opens [World Window](/?selectedKind=WorldWindow).
 
 ## View Puzzle
 
