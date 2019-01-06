@@ -12,6 +12,7 @@ export {
   getKingOfTheHillMessage,
   getOpponentSettingNameMessage,
 } from "./scenarios";
+export { getSpellNameMessage } from "./spells";
 export { getStructureDescriptionMessage, getStructureNameMessage } from "./structures";
 
 import { unknownMessage } from "./util";

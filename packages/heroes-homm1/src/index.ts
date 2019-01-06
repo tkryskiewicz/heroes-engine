@@ -24,6 +24,8 @@ export {
 } from "./scores";
 export { Skill, SkillIds } from "./Skill";
 export { SoundVolume, changeVolume } from "./SoundVolume";
+export { SpellId, spells } from "./spells";
+export { SpellType } from "./SpellType";
 export {
   constructStructure,
   getStructureStatus,

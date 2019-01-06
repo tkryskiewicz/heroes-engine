@@ -1,26 +1,26 @@
 import * as React from "react";
 
+import { SpellType } from "heroes-homm1";
+
 import "./SpellBookWindow.scss";
 
 import { withGameWindow } from "../core";
 import { AdventureSpellsImage, CombatSpellsImage, ExitImage } from "./assets";
 
 export interface SpellBookWindowProps {
-  onCombatSpellsClick: () => void;
-  onAdventureSpellsClick: () => void;
+  spellType: SpellType;
+  onSpellTypeChange: (value: SpellType) => void;
   onExitClick: () => void;
 }
 
 type DefaultProp =
-  "onCombatSpellsClick" |
-  "onAdventureSpellsClick" |
+  "onSpellTypeChange" |
   "onExitClick";
 
 class SpellBookWindow extends React.Component<SpellBookWindowProps> {
   public static defaultProps: Pick<SpellBookWindowProps, DefaultProp> = {
-    onAdventureSpellsClick: () => undefined,
-    onCombatSpellsClick: () => undefined,
     onExitClick: () => undefined,
+    onSpellTypeChange: () => undefined,
   };
 
   public render() {
@@ -29,12 +29,12 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
         <img
           className="spell-book-window-combat-spells"
           src={CombatSpellsImage}
-          onClick={this.props.onCombatSpellsClick}
+          onClick={this.onCombatSpellsClick}
         />
         <img
           className="spell-book-window-adventure-spells"
           src={AdventureSpellsImage}
-          onClick={this.props.onAdventureSpellsClick}
+          onClick={this.onAdventureSpellsClick}
         />
         <img
           className="spell-book-window-exit"
@@ -43,6 +43,14 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
         />
       </div>
     );
+  }
+
+  private onCombatSpellsClick = () => {
+    this.props.onSpellTypeChange(SpellType.Combat);
+  }
+
+  private onAdventureSpellsClick = () => {
+    this.props.onSpellTypeChange(SpellType.Adventure);
   }
 }
 

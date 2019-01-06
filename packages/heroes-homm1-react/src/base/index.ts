@@ -14,3 +14,4 @@ export { Menu } from "./Menu";
 export { ResourceAmount, ResourceAmountProps } from "./ResourceAmount";
 export { ResourceCost, ResourceCostProps } from "./ResourceCost";
 export { ResourceIcon, ResourceIconProps } from "./ResourceIcon";
+export { SpellIcon, SpellIconProps } from "./SpellIcon";

@@ -16,6 +16,8 @@ import {
   ScenarioDifficulty,
   ScenarioSize,
   Skill,
+  SpellId,
+  SpellType,
   StructureId,
   StructureStatus,
   TerrainType,
@@ -127,6 +129,18 @@ export const scenarioSizeOptions = Object.keys(ScenarioSize).reduce<SelectOption
 
 export const scenarioDifficultyOptions = Object.keys(ScenarioDifficulty).reduce<SelectOptions>((p, c: any) => {
   p[c] = ScenarioDifficulty[c];
+
+  return p;
+}, {});
+
+export const spellTypeOptions = Object.keys(SpellType).reduce<SelectOptions>((p, c: any) => {
+  p[c] = SpellType[c];
+
+  return p;
+}, {});
+
+export const spellOptions = Object.keys(SpellId).reduce<SelectOptions>((p, c: any) => {
+  p[c] = SpellId[c];
 
   return p;
 }, {});
