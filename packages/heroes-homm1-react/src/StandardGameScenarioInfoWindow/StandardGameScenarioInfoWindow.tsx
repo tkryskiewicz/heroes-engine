@@ -15,7 +15,7 @@ import "./StandardGameScenarioInfoWindow.scss";
 
 import { buttonImages } from "./assets";
 
-import { ImageButton } from "../base";
+import { AlignmentJewel, ImageButton } from "../base";
 import { GameText, withGameWindow } from "../core";
 import {
   getGameDifficultyMessage,
@@ -24,7 +24,6 @@ import {
   getScenarioDifficultyMessage,
   getScenarioSizeMessage,
 } from "../messages";
-import { AlignmentBox } from "../NewGameWindow/AlignmentBox";
 
 export interface StandardGameScenarioInfoWindowProps {
   scenarioName: string;
@@ -71,7 +70,7 @@ class StandardGameScenarioInfoWindow extends React.Component<StandardGameScenari
           </GameText>
         </div>
         <div className="standard-game-scenario-info-window-alignment">
-          <AlignmentBox
+          <AlignmentJewel
             value={this.props.alignment}
           />
         </div>

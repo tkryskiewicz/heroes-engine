@@ -6,12 +6,12 @@ import * as React from "react";
 import { Alignment } from "heroes-homm1";
 
 import { alignmentOptions } from "../../stories";
-import { AlignmentBox } from "./AlignmentBox";
+import { AlignmentJewel } from "./AlignmentJewel";
 
-storiesOf(`NewGameWindow/${AlignmentBox.name}`, module)
+storiesOf("AlignmentJewel", module)
   .add("default", () => (
-    <AlignmentBox
+    <AlignmentJewel
       value={select("Value", alignmentOptions, Alignment.Red)}
-      onChange={action("Change")}
+      onClick={action("Click")}
     />
   ));

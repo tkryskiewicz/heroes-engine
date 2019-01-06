@@ -1,3 +1,4 @@
+export { AlignmentJewel, AlignmentJewelProps } from "./AlignmentJewel";
 export { ArmyStrip, ArmyStripProps, armyStripMessages } from "./ArmyStrip";
 export { ArtifactIcon, ArtifactIconProps } from "./ArtifactIcon";
 export { BigBar } from "./BigBar";

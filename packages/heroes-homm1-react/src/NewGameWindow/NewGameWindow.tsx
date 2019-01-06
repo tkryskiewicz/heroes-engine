@@ -3,6 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 import {
   Alignment,
+  changeAlignment,
   GameDifficulty,
   getGameDifficultyRating,
   getOpponentSettingRating,
@@ -11,9 +12,8 @@ import {
 
 import "./NewGameWindow.scss";
 
-import { GameSwitch, ImageButton } from "../base";
+import { AlignmentJewel, GameSwitch, ImageButton } from "../base";
 import { GameText } from "../core";
-import { AlignmentBox } from "./AlignmentBox";
 import { buttonImages } from "./assets";
 import { GameDifficultyBox } from "./GameDifficultyBox";
 import { messages } from "./messages";
@@ -75,9 +75,9 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
             <FormattedMessage {...messages.alignmentTitle} />
           </GameText>
           <div>
-            <AlignmentBox
+            <AlignmentJewel
               value={this.props.selectedAlignment}
-              onChange={this.props.onAlignmentChange}
+              onClick={this.onAlignmentClick}
             />
           </div>
         </div>
@@ -179,5 +179,11 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
     settings[index] = setting;
 
     this.props.onOpponentSettingsChange(settings);
+  }
+
+  private onAlignmentClick = (value: Alignment) => {
+    const newValue = changeAlignment(value);
+
+    this.props.onAlignmentChange(newValue);
   }
 }
