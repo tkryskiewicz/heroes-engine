@@ -6,6 +6,12 @@ export { getArtifactNameMessage, getArtifactDescriptionMessage } from "./artifac
 export { getCreatureNameMessage } from "./creatures";
 export { getHeroClassNameMessage, getHeroClassTitleMessage } from "./heroClasses";
 export { getHeroNameMessage } from "./heroes";
+export {
+  getScenarioDifficultyMessage,
+  getScenarioSizeMessage,
+  getKingOfTheHillMessage,
+  getOpponentSettingNameMessage,
+} from "./scenarios";
 export { getStructureDescriptionMessage, getStructureNameMessage } from "./structures";
 
 import { unknownMessage } from "./util";

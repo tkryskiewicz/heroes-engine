@@ -13,6 +13,8 @@ import {
   OpponentSetting,
   PlainsStructureId,
   Resource,
+  ScenarioDifficulty,
+  ScenarioSize,
   Skill,
   StructureId,
   StructureStatus,
@@ -113,6 +115,18 @@ export const terrainTypeOptions = Object.keys(TerrainType).reduce<SelectOptions>
 
 export const combatSideOptions = Object.keys(CombatSide).reduce<SelectOptions>((p, c: any) => {
   p[c] = CombatSide[c];
+
+  return p;
+}, {});
+
+export const scenarioSizeOptions = Object.keys(ScenarioSize).reduce<SelectOptions>((p, c: any) => {
+  p[c] = ScenarioSize[c];
+
+  return p;
+}, {});
+
+export const scenarioDifficultyOptions = Object.keys(ScenarioDifficulty).reduce<SelectOptions>((p, c: any) => {
+  p[c] = ScenarioDifficulty[c];
 
   return p;
 }, {});

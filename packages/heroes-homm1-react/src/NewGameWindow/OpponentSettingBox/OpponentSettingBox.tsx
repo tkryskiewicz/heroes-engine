@@ -6,8 +6,8 @@ import { changeOpponentSetting, OpponentSetting } from "heroes-homm1";
 import "./OpponentSettingBox.scss";
 
 import { GameParagraph } from "../../core";
+import { getOpponentSettingNameMessage } from "../../messages";
 import { opponentSettingImages } from "./assets";
-import { getOpponentSettingNameMessage } from "./messages";
 
 export interface OpponentSettingBoxProps {
   index: number;

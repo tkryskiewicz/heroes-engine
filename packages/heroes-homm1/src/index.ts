@@ -11,7 +11,9 @@ export { HeroInfo, HeroId, heroes } from "./heroes";
 export { MovementSpeed, changeMovementSpeed } from "./MovementSpeed";
 export { OpponentSetting, changeOpponentSetting, getOpponentSettingRating } from "./OpponentSetting";
 export { Resource } from "./Resource";
+export { ScenarioDifficulty } from "./ScenarioDifficulty";
 export { campaignScenarios } from "./scenarios";
+export { ScenarioSize } from "./ScenarioSize";
 export {
   CampaignGameScore,
   initialCampaignGameScores,
