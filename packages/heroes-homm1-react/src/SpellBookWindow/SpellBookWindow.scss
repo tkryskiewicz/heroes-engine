@@ -14,24 +14,36 @@
     text-align: center;
   }
 
-  &-spell-1 {
+  &-spell-0 {
     top: 20px;
+    left: 0;
+  }
+
+  &-spell-1 {
+    top: 80px;
     left: 0;
   }
 
   &-spell-2 {
-    top: 80px;
-    left: 0;
-  }
-
-  &-spell-3 {
     top: 20px;
     right: 0;
   }
 
-  &-spell-4 {
+  &-spell-3 {
     top: 80px;
     right: 0;
+  }
+
+  &-previous-page {
+    position: absolute;
+    top: 11px;
+    left: 9px;
+  }
+
+  &-next-page {
+    position: absolute;
+    top: 12px;
+    left: 291px;
   }
 
   &-combat-spells {
