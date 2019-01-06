@@ -6,11 +6,11 @@ import * as React from "react";
 import { SpellId } from "heroes-homm1";
 
 import { spellOptions } from "../../stories";
-import { Spell } from "./Spell";
+import { SpellBox } from "./SpellBox";
 
-storiesOf("SpellBookWindow/Spell", module)
+storiesOf("SpellBookWindow/SpellBox", module)
   .add("default", () => (
-    <Spell
+    <SpellBox
       spell={select("Spell", spellOptions, SpellId.Bless)}
       charges={number("Charges", 0, { range: true, min: 0, max: 10, step: 1 })}
       onClick={action("Click")}

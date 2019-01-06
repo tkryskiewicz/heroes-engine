@@ -1,26 +1,26 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import "./Spell.scss";
+import "./SpellBox.scss";
 
 import { SpellIcon } from "../../base";
 import { GameText } from "../../core";
 import { getSpellNameMessage } from "../../messages";
 
-export interface SpellProps {
+export interface SpellBoxProps {
   spell: string;
   charges: number;
   onClick: (spell: string) => void;
 }
 
-export class Spell extends React.Component<SpellProps> {
-  public static defaultProps: Pick<SpellProps, "onClick"> = {
+export class SpellBox extends React.Component<SpellBoxProps> {
+  public static defaultProps: Pick<SpellBoxProps, "onClick"> = {
     onClick: () => undefined,
   };
 
   public render() {
     return (
-      <div className="spell">
+      <div className="spell-box">
         <SpellIcon
           spell={this.props.spell}
           onClick={this.props.onClick}

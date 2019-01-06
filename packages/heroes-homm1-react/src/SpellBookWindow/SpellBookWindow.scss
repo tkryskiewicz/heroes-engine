@@ -8,6 +8,32 @@
 
   @include mirror-background();
 
+  &-spell {
+    position: absolute;
+    width: 50%;
+    text-align: center;
+  }
+
+  &-spell-1 {
+    top: 20px;
+    left: 0;
+  }
+
+  &-spell-2 {
+    top: 80px;
+    left: 0;
+  }
+
+  &-spell-3 {
+    top: 20px;
+    right: 0;
+  }
+
+  &-spell-4 {
+    top: 80px;
+    right: 0;
+  }
+
   &-combat-spells {
     position: absolute;
     left: 188px;
