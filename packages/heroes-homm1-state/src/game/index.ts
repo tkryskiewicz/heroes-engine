@@ -7,6 +7,7 @@ export {
   swapGarrisonTroops,
   buildStructure,
   recruitTroop,
+  endTurn,
 } from "./actions";
 export { gameReducer } from "./reducers";
 export { GameState } from "./state";

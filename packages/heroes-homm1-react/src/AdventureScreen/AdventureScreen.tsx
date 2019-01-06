@@ -20,9 +20,17 @@ export interface AdventureScreenProps {
   gameOptionsVisible?: boolean;
   puzzleWindowVisible?: boolean;
   scenarioInfoWindowVisible?: boolean;
+  onEndTurn: () => void;
 }
 
+type DefaultProp =
+  "onEndTurn";
+
 export class AdventureScreen extends React.Component<AdventureScreenProps> {
+  public static defaultProps: Pick<AdventureScreenProps, DefaultProp> = {
+    onEndTurn: () => undefined,
+  };
+
   public render() {
     const {
       heroWindowVisible,
@@ -64,7 +72,9 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
             <h1>
               Adventure Buttons
             </h1>
-            <AdventureButtons />
+            <AdventureButtons
+              onEndTurnClick={this.onEndTurnClick}
+            />
             {kingdomOverviewWindowVisible && this.renderKingdomOverviewWindow(kingdomOverviewWindowVisible)}
             {adventureOptionsVisible && this.renderAdventureOptions(adventureOptionsVisible)}
             {gameOptionsVisible && this.renderGameOptions(gameOptionsVisible)}
@@ -79,6 +89,10 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
         </Col>
       </Row>
     );
+  }
+
+  private onEndTurnClick = () => {
+    this.props.onEndTurn();
   }
 
   private renderHeroWindow(visible: boolean) {

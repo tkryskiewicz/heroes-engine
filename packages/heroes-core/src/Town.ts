@@ -56,3 +56,8 @@ export const recruitTownTroop = (town: Town, structureId: string, count: number)
     structures: town.structures.map((s) => s === structure ? recruitTroop(structure, count) : s),
   };
 };
+
+export const endTownTurn = (town: Town): Town => ({
+  ...town,
+  canConstructStructures: true,
+});

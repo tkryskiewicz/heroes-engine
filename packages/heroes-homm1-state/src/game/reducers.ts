@@ -3,6 +3,7 @@ import {
   buildStructure,
   dismissGameHero,
   dismissGameHeroTroop,
+  endGameTurn,
   Hero,
   recruitGameTroop,
   swapGameGarrisonTroops,
@@ -231,6 +232,10 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
     case GameActionType.RecruitTroop:
       return {
         ...recruitGameTroop(state, action.town, action.structure, action.count),
+      };
+    case GameActionType.EndTurn:
+      return {
+        ...endGameTurn(state),
       };
     default:
       return state;

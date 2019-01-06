@@ -6,6 +6,7 @@ export {
   swapGarrisonTroops,
   buildStructure,
   recruitTroop,
+  endTurn,
 } from "./game";
 export { openGameOptions, closeGameOptions } from "./gameOptions";
 export {

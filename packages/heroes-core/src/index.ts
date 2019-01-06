@@ -18,6 +18,7 @@ export {
   swapGameGarrisonTroops,
   buildGameStructure,
   recruitGameTroop,
+  endGameTurn,
 } from "./Game";
 export { Hero, HeroSkills, swapHeroTroops, canSelectNextHero, getNextHeroIndex } from "./Hero";
 export { Resources, multiplyResources, enoughResources } from "./Resource";

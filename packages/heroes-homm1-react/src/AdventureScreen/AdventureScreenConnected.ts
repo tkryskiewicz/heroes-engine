@@ -1,10 +1,20 @@
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
 
-import { AppState } from "heroes-homm1-state";
+import { AppState, endTurn } from "heroes-homm1-state";
 
 import { AdventureScreen, AdventureScreenProps } from "./AdventureScreen";
 
-const mapStateToProps = (state: AppState): AdventureScreenProps => ({
+type StateProp =
+  "adventureOptionsVisible" |
+  "gameOptionsVisible" |
+  "heroWindowVisible" |
+  "kingdomOverviewWindowVisible" |
+  "puzzleWindowVisible" |
+  "scenarioInfoWindowVisible" |
+  "townWindowVisible";
+
+const mapStateToProps = (state: AppState): Pick<AdventureScreenProps, StateProp> => ({
   adventureOptionsVisible: state.adventureOptions.visible,
   gameOptionsVisible: state.gameOptions.visible,
   heroWindowVisible: state.heroWindow.visible,
@@ -14,4 +24,13 @@ const mapStateToProps = (state: AppState): AdventureScreenProps => ({
   townWindowVisible: state.townWindow.visible,
 });
 
-export const AdventureScreenConnected = connect(mapStateToProps)(AdventureScreen);
+type DispatchProp =
+  "onEndTurn";
+
+const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureScreenProps, DispatchProp> => ({
+  onEndTurn() {
+    dispatch(endTurn());
+  },
+});
+
+export const AdventureScreenConnected = connect(mapStateToProps, mapDispatchToProps)(AdventureScreen);
