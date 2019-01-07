@@ -1,4 +1,5 @@
 export { openAdventureOptions, closeAdventureOptions } from "./adventureOptions";
+export { changeEndTurnPromptVisible } from "./adventureScreen";
 export {
   swapHeroTroops,
   dismissHeroTroop,

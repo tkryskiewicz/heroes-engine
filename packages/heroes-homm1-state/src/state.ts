@@ -1,4 +1,5 @@
 import { AdventureOptionsState } from "./adventureOptions";
+import { AdventureScreenState } from "./adventureScreen";
 import { GameState } from "./game";
 import { GameOptionsState } from "./gameOptions";
 import { GameSettingsState } from "./gameSettings";
@@ -11,6 +12,7 @@ import { TownWindowState } from "./townWindow";
 
 export interface AppState {
   game: GameState;
+  adventureScreen: AdventureScreenState;
   gameSettings: GameSettingsState;
   locators: LocatorsState;
   heroWindow: HeroWindowState;
