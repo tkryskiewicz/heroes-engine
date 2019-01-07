@@ -1,0 +1,20 @@
+.spell-scroll {
+  position: relative;
+  display: inline-block;
+  width: 58px;
+  height: 56px;
+  background: url("./assets/scroll-folded.png");
+  text-align: center;
+
+  &-unfolded {
+    width: 140px;
+    height: 77px;
+    background: url("./assets/scroll-unfolded.png");
+  }
+
+  &-spell {
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+  }
+}
