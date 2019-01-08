@@ -12,9 +12,10 @@ import {
 
 import "./NewGameWindow.scss";
 
-import { AlignmentJewel, GameSwitch, ImageButton } from "../base";
+import { buttonImages, switchImages } from "./assets";
+
+import { AlignmentJewel, ImageButton, ImageSwitch } from "../base";
 import { GameText } from "../core";
-import { buttonImages } from "./assets";
 import { GameDifficultyBox } from "./GameDifficultyBox";
 import { messages } from "./messages";
 import { OpponentSettingBox } from "./OpponentSettingBox";
@@ -86,8 +87,8 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
             <FormattedMessage {...messages.kingOfTheHill} />
           </GameText>
           <div>
-            <GameSwitch
-              type="checkbox"
+            <ImageSwitch
+              images={switchImages.checkbox}
               checked={this.props.kingOfTheHill}
               onChange={this.props.onKingOfTheHillChange}
             />

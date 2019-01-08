@@ -5,9 +5,9 @@ import { changeMovementSpeed, changeVolume, MovementSpeed, SoundVolume } from "h
 
 import "./GameOptions.scss";
 
-import { buttonImages, movementSpeedImages } from "./assets";
+import { buttonImages, movementSpeedImages, switchImages } from "./assets";
 
-import { GameSwitch, ImageButton } from "../base";
+import { ImageButton, ImageSwitch } from "../base";
 import { GameText, withGameWindow } from "../core";
 import { getMovementSpeedMessage, messages } from "./messages";
 
@@ -94,8 +94,8 @@ class GameOptions extends React.Component<GameOptionsProps> {
             <FormattedMessage {...messages.musicVolume} />
           </GameText>
           <div>
-            <GameSwitch
-              type="music"
+            <ImageSwitch
+              images={switchImages.music}
               checked={this.props.musicVolume !== SoundVolume.Off}
               onChange={this.onMusicVolumeChange}
             />
@@ -108,8 +108,8 @@ class GameOptions extends React.Component<GameOptionsProps> {
             <FormattedMessage {...messages.effectsVolume} />
           </GameText>
           <div>
-            <GameSwitch
-              type="effects"
+            <ImageSwitch
+              images={switchImages.effects}
               checked={this.props.effectsVolume !== SoundVolume.Off}
               onChange={this.onEffectsVolumeChange}
             />
@@ -133,8 +133,8 @@ class GameOptions extends React.Component<GameOptionsProps> {
             <FormattedMessage {...messages.autoSave} />
           </GameText>
           <div>
-            <GameSwitch
-              type="auto-save"
+            <ImageSwitch
+              images={switchImages.autoSave}
               checked={this.props.autoSave}
               onChange={this.props.onAutoSaveChange}
             />
@@ -146,8 +146,8 @@ class GameOptions extends React.Component<GameOptionsProps> {
             <FormattedMessage {...messages.showPath} />
           </GameText>
           <div>
-            <GameSwitch
-              type="show-path"
+            <ImageSwitch
+              images={switchImages.showPath}
               checked={this.props.showPath}
               onChange={this.props.onShowPathChange}
             />
@@ -159,8 +159,8 @@ class GameOptions extends React.Component<GameOptionsProps> {
             <FormattedMessage {...messages.viewEnemyMovement} />
           </GameText>
           <div>
-            <GameSwitch
-              type="view-enemy-movement"
+            <ImageSwitch
+              images={switchImages.viewEnemyMovement}
               checked={this.props.viewEnemyMovement}
               onChange={this.props.onViewEnemyMovementChange}
             />

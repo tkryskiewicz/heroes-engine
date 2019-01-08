@@ -11,7 +11,15 @@ const buttonImages = {
   },
 };
 
+const switchImages = {
+  checkbox: {
+    checked: require("./checkbox/checked.jpg"),
+    unchecked: require("./checkbox/unchecked.jpg"),
+  },
+};
+
 export {
   BackgroundImage,
   buttonImages,
+  switchImages,
 };
