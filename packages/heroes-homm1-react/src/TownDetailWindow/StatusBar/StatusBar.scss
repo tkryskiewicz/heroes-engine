@@ -1,0 +1,11 @@
+@import "../../style/mirror-background";
+
+.status-bar {
+  display: inline-block;
+  width: 2 * 269px;
+  height: 19px;
+  background: url("./assets/background.jpg");
+  text-align: center;
+
+  @include mirror-background();
+}

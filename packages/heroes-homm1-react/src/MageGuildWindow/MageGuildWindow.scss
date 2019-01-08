@@ -1,6 +1,6 @@
 .mage-guild-window {
   position: relative;
-  height: 265px;
+  height: 262px;
 
   &-structure {
     position: absolute;
@@ -10,7 +10,7 @@
 
   &-spells {
     position: absolute;
-    top: 5px;
+    top: 2px;
     left: 150px;
     display: flex;
     flex-wrap: wrap;
@@ -21,6 +21,6 @@
     width: 33%;
     height: 77px;
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
   }
 }

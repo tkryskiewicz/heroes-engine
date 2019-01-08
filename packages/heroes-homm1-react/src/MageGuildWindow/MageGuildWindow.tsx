@@ -4,7 +4,7 @@ import { StructureId } from "heroes-homm1";
 
 import "./MageGuildWindow.scss";
 
-import { withGameWindow } from "../core";
+import { withTownDetailWindow } from "../TownDetailWindow";
 import { StructureView } from "../TownView/StructureView"; // FIXME
 import { SpellScroll } from "./SpellScroll";
 
@@ -67,6 +67,6 @@ class MageGuildWindow extends React.Component<MageGuildWindowProps> {
   }
 }
 
-const MageGuildWindowWrapped = withGameWindow(640)<typeof MageGuildWindow, MageGuildWindowProps>(MageGuildWindow);
+const MageGuildWindowWrapped = withTownDetailWindow()<typeof MageGuildWindow, MageGuildWindowProps>(MageGuildWindow);
 
 export { MageGuildWindowWrapped as MageGuildWindow };

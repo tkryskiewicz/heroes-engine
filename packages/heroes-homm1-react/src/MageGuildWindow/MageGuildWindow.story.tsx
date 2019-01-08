@@ -37,5 +37,6 @@ storiesOf("MageGuildWindow", module)
       spells={spells}
       levelBuilt={number("Level Built", 1, { range: true, min: 1, max: 4, step: 1 })}
       onSpellClick={action("Spell Click")}
+      onExitClick={action("Exit Click")}
     />
   ));
