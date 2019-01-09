@@ -34,6 +34,7 @@ export {
 } from "./heroWindow";
 export { openKingdomOverviewWindow, closeKingdomOverviewWindow } from "./kingdomOverviewWindow";
 export * from "./locators";
+export { changeMageGuildWindowVisibleSpellDetail } from "./mageGuildWindow";
 export { openPuzzleWindow, closePuzzleWindow } from "./puzzleWindow";
 export { rootReducer } from "./reducers";
 export { AppState } from "./state";

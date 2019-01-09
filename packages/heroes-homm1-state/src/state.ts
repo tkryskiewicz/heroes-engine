@@ -6,6 +6,7 @@ import { GameSettingsState } from "./gameSettings";
 import { HeroWindowState } from "./heroWindow";
 import { KingdomOverviewWindowState } from "./kingdomOverviewWindow";
 import { LocatorsState } from "./locators";
+import { MageGuildWindowState } from "./mageGuildWindow";
 import { PuzzleWindowState } from "./puzzleWindow";
 import { ScenarioInfoWindowState } from "./scenarioInfoWindow";
 import { TownWindowState } from "./townWindow";
@@ -22,4 +23,5 @@ export interface AppState {
   gameOptions: GameOptionsState;
   puzzleWindow: PuzzleWindowState;
   scenarioInfoWindow: ScenarioInfoWindowState;
+  mageGuildWindow: MageGuildWindowState;
 }

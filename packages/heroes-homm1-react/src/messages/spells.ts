@@ -2,6 +2,7 @@ import { defineMessages, Messages } from "react-intl";
 
 import { convertValue, unknownMessage } from "./util";
 
+// TODO: fill out long names and descriptions
 export const spellMessages: Messages = defineMessages({
   antimagic: {
     defaultMessage: "Antimagic",
@@ -18,6 +19,10 @@ export const spellMessages: Messages = defineMessages({
   bless: {
     defaultMessage: "Bless",
     id: "game.spell.bless",
+  },
+  blessDescription: {
+    defaultMessage: "Causes the selected creatures to inflict maximum damage.",
+    id: "game.spells.bless.description",
   },
   blind: {
     defaultMessage: "Blind",
@@ -36,8 +41,12 @@ export const spellMessages: Messages = defineMessages({
     id: "game.spell.dimensionDoor",
   },
   dispel: {
-    defaultMessage: "Dispel",
+    defaultMessage: "Dispel Magic",
     id: "game.spell.dispel",
+  },
+  dispelDescription: {
+    defaultMessage: "Removes all magic spells from all parties in the battle.",
+    id: "game.spell.dispel.description",
   },
   fireball: {
     defaultMessage: "Fireball",
@@ -52,8 +61,12 @@ export const spellMessages: Messages = defineMessages({
     id: "game.spell.identifyHero",
   },
   lightning: {
-    defaultMessage: "Lightning",
+    defaultMessage: "Lightning Bolt",
     id: "game.spell.lightning",
+  },
+  lightningDescription: {
+    defaultMessage: "Causes a bolt of electrical energy to strike the selected creature.",
+    id: "game.spell.lightning.description",
   },
   meteorShower: {
     defaultMessage: "Meteor Shower",
@@ -67,6 +80,10 @@ export const spellMessages: Messages = defineMessages({
     defaultMessage: "Protection",
     id: "game.spell.protection",
   },
+  protectionDescription: {
+    defaultMessage: "Magically increases the defense skill of the selected creatures.",
+    id: "game.spell.protection.description",
+  },
   resurrect: {
     defaultMessage: "Resurrect",
     id: "game.spell.resurrect",
@@ -79,9 +96,22 @@ export const spellMessages: Messages = defineMessages({
     defaultMessage: "Storm",
     id: "game.spell.storm",
   },
+  stormDescription: {
+    defaultMessage: "Magical elements pour down on the battlefield, damaging all creatures.",
+    id: "game.spell.storm.description",
+  },
+  stormLongName: {
+    defaultMessage: "Elemental Storm",
+    id: "game.spell.storm.longName",
+  },
   summonBoat: {
     defaultMessage: "Summon Boat",
     id: "game.spell.summonBoat",
+  },
+  summonBoatDescription: {
+    defaultMessage: `Summons the nearest unoccupied, friendly boat to an adjacent shore location.
+      A friendly boat is one which you just built or were the most recent player to occupy.`,
+    id: "game.spell.summonBoat.description",
   },
   teleport: {
     defaultMessage: "Teleport",
@@ -119,7 +149,17 @@ export const spellMessages: Messages = defineMessages({
     defaultMessage: "View Towns",
     id: "game.spell.viewTowns",
   },
+  viewTownsDescription: {
+    defaultMessage: "Causes all towns and castles across the land to become visible.",
+    id: "game.spell.viewTowns.description",
+  },
 });
 
 export const getSpellNameMessage = (spell: string) =>
   spellMessages[convertValue(spell)] || unknownMessage;
+
+export const getSpellDescriptionMessage = (spell: string) =>
+  spellMessages[`${convertValue(spell)}Description`] || unknownMessage;
+
+export const getSpellLongNameMessage = (spell: string) =>
+  spellMessages[`${convertValue(spell)}LongName`] || getSpellNameMessage(spell);

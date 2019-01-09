@@ -1,10 +1,14 @@
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { StructureId } from "heroes-homm1";
 
 import "./MageGuildWindow.scss";
 
-import { withTownDetailWindow } from "../TownDetailWindow";
+import { GameModal, SpellIcon } from "../base";
+import { GameParagraph } from "../core";
+import { getSpellDescriptionMessage, getSpellLongNameMessage, getSpellNameMessage } from "../messages";
+import { withTownDetailWindow, WithTownDetailWindowProps } from "../TownDetailWindow";
 import { StructureView } from "../TownView/StructureView"; // FIXME
 import { SpellScroll } from "./SpellScroll";
 
@@ -13,15 +17,17 @@ interface Spell {
   level: number;
 }
 
-export interface MageGuildWindowProps {
+// TODO: should it extend town detail window props? move extends to MageGuildWindowConnected?
+export interface MageGuildWindowProps extends WithTownDetailWindowProps {
   spells: Spell[];
   levelBuilt: number;
-  onSpellClick: (value: string) => void;
+  visibleSpellDetail?: string;
+  onVisibleSpellDetailChange: (spell?: string) => void;
 }
 
 class MageGuildWindow extends React.Component<MageGuildWindowProps> {
-  public static defaultProps: Pick<MageGuildWindowProps, "onSpellClick"> = {
-    onSpellClick: () => undefined,
+  public static defaultProps: Pick<MageGuildWindowProps, "onVisibleSpellDetailChange"> = {
+    onVisibleSpellDetailChange: () => undefined,
   };
 
   public render() {
@@ -39,6 +45,7 @@ class MageGuildWindow extends React.Component<MageGuildWindowProps> {
         <div className="mage-guild-window-spells">
           {spells.map((s) => this.renderSpell(s))}
         </div>
+        {this.props.visibleSpellDetail && this.renderSpellDetail(this.props.visibleSpellDetail)}
       </div>
     );
   }
@@ -62,8 +69,36 @@ class MageGuildWindow extends React.Component<MageGuildWindowProps> {
     const spell = this.props.spells.find((s) => s.id === value);
 
     if (spell && spell.level <= this.props.levelBuilt) {
-      this.props.onSpellClick(value);
+      this.props.onVisibleSpellDetailChange(value);
     }
+  }
+
+  private renderSpellDetail(spell: string) {
+    return (
+      <GameModal
+        type="okay"
+        size={3}
+        onConfirmClick={this.onCloseSpellDetailClick}
+        visible={true}
+      >
+        <GameParagraph textSize="large">
+          <FormattedMessage {...getSpellLongNameMessage(spell)} />
+        </GameParagraph>
+        <GameParagraph textSize="large">
+          <FormattedMessage {...getSpellDescriptionMessage(spell)} />
+        </GameParagraph>
+        <SpellIcon
+          spell={spell}
+        />
+        <GameParagraph textSize="normal">
+          <FormattedMessage {...getSpellNameMessage(spell)} />
+        </GameParagraph>
+      </GameModal>
+    );
+  }
+
+  private onCloseSpellDetailClick = () => {
+    this.props.onVisibleSpellDetailChange();
   }
 }
 

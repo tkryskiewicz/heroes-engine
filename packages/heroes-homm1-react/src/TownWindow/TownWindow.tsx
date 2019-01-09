@@ -2,7 +2,7 @@ import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { enoughResources, Hero, Resources, Town } from "heroes-core";
-import { StructureId } from "heroes-homm1";
+import { SpellId, spells as allSpells, StructureId } from "heroes-homm1";
 
 import "./TownWindow.scss";
 
@@ -10,6 +10,7 @@ import { ArmyStrip, BigBar, Crest, HeroPortrait } from "../base";
 import { BuildStructureWindow } from "../BuildStructureWindow";
 import { GameText, GameWindow } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
+import { MageGuildWindow } from "../MageGuildWindow";
 import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
 import { RecruitTroopWindow, recruitTroopWindowMessages } from "../RecruitTroopWindow";
 import { TavernWindow } from "../TavernWindow";
@@ -216,6 +217,28 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
               visible={true}
             />
           );
+        break;
+      case StructureId.MageGuild:
+        // FIXME: move to structure
+        const spells = [
+          SpellId.Bless,
+          SpellId.Protection,
+          SpellId.ViewResources,
+          SpellId.Haste,
+          SpellId.SummonBoat,
+          SpellId.ViewHeroes,
+          SpellId.Fireball,
+          SpellId.MeteorShower,
+          SpellId.ViewAll,
+        ];
+
+        structureDetails = (
+          <MageGuildWindow
+            spells={allSpells.filter((s) => spells.indexOf(s.id) !== -1)}
+            levelBuilt={1}
+            visible={true}
+          />
+        );
         break;
       case StructureId.Tavern:
         structureDetails = <TavernWindow visible={true} />;
