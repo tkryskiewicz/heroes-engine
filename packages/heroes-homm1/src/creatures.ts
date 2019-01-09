@@ -1,7 +1,7 @@
 import { Creature } from "heroes-core";
 
 import { CreatureSpeed } from "./CreatureSpeed";
-import { TownId } from "./towns";
+import { TownId } from "./TownId";
 
 // Farm
 export enum CreatureId {

@@ -30,21 +30,16 @@ export {
   constructStructure,
   getStructureStatus,
   StructureId,
-  coreStructures,
   isCommonStructure,
-  commonStructures,
   FarmStructureId,
-  farmStructures,
   PlainsStructureId,
-  plainsStructures,
   ForestStructureId,
-  forestStructures,
   MountainsStructureId,
-  mountainsStructures,
 } from "./structures";
 export { StructureStatus } from "./StructureStatus";
 export { TerrainType } from "./TerrainType";
-export { TownId, TownIds } from "./towns";
+export { TownId, TownIds } from "./TownId";
+export { constructTown } from "./towns";
 
 export const MaxPlayers = 4;
 export const HeroLimit = 8;

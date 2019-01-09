@@ -17,7 +17,7 @@ const constructDwelling = (dwellingType: DwellingType): Dwelling => ({
   growth: dwellingType.growth,
 });
 
-interface StructureType {
+export interface StructureType {
   id: string;
   cost: Resources;
   dwelling?: DwellingType;

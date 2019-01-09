@@ -4,43 +4,20 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { buildStructure } from "heroes-core";
-import {
-  commonStructures,
-  constructStructure,
-  coreStructures,
-  farmStructures,
-  forestStructures,
-  mountainsStructures,
-  plainsStructures,
-  TownId,
-} from "heroes-homm1";
+import { Alignment, constructTown, TownId } from "heroes-homm1";
 
 import { townOptions } from "../stories";
-import { TownView, TownViewProps } from "./TownView";
-
-const structures = {
-  [TownId.Farm]: farmStructures,
-  [TownId.Plains]: plainsStructures,
-  [TownId.Forest]: forestStructures,
-  [TownId.Mountains]: mountainsStructures,
-};
+import { TownView } from "./TownView";
 
 storiesOf(TownView.name, module)
   .add("default", () => {
     const townId = select("Town", townOptions, TownId.Farm);
 
-    const town: TownViewProps["town"] = {
-      id: townId,
-      structures: [
-        ...coreStructures,
-        ...commonStructures,
-        ...structures[townId],
-      ].map(constructStructure).map(buildStructure),
-    };
+    const town = constructTown(townId, "Name", Alignment.Red, []);
 
     return (
       <TownView
-        town={town}
+        town={{ ...town, structures: town.structures.map(buildStructure) }}
         onStructureClick={action("Structure Click")}
       />
     );

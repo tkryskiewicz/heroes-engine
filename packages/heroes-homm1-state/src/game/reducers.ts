@@ -14,17 +14,11 @@ import {
   Alignment,
   ArtifactId,
   campaignScenarios,
-  commonStructures,
-  constructStructure,
-  coreStructures,
+  constructTown,
   CreatureId,
-  farmStructures,
-  forestStructures,
   HeroClass,
   HeroId,
   MaxMobility,
-  mountainsStructures,
-  plainsStructures,
   Resource,
   Skill,
   TownId,
@@ -130,64 +124,41 @@ const heroes: Hero[] = [
   },
 ];
 
+const farmTown = constructTown(
+  TownId.Farm,
+  "Farm Town",
+  Alignment.Red,
+  [
+    {
+      count: 1,
+      creature: CreatureId.Peasant,
+    },
+  ],
+);
+
 const towns: Town[] = [
   {
-    alignment: Alignment.Red,
-    canConstructStructures: true,
-    garrison: [
-      {
-        count: 1,
-        creature: CreatureId.Peasant,
-      },
-    ],
-    heroClass: HeroClass.Knight,
-    id: TownId.Farm,
-    name: "Farm Town",
-    structures: [
-      ...coreStructures,
-      ...commonStructures,
-      ...farmStructures,
-    ].map(constructStructure).map(buildStructure),
+    ...farmTown,
+    structures: farmTown.structures.map(buildStructure),
   },
-  {
-    alignment: Alignment.Red,
-    canConstructStructures: true,
-    garrison: [],
-    heroClass: HeroClass.Barbarian,
-    id: TownId.Plains,
-    name: "Plains Town",
-    structures: [
-      ...coreStructures,
-      ...commonStructures,
-      ...plainsStructures,
-    ].map(constructStructure),
-  },
-  {
-    alignment: Alignment.Red,
-    canConstructStructures: true,
-    garrison: [],
-    heroClass: HeroClass.Sorceress,
-    id: TownId.Forest,
-    name: "Forest Town",
-    structures: [
-      ...coreStructures,
-      ...commonStructures,
-      ...forestStructures,
-    ].map(constructStructure),
-  },
-  {
-    alignment: Alignment.Red,
-    canConstructStructures: true,
-    garrison: [],
-    heroClass: HeroClass.Warlock,
-    id: TownId.Mountains,
-    name: "Mountains Town",
-    structures: [
-      ...coreStructures,
-      ...commonStructures,
-      ...mountainsStructures,
-    ].map(constructStructure),
-  },
+  constructTown(
+    TownId.Plains,
+    "Plains Town",
+    Alignment.Red,
+    [],
+  ),
+  constructTown(
+    TownId.Forest,
+    "Forest Town",
+    Alignment.Red,
+    [],
+  ),
+  constructTown(
+    TownId.Mountains,
+    "Mountains Town",
+    Alignment.Red,
+    [],
+  ),
 ];
 
 const initialState: GameState = {
