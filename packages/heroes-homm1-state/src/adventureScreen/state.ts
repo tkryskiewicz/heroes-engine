@@ -1,3 +1,3 @@
 export interface AdventureScreenState {
-  endTurnPromptVisible: boolean;
+  readonly endTurnPromptVisible: boolean;
 }

@@ -1,3 +1,3 @@
 export interface MageGuildWindowState {
-  visibleSpellDetail?: string;
+  readonly visibleSpellDetail?: string;
 }

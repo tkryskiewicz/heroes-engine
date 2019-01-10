@@ -13,17 +13,17 @@ import { SpellBookWindowState } from "./spellBookWindow";
 import { TownWindowState } from "./townWindow";
 
 export interface AppState {
-  game: GameState;
-  adventureScreen: AdventureScreenState;
-  gameSettings: GameSettingsState;
-  locators: LocatorsState;
-  heroWindow: HeroWindowState;
-  kingdomOverviewWindow: KingdomOverviewWindowState;
-  townWindow: TownWindowState;
-  adventureOptions: AdventureOptionsState;
-  gameOptions: GameOptionsState;
-  puzzleWindow: PuzzleWindowState;
-  scenarioInfoWindow: ScenarioInfoWindowState;
-  mageGuildWindow: MageGuildWindowState;
-  spellBookWindow: SpellBookWindowState;
+  readonly game: GameState;
+  readonly adventureScreen: AdventureScreenState;
+  readonly gameSettings: GameSettingsState;
+  readonly locators: LocatorsState;
+  readonly heroWindow: HeroWindowState;
+  readonly kingdomOverviewWindow: KingdomOverviewWindowState;
+  readonly townWindow: TownWindowState;
+  readonly adventureOptions: AdventureOptionsState;
+  readonly gameOptions: GameOptionsState;
+  readonly puzzleWindow: PuzzleWindowState;
+  readonly scenarioInfoWindow: ScenarioInfoWindowState;
+  readonly mageGuildWindow: MageGuildWindowState;
+  readonly spellBookWindow: SpellBookWindowState;
 }

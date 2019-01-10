@@ -4,10 +4,10 @@ export enum LocatorType {
 }
 
 export interface Locator {
-  type: LocatorType;
-  index: number;
+  readonly type: LocatorType;
+  readonly index: number;
 }
 
 export interface LocatorsState {
-  selectedLocator?: Locator;
+  readonly selectedLocator?: Locator;
 }

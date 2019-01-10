@@ -1,10 +1,10 @@
 export interface HeroWindowState {
-  visible: boolean;
-  visibleSkillDetails?: string;
-  visibleMiscInfoDetails?: string;
-  selectedTroopIndex?: number;
-  visibleTroopDetails: boolean;
-  dismissTroopPromptVisisble: boolean;
-  visibleArtifactDescription?: number;
-  dismissHeroPromptVisible: boolean;
+  readonly visible: boolean;
+  readonly visibleSkillDetails?: string;
+  readonly visibleMiscInfoDetails?: string;
+  readonly selectedTroopIndex?: number;
+  readonly visibleTroopDetails: boolean;
+  readonly dismissTroopPromptVisisble: boolean;
+  readonly visibleArtifactDescription?: number;
+  readonly dismissHeroPromptVisible: boolean;
 }

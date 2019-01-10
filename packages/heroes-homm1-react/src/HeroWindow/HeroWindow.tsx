@@ -94,7 +94,7 @@ type DefaultProp =
   "onExitClick";
 
 interface HeroWindowState {
-  statusText: string;
+  readonly statusText: string;
 }
 
 class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, HeroWindowState> {

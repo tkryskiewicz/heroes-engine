@@ -1,3 +1,3 @@
 import { Game } from "heroes-core";
 
-export type GameState = Game;
+export type GameState = Readonly<Game>;

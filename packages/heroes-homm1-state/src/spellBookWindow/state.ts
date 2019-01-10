@@ -1,6 +1,6 @@
 import { SpellType } from "heroes-homm1";
 
 export interface SpellBookWindowState {
-  spellType: SpellType;
-  page: number;
+  readonly spellType: SpellType;
+  readonly page: number;
 }

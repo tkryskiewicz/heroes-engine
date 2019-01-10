@@ -1,3 +1,3 @@
 export interface GameOptionsState {
-  visible: boolean;
+  readonly visible: boolean;
 }

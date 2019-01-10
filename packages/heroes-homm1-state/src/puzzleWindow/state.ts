@@ -1,3 +1,3 @@
 export interface PuzzleWindowState {
-  visible: boolean;
+  readonly visible: boolean;
 }

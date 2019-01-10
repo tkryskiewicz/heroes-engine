@@ -48,7 +48,7 @@ type DefaultProp =
   "onExitClick";
 
 interface TownWindowState {
-  statusText: string;
+  readonly statusText: string;
 }
 
 class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, TownWindowState> {

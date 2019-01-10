@@ -16,7 +16,7 @@ export interface ImageButtonProps {
 }
 
 interface ImageButtonState {
-  pressed: boolean;
+  readonly pressed: boolean;
 }
 
 type DefaultProp =

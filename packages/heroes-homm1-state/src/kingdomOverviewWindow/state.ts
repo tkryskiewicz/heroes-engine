@@ -1,3 +1,3 @@
 export interface KingdomOverviewWindowState {
-  visible: boolean;
+  readonly visible: boolean;
 }

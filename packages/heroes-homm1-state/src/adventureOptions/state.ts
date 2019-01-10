@@ -1,3 +1,3 @@
 export interface AdventureOptionsState {
-  visible: boolean;
+  readonly visible: boolean;
 }
