@@ -32,6 +32,7 @@ storiesOf("SpellBookWindow", module)
   ))
   .add("spell types", () => (
     <SpellBookWindow
+      visible={true}
       spells={spells}
       spellType={select("Spell Type", spellTypeOptions, SpellType.Combat)}
       onSpellTypeMouseEnter={action("Spell Type Mouse Enter")}
