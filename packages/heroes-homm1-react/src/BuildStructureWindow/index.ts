@@ -1,1 +1,1 @@
-export { BuildStructureWindowConnected as BuildStructureWindow } from "./BuildStructureWindowConnected";
+export { BuildStructureWindow } from "./BuildStructureWindowConnected";

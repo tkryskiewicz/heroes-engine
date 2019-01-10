@@ -37,4 +37,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownLocatorsProps, Dispatc
   },
 });
 
-export const TownLocatorsConnected = connect(mapStateToProps, mapDispatchToProps)(TownLocators);
+const TownLocatorsConnected = connect(mapStateToProps, mapDispatchToProps)(TownLocators);
+
+export {
+  TownLocatorsConnected as TownLocators,
+};

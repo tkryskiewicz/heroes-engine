@@ -1,1 +1,1 @@
-export { TownWindowConnected as TownWindow } from "./TownWindowConnected";
+export { TownWindow } from "./TownWindowConnected";

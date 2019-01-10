@@ -69,4 +69,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<GameOptionsProps, Dispatch
   },
 });
 
-export const GameOptionsConnected = connect(mapStateToProps, mapDispatchToProps)(GameOptions);
+const GameOptionsConnected = connect(mapStateToProps, mapDispatchToProps)(GameOptions);
+
+export {
+  GameOptionsConnected as GameOptions,
+};

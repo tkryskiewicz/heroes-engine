@@ -1,1 +1,1 @@
-export { TavernWindowConnected as TavernWindow } from "./TavernWindowConnected";
+export { TavernWindow } from "./TavernWindowConnected";

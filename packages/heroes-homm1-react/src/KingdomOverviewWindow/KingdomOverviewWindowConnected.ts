@@ -53,4 +53,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<KingdomOverviewWindowProps
   },
 });
 
-export const KingdomOverviewWindowConnected = connect(mapStateToProps, mapDispatchToProps)(KingdomOverviewWindow);
+const KingdomOverviewWindowConnected = connect(mapStateToProps, mapDispatchToProps)(KingdomOverviewWindow);
+
+export {
+  KingdomOverviewWindowConnected as KingdomOverviewWindow,
+};

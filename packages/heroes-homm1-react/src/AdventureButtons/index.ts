@@ -1,1 +1,1 @@
-export { AdventureButtonsConnected as AdventureButtons } from "./AdventureButtonsConnected";
+export { AdventureButtons } from "./AdventureButtonsConnected";

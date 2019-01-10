@@ -14,4 +14,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TavernWindowProps, StatePr
   },
 });
 
-export const TavernWindowConnected = connect(null, mapDispatchToProps)(TavernWindow);
+const TavernWindowConnected = connect(null, mapDispatchToProps)(TavernWindow);
+
+export {
+  TavernWindowConnected as TavernWindow,
+};

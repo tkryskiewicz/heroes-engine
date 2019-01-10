@@ -41,4 +41,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureScreenProps, Disp
   },
 });
 
-export const AdventureScreenConnected = connect(mapStateToProps, mapDispatchToProps)(AdventureScreen);
+const AdventureScreenConnected = connect(mapStateToProps, mapDispatchToProps)(AdventureScreen);
+
+export {
+  AdventureScreenConnected as AdventureScreen,
+};

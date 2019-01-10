@@ -1,1 +1,1 @@
-export { PuzzleWindowConnected as PuzzleWindow } from "./PuzzleWindowConnected";
+export { PuzzleWindow } from "./PuzzleWindowConnected";

@@ -24,7 +24,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<CampaignScenarioInfoWindow
   },
 });
 
-export const CampaignScenarioInfoWindowConnected = connect(
+const CampaignScenarioInfoWindowConnected = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(CampaignScenarioInfoWindow);
+
+export {
+  CampaignScenarioInfoWindowConnected as CampaignScenarioInfoWindow,
+};

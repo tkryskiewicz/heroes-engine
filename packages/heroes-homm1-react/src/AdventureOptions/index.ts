@@ -1,1 +1,1 @@
-export { AdventureOptionsConnected as AdventureOptions } from "./AdventureOptionsConnected";
+export { AdventureOptions } from "./AdventureOptionsConnected";

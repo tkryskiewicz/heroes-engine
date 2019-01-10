@@ -1,1 +1,1 @@
-export { HeroWindowConnected as HeroWindow } from "./HeroWindowConnected";
+export { HeroWindow } from "./HeroWindowConnected";

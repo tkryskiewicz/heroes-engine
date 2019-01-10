@@ -1,1 +1,1 @@
-export { AdventureScreenConnected as AdventureScreen } from "./AdventureScreenConnected";
+export { AdventureScreen } from "./AdventureScreenConnected";

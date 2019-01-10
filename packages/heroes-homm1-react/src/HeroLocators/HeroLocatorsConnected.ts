@@ -5,10 +5,11 @@ import { AppState, Locator, LocatorType, openHeroWindow, selectLocator } from "h
 
 import { HeroLocators, HeroLocatorsProps } from "./HeroLocators";
 
-const mapStateToProps = (state: AppState): Pick<HeroLocatorsProps,
+type StateProp =
   "heroes" |
-  "selectedIndex"
-  > => {
+  "selectedIndex";
+
+const mapStateToProps = (state: AppState): Pick<HeroLocatorsProps, StateProp> => {
   const { selectedLocator } = state.locators;
 
   return {
@@ -17,21 +18,26 @@ const mapStateToProps = (state: AppState): Pick<HeroLocatorsProps,
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroLocatorsProps,
+type DispatchProp =
   "onSelectLocator" |
-  "onSelectedLocatorClick"
-  > => ({
-    onSelectLocator(index) {
-      const locator: Locator = {
-        index,
-        type: LocatorType.Hero,
-      };
+  "onSelectedLocatorClick";
 
-      dispatch(selectLocator(locator));
-    },
-    onSelectedLocatorClick() {
-      dispatch(openHeroWindow());
-    },
-  });
+const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroLocatorsProps, DispatchProp> => ({
+  onSelectLocator(index) {
+    const locator: Locator = {
+      index,
+      type: LocatorType.Hero,
+    };
 
-export const HeroLocatorsConnected = connect(mapStateToProps, mapDispatchToProps)(HeroLocators);
+    dispatch(selectLocator(locator));
+  },
+  onSelectedLocatorClick() {
+    dispatch(openHeroWindow());
+  },
+});
+
+const HeroLocatorsConnected = connect(mapStateToProps, mapDispatchToProps)(HeroLocators);
+
+export {
+  HeroLocatorsConnected as HeroLocators,
+};

@@ -13,7 +13,11 @@ import {
 
 import { AdventureButtons, AdventureButtonsProps } from "./AdventureButtons";
 
-const mapStateToProps = (state: AppState): Pick<AdventureButtonsProps, "heroes" | "selectedIndex"> => {
+type StateProp =
+  "heroes" |
+  "selectedIndex";
+
+const mapStateToProps = (state: AppState): Pick<AdventureButtonsProps, StateProp> => {
   const { selectedLocator } = state.locators;
 
   return {
@@ -50,4 +54,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsProps, Dis
   },
 });
 
-export const AdventureButtonsConnected = connect(mapStateToProps, mapDispatchToProps)(AdventureButtons);
+const AdventureButtonsConnected = connect(mapStateToProps, mapDispatchToProps)(AdventureButtons);
+
+export {
+  AdventureButtonsConnected as AdventureButtons,
+};

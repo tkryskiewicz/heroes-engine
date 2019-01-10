@@ -1,1 +1,1 @@
-export { StructuresWindowConnected as StructuresWindow } from "./StructuresWindowConnected";
+export { StructuresWindow } from "./StructuresWindowConnected";

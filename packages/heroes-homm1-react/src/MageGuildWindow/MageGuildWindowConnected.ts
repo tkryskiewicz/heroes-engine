@@ -25,4 +25,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<MageGuildWindowProps, Disp
   },
 });
 
-export const MageGuildWindowConnected = connect(mapStateToProps, mapDispatchToProps)(MageGuildWindow);
+const MageGuildWindowConnected = connect(mapStateToProps, mapDispatchToProps)(MageGuildWindow);
+
+export {
+  MageGuildWindowConnected as MageGuildWindow,
+};

@@ -27,4 +27,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<SpellBookWindowProps, Disp
   },
 });
 
-export const SpellBookWindowConnected = connect(mapStateToProps, mapDispatchToProps)(SpellBookWindow);
+const SpellBookWindowConnected = connect(mapStateToProps, mapDispatchToProps)(SpellBookWindow);
+
+export {
+  SpellBookWindowConnected as SpellBookWindow,
+};
