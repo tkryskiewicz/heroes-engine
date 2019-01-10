@@ -86,7 +86,9 @@ const heroes: Hero[] = [
         creature: CreatureId.Sprite,
       },
     ],
-    artifacts: [],
+    artifacts: [
+      ArtifactId.Spellbook,
+    ],
     experience: 642,
     heroClass: HeroClass.Sorceress,
     id: HeroId.Ariel,

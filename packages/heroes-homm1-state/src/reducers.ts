@@ -11,6 +11,7 @@ import { locatorsReducer } from "./locators";
 import { mageGuildWindowReducer } from "./mageGuildWindow";
 import { puzzleWindowReducer } from "./puzzleWindow";
 import { scenarioInfoWindowReducer } from "./scenarioInfoWindow";
+import { spellBookWindowReducer } from "./spellBookWindow";
 import { AppState } from "./state";
 import { townWindowReducer } from "./townWindow";
 
@@ -26,5 +27,6 @@ export const rootReducer = combineReducers<AppState>({
   mageGuildWindow: mageGuildWindowReducer,
   puzzleWindow: puzzleWindowReducer,
   scenarioInfoWindow: scenarioInfoWindowReducer,
+  spellBookWindow: spellBookWindowReducer,
   townWindow: townWindowReducer,
 });

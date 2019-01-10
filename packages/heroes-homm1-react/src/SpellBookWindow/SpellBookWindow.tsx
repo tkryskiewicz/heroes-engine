@@ -168,7 +168,9 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
       this.props.page - 1 :
       firstPage;
 
-    this.props.onPageChange(value);
+    if (value !== this.props.page) {
+      this.props.onPageChange(value);
+    }
   }
 
   private onNextPageClick = () => {
@@ -178,7 +180,9 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
       this.props.page + 1 :
       lastPage;
 
-    this.props.onPageChange(value);
+    if (value !== this.props.page) {
+      this.props.onPageChange(value);
+    }
   }
 
   private getFirstPage() {
@@ -194,6 +198,8 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
   }
 }
 
-const SpellBookWindowWrapped = withGameWindow()<typeof SpellBookWindow, SpellBookWindowProps>(SpellBookWindow);
+const SpellBookWindowWrapped = withGameWindow(324)<typeof SpellBookWindow, SpellBookWindowProps>(SpellBookWindow);
 
-export { SpellBookWindowWrapped as SpellBookWindow };
+export {
+  SpellBookWindowWrapped as SpellBookWindow,
+};

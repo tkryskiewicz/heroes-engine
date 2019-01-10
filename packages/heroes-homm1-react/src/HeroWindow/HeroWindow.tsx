@@ -2,7 +2,15 @@ import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { getArmySize, Hero, HeroSkills, Troop } from "heroes-core";
-import { ArtifactLimit, getCurrentLevel, getNextLevelExperience, SkillIds } from "heroes-homm1";
+import {
+  ArtifactId,
+  ArtifactLimit,
+  getCurrentLevel,
+  getNextLevelExperience,
+  SkillIds,
+  SpellId,
+  SpellType,
+} from "heroes-homm1";
 
 import "./HeroWindow.scss";
 
@@ -28,6 +36,7 @@ import {
   luckMessages,
   moraleMessages,
 } from "../messages";
+import { SpellBookWindow } from "../SpellBookWindow";
 import { TroopWindow } from "../TroopWindow";
 import { ArtifactSlot, artifactSlotMessages } from "./ArtifactSlot";
 import { messages } from "./messages";
@@ -603,6 +612,10 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
   }
 
   private renderArtifactDescription(artifact: string) {
+    if (artifact === ArtifactId.Spellbook) {
+      return this.renderSpellBook();
+    }
+
     return (
       <GameModal
         type="okay"
@@ -616,6 +629,24 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
           <FormattedMessage {...getArtifactDescriptionMessage(artifact)} />
         </GameParagraph>
       </GameModal>
+    );
+  }
+
+  private renderSpellBook() {
+    const spells = [
+      {
+        charges: 0,
+        id: SpellId.Bless,
+        type: SpellType.Combat,
+      },
+    ];
+
+    return (
+      <SpellBookWindow
+        visible={true}
+        spells={spells}
+        onExitClick={this.onCloseArtifactDescriptionClick}
+      />
     );
   }
 
@@ -693,4 +724,6 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
 
 const HeroWindowWrapped = injectIntl<typeof HeroWindow, HeroWindowProps>(HeroWindow);
 
-export { HeroWindowWrapped as HeroWindow };
+export {
+  HeroWindowWrapped as HeroWindow,
+};

@@ -9,6 +9,7 @@ import { LocatorsState } from "./locators";
 import { MageGuildWindowState } from "./mageGuildWindow";
 import { PuzzleWindowState } from "./puzzleWindow";
 import { ScenarioInfoWindowState } from "./scenarioInfoWindow";
+import { SpellBookWindowState } from "./spellBookWindow";
 import { TownWindowState } from "./townWindow";
 
 export interface AppState {
@@ -24,4 +25,5 @@ export interface AppState {
   puzzleWindow: PuzzleWindowState;
   scenarioInfoWindow: ScenarioInfoWindowState;
   mageGuildWindow: MageGuildWindowState;
+  spellBookWindow: SpellBookWindowState;
 }
