@@ -135,7 +135,9 @@ storiesOf("HeroWindow", module)
     const hero: Hero = {
       ...heroBase,
       artifacts: [
-        select("Artifact", artifactOptions, ArtifactId.ThunderMaceOfDominion),
+        {
+          id: select("Artifact", artifactOptions, ArtifactId.ThunderMaceOfDominion),
+        },
       ],
     };
 

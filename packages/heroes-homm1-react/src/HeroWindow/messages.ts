@@ -25,6 +25,10 @@ export const messages = defineMessages({
     defaultMessage: "none",
     id: "ui.heroWindow.noModifiers",
   },
+  noSpells: {
+    defaultMessage: "No spells to cast.",
+    id: "ui.heroWindow.noSpells",
+  },
   statInfo: {
     defaultMessage: "View {statName} Info",
     id: "ui.heroWindow.statInfo",

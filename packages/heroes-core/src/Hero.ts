@@ -1,4 +1,5 @@
 import { Army, dismissArmyTroop, swapArmyTroops } from "./Army";
+import { Artifact } from "./Artifact";
 
 export interface HeroSkills {
   [skill: string]: number;
@@ -14,7 +15,7 @@ export interface Hero {
   morale: number;
   luck: number;
   experience: number;
-  artifacts: string[];
+  artifacts: Array<Artifact | undefined>;
 }
 
 export const swapHeroTroops = (hero: Hero, index: number, withIndex: number): Hero => ({

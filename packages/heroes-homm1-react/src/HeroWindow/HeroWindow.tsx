@@ -1,15 +1,15 @@
 import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
-import { getArmySize, Hero, HeroSkills, Troop } from "heroes-core";
+import { Artifact, getArmySize, Hero, HeroSkills, Troop } from "heroes-core";
 import {
   ArtifactId,
   ArtifactLimit,
   getCurrentLevel,
   getNextLevelExperience,
   SkillIds,
-  SpellId,
-  SpellType,
+  Spell,
+  SpellBook,
 } from "heroes-homm1";
 
 import "./HeroWindow.scss";
@@ -557,22 +557,22 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     this.props.onCancelDismissTroopClick(index);
   }
 
-  private renderArtifacts(artifacts: string[], visibleArtifactDetails?: number) {
+  private renderArtifacts(artifacts: Array<Artifact | undefined>, visibleArtifactDetails?: number) {
     const content = [...new Array(ArtifactLimit).keys()].map((i) => this.renderArtifact(i, artifacts[i]));
 
-    const details = visibleArtifactDetails !== undefined &&
-      artifacts[visibleArtifactDetails] &&
-      this.renderArtifactDetails(artifacts[visibleArtifactDetails]);
+    const artifactDetails = visibleArtifactDetails !== undefined ?
+      artifacts[visibleArtifactDetails] :
+      undefined;
 
     return (
       <div className="hero-window-artifacts">
         {content}
-        {details}
+        {artifactDetails && this.renderArtifactDetails(artifactDetails)}
       </div>
     );
   }
 
-  private renderArtifact(index: number, artifact: string) {
+  private renderArtifact(index: number, artifact: Artifact | undefined) {
     return (
       <div
         className="hero-window-artifact"
@@ -580,7 +580,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
       >
         <ArtifactSlot
           index={index}
-          artifact={artifact}
+          artifact={artifact ? artifact.id : undefined}
           onMouseEnter={this.onArtifactMouseEnter}
           onMouseLeave={this.onArtifactMouseLeave}
           onClick={this.onArtifactClick}
@@ -593,7 +593,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     const artifact = this.props.hero.artifacts[index];
 
     const message = artifact ?
-      getArtifactNameMessage(artifact) :
+      getArtifactNameMessage(artifact.id) :
       artifactSlotMessages.empty;
 
     const statusText = this.props.intl.formatMessage(message);
@@ -611,13 +611,15 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     }
   }
 
-  private renderArtifactDetails(artifact: string) {
-    if (artifact === ArtifactId.Spellbook) {
-      if (![].length) {
+  private renderArtifactDetails(artifact: Artifact) {
+    if (artifact.id === ArtifactId.Spellbook) {
+      const spellBook = artifact as SpellBook;
+
+      if (!spellBook.data.length) {
         return this.renderNoSpellsPrompt();
       }
 
-      return this.renderSpellBook();
+      return this.renderSpellBook(spellBook.data);
     }
 
     return (
@@ -627,10 +629,10 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
         onConfirmClick={this.onCloseArtifactDetailsClick}
       >
         <GameParagraph textSize="large">
-          <FormattedMessage {...getArtifactNameMessage(artifact)} />
+          <FormattedMessage {...getArtifactNameMessage(artifact.id)} />
         </GameParagraph>
         <GameParagraph textSize="large">
-          <FormattedMessage {...getArtifactDescriptionMessage(artifact)} />
+          <FormattedMessage {...getArtifactDescriptionMessage(artifact.id)} />
         </GameParagraph>
       </GameModal>
     );
@@ -644,21 +646,13 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
         onConfirmClick={this.onCloseArtifactDetailsClick}
       >
         <GameText size="large">
-          No spells to cast.
+          <FormattedMessage {...messages.noSpells} />
         </GameText>
       </GameModal>
     );
   }
 
-  private renderSpellBook() {
-    const spells = [
-      {
-        charges: 0,
-        id: SpellId.Bless,
-        type: SpellType.Combat,
-      },
-    ];
-
+  private renderSpellBook(spells: Spell[]) {
     return (
       <SpellBookWindow
         visible={true}

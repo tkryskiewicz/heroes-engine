@@ -146,7 +146,9 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
   }
 
   private onCombatSpellsClick = () => {
-    this.props.onSpellTypeChange(SpellType.Combat);
+    if (this.props.spellType !== SpellType.Combat) {
+      this.props.onSpellTypeChange(SpellType.Combat);
+    }
   }
 
   private onAdventureSpellsMouseEnter = () => {
@@ -158,7 +160,9 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
   }
 
   private onAdventureSpellsClick = () => {
-    this.props.onSpellTypeChange(SpellType.Adventure);
+    if (this.props.spellType !== SpellType.Adventure) {
+      this.props.onSpellTypeChange(SpellType.Adventure);
+    }
   }
 
   private onPreviousPageClick = () => {

@@ -21,6 +21,8 @@ import {
   MaxMobility,
   Resource,
   Skill,
+  SpellId,
+  SpellType,
   TownId,
 } from "heroes-homm1";
 
@@ -41,7 +43,9 @@ const heroes: Hero[] = [
       },
     ],
     artifacts: [
-      ArtifactId.ThunderMaceOfDominion,
+      {
+        id: ArtifactId.ThunderMaceOfDominion,
+      },
     ],
     experience: 10,
     heroClass: HeroClass.Knight,
@@ -87,7 +91,16 @@ const heroes: Hero[] = [
       },
     ],
     artifacts: [
-      ArtifactId.Spellbook,
+      {
+        data: [
+          {
+            charges: 0,
+            id: SpellId.Bless,
+            type: SpellType.Combat,
+          },
+        ],
+        id: ArtifactId.Spellbook,
+      },
     ],
     experience: 642,
     heroClass: HeroClass.Sorceress,
@@ -110,7 +123,12 @@ const heroes: Hero[] = [
         creature: CreatureId.Centaur,
       },
     ],
-    artifacts: [],
+    artifacts: [
+      {
+        data: [],
+        id: ArtifactId.Spellbook,
+      },
+    ],
     experience: 174,
     heroClass: HeroClass.Warlock,
     id: HeroId.Agar,
