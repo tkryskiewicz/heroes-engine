@@ -8,7 +8,7 @@ export enum HeroWindowActionType {
   CloseTroopDetails = "heroWindow/closeTroopDetails",
   OpenDismissTroopPrompt = "heroWindow/openDismissTroopPrompt",
   CloseDismissTroopPrompt = "heroWindow/closeDismissTroopPrompt",
-  ChangeVisibleArtifactDescription = "hero/changeVisibleArtifactDescription",
+  ChangeVisibleArtifactDetails = "heroWindow/changeVisibleArtifactDetails",
   OpenDismissHeroPrompt = "heroWindow/openDismissHeroPrompt",
   CloseDismissHeroPrompt = "heroWindow/closeDismissHeroPrompt",
 }
@@ -23,7 +23,7 @@ export type HeroWindowAction =
   CloseTroopDetails |
   OpenDismissTroopPromptAction |
   CloseDismissTroopPromptAction |
-  ChangeVisibleArtifactDescriptionAction |
+  ChangeVisibleArtifactDetailsAction |
   OpenDismissHeroPromptAction |
   CloseDismissHeroPromptAction;
 
@@ -111,14 +111,14 @@ export const closeDismissTroopPrompt = (index: number): CloseDismissTroopPromptA
   type: HeroWindowActionType.CloseDismissTroopPrompt,
 });
 
-export interface ChangeVisibleArtifactDescriptionAction {
-  type: HeroWindowActionType.ChangeVisibleArtifactDescription;
+export interface ChangeVisibleArtifactDetailsAction {
+  type: HeroWindowActionType.ChangeVisibleArtifactDetails;
   index?: number;
 }
 
-export const changeVisibleArtifactDescription = (index?: number): ChangeVisibleArtifactDescriptionAction => ({
+export const changeVisibleArtifactDetails = (index?: number): ChangeVisibleArtifactDetailsAction => ({
   index,
-  type: HeroWindowActionType.ChangeVisibleArtifactDescription,
+  type: HeroWindowActionType.ChangeVisibleArtifactDetails,
 });
 
 export interface OpenDismissHeroPromptAction {

@@ -139,16 +139,16 @@ storiesOf("HeroWindow", module)
       ],
     };
 
-    const visibleArtifactDescription = boolean("Show Artifact Description", false) ?
-      number("Visible Artifact Description", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 }) :
+    const visibleArtifactDetails = boolean("Show Artifact Details", false) ?
+      number("Visible Artifact Details", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 }) :
       undefined;
 
     return (
       <HeroWindow
         hero={hero}
         visible={true}
-        visibleArtifactDescription={visibleArtifactDescription}
-        onVisibleArtifactDescriptionChange={action("Visible Artifact Description Index Change")}
+        visibleArtifactDetails={visibleArtifactDetails}
+        onVisibleArtifactDetailsChange={action("Visible Artifact Details Change")}
       />
     );
   })

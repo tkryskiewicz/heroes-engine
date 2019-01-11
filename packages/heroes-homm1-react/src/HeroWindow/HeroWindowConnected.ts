@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 
 import {
   AppState,
-  changeVisibleHeroWindowArtifactDescription,
+  changeVisibleHeroWindowArtifactDetails,
   changeVisibleHeroWindowMiscInfoDetails,
   changeVisibleHeroWindowSkillDetails,
   closeDismissHeroPrompt,
@@ -29,7 +29,7 @@ type StateProp =
   "selectedTroopIndex" |
   "troopDetailsVisible" |
   "dismissTroopPromptVisible" |
-  "visibleArtifactDescription" |
+  "visibleArtifactDetails" |
   "dismissHeroPromptVisible";
 
 const mapStateToProps = (state: AppState): Pick<HeroWindowProps, StateProp> => ({
@@ -38,7 +38,7 @@ const mapStateToProps = (state: AppState): Pick<HeroWindowProps, StateProp> => (
   hero: state.game.heroes[state.locators.selectedLocator!.index],
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,
   troopDetailsVisible: state.heroWindow.visibleTroopDetails,
-  visibleArtifactDescription: state.heroWindow.visibleArtifactDescription,
+  visibleArtifactDetails: state.heroWindow.visibleArtifactDetails,
   visibleMiscInfoDetails: state.heroWindow.visibleMiscInfoDetails,
   visibleSkillDetails: state.heroWindow.visibleSkillDetails,
 });
@@ -54,7 +54,7 @@ type DispatchProp =
   "onCancelDismissTroopClick" |
   "onConfirmDismissTroopClick" |
   "onSwapTroops" |
-  "onVisibleArtifactDescriptionChange" |
+  "onVisibleArtifactDetailsChange" |
   "onDismissHeroClick" |
   "onCancelDismissHeroClick" |
   "onConfirmDismissHeroClick" |
@@ -91,8 +91,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchP
   onSwapTroops(hero, index, withIndex) {
     dispatch(swapHeroTroops(hero, index, withIndex));
   },
-  onVisibleArtifactDescriptionChange(index) {
-    dispatch(changeVisibleHeroWindowArtifactDescription(index));
+  onVisibleArtifactDetailsChange(index) {
+    dispatch(changeVisibleHeroWindowArtifactDetails(index));
   },
   onDismissHeroClick() {
     dispatch(openDismissHeroPrompt());

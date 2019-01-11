@@ -5,6 +5,6 @@ export interface HeroWindowState {
   readonly selectedTroopIndex?: number;
   readonly visibleTroopDetails: boolean;
   readonly dismissTroopPromptVisisble: boolean;
-  readonly visibleArtifactDescription?: number;
+  readonly visibleArtifactDetails?: number;
   readonly dismissHeroPromptVisible: boolean;
 }

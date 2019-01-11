@@ -63,8 +63,8 @@ export interface HeroWindowProps {
   onCancelDismissTroopClick: (index: number) => void;
   onConfirmDismissTroopClick: (hero: string, index: number) => void;
   onExitTroopDetails: () => void;
-  visibleArtifactDescription?: number;
-  onVisibleArtifactDescriptionChange: (index?: number) => void;
+  visibleArtifactDetails?: number;
+  onVisibleArtifactDetailsChange: (index?: number) => void;
   dismissHeroPromptVisible: boolean;
   onDismissHeroClick: () => void;
   onCancelDismissHeroClick: () => void;
@@ -86,7 +86,7 @@ type DefaultProp =
   "onCancelDismissTroopClick" |
   "onConfirmDismissTroopClick" |
   "onExitTroopDetails" |
-  "onVisibleArtifactDescriptionChange" |
+  "onVisibleArtifactDetailsChange" |
   "dismissHeroPromptVisible" |
   "onDismissHeroClick" |
   "onCancelDismissHeroClick" |
@@ -114,7 +114,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     onSelectTroop: () => undefined,
     onSelectedTroopClick: () => undefined,
     onSwapTroops: () => undefined,
-    onVisibleArtifactDescriptionChange: () => undefined,
+    onVisibleArtifactDetailsChange: () => undefined,
     onVisibleMiscInfoDetailsChange: () => undefined,
     onVisibleSkillDetailsChange: () => undefined,
     troopDetailsVisible: false,
@@ -160,7 +160,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
           </div>
           {this.renderArmy(hero, selectedTroopIndex)}
           {this.props.dismissible && this.renderDismissal(this.props.dismissHeroPromptVisible)}
-          {this.renderArtifacts(hero.artifacts, this.props.visibleArtifactDescription)}
+          {this.renderArtifacts(hero.artifacts, this.props.visibleArtifactDetails)}
           <div className="hero-window-exit">
             <ImageButton
               images={buttonImages.exit}
@@ -557,17 +557,17 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     this.props.onCancelDismissTroopClick(index);
   }
 
-  private renderArtifacts(artifacts: string[], visibleArtifactDescription?: number) {
+  private renderArtifacts(artifacts: string[], visibleArtifactDetails?: number) {
     const content = [...new Array(ArtifactLimit).keys()].map((i) => this.renderArtifact(i, artifacts[i]));
 
-    const description = visibleArtifactDescription !== undefined &&
-      artifacts[visibleArtifactDescription] &&
-      this.renderArtifactDescription(artifacts[visibleArtifactDescription]);
+    const details = visibleArtifactDetails !== undefined &&
+      artifacts[visibleArtifactDetails] &&
+      this.renderArtifactDetails(artifacts[visibleArtifactDetails]);
 
     return (
       <div className="hero-window-artifacts">
         {content}
-        {description}
+        {details}
       </div>
     );
   }
@@ -607,12 +607,16 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
 
   private onArtifactClick = (index: number) => {
     if (this.props.hero.artifacts[index]) {
-      this.props.onVisibleArtifactDescriptionChange(index);
+      this.props.onVisibleArtifactDetailsChange(index);
     }
   }
 
-  private renderArtifactDescription(artifact: string) {
+  private renderArtifactDetails(artifact: string) {
     if (artifact === ArtifactId.Spellbook) {
+      if (![].length) {
+        return this.renderNoSpellsPrompt();
+      }
+
       return this.renderSpellBook();
     }
 
@@ -620,7 +624,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
       <GameModal
         type="okay"
         visible={true}
-        onConfirmClick={this.onCloseArtifactDescriptionClick}
+        onConfirmClick={this.onCloseArtifactDetailsClick}
       >
         <GameParagraph textSize="large">
           <FormattedMessage {...getArtifactNameMessage(artifact)} />
@@ -628,6 +632,20 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
         <GameParagraph textSize="large">
           <FormattedMessage {...getArtifactDescriptionMessage(artifact)} />
         </GameParagraph>
+      </GameModal>
+    );
+  }
+
+  private renderNoSpellsPrompt() {
+    return (
+      <GameModal
+        type="okay"
+        visible={true}
+        onConfirmClick={this.onCloseArtifactDetailsClick}
+      >
+        <GameText size="large">
+          No spells to cast.
+        </GameText>
       </GameModal>
     );
   }
@@ -645,13 +663,13 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
       <SpellBookWindow
         visible={true}
         spells={spells}
-        onExitClick={this.onCloseArtifactDescriptionClick}
+        onExitClick={this.onCloseArtifactDetailsClick}
       />
     );
   }
 
-  private onCloseArtifactDescriptionClick = () => {
-    this.props.onVisibleArtifactDescriptionChange();
+  private onCloseArtifactDetailsClick = () => {
+    this.props.onVisibleArtifactDetailsChange();
   }
 
   private renderDismissal(dismissHeroPromptVisible: boolean) {

@@ -28,7 +28,7 @@ export {
   closeHeroWindowTroopDetails,
   openDismissHeroWindowTroopPrompt,
   closeDismissHeroWindowTroopPrompt,
-  changeVisibleHeroWindowArtifactDescription,
+  changeVisibleHeroWindowArtifactDetails,
   openDismissHeroPrompt,
   closeDismissHeroPrompt,
 } from "./heroWindow";
