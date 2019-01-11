@@ -10,7 +10,7 @@ import {
   TownId,
 } from "heroes-homm1";
 
-import { StructureView } from "./StructureView";
+import { StructureView } from "../StructureView";
 
 interface StructurePosition {
   left: number;

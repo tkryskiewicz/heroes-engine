@@ -8,8 +8,8 @@ import "./MageGuildWindow.scss";
 import { GameModal, SpellIcon } from "../base";
 import { GameParagraph } from "../core";
 import { getSpellDescriptionMessage, getSpellLongNameMessage, getSpellNameMessage } from "../messages";
+import { StructureView } from "../StructureView";
 import { withTownDetailWindow, WithTownDetailWindowProps } from "../TownDetailWindow";
-import { StructureView } from "../TownView/StructureView"; // FIXME
 import { SpellScroll } from "./SpellScroll";
 
 interface Spell {

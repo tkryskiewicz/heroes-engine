@@ -5,10 +5,10 @@ import * as React from "react";
 
 import { StructureId, TownId } from "heroes-homm1";
 
-import { structureOptions, townOptions } from "../../stories";
+import { structureOptions, townOptions } from "../stories";
 import { StructureView } from "./StructureView";
 
-storiesOf(`TownView/${StructureView.name}`, module)
+storiesOf("StructureView", module)
   .add("default", () => (
     <StructureView
       town={select("Town", townOptions, TownId.Farm)}
