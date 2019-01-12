@@ -136,6 +136,7 @@ storiesOf("HeroWindow", module)
       ...heroBase,
       artifacts: [
         {
+          data: {},
           id: select("Artifact", artifactOptions, ArtifactId.ThunderMaceOfDominion),
         },
       ],

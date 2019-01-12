@@ -44,6 +44,7 @@ const heroes: Hero[] = [
     ],
     artifacts: [
       {
+        data: {},
         id: ArtifactId.ThunderMaceOfDominion,
       },
     ],
