@@ -10,6 +10,7 @@ import {
   SkillIds,
   Spell,
   SpellBook,
+  SpellType,
 } from "heroes-homm1";
 
 import "./HeroWindow.scss";
@@ -36,7 +37,7 @@ import {
   luckMessages,
   moraleMessages,
 } from "../messages";
-import { SpellBookWindow } from "../SpellBookWindow";
+import { getSpellTypeStatusTextMessage, spellBookMessages, SpellBookWindow } from "../SpellBookWindow";
 import { TroopWindow } from "../TroopWindow";
 import { ArtifactSlot, artifactSlotMessages } from "./ArtifactSlot";
 import { messages } from "./messages";
@@ -657,9 +658,63 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
       <SpellBookWindow
         visible={true}
         spells={spells}
+        onPreviousPageMouseEnter={this.onPreviousSpellBookPageMouseEnter}
+        onPreviousPageMouseLeave={this.onPreviousSpellBookPageMouseLeave}
+        onNextPageMouseEnter={this.onNextSpellBookPageMouseEnter}
+        onNextPageMouseLeave={this.onNextSpellBookPageMouseLeave}
+        onSpellTypeMouseEnter={this.onSpellBookSpellTypeMouseEnter}
+        onSpellTypeMouseLeave={this.onSpellBookSpellTypeMouseLeave}
+        onExitMouseEnter={this.onExitSpellBookMouseEnter}
+        onExitMouseLeave={this.onExitSpellBookMouseLeave}
         onExitClick={this.onCloseArtifactDetailsClick}
       />
     );
+  }
+
+  private setDefaultSpellBookStatusText() {
+    const statusText = this.props.intl.formatMessage(spellBookMessages.defaultStatusText);
+
+    this.setStatusText(statusText);
+  }
+
+  private onPreviousSpellBookPageMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(spellBookMessages.previousPageStatusText);
+
+    this.setStatusText(statusText);
+  }
+
+  private onPreviousSpellBookPageMouseLeave = () => {
+    this.setDefaultSpellBookStatusText();
+  }
+
+  private onNextSpellBookPageMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(spellBookMessages.nextPageStatusText);
+
+    this.setStatusText(statusText);
+  }
+
+  private onNextSpellBookPageMouseLeave = () => {
+    this.setDefaultSpellBookStatusText();
+  }
+
+  private onSpellBookSpellTypeMouseEnter = (value: SpellType) => {
+    const statusText = this.props.intl.formatMessage(getSpellTypeStatusTextMessage(value));
+
+    this.setStatusText(statusText);
+  }
+
+  private onSpellBookSpellTypeMouseLeave = () => {
+    this.setDefaultSpellBookStatusText();
+  }
+
+  private onExitSpellBookMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(spellBookMessages.exitStatusText);
+
+    this.setStatusText(statusText);
+  }
+
+  private onExitSpellBookMouseLeave = () => {
+    this.setDefaultSpellBookStatusText();
   }
 
   private onCloseArtifactDetailsClick = () => {
