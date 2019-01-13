@@ -57,4 +57,5 @@ const KingdomOverviewWindowConnected = connect(mapStateToProps, mapDispatchToPro
 
 export {
   KingdomOverviewWindowConnected as KingdomOverviewWindow,
+  KingdomOverviewWindowProps,
 };

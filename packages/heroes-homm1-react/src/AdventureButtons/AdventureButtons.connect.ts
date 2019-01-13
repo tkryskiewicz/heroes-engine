@@ -58,4 +58,5 @@ const AdventureButtonsConnected = connect(mapStateToProps, mapDispatchToProps)(A
 
 export {
   AdventureButtonsConnected as AdventureButtons,
+  AdventureButtonsProps,
 };

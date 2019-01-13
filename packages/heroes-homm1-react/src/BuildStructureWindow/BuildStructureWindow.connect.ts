@@ -22,4 +22,5 @@ const BuildStructureWindowConnected = connect(null, mapDispatchToProps)(BuildStr
 
 export {
   BuildStructureWindowConnected as BuildStructureWindow,
+  BuildStructureWindowProps,
 };

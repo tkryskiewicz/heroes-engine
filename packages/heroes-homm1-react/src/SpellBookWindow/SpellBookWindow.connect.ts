@@ -46,4 +46,5 @@ const SpellBookWindowConnected = connect(mapStateToProps, mapDispatchToProps)(Sp
 
 export {
   SpellBookWindowConnected as SpellBookWindow,
+  SpellBookWindowProps,
 };

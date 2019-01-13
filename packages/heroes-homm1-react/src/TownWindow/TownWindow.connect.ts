@@ -78,4 +78,5 @@ const TownWindowConnected = connect(mapStateToProps, mapDispatchToProps)(TownWin
 
 export {
   TownWindowConnected as TownWindow,
+  TownWindowProps,
 };

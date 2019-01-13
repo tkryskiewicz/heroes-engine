@@ -1,1 +1,1 @@
-export { AdventureOptions } from "./AdventureOptionsConnected";
+export { AdventureOptions, AdventureOptionsProps } from "./AdventureOptions.connect";

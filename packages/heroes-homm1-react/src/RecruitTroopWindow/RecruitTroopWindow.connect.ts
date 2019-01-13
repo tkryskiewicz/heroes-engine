@@ -31,4 +31,5 @@ const RecruitTroopWindowConnected = connect(mapStateToProps, mapDispatchToProps)
 
 export {
   RecruitTroopWindowConnected as RecruitTroopWindow,
+  RecruitTroopWindowProps,
 };

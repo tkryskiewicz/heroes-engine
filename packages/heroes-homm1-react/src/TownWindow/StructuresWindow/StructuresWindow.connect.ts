@@ -18,4 +18,5 @@ const StructuresWindowConnected = connect(null, mapDispatchToProps)(StructuresWi
 
 export {
   StructuresWindowConnected as StructuresWindow,
+  StructuresWindowProps,
 };

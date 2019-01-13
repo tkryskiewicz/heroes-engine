@@ -45,4 +45,5 @@ const AdventureScreenConnected = connect(mapStateToProps, mapDispatchToProps)(Ad
 
 export {
   AdventureScreenConnected as AdventureScreen,
+  AdventureScreenProps,
 };

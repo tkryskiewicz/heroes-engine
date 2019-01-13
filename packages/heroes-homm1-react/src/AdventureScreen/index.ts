@@ -1,1 +1,1 @@
-export { AdventureScreen } from "./AdventureScreenConnected";
+export { AdventureScreen, AdventureScreenProps } from "./AdventureScreen.connect";

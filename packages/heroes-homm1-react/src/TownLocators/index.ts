@@ -1,1 +1,1 @@
-export { TownLocators } from "./TownLocatorsConnected";
+export { TownLocators, TownLocatorsProps } from "./TownLocators.connect";

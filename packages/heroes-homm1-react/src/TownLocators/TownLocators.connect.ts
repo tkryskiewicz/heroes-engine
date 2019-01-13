@@ -41,4 +41,5 @@ const TownLocatorsConnected = connect(mapStateToProps, mapDispatchToProps)(TownL
 
 export {
   TownLocatorsConnected as TownLocators,
+  TownLocatorsProps,
 };

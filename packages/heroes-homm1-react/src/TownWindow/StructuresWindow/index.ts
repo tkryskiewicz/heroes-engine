@@ -1,1 +1,1 @@
-export { StructuresWindow } from "./StructuresWindowConnected";
+export { StructuresWindow, StructuresWindowProps } from "./StructuresWindow.connect";

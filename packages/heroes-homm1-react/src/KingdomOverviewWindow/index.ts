@@ -1,2 +1,2 @@
-export { KingdomOverviewWindow } from "./KingdomOverviewWindowConnected";
+export { KingdomOverviewWindow, KingdomOverviewWindowProps } from "./KingdomOverviewWindow.connect";
 export { messages as kingdomOverviewWindowMessages } from "./messages";

@@ -112,4 +112,5 @@ const HeroWindowConnected = connect(mapStateToProps, mapDispatchToProps)(HeroWin
 
 export {
   HeroWindowConnected as HeroWindow,
+  HeroWindowProps,
 };

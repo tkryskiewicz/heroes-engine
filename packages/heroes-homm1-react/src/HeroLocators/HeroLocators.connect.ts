@@ -40,4 +40,5 @@ const HeroLocatorsConnected = connect(mapStateToProps, mapDispatchToProps)(HeroL
 
 export {
   HeroLocatorsConnected as HeroLocators,
+  HeroLocatorsProps,
 };

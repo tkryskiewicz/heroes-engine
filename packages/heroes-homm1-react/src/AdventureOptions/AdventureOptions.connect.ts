@@ -22,4 +22,5 @@ const AdventureOptionsConnected = connect(null, mapDispatchToProps)(AdventureOpt
 
 export {
   AdventureOptionsConnected as AdventureOptions,
+  AdventureOptionsProps,
 };

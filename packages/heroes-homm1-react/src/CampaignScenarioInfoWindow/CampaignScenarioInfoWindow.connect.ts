@@ -31,4 +31,5 @@ const CampaignScenarioInfoWindowConnected = connect(
 
 export {
   CampaignScenarioInfoWindowConnected as CampaignScenarioInfoWindow,
+  CampaignScenarioInfoWindowProps,
 };

@@ -18,4 +18,5 @@ const TavernWindowConnected = connect(null, mapDispatchToProps)(TavernWindow);
 
 export {
   TavernWindowConnected as TavernWindow,
+  TavernWindowProps,
 };

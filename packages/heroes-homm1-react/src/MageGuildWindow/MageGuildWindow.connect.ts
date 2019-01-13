@@ -29,4 +29,5 @@ const MageGuildWindowConnected = connect(mapStateToProps, mapDispatchToProps)(Ma
 
 export {
   MageGuildWindowConnected as MageGuildWindow,
+  MageGuildWindowProps,
 };

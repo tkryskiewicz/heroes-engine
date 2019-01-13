@@ -1,1 +1,1 @@
-export { PuzzleWindow } from "./PuzzleWindowConnected";
+export { PuzzleWindow, PuzzleWindowProps } from "./PuzzleWindow.connect";

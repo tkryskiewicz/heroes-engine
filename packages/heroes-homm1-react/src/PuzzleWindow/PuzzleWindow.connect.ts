@@ -25,4 +25,5 @@ const PuzzleWindowConnected = connect(mapStateToProps, mapDispatchToProps)(Puzzl
 
 export {
   PuzzleWindowConnected as PuzzleWindow,
+  PuzzleWindowProps,
 };

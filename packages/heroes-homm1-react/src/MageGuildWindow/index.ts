@@ -1,1 +1,1 @@
-export { MageGuildWindow } from "./MageGuildWindowConnected";
+export { MageGuildWindow, MageGuildWindowProps } from "./MageGuildWindow.connect";

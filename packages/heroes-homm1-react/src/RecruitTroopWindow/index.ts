@@ -1,2 +1,2 @@
 export { messages as recruitTroopWindowMessages } from "./messages";
-export { RecruitTroopWindow } from "./RecruitTroopWindowConnected";
+export { RecruitTroopWindow, RecruitTroopWindowProps } from "./RecruitTroopWindow.connect";

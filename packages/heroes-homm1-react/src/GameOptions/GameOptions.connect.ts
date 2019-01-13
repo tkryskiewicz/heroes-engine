@@ -73,4 +73,5 @@ const GameOptionsConnected = connect(mapStateToProps, mapDispatchToProps)(GameOp
 
 export {
   GameOptionsConnected as GameOptions,
+  GameOptionsProps,
 };

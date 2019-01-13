@@ -1,1 +1,1 @@
-export { ThievesGuildWindow, ThievesGuildWindowProps } from "./ThievesGuildWindowConnected";
+export { ThievesGuildWindow, ThievesGuildWindowProps } from "./ThievesGuildWindow.connect";
