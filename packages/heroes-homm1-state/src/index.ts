@@ -42,6 +42,7 @@ export { openScenarioInfoWindow, closeScenarioInfoWindow } from "./scenarioInfoW
 export {
   changeSpellBookWindowSpellType,
   changeSpellBookWindowPage,
+  changeVisibleSpellBookWindowSpellDetails,
 } from "./spellBookWindow";
 export {
   openTownWindow,

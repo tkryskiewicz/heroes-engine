@@ -4,11 +4,11 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { withReadme } from "storybook-readme";
 
-import { spells as allSpells, SpellType } from "heroes-homm1";
+import { SpellId, spells as allSpells, SpellType } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
-import { spellTypeOptions } from "../stories";
+import { spellOptions, spellTypeOptions } from "../stories";
 import { SpellBookWindow } from "./SpellBookWindow";
 
 const spells = allSpells.map((s) => ({
@@ -52,5 +52,15 @@ storiesOf("SpellBookWindow", module)
       onNextPageMouseEnter={action("Next Page Mouse Enter")}
       onNextPageMouseLeave={action("Next Page Mouse Leave")}
       onPageChange={action("Page Change")}
+    />
+  ))
+  .add("spell details", () => (
+    <SpellBookWindow
+      visible={true}
+      spells={spells}
+      spellType={SpellType.Combat}
+      page={0}
+      visibleSpellDetails={select("Visible Spell Details", spellOptions, SpellId.Bless)}
+      onCloseSpellDetailsClick={action("Close Spell Details Click")}
     />
   ));

@@ -24,6 +24,11 @@ export const spellBookWindowReducer = (
         ...state,
         page: action.value,
       };
+    case SpellBookWindowActionType.ChangeVisibleSpellDetails:
+      return {
+        ...state,
+        visibleSpellDetails: action.spell,
+      };
     case HeroWindowActionType.ChangeVisibleArtifactDetails:
       return {
         ...initialState,

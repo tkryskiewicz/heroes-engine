@@ -3,11 +3,13 @@ import { SpellType } from "heroes-homm1";
 export enum SpellBookWindowActionType {
   ChangeSpellType = "spellBookWindow/changeSpellType",
   ChangePage = "spellBookWindow/changePage",
+  ChangeVisibleSpellDetails = "spellBookWindow/changeVisibleSpellDetails",
 }
 
 export type SpellBookWindowAction =
   ChangePageAction |
-  ChangeSpellTypeAction;
+  ChangeSpellTypeAction |
+  ChangeVisibleSpellDetailsAction;
 
 export interface ChangeSpellTypeAction {
   type: SpellBookWindowActionType.ChangeSpellType;
@@ -27,4 +29,14 @@ export interface ChangePageAction {
 export const changePage = (value: number): ChangePageAction => ({
   type: SpellBookWindowActionType.ChangePage,
   value,
+});
+
+export interface ChangeVisibleSpellDetailsAction {
+  type: SpellBookWindowActionType.ChangeVisibleSpellDetails;
+  spell?: string;
+}
+
+export const changeVisibleSpellDetails = (spell?: string): ChangeVisibleSpellDetailsAction => ({
+  spell,
+  type: SpellBookWindowActionType.ChangeVisibleSpellDetails,
 });

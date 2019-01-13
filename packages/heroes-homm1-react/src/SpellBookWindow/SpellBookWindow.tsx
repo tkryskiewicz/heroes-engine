@@ -1,10 +1,13 @@
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { SpellType } from "heroes-homm1";
 
 import "./SpellBookWindow.scss";
 
-import { withGameWindow } from "../core";
+import { GameModal, SpellIcon } from "../base";
+import { GameParagraph, withGameWindow } from "../core";
+import { getSpellDescriptionMessage, getSpellLongNameMessage, getSpellNameMessage } from "../messages";
 import { AdventureSpellsImage, CombatSpellsImage, ExitImage, NextPageImage, PreviousPageImage } from "./assets";
 import { SpellBox } from "./SpellBox";
 
@@ -29,6 +32,8 @@ export interface SpellBookWindowProps {
   onNextPageMouseLeave: () => void;
   onPageChange: (value: number) => void;
   onSpellClick: (value: string) => void;
+  visibleSpellDetails?: string;
+  onCloseSpellDetailsClick: () => void;
   onExitMouseEnter: () => void;
   onExitMouseLeave: () => void;
   onExitClick: () => void;
@@ -44,12 +49,14 @@ type DefaultProp =
   "onNextPageMouseLeave" |
   "onPageChange" |
   "onSpellClick" |
+  "onCloseSpellDetailsClick" |
   "onExitMouseEnter" |
   "onExitMouseLeave" |
   "onExitClick";
 
 class SpellBookWindow extends React.Component<SpellBookWindowProps> {
   public static defaultProps: Pick<SpellBookWindowProps, DefaultProp> = {
+    onCloseSpellDetailsClick: () => undefined,
     onExitClick: () => undefined,
     onExitMouseEnter: () => undefined,
     onExitMouseLeave: () => undefined,
@@ -68,6 +75,7 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
     return (
       <div className="spell-book-window">
         {this.renderSpells(this.props.spells, this.props.spellType)}
+        {this.props.visibleSpellDetails && this.renderSpellDetails(this.props.visibleSpellDetails)}
         <img
           className="spell-book-window-previous-page"
           src={PreviousPageImage}
@@ -134,6 +142,30 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
           onClick={this.props.onSpellClick}
         />
       </div>
+    );
+  }
+
+  private renderSpellDetails(spell: string) {
+    return (
+      <GameModal
+        type="okay"
+        size={3}
+        onConfirmClick={this.props.onCloseSpellDetailsClick}
+        visible={true}
+      >
+        <GameParagraph textSize="large">
+          <FormattedMessage {...getSpellLongNameMessage(spell)} />
+        </GameParagraph>
+        <GameParagraph textSize="large">
+          <FormattedMessage {...getSpellDescriptionMessage(spell)} />
+        </GameParagraph>
+        <SpellIcon
+          spell={spell}
+        />
+        <GameParagraph textSize="normal">
+          <FormattedMessage {...getSpellNameMessage(spell)} />
+        </GameParagraph>
+      </GameModal>
     );
   }
 
