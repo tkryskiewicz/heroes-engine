@@ -8,16 +8,22 @@ import { getStructureStatus, StructureStatus } from "heroes-homm1";
 import "./StructuresWindow.scss";
 
 import { getStructureNameMessage } from "../../messages";
-import { withTownDetailWindow, WithTownDetailWindowInjectedProps } from "../../TownDetailWindow";
+import {
+  withTownDetailWindow,
+  WithTownDetailWindowInjectedProps,
+  WithTownDetailWindowProps,
+} from "../../TownDetailWindow";
 import { StructureStatusImage } from "../StructureStatusImage";
 import { getStructureStatusMessage, messages } from "./messages";
 
-export interface StructuresWindowProps extends InjectedIntlProps, WithTownDetailWindowInjectedProps {
+export interface StructuresWindowProps extends
+  InjectedIntlProps,
+  WithTownDetailWindowInjectedProps,
+  WithTownDetailWindowProps {
   town: string;
   canConstructStructures: boolean;
   structures: Structure[];
   resources: Resources;
-  onExitClick?: () => void;
 }
 
 class StructuresWindow extends React.Component<StructuresWindowProps> {
@@ -35,6 +41,16 @@ class StructuresWindow extends React.Component<StructuresWindowProps> {
         </Row>
       </div>
     );
+  }
+
+  public onExitMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(messages.exitStatusText);
+
+    this.props.onStatusTextChange(statusText);
+  }
+
+  public onExitMouseLeave = () => {
+    this.setDefaultStatusText();
   }
 
   private renderStructure(town: string, structure: Structure, canConstructStrucutes: boolean, resources: Resources) {

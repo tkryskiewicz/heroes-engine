@@ -10,12 +10,22 @@ import { StatusBar } from "./StatusBar";
 
 export interface TownDetailWindowProps {
   statusText: string;
+  onExitMouseEnter: () => void;
+  onExitMouseLeave: () => void;
   onExitClick: () => void;
 }
 
+type DefaultProp =
+  "statusText" |
+  "onExitMouseEnter" |
+  "onExitMouseLeave" |
+  "onExitClick";
+
 class TownDetailWindow extends React.Component<TownDetailWindowProps> {
-  public static defaultProps: Pick<TownDetailWindowProps, "statusText" | "onExitClick"> = {
+  public static defaultProps: Pick<TownDetailWindowProps, DefaultProp> = {
     onExitClick: () => undefined,
+    onExitMouseEnter: () => undefined,
+    onExitMouseLeave: () => undefined,
     statusText: "",
   };
 
@@ -31,6 +41,8 @@ class TownDetailWindow extends React.Component<TownDetailWindowProps> {
         <div className="town-detail-window-exit">
           <ImageButton
             images={buttonImages.exit}
+            onMouseEnter={this.props.onExitMouseEnter}
+            onMouseLeave={this.props.onExitMouseLeave}
             onClick={this.props.onExitClick}
           />
         </div>

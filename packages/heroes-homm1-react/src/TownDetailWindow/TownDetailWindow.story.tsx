@@ -10,6 +10,8 @@ storiesOf("TownDetailWindow", module)
     <TownDetailWindow
       visible={boolean("Visible", true)}
       statusText={text("Status Text", "Status Text")}
+      onExitMouseEnter={action("Exit Mouse Enter")}
+      onExitMouseLeave={action("Exit Mouse Leave")}
       onExitClick={action("Exit Click")}
     >
       {text("Content", "Content")}

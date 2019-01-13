@@ -11,6 +11,10 @@ export const messages = defineMessages({
     defaultMessage: "Castle Options",
     id: "ui.structuresWindow.defaultStatusText",
   },
+  exitStatusText: {
+    defaultMessage: "Exit Castle",
+    id: "ui.structuresWindow.exitStatusText",
+  },
   recruitHeroStatusText: {
     defaultMessage: "Recruit a new Hero",
     id: "ui.structuresWindow.recruitHeroStatusText",
