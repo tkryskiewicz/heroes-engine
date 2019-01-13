@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
@@ -13,5 +14,8 @@ storiesOf(`TownWindow/${StructureStatusImage.name}`, module)
       town={select("Town", townOptions, TownId.Farm)}
       structure={select("Structure", structureOptions, StructureId.Castle)}
       status={select("Status", structureStatusOptions, StructureStatus.Built)}
+      onMouseEnter={action("Mouse Enter")}
+      onMouseLeave={action("Mouse Leave")}
+      onClick={action("Click")}
     />
   ));

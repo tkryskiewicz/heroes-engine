@@ -11,14 +11,33 @@ import { getStructureNameMessage } from "../messages";
 export interface StructureIconProps {
   town: string;
   structure: string;
+  onMouseEnter: (structure: string) => void;
+  onMouseLeave: (structure: string) => void;
+  onClick: (structure: string) => void;
 }
 
+type DefaultProp =
+  "onMouseEnter" |
+  "onMouseLeave" |
+  "onClick";
+
 export class StructureIcon extends React.Component<StructureIconProps> {
+  public static defaultProps: Pick<StructureIconProps, DefaultProp> = {
+    onClick: () => undefined,
+    onMouseEnter: () => undefined,
+    onMouseLeave: () => undefined,
+  };
+
   public render() {
     const { town, structure } = this.props;
 
     return (
-      <div className="structure-icon">
+      <div
+        className="structure-icon"
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
+        onClick={this.onClick}
+      >
         <img src={`assets/towns/${isCommonStructure(structure) ? "common" : town}/structures/${structure}/icon.jpg`} />
         {this.renderName(structure)}
       </div>
@@ -33,5 +52,17 @@ export class StructureIcon extends React.Component<StructureIconProps> {
         </GameText>
       </div>
     );
+  }
+
+  private onMouseEnter = () => {
+    this.props.onMouseEnter(this.props.structure);
+  }
+
+  private onMouseLeave = () => {
+    this.props.onMouseLeave(this.props.structure);
+  }
+
+  private onClick = () => {
+    this.props.onClick(this.props.structure);
   }
 }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { StructureId } from "heroes-homm1";
 
@@ -9,7 +9,12 @@ import { GameModal, SpellIcon } from "../base";
 import { GameParagraph } from "../core";
 import { getSpellDescriptionMessage, getSpellLongNameMessage, getSpellNameMessage } from "../messages";
 import { StructureView } from "../StructureView";
-import { withTownDetailWindow, WithTownDetailWindowProps } from "../TownDetailWindow";
+import {
+  withTownDetailWindow,
+  WithTownDetailWindowInjectedProps,
+  WithTownDetailWindowProps,
+} from "../TownDetailWindow";
+import { messages } from "./messages";
 import { SpellScroll } from "./SpellScroll";
 
 interface Spell {
@@ -17,8 +22,10 @@ interface Spell {
   level: number;
 }
 
-// TODO: should it extend town detail window props? move extends to MageGuildWindowConnected?
-export interface MageGuildWindowProps extends WithTownDetailWindowProps {
+export interface MageGuildWindowProps extends
+  InjectedIntlProps,
+  WithTownDetailWindowInjectedProps,
+  WithTownDetailWindowProps {
   spells: Spell[];
   levelBuilt: number;
   visibleSpellDetail?: string;
@@ -29,6 +36,12 @@ class MageGuildWindow extends React.Component<MageGuildWindowProps> {
   public static defaultProps: Pick<MageGuildWindowProps, "onVisibleSpellDetailChange"> = {
     onVisibleSpellDetailChange: () => undefined,
   };
+
+  public componentDidMount() {
+    const statusText = this.props.intl.formatMessage(messages.defaultStatusText);
+
+    this.props.onStatusTextChange(statusText);
+  }
 
   public render() {
     const spells = [...this.props.spells]
@@ -102,6 +115,8 @@ class MageGuildWindow extends React.Component<MageGuildWindowProps> {
   }
 }
 
-const MageGuildWindowWrapped = withTownDetailWindow()<typeof MageGuildWindow, MageGuildWindowProps>(MageGuildWindow);
+const MageGuildWindowWrapped = injectIntl(
+  withTownDetailWindow()<typeof MageGuildWindow, MageGuildWindowProps>(MageGuildWindow),
+);
 
 export { MageGuildWindowWrapped as MageGuildWindow };

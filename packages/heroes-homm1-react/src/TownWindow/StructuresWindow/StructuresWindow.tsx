@@ -1,15 +1,18 @@
 import { Col, Row } from "antd";
 import * as React from "react";
+import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Resources, Structure } from "heroes-core";
-import { getStructureStatus } from "heroes-homm1";
+import { getStructureStatus, StructureStatus } from "heroes-homm1";
 
 import "./StructuresWindow.scss";
 
-import { withTownDetailWindow } from "../../TownDetailWindow";
+import { getStructureNameMessage } from "../../messages";
+import { withTownDetailWindow, WithTownDetailWindowInjectedProps } from "../../TownDetailWindow";
 import { StructureStatusImage } from "../StructureStatusImage";
+import { getStructureStatusMessage, messages } from "./messages";
 
-export interface StructuresWindowProps {
+export interface StructuresWindowProps extends InjectedIntlProps, WithTownDetailWindowInjectedProps {
   town: string;
   canConstructStructures: boolean;
   structures: Structure[];
@@ -18,6 +21,10 @@ export interface StructuresWindowProps {
 }
 
 class StructuresWindow extends React.Component<StructuresWindowProps> {
+  public componentDidMount() {
+    this.setDefaultStatusText();
+  }
+
   public render() {
     const { town, structures, canConstructStructures, resources } = this.props;
 
@@ -42,13 +49,37 @@ class StructuresWindow extends React.Component<StructuresWindowProps> {
           town={town}
           structure={structure.id}
           status={status}
+          onMouseEnter={this.onStructureMouseEnter}
+          onMouseLeave={this.onStructureMouseLeave}
         />
       </Col>
     );
   }
+
+  private onStructureMouseEnter = (structure: string, status: StructureStatus) => {
+    const { formatMessage } = this.props.intl;
+
+    const structureName = formatMessage(getStructureNameMessage(structure));
+
+    const statusText = formatMessage(getStructureStatusMessage(status), { structureName });
+
+    this.props.onStatusTextChange(statusText);
+  }
+
+  private onStructureMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
+  private setDefaultStatusText() {
+    const statusText = this.props.intl.formatMessage(messages.defaultStatusText);
+
+    this.props.onStatusTextChange(statusText);
+  }
 }
 
-const StructuresWindowWrapped = withTownDetailWindow()(StructuresWindow);
+const StructuresWindowWrapped = injectIntl(
+  withTownDetailWindow()(StructuresWindow),
+);
 
 export {
   StructuresWindowWrapped as StructuresWindow,

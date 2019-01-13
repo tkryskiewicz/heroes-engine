@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
@@ -12,5 +13,8 @@ storiesOf(StructureIcon.name, module)
     <StructureIcon
       town={select("Town", townOptions, TownId.Farm)}
       structure={select("Structure", structureOptions, StructureId.Castle)}
+      onMouseEnter={action("Mouse Enter")}
+      onMouseLeave={action("Mouse Leave")}
+      onClick={action("Click")}
     />
   ));

@@ -1,2 +1,6 @@
 export { TownDetailWindow, TownDetailWindowProps } from "./TownDetailWindow";
-export { withTownDetailWindow, WithTownDetailWindowProps } from "./withTownDetailWindow";
+export {
+  withTownDetailWindow,
+  InjectedProps as WithTownDetailWindowInjectedProps,
+  Props as WithTownDetailWindowProps,
+} from "./withTownDetailWindow";

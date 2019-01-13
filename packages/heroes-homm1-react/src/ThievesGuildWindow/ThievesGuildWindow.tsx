@@ -1,17 +1,24 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import "./ThievesGuildWindow.scss";
 
 import { GameText } from "../core";
-import { withTownDetailWindow, WithTownDetailWindowProps } from "../TownDetailWindow";
+import {
+  withTownDetailWindow,
+  WithTownDetailWindowInjectedProps,
+  WithTownDetailWindowProps,
+} from "../TownDetailWindow";
 import { messages } from "./messages";
 
 export interface Ranking {
   [index: number]: string[];
 }
 
-export interface ThievesGuildWindowProps extends WithTownDetailWindowProps {
+export interface ThievesGuildWindowProps extends
+  InjectedIntlProps,
+  WithTownDetailWindowInjectedProps,
+  WithTownDetailWindowProps {
   townCount: Ranking;
   castleCount: Ranking;
   heroCount: Ranking;
@@ -23,6 +30,12 @@ export interface ThievesGuildWindowProps extends WithTownDetailWindowProps {
 }
 
 class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
+  public componentDidMount() {
+    const statusText = this.props.intl.formatMessage(messages.defaultStatusText);
+
+    this.props.onStatusTextChange(statusText);
+  }
+
   public render() {
     return (
       <div className="thieves-guild-window">
@@ -150,7 +163,9 @@ class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
   }
 }
 
-const ThievesGuildWindowWrapped = withTownDetailWindow()(ThievesGuildWindow);
+const ThievesGuildWindowWrapped = injectIntl(
+  withTownDetailWindow()(ThievesGuildWindow),
+);
 
 export {
   ThievesGuildWindowWrapped as ThievesGuildWindow,
