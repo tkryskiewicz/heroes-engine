@@ -14,6 +14,7 @@ import { MageGuildWindow } from "../MageGuildWindow";
 import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
 import { RecruitTroopWindow, recruitTroopWindowMessages } from "../RecruitTroopWindow";
 import { TavernWindow } from "../TavernWindow";
+import { ThievesGuildWindow } from "../ThievesGuildWindow";
 import { TownView } from "../TownView";
 import { messages } from "./messages";
 import { StructuresWindow } from "./StructuresWindow";
@@ -240,8 +241,19 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
           />
         );
         break;
+      case StructureId.ThievesGuild:
+        structureDetails = (
+          <ThievesGuildWindow
+            visible={true}
+          />
+        );
+        break;
       case StructureId.Tavern:
-        structureDetails = <TavernWindow visible={true} />;
+        structureDetails = (
+          <TavernWindow
+            visible={true}
+          />
+        );
         break;
       default:
         if (struc.dwelling) {
