@@ -15,6 +15,7 @@ import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
 import { RecruitTroopWindow, recruitTroopWindowMessages } from "../RecruitTroopWindow";
 import { TavernWindow } from "../TavernWindow";
 import { ThievesGuildWindow } from "../ThievesGuildWindow";
+import { TownPopulationWindow, TownPopulationWindowProps } from "../TownPopulationWindow";
 import { TownView } from "../TownView";
 import { messages } from "./messages";
 import { StructuresWindow } from "./StructuresWindow";
@@ -252,6 +253,24 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
         structureDetails = (
           <TavernWindow
             visible={true}
+          />
+        );
+        break;
+      case StructureId.Well:
+        const dwellings = town.structures
+          .map((s) => s.dwelling ? {
+            available: s.dwelling.availableCount,
+            creature: s.dwelling.creature,
+            growthRate: s.dwelling.growth,
+            id: s.id,
+          } : undefined)
+          .filter((d) => d) as TownPopulationWindowProps["dwellings"];
+
+        structureDetails = (
+          <TownPopulationWindow
+            visible={true}
+            town={town.id}
+            dwellings={dwellings}
           />
         );
         break;
