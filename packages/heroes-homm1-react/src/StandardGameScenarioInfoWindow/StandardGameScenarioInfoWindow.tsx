@@ -119,7 +119,6 @@ class StandardGameScenarioInfoWindow extends React.Component<StandardGameScenari
   }
 }
 
-const StandardGameScenarioInfoWindowWrapped = withGameWindow(322)
-  <typeof StandardGameScenarioInfoWindow, StandardGameScenarioInfoWindowProps>(StandardGameScenarioInfoWindow);
+const StandardGameScenarioInfoWindowWrapped = withGameWindow(322)(StandardGameScenarioInfoWindow);
 
 export { StandardGameScenarioInfoWindowWrapped as StandardGameScenarioInfoWindow };

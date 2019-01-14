@@ -189,7 +189,7 @@ class TroopWindow extends React.Component<TroopWindowProps> {
   }
 }
 
-const TroopWindowWrapped = withGameWindow(402)<typeof TroopWindow, TroopWindowProps>(TroopWindow);
+const TroopWindowWrapped = withGameWindow(402)(TroopWindow);
 
 export {
   TroopWindowWrapped as TroopWindow,

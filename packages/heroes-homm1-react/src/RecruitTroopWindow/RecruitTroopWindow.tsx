@@ -158,8 +158,7 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
   }
 }
 
-const RecruitTroopWindowWrapped = withGameWindow(320)
-  <typeof RecruitTroopWindow, RecruitTroopWindowProps>(RecruitTroopWindow);
+const RecruitTroopWindowWrapped = withGameWindow(320)(RecruitTroopWindow);
 
 export {
   RecruitTroopWindowWrapped as RecruitTroopWindow,

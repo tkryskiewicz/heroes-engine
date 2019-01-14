@@ -54,7 +54,7 @@ class AdventureOptions extends React.Component<AdventureOptionsProps> {
   }
 }
 
-const AdventureOptionsWrapped = withGameWindow(322)<typeof AdventureOptions, AdventureOptionsProps>(AdventureOptions);
+const AdventureOptionsWrapped = withGameWindow(322)(AdventureOptions);
 
 export {
   AdventureOptionsWrapped as AdventureOptions,

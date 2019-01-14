@@ -229,7 +229,7 @@ class GameOptions extends React.Component<GameOptionsProps> {
   }
 }
 
-const GameOptionsWrapped = withGameWindow(322)<typeof GameOptions, GameOptionsProps>(GameOptions);
+const GameOptionsWrapped = withGameWindow(322)(GameOptions);
 
 export {
   GameOptionsWrapped as GameOptions,

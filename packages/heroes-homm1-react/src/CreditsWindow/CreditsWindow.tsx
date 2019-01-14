@@ -23,7 +23,7 @@ class CreditsWindow extends React.Component<CreditsWindowProps> {
   }
 }
 
-const CreditsWindowWrapped = withGameWindow(640)<typeof CreditsWindow, CreditsWindowProps>(CreditsWindow);
+const CreditsWindowWrapped = withGameWindow(640)(CreditsWindow);
 
 export {
   CreditsWindowWrapped as CreditsWindow,

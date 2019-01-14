@@ -216,8 +216,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
   }
 }
 
-const KingdomOverviewWindowWrapped = withGameWindow(640)
-  <typeof KingdomOverviewWindow, KingdomOverviewWindowProps>(KingdomOverviewWindow);
+const KingdomOverviewWindowWrapped = withGameWindow(640)(KingdomOverviewWindow);
 
 export {
   KingdomOverviewWindowWrapped as KingdomOverviewWindow,

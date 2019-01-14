@@ -108,7 +108,7 @@ class GameModal extends React.Component<GameModalProps> {
   }
 }
 
-const GameModalWrapped = withGameWindow(286)<typeof GameModal, GameModalProps>(GameModal);
+const GameModalWrapped = withGameWindow(286)(GameModal);
 
 export {
   GameModalWrapped as GameModal,

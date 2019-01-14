@@ -51,6 +51,6 @@ class TownDetailWindow extends React.Component<TownDetailWindowProps> {
   }
 }
 
-const TownDetailWindowWrapped = withGameWindow(640)<typeof TownDetailWindow, TownDetailWindowProps>(TownDetailWindow);
+const TownDetailWindowWrapped = withGameWindow(640)(TownDetailWindow);
 
 export { TownDetailWindowWrapped as TownDetailWindow };

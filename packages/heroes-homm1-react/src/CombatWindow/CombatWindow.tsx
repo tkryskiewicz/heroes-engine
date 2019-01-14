@@ -156,7 +156,7 @@ class CombatWindow extends React.Component<CombatWindowProps> {
   }
 }
 
-const CombatWindowWrapped = withGameWindow(640)<typeof CombatWindow, CombatWindowProps>(CombatWindow);
+const CombatWindowWrapped = withGameWindow(640)(CombatWindow);
 
 export {
   CombatWindowWrapped as CombatWindow,

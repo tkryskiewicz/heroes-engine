@@ -234,7 +234,7 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
   }
 }
 
-const SpellBookWindowWrapped = withGameWindow(324)<typeof SpellBookWindow, SpellBookWindowProps>(SpellBookWindow);
+const SpellBookWindowWrapped = withGameWindow(324)(SpellBookWindow);
 
 export {
   SpellBookWindowWrapped as SpellBookWindow,
