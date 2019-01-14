@@ -36,7 +36,7 @@ const commonStructureMessages = defineMessages({
     id: "game.structure.tavern",
   },
   tavernDescription: {
-    defaultMessage: "The tavern increases the morale of all garrisoned troops.",
+    defaultMessage: "The Tavern increases morale for troops defending the castle.",
     id: "game.structure.tavern.description",
   },
   thievesGuild: {

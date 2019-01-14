@@ -10,7 +10,8 @@ import { AnimationImage } from "./assets";
 
 import { GameModal } from "../base";
 import { GameText } from "../core";
-import { getStructureDescriptionMessage, getStructureNameMessage } from "../messages";
+import { getStructureNameMessage } from "../messages";
+import { messages } from "./messages";
 
 export interface TavernWindowProps {
   visible?: boolean;
@@ -37,7 +38,7 @@ export class TavernWindow extends React.Component<TavernWindowProps> {
           </Row>
           <Row className="tavern-window-structure-description">
             <GameText size="large">
-              <FormattedMessage {...getStructureDescriptionMessage(StructureId.Tavern)} />
+              <FormattedMessage {...messages.description} />
             </GameText>
           </Row>
         </div>
