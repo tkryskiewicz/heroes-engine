@@ -3,8 +3,10 @@ import { Omit } from "react-redux";
 
 import { TownDetailWindow } from "./TownDetailWindow";
 
-// FIXME: is this the best option??
-interface Ref {
+// NOTE: used React.ComponentClass, because we use ref
+type ExtractProps<C> = C extends React.ComponentClass<infer P> ? P : never;
+
+export interface Ref {
   onExitMouseEnter?: () => void;
   onExitMouseLeave?: () => void;
 }
@@ -23,16 +25,20 @@ interface State {
 }
 
 export const withTownDetailWindow = () =>
-  <C extends React.ComponentType<P>, P extends InjectedProps>(Component: React.ComponentClass<P> & Ref) =>
-    class extends React.Component<Omit<JSX.LibraryManagedAttributes<C, P>, keyof InjectedProps> & Props, State> {
+  <C extends React.ComponentClass<ExtractProps<C> & InjectedProps> & Ref>(WrappedComponent: C) => {
+    type P = JSX.LibraryManagedAttributes<C, ExtractProps<C>>;
+
+    return class extends React.Component<Omit<P, keyof InjectedProps> & Props, State> {
       public state: State = {
         statusText: "",
       };
 
-      private ref = React.createRef<React.Component<P> & Ref>();
+      private ref = React.createRef<C>();
 
       public render() {
         const { visible, onExitClick, ...rest } = this.props as Props;
+
+        const Component = WrappedComponent as React.ComponentClass<ExtractProps<C> & InjectedProps>;
 
         return (
           <TownDetailWindow
@@ -44,7 +50,7 @@ export const withTownDetailWindow = () =>
           >
             <Component
               ref={this.ref}
-              {...rest as JSX.LibraryManagedAttributes<C, P>}
+              {...rest as P}
               onStatusTextChange={this.onStatusTextChange}
             />
           </TownDetailWindow>
@@ -69,3 +75,4 @@ export const withTownDetailWindow = () =>
         }
       }
     };
+  };

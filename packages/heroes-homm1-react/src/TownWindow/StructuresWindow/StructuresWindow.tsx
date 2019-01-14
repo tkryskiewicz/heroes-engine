@@ -12,6 +12,7 @@ import {
   withTownDetailWindow,
   WithTownDetailWindowInjectedProps,
   WithTownDetailWindowProps,
+  WithTownDetailWindowRef,
 } from "../../TownDetailWindow";
 import { StructureStatusImage } from "../StructureStatusImage";
 import { getStructureStatusMessage, messages } from "./messages";
@@ -26,7 +27,7 @@ export interface StructuresWindowProps extends
   resources: Resources;
 }
 
-class StructuresWindow extends React.Component<StructuresWindowProps> {
+class StructuresWindow extends React.Component<StructuresWindowProps> implements WithTownDetailWindowRef {
   public componentDidMount() {
     this.setDefaultStatusText();
   }
