@@ -119,4 +119,6 @@ const MageGuildWindowWrapped = injectIntl(
   withTownDetailWindow()(MageGuildWindow),
 );
 
-export { MageGuildWindowWrapped as MageGuildWindow };
+export {
+  MageGuildWindowWrapped as MageGuildWindow,
+};
