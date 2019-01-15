@@ -1,7 +1,4 @@
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
-
-import { closeStructureDetails } from "heroes-homm1-state";
 
 import { ThievesGuildWindow, ThievesGuildWindowProps } from "./ThievesGuildWindow";
 
@@ -26,16 +23,7 @@ const mapStateToProps = (): Pick<ThievesGuildWindowProps, StateProp> => ({
   townCount: [],
 });
 
-type DispatchProp =
-  "onExitClick";
-
-const mapDispatchToProps = (dispatch: Dispatch): Pick<ThievesGuildWindowProps, DispatchProp> => ({
-  onExitClick() {
-    dispatch(closeStructureDetails());
-  },
-});
-
-const ThievesGuildWindowConnected = connect(mapStateToProps, mapDispatchToProps)(ThievesGuildWindow);
+const ThievesGuildWindowConnected = connect(mapStateToProps)(ThievesGuildWindow);
 
 export {
   ThievesGuildWindowConnected as ThievesGuildWindow,

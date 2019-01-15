@@ -34,7 +34,8 @@ export interface TownWindowProps {
   onSwapHeroTroops: (hero: string, index: number, withIndex: number) => void;
   visibleStructureDetails?: string;
   onCrestClick: () => void;
-  onOpenStructureDetails: (structure: string) => void;
+  onOpenStructureDetailsClick: (structure: string) => void;
+  onCloseStructureDetailsClick: () => void;
   onRecruitTroop: (town: string, structure: string, count: number) => void;
   onExitClick: () => void;
 }
@@ -45,7 +46,8 @@ type DefaultProp =
   "onSelectHeroTroop" |
   "onSwapHeroTroops" |
   "onCrestClick" |
-  "onOpenStructureDetails" |
+  "onOpenStructureDetailsClick" |
+  "onCloseStructureDetailsClick" |
   "onRecruitTroop" |
   "onExitClick";
 
@@ -55,9 +57,10 @@ interface TownWindowState {
 
 class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, TownWindowState> {
   public static defaultProps: Pick<TownWindowProps, DefaultProp> = {
+    onCloseStructureDetailsClick: () => undefined,
     onCrestClick: () => undefined,
     onExitClick: () => undefined,
-    onOpenStructureDetails: () => undefined,
+    onOpenStructureDetailsClick: () => undefined,
     onRecruitTroop: () => undefined,
     onSelectGarrisonTroop: () => undefined,
     onSelectHeroTroop: () => undefined,
@@ -193,7 +196,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
   }
 
   private onStructureClick = (structure: string) => {
-    this.props.onOpenStructureDetails(structure);
+    this.props.onOpenStructureDetailsClick(structure);
   }
 
   private renderStructureDetails(town: Town, resources: Resources, structure: string) {
@@ -210,6 +213,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
             cost={struc.cost}
             canBuild={enoughResources(resources, struc.cost)}
             visible={true}
+            onCancelClick={this.onCloseStructureDetailsClick}
           />) : (
             <StructuresWindow
               town={town.id}
@@ -217,6 +221,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
               resources={resources}
               structures={town.structures}
               visible={true}
+              onExitClick={this.onCloseStructureDetailsClick}
             />
           );
         break;
@@ -239,6 +244,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
             spells={allSpells.filter((s) => spells.indexOf(s.id) !== -1)}
             levelBuilt={1}
             visible={true}
+            onExitClick={this.onCloseStructureDetailsClick}
           />
         );
         break;
@@ -246,6 +252,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
         structureDetails = (
           <ThievesGuildWindow
             visible={true}
+            onExitClick={this.onCloseStructureDetailsClick}
           />
         );
         break;
@@ -253,6 +260,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
         structureDetails = (
           <TavernWindow
             visible={true}
+            onOkayClick={this.onCloseStructureDetailsClick}
           />
         );
         break;
@@ -271,6 +279,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
             visible={true}
             town={town.id}
             dwellings={dwellings}
+            onExitClick={this.onCloseStructureDetailsClick}
           />
         );
         break;
@@ -285,6 +294,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
               availableCount={struc.dwelling.availableCount}
               visible={true}
               onOkayClick={onOkayClick}
+              onCancelClick={this.onCloseStructureDetailsClick}
             />
           );
         }
@@ -292,6 +302,10 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
     }
 
     return structureDetails;
+  }
+
+  private onCloseStructureDetailsClick = () => {
+    this.props.onCloseStructureDetailsClick();
   }
 
   private onRecruitTroop = (structure: string, count: number) => {
@@ -323,4 +337,6 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
 
 const TownWindowWrapped = injectIntl<typeof TownWindow, TownWindowProps>(TownWindow);
 
-export { TownWindowWrapped as TownWindow };
+export {
+  TownWindowWrapped as TownWindow,
+};

@@ -1,1 +1,1 @@
-export { TavernWindow, TavernWindowProps } from "./TavernWindow.connect";
+export { TavernWindow, TavernWindowProps } from "./TavernWindow";

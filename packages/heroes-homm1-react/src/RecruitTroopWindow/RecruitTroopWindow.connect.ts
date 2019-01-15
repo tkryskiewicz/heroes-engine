@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, changeRecruitTroopCount, closeStructureDetails } from "heroes-homm1-state";
+import { AppState, changeRecruitTroopCount } from "heroes-homm1-state";
 
 import { RecruitTroopWindow, RecruitTroopWindowProps } from "./RecruitTroopWindow";
 
@@ -15,15 +15,11 @@ const mapStateToProps = (state: AppState): Pick<RecruitTroopWindowProps, StatePr
 });
 
 type DispatchProp =
-  "onCountChange" |
-  "onCancelClick";
+  "onCountChange";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<RecruitTroopWindowProps, DispatchProp> => ({
   onCountChange(count) {
     dispatch(changeRecruitTroopCount(count));
-  },
-  onCancelClick() {
-    dispatch(closeStructureDetails());
   },
 });
 

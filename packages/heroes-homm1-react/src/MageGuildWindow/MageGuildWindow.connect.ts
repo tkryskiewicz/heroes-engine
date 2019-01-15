@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, changeMageGuildWindowVisibleSpellDetail, closeStructureDetails } from "heroes-homm1-state";
+import { AppState, changeMageGuildWindowVisibleSpellDetail } from "heroes-homm1-state";
 
 import { MageGuildWindow, MageGuildWindowProps } from "./MageGuildWindow";
 
@@ -13,15 +13,11 @@ const mapStateToProps = (state: AppState): Pick<MageGuildWindowProps, StateProp>
 });
 
 type DispatchProp =
-  "onVisibleSpellDetailChange" |
-  "onExitClick";
+  "onVisibleSpellDetailChange";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<MageGuildWindowProps, DispatchProp> => ({
   onVisibleSpellDetailChange(spell) {
     dispatch(changeMageGuildWindowVisibleSpellDetail(spell));
-  },
-  onExitClick() {
-    dispatch(closeStructureDetails());
   },
 });
 

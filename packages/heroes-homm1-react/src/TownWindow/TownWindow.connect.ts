@@ -4,6 +4,7 @@ import { Dispatch } from "redux";
 import { TownId } from "heroes-homm1";
 import {
   AppState,
+  closeStructureDetails,
   closeTownWindow,
   openKingdomOverviewWindow,
   openStructureDetails,
@@ -43,7 +44,8 @@ type DispatchProp =
   "onSwapGarrisonTroops" |
   "onSelectHeroTroop" |
   "onSwapHeroTroops" |
-  "onOpenStructureDetails" |
+  "onOpenStructureDetailsClick" |
+  "onCloseStructureDetailsClick" |
   "onRecruitTroop" |
   "onExitClick";
 
@@ -63,8 +65,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchP
   onSwapHeroTroops(hero, index, withIndex) {
     dispatch(swapHeroTroops(hero, index, withIndex));
   },
-  onOpenStructureDetails(structure) {
+  onOpenStructureDetailsClick(structure) {
     dispatch(openStructureDetails(structure));
+  },
+  onCloseStructureDetailsClick() {
+    dispatch(closeStructureDetails());
   },
   onRecruitTroop(town, structure, count) {
     dispatch(recruitTroop(town, structure, count));

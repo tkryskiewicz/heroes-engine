@@ -1,20 +1,16 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { buildStructure, closeStructureDetails } from "heroes-homm1-state";
+import { buildStructure } from "heroes-homm1-state";
 
 import { BuildStructureWindow, BuildStructureWindowProps } from "./BuildStructureWindow";
 
 type DispatchProp =
-  "onOkayClick" |
-  "onCancelClick";
+  "onOkayClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<BuildStructureWindowProps, DispatchProp> => ({
   onOkayClick(town, structure) {
     dispatch(buildStructure(town, structure));
-  },
-  onCancelClick() {
-    dispatch(closeStructureDetails());
   },
 });
 
