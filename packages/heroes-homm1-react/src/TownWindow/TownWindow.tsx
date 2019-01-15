@@ -1,12 +1,13 @@
 import * as React from "react";
-import { InjectedIntlProps, injectIntl } from "react-intl";
+import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { enoughResources, Hero, Resources, Town } from "heroes-core";
-import { SpellId, spells as allSpells, StructureId } from "heroes-homm1";
+import { Resource, SpellId, spells as allSpells, StructureId } from "heroes-homm1";
 
 import "./TownWindow.scss";
 
-import { ArmyStrip, BigBar, Crest, HeroPortrait } from "../base";
+import { ArmyStrip, BigBar, Crest, GameModal, HeroPortrait } from "../base";
+import { BuildShipWindow } from "../BuildShipWindow";
 import { BuildStructureWindow } from "../BuildStructureWindow";
 import { GameText, GameWindow } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
@@ -261,6 +262,44 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
           <TavernWindow
             visible={true}
             onOkayClick={this.onCloseStructureDetailsClick}
+          />
+        );
+        break;
+      case StructureId.Shipyard:
+        // TODO: implement
+        const shipAlreadyBuilt = false;
+
+        if (shipAlreadyBuilt) {
+          return (
+            <GameModal
+              visible={true}
+              type="okay"
+              onConfirmClick={this.onCloseStructureDetailsClick}
+            >
+              <GameText size="large">
+                <FormattedMessage {...messages.cannotBuildShip} />
+              </GameText>
+            </GameModal>
+          );
+        }
+
+        const cost: Resources = {
+          [Resource.Gold]: 1000,
+          [Resource.Wood]: 10,
+        };
+
+        const canBuild = enoughResources(resources, cost);
+
+        // TODO: implement
+        const onConfirm = () => undefined;
+
+        structureDetails = (
+          <BuildShipWindow
+            visible={true}
+            cost={cost}
+            canBuild={canBuild}
+            onOkayClick={onConfirm}
+            onCancelClick={this.onCloseStructureDetailsClick}
           />
         );
         break;
