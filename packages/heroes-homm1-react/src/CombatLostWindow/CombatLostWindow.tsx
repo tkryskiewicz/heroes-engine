@@ -1,6 +1,6 @@
 import { Row } from "antd";
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Army } from "heroes-core";
 
@@ -16,12 +16,17 @@ import { messages } from "./messages";
 
 export interface CombatLostWindowProps {
   hero: string;
+  isRetreat: boolean;
   attackerCasualties: Army;
   defenderCasualties: Army;
   onOkayClick?: () => void;
 }
 
-export class CombatLostWindow extends React.Component<CombatLostWindowProps> {
+class CombatLostWindow extends React.Component<CombatLostWindowProps & InjectedIntlProps> {
+  public static defaultProps: Pick<CombatLostWindowProps, "isRetreat"> = {
+    isRetreat: false,
+  };
+
   public render() {
     return (
       <CombatSummaryWindow
@@ -29,15 +34,9 @@ export class CombatLostWindow extends React.Component<CombatLostWindowProps> {
         defenderCasualties={this.props.defenderCasualties}
         actions={this.renderActions(this.props.onOkayClick)}
       >
+        {this.renderAnimation()}
         <Row>
-          {this.renderAnimation()}
-        </Row>
-        <Row>
-          <GameText size="large">
-            <FormattedMessage {...getHeroNameMessage(this.props.hero)}>
-              {(heroName) => <FormattedMessage {...messages.title} values={{ heroName }} />}
-            </FormattedMessage>
-          </GameText>
+          {this.renderTitle(this.props.hero, this.props.isRetreat)}
         </Row>
       </CombatSummaryWindow>
     );
@@ -54,6 +53,16 @@ export class CombatLostWindow extends React.Component<CombatLostWindowProps> {
     );
   }
 
+  private renderTitle(hero: string, isRetreat: boolean) {
+    const heroName = this.props.intl.formatMessage(getHeroNameMessage(hero));
+
+    return (
+      <GameText size="large">
+        <FormattedMessage {...isRetreat ? messages.retreatTitle : messages.title} values={{ heroName }} />
+      </GameText>
+    );
+  }
+
   private renderActions(onOkayClick?: () => void) {
     return (
       <ImageButton
@@ -63,3 +72,9 @@ export class CombatLostWindow extends React.Component<CombatLostWindowProps> {
     );
   }
 }
+
+const CombatLostWindowWrapped = injectIntl(CombatLostWindow);
+
+export {
+  CombatLostWindowWrapped as CombatLostWindow,
+};
