@@ -15,7 +15,7 @@ import {
   WithTownDetailWindowRef,
 } from "../../TownDetailWindow";
 import { CastleOption } from "../CastleOption";
-import { getStructureStatusMessage, messages } from "./messages";
+import { getOptionStatusTextMessage, messages } from "./messages";
 
 export interface CastleOptionsWindowProps extends
   InjectedIntlProps,
@@ -76,9 +76,9 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
   private onStructureMouseEnter = (structure: string, status: CastleOptionStatus) => {
     const { formatMessage } = this.props.intl;
 
-    const structureName = formatMessage(getStructureNameMessage(structure));
+    const optionName = formatMessage(getStructureNameMessage(structure));
 
-    const statusText = formatMessage(getStructureStatusMessage(status), { structureName });
+    const statusText = formatMessage(getOptionStatusTextMessage(status), { optionName });
 
     this.props.onStatusTextChange(statusText);
   }

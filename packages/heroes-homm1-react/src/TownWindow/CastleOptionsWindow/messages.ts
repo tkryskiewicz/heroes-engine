@@ -1,12 +1,8 @@
-import { defineMessages } from "react-intl";
+import { defineMessages, Messages } from "react-intl";
 
 import { CastleOptionStatus } from "heroes-homm1";
 
 export const messages = defineMessages({
-  cannotRecruitHero: {
-    defaultMessage: "Cannot recruit - you already have a Hero in this town.",
-    id: "ui.castleOptionsWindow.cannotRecruitHero",
-  },
   defaultStatusText: {
     defaultMessage: "Castle Options",
     id: "ui.castleOptionsWindow.defaultStatusText",
@@ -15,37 +11,40 @@ export const messages = defineMessages({
     defaultMessage: "Exit Castle",
     id: "ui.castleOptionsWindow.exitStatusText",
   },
-  recruitHeroStatusText: {
-    defaultMessage: "Recruit a new Hero",
-    id: "ui.castleOptionsWindow.recruitHeroStatusText",
+});
+
+const optionMessages: Messages = defineMessages({
+  [`${CastleOptionStatus.Available}StatusText`]: {
+    defaultMessage: "Build {optionName}",
+    id: "ui.castleOptionsWindow.option.availableStatusText",
   },
-  structureAvailableStatusText: {
-    defaultMessage: "Build {structureName}",
-    id: "ui.castleOptionsWindow.structureAvailableStatusText",
+  [`${CastleOptionStatus.Built}StatusText`]: {
+    defaultMessage: "{optionName} is already built",
+    id: "ui.castleOptionsWindow.option.builtStatusText",
   },
-  structureBuiltStatusText: {
-    defaultMessage: "{structureName} is already built",
-    id: "ui.castleOptionsWindow.structureBuiltStatusText",
+  [`${CastleOptionStatus.Unaffordable}StatusText`]: {
+    defaultMessage: "Cannot afford {optionName}",
+    id: "ui.castleOptionsWindow.option.unaffordableStatusText",
   },
-  structureUnaffordableStatusText: {
-    defaultMessage: "Cannot afford {structureName}",
-    id: "ui.castleOptionsWindow.structureUnaffordableStatusText",
-  },
-  structureUnavailableStatusText: {
-    defaultMessage: "Cannot build {structureName}",
-    id: "ui.castleOptionsWindow.structureUnavailableStatusText",
+  [`${CastleOptionStatus.Unavailable}StatusText`]: {
+    defaultMessage: "Cannot build {optionName}",
+    id: "ui.castleOptionsWindow.option.unavailableStatusText",
   },
 });
 
-export const getStructureStatusMessage = (status: CastleOptionStatus) => {
-  switch (status) {
-    case CastleOptionStatus.Built:
-      return messages.structureBuiltStatusText;
-    case CastleOptionStatus.Available:
-      return messages.structureAvailableStatusText;
-    case CastleOptionStatus.NotEnoughResources:
-      return messages.structureUnaffordableStatusText;
-    case CastleOptionStatus.Unavailable:
-      return messages.structureUnavailableStatusText;
-  }
-};
+export const getOptionStatusTextMessage = (status: CastleOptionStatus) =>
+  optionMessages[`${status}StatusText`];
+
+const recruitHeroMessages: Messages = defineMessages({
+  [`${CastleOptionStatus.Available}StatusText`]: {
+    defaultMessage: "Recruit a new Hero",
+    id: "ui.castleOptionsWindow.recruitHero.availableStatusText",
+  },
+  [`${CastleOptionStatus.Unavailable}StatusText`]: {
+    defaultMessage: "Cannot recruit - you already have a Hero in this town.",
+    id: "ui.castleOptionsWindow.recruitHero.unavailableStatusText",
+  },
+});
+
+export const getRecruitHeroStatusTextMessage = (status: CastleOptionStatus) =>
+  recruitHeroMessages[`${status}StatusText`];

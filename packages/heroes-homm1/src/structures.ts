@@ -44,7 +44,7 @@ export const getCastleOptionStatus = (
   } else if (!canConstructStructures) {
     status = CastleOptionStatus.Unavailable;
   } else if (!enoughResources(resources, structure.cost)) {
-    status = CastleOptionStatus.NotEnoughResources;
+    status = CastleOptionStatus.Unaffordable;
   }
 
   return status;
