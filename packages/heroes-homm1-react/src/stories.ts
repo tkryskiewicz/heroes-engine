@@ -60,7 +60,7 @@ export const skillOptions = Object.keys(Skill).reduce<SelectOptions>((p, c: any)
 }, {});
 
 export const heroOptions = heroes.reduce<SelectOptions>((p, c) => {
-  p[c.name] = c.id;
+  p[c.id] = c.id;
 
   return p;
 }, {});
