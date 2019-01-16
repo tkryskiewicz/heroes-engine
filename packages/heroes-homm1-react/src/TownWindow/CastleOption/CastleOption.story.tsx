@@ -3,9 +3,9 @@ import { select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { StructureId, StructureStatus, TownId } from "heroes-homm1";
+import { CastleOptionStatus, StructureId, TownId } from "heroes-homm1";
 
-import { structureOptions, structureStatusOptions, townOptions } from "../../stories";
+import { castleOptionStatusOptions, structureOptions, townOptions } from "../../stories";
 import { CastleOption } from "./CastleOption";
 
 storiesOf("TownWindow/CastleOption", module)
@@ -13,7 +13,7 @@ storiesOf("TownWindow/CastleOption", module)
     <CastleOption
       town={select("Town", townOptions, TownId.Farm)}
       structure={select("Structure", structureOptions, StructureId.Castle)}
-      status={select("Status", structureStatusOptions, StructureStatus.Built)}
+      status={select("Status", castleOptionStatusOptions, CastleOptionStatus.Built)}
       onMouseEnter={action("Mouse Enter")}
       onMouseLeave={action("Mouse Leave")}
       onClick={action("Click")}

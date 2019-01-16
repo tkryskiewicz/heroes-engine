@@ -1,6 +1,6 @@
 import { defineMessages } from "react-intl";
 
-import { StructureStatus } from "heroes-homm1";
+import { CastleOptionStatus } from "heroes-homm1";
 
 export const messages = defineMessages({
   cannotRecruitHero: {
@@ -37,15 +37,15 @@ export const messages = defineMessages({
   },
 });
 
-export const getStructureStatusMessage = (status: StructureStatus) => {
+export const getStructureStatusMessage = (status: CastleOptionStatus) => {
   switch (status) {
-    case StructureStatus.Built:
+    case CastleOptionStatus.Built:
       return messages.structureBuiltStatusText;
-    case StructureStatus.Available:
+    case CastleOptionStatus.Available:
       return messages.structureAvailableStatusText;
-    case StructureStatus.NotEnoughResources:
+    case CastleOptionStatus.NotEnoughResources:
       return messages.structureUnaffordableStatusText;
-    case StructureStatus.Unavailable:
+    case CastleOptionStatus.Unavailable:
       return messages.structureUnavailableStatusText;
   }
 };

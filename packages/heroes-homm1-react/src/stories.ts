@@ -2,6 +2,7 @@ import { CombatSide } from "heroes-core";
 import {
   Alignment,
   ArtifactId,
+  CastleOptionStatus,
   creatures,
   FarmStructureId,
   ForestStructureId,
@@ -19,7 +20,6 @@ import {
   SpellId,
   SpellType,
   StructureId,
-  StructureStatus,
   TerrainType,
   TownId,
 } from "heroes-homm1";
@@ -79,8 +79,8 @@ export const structureOptions = {
   ...MountainsStructureId,
 };
 
-export const structureStatusOptions = Object.keys(StructureStatus).reduce<SelectOptions>((p, c: any) => {
-  p[c] = StructureStatus[c];
+export const castleOptionStatusOptions = Object.keys(CastleOptionStatus).reduce<SelectOptions>((p, c: any) => {
+  p[c] = CastleOptionStatus[c];
 
   return p;
 }, {});

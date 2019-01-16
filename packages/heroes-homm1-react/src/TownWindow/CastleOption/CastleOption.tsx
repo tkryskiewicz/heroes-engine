@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { StructureStatus } from "heroes-homm1";
+import { CastleOptionStatus } from "heroes-homm1";
 
 import "./CastleOption.scss";
 
@@ -10,10 +10,10 @@ import { gameOptionStatusImages } from "./assets";
 export interface CastleOptionProps {
   town: string;
   structure: string;
-  status: StructureStatus;
-  onMouseEnter: (structure: string, status: StructureStatus) => void;
-  onMouseLeave: (structure: string, status: StructureStatus) => void;
-  onClick: (structure: string, status: StructureStatus) => void;
+  status: CastleOptionStatus;
+  onMouseEnter: (structure: string, status: CastleOptionStatus) => void;
+  onMouseLeave: (structure: string, status: CastleOptionStatus) => void;
+  onClick: (structure: string, status: CastleOptionStatus) => void;
 }
 
 type DefaultProp =
@@ -43,7 +43,7 @@ export class CastleOption extends React.Component<CastleOptionProps> {
     );
   }
 
-  private renderStatusIcon(status: StructureStatus) {
+  private renderStatusIcon(status: CastleOptionStatus) {
     return (
       <img
         className="castle-option-status-icon"

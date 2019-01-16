@@ -1,6 +1,7 @@
 export { Alignment, changeAlignment } from "./Alignment";
 export { ArtifactId } from "./artifacts";
 export { CampaignId, CampaignIds } from "./campaigns";
+export { CastleOptionStatus } from "./CastleOptionStatus";
 export { CreatureId, creatures, creaturesById } from "./creatures";
 export { CreatureSpeed } from "./CreatureSpeed";
 export { GameDifficulty, getGameDifficultyRating } from "./GameDifficulty";
@@ -30,7 +31,7 @@ export { SpellId, spells } from "./spells";
 export { SpellType } from "./SpellType";
 export {
   constructStructure,
-  getStructureStatus,
+  getCastleOptionStatus,
   StructureId,
   isCommonStructure,
   FarmStructureId,
@@ -38,7 +39,6 @@ export {
   ForestStructureId,
   MountainsStructureId,
 } from "./structures";
-export { StructureStatus } from "./StructureStatus";
 export { TerrainType } from "./TerrainType";
 export { TownId, TownIds } from "./TownId";
 export { constructTown } from "./towns";

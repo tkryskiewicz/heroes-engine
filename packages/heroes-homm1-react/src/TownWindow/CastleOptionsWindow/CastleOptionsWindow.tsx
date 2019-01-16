@@ -3,7 +3,7 @@ import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Resources, Structure } from "heroes-core";
-import { getStructureStatus, StructureStatus } from "heroes-homm1";
+import { CastleOptionStatus, getCastleOptionStatus } from "heroes-homm1";
 
 import "./CastleOptionsWindow.scss";
 
@@ -55,7 +55,7 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
   }
 
   private renderStructure(town: string, structure: Structure, canConstructStrucutes: boolean, resources: Resources) {
-    const status = getStructureStatus(structure, canConstructStrucutes, resources);
+    const status = getCastleOptionStatus(structure, canConstructStrucutes, resources);
 
     return (
       <Col
@@ -73,7 +73,7 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
     );
   }
 
-  private onStructureMouseEnter = (structure: string, status: StructureStatus) => {
+  private onStructureMouseEnter = (structure: string, status: CastleOptionStatus) => {
     const { formatMessage } = this.props.intl;
 
     const structureName = formatMessage(getStructureNameMessage(structure));
