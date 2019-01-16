@@ -14,7 +14,7 @@ import {
   WithTownDetailWindowProps,
   WithTownDetailWindowRef,
 } from "../../TownDetailWindow";
-import { StructureStatusImage } from "../StructureStatusImage";
+import { CastleOption } from "../CastleOption";
 import { getStructureStatusMessage, messages } from "./messages";
 
 export interface StructuresWindowProps extends
@@ -62,7 +62,7 @@ class StructuresWindow extends React.Component<StructuresWindowProps> implements
         key={structure.id}
         span={6}
       >
-        <StructureStatusImage
+        <CastleOption
           town={town}
           structure={structure.id}
           status={status}

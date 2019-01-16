@@ -4,7 +4,7 @@ import BuiltImage = require("./built.png");
 import NotEnoughResourcesImage = require("./not-enough-resources.png");
 import UnavailableImage = require("./unavailable.png");
 
-export const structureStatusImages = {
+export const gameOptionStatusImages = {
   [StructureStatus.Built]: BuiltImage,
   [StructureStatus.Available]: undefined,
   [StructureStatus.NotEnoughResources]: NotEnoughResourcesImage,

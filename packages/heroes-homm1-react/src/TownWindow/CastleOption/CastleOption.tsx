@@ -2,12 +2,12 @@ import * as React from "react";
 
 import { StructureStatus } from "heroes-homm1";
 
-import "./StructureStatusImage.scss";
+import "./CastleOption.scss";
 
 import { StructureIcon } from "../../StructureIcon";
-import { structureStatusImages } from "./assets";
+import { gameOptionStatusImages } from "./assets";
 
-export interface StructureStatusImageProps {
+export interface CastleOptionProps {
   town: string;
   structure: string;
   status: StructureStatus;
@@ -21,8 +21,8 @@ type DefaultProp =
   "onMouseLeave" |
   "onClick";
 
-export class StructureStatusImage extends React.Component<StructureStatusImageProps> {
-  public static defaultProps: Pick<StructureStatusImageProps, DefaultProp> = {
+export class CastleOption extends React.Component<CastleOptionProps> {
+  public static defaultProps: Pick<CastleOptionProps, DefaultProp> = {
     onClick: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,
@@ -46,8 +46,8 @@ export class StructureStatusImage extends React.Component<StructureStatusImagePr
   private renderStatusIcon(status: StructureStatus) {
     return (
       <img
-        className="structure-status-image-status-icon"
-        src={structureStatusImages[status]}
+        className="castle-option-status-icon"
+        src={gameOptionStatusImages[status]}
       />
     );
   }
