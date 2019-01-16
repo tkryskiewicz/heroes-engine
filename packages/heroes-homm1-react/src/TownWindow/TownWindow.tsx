@@ -220,7 +220,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
               town={town.id}
               canConstructStructures={town.canConstructStructures}
               resources={resources}
-              structures={town.structures}
+              structures={town.structures.filter((s) => s.id !== StructureId.Castle)}
               visible={true}
               onExitClick={this.onCloseStructureDetailsClick}
             />
