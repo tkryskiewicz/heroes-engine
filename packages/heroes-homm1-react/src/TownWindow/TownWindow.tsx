@@ -18,8 +18,8 @@ import { TavernWindow } from "../TavernWindow";
 import { ThievesGuildWindow } from "../ThievesGuildWindow";
 import { TownPopulationWindow, TownPopulationWindowProps } from "../TownPopulationWindow";
 import { TownView } from "../TownView";
+import { CastleOptionsWindow } from "./CastleOptionsWindow";
 import { messages } from "./messages";
-import { StructuresWindow } from "./StructuresWindow";
 import { Treasury } from "./Treasury";
 
 export interface TownWindowProps {
@@ -216,7 +216,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
             visible={true}
             onCancelClick={this.onCloseStructureDetailsClick}
           />) : (
-            <StructuresWindow
+            <CastleOptionsWindow
               town={town.id}
               canConstructStructures={town.canConstructStructures}
               resources={resources}

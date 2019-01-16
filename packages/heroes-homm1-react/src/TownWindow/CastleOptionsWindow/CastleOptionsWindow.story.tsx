@@ -7,16 +7,16 @@ import { buildStructure } from "heroes-core";
 import { Alignment, constructTown, TownId } from "heroes-homm1";
 
 import { townOptions } from "../../stories";
-import { StructuresWindow } from "./StructuresWindow";
+import { CastleOptionsWindow } from "./CastleOptionsWindow";
 
-storiesOf("TownWindow/StructuresWindow", module)
+storiesOf("TownWindow/CastleOptionsWindow", module)
   .add("default", () => {
     const townId = select("Town", townOptions, TownId.Farm);
 
     const town = constructTown(townId, "Name", Alignment.Red, []);
 
     return (
-      <StructuresWindow
+      <CastleOptionsWindow
         town={town.id}
         canConstructStructures={boolean("Can Construct Structures", true)}
         structures={town.structures.map(buildStructure)}

@@ -5,7 +5,7 @@ import { InjectedIntlProps, injectIntl } from "react-intl";
 import { Resources, Structure } from "heroes-core";
 import { getStructureStatus, StructureStatus } from "heroes-homm1";
 
-import "./StructuresWindow.scss";
+import "./CastleOptionsWindow.scss";
 
 import { getStructureNameMessage } from "../../messages";
 import {
@@ -17,7 +17,7 @@ import {
 import { CastleOption } from "../CastleOption";
 import { getStructureStatusMessage, messages } from "./messages";
 
-export interface StructuresWindowProps extends
+export interface CastleOptionsWindowProps extends
   InjectedIntlProps,
   WithTownDetailWindowInjectedProps,
   WithTownDetailWindowProps {
@@ -27,7 +27,7 @@ export interface StructuresWindowProps extends
   resources: Resources;
 }
 
-class StructuresWindow extends React.Component<StructuresWindowProps> implements WithTownDetailWindowRef {
+class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> implements WithTownDetailWindowRef {
   public componentDidMount() {
     this.setDefaultStatusText();
   }
@@ -36,7 +36,7 @@ class StructuresWindow extends React.Component<StructuresWindowProps> implements
     const { town, structures, canConstructStructures, resources } = this.props;
 
     return (
-      <div className="structures-window">
+      <div className="castle-options-window">
         <Row>
           {structures.map((s) => this.renderStructure(town, s, canConstructStructures, resources))}
         </Row>
@@ -94,10 +94,10 @@ class StructuresWindow extends React.Component<StructuresWindowProps> implements
   }
 }
 
-const StructuresWindowWrapped = injectIntl(
-  withTownDetailWindow()(StructuresWindow),
+const CastleOptionsWindowWrapped = injectIntl(
+  withTownDetailWindow()(CastleOptionsWindow),
 );
 
 export {
-  StructuresWindowWrapped as StructuresWindow,
+  CastleOptionsWindowWrapped as CastleOptionsWindow,
 };
