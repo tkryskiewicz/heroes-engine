@@ -6,7 +6,7 @@ import { Battlefield, CombatSide, HeroSkills } from "heroes-core";
 import "./CombatWindow.scss";
 
 import { withGameWindow } from "../core";
-import { HeroCombatOptions } from "../HeroCombatOptions";
+import { HeroCombatOptions, heroCombatOptionsMessages } from "../HeroCombatOptions";
 import { terrainBackgrounds } from "./assets";
 import { CombatBar } from "./CombatBar";
 import { CombatCell } from "./CombatCell";
@@ -174,16 +174,71 @@ class CombatWindow extends React.Component<CombatWindowProps & InjectedIntlProps
     return (
       <HeroCombatOptions
         hero={hero}
-        canCastSpell={true}
-        canSurrender={true}
+        canCastSpell={side === CombatSide.Attacker}
+        onCastSpellMouseEnter={this.onCastSpellMouseEnter}
+        onCastSpellMouseLeave={this.onCastSpellMouseLeave}
+        canRetreat={side === CombatSide.Attacker}
+        onRetreatMouseEnter={this.onRetreatMouseEnter}
+        onRetreatMouseLeave={this.onRetreatMouseLeave}
+        canSurrender={side === CombatSide.Attacker}
+        onSurrenderMouseEnter={this.onSurrenderMouseEnter}
+        onSurrenderMouseLeave={this.onSurrenderMouseLeave}
         visible={true}
+        onCancelMouseEnter={this.onCloseHeroCombatOptionsMouseEnter}
+        onCancelMouseLeave={this.onCloseHeroCombatOptionsMouseLeave}
         onCancelClick={this.onCloseHeroCombatOptionsClick}
       />
     );
   }
 
+  private onCastSpellMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(heroCombatOptionsMessages.castSpellStatusText);
+
+    this.setStatusText(statusText);
+  }
+
+  private onCastSpellMouseLeave = () => {
+    this.setDefaultHeroCombatOptionsStatusText();
+  }
+
+  private onRetreatMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(heroCombatOptionsMessages.retreatStatusText);
+
+    this.setStatusText(statusText);
+  }
+
+  private onRetreatMouseLeave = () => {
+    this.setDefaultHeroCombatOptionsStatusText();
+  }
+
+  private onSurrenderMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(heroCombatOptionsMessages.surrenderStatusText);
+
+    this.setStatusText(statusText);
+  }
+
+  private onSurrenderMouseLeave = () => {
+    this.setDefaultHeroCombatOptionsStatusText();
+  }
+
+  private onCloseHeroCombatOptionsMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(heroCombatOptionsMessages.cancelStatusText);
+
+    this.setStatusText(statusText);
+  }
+
+  private onCloseHeroCombatOptionsMouseLeave = () => {
+    this.setDefaultHeroCombatOptionsStatusText();
+  }
+
   private onCloseHeroCombatOptionsClick = () => {
     this.props.onVisibleHeroCombatOptionsChange();
+  }
+
+  private setDefaultHeroCombatOptionsStatusText() {
+    const statusText = this.props.intl.formatMessage(heroCombatOptionsMessages.defaultStatusText);
+
+    this.setStatusText(statusText);
   }
 
   private setStatusText(statusText: string) {

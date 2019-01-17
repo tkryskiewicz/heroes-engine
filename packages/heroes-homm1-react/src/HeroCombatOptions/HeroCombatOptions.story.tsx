@@ -28,10 +28,19 @@ storiesOf("HeroCombatOptions", module)
         visible={boolean("Visible", true)}
         hero={hero}
         canCastSpell={boolean("Can Cast Spell", true)}
+        onCastSpellMouseEnter={action("Cast Spell Mouse Enter")}
+        onCastSpellMouseLeave={action("Cast Spell Mouse Leave")}
         onCastSpellClick={action("Cast Spell Click")}
+        canRetreat={boolean("Can Retreat", true)}
+        onRetreatMouseEnter={action("Retreat Mouse Enter")}
+        onRetreatMouseLeave={action("Retreat Mouse Leave")}
         onRetreatClick={action("Retreat Click")}
         canSurrender={boolean("Can Surrender", true)}
+        onSurrenderMouseEnter={action("Surrender Mouse Enter")}
+        onSurrenderMouseLeave={action("Surrender Mouse Leave")}
         onSurrenderClick={action("Surrender Click")}
+        onCancelMouseEnter={action("Cancel Mouse Enter")}
+        onCancelMouseLeave={action("Cancel Mouse Leave")}
         onCancelClick={action("Cancel Click")}
       />
     );

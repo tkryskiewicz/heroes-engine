@@ -31,25 +31,50 @@ export interface HeroCombatOptionsProps {
     luck: number;
   };
   canCastSpell: boolean;
+  onCastSpellMouseEnter: () => void;
+  onCastSpellMouseLeave: () => void;
   onCastSpellClick: () => void;
+  canRetreat: boolean;
+  onRetreatMouseEnter: () => void;
+  onRetreatMouseLeave: () => void;
   onRetreatClick: () => void;
   canSurrender: boolean;
+  onSurrenderMouseEnter: () => void;
+  onSurrenderMouseLeave: () => void;
   onSurrenderClick: () => void;
+  onCancelMouseEnter: () => void;
+  onCancelMouseLeave: () => void;
   onCancelClick: () => void;
 }
 
 type DefaultProp =
+  "onCastSpellMouseEnter" |
+  "onCastSpellMouseLeave" |
   "onCastSpellClick" |
+  "onRetreatMouseEnter" |
+  "onRetreatMouseLeave" |
   "onRetreatClick" |
+  "onSurrenderMouseEnter" |
+  "onSurrenderMouseLeave" |
   "onSurrenderClick" |
+  "onCancelMouseEnter" |
+  "onCancelMouseLeave" |
   "onCancelClick";
 
 class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & InjectedIntlProps> {
   public static defaultProps: Pick<HeroCombatOptionsProps, DefaultProp> = {
     onCancelClick: () => undefined,
+    onCancelMouseEnter: () => undefined,
+    onCancelMouseLeave: () => undefined,
     onCastSpellClick: () => undefined,
+    onCastSpellMouseEnter: () => undefined,
+    onCastSpellMouseLeave: () => undefined,
     onRetreatClick: () => undefined,
+    onRetreatMouseEnter: () => undefined,
+    onRetreatMouseLeave: () => undefined,
     onSurrenderClick: () => undefined,
+    onSurrenderMouseEnter: () => undefined,
+    onSurrenderMouseLeave: () => undefined,
   };
 
   public render() {
@@ -76,13 +101,17 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
             <ImageButton
               images={buttonImages.castSpell}
               disabled={!this.props.canCastSpell}
+              onMouseEnter={this.props.onCastSpellMouseEnter}
+              onMouseLeave={this.props.onCastSpellMouseLeave}
               onClick={this.props.onCastSpellClick}
             />
           </div>
           <div className="hero-combat-options-retreat">
             <ImageButton
               images={buttonImages.retreat}
-              disabled={false}
+              disabled={!this.props.canRetreat}
+              onMouseEnter={this.props.onRetreatMouseEnter}
+              onMouseLeave={this.props.onRetreatMouseLeave}
               onClick={this.props.onRetreatClick}
             />
           </div>
@@ -90,12 +119,16 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
             <ImageButton
               images={buttonImages.surrender}
               disabled={!this.props.canSurrender}
+              onMouseEnter={this.props.onSurrenderMouseEnter}
+              onMouseLeave={this.props.onSurrenderMouseLeave}
               onClick={this.props.onSurrenderClick}
             />
           </div>
           <div className="hero-combat-options-cancel">
             <ImageButton
               images={buttonImages.cancel}
+              onMouseEnter={this.props.onCancelMouseEnter}
+              onMouseLeave={this.props.onCancelMouseLeave}
               onClick={this.props.onCancelClick}
             />
           </div>
@@ -142,4 +175,6 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
 
 const HeroCombatOptionsWrapped = injectIntl<typeof HeroCombatOptions, HeroCombatOptionsProps>(HeroCombatOptions);
 
-export { HeroCombatOptionsWrapped as HeroCombatOptions };
+export {
+  HeroCombatOptionsWrapped as HeroCombatOptions,
+};
