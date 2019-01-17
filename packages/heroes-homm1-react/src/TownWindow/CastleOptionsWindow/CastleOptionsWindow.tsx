@@ -7,6 +7,7 @@ import { CastleOptionStatus, getCastleOptionStatus } from "heroes-homm1";
 
 import "./CastleOptionsWindow.scss";
 
+import { BuildStructureWindow } from "../../BuildStructureWindow";
 import { getStructureNameMessage } from "../../messages";
 import {
   withTownDetailWindow,
@@ -25,20 +26,37 @@ export interface CastleOptionsWindowProps extends
   canConstructStructures: boolean;
   structures: Structure[];
   resources: Resources;
+  visibleOptionDetails?: string;
+  onOpenOptionDetailsClick: (option: string) => void;
+  onCloseOptionDetailsClick: () => void;
 }
 
+type DefaultProp =
+  "onOpenOptionDetailsClick" |
+  "onCloseOptionDetailsClick";
+
 class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> implements WithTownDetailWindowRef {
+  public static defaultProps: Pick<CastleOptionsWindowProps, DefaultProp> = {
+    onCloseOptionDetailsClick: () => undefined,
+    onOpenOptionDetailsClick: () => undefined,
+  };
+
   public componentDidMount() {
     this.setDefaultStatusText();
   }
 
   public render() {
-    const { town, structures, canConstructStructures, resources } = this.props;
+    const { town, structures, canConstructStructures, resources, visibleOptionDetails } = this.props;
+
+    const optionDetails = visibleOptionDetails ?
+      structures.find((s) => s.id === visibleOptionDetails) :
+      undefined;
 
     return (
       <div className="castle-options-window">
         <Row>
           {structures.map((s) => this.renderStructure(town, s, canConstructStructures, resources))}
+          {optionDetails && this.renderOptionDetails(town, optionDetails)}
         </Row>
       </div>
     );
@@ -68,6 +86,7 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
           status={status}
           onMouseEnter={this.onStructureMouseEnter}
           onMouseLeave={this.onStructureMouseLeave}
+          onClick={this.onOptionClick}
         />
       </Col>
     );
@@ -85,6 +104,23 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
 
   private onStructureMouseLeave = () => {
     this.setDefaultStatusText();
+  }
+
+  private onOptionClick = (option: string) => {
+    this.props.onOpenOptionDetailsClick(option);
+  }
+
+  private renderOptionDetails(town: string, option: Structure) {
+    return (
+      <BuildStructureWindow
+        visible={true}
+        town={town}
+        structure={option.id}
+        cost={option.cost}
+        canBuild={true}
+        onCancelClick={this.props.onCloseOptionDetailsClick}
+      />
+    );
   }
 
   private setDefaultStatusText() {

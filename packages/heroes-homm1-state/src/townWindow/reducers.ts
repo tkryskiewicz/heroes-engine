@@ -48,17 +48,32 @@ export const townWindowReducer = (
         visibleStructureDetails: action.structure,
       };
     case TownWindowActionType.CloseStructureDetails:
-    case GameActionType.BuildStructure:
     case GameActionType.RecruitTroop:
       return {
         ...state,
         recruitTroopCount: 0,
         visibleStructureDetails: undefined,
       };
+    case TownWindowActionType.OpenOptionDetails:
+      return {
+        ...state,
+        visibleOptionDetails: action.value,
+      };
+    case TownWindowActionType.CloseOptionDetails:
+      return {
+        ...state,
+        visibleOptionDetails: undefined,
+      };
     case TownWindowActionType.ChangeRecruitTroopCount:
       return {
         ...state,
         recruitTroopCount: action.count,
+      };
+    case GameActionType.BuildStructure:
+      return {
+        ...state,
+        visibleOptionDetails: undefined,
+        visibleStructureDetails: undefined,
       };
     default:
       return state;

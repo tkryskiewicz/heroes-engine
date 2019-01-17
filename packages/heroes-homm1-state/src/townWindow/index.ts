@@ -5,6 +5,8 @@ export {
   closeTownWindow,
   openStructureDetails,
   closeStructureDetails,
+  openOptionDetails as openCastleOptionDetails,
+  closeOptionDetails as closeCastleOptionDetails,
   changeRecruitTroopCount,
   selectTownWindowGarrisonTroop,
   selectTownWindowHeroTroop,

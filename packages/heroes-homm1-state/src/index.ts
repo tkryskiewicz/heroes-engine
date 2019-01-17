@@ -49,6 +49,8 @@ export {
   closeTownWindow,
   openStructureDetails,
   closeStructureDetails,
+  openCastleOptionDetails,
+  closeCastleOptionDetails,
   changeRecruitTroopCount,
   selectTownWindowGarrisonTroop,
   selectTownWindowHeroTroop,

@@ -23,6 +23,7 @@ import {
   Skill,
   SpellId,
   SpellType,
+  StructureId,
   TownId,
 } from "heroes-homm1";
 
@@ -157,17 +158,22 @@ const farmTown = constructTown(
   ],
 );
 
+const plainsTown = constructTown(
+  TownId.Plains,
+  "Plains Town",
+  Alignment.Red,
+  [],
+);
+
 const towns: Town[] = [
   {
     ...farmTown,
     structures: farmTown.structures.map(buildStructure),
   },
-  constructTown(
-    TownId.Plains,
-    "Plains Town",
-    Alignment.Red,
-    [],
-  ),
+  {
+    ...plainsTown,
+    structures: plainsTown.structures.map((s) => s.id === StructureId.Castle ? buildStructure(s) : s),
+  },
   constructTown(
     TownId.Forest,
     "Forest Town",

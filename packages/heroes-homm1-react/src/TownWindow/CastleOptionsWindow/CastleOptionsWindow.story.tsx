@@ -22,6 +22,8 @@ storiesOf("TownWindow/CastleOptionsWindow", module)
         structures={town.structures.map(buildStructure)}
         resources={{}}
         visible={boolean("Visible", true)}
+        onOpenOptionDetailsClick={action("Open Option Details Click")}
+        onCloseOptionDetailsClick={action("Close Option Details Click")}
         onExitClick={action("Exit Click")}
       />
     );

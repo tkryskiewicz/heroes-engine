@@ -5,6 +5,8 @@ export enum TownWindowActionType {
   SelectHeroTroop = "townWindow/selectHeroTroop",
   OpenStructureDetails = "townWindow/openStructureDetails",
   CloseStructureDetails = "townWindow/closeStructureDetails",
+  OpenOptionDetails = "townWindow/openOptionDetails",
+  CloseOptionDetails = "townWindow/closeOptionDetails",
   // FIXME: does this action fit here?
   ChangeRecruitTroopCount = "townWindow/changeRecruitTroopCount",
 }
@@ -16,6 +18,8 @@ export type TownWindowAction =
   SelectHeroTroopAction |
   OpenStructureDetailsAction |
   CloseStructureDetailsAction |
+  OpenOptionDetailsAction |
+  CloseOptionDetailsAction |
   ChangeRecruitTroopCountAction;
 
 export interface OpenTownWindowAction {
@@ -70,6 +74,24 @@ export interface CloseStructureDetailsAction {
 
 export const closeStructureDetails = (): CloseStructureDetailsAction => ({
   type: TownWindowActionType.CloseStructureDetails,
+});
+
+export interface OpenOptionDetailsAction {
+  type: TownWindowActionType.OpenOptionDetails;
+  value: string;
+}
+
+export const openOptionDetails = (value: string): OpenOptionDetailsAction => ({
+  type: TownWindowActionType.OpenOptionDetails,
+  value,
+});
+
+export interface CloseOptionDetailsAction {
+  type: TownWindowActionType.CloseOptionDetails;
+}
+
+export const closeOptionDetails = (): CloseOptionDetailsAction => ({
+  type: TownWindowActionType.CloseOptionDetails,
 });
 
 export interface ChangeRecruitTroopCountAction {

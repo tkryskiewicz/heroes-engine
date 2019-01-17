@@ -61,6 +61,10 @@ export class CastleOption extends React.Component<CastleOptionProps> {
   }
 
   private onClick = () => {
+    if (this.props.status !== CastleOptionStatus.Available) {
+      return;
+    }
+
     this.props.onClick(this.props.structure, this.props.status);
   }
 }
