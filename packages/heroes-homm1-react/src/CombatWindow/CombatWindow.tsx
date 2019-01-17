@@ -1,4 +1,5 @@
 import * as React from "react";
+import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Battlefield, CombatSide, HeroSkills } from "heroes-core";
 
@@ -9,6 +10,7 @@ import { HeroCombatOptions } from "../HeroCombatOptions";
 import { terrainBackgrounds } from "./assets";
 import { CombatBar } from "./CombatBar";
 import { CombatCell } from "./CombatCell";
+import { messages } from "./messages";
 import { Tent } from "./Tent";
 
 interface Hero {
@@ -33,13 +35,25 @@ export interface CombatWindowProps {
   onVisibleHeroCombatOptionsChange: (value?: CombatSide) => void;
 }
 
+interface CombatWindowState {
+  statusText: string;
+}
+
 type DefaultProp =
   "onVisibleHeroCombatOptionsChange";
 
-class CombatWindow extends React.Component<CombatWindowProps> {
+class CombatWindow extends React.Component<CombatWindowProps & InjectedIntlProps, CombatWindowState> {
   public static defaultProps: Pick<CombatWindowProps, DefaultProp> = {
     onVisibleHeroCombatOptionsChange: () => undefined,
   };
+
+  public state: CombatWindowState = {
+    statusText: "",
+  };
+
+  public componentDidMount() {
+    this.setDefaultStatusText();
+  }
 
   public render() {
     const { attacker, defender, battlefield, visibleHeroCombatOptions } = this.props;
@@ -51,7 +65,9 @@ class CombatWindow extends React.Component<CombatWindowProps> {
         {this.renderTent(CombatSide.Attacker, attacker.hero)}
         {this.renderTent(CombatSide.Defender, defender.hero)}
         <div className="combat-window-bar">
-          <CombatBar />
+          <CombatBar
+            statusText={this.state.statusText}
+          />
         </div>
         {visibleHeroCombatOptions && this.renderHeroCombatOptions(visibleHeroCombatOptions)}
       </div>
@@ -125,10 +141,25 @@ class CombatWindow extends React.Component<CombatWindowProps> {
           side={side}
           alignment={hero.alignment}
           heroClass={hero.heroClass}
+          onMouseEnter={this.onTentMouseEnter}
+          onMouseLeave={this.onTentMouseLeave}
           onClick={this.onTentClick}
         />
       </div>
     );
+  }
+
+  private onTentMouseEnter = (side: CombatSide) => {
+    const statusText = this.props.intl.formatMessage(side === CombatSide.Attacker ?
+      messages.generalsOptions :
+      messages.opposingGeneralsOptions,
+    );
+
+    this.setStatusText(statusText);
+  }
+
+  private onTentMouseLeave = () => {
+    this.setDefaultStatusText();
   }
 
   private onTentClick = (side: CombatSide) => {
@@ -154,9 +185,23 @@ class CombatWindow extends React.Component<CombatWindowProps> {
   private onCloseHeroCombatOptionsClick = () => {
     this.props.onVisibleHeroCombatOptionsChange();
   }
+
+  private setStatusText(statusText: string) {
+    this.setState({
+      statusText,
+    });
+  }
+
+  private setDefaultStatusText() {
+    const statusText = this.props.intl.formatMessage(messages.defaultStatusText);
+
+    this.setStatusText(statusText);
+  }
 }
 
-const CombatWindowWrapped = withGameWindow(640)(CombatWindow);
+const CombatWindowWrapped = injectIntl(
+  withGameWindow(640)(CombatWindow),
+);
 
 export {
   CombatWindowWrapped as CombatWindow,

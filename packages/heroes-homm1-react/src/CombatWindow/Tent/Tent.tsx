@@ -8,18 +8,29 @@ export interface TentProps {
   side: CombatSide;
   alignment: string;
   heroClass: string;
+  onMouseEnter: (side: CombatSide) => void;
+  onMouseLeave: (side: CombatSide) => void;
   onClick: (side: CombatSide) => void;
 }
 
+type DefaultProp =
+  "onMouseEnter" |
+  "onMouseLeave" |
+  "onClick";
+
 export class Tent extends React.Component<TentProps> {
-  public static defaultProps: Pick<TentProps, "onClick"> = {
+  public static defaultProps: Pick<TentProps, DefaultProp> = {
     onClick: () => undefined,
+    onMouseEnter: () => undefined,
+    onMouseLeave: () => undefined,
   };
 
   public render() {
     return (
       <div
         className="tent"
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
       >
         <img
@@ -38,6 +49,14 @@ export class Tent extends React.Component<TentProps> {
         </div>
       </div>
     );
+  }
+
+  private onMouseEnter = () => {
+    this.props.onMouseEnter(this.props.side);
+  }
+
+  private onMouseLeave = () => {
+    this.props.onMouseLeave(this.props.side);
   }
 
   private onClick = () => {
