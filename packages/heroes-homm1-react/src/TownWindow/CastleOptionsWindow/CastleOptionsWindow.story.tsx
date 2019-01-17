@@ -19,7 +19,7 @@ storiesOf("TownWindow/CastleOptionsWindow", module)
       <CastleOptionsWindow
         town={town.id}
         canConstructStructures={boolean("Can Construct Structures", true)}
-        structures={town.structures.map(buildStructure)}
+        options={town.structures.map(buildStructure)}
         resources={{}}
         visible={boolean("Visible", true)}
         onOpenOptionDetailsClick={action("Open Option Details Click")}

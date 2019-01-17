@@ -12,7 +12,7 @@ storiesOf("TownWindow/CastleOption", module)
   .add("default", () => (
     <CastleOption
       town={select("Town", townOptions, TownId.Farm)}
-      structure={select("Structure", structureOptions, StructureId.Castle)}
+      option={select("Option", structureOptions, StructureId.Castle)}
       status={select("Status", castleOptionStatusOptions, CastleOptionStatus.Built)}
       onMouseEnter={action("Mouse Enter")}
       onMouseLeave={action("Mouse Leave")}

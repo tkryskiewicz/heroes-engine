@@ -24,7 +24,7 @@ export interface CastleOptionsWindowProps extends
   WithTownDetailWindowProps {
   town: string;
   canConstructStructures: boolean;
-  structures: Structure[];
+  options: Structure[];
   resources: Resources;
   visibleOptionDetails?: string;
   onOpenOptionDetailsClick: (option: string) => void;
@@ -46,16 +46,16 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
   }
 
   public render() {
-    const { town, structures, canConstructStructures, resources, visibleOptionDetails } = this.props;
+    const { town, options, canConstructStructures, resources, visibleOptionDetails } = this.props;
 
     const optionDetails = visibleOptionDetails ?
-      structures.find((s) => s.id === visibleOptionDetails) :
+      options.find((s) => s.id === visibleOptionDetails) :
       undefined;
 
     return (
       <div className="castle-options-window">
         <Row>
-          {structures.map((s) => this.renderStructure(town, s, canConstructStructures, resources))}
+          {options.map((s) => this.renderOption(town, s, canConstructStructures, resources))}
           {optionDetails && this.renderOptionDetails(town, optionDetails)}
         </Row>
       </div>
@@ -72,7 +72,7 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
     this.setDefaultStatusText();
   }
 
-  private renderStructure(town: string, structure: Structure, canConstructStrucutes: boolean, resources: Resources) {
+  private renderOption(town: string, structure: Structure, canConstructStrucutes: boolean, resources: Resources) {
     const status = getCastleOptionStatus(structure, canConstructStrucutes, resources);
 
     return (
@@ -82,17 +82,17 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
       >
         <CastleOption
           town={town}
-          structure={structure.id}
+          option={structure.id}
           status={status}
-          onMouseEnter={this.onStructureMouseEnter}
-          onMouseLeave={this.onStructureMouseLeave}
+          onMouseEnter={this.onOptionMouseEnter}
+          onMouseLeave={this.onOptionMouseLeave}
           onClick={this.onOptionClick}
         />
       </Col>
     );
   }
 
-  private onStructureMouseEnter = (structure: string, status: CastleOptionStatus) => {
+  private onOptionMouseEnter = (structure: string, status: CastleOptionStatus) => {
     const { formatMessage } = this.props.intl;
 
     const optionName = formatMessage(getStructureNameMessage(structure));
@@ -102,7 +102,7 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
     this.props.onStatusTextChange(statusText);
   }
 
-  private onStructureMouseLeave = () => {
+  private onOptionMouseLeave = () => {
     this.setDefaultStatusText();
   }
 

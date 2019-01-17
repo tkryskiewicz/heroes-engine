@@ -4,16 +4,17 @@ import { CastleOptionStatus } from "heroes-homm1";
 
 import "./CastleOption.scss";
 
+import { statusImages } from "./assets";
+
 import { StructureIcon } from "../../StructureIcon";
-import { gameOptionStatusImages } from "./assets";
 
 export interface CastleOptionProps {
   town: string;
-  structure: string;
+  option: string;
   status: CastleOptionStatus;
-  onMouseEnter: (structure: string, status: CastleOptionStatus) => void;
-  onMouseLeave: (structure: string, status: CastleOptionStatus) => void;
-  onClick: (structure: string, status: CastleOptionStatus) => void;
+  onMouseEnter: (option: string, status: CastleOptionStatus) => void;
+  onMouseLeave: (option: string, status: CastleOptionStatus) => void;
+  onClick: (option: string, status: CastleOptionStatus) => void;
 }
 
 type DefaultProp =
@@ -33,7 +34,7 @@ export class CastleOption extends React.Component<CastleOptionProps> {
       <div>
         <StructureIcon
           town={this.props.town}
-          structure={this.props.structure}
+          structure={this.props.option}
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
           onClick={this.onClick}
@@ -47,17 +48,17 @@ export class CastleOption extends React.Component<CastleOptionProps> {
     return (
       <img
         className="castle-option-status-icon"
-        src={gameOptionStatusImages[status]}
+        src={statusImages[status]}
       />
     );
   }
 
   private onMouseEnter = () => {
-    this.props.onMouseEnter(this.props.structure, this.props.status);
+    this.props.onMouseEnter(this.props.option, this.props.status);
   }
 
   private onMouseLeave = () => {
-    this.props.onMouseLeave(this.props.structure, this.props.status);
+    this.props.onMouseLeave(this.props.option, this.props.status);
   }
 
   private onClick = () => {
@@ -65,6 +66,6 @@ export class CastleOption extends React.Component<CastleOptionProps> {
       return;
     }
 
-    this.props.onClick(this.props.structure, this.props.status);
+    this.props.onClick(this.props.option, this.props.status);
   }
 }
