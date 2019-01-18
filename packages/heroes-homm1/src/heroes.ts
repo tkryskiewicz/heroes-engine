@@ -1,4 +1,7 @@
+import { Army, Hero, Troop } from "heroes-core";
+
 import { HeroClass } from "./HeroClass";
+import { heroClasses } from "./heroClasses";
 
 export interface HeroInfo {
   id: string;
@@ -219,3 +222,31 @@ export const heroes: HeroInfo[] = [
   ...sorceressHeroes,
   ...warlockHeroes,
 ];
+
+export const constructHero = (id: string, alignment: string): Hero => {
+  const hero = heroes.find((h) => h.id === id)!;
+
+  const heroClass = heroClasses.find((c) => c.id === hero.heroClass)!;
+
+  const army: Army = heroClass.army
+    .map((t): Troop => ({
+      count: Math.floor(t.min + Math.random() * (t.max - t.min + 1)),
+      creature: t.creature,
+    }))
+    .filter((t) => t.count);
+
+  return {
+    alignment,
+    army,
+    artifacts: [],
+    experience: 0,
+    heroClass: hero.heroClass,
+    id,
+    luck: 0,
+    mobility: 0,
+    morale: 0,
+    skills: {
+      ...heroClass.skills,
+    },
+  };
+};

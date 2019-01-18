@@ -14,15 +14,12 @@ import {
   Alignment,
   ArtifactId,
   campaignScenarios,
+  constructHero,
   constructTown,
   CreatureId,
-  HeroClass,
   HeroId,
   MaxMobility,
   Resource,
-  Skill,
-  SpellId,
-  SpellType,
   StructureId,
   TownId,
 } from "heroes-homm1";
@@ -32,117 +29,56 @@ import { GameState } from "./state";
 
 const heroes: Hero[] = [
   {
-    alignment: Alignment.Red,
-    army: [
-      {
-        count: 1,
-        creature: CreatureId.Peasant,
-      },
-      {
-        count: 1,
-        creature: CreatureId.Archer,
-      },
-    ],
+    ...constructHero(
+      HeroId.LordKilburn,
+      Alignment.Red,
+    ),
     artifacts: [
       {
         data: {},
         id: ArtifactId.ThunderMaceOfDominion,
       },
     ],
-    experience: 10,
-    heroClass: HeroClass.Knight,
-    id: HeroId.LordKilburn,
-    luck: 0,
     mobility: MaxMobility,
-    morale: 0,
-    skills: {
-      [Skill.AttackSkill]: 1,
-      [Skill.DefenseSkill]: 2,
-      [Skill.SpellPower]: 1,
-      [Skill.Knowledge]: 1,
-    },
   },
   {
-    alignment: Alignment.Red,
-    army: [
-      {
-        count: 1,
-        creature: CreatureId.Goblin,
-      },
-    ],
-    artifacts: [],
-    experience: 125,
-    heroClass: HeroClass.Barbarian,
-    id: HeroId.Antoine,
+    ...constructHero(
+      HeroId.Antoine,
+      Alignment.Red,
+    ),
     luck: 3,
     mobility: MaxMobility,
     morale: 1,
-    skills: {
-      [Skill.AttackSkill]: 2,
-      [Skill.DefenseSkill]: 1,
-      [Skill.SpellPower]: 1,
-      [Skill.Knowledge]: 1,
-    },
   },
   {
-    alignment: Alignment.Red,
-    army: [
-      {
-        count: 1,
-        creature: CreatureId.Sprite,
-      },
-    ],
-    artifacts: [
-      {
-        data: [
-          {
-            charges: 0,
-            id: SpellId.Bless,
-            type: SpellType.Combat,
-          },
-        ],
-        id: ArtifactId.Spellbook,
-      },
-    ],
-    experience: 642,
-    heroClass: HeroClass.Sorceress,
-    id: HeroId.Ariel,
-    luck: -1,
-    mobility: 0,
-    morale: -1,
-    skills: {
-      [Skill.AttackSkill]: 0,
-      [Skill.DefenseSkill]: 0,
-      [Skill.SpellPower]: 3,
-      [Skill.Knowledge]: 2,
-    },
-  },
-  {
-    alignment: Alignment.Red,
-    army: [
-      {
-        count: 1,
-        creature: CreatureId.Centaur,
-      },
-    ],
+    ...constructHero(
+      HeroId.Ariel,
+      Alignment.Red,
+    ),
     artifacts: [
       {
         data: [],
         id: ArtifactId.Spellbook,
       },
     ],
-    experience: 174,
-    heroClass: HeroClass.Warlock,
-    id: HeroId.Agar,
+    luck: -1,
+    mobility: 0,
+    morale: -1,
+  },
+  {
+    ...constructHero(
+      HeroId.Agar,
+      Alignment.Red,
+    ),
+    artifacts: [
+      {
+        data: [],
+        id: ArtifactId.Spellbook,
+      },
+    ],
     luck: 3,
     mobility: 10,
     morale: 3,
-    skills: {
-      [Skill.AttackSkill]: 0,
-      [Skill.DefenseSkill]: 0,
-      [Skill.SpellPower]: 2,
-      [Skill.Knowledge]: 3,
-    },
   },
 ];
 

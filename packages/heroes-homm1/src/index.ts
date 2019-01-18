@@ -8,7 +8,7 @@ export { GameDifficulty, getGameDifficultyRating } from "./GameDifficulty";
 export { GameSettings } from "./GameSettings";
 export { GameType } from "./GameType";
 export { HeroClass, HeroClassIds } from "./HeroClass";
-export { HeroInfo, HeroId, heroes } from "./heroes";
+export { HeroInfo, HeroId, heroes, constructHero } from "./heroes";
 export { MovementSpeed, changeMovementSpeed } from "./MovementSpeed";
 export { OpponentSetting, changeOpponentSetting, getOpponentSettingRating } from "./OpponentSetting";
 export { Resource } from "./Resource";
