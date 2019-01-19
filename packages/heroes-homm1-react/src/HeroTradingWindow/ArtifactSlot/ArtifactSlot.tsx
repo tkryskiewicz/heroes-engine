@@ -8,10 +8,11 @@ import { ArtifactIcon } from "../../base";
 import { Slot } from "../Slot";
 
 export interface ArtifactSlotProps {
+  hero: string;
   index: number;
   artifact?: string;
   selected: boolean;
-  onClick: (index: number) => void;
+  onClick: (hero: string, index: number) => void;
 }
 
 export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
@@ -25,7 +26,7 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
       <Slot
         index={this.props.index}
         selected={this.props.selected}
-        onClick={this.props.onClick}
+        onClick={this.onClick}
       >
         <div className="artifact-slot">
           {this.renderBackground()}
@@ -50,5 +51,9 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
         />
       </div>
     );
+  }
+
+  private onClick = () => {
+    this.props.onClick(this.props.hero, this.props.index);
   }
 }

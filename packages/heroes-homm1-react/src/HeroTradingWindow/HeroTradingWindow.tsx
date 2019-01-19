@@ -3,33 +3,57 @@ import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Army, Hero, HeroSkills } from "heroes-core";
-import { ArmySize, ArtifactLimit, SkillIds } from "heroes-homm1";
+import { ArmySize, ArtifactId, ArtifactLimit, SkillIds } from "heroes-homm1";
 
 import "./HeroTradingWindow.scss";
 
 import { buttonImages } from "./assets";
 
-import { HeroPortrait, ImageButton } from "../base";
+import { GameModal, HeroPortrait, ImageButton } from "../base";
 import { GameText, GameWindow } from "../core";
 import { getHeroNameMessage, getSkillNameMessage } from "../messages";
 import { ArtifactSlot } from "./ArtifactSlot";
 import { messages } from "./messages";
 import { TroopSlot } from "./TroopSlot";
 
+interface ArtifactSelection {
+  hero: string;
+  index: number;
+}
+
 export interface HeroTradingWindowProps {
   hero: Hero;
   otherHero: Hero;
   visible?: boolean;
+  onHeroPortraitClick: (hero: string) => void;
+  selectedArtifact?: ArtifactSelection;
+  onSelectedArtifactChange: (value: ArtifactSelection) => void;
+  onTradeArtifacts: (artifact: ArtifactSelection, withArtifact: ArtifactSelection) => void;
+  artifactNotTradablePromptVisible: boolean;
+  onArtifactNotTradablePromptVisibleChange: (visible: boolean) => void;
   onExitClick: () => void;
 }
 
+type DefaultProp =
+  "onHeroPortraitClick" |
+  "onSelectedArtifactChange" |
+  "onTradeArtifacts" |
+  "artifactNotTradablePromptVisible" |
+  "onArtifactNotTradablePromptVisibleChange" |
+  "onExitClick";
+
 class HeroTradingWindow extends React.Component<HeroTradingWindowProps & InjectedIntlProps> {
-  public static defaultProps: Pick<HeroTradingWindowProps, "onExitClick"> = {
+  public static defaultProps: Pick<HeroTradingWindowProps, DefaultProp> = {
+    artifactNotTradablePromptVisible: false,
+    onArtifactNotTradablePromptVisibleChange: () => undefined,
     onExitClick: () => undefined,
+    onHeroPortraitClick: () => undefined,
+    onSelectedArtifactChange: () => undefined,
+    onTradeArtifacts: () => undefined,
   };
 
   public render() {
-    const { hero, otherHero } = this.props;
+    const { hero, otherHero, selectedArtifact } = this.props;
 
     return (
       <GameWindow
@@ -44,30 +68,30 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
           </div>
           <div className="hero-trading-window-portrait">
             <HeroPortrait
-              hero={this.props.hero.id}
+              hero={hero.id}
+              onClick={this.onHeroPortraitClick}
             />
           </div>
           <div className="hero-trading-window-other-portrait">
             <HeroPortrait
-              hero={this.props.otherHero.id}
+              hero={otherHero.id}
+              onClick={this.onHeroPortraitClick}
             />
           </div>
           <div className="hero-trading-window-army">
-            {this.renderHeroArmy(this.props.hero.army)}
+            {this.renderHeroArmy(hero.army)}
           </div>
           <div className="hero-trading-window-other-army">
-            {this.renderHeroArmy(this.props.otherHero.army)}
+            {this.renderHeroArmy(otherHero.army)}
           </div>
           <div className="hero-trading-window-skills">
-            <div className="hero-trading-window-skills-container">
-              {this.renderSkills(this.props.hero, this.props.otherHero)}
-            </div>
+            {this.renderSkills(hero, otherHero)}
           </div>
           <div className="hero-trading-window-artifacts">
-            {this.renderArtifacts()}
+            {this.renderArtifacts(hero, selectedArtifact)}
           </div>
           <div className="hero-trading-window-other-artifacts">
-            {this.renderArtifacts()}
+            {this.renderArtifacts(otherHero, selectedArtifact)}
           </div>
           <div className="hero-trading-window-exit">
             <ImageButton
@@ -75,6 +99,7 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
               onClick={this.props.onExitClick}
             />
           </div>
+          {this.props.artifactNotTradablePromptVisible && this.renderArtifactNotTradablePrompt()}
         </div>
       </GameWindow>
     );
@@ -127,6 +152,10 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
     ));
   }
 
+  private onHeroPortraitClick = (hero?: string) => {
+    this.props.onHeroPortraitClick(hero!);
+  }
+
   private renderHeroArmy(army: Army) {
     return [...new Array(ArmySize).keys()].map((i) => (
       <div
@@ -141,20 +170,78 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
     ));
   }
 
-  private renderArtifacts() {
-    return [...new Array(ArtifactLimit).keys()].map((i) => (
-      <div
-        key={i}
-        className="hero-trading-window-artifact"
+  private renderArtifacts(hero: Hero, selectedArtifact?: ArtifactSelection) {
+    return [...new Array(ArtifactLimit).keys()].map((i) => {
+      const artifact = hero.artifacts[i];
+
+      return (
+        <div
+          key={i}
+          className="hero-trading-window-artifact"
+        >
+          <ArtifactSlot
+            index={i}
+            hero={hero.id}
+            artifact={artifact ? artifact.id : undefined}
+            selected={selectedArtifact && selectedArtifact.hero === hero.id && selectedArtifact.index === i}
+            onClick={this.onArtifactClick}
+          />
+        </div>
+      );
+    });
+  }
+
+  private onArtifactClick = (hero: string, index: number) => {
+    const h = this.props.hero.id === hero ?
+      this.props.hero :
+      this.props.otherHero;
+
+    const artifact = h.artifacts[index];
+
+    if (!artifact) {
+      return;
+    }
+
+    const isArtifactTradable = artifact.id !== ArtifactId.Spellbook;
+
+    // TODO: simplify?
+    // TODO: handle clicking on same artifact
+    if (this.props.selectedArtifact) {
+      if (!isArtifactTradable) {
+        this.props.onArtifactNotTradablePromptVisibleChange(true);
+      } else {
+        this.props.onTradeArtifacts(this.props.selectedArtifact, { hero, index });
+      }
+    } else {
+      if (!isArtifactTradable) {
+        this.props.onArtifactNotTradablePromptVisibleChange(true);
+      } else {
+        this.props.onSelectedArtifactChange({ hero, index });
+      }
+    }
+  }
+
+  private renderArtifactNotTradablePrompt() {
+    return (
+      <GameModal
+        type="okay"
+        visible={true}
+        onConfirmClick={this.onCloseArtifactNotTradablePrompt}
       >
-        <ArtifactSlot
-          index={i}
-        />
-      </div>
-    ));
+        <GameText size="large">
+          <FormattedMessage {...messages.artifactNotTradable} />
+        </GameText>
+      </GameModal>
+    );
+  }
+
+  private onCloseArtifactNotTradablePrompt = () => {
+    this.props.onArtifactNotTradablePromptVisibleChange(false);
   }
 }
 
-const HeroTradingWindowWrapped = injectIntl<typeof HeroTradingWindow, HeroTradingWindowProps>(HeroTradingWindow);
+const HeroTradingWindowWrapped = injectIntl(HeroTradingWindow);
 
-export { HeroTradingWindowWrapped as HeroTradingWindow };
+export {
+  HeroTradingWindowWrapped as HeroTradingWindow,
+};

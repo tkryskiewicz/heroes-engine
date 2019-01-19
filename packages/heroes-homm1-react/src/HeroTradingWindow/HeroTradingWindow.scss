@@ -19,14 +19,10 @@
 
   &-skills {
     position: absolute;
-    width: 100%;
+    width: 40%;
     top: 44px;
+    left: 30%;
     text-align: center;
-
-    &-container {
-      display: inline-block;
-      width: 167px;
-    }
   }
 
   &-other-portrait {

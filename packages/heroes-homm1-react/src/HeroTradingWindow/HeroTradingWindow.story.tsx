@@ -1,11 +1,11 @@
 import { action } from "@storybook/addon-actions";
-import { boolean } from "@storybook/addon-knobs";
+import { boolean, number, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { withReadme } from "storybook-readme";
 
 import { Hero } from "heroes-core";
-import { Alignment, CreatureId, HeroClass, HeroId } from "heroes-homm1";
+import { Alignment, ArtifactId, ArtifactLimit, CreatureId, HeroClass, HeroId } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
@@ -49,6 +49,65 @@ storiesOf("HeroTradingWindow", module)
       visible={boolean("Visible", true)}
       hero={hero}
       otherHero={otherHero}
+      onHeroPortraitClick={action("Hero Portrait Click")}
       onExitClick={action("Exit Click")}
     />
-  ));
+  ))
+  .add("artifacts", () => {
+    const h: Hero = {
+      ...hero,
+      artifacts: [
+        {
+          data: {},
+          id: ArtifactId.ThunderMaceOfDominion,
+        },
+      ],
+    };
+
+    const oh: Hero = {
+      ...otherHero,
+      artifacts: [
+        {
+          data: {},
+          id: ArtifactId.GiantFlailOfDominion,
+        },
+      ],
+    };
+
+    const artifactSelection = boolean("Artifact Selected?", true) ? {
+      hero: select("Hero", { Hero: h.id, OtherHero: oh.id }, h.id),
+      index: number("Index", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 }),
+    } : undefined;
+
+    return (
+      <HeroTradingWindow
+        visible={true}
+        hero={h}
+        otherHero={oh}
+        selectedArtifact={artifactSelection}
+        onSelectedArtifactChange={action("Selected Artifact Change")}
+        onTradeArtifacts={action("Trade Artifacts")}
+      />
+    );
+  })
+  .add("non-tradable artifacts", () => {
+    const h: Hero = {
+      ...hero,
+      artifacts: [
+        {
+          data: {},
+          id: ArtifactId.Spellbook,
+        },
+      ],
+    };
+
+    return (
+      <HeroTradingWindow
+        visible={true}
+        hero={h}
+        otherHero={otherHero}
+        artifactNotTradablePromptVisible={boolean("Artifact Not Tradable Prompt Visible", true)}
+        onArtifactNotTradablePromptVisibleChange={action("Artifact Not Tradable Prompt Visible Change")}
+      />
+    );
+  });

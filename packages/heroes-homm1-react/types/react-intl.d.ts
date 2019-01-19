@@ -1,6 +1,8 @@
 // tslint:disable-next-line:no-namespace
 declare namespace ReactIntl {
-  function injectIntl<C extends React.ComponentClass<P & InjectedIntlProps>, P>(
+  type ExtractProps<C> = C extends React.ComponentType<infer P> ? P : never;
+
+  function injectIntl<C extends React.ComponentClass<ExtractProps<C> & InjectedIntlProps>, P = ExtractProps<C>>(
     component: C,
     options?: InjectIntlConfig,
   ):

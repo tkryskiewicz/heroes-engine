@@ -789,7 +789,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
   }
 }
 
-const HeroWindowWrapped = injectIntl<typeof HeroWindow, HeroWindowProps>(HeroWindow);
+const HeroWindowWrapped = injectIntl(HeroWindow);
 
 export {
   HeroWindowWrapped as HeroWindow,
