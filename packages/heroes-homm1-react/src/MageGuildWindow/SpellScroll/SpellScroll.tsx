@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import "./SpellScroll.scss";
+import * as styles from "./SpellScroll.module.scss";
 
 import { SpellIcon } from "../../base";
 import { GameText } from "../../core";
@@ -21,7 +21,7 @@ export class SpellScroll extends React.Component<SpellScrollProps> {
   public render() {
     return (
       <div
-        className={`spell-scroll spell-scroll-${this.props.unfolded ? "unfolded" : "folded"}`}
+        className={`${styles.root} ${this.props.unfolded ? styles.unfolded : styles.folded}`}
         onClick={this.onClick}
       >
         {this.props.unfolded && this.renderUnfolded()}
@@ -31,7 +31,7 @@ export class SpellScroll extends React.Component<SpellScrollProps> {
 
   private renderUnfolded() {
     return (
-      <div className="spell-scroll-spell">
+      <div className={styles.spell}>
         <SpellIcon spell={this.props.spell} />
         <div>
           <GameText size="normal">
