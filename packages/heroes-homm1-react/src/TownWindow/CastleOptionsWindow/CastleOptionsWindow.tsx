@@ -5,7 +5,7 @@ import { InjectedIntlProps, injectIntl } from "react-intl";
 import { Resources, Structure } from "heroes-core";
 import { CastleOptionStatus, getCastleOptionStatus } from "heroes-homm1";
 
-import "./CastleOptionsWindow.scss";
+import * as styles from "./CastleOptionsWindow.module.scss";
 
 import { BuildStructureWindow } from "../../BuildStructureWindow";
 import { getStructureNameMessage } from "../../messages";
@@ -53,7 +53,7 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
       undefined;
 
     return (
-      <div className="castle-options-window">
+      <div className={styles.root}>
         <Row>
           {options.map((s) => this.renderOption(town, s, canConstructStructures, resources))}
           {optionDetails && this.renderOptionDetails(town, optionDetails)}

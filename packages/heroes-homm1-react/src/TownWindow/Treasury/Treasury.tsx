@@ -3,7 +3,7 @@ import * as React from "react";
 import { Resources } from "heroes-core";
 import { Resource } from "heroes-homm1";
 
-import "./Treasury.scss";
+import * as styles from "./Treasury.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -29,11 +29,11 @@ export class Treasury extends React.Component<TreasuryProps> {
     ].map((r) => this.renderResource(r, this.props.resources[r] || 0));
 
     return (
-      <div className="treasury">
+      <div className={styles.root}>
         <div>
           {content}
         </div>
-        <div className="treasury-exit">
+        <div className={styles.exit}>
           <ImageButton
             images={buttonImages.exit}
             onMouseEnter={this.props.onExitMouseEnter}
@@ -48,7 +48,7 @@ export class Treasury extends React.Component<TreasuryProps> {
   private renderResource(resource: string, amount: number) {
     return (
       <div
-        className="treasury-resource"
+        className={styles.resource}
         key={resource}
       >
         <ResourceAmount

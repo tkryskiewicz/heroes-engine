@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { CastleOptionStatus } from "heroes-homm1";
 
-import "./CastleOption.scss";
+import * as styles from "./CastleOption.module.scss";
 
 import { statusImages } from "./assets";
 
@@ -31,7 +31,7 @@ export class CastleOption extends React.Component<CastleOptionProps> {
 
   public render() {
     return (
-      <div>
+      <div className={styles.root}>
         <StructureIcon
           town={this.props.town}
           structure={this.props.option}
@@ -47,7 +47,7 @@ export class CastleOption extends React.Component<CastleOptionProps> {
   private renderStatusIcon(status: CastleOptionStatus) {
     return (
       <img
-        className="castle-option-status-icon"
+        className={styles.statusIcon}
         src={statusImages[status]}
       />
     );

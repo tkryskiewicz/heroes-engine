@@ -4,7 +4,7 @@ import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 import { enoughResources, Hero, Resources, Town } from "heroes-core";
 import { Resource, SpellId, spells as allSpells, StructureId } from "heroes-homm1";
 
-import "./TownWindow.scss";
+import * as styles from "./TownWindow.module.scss";
 
 import { ArmyStrip, BigBar, Crest, GameModal, HeroPortrait } from "../base";
 import { BuildShipWindow } from "../BuildShipWindow";
@@ -85,20 +85,20 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
         width={640}
         visible={this.props.visible}
       >
-        <div className="town-window">
+        <div className={styles.root}>
           <TownView
             town={town}
             onStructureMouseEnter={this.onStructureMouseEnter}
             onStructureMouseLeave={this.onStructureMouseLeave}
             onStructureClick={this.onStructureClick}
           />
-          <div className="town-window-strip">
-            <div className="town-window-town-name">
+          <div className={styles.strip}>
+            <div className={styles.townName}>
               <GameText size="small">
                 {town.name}
               </GameText>
             </div>
-            <div className="town-window-crest">
+            <div className={styles.crest}>
               <Crest
                 alignment={town.alignment}
                 heroClass={town.heroClass}
@@ -107,7 +107,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
                 onClick={this.props.onCrestClick}
               />
             </div>
-            <div className="town-window-garrison-army">
+            <div className={styles.garrisonArmy}>
               <ArmyStrip
                 army={town.garrison}
                 selectedTroopIndex={this.props.selectedGarrisonTroopIndex}
@@ -115,14 +115,14 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
                 onSwapTroops={this.onSwapGarrisonTroops}
               />
             </div>
-            <div className="town-window-hero-portrait">
+            <div className={styles.heroPortrait}>
               <HeroPortrait
                 hero={this.props.visitingHero ? this.props.visitingHero.id : undefined}
                 onMouseEnter={this.onHeroPortraitMouseEnter}
                 onMouseLeave={this.onHeroPortraitMouseLeave}
               />
             </div>
-            <div className="town-window-hero-army">
+            <div className={styles.heroArmy}>
               <ArmyStrip
                 army={this.props.visitingHero ? this.props.visitingHero.army : []}
                 selectedTroopIndex={this.props.selectedHeroTroopIndex}
@@ -130,7 +130,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
                 onSwapTroops={this.onSwapHeroTroops}
               />
             </div>
-            <div className="town-window-treasury">
+            <div className={styles.treasury}>
               <Treasury
                 resources={this.props.resources}
                 onExitMouseEnter={this.onExitMouseEnter}
