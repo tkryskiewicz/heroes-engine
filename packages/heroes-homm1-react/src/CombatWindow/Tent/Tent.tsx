@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { CombatSide } from "heroes-core";
 
-import "./Tent.scss";
+import * as styles from "./Tent.module.scss";
 
 export interface TentProps {
   side: CombatSide;
@@ -26,25 +26,39 @@ export class Tent extends React.Component<TentProps> {
   };
 
   public render() {
+    const sideStyles = this.props.side === CombatSide.Attacker ?
+      styles.backgroundAttacker :
+      styles.backgroundDefender;
+
     return (
       <div
-        className="tent"
+        className={styles.root}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
       >
         <img
-          className={`tent-background tent-background-${this.props.side}`}
+          className={`${styles.background} ${sideStyles}`}
           src={`/assets/heroClasses/${this.props.heroClass}/tent.png`}
         />
-        <div className={`tent-banner tent-banner-${this.props.side}`}>
-          <div className="tent-banner-container">
-            <img src={`/assets/alignments/${this.props.alignment}/combat-banner.png`} />
-            <div className="tent-banner-letter">
-              <img
-                src={`/assets/heroClasses/${this.props.heroClass}/letter.png`}
-              />
-            </div>
+        {this.renderBanner(this.props.side)}
+      </div>
+    );
+  }
+
+  private renderBanner(side: CombatSide) {
+    const sideStyles = side === CombatSide.Attacker ?
+      styles.bannerAttacker :
+      styles.bannerDefender;
+
+    return (
+      <div className={`${styles.banner} ${sideStyles}`}>
+        <div className={styles.bannerContainer}>
+          <img src={`/assets/alignments/${this.props.alignment}/combat-banner.png`} />
+          <div className={styles.bannerLetter}>
+            <img
+              src={`/assets/heroClasses/${this.props.heroClass}/letter.png`}
+            />
           </div>
         </div>
       </div>

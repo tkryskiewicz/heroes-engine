@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { CombatSide } from "heroes-core";
 
-import "./CombatTroop.scss";
+import * as styles from "./CombatTroop.module.scss";
 
 import { CreatureIcon } from "../../base";
 import { GameParagraph } from "../../core";
@@ -20,9 +20,11 @@ export class CombatTroop extends React.Component<CombatTroopProps> {
   };
 
   public render() {
+    const { side } = this.props;
+
     return (
-      <div className={`combat-troop combat-troop-${this.props.side}`}>
-        <div className="combat-troop-creature">
+      <div className={styles.root}>
+        <div className={side === CombatSide.Attacker ? undefined : styles.defenderCreature}>
           <CreatureIcon
             size="large"
             creature={this.props.creature}
@@ -35,8 +37,10 @@ export class CombatTroop extends React.Component<CombatTroopProps> {
   }
 
   private renderCount(value: number) {
+    const sideStyles = this.props.side === CombatSide.Attacker ? styles.attackerCount : undefined;
+
     return (
-      <div className="combat-troop-count">
+      <div className={`${styles.count} ${sideStyles}`}>
         <GameParagraph textSize="tiny">
           {value}
         </GameParagraph>
@@ -47,7 +51,7 @@ export class CombatTroop extends React.Component<CombatTroopProps> {
   private renderSelection(creature: string) {
     return (
       <img
-        className="combat-troop-selection"
+        className={styles.selection}
         src={`assets/creatures/${creature}/selection.png`}
       />
     );

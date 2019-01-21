@@ -3,7 +3,7 @@ import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Battlefield, CombatSide, HeroSkills } from "heroes-core";
 
-import "./CombatWindow.scss";
+import * as styles from "./CombatWindow.module.scss";
 
 import { withGameWindow } from "../core";
 import { HeroCombatOptions, heroCombatOptionsMessages } from "../HeroCombatOptions";
@@ -59,12 +59,12 @@ class CombatWindow extends React.Component<CombatWindowProps & InjectedIntlProps
     const { attacker, defender, battlefield, visibleHeroCombatOptions } = this.props;
 
     return (
-      <div className="combat-window">
+      <div className={styles.root}>
         {this.renderBackground(battlefield.terrainType, battlefield.woodyTerrain)}
         {this.renderBattlefield(battlefield)}
         {this.renderTent(CombatSide.Attacker, attacker.hero)}
         {this.renderTent(CombatSide.Defender, defender.hero)}
-        <div className="combat-window-bar">
+        <div className={styles.bar}>
           <CombatBar
             statusText={this.state.statusText}
           />
@@ -81,7 +81,7 @@ class CombatWindow extends React.Component<CombatWindowProps & InjectedIntlProps
 
     return (
       <img
-        className="combat-window-background"
+        className={styles.background}
         src={imageUrl}
       />
     );
@@ -96,7 +96,7 @@ class CombatWindow extends React.Component<CombatWindowProps & InjectedIntlProps
 
         return (
           <div
-            className="combat-window-battlefield-cell"
+            className={styles.battlefieldCell}
             key={cellIndex}
           >
             <CombatCell
@@ -113,14 +113,14 @@ class CombatWindow extends React.Component<CombatWindowProps & InjectedIntlProps
 
       return (
         <div
-          className="combat-window-battlefield-row"
+          className={styles.battlefieldRow}
           key={rowIndex}
         >
-          <div className="combat-window-battlefield-cell">
+          <div className={styles.battlefieldCell}>
             <img src={`assets/terrains/${battlefield.terrainType}/cell-right-${evenRow ? 2 : 1}.png`} />
           </div>
           {rowContent}
-          <div className="combat-window-battlefield-cell">
+          <div className={styles.battlefieldCell}>
             <img src={`assets/terrains/${battlefield.terrainType}/cell-left-${evenRow ? 1 : 2}.png`} />
           </div>
         </div>
@@ -128,7 +128,7 @@ class CombatWindow extends React.Component<CombatWindowProps & InjectedIntlProps
     });
 
     return (
-      <div className="combat-window-battlefield">
+      <div className={styles.battlefield}>
         {content}
       </div>
     );
@@ -136,7 +136,7 @@ class CombatWindow extends React.Component<CombatWindowProps & InjectedIntlProps
 
   private renderTent(side: CombatSide, hero: Hero) {
     return (
-      <div className={`combat-window-tent-${side}`}>
+      <div className={side === CombatSide.Attacker ? styles.tentAttacker : styles.tentDefender}>
         <Tent
           side={side}
           alignment={hero.alignment}

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./CombatBar.scss";
+import * as styles from "./CombatBar.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -27,19 +27,19 @@ export class CombatBar extends React.Component<CombatBarProps> {
 
   public render() {
     return (
-      <div className="combat-bar">
-        <div className="combat-bar-auto">
+      <div className={styles.root}>
+        <div className={styles.auto}>
           <ImageButton
             images={buttonImages.auto}
             onClick={this.props.onAutoClick}
           />
         </div>
-        <div className="combat-bar-status-bar">
+        <div className={styles.statusBar}>
           <GameText size="large">
             {this.props.statusText}
           </GameText>
         </div>
-        <div className="combat-bar-skip">
+        <div className={styles.skip}>
           <ImageButton
             images={buttonImages.skip}
             onClick={this.props.onSkipClick}

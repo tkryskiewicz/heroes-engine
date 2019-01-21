@@ -1,0 +1,10 @@
+.root {
+  position: relative;
+}
+
+.object {
+  position: absolute;
+  bottom: 10px;
+  // FIXME
+  z-index: 2;
+}

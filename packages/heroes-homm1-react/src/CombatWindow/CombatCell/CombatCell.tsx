@@ -7,7 +7,7 @@ import {
   BattlefieldTroopObject,
 } from "heroes-core";
 
-import "./CombatCell.scss";
+import * as styles from "./CombatCell.module.scss";
 
 import { CombatTroop } from "../CombatTroop";
 
@@ -21,7 +21,7 @@ export interface CombatCellProps {
 export class CombatCell extends React.Component<CombatCellProps> {
   public render() {
     return (
-      <div className="combat-cell">
+      <div className={styles.root}>
         <img src={`assets/terrains/${this.props.terrainType}/cell-${this.props.terrainVariant}.png`} />
         {this.props.object && this.renderObject(this.props.object)}
       </div>
@@ -39,7 +39,7 @@ export class CombatCell extends React.Component<CombatCellProps> {
 
   private renderObstacle(obstacleObject: BattlefieldObstacleObject) {
     return (
-      <div className="combat-cell-object">
+      <div className={styles.object}>
         <img src={`assets/terrains/${this.props.terrainType}/obstacle-${obstacleObject.variant}.png`} />
       </div>
     );
@@ -47,7 +47,7 @@ export class CombatCell extends React.Component<CombatCellProps> {
 
   private renderTroop(troopObject: BattlefieldTroopObject) {
     return (
-      <div className="combat-cell-object">
+      <div className={styles.object}>
         <CombatTroop
           side={troopObject.side}
           creature={troopObject.troop.creature}
