@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./TownDetailWindow.scss";
+import * as styles from "./TownDetailWindow.module.scss";
 
 import { buttonImages } from "../TownWindow/Treasury/assets";
 
@@ -31,14 +31,14 @@ class TownDetailWindow extends React.Component<TownDetailWindowProps> {
 
   public render() {
     return (
-      <div className="town-detail-window">
+      <div className={styles.root}>
         {this.props.children}
-        <div className="town-detail-window-status-bar">
+        <div className={styles.statusBar}>
           <StatusBar
             statusText={this.props.statusText}
           />
         </div>
-        <div className="town-detail-window-exit">
+        <div className={styles.exit}>
           <ImageButton
             images={buttonImages.exit}
             onMouseEnter={this.props.onExitMouseEnter}
@@ -53,4 +53,6 @@ class TownDetailWindow extends React.Component<TownDetailWindowProps> {
 
 const TownDetailWindowWrapped = withGameWindow(640)(TownDetailWindow);
 
-export { TownDetailWindowWrapped as TownDetailWindow };
+export {
+  TownDetailWindowWrapped as TownDetailWindow,
+};

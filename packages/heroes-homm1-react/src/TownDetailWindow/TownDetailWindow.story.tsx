@@ -3,6 +3,7 @@ import { boolean, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
+import { GameText } from "../core";
 import { TownDetailWindow } from "./TownDetailWindow";
 
 storiesOf("TownDetailWindow", module)
@@ -14,6 +15,8 @@ storiesOf("TownDetailWindow", module)
       onExitMouseLeave={action("Exit Mouse Leave")}
       onExitClick={action("Exit Click")}
     >
-      {text("Content", "Content")}
+      <GameText size="large">
+        {text("Content", "Content")}
+      </GameText>
     </TownDetailWindow>
   ));
