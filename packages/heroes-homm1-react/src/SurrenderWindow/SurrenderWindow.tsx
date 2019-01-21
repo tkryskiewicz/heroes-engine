@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
-import "./SurrenderWindow.scss";
+import * as styles from "./SurrenderWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -22,31 +22,31 @@ class SurrenderWindow extends React.Component<SurrenderWindowProps & InjectedInt
     const heroName = this.props.intl.formatMessage(getHeroNameMessage(this.props.hero));
 
     return (
-      <div className="surrender-window">
-        <div className="surrender-window-hero-portrait">
+      <div className={styles.root}>
+        <div className={styles.heroPortrait}>
           <Frame>
             <HeroPortrait
               hero={this.props.hero}
             />
           </Frame>
         </div>
-        <div className="surrender-window-title">
+        <div className={styles.title}>
           <GameText size="large">
             <FormattedMessage {...messages.title} values={{ heroName }} />
           </GameText>
         </div>
-        <div className="surrender-window-content">
+        <div className={styles.content}>
           <GameText size="large">
             <FormattedMessage {...messages.content} values={{ cost: this.props.cost }} />
           </GameText>
         </div>
-        <div className="surrender-window-accept">
+        <div className={styles.accept}>
           <ImageButton
             images={buttonImages.accept}
             onClick={this.props.onAcceptClick}
           />
         </div>
-        <div className="surrender-window-decline">
+        <div className={styles.decline}>
           <ImageButton
             images={buttonImages.decline}
             onClick={this.props.onDeclineClick}
