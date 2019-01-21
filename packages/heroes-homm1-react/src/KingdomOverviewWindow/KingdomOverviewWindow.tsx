@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { Resources } from "heroes-core";
 import { HeroClassIds, Resource, TownIds } from "heroes-homm1";
 
-import "./KingdomOverviewWindow.scss";
+import * as styles from "./KingdomOverviewWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -48,7 +48,7 @@ export interface KingdomOverviewWindowProps {
 class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> {
   public render() {
     return (
-      <div className="kingdom-overview-window">
+      <div className={styles.root}>
         {this.renderBanner(this.props.alignment)}
         <Row>
           <Col span={3} />
@@ -109,7 +109,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
             {this.renderGoldPerDay(this.props.goldPerDay)}
           </Col>
           <Col
-            className="kingdom-overview-window-exit"
+            className={styles.exit}
             span={4}
           >
             <ImageButton
@@ -125,7 +125,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
   private renderBanner(alignment: string) {
     return (
       <img
-        className="kingdom-overview-window-banner"
+        className={styles.banner}
         src={`assets/alignments/${alignment}/banner.jpg`}
       />
     );
@@ -204,8 +204,8 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
 
   private renderGoldPerDay(amount: number) {
     return (
-      <div className="kingdom-overview-window-gold-per-day">
-        <div className="kingdom-overview-window-gold-per-day-text">
+      <div className={styles.goldPerDay}>
+        <div className={styles.goldPerDayText}>
           <GameText size="normal">
             <FormattedMessage {...messages.goldPerDay} />:<br />
             {amount}
