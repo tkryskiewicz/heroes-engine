@@ -1,0 +1,60 @@
+.root {
+  position: relative;
+  width: 250px;
+  height: 202px;
+  background: url("./assets/background.png");
+}
+
+.name {
+  position: absolute;
+  width: 100%;
+  top: 6px;
+  text-align: center;
+}
+
+.portrait {
+  position: absolute;
+  top: 42px;
+  left: 11px;
+}
+
+.characteristics {
+  position: absolute;
+  width: 111px;
+  height: 105px;
+  top: 36px;
+  left: 133px;
+  text-align: center;
+  padding-top: 2px;
+
+  > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+}
+
+.cast-spell {
+  position: absolute;
+  top: 148px;
+  left: 15px;
+}
+
+.retreat {
+  position: absolute;
+  top: 148px;
+  left: 74px;
+}
+
+.surrender {
+  position: absolute;
+  top: 148px;
+  left: 133px;
+}
+
+.cancel {
+  position: absolute;
+  top: 148px;
+  left: 192px;
+}

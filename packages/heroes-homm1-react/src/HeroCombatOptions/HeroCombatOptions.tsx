@@ -4,7 +4,7 @@ import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 import { HeroSkills } from "heroes-core";
 import { SkillIds } from "heroes-homm1";
 
-import "./HeroCombatOptions.scss";
+import * as styles from "./HeroCombatOptions.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -85,19 +85,19 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
         width={250}
         visible={this.props.visible}
       >
-        <div className="hero-combat-options">
-          <div className="hero-combat-options-name">
+        <div className={styles.root}>
+          <div className={styles.name}>
             <GameText size="large">
               {this.getHeroTitle()}
             </GameText>
           </div>
-          <div className="hero-combat-options-portrait">
+          <div className={styles.portrait}>
             <HeroPortrait
               hero={hero.id}
             />
           </div>
           {this.renderCharacteristics(hero.alignment, hero.skills, hero.morale, hero.luck)}
-          <div className="hero-combat-options-cast-spell">
+          <div className={styles.castSpell}>
             <ImageButton
               images={buttonImages.castSpell}
               disabled={!this.props.canCastSpell}
@@ -106,7 +106,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
               onClick={this.props.onCastSpellClick}
             />
           </div>
-          <div className="hero-combat-options-retreat">
+          <div className={styles.retreat}>
             <ImageButton
               images={buttonImages.retreat}
               disabled={!this.props.canRetreat}
@@ -115,7 +115,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
               onClick={this.props.onRetreatClick}
             />
           </div>
-          <div className="hero-combat-options-surrender">
+          <div className={styles.surrender}>
             <ImageButton
               images={buttonImages.surrender}
               disabled={!this.props.canSurrender}
@@ -124,7 +124,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
               onClick={this.props.onSurrenderClick}
             />
           </div>
-          <div className="hero-combat-options-cancel">
+          <div className={styles.cancel}>
             <ImageButton
               images={buttonImages.cancel}
               onMouseEnter={this.props.onCancelMouseEnter}
@@ -157,7 +157,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
     ));
 
     return (
-      <div className="hero-combat-options-characteristics">
+      <div className={styles.characteristics}>
         <img src={`assets/alignments/${alignment}/combat-options-background.jpg`} />
         <GameParagraph textSize="small">
           {content}
