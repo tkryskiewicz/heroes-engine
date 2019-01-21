@@ -1,0 +1,17 @@
+.root {
+  height: 32px;
+  position: relative;
+  width: 56px;
+}
+
+.background {
+  left: 1px;
+  position: absolute;
+  top: 1px;
+}
+
+.selection {
+  left: 0px;
+  position: absolute;
+  top: 0px;
+}

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./Locator.scss";
+import * as styles from "./Locator.module.scss";
 
 import { backgroundImages, SelectionImage } from "./assets";
 
@@ -20,7 +20,7 @@ export class Locator extends React.Component<LocatorProps> {
   public render() {
     return (
       <div
-        className="locator"
+        className={styles.root}
         onClick={this.onClick}
       >
         {this.renderBackground(this.props.index)}
@@ -33,7 +33,7 @@ export class Locator extends React.Component<LocatorProps> {
   private renderBackground(index: number) {
     return (
       <img
-        className="locator-background"
+        className={styles.background}
         // TODO: if more than 8 locators are possible should be index % 8
         src={backgroundImages[index]}
       />
@@ -43,7 +43,7 @@ export class Locator extends React.Component<LocatorProps> {
   private renderSelection() {
     return (
       <img
-        className="locator-selection"
+        className={styles.selection}
         src={SelectionImage}
       />
     );
