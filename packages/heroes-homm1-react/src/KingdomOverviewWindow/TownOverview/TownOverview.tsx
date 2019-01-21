@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./TownOverview.scss";
+import * as styles from "./TownOverview.module.scss";
 
 import { GameText } from "../../core";
 
@@ -13,11 +13,11 @@ export interface TownOverviewProps {
 export class TownOverview extends React.Component<TownOverviewProps> {
   public render() {
     return (
-      <div className="town-overview">
+      <div className={styles.root}>
         <img
           src={`assets/towns/${this.props.town}/${this.props.isCastleBuilt ? "castle" : "town"}-overview-icon.png`}
         />
-        <div className="town-overview-count">
+        <div className={styles.count}>
           <GameText size="normal">
             {this.props.count}
           </GameText>
