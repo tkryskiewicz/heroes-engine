@@ -1,0 +1,29 @@
+.root {
+  height: 287px;
+  padding: 30px;
+  padding-top: 43px;
+  position: relative;
+  width: 428px;
+  background: url("./assets/background.jpg");
+}
+
+.title {
+  margin-bottom: 10px;
+}
+
+.number {
+  text-align: right;
+}
+
+.description {
+  height: 160px;
+  text-align: center;
+}
+
+.okay {
+  text-align: left;
+}
+
+.restart {
+  text-align: right;
+}

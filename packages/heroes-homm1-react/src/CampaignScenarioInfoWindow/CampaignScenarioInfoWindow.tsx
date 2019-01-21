@@ -1,7 +1,7 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
-import "./CampaignScenarioInfoWindow.scss";
+import * as styles from "./CampaignScenarioInfoWindow.module.scss";
 
 import { buttonImages, scenarioNumberImages } from "./assets";
 
@@ -21,10 +21,10 @@ export interface CampaignScenarioInfoWindowProps {
 class CampaignScenarioInfoWindow extends React.Component<CampaignScenarioInfoWindowProps> {
   public render() {
     return (
-      <div className="campaign-scenario-info-window">
-        <Row className="campaign-scenario-info-window-title">
+      <div className={styles.root}>
+        <Row className={styles.title}>
           <Col
-            className="campaign-scenario-info-window-number"
+            className={styles.number}
             span={10}
           >
             {this.renderNumber(this.props.scenario.scenarioNumber)}
@@ -38,14 +38,14 @@ class CampaignScenarioInfoWindow extends React.Component<CampaignScenarioInfoWin
             </GameText>
           </Col>
         </Row>
-        <Row className="campaign-scenario-info-window-description">
+        <Row className={styles.description}>
           <GameText size="large">
             {this.props.scenario.description}
           </GameText>
         </Row>
         <Row>
           <Col
-            className="campaign-scenario-info-window-okay"
+            className={styles.okay}
             span={9}
           >
             <ImageButton
@@ -54,7 +54,7 @@ class CampaignScenarioInfoWindow extends React.Component<CampaignScenarioInfoWin
             />
           </Col>
           <Col
-            className="campaign-scenario-info-window-restart"
+            className={styles.restart}
             span={15}
           >
             <ImageButton
