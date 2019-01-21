@@ -1,7 +1,7 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
-import "./ViewWindow.scss";
+import * as styles from "./ViewWindow.module.scss";
 
 import { buttonImages, legendImages } from "./assets";
 
@@ -30,12 +30,12 @@ class ViewWindow extends React.Component<ViewWindowProps> {
 
   private renderLegend(type: string) {
     return (
-      <div className="view-window-legend">
+      <div className={styles.legend}>
         <img
-          className="view-window-legend-background"
+          className={styles.legendBackground}
           src={legendImages[type]}
         />
-        <div className="view-window-exit">
+        <div className={styles.exit}>
           <ImageButton
             images={buttonImages.exit}
             onClick={this.props.onExitClick}
