@@ -1,5 +1,5 @@
 export { Alignment, changeAlignment } from "./Alignment";
-export { ArtifactId } from "./artifacts";
+export { ArtifactId, constructArtifact } from "./artifacts";
 export { CampaignId, CampaignIds } from "./campaigns";
 export { CastleOptionStatus } from "./CastleOptionStatus";
 export { CreatureId, creatures, creaturesById } from "./creatures";

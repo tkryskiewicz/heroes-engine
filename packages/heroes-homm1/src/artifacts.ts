@@ -1,3 +1,5 @@
+import { Artifact } from "heroes-core";
+
 // Attack
 export enum ArtifactId {
   ThunderMaceOfDominion = "thunder-mace-of-dominion",
@@ -83,3 +85,9 @@ export enum ArtifactId {
   UltimateWandOfMagic = "ultimate-wand-of-magic",
   UltimateBookOfKnowledge = "ultimate-book-of-knowledge",
 }
+
+export const constructArtifact = (artifact: string): Artifact => ({
+  data: {},
+  id: artifact,
+  tradable: artifact !== ArtifactId.Spellbook,
+});

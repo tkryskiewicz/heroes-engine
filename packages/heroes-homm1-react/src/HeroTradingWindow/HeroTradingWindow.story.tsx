@@ -5,7 +5,7 @@ import * as React from "react";
 import { withReadme } from "storybook-readme";
 
 import { Hero } from "heroes-core";
-import { Alignment, ArtifactId, ArtifactLimit, CreatureId, HeroClass, HeroId } from "heroes-homm1";
+import { Alignment, ArtifactId, ArtifactLimit, constructArtifact, CreatureId, HeroClass, HeroId } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
@@ -57,20 +57,14 @@ storiesOf("HeroTradingWindow", module)
     const h: Hero = {
       ...hero,
       artifacts: [
-        {
-          data: {},
-          id: ArtifactId.ThunderMaceOfDominion,
-        },
+        constructArtifact(ArtifactId.ThunderMaceOfDominion),
       ],
     };
 
     const oh: Hero = {
       ...otherHero,
       artifacts: [
-        {
-          data: {},
-          id: ArtifactId.GiantFlailOfDominion,
-        },
+        constructArtifact(ArtifactId.GiantFlailOfDominion),
       ],
     };
 
@@ -94,10 +88,7 @@ storiesOf("HeroTradingWindow", module)
     const h: Hero = {
       ...hero,
       artifacts: [
-        {
-          data: {},
-          id: ArtifactId.Spellbook,
-        },
+        constructArtifact(ArtifactId.Spellbook),
       ],
     };
 

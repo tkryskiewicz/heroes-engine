@@ -14,6 +14,7 @@ import {
   Alignment,
   ArtifactId,
   campaignScenarios,
+  constructArtifact,
   constructHero,
   constructTown,
   CreatureId,
@@ -34,10 +35,7 @@ const heroes: Hero[] = [
       Alignment.Red,
     ),
     artifacts: [
-      {
-        data: {},
-        id: ArtifactId.ThunderMaceOfDominion,
-      },
+      constructArtifact(ArtifactId.ThunderMaceOfDominion),
     ],
     mobility: MaxMobility,
   },
@@ -56,10 +54,7 @@ const heroes: Hero[] = [
       Alignment.Red,
     ),
     artifacts: [
-      {
-        data: [],
-        id: ArtifactId.Spellbook,
-      },
+      constructArtifact(ArtifactId.Spellbook),
     ],
     luck: -1,
     mobility: 0,
@@ -71,10 +66,7 @@ const heroes: Hero[] = [
       Alignment.Red,
     ),
     artifacts: [
-      {
-        data: [],
-        id: ArtifactId.Spellbook,
-      },
+      constructArtifact(ArtifactId.Spellbook),
     ],
     luck: 3,
     mobility: 10,

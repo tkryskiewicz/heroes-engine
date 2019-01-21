@@ -3,7 +3,7 @@ import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Army, Hero, HeroSkills } from "heroes-core";
-import { ArmySize, ArtifactId, ArtifactLimit, SkillIds } from "heroes-homm1";
+import { ArmySize, ArtifactLimit, SkillIds } from "heroes-homm1";
 
 import "./HeroTradingWindow.scss";
 
@@ -202,18 +202,16 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
       return;
     }
 
-    const isArtifactTradable = artifact.id !== ArtifactId.Spellbook;
-
     // TODO: simplify?
     // TODO: handle clicking on same artifact
     if (this.props.selectedArtifact) {
-      if (!isArtifactTradable) {
+      if (!artifact.tradable) {
         this.props.onArtifactNotTradablePromptVisibleChange(true);
       } else {
         this.props.onTradeArtifacts(this.props.selectedArtifact, { hero, index });
       }
     } else {
-      if (!isArtifactTradable) {
+      if (!artifact.tradable) {
         this.props.onArtifactNotTradablePromptVisibleChange(true);
       } else {
         this.props.onSelectedArtifactChange({ hero, index });
