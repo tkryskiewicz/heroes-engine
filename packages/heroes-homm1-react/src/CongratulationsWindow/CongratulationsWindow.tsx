@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./CongratulationsWindow.scss";
+import * as styles from "./CongratulationsWindow.module.scss";
 
 import { GameText, withGameWindow } from "../core";
 
@@ -12,10 +12,10 @@ class CongratulationsWindow extends React.Component<CongratulationsWindowProps> 
   public render() {
     return (
       <div
-        className="congratulations-window"
+        className={styles.root}
         onClick={this.props.onClick}
       >
-        <div className="congratulations-window-content">
+        <div className={styles.content}>
           <GameText size="large">
             {this.props.children}
           </GameText>
