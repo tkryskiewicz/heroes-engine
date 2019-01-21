@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 import { isCommonStructure } from "heroes-homm1";
 
-import "./StructureIcon.scss";
+import * as styles from "./StructureIcon.module.scss";
 
 import { GameText } from "../core";
 import { getStructureNameMessage } from "../messages";
@@ -33,7 +33,7 @@ export class StructureIcon extends React.Component<StructureIconProps> {
 
     return (
       <div
-        className="structure-icon"
+        className={styles.root}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
@@ -46,7 +46,7 @@ export class StructureIcon extends React.Component<StructureIconProps> {
 
   private renderName(structure: string) {
     return (
-      <div className="structure-icon-name">
+      <div className={styles.name}>
         <GameText size="small">
           <FormattedMessage {...getStructureNameMessage(structure)} />
         </GameText>
