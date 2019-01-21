@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./TownLocator.scss";
+import * as styles from "./TownLocator.module.scss";
 
 import { Locator } from "../Locator";
 
@@ -28,7 +28,7 @@ export class TownLocator extends React.Component<TownLocatorProps> {
   private renderTown(town: string, isCastleBuilt?: boolean) {
     return (
       <img
-        className="town-locator"
+        className={styles.root}
         src={`assets/towns/${town}/${isCastleBuilt ? "castle" : "town"}-locator.jpg`}
       />
     );
