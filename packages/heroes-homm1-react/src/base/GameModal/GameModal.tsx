@@ -1,7 +1,7 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
-import "./GameModal.scss";
+import * as styles from "./GameModal.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -38,12 +38,12 @@ class GameModal extends React.Component<GameModalProps> {
 
   public render() {
     return (
-      <div className="game-modal">
+      <div className={styles.root}>
         {this.renderBackground(this.props.size)}
-        <div className="game-modal-content">
+        <div className={styles.content}>
           {this.props.children}
         </div>
-        <div className="game-modal-actions">
+        <div className={styles.actions}>
           {this.renderActions(this.props.type)}
         </div>
       </div>
@@ -53,9 +53,9 @@ class GameModal extends React.Component<GameModalProps> {
   private renderBackground(size: number) {
     return (
       <div>
-        <div className="game-modal-header" />
+        <div className={styles.header} />
         {[...new Array(size).keys()].map((i) => this.renderBody(i))}
-        <div className="game-modal-footer" />
+        <div className={styles.footer} />
       </div>
     );
   }
@@ -64,7 +64,7 @@ class GameModal extends React.Component<GameModalProps> {
     return (
       <div
         key={index}
-        className="game-modal-body"
+        className={styles.body}
       />
     );
   }
@@ -74,7 +74,7 @@ class GameModal extends React.Component<GameModalProps> {
       return (
         <Row>
           <Col
-            className="game-modal-actions-confirm"
+            className={styles.actionsConfirm}
             span={12}
           >
             <ImageButton
@@ -84,7 +84,7 @@ class GameModal extends React.Component<GameModalProps> {
             />
           </Col>
           <Col
-            className="game-modal-actions-cancel"
+            className={styles.actionsCancel}
             span={12}
           >
             <ImageButton
