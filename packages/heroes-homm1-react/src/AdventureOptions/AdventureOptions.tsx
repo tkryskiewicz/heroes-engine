@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./AdventureOptions.scss";
+import * as styles from "./AdventureOptions.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -18,32 +18,32 @@ export interface AdventureOptionsProps {
 class AdventureOptions extends React.Component<AdventureOptionsProps> {
   public render() {
     return (
-      <div className="adventure-options">
-        <div className="adventure-options-view-world">
+      <div className={styles.root}>
+        <div className={styles.viewWorld}>
           <ImageButton
             images={buttonImages.viewWorld}
             onClick={this.props.onViewWorldClick}
           />
         </div>
-        <div className="adventure-options-view-puzzle">
+        <div className={styles.viewPuzzle}>
           <ImageButton
             images={buttonImages.viewPuzzle}
             onClick={this.props.onViewPuzzleClick}
           />
         </div>
-        <div className="adventure-options-cast-spell">
+        <div className={styles.castSpell}>
           <ImageButton
             images={buttonImages.castSpell}
             onClick={this.props.onCastSpellClick}
           />
         </div>
-        <div className="adventure-options-dig">
+        <div className={styles.dig}>
           <ImageButton
             images={buttonImages.dig}
             onClick={this.props.onDigClick}
           />
         </div>
-        <div className="adventure-options-okay">
+        <div className={styles.okay}>
           <ImageButton
             images={buttonImages.okay}
             onClick={this.props.onOkayClick}
