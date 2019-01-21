@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 
 import { Army, Troop } from "heroes-core";
 
-import "./CombatSummaryWindow.scss";
+import * as styles from "./CombatSummaryWindow.module.scss";
 
 import { CreatureIcon } from "../base";
 import { GameText } from "../core";
@@ -19,9 +19,9 @@ export interface CombatSummaryWindowProps {
 export class CombatSummaryWindow extends React.Component<CombatSummaryWindowProps> {
   public render() {
     return (
-      <div className="combat-summary-window">
+      <div className={styles.root}>
         {this.props.children}
-        <div className="combat-summary-window-summary">
+        <div className={styles.summary}>
           <Row>
             <GameText size="normal">
               <FormattedMessage {...messages.casualtiesTitle} />
@@ -50,7 +50,7 @@ export class CombatSummaryWindow extends React.Component<CombatSummaryWindowProp
   private renderCasualties(casualties: Army) {
     if (casualties.length === 0) {
       return (
-        <div className="combat-summary-window-casualties">
+        <div className={styles.casualties}>
           <GameText size="normal">
             <FormattedMessage {...messages.noCasualties} />
           </GameText>
@@ -68,7 +68,7 @@ export class CombatSummaryWindow extends React.Component<CombatSummaryWindowProp
   private renderCasualty(index: number, troop: Troop) {
     return (
       <div
-        className="combat-summary-window-casualty"
+        className={styles.casualty}
         key={index}
       >
         <CreatureIcon
