@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./CreditsWindow.scss";
+import * as styles from "./CreditsWindow.module.scss";
 
 import { withGameWindow } from "../core";
 
@@ -16,7 +16,7 @@ class CreditsWindow extends React.Component<CreditsWindowProps> {
   public render() {
     return (
       <div
-        className="credits-window"
+        className={styles.root}
         onClick={this.props.onClick}
       />
     );
