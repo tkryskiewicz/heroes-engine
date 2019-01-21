@@ -4,7 +4,7 @@ import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Army } from "heroes-core";
 
-import "./CombatLostWindow.scss";
+import * as styles from "./CombatLostWindow.module.scss";
 
 import { AnimationImage, buttonImages } from "./assets";
 
@@ -44,9 +44,9 @@ class CombatLostWindow extends React.Component<CombatLostWindowProps & InjectedI
 
   private renderAnimation() {
     return (
-      <div className="combat-lost-window-animation-background">
+      <div className={styles.animationBackground}>
         <img
-          className="combat-lost-window-animation"
+          className={styles.animation}
           src={AnimationImage}
         />
       </div>
