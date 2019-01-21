@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./HeroPortrait.scss";
+import * as styles from "./HeroPortrait.module.scss";
 
 export interface HeroPortraitProps {
   hero?: string;
@@ -19,7 +19,7 @@ export class HeroPortrait extends React.Component<HeroPortraitProps> {
   public render() {
     return (
       <div
-        className="hero-portrait"
+        className={styles.root}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
