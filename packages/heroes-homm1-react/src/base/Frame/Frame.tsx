@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import "./Frame.scss";
+import * as styles from "./Frame.module.scss";
 
 export class Frame extends React.Component {
   public render() {
     return (
-      <div className="frame">
+      <div className={styles.root}>
         {this.props.children}
       </div>
     );
