@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./ImageSwitch.scss";
+import * as styles from "./ImageSwitch.module.scss";
 
 export interface SwitchImages {
   checked: string;
@@ -22,7 +22,7 @@ export class ImageSwitch extends React.Component<ImageSwitchProps> {
   public render() {
     return (
       <div
-        className="image-switch"
+        className={styles.root}
         onClick={this.onClick}
       >
         {this.props.checked ? this.renderChecked() : this.renderUnchecked()}
