@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 import { GameDifficulty } from "heroes-homm1";
 
-import "./GameDifficultyBox.scss";
+import * as styles from "./GameDifficultyBox.module.scss";
 
 import { GameText } from "../../core";
 import { getGameDifficultyMessage } from "../../messages";
@@ -24,9 +24,9 @@ export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
   public render() {
     return (
       <div
-        className="game-difficulty-box"
+        className={styles.root}
       >
-        <div className="game-difficulty-box-image">
+        <div className={styles.image}>
           {this.renderIcon(this.props.value)}
           {this.props.selected && this.renderSelection()}
         </div>
@@ -40,7 +40,7 @@ export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
   private renderIcon(difficulty: string) {
     return (
       <img
-        className="game-difficulty-box-icon"
+        className={styles.icon}
         src={difficultyImages[difficulty]}
         onClick={this.onClick}
       />
@@ -50,7 +50,7 @@ export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
   private renderSelection() {
     return (
       <img
-        className="game-difficulty-box-selection"
+        className={styles.selection}
         src={SelectionImage}
       />
     );

@@ -1,0 +1,77 @@
+.root {
+  position: relative;
+  width: 322px;
+  height: 459px;
+  background: url("./assets/background.jpg");
+  text-align: center;
+}
+
+.game-difficulties-title {
+  position: absolute;
+  width: 100%;
+  top: 15px;
+}
+
+.game-difficulties {
+  position: absolute;
+  top: 36px;
+  left: 19px;
+}
+
+.game-difficulty {
+  display: inline-block;
+  text-align: center;
+}
+
+.opponent-settings-title {
+  position: absolute;
+  width: 100%;
+  top: 128px;
+}
+
+.opponent-settings {
+  position: absolute;
+  top: 149px;
+  left: 55px;
+}
+
+.opponent-setting {
+  display: inline-block;
+  margin-right: 7px;
+}
+
+.alignment {
+  position: absolute;
+  top: 249px;
+  left: 36px;
+}
+
+.king-of-the-hill {
+  position: absolute;
+  top: 251px;
+  left: 183px;
+}
+
+.scenario {
+  position: absolute;
+  width: 100%;
+  top: 331px;
+}
+
+.difficulty-rating {
+  position: absolute;
+  width: 100%;
+  top: 382px;
+}
+
+.okay {
+  position: absolute;
+  top: 412px;
+  left: 24px;
+}
+
+.cancel {
+  position: absolute;
+  top: 411px;
+  left: 202px;
+}

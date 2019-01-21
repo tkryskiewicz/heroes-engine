@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 import { changeOpponentSetting, OpponentSetting } from "heroes-homm1";
 
-import "./OpponentSettingBox.scss";
+import * as styles from "./OpponentSettingBox.module.scss";
 
 import { GameParagraph } from "../../core";
 import { getOpponentSettingNameMessage } from "../../messages";
@@ -22,7 +22,7 @@ export class OpponentSettingBox extends React.Component<OpponentSettingBoxProps>
 
   public render() {
     return (
-      <div className="opponent-setting-box">
+      <div className={styles.root}>
         <img
           src={opponentSettingImages[this.props.value]}
           onClick={this.onClick}

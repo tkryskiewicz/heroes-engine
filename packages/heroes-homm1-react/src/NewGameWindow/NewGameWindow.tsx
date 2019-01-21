@@ -10,7 +10,7 @@ import {
   OpponentSetting,
 } from "heroes-homm1";
 
-import "./NewGameWindow.scss";
+import * as styles from "./NewGameWindow.module.scss";
 
 import { buttonImages, switchImages } from "./assets";
 
@@ -56,22 +56,22 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
       this.props.opponentSettings.reduce((p, c) => p + getOpponentSettingRating(c), 0);
 
     return (
-      <div className="new-game-window">
-        <div className="new-game-window-game-difficulties-title">
+      <div className={styles.root}>
+        <div className={styles.gameDifficultiesTitle}>
           <GameText size="large">
             <FormattedMessage {...messages.difficultyTitle} />
           </GameText>
         </div>
         {this.renderDifficulties()}
-        <div className="new-game-window-opponent-settings-title">
+        <div className={styles.opponentSettingsTitle}>
           <GameText size="large">
             <FormattedMessage {...messages.opponentsTitle} />
           </GameText>
         </div>
-        <div className="new-game-window-opponent-settings">
+        <div className={styles.opponentSettings}>
           {this.renderOpponentSettings(this.props.opponentSettings)}
         </div>
-        <div className="new-game-window-alignment">
+        <div className={styles.alignment}>
           <GameText size="large">
             <FormattedMessage {...messages.alignmentTitle} />
           </GameText>
@@ -82,7 +82,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
             />
           </div>
         </div>
-        <div className="new-game-window-king-of-the-hill">
+        <div className={styles.kingOfTheHill}>
           <GameText size="large">
             <FormattedMessage {...messages.kingOfTheHill} />
           </GameText>
@@ -94,7 +94,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
             />
           </div>
         </div>
-        <div className="new-game-window-scenario">
+        <div className={styles.scenario}>
           <GameText size="large">
             <FormattedMessage {...messages.scenarioTitle} />
           </GameText>
@@ -102,18 +102,18 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
         <div>
           {/* TODO: implement scenario selection */}
         </div>
-        <div className="new-game-window-difficulty-rating">
+        <div className={styles.difficultyRating}>
           <GameText size="large">
             <FormattedMessage {...messages.difficultyRatingTitle} /> {difficultyRating}%
           </GameText>
         </div>
-        <div className="new-game-window-okay">
+        <div className={styles.okay}>
           <ImageButton
             images={buttonImages.okay}
             onClick={this.props.onOkayClick}
           />
         </div>
-        <div className="new-game-window-cancel">
+        <div className={styles.cancel}>
           <ImageButton
             images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
@@ -132,7 +132,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
     ];
 
     return (
-      <div className="new-game-window-game-difficulties">
+      <div className={styles.gameDifficulties}>
         {difficulties.map((d) => this.renderDifficulty(d, this.props.selectedGameDifficulty))}
       </div>
     );
@@ -141,7 +141,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
   private renderDifficulty(difficulty: GameDifficulty, selectedDifficulty?: GameDifficulty) {
     return (
       <div
-        className="new-game-window-game-difficulty"
+        className={styles.gameDifficulty}
         key={difficulty}
       >
         <GameDifficultyBox
@@ -163,7 +163,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
     return settings.map((s, i) => (
       <div
         key={i}
-        className="new-game-window-opponent-setting"
+        className={styles.opponentSetting}
       >
         <OpponentSettingBox
           index={i}
