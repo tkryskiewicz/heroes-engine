@@ -1,6 +1,6 @@
 @import "../../style/mirror-background";
 
-.big-bar {
+.root {
   position: relative;
   width: 640px;
   height: 20px;
@@ -8,11 +8,11 @@
   text-align: center;
 
   @include mirror-background();
+}
 
-  &-text {
-    position: absolute;
-    width: 100%;
-    top: -1px;
-    text-align: center;
-  }
+.text {
+  position: absolute;
+  width: 100%;
+  top: -1px;
+  text-align: center;
 }
