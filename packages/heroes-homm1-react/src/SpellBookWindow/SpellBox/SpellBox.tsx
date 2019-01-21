@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import "./SpellBox.scss";
+import * as styles from "./SpellBox.module.scss";
 
 import { SpellIcon } from "../../base";
 import { GameText } from "../../core";
@@ -20,7 +20,7 @@ export class SpellBox extends React.Component<SpellBoxProps> {
 
   public render() {
     return (
-      <div className="spell-box">
+      <div className={styles.root}>
         <SpellIcon
           spell={this.props.spell}
           onClick={this.props.onClick}

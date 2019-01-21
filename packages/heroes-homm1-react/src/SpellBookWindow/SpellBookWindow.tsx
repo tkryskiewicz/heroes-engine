@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 import { SpellType } from "heroes-homm1";
 
-import "./SpellBookWindow.scss";
+import * as styles from "./SpellBookWindow.module.scss";
 
 import { GameModal, SpellIcon } from "../base";
 import { GameParagraph, withGameWindow } from "../core";
@@ -73,39 +73,39 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
 
   public render() {
     return (
-      <div className="spell-book-window">
+      <div className={styles.root}>
         {this.renderSpells(this.props.spells, this.props.spellType)}
         {this.props.visibleSpellDetails && this.renderSpellDetails(this.props.visibleSpellDetails)}
         <img
-          className="spell-book-window-previous-page"
+          className={styles.previousPage}
           src={PreviousPageImage}
           onMouseEnter={this.props.onPreviousPageMouseEnter}
           onMouseLeave={this.props.onPreviousPageMouseLeave}
           onClick={this.onPreviousPageClick}
         />
         <img
-          className="spell-book-window-next-page"
+          className={styles.nextPage}
           src={NextPageImage}
           onMouseEnter={this.props.onNextPageMouseEnter}
           onMouseLeave={this.props.onNextPageMouseLeave}
           onClick={this.onNextPageClick}
         />
         <img
-          className="spell-book-window-combat-spells"
+          className={styles.combatSpells}
           src={CombatSpellsImage}
           onMouseEnter={this.onCombatSpellsMouseEnter}
           onMouseLeave={this.onCombatSpellsMouseLeave}
           onClick={this.onCombatSpellsClick}
         />
         <img
-          className="spell-book-window-adventure-spells"
+          className={styles.adventureSpells}
           src={AdventureSpellsImage}
           onMouseEnter={this.onAdventureSpellsMouseEnter}
           onMouseLeave={this.onAdventureSpellsMouseLeave}
           onClick={this.onAdventureSpellsClick}
         />
         <img
-          className="spell-book-window-exit"
+          className={styles.exit}
           src={ExitImage}
           onMouseEnter={this.props.onExitMouseEnter}
           onMouseLeave={this.props.onExitMouseLeave}
@@ -134,7 +134,7 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
     return (
       <div
         key={spell.id}
-        className={`spell-book-window-spell spell-book-window-spell-${index}`}
+        className={`${styles.spell} ${styles["spell" + index]}`}
       >
         <SpellBox
           spell={spell.id}
