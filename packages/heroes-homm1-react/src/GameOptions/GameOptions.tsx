@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 import { changeMovementSpeed, changeVolume, MovementSpeed, SoundVolume } from "heroes-homm1";
 
-import "./GameOptions.scss";
+import * as styles from "./GameOptions.module.scss";
 
 import { buttonImages, movementSpeedImages, switchImages } from "./assets";
 
@@ -64,32 +64,32 @@ class GameOptions extends React.Component<GameOptionsProps> {
 
   public render() {
     return (
-      <div className="game-options">
-        <div className="game-options-new-game">
+      <div className={styles.root}>
+        <div className={styles.newGame}>
           <ImageButton
             images={buttonImages.newGame}
             onClick={this.props.onNewGameClick}
           />
         </div>
-        <div className="game-options-load-game">
+        <div className={styles.loadGame}>
           <ImageButton
             images={buttonImages.loadGame}
             onClick={this.props.onLoadGameClick}
           />
         </div>
-        <div className="game-options-save-game">
+        <div className={styles.saveGame}>
           <ImageButton
             images={buttonImages.saveGame}
             onClick={this.props.onSaveGameClick}
           />
         </div>
-        <div className="game-options-quit">
+        <div className={styles.quit}>
           <ImageButton
             images={buttonImages.quit}
             onClick={this.props.onQuitClick}
           />
         </div>
-        <div className="game-options-music-volume">
+        <div className={styles.musicVolume}>
           <GameText size="normal">
             <FormattedMessage {...messages.musicVolume} />
           </GameText>
@@ -103,7 +103,7 @@ class GameOptions extends React.Component<GameOptionsProps> {
           {this.renderOnOff(this.props.musicVolume !== SoundVolume.Off)}
           {this.renderVolume(this.props.musicVolume)}
         </div>
-        <div className="game-options-effects-volume">
+        <div className={styles.effectsVolume}>
           <GameText size="normal">
             <FormattedMessage {...messages.effectsVolume} />
           </GameText>
@@ -117,7 +117,7 @@ class GameOptions extends React.Component<GameOptionsProps> {
           {this.renderOnOff(this.props.effectsVolume !== SoundVolume.Off)}
           {this.renderVolume(this.props.effectsVolume)}
         </div>
-        <div className="game-options-movement-speed">
+        <div className={styles.movementSpeed}>
           <GameText size="normal">
             <FormattedMessage {...messages.movementSpeed} />
           </GameText>
@@ -128,7 +128,7 @@ class GameOptions extends React.Component<GameOptionsProps> {
             <FormattedMessage {...getMovementSpeedMessage(this.props.movementSpeed)} />
           </GameText>
         </div>
-        <div className="game-options-auto-save">
+        <div className={styles.autoSave}>
           <GameText size="normal">
             <FormattedMessage {...messages.autoSave} />
           </GameText>
@@ -141,7 +141,7 @@ class GameOptions extends React.Component<GameOptionsProps> {
           </div>
           {this.renderOnOff(this.props.autoSave)}
         </div>
-        <div className="game-options-show-path">
+        <div className={styles.showPath}>
           <GameText size="normal">
             <FormattedMessage {...messages.showPath} />
           </GameText>
@@ -154,7 +154,7 @@ class GameOptions extends React.Component<GameOptionsProps> {
           </div>
           {this.renderOnOff(this.props.showPath)}
         </div>
-        <div className="game-options-view-enemy-movement">
+        <div className={styles.viewEnemyMovement}>
           <GameText size="normal">
             <FormattedMessage {...messages.viewEnemyMovement} />
           </GameText>
@@ -167,13 +167,13 @@ class GameOptions extends React.Component<GameOptionsProps> {
           </div>
           {this.renderOnOff(this.props.viewEnemyMovement)}
         </div>
-        <div className="game-options-okay">
+        <div className={styles.okay}>
           <ImageButton
             images={buttonImages.okay}
             onClick={this.props.onOkayClick}
           />
         </div>
-        <div className="game-options-info">
+        <div className={styles.info}>
           <ImageButton
             images={buttonImages.info}
             onClick={this.props.onInfoClick}
