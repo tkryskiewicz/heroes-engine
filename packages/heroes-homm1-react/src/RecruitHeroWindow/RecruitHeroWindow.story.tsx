@@ -18,7 +18,7 @@ const heroes: Hero[] = [
   },
 ];
 
-storiesOf(RecruitHeroWindow.name, module)
+storiesOf("RecruitHeroWindow", module)
   .add("default", () => (
     <RecruitHeroWindow
       heroes={heroes}

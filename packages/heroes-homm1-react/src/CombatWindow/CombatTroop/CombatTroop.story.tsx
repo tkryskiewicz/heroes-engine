@@ -8,7 +8,7 @@ import { CreatureId } from "heroes-homm1";
 import { combatSideOptions, creatureOptions } from "../../stories";
 import { CombatTroop } from "./CombatTroop";
 
-storiesOf(`CombatWindow/${CombatTroop.name}`, module)
+storiesOf("CombatWindow/CombatTroop", module)
   .add("default", () => {
     return (
       <CombatTroop

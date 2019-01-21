@@ -18,7 +18,7 @@ const towns: TownLocatorsProps["towns"] = [
   },
 ];
 
-storiesOf(TownLocators.name, module)
+storiesOf("TownLocators", module)
   .add("default", () => (
     <TownLocators
       towns={towns}

@@ -11,7 +11,7 @@ const luckOptions: { [s: string]: LuckIconProps["type"] } = {
   Neutral: "neutral",
 };
 
-storiesOf(`HeroWindow/${LuckIcon.name}`, module)
+storiesOf("HeroWindow/LuckIcon", module)
   .add("default", () => (
     <LuckIcon
       type={select("Type", luckOptions, "neutral")}

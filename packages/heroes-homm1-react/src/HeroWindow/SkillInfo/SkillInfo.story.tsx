@@ -8,7 +8,7 @@ import { Skill } from "heroes-homm1";
 import { skillOptions } from "../../stories";
 import { SkillInfo } from "./SkillInfo";
 
-storiesOf(`HeroWindow/${SkillInfo.name}`, module)
+storiesOf("HeroWindow/SkillInfo", module)
   .add("default", () => (
     <SkillInfo
       skill={select("Skill", skillOptions, Skill.AttackSkill)}

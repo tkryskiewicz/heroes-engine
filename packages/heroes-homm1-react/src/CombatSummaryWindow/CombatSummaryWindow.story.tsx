@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { CombatSummaryWindow } from "./CombatSummaryWindow";
 
-storiesOf(CombatSummaryWindow.name, module)
+storiesOf("CombatSummaryWindow", module)
   .add("default", () => (
     <CombatSummaryWindow
       attackerCasualties={[]}

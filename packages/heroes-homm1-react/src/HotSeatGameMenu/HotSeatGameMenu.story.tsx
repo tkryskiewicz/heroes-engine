@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { HotSeatGameMenu } from "./HotSeatGameMenu";
 
-storiesOf(HotSeatGameMenu.name, module)
+storiesOf("HotSeatGameMenu", module)
   .add("default", () => (
     <HotSeatGameMenu
       onOptionClick={action("Option Click")}

@@ -11,7 +11,7 @@ const moraleOptions: { [s: string]: MoraleIconProps["type"] } = {
   Neutral: "neutral",
 };
 
-storiesOf(`HeroWindow/${MoraleIcon.name}`, module)
+storiesOf("HeroWindow/MoraleIcon", module)
   .add("default", () => (
     <MoraleIcon
       type={select("Type", moraleOptions, "neutral")}

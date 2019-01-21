@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { Locator } from "./Locator";
 
-storiesOf(Locator.name, module)
+storiesOf("Locator", module)
   .add("default", () => (
     <Locator
       index={number("Index", 0, { range: true, min: 0, max: 7, step: 1 })}

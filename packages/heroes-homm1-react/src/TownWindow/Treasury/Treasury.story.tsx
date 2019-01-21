@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { Treasury } from "./Treasury";
 
-storiesOf(`TownWindow/${Treasury.name}`, module)
+storiesOf("TownWindow/Treasury", module)
   .add("default", () => (
     <Treasury
       resources={{}}

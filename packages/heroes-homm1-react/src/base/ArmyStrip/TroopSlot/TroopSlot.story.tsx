@@ -8,7 +8,7 @@ import { ArmySize, CreatureId, TownId } from "heroes-homm1";
 import { creatureOptions, townOptions } from "../../../stories";
 import { TroopSlot } from "./TroopSlot";
 
-storiesOf(`base/ArmyStrip/${TroopSlot.name}`, module)
+storiesOf("base/ArmyStrip/TroopSlot", module)
   .add("default", () => {
     const troop = {
       count: number("Count", 1, { range: true, min: 0, max: 9999, step: 1 }),

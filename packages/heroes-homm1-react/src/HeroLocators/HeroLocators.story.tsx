@@ -23,7 +23,7 @@ const heroes: Hero[] = [
   },
 ];
 
-storiesOf(HeroLocators.name, module)
+storiesOf("HeroLocators", module)
   .add("default", () => (
     <HeroLocators
       heroes={heroes}

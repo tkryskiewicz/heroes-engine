@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { Slot } from "./Slot";
 
-storiesOf(`HeroTradingWindow/${Slot.name}`, module)
+storiesOf("HeroTradingWindow/Slot", module)
   .add("default", () => (
     <Slot
       index={number("Index", 0, { range: true, min: 0, max: 20, step: 1 })}

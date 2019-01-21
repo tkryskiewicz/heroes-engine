@@ -11,7 +11,7 @@ import Readme = require("./README.md");
 import { alignmentOptions, gameDifficultyOptions } from "../stories";
 import { NewGameWindow } from "./NewGameWindow";
 
-storiesOf(NewGameWindow.name, module)
+storiesOf("NewGameWindow", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <NewGameWindow

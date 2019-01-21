@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { MiscInfo } from "./MiscInfo";
 
-storiesOf(`HeroWindow/${MiscInfo.name}`, module)
+storiesOf("HeroWindow/MiscInfo", module)
   .add("default", () => {
     const values = {
       experience: number("Experience", 0, { range: true, min: 0, max: 999999, step: 1 }),

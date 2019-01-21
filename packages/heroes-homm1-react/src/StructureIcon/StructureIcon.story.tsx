@@ -8,7 +8,7 @@ import { StructureId, TownId } from "heroes-homm1";
 import { structureOptions, townOptions } from "../stories";
 import { StructureIcon } from "./StructureIcon";
 
-storiesOf(StructureIcon.name, module)
+storiesOf("StructureIcon", module)
   .add("default", () => (
     <StructureIcon
       town={select("Town", townOptions, TownId.Farm)}

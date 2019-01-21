@@ -7,7 +7,7 @@ import { Resource } from "heroes-homm1";
 import { resourceOptions } from "../../stories";
 import { MineOverview } from "./MineOverview";
 
-storiesOf(`KingdomOverviewWindow/${MineOverview.name}`, module)
+storiesOf("KingdomOverviewWindow/MineOverview", module)
   .add("deafult", () => (
     <MineOverview
       resource={select("Resource", resourceOptions, Resource.Gold)}

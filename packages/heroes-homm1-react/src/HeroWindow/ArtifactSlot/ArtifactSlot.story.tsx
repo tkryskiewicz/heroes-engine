@@ -11,7 +11,7 @@ import Readme = require("./README.md");
 import { artifactOptions } from "../../stories";
 import { ArtifactSlot } from "./ArtifactSlot";
 
-storiesOf(`HeroWindow/${ArtifactSlot.name}`, module)
+storiesOf("HeroWindow/ArtifactSlot", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <ArtifactSlot

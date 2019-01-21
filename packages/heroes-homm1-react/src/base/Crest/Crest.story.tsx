@@ -8,7 +8,7 @@ import { Alignment, HeroClass } from "heroes-homm1";
 import { alignmentOptions, heroClassOptions } from "../../stories";
 import { Crest } from "./Crest";
 
-storiesOf(`base/${Crest.name}`, module)
+storiesOf("base/Crest", module)
   .add("default", () => (
     <Crest
       alignment={select("Alignment", alignmentOptions, Alignment.Red)}

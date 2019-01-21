@@ -8,7 +8,7 @@ import { ArmySize, CreatureId } from "heroes-homm1";
 
 import { ArmyStrip } from "./ArmyStrip";
 
-storiesOf(`base/${ArmyStrip.name}`, module)
+storiesOf("base/ArmyStrip", module)
   .add("default", () => {
     const army: Army = [
       {

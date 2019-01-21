@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { TavernWindow } from "./TavernWindow";
 
-storiesOf(TavernWindow.name, module)
+storiesOf("TavernWindow", module)
   .add("default", () => (
     <TavernWindow
       visible={boolean("Visible", true)}

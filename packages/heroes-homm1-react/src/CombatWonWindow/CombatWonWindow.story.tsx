@@ -8,7 +8,7 @@ import { CreatureId, HeroId } from "heroes-homm1";
 import { heroOptions } from "../stories";
 import { CombatWonWindow } from "./CombatWonWindow";
 
-storiesOf(CombatWonWindow.name, module)
+storiesOf("CombatWonWindow", module)
   .add("default", () => (
     <CombatWonWindow
       hero={select("Hero", heroOptions, HeroId.LordKilburn)}

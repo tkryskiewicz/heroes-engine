@@ -7,7 +7,7 @@ import { TownId, TownLimit } from "heroes-homm1";
 import { townOptions } from "../../stories";
 import { TownOverview } from "./TownOverview";
 
-storiesOf(`KingdomOverviewWindow/${TownOverview.name}`, module)
+storiesOf("KingdomOverviewWindow/TownOverview", module)
   .add("default", () => (
     <TownOverview
       town={select("Town", townOptions, TownId.Farm)}

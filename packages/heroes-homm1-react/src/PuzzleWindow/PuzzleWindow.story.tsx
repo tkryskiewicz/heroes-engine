@@ -10,7 +10,7 @@ import Readme = require("./README.md");
 
 import { PuzzleWindow } from "./PuzzleWindow";
 
-storiesOf(PuzzleWindow.name, module)
+storiesOf("PuzzleWindow", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <PuzzleWindow

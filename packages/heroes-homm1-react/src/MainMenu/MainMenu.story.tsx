@@ -7,7 +7,7 @@ import Readme = require("./README.md");
 
 import { MainMenu } from "./MainMenu";
 
-storiesOf(MainMenu.name, module)
+storiesOf("MainMenu", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <MainMenu

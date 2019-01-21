@@ -8,7 +8,7 @@ import { HeroClass, HeroId } from "heroes-homm1";
 import { heroClassOptions, heroOptions } from "../../stories";
 import { RecruitHero } from "./RecruitHero";
 
-storiesOf(`RecruitHeroWindow/${RecruitHero.name}`, module)
+storiesOf("RecruitHeroWindow/RecruitHero", module)
   .add("default", () => (
     <RecruitHero
       heroId={select("Hero", heroOptions, HeroId.LordKilburn)}

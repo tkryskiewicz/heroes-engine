@@ -11,7 +11,7 @@ import Readme = require("./README.md");
 import { heroOptions } from "../stories";
 import { HeroLocator } from "./HeroLocator";
 
-storiesOf(HeroLocator.name, module)
+storiesOf("HeroLocator", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => {
     const hero = {

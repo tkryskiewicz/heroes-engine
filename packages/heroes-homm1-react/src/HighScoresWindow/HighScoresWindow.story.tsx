@@ -20,7 +20,7 @@ const gameTypeOptions = {
   Standard: GameType.Standard,
 };
 
-storiesOf(HighScoresWindow.name, module)
+storiesOf("HighScoresWindow", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <HighScoresWindow

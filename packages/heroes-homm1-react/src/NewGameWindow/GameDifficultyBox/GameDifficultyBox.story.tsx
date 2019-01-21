@@ -8,7 +8,7 @@ import { GameDifficulty } from "heroes-homm1";
 import { gameDifficultyOptions } from "../../stories";
 import { GameDifficultyBox } from "./GameDifficultyBox";
 
-storiesOf(`NewGameWindow/${GameDifficultyBox.name}`, module)
+storiesOf("NewGameWindow/GameDifficultyBox", module)
   .add("default", () => (
     <GameDifficultyBox
       value={select("Difficulty", gameDifficultyOptions, GameDifficulty.Easy)}

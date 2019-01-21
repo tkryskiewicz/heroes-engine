@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { MultiPlayerGameMenu } from "./MultiPlayerGameMenu";
 
-storiesOf(MultiPlayerGameMenu.name, module)
+storiesOf("MultiPlayerGameMenu", module)
   .add("default", () => (
     <MultiPlayerGameMenu
       onHotSeatClick={action("Hot Seat Click")}

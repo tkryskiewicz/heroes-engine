@@ -8,7 +8,7 @@ import { Resource, StructureId, TownId } from "heroes-homm1";
 import { structureOptions, townOptions } from "../stories";
 import { BuildStructureWindow } from "./BuildStructureWindow";
 
-storiesOf(BuildStructureWindow.name, module)
+storiesOf("BuildStructureWindow", module)
   .add("default", () => (
     <BuildStructureWindow
       town={select("Town", townOptions, TownId.Farm)}

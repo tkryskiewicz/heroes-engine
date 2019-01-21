@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { GameWindow } from "./GameWindow";
 
-storiesOf(`core/${GameWindow.name}`, module)
+storiesOf("core/GameWindow", module)
   .add("default", () => (
     <GameWindow
       width={number("Width", 640)}

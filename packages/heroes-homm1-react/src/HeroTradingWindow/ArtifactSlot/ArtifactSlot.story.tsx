@@ -8,7 +8,7 @@ import { ArtifactId, ArtifactLimit, HeroId } from "heroes-homm1";
 import { artifactOptions } from "../../stories";
 import { ArtifactSlot } from "./ArtifactSlot";
 
-storiesOf(`HeroTradingWindow/${ArtifactSlot.name}`, module)
+storiesOf("HeroTradingWindow/ArtifactSlot", module)
   .add("default", () => (
     <ArtifactSlot
       hero={HeroId.LordKilburn}

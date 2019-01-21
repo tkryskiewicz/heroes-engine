@@ -9,7 +9,7 @@ import { Alignment, constructTown, TownId } from "heroes-homm1";
 import { townOptions } from "../stories";
 import { TownView } from "./TownView";
 
-storiesOf(TownView.name, module)
+storiesOf("TownView", module)
   .add("default", () => {
     const townId = select("Town", townOptions, TownId.Farm);
 

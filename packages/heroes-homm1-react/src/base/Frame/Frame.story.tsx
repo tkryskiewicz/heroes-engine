@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { Frame } from "./Frame";
 
-storiesOf(`base/${Frame.name}`, module)
+storiesOf("base/Frame", module)
   .add("default", () => (
     <Frame>
       {text("Content", "Content")}

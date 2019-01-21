@@ -11,7 +11,7 @@ import Readme = require("./README.md");
 import { townOptions } from "../stories";
 import { TownLocator } from "./TownLocator";
 
-storiesOf(TownLocator.name, module)
+storiesOf("TownLocator", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <TownLocator

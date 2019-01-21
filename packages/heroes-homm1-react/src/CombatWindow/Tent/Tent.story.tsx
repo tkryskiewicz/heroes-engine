@@ -9,7 +9,7 @@ import { Alignment, HeroClass } from "heroes-homm1";
 import { alignmentOptions, combatSideOptions, heroClassOptions } from "../../stories";
 import { Tent } from "./Tent";
 
-storiesOf(`CombatWindow/${Tent.name}`, module)
+storiesOf("CombatWindow/Tent", module)
   .add("default", () => (
     <Tent
       side={select("Side", combatSideOptions, CombatSide.Attacker)}

@@ -8,7 +8,7 @@ import { HeroId } from "heroes-homm1";
 import { heroOptions } from "../../stories";
 import { HeroPortrait } from "./HeroPortrait";
 
-storiesOf(`base/${HeroPortrait.name}`, module)
+storiesOf("base/HeroPortrait", module)
   .add("default", () => (
     <HeroPortrait
       hero={select("Hero", heroOptions, HeroId.LordKilburn)}

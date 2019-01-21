@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { BigBar } from "./BigBar";
 
-storiesOf(`base/${BigBar.name}`, module)
+storiesOf("base/BigBar", module)
   .add("default", () => (
     <BigBar>
       {text("Text", "Text")}

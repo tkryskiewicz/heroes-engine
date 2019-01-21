@@ -50,7 +50,7 @@ const heroes: Hero[] = [
   },
 ];
 
-storiesOf(AdventureButtons.name, module)
+storiesOf("AdventureButtons", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => {
     const selectHero = boolean("Select Hero", false);
