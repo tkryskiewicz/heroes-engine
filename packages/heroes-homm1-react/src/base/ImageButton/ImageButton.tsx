@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./ImageButton.scss";
+import * as styles from "./ImageButton.module.scss";
 
 export interface ButtonImages {
   enabled: string;
@@ -44,7 +44,7 @@ export class ImageButton extends React.Component<ImageButtonProps, ImageButtonSt
 
     return (
       <button
-        className="image-button"
+        className={styles.root}
         disabled={disabled}
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
