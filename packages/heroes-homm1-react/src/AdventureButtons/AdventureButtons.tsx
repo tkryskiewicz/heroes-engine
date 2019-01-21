@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { canSelectNextHero, getNextHeroIndex, Hero } from "heroes-core";
 
-import "./AdventureButtons.scss";
+import * as styles from "./AdventureButtons.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -42,7 +42,7 @@ export class AdventureButtons extends React.Component<AdventureButtonsProps> {
     const nextHeroEnabled = canSelectNextHero(this.props.heroes);
 
     return (
-      <div className="adventure-buttons">
+      <div className={styles.root}>
         <Row>
           <Col span={8}>
             <ImageButton
