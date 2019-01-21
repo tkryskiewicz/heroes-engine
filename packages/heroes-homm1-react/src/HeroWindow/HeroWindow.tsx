@@ -13,7 +13,7 @@ import {
   SpellType,
 } from "heroes-homm1";
 
-import "./HeroWindow.scss";
+import * as styles from "./HeroWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -137,20 +137,20 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
         width={640}
         visible={this.props.visible}
       >
-        <div className="hero-window">
-          <div className="hero-window-name">
+        <div className={styles.root}>
+          <div className={styles.name}>
             <GameText size="large">
               {this.getHeroTitle()}
             </GameText>
           </div>
-          <div className="hero-window-portrait">
+          <div className={styles.portrait}>
             <HeroPortrait
               hero={hero.id}
             />
           </div>
           {this.renderSkills(hero.skills, this.props.visibleSkillDetails)}
           {this.renderMiscInfo(hero, this.props.visibleMiscInfoDetails)}
-          <div className="hero-window-crest">
+          <div className={styles.crest}>
             <Crest
               alignment={hero.alignment}
               heroClass={hero.heroClass}
@@ -162,7 +162,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
           {this.renderArmy(hero, selectedTroopIndex)}
           {this.props.dismissible && this.renderDismissal(this.props.dismissHeroPromptVisible)}
           {this.renderArtifacts(hero.artifacts, this.props.visibleArtifactDetails)}
-          <div className="hero-window-exit">
+          <div className={styles.exit}>
             <ImageButton
               images={buttonImages.exit}
               onMouseEnter={this.onExitMouseEnter}
@@ -170,7 +170,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
               onClick={this.props.onExitClick}
             />
           </div>
-          <div className="hero-window-title">
+          <div className={styles.title}>
             <GameText size="large">
               {this.state.statusText}
             </GameText>
@@ -200,7 +200,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     const content = SkillIds.map((s) => this.renderSkill(s, skills[s] || 0));
 
     return (
-      <div className="hero-window-skills">
+      <div className={styles.skills}>
         {content}
         {visibleSkillDetails && this.renderSkillDetails(visibleSkillDetails)}
       </div>
@@ -210,7 +210,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
   private renderSkill(skill: string, value: number) {
     return (
       <div
-        className="hero-window-skill"
+        className={styles.skill}
         key={skill}
       >
         <SkillInfo
@@ -268,7 +268,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     };
 
     return (
-      <div className="hero-window-misc-info">
+      <div className={styles.miscInfo}>
         <MiscInfo
           values={values}
           onMouseEnter={this.onMiscInfoMouseEnter}
@@ -435,7 +435,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     const troopDismissible = getArmySize(hero.army) > 1;
 
     return (
-      <div className="hero-window-army">
+      <div className={styles.army}>
         <ArmyStrip
           army={hero.army}
           onTroopMouseEnter={this.onTroopMouseEnter}
@@ -566,7 +566,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
       undefined;
 
     return (
-      <div className="hero-window-artifacts">
+      <div className={styles.artifacts}>
         {content}
         {artifactDetails && this.renderArtifactDetails(artifactDetails)}
       </div>
@@ -576,7 +576,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
   private renderArtifact(index: number, artifact: Artifact | undefined) {
     return (
       <div
-        className="hero-window-artifact"
+        className={styles.artifact}
         key={index}
       >
         <ArtifactSlot
@@ -723,7 +723,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
 
   private renderDismissal(dismissHeroPromptVisible: boolean) {
     return (
-      <div className="hero-window-dismiss">
+      <div className={styles.dismiss}>
         <ImageButton
           images={buttonImages.dismiss}
           onMouseEnter={this.onDismissMouseEnter}

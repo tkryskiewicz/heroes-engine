@@ -1,7 +1,7 @@
 import { Row } from "antd";
 import * as React from "react";
 
-import "./MiscInfo.scss";
+import * as styles from "./MiscInfo.module.scss";
 
 import { BackgroundImage, ExperienceImage } from "./assets";
 
@@ -47,7 +47,7 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
   public render() {
     return (
       <div
-        className="misc-info"
+        className={styles.root}
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
       >
@@ -62,7 +62,7 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
   private renderBackground() {
     return (
       <img
-        className="misc-info-background"
+        className={styles.background}
         src={BackgroundImage}
       />
     );
@@ -82,7 +82,7 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
 
     return (
       <div
-        className="misc-info-morale"
+        className={styles.morale}
         onMouseEnter={this.onMoraleMouseEnter}
         onMouseLeave={this.onMoraleMouseLeave}
         onClick={this.onMoraleClick}
@@ -118,7 +118,7 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
 
     return (
       <div
-        className="misc-info-luck"
+        className={styles.luck}
         onMouseEnter={this.onLuckMouseEnter}
         onMouseLeave={this.onLuckMouseLeave}
         onClick={this.onLuckClick}
@@ -143,13 +143,13 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
   private renderExperience(experience: number) {
     return (
       <Row
-        className="misc-info-experience"
+        className={styles.experience}
         onMouseEnter={this.onExperienceMouseEnter}
         onMouseLeave={this.onExperienceMouseLeave}
         onClick={this.onExperienceClick}
       >
         <img src={ExperienceImage} />
-        <div className="misc-info-experience-value">
+        <div className={styles.experienceValue}>
           <GameText size="small">
             {experience}
           </GameText>

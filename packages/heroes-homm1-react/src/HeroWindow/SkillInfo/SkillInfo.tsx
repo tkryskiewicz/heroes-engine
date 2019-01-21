@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import "./SkillInfo.scss";
+import * as styles from "./SkillInfo.module.scss";
 
 import { skillImages } from "./assets";
 
@@ -26,7 +26,7 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
   public render() {
     return (
       <div
-        className="skill-info"
+        className={styles.root}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
@@ -48,7 +48,7 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
 
   private renderName(skill: string) {
     return (
-      <div className="skill-info-name">
+      <div className={styles.name}>
         <GameText size="normal">
           <FormattedMessage {...getSkillNameMessage(skill)} />
         </GameText>
@@ -58,7 +58,7 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
 
   private renderValue(value: number) {
     return (
-      <div className="skill-info-value">
+      <div className={styles.value}>
         <GameText size="normal">
           {value}
         </GameText>

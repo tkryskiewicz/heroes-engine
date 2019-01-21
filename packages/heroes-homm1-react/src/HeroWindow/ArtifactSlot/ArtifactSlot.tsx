@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./ArtifactSlot.scss";
+import * as styles from "./ArtifactSlot.module.scss";
 
 import { BorderImage, EmptyImage, UltimateBorderImage } from "./assets";
 
@@ -32,13 +32,13 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
   public render() {
     return (
       <div
-        className="artifact-slot"
+        className={styles.root}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
       >
         {this.renderBorder(this.props.isUltimate)}
-        <div className="artifact-slot-content">
+        <div className={styles.content}>
           {this.props.artifact ? this.renderArtifact(this.props.artifact) : this.renderEmpty()}
         </div>
       </div>

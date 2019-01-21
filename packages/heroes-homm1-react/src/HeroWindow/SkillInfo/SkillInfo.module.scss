@@ -1,0 +1,18 @@
+.root {
+  position: relative;
+  width: 82px;
+}
+
+.name {
+  position: absolute;
+  text-align: center;
+  top: 2px;
+  width: 100%;
+}
+
+.value {
+  bottom: 2px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
