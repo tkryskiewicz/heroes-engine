@@ -10,7 +10,7 @@ import {
   StandardGameScore,
 } from "heroes-homm1";
 
-import "./HighScoresWindow.scss";
+import * as styles from "./HighScoresWindow.module.scss";
 
 import { buttonImages, DaysImage, LandImage, LeaderImage, PlayerImage, ScoreImage, TitleImage } from "./assets";
 
@@ -40,17 +40,17 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
       this.renderStandardGameScores(this.props.scores[GameType.Standard]);
 
     return (
-      <div className="high-scores-window">
-        <div className="high-scores-window-scores">
+      <div className={styles.root}>
+        <div className={styles.scores}>
           {scores}
         </div>
-        <div className="high-scores-window-category">
+        <div className={styles.category}>
           <ImageButton
             images={this.props.gameType === GameType.Campaign ? buttonImages.campaign : buttonImages.standard}
             onClick={this.onCategoryClick}
           />
         </div>
-        <div className="high-scores-window-exit">
+        <div className={styles.exit}>
           <ImageButton
             images={buttonImages.exit}
             onClick={this.props.onExitClick}
@@ -63,7 +63,7 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
   private renderCampaignGameScores(scores: CampaignGameScore[]) {
     return (
       <div>
-        <Row className="high-scores-window-header">
+        <Row className={styles.header}>
           <Col span={1} />
           <Col span={8}>
             <img src={PlayerImage} />
@@ -88,7 +88,7 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
 
     return (
       <Row
-        className="high-scores-window-score"
+        className={styles.score}
         key={index}
       >
         <Col span={1} />
@@ -125,7 +125,7 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
   private renderStandardGameScores(scores: StandardGameScore[]) {
     return (
       <div>
-        <Row className="high-scores-window-header">
+        <Row className={styles.header}>
           <Col span={1} />
           <Col span={9}>
             <img src={PlayerImage} />
@@ -150,7 +150,7 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
 
     return (
       <Row
-        className="high-scores-window-score"
+        className={styles.score}
         key={index}
       >
         <Col span={1} />
