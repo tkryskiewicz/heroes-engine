@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./StatusBar.scss";
+import * as styles from "./StatusBar.module.scss";
 
 import { GameText } from "../../core";
 
@@ -15,7 +15,7 @@ export class StatusBar extends React.Component<StatusBarProps> {
 
   public render() {
     return (
-      <div className="status-bar">
+      <div className={styles.root}>
         <GameText size="large">
           {this.props.statusText}
         </GameText>
