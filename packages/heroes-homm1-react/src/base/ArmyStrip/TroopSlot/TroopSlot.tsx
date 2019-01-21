@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./TroopSlot.scss";
+import * as styles from "./TroopSlot.module.scss";
 
 import { EmptyImage, SelectionImage } from "./assets";
 
@@ -32,7 +32,7 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
   public render() {
     return (
       <div
-        className="troop-slot"
+        className={styles.root}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
@@ -61,7 +61,7 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
 
   private renderCreature(creature: string) {
     return (
-      <div className="troop-slot-creature">
+      <div className={styles.creature}>
         <CreatureIcon
           size="medium"
           creature={creature}
@@ -72,7 +72,7 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
 
   private renderTroopCount(count: number) {
     return (
-      <div className="troop-slot-count">
+      <div className={styles.count}>
         <GameText size="normal">
           {count}
         </GameText>
@@ -89,7 +89,7 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
   private renderSelection() {
     return (
       <img
-        className="troop-slot-selection"
+        className={styles.selection}
         src={SelectionImage}
       />
     );

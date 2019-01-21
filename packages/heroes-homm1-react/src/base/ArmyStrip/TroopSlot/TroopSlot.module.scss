@@ -1,0 +1,25 @@
+.root {
+  display: inline-block;
+  height: 93px;
+  position: relative;
+  width: 82px;
+}
+
+.creature {
+  bottom: 5px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.count {
+  bottom: 2px;
+  position: absolute;
+  right: 7px;
+}
+
+.selection {
+  left: 0px;
+  position: absolute;
+  top: 0px;
+}
