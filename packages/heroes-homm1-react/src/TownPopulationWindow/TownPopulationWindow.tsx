@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
-import "./TownPopulationWindow.scss";
+import * as styles from "./TownPopulationWindow.module.scss";
 
 import { CreatureIcon } from "../base";
 import { GameText } from "../core";
@@ -38,7 +38,7 @@ class TownPopulationWindow extends React.Component<TownPopulationWindowProps> {
 
   public render() {
     return (
-      <div className="town-population-window">
+      <div className={styles.root}>
         {this.props.dwellings.map((d) => this.renderDwelling(this.props.town, d))}
       </div>
     );
@@ -48,20 +48,20 @@ class TownPopulationWindow extends React.Component<TownPopulationWindowProps> {
     return (
       <div
         key={dwelling.id}
-        className="town-population-window-dwelling"
+        className={styles.dwelling}
       >
         <StructureIcon
           town={town}
           structure={dwelling.id}
         />
-        <div className="town-population-window-creature">
+        <div className={styles.creature}>
           <CreatureIcon
             size="medium"
             creature={dwelling.creature}
           />
         </div>
-        <div className="town-population-window-dwelling-info">
-          <div className="town-population-window-creature-name">
+        <div className={styles.dwellingInfo}>
+          <div className={styles.creatureName}>
             <GameText size="small">
               <FormattedMessage {...getCreatureNameMessage(dwelling.creature)} />
             </GameText>

@@ -1,0 +1,45 @@
+.root {
+  display: flex;
+  height: 260px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 3px 5px;
+}
+
+.dwelling {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  margin-bottom: 3px;
+
+  > div {
+    vertical-align: top;
+  }
+
+  &:nth-child(n+4) {
+    flex-direction: row-reverse;
+
+    // FIXME
+    .town-population-window-creature {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+.creature {
+  display: inline-block;
+  margin: 0 3px;
+}
+
+.dwelling-info {
+  display: inline-block;
+  text-align: center;
+  line-height: 1;
+}
+
+.creature-name {
+  width: 89px;
+  height: 14px;
+  background: url("./assets/name-background.jpg");
+  margin-bottom: 3px;
+}
