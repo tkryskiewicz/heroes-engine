@@ -3,7 +3,7 @@ import * as React from "react";
 import { Army, Troop } from "heroes-core";
 import { ArmySize } from "heroes-homm1";
 
-import "./ArmyStrip.scss";
+import * as styles from "./ArmyStrip.module.scss";
 
 import { TroopSlot } from "./TroopSlot";
 
@@ -38,7 +38,7 @@ export class ArmyStrip extends React.Component<ArmyStripProps> {
       .map((i) => this.renderTroop(i, this.props.army[i], this.props.selectedTroopIndex === i));
 
     return (
-      <div className="army-strip" >
+      <div className={styles.root}>
         {troops}
       </div>
     );
@@ -47,7 +47,7 @@ export class ArmyStrip extends React.Component<ArmyStripProps> {
   private renderTroop(index: number, troop: Troop | undefined, selected: boolean) {
     return (
       <div
-        className="army-strip-troop"
+        className={styles.troop}
         key={index}
       >
         <TroopSlot
