@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./ResourceAmount.scss";
+import * as styles from "./ResourceAmount.module.scss";
 
 import { GameText } from "../../core";
 import { ResourceIcon } from "../ResourceIcon";
@@ -13,7 +13,7 @@ export interface ResourceAmountProps {
 export class ResourceAmount extends React.Component<ResourceAmountProps> {
   public render() {
     return (
-      <div className="resource-amount">
+      <div className={styles.root}>
         <ResourceIcon
           size="large"
           resource={this.props.resource}
