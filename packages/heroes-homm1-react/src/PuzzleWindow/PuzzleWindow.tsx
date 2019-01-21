@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { PuzzlePieceCount } from "heroes-homm1";
 
-import "./PuzzleWindow.scss";
+import * as styles from "./PuzzleWindow.module.scss";
 
 import { puzzleImages } from "./assets";
 
@@ -29,7 +29,7 @@ export class PuzzleWindow extends React.Component<PuzzleWindowProps> {
 
   private renderPuzzle(discoveredPieces: number) {
     return (
-      <div className="puzzle-window-puzzle">
+      <div className={styles.puzzle}>
         {this.renderPieces(PuzzlePieceCount - discoveredPieces)}
       </div>
     );
@@ -43,7 +43,7 @@ export class PuzzleWindow extends React.Component<PuzzleWindowProps> {
   private renderPiece(index: number) {
     return (
       <img
-        className="puzzle-window-puzzle-piece"
+        className={styles.puzzlePiece}
         key={index}
         src={puzzleImages[index]}
       />
