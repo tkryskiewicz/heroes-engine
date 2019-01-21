@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 
 import { enoughResources, multiplyResources, Resources } from "heroes-core";
 
-import "./RecruitTroopWindow.scss";
+import * as styles from "./RecruitTroopWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -34,7 +34,7 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
 
   public render() {
     return (
-      <div className="recruit-troop-window">
+      <div className={styles.root}>
         <Row>
           <GameText size="large">
             <FormattedMessage {...getCreatureNameMessage(this.props.creature)}>

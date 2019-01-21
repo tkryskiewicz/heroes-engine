@@ -1,11 +1,11 @@
-.recruit-troop-window {
+.root {
   background: url("./assets/background.jpg");
   height: 294px;
   padding: 20px;
   width: 320px;
 
-  .ant-row {
+  > div {
     text-align: center;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 }
