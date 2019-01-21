@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 import { Resources } from "heroes-core";
 
-import "./BuildShipWindow.scss";
+import * as styles from "./BuildShipWindow.module.scss";
 
 import { ShipIconImage } from "./assets";
 
@@ -42,7 +42,7 @@ export class BuildShipWindow extends React.Component<BuildShipWindowProps> {
         <GameParagraph textSize="large">
           <FormattedMessage {...messages.title} />:
         </GameParagraph>
-        <div className="build-ship-window-ship-icon">
+        <div className={styles.shipIcon}>
           <img src={ShipIconImage} />
         </div>
         <GameParagraph textSize="large">
