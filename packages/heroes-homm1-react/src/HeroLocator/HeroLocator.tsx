@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./HeroLocator.scss";
+import * as styles from "./HeroLocator.module.scss";
 
 import { BackgroundImage, mobilityImages } from "./assets";
 
@@ -31,16 +31,16 @@ export class HeroLocator extends React.Component<HeroLocatorProps> {
 
   private renderHero(hero: string, mobility: number) {
     return (
-      <div className="hero-locator">
+      <div className={styles.root}>
         <img
-          className="hero-locator-background"
+          className={styles.background}
           src={BackgroundImage}
         />
         <img
-          className="hero-locator-mobility"
+          className={styles.mobility}
           src={mobilityImages[mobility]}
         />
-        <div className="hero-locator-portrait">
+        <div className={styles.portrait}>
           <img
             src={`assets/heroes/${hero}/locator.jpg`}
           />
