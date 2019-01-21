@@ -3,7 +3,7 @@ import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { StructureId } from "heroes-homm1";
 
-import "./MageGuildWindow.scss";
+import * as styles from "./MageGuildWindow.module.scss";
 
 import { GameModal, SpellIcon } from "../base";
 import { GameParagraph } from "../core";
@@ -48,14 +48,14 @@ class MageGuildWindow extends React.Component<MageGuildWindowProps> {
       .sort((a, b) => b.level - a.level);
 
     return (
-      <div className="mage-guild-window">
-        <div className="mage-guild-window-structure">
+      <div className={styles.root}>
+        <div className={styles.structure}>
           <StructureView
             structure={StructureId.MageGuild}
             town={""}
           />
         </div>
-        <div className="mage-guild-window-spells">
+        <div className={styles.spells}>
           {spells.map((s) => this.renderSpell(s))}
         </div>
         {this.props.visibleSpellDetail && this.renderSpellDetail(this.props.visibleSpellDetail)}
@@ -67,7 +67,7 @@ class MageGuildWindow extends React.Component<MageGuildWindowProps> {
     return (
       <div
         key={spell.id}
-        className="mage-guild-window-spell-scroll"
+        className={styles.spellScroll}
       >
         <SpellScroll
           spell={spell.id}
