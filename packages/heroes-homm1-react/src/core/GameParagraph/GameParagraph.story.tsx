@@ -8,9 +8,10 @@ const textSizeOptions: { [s: string]: GameParagraphProps["textSize"] } = {
   Large: "large",
   Normal: "normal",
   Small: "small",
+  Tiny: "tiny",
 };
 
-storiesOf(`core/${GameParagraph.name}`, module)
+storiesOf("core/GameParagraph", module)
   .add("default", () => (
     <GameParagraph textSize={select("Text Size", textSizeOptions, "large")}>
       {text("Content", "Content")}

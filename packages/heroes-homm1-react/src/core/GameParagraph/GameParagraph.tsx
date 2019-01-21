@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./GameParagraph.scss";
+import * as styles from "./GameParagraph.module.scss";
 
 import { GameText, GameTextProps } from "../GameText";
 
@@ -11,7 +11,7 @@ export interface GameParagraphProps {
 export class GameParagraph extends React.Component<GameParagraphProps> {
   public render() {
     return (
-      <div className={`game-paragraph game-paragraph-${this.props.textSize}`}>
+      <div className={`${styles.root} ${styles[this.props.textSize]}`}>
         <GameText size={this.props.textSize}>
           {this.props.children}
         </GameText>

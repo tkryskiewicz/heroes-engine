@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./GameText.scss";
+import * as styles from "./GameText.module.scss";
 
 export interface GameTextProps {
   size: "large" | "normal" | "small" | "tiny";
@@ -9,7 +9,7 @@ export interface GameTextProps {
 export class GameText extends React.Component<GameTextProps> {
   public render() {
     return (
-      <span className={`game-text game-text-${this.props.size}`}>
+      <span className={`${styles.root} ${styles[this.props.size]}`}>
         {this.props.children}
       </span>
     );
