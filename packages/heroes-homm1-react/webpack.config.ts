@@ -2,6 +2,9 @@ import { TsConfigPathsPlugin } from "awesome-typescript-loader";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as Webpack from "webpack";
 
+const styleRegex = /\.(scss|css)$/;
+const styleModuleRegex = /\.module\.scss$/;
+
 const config: Webpack.Configuration = {
   entry: "./src/index.tsx",
   mode: "development",
@@ -12,10 +15,26 @@ const config: Webpack.Configuration = {
         test: /\.tsx?$/,
       },
       {
-        test: /\.(scss|css)$/,
+        exclude: styleModuleRegex,
+        test: styleRegex,
         use: [
           "style-loader",
           "css-loader",
+          "sass-loader",
+        ],
+      },
+      {
+        test: styleModuleRegex,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              camelCase: "dashes",
+              localIdentName: "[name]__[local]--[hash:base64:5]",
+              modules: true,
+            },
+          },
           "sass-loader",
         ],
       },

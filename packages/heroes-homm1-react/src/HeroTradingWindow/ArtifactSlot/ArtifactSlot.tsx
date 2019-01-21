@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./ArtifactSlot.scss";
+import * as styles from "./ArtifactSlot.module.scss";
 
 import { BackgroundImage } from "./assets";
 
@@ -28,7 +28,7 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
         selected={this.props.selected}
         onClick={this.onClick}
       >
-        <div className="artifact-slot">
+        <div className={styles.root}>
           {this.renderBackground()}
           {this.props.artifact && this.renderArtifact(this.props.artifact)}
         </div>
@@ -44,7 +44,7 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
 
   private renderArtifact(artifact: string) {
     return (
-      <div className="artifact-slot-artifact">
+      <div className={styles.artifact}>
         <ArtifactIcon
           size="small"
           artifact={artifact}

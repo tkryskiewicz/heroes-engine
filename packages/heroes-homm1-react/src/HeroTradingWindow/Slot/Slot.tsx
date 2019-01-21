@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "./Slot.scss";
+import * as styles from "./Slot.module.scss";
 
 import { SelectionImage } from "./assets";
 
@@ -19,7 +19,7 @@ export class Slot extends React.Component<SlotProps> {
   public render() {
     return (
       <div
-        className="slot"
+        className={styles.root}
         onClick={this.onClick}
       >
         {this.props.children}
@@ -31,7 +31,7 @@ export class Slot extends React.Component<SlotProps> {
   private renderSelection() {
     return (
       <img
-        className="slot-selection"
+        className={styles.selection}
         src={SelectionImage}
       />
     );

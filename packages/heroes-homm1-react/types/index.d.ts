@@ -1,3 +1,9 @@
+declare module "*.scss" {
+  const content: { [index: string]: string };
+
+  export = content;
+}
+
 declare module "*.jpg" {
   const content: string;
 

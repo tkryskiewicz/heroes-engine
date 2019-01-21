@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Troop } from "heroes-core";
 
-import "./TroopSlot.scss";
+import * as styles from "./TroopSlot.module.scss";
 
 import { BackgroundImage } from "./assets";
 
@@ -30,7 +30,7 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
         selected={this.props.selected}
         onClick={this.props.onClick}
       >
-        <div className="troop-slot">
+        <div className={styles.root}>
           {this.renderBackground()}
           {this.props.troop && this.renderTroop(this.props.troop)}
           {this.props.troop && this.renderCount(this.props.troop.count)}
@@ -47,7 +47,7 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
 
   private renderTroop(troop: Troop) {
     return (
-      <div className="troop-slot-troop">
+      <div className={styles.troop}>
         <CreatureIcon
           size="small"
           creature={troop.creature}
@@ -58,7 +58,7 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
 
   private renderCount(count: number) {
     return (
-      <div className="troop-slot-count">
+      <div className={styles.count}>
         <GameText size="small">
           {count}
         </GameText>

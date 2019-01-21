@@ -5,7 +5,7 @@ import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 import { Army, Hero, HeroSkills } from "heroes-core";
 import { ArmySize, ArtifactLimit, SkillIds } from "heroes-homm1";
 
-import "./HeroTradingWindow.scss";
+import * as styles from "./HeroTradingWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -60,40 +60,40 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
         width={448}
         visible={this.props.visible}
       >
-        <div className="hero-trading-window">
-          <div className="hero-trading-window-title">
+        <div className={styles.root}>
+          <div className={styles.title}>
             <GameText size="large">
               {this.getTitle(hero.id, otherHero.id)}
             </GameText>
           </div>
-          <div className="hero-trading-window-portrait">
+          <div className={styles.portrait}>
             <HeroPortrait
               hero={hero.id}
               onClick={this.onHeroPortraitClick}
             />
           </div>
-          <div className="hero-trading-window-other-portrait">
+          <div className={styles.otherPortrait}>
             <HeroPortrait
               hero={otherHero.id}
               onClick={this.onHeroPortraitClick}
             />
           </div>
-          <div className="hero-trading-window-army">
+          <div className={styles.army}>
             {this.renderHeroArmy(hero.army)}
           </div>
-          <div className="hero-trading-window-other-army">
+          <div className={styles.otherArmy}>
             {this.renderHeroArmy(otherHero.army)}
           </div>
-          <div className="hero-trading-window-skills">
+          <div className={styles.skills}>
             {this.renderSkills(hero, otherHero)}
           </div>
-          <div className="hero-trading-window-artifacts">
+          <div className={styles.artifacts}>
             {this.renderArtifacts(hero, selectedArtifact)}
           </div>
-          <div className="hero-trading-window-other-artifacts">
+          <div className={styles.otherArtifacts}>
             {this.renderArtifacts(otherHero, selectedArtifact)}
           </div>
-          <div className="hero-trading-window-exit">
+          <div className={styles.exit}>
             <ImageButton
               images={buttonImages.exit}
               onClick={this.props.onExitClick}
@@ -160,7 +160,7 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
     return [...new Array(ArmySize).keys()].map((i) => (
       <div
         key={i}
-        className="hero-trading-window-troop"
+        className={styles.troop}
       >
         <TroopSlot
           index={i}
@@ -177,7 +177,7 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
       return (
         <div
           key={i}
-          className="hero-trading-window-artifact"
+          className={styles.artifact}
         >
           <ArtifactSlot
             index={i}

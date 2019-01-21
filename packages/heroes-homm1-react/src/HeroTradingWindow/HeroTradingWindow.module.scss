@@ -1,0 +1,78 @@
+.root {
+  position: relative;
+  width: 448px;
+  height: 448px;
+  background: url("./assets/background.jpg");
+}
+
+.title {
+  position: absolute;
+  width: 100%;
+  top: 9px;
+  text-align: center;
+}
+
+.portrait {
+  position: absolute;
+  top: 44px;
+  left: 28px;
+}
+
+.skills {
+  position: absolute;
+  width: 40%;
+  top: 44px;
+  left: 30%;
+  text-align: center;
+}
+
+.other-portrait {
+  position: absolute;
+  top: 44px;
+  left: 319px;
+}
+
+.army {
+  display: flex;
+  position: absolute;
+  top: 147px;
+  left: 23px;
+}
+
+.other-army {
+  position: absolute;
+  display: flex;
+  top: 147px;
+  left: 251px;
+}
+
+.troop {
+  display: inline-block;
+  margin-right: 1px;
+}
+
+.artifacts {
+  position: absolute;
+  width: 70px;
+  top: 193px;
+  left: 75px;
+}
+
+.other-artifacts {
+  position: absolute;
+  width: 70px;
+  top: 193px;
+  left: 304px;
+}
+
+.artifact {
+  display: inline-block;
+  margin-right: 1px;
+  margin-bottom: 1px;
+}
+
+.exit {
+  position: absolute;
+  top: 412px;
+  left: 185px;
+}
