@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import "./Menu.scss";
+import * as styles from "./Menu.module.scss";
 
 export class Menu extends React.Component {
   public render() {
     return (
-      <div className="menu">
+      <div className={styles.root}>
         {this.props.children}
       </div>
     );
