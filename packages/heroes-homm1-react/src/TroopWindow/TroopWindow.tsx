@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { Damage, Troop } from "heroes-core";
 import { creaturesById } from "heroes-homm1";
 
-import "./TroopWindow.scss";
+import * as styles from "./TroopWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -46,9 +46,9 @@ class TroopWindow extends React.Component<TroopWindowProps> {
     const creature = creaturesById[this.props.troop.creature];
 
     return (
-      <Row className="troop-window">
+      <Row className={styles.root}>
         <Col
-          className="troop-window-creature"
+          className={styles.creature}
           span={12}
         >
           <CreatureIcon
@@ -57,7 +57,7 @@ class TroopWindow extends React.Component<TroopWindowProps> {
           />
         </Col>
         <Col span={12}>
-          <Row className="troop-window-creature-name">
+          <Row className={styles.creatureName}>
             <GameText size="normal">
               <FormattedMessage {...getCreatureNameMessage(creature.id)} />
             </GameText>
@@ -100,13 +100,13 @@ class TroopWindow extends React.Component<TroopWindowProps> {
           </Row>
           <Row>
             <Col
-              className="troop-window-dismiss"
+              className={styles.dismiss}
               span={12}
             >
               {this.props.dismissible && this.renderDismissal(this.props.dismissPromptVisible)}
             </Col>
             <Col
-              className="troop-window-exit"
+              className={styles.exit}
               span={12}
             >
               <ImageButton
@@ -123,7 +123,7 @@ class TroopWindow extends React.Component<TroopWindowProps> {
 
   private renderCount(value: number) {
     return (
-      <div className="troop-window-count">
+      <div className={styles.count}>
         <GameText size="normal">
           {value}
         </GameText>

@@ -1,0 +1,31 @@
+.root {
+  background: url("./assets/background.png");
+  height: 229px;
+  padding: 20px 35px;
+  position: relative;
+  width: 402px;
+}
+
+.count {
+  background: url("./assets/count-background.jpg");
+  bottom: 17px;
+  display: inline-block;
+  height: 38px;
+  left: 41px;
+  padding-top: 5px;
+  position: absolute;
+  text-align: center;
+  width: 142px;
+}
+
+.creature, .creature-name {
+  text-align: center;
+}
+
+.dismiss {
+  text-align: left;
+}
+
+.exit {
+  text-align: right;
+}
