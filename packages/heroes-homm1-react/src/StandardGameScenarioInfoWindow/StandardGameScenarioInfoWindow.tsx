@@ -11,7 +11,7 @@ import {
   ScenarioSize,
 } from "heroes-homm1";
 
-import "./StandardGameScenarioInfoWindow.scss";
+import * as styles from "./StandardGameScenarioInfoWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -53,53 +53,53 @@ class StandardGameScenarioInfoWindow extends React.Component<StandardGameScenari
       this.props.opponentSettings.reduce((p, c) => p + getOpponentSettingRating(c), 0);
 
     return (
-      <div className="standard-game-scenario-info-window">
-        <div className="standard-game-scenario-info-window-scenario-name">
+      <div className={styles.root}>
+        <div className={styles.scenarioName}>
           <GameText size="large">
             {this.props.scenarioName}
           </GameText>
         </div>
-        <div className="standard-game-scenario-info-window-game-difficulty">
+        <div className={styles.gameDifficulty}>
           <GameText size="large">
             <FormattedMessage {...getGameDifficultyMessage(this.props.gameDifficulty)} />
           </GameText>
         </div>
-        <div className="standard-game-scenario-info-window-opponent-settings">
+        <div className={styles.opponentSettings}>
           <GameText size="large">
             {this.props.opponentSettings.map(this.renderOpponentSetting)}
           </GameText>
         </div>
-        <div className="standard-game-scenario-info-window-alignment">
+        <div className={styles.alignment}>
           <AlignmentJewel
             value={this.props.alignment}
           />
         </div>
-        <div className="standard-game-scenario-info-window-king-of-the-hill">
+        <div className={styles.kingOfTheHill}>
           <GameText size="large">
             <FormattedMessage {...getKingOfTheHillMessage(this.props.kingOfTheHill)} />
           </GameText>
         </div>
-        <div className="standard-game-scenario-info-window-difficulty-rating">
+        <div className={styles.difficultyRating}>
           <GameText size="large">
             {difficultyRating}%
           </GameText>
         </div>
-        <div className="standard-game-scenario-info-window-scenario-size">
+        <div className={styles.scenarioSize}>
           <GameText size="large">
             <FormattedMessage {...getScenarioSizeMessage(this.props.scenarioSize)} />
           </GameText>
         </div>
-        <div className="standard-game-scenario-info-window-scenario-difficulty">
+        <div className={styles.scenarioDifficulty}>
           <GameText size="large">
             <FormattedMessage {...getScenarioDifficultyMessage(this.props.scenarioDifficulty)} />
           </GameText>
         </div>
-        <div className="standard-game-scenario-info-window-scenario-description">
+        <div className={styles.scenarioDescription}>
           <GameText size="large">
             {this.props.scenarioDescription}
           </GameText>
         </div>
-        <div className="standard-game-scenario-info-window-okay">
+        <div className={styles.okay}>
           <ImageButton
             images={buttonImages.okay}
             onClick={this.props.onOkayClick}
@@ -121,4 +121,6 @@ class StandardGameScenarioInfoWindow extends React.Component<StandardGameScenari
 
 const StandardGameScenarioInfoWindowWrapped = withGameWindow(322)(StandardGameScenarioInfoWindow);
 
-export { StandardGameScenarioInfoWindowWrapped as StandardGameScenarioInfoWindow };
+export {
+  StandardGameScenarioInfoWindowWrapped as StandardGameScenarioInfoWindow,
+};

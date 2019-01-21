@@ -1,0 +1,74 @@
+.root {
+  position: relative;
+  width: 322px;
+  height: 459px;
+  background: url("./assets/background.jpg");
+  padding: 50px;
+}
+
+.scenario-name {
+  position: absolute;
+  top: 33px;
+  right: 25px;
+}
+
+.game-difficulty {
+  position: absolute;
+  top: 66px;
+  right: 25px;
+}
+
+.opponent-settings {
+  position: absolute;
+  top: 102px;
+  right: 25px;
+  text-align: right;
+}
+
+.alignment {
+  position: absolute;
+  top: 153px;
+  left: 124px;
+}
+
+.king-of-the-hill {
+  position: absolute;
+  top: 204px;
+  right: 25px;
+}
+
+.difficulty-rating {
+  position: absolute;
+  top: 237px;
+  right: 25px;
+}
+
+.scenario-size {
+  position: absolute;
+  top: 310px;
+  left: 25px;
+  width: 85px;
+  text-align: center;
+}
+
+.scenario-difficulty {
+  position: absolute;
+  top: 310px;
+  right: 25px;
+  width: 130px;
+  text-align: center;
+}
+
+.scenario-description {
+  position: absolute;
+  top: 335px;
+  left: 25px;
+  right: 25px;
+  text-align: center;
+}
+
+.okay {
+  position: absolute;
+  top: 407px;
+  left: 112px;
+}
