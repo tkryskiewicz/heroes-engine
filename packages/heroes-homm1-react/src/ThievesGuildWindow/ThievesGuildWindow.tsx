@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
-import "./ThievesGuildWindow.scss";
+import * as styles from "./ThievesGuildWindow.module.scss";
 
 import { GameText } from "../core";
 import {
@@ -38,8 +38,8 @@ class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
 
   public render() {
     return (
-      <div className="thieves-guild-window">
-        <div className="thieves-guild-window-row">
+      <div className={styles.root}>
+        <div className={styles.row}>
           <div />
           <div>
             <div>
@@ -70,7 +70,7 @@ class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
             </div>
           </div>
         </div>
-        <div className="thieves-guild-window-row">
+        <div className={styles.row}>
           <div>
             <GameText size="large">
               <FormattedMessage {...messages.townCount} />
@@ -78,7 +78,7 @@ class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
           </div>
           {this.renderStats(this.props.townCount)}
         </div>
-        <div className="thieves-guild-window-row">
+        <div className={styles.row}>
           <div>
             <GameText size="large">
               <FormattedMessage {...messages.castleCount} />
@@ -86,7 +86,7 @@ class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
           </div>
           {this.renderStats(this.props.castleCount)}
         </div>
-        <div className="thieves-guild-window-row">
+        <div className={styles.row}>
           <div>
             <GameText size="large">
               <FormattedMessage {...messages.heroCount} />
@@ -94,7 +94,7 @@ class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
           </div>
           {this.renderStats(this.props.heroCount)}
         </div>
-        <div className="thieves-guild-window-row">
+        <div className={styles.row}>
           <div>
             <GameText size="large">
               <FormattedMessage {...messages.gold} />
@@ -102,7 +102,7 @@ class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
           </div>
           {this.renderStats(this.props.gold)}
         </div>
-        <div className="thieves-guild-window-row">
+        <div className={styles.row}>
           <div>
             <GameText size="large">
               <FormattedMessage {...messages.primaryResources} />
@@ -110,7 +110,7 @@ class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
           </div>
           {this.renderStats(this.props.primaryResources)}
         </div>
-        <div className="thieves-guild-window-row">
+        <div className={styles.row}>
           <div>
             <GameText size="large">
               <FormattedMessage {...messages.secondaryResources} />
@@ -118,7 +118,7 @@ class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
           </div>
           {this.renderStats(this.props.secondaryResources)}
         </div>
-        <div className="thieves-guild-window-row">
+        <div className={styles.row}>
           <div>
             <GameText size="large">
               <FormattedMessage {...messages.foundObelisksCount} />
@@ -126,7 +126,7 @@ class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
           </div>
           {this.renderStats(this.props.foundObelisksCount)}
         </div>
-        <div className="thieves-guild-window-row">
+        <div className={styles.row}>
           <div>
             <GameText size="large">
               <FormattedMessage {...messages.armyStrength} />

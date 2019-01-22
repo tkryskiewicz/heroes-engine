@@ -1,0 +1,21 @@
+.root {
+  display: table;
+  position: absolute;
+  top: 15px;
+  width: 100%;
+}
+
+.row {
+  display: table-row;
+
+  & > div {
+    display: table-cell;
+    width: 17.5%;
+    text-align: center;
+
+    &:first-child {
+      width: 30%;
+      text-align: right;
+    }
+  }
+}
