@@ -13,12 +13,16 @@
   z-index: 1;
 }
 
-.attacker-count {
-  right: 0;
+.attacker {
+  .count {
+    right: 0;
+  }
 }
 
-.defender-creature {
-  transform: scaleX(-1);
+.defender {
+  .creature {
+    transform: scaleX(-1);
+  }
 }
 
 .selection {

@@ -23,8 +23,8 @@ export class CombatTroop extends React.Component<CombatTroopProps> {
     const { side } = this.props;
 
     return (
-      <div className={styles.root}>
-        <div className={side === CombatSide.Attacker ? undefined : styles.defenderCreature}>
+      <div className={`${styles.root} ${side === CombatSide.Attacker ? styles.attacker : styles.defender}`}>
+        <div className={styles.creature}>
           <CreatureIcon
             size="large"
             creature={this.props.creature}
@@ -37,10 +37,8 @@ export class CombatTroop extends React.Component<CombatTroopProps> {
   }
 
   private renderCount(value: number) {
-    const sideStyles = this.props.side === CombatSide.Attacker ? styles.attackerCount : undefined;
-
     return (
-      <div className={`${styles.count} ${sideStyles}`}>
+      <div className={styles.count}>
         <GameParagraph textSize="tiny">
           {value}
         </GameParagraph>
