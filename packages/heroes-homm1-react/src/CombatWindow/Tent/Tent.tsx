@@ -26,38 +26,30 @@ export class Tent extends React.Component<TentProps> {
   };
 
   public render() {
-    const sideStyles = this.props.side === CombatSide.Attacker ?
-      styles.backgroundAttacker :
-      styles.backgroundDefender;
-
     return (
       <div
-        className={styles.root}
+        className={`${styles.root} ${this.props.side === CombatSide.Attacker ? styles.attacker : styles.defender}`}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
       >
         <img
-          className={`${styles.background} ${sideStyles}`}
+          className={styles.background}
           src={`/assets/heroClasses/${this.props.heroClass}/tent.png`}
         />
-        {this.renderBanner(this.props.side)}
+        {this.renderBanner(this.props.alignment, this.props.heroClass)}
       </div>
     );
   }
 
-  private renderBanner(side: CombatSide) {
-    const sideStyles = side === CombatSide.Attacker ?
-      styles.bannerAttacker :
-      styles.bannerDefender;
-
+  private renderBanner(alignment: string, heroClass: string) {
     return (
-      <div className={`${styles.banner} ${sideStyles}`}>
+      <div className={styles.banner}>
         <div className={styles.bannerContainer}>
-          <img src={`/assets/alignments/${this.props.alignment}/combat-banner.png`} />
+          <img src={`/assets/alignments/${alignment}/combat-banner.png`} />
           <div className={styles.bannerLetter}>
             <img
-              src={`/assets/heroClasses/${this.props.heroClass}/letter.png`}
+              src={`/assets/heroClasses/${heroClass}/letter.png`}
             />
           </div>
         </div>

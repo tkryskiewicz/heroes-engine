@@ -4,17 +4,15 @@
   height: 170px;
 }
 
-.background-defender {
-  transform: scaleX(-1);
+.defender {
+  .background {
+    transform: scaleX(-1);
+  }
 }
 
 .banner {
   position: absolute;
   bottom: 0;
-}
-
-.banner-attacker {
-  right: 0;
 }
 
 .banner-container {
@@ -28,4 +26,10 @@
   width: 100%;
   top: 10px;
   text-align: center;
+}
+
+.attacker {
+  .banner {
+    right: 0;
+  }
 }
