@@ -6,7 +6,7 @@ import * as styles from "./CastleOption.module.scss";
 
 import { statusImages } from "./assets";
 
-import { StructureIcon } from "../../StructureIcon";
+import { CastleOptionIcon } from "../../CastleOptionIcon";
 
 export interface CastleOptionProps {
   town: string;
@@ -32,9 +32,9 @@ export class CastleOption extends React.Component<CastleOptionProps> {
   public render() {
     return (
       <div className={styles.root}>
-        <StructureIcon
+        <CastleOptionIcon
           town={this.props.town}
-          structure={this.props.option}
+          option={this.props.option}
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
           onClick={this.onClick}

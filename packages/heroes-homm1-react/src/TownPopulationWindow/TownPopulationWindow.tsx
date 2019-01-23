@@ -4,9 +4,9 @@ import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 import * as styles from "./TownPopulationWindow.module.scss";
 
 import { CreatureIcon } from "../base";
+import { CastleOptionIcon } from "../CastleOptionIcon";
 import { GameText } from "../core";
 import { getCreatureNameMessage } from "../messages";
-import { StructureIcon } from "../StructureIcon";
 import {
   withTownDetailWindow,
   WithTownDetailWindowInjectedProps,
@@ -50,9 +50,9 @@ class TownPopulationWindow extends React.Component<TownPopulationWindowProps> {
         key={dwelling.id}
         className={styles.dwelling}
       >
-        <StructureIcon
+        <CastleOptionIcon
           town={town}
-          structure={dwelling.id}
+          option={dwelling.id}
         />
         <div className={styles.creature}>
           <CreatureIcon

@@ -4,9 +4,9 @@ import { FormattedMessage } from "react-intl";
 import { Resources } from "heroes-core";
 
 import { GameModal, ResourceCost } from "../base";
+import { CastleOptionIcon } from "../CastleOptionIcon";
 import { GameText } from "../core";
 import { getStructureDescriptionMessage } from "../messages";
-import { StructureIcon } from "../StructureIcon";
 import { messages } from "./messages";
 
 export interface BuildStructureWindowProps {
@@ -41,9 +41,9 @@ export class BuildStructureWindow extends React.Component<BuildStructureWindowPr
           </GameText>
         </div>
         <div>
-          <StructureIcon
+          <CastleOptionIcon
             town={this.props.town}
-            structure={this.props.structure}
+            option={this.props.structure}
           />
         </div>
         <div>

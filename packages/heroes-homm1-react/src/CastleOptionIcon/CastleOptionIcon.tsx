@@ -3,17 +3,17 @@ import { FormattedMessage } from "react-intl";
 
 import { isCommonStructure } from "heroes-homm1";
 
-import * as styles from "./StructureIcon.module.scss";
+import * as styles from "./CastleOptionIcon.module.scss";
 
 import { GameText } from "../core";
 import { getStructureNameMessage } from "../messages";
 
-export interface StructureIconProps {
+export interface CastleOptionIconProps {
   town: string;
-  structure: string;
-  onMouseEnter: (structure: string) => void;
-  onMouseLeave: (structure: string) => void;
-  onClick: (structure: string) => void;
+  option: string;
+  onMouseEnter: (option: string) => void;
+  onMouseLeave: (option: string) => void;
+  onClick: (option: string) => void;
 }
 
 type DefaultProp =
@@ -21,15 +21,15 @@ type DefaultProp =
   "onMouseLeave" |
   "onClick";
 
-export class StructureIcon extends React.Component<StructureIconProps> {
-  public static defaultProps: Pick<StructureIconProps, DefaultProp> = {
+export class CastleOptionIcon extends React.Component<CastleOptionIconProps> {
+  public static defaultProps: Pick<CastleOptionIconProps, DefaultProp> = {
     onClick: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,
   };
 
   public render() {
-    const { town, structure } = this.props;
+    const { town, option } = this.props;
 
     return (
       <div
@@ -38,31 +38,31 @@ export class StructureIcon extends React.Component<StructureIconProps> {
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
       >
-        <img src={`assets/towns/${isCommonStructure(structure) ? "common" : town}/structures/${structure}/icon.jpg`} />
-        {this.renderName(structure)}
+        <img src={`assets/towns/${isCommonStructure(option) ? "common" : town}/structures/${option}/icon.jpg`} />
+        {this.renderName(option)}
       </div>
     );
   }
 
-  private renderName(structure: string) {
+  private renderName(option: string) {
     return (
       <div className={styles.name}>
         <GameText size="small">
-          <FormattedMessage {...getStructureNameMessage(structure)} />
+          <FormattedMessage {...getStructureNameMessage(option)} />
         </GameText>
       </div>
     );
   }
 
   private onMouseEnter = () => {
-    this.props.onMouseEnter(this.props.structure);
+    this.props.onMouseEnter(this.props.option);
   }
 
   private onMouseLeave = () => {
-    this.props.onMouseLeave(this.props.structure);
+    this.props.onMouseLeave(this.props.option);
   }
 
   private onClick = () => {
-    this.props.onClick(this.props.structure);
+    this.props.onClick(this.props.option);
   }
 }

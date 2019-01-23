@@ -6,13 +6,13 @@ import * as React from "react";
 import { StructureId, TownId } from "heroes-homm1";
 
 import { structureOptions, townOptions } from "../stories";
-import { StructureIcon } from "./StructureIcon";
+import { CastleOptionIcon } from "./CastleOptionIcon";
 
-storiesOf("StructureIcon", module)
+storiesOf("CastleOptionIcon", module)
   .add("default", () => (
-    <StructureIcon
+    <CastleOptionIcon
       town={select("Town", townOptions, TownId.Farm)}
-      structure={select("Structure", structureOptions, StructureId.Castle)}
+      option={select("Option", structureOptions, StructureId.Castle)}
       onMouseEnter={action("Mouse Enter")}
       onMouseLeave={action("Mouse Leave")}
       onClick={action("Click")}
