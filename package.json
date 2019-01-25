@@ -21,5 +21,8 @@
     "lint": "tslint -p .",
     "test": "jest",
     "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "tslint-immutable": "^5.1.0"
   }
 }

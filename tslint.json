@@ -2,7 +2,8 @@
   "extends": [
     "tslint:latest",
     "tslint-no-circular-imports",
-    "tslint-react"
+    "tslint-react",
+    "tslint-immutable"
   ],
   "rules": {
     "interface-name": [
@@ -23,6 +24,22 @@
       "check-format",
       "allow-leading-underscore",
       "allow-pascal-case"
-    ]
+    ],
+    // tslint-immutable
+    "no-array-mutation": false,
+    "no-class": false,
+    "no-delete": false,
+    "no-expression-statement": false,
+    "no-if-statement": false,
+    "no-let": false,
+    "no-loop-statement": false,
+    "no-method-signature": false,
+    "no-mixed-interface": false,
+    "no-object-mutation": false,
+    "no-this": false,
+    "no-throw": false,
+    "no-try": false,
+    "readonly-array": false,
+    "readonly-keyword": false
   }
 }
