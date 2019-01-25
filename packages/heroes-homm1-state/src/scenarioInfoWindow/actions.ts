@@ -8,7 +8,7 @@ export type ScenarioInfoWindowAction =
   CloseScenarioInfoWindowAction;
 
 export interface OpenScenarioInfoWindowAction {
-  type: ScenarioInfoWindowActionType.Open;
+  readonly type: ScenarioInfoWindowActionType.Open;
 }
 
 export const openScenarioInfoWindow = (): OpenScenarioInfoWindowAction => ({
@@ -16,7 +16,7 @@ export const openScenarioInfoWindow = (): OpenScenarioInfoWindowAction => ({
 });
 
 export interface CloseScenarioInfoWindowAction {
-  type: ScenarioInfoWindowActionType.Close;
+  readonly type: ScenarioInfoWindowActionType.Close;
 }
 
 export const closeScenarioInfoWindow = (): CloseScenarioInfoWindowAction => ({

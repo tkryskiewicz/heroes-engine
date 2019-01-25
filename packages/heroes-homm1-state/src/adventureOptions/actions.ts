@@ -8,7 +8,7 @@ export type AdventureOptionsAction =
   CloseAdventureOptionsAction;
 
 export interface OpenAdventureOptionsAction {
-  type: AdventureOptionsActionType.Open;
+  readonly type: AdventureOptionsActionType.Open;
 }
 
 export const openAdventureOptions = (): OpenAdventureOptionsAction => ({
@@ -16,7 +16,7 @@ export const openAdventureOptions = (): OpenAdventureOptionsAction => ({
 });
 
 export interface CloseAdventureOptionsAction {
-  type: AdventureOptionsActionType.Close;
+  readonly type: AdventureOptionsActionType.Close;
 }
 
 export const closeAdventureOptions = (): CloseAdventureOptionsAction => ({

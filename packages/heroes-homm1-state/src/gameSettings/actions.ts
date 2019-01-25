@@ -18,8 +18,8 @@ export type GameSettingsAction =
   ChangeViewEnemyMovementAction;
 
 export interface ChangeMusicVolumeAction {
-  type: GameSettingsActionType.ChangeMusicVolume;
-  volume: SoundVolume;
+  readonly type: GameSettingsActionType.ChangeMusicVolume;
+  readonly volume: SoundVolume;
 }
 
 export const changeMusicVolume = (volume: SoundVolume): ChangeMusicVolumeAction => ({
@@ -28,8 +28,8 @@ export const changeMusicVolume = (volume: SoundVolume): ChangeMusicVolumeAction 
 });
 
 export interface ChangeEffectsVolumeAction {
-  type: GameSettingsActionType.ChangeEffectsVolume;
-  volume: SoundVolume;
+  readonly type: GameSettingsActionType.ChangeEffectsVolume;
+  readonly volume: SoundVolume;
 }
 
 export const changeEffectsVolume = (volume: SoundVolume): ChangeEffectsVolumeAction => ({
@@ -38,8 +38,8 @@ export const changeEffectsVolume = (volume: SoundVolume): ChangeEffectsVolumeAct
 });
 
 export interface ChangeMovementSpeedAction {
-  type: GameSettingsActionType.ChangeMovementSpeed;
-  value: MovementSpeed;
+  readonly type: GameSettingsActionType.ChangeMovementSpeed;
+  readonly value: MovementSpeed;
 }
 
 export const changeMovementSpeed = (value: MovementSpeed): ChangeMovementSpeedAction => ({
@@ -48,8 +48,8 @@ export const changeMovementSpeed = (value: MovementSpeed): ChangeMovementSpeedAc
 });
 
 export interface ChangeAutoSaveAction {
-  type: GameSettingsActionType.ChangeAutoSave;
-  value: boolean;
+  readonly type: GameSettingsActionType.ChangeAutoSave;
+  readonly value: boolean;
 }
 
 export const changeAutoSave = (value: boolean): ChangeAutoSaveAction => ({
@@ -58,8 +58,8 @@ export const changeAutoSave = (value: boolean): ChangeAutoSaveAction => ({
 });
 
 export interface ChangeShowPathAction {
-  type: GameSettingsActionType.ChangeShowPath;
-  value: boolean;
+  readonly type: GameSettingsActionType.ChangeShowPath;
+  readonly value: boolean;
 }
 
 export const changeShowPath = (value: boolean): ChangeShowPathAction => ({
@@ -68,8 +68,8 @@ export const changeShowPath = (value: boolean): ChangeShowPathAction => ({
 });
 
 export interface ChangeViewEnemyMovementAction {
-  type: GameSettingsActionType.ChangeViewEnemyMovement;
-  value: boolean;
+  readonly type: GameSettingsActionType.ChangeViewEnemyMovement;
+  readonly value: boolean;
 }
 
 export const changeViewEnemyMovement = (value: boolean): ChangeViewEnemyMovementAction => ({

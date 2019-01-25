@@ -28,7 +28,7 @@ export type HeroWindowAction =
   CloseDismissHeroPromptAction;
 
 export interface OpenHeroWindowAction {
-  type: HeroWindowActionType.Open;
+  readonly type: HeroWindowActionType.Open;
 }
 
 export const openHeroWindow = (): OpenHeroWindowAction => ({
@@ -36,7 +36,7 @@ export const openHeroWindow = (): OpenHeroWindowAction => ({
 });
 
 export interface CloseHeroWindowAction {
-  type: HeroWindowActionType.Close;
+  readonly type: HeroWindowActionType.Close;
 }
 
 export const closeHeroWindow = (): CloseHeroWindowAction => ({
@@ -44,8 +44,8 @@ export const closeHeroWindow = (): CloseHeroWindowAction => ({
 });
 
 export interface ChangeVisibleSkillDetailsAction {
-  type: HeroWindowActionType.ChangeVisibleSkillDetails;
-  skill?: string;
+  readonly type: HeroWindowActionType.ChangeVisibleSkillDetails;
+  readonly skill?: string;
 }
 
 export const changeVisibleHeroWindowSkillDetails = (skill?: string): ChangeVisibleSkillDetailsAction => ({
@@ -54,8 +54,8 @@ export const changeVisibleHeroWindowSkillDetails = (skill?: string): ChangeVisib
 });
 
 export interface ChangeVisibleMiscInfoDetailsAction {
-  type: HeroWindowActionType.ChangeVisibleMiscInfoDetails;
-  infoType?: string;
+  readonly type: HeroWindowActionType.ChangeVisibleMiscInfoDetails;
+  readonly infoType?: string;
 }
 
 export const changeVisibleMiscInfoDetails = (infoType?: string): ChangeVisibleMiscInfoDetailsAction => ({
@@ -64,8 +64,8 @@ export const changeVisibleMiscInfoDetails = (infoType?: string): ChangeVisibleMi
 });
 
 export interface SelectHeroWindowTroopAction {
-  type: HeroWindowActionType.SelectTroop;
-  index: number;
+  readonly type: HeroWindowActionType.SelectTroop;
+  readonly index: number;
 }
 
 export const selectHeroWindowTroop = (index: number): SelectHeroWindowTroopAction => ({
@@ -74,8 +74,8 @@ export const selectHeroWindowTroop = (index: number): SelectHeroWindowTroopActio
 });
 
 export interface OpenTroopDetails {
-  type: HeroWindowActionType.OpenTroopDetails;
-  index: number;
+  readonly type: HeroWindowActionType.OpenTroopDetails;
+  readonly index: number;
 }
 
 export const openTroopDetails = (index: number): OpenTroopDetails => ({
@@ -84,7 +84,7 @@ export const openTroopDetails = (index: number): OpenTroopDetails => ({
 });
 
 export interface CloseTroopDetails {
-  type: HeroWindowActionType.CloseTroopDetails;
+  readonly type: HeroWindowActionType.CloseTroopDetails;
 }
 
 export const closeTroopDetails = (): CloseTroopDetails => ({
@@ -92,8 +92,8 @@ export const closeTroopDetails = (): CloseTroopDetails => ({
 });
 
 export interface OpenDismissTroopPromptAction {
-  type: HeroWindowActionType.OpenDismissTroopPrompt;
-  index: number;
+  readonly type: HeroWindowActionType.OpenDismissTroopPrompt;
+  readonly index: number;
 }
 
 export const openDismissTroopPrompt = (index: number): OpenDismissTroopPromptAction => ({
@@ -102,8 +102,8 @@ export const openDismissTroopPrompt = (index: number): OpenDismissTroopPromptAct
 });
 
 export interface CloseDismissTroopPromptAction {
-  type: HeroWindowActionType.CloseDismissTroopPrompt;
-  index: number;
+  readonly type: HeroWindowActionType.CloseDismissTroopPrompt;
+  readonly index: number;
 }
 
 export const closeDismissTroopPrompt = (index: number): CloseDismissTroopPromptAction => ({
@@ -112,8 +112,8 @@ export const closeDismissTroopPrompt = (index: number): CloseDismissTroopPromptA
 });
 
 export interface ChangeVisibleArtifactDetailsAction {
-  type: HeroWindowActionType.ChangeVisibleArtifactDetails;
-  index?: number;
+  readonly type: HeroWindowActionType.ChangeVisibleArtifactDetails;
+  readonly index?: number;
 }
 
 export const changeVisibleArtifactDetails = (index?: number): ChangeVisibleArtifactDetailsAction => ({
@@ -122,7 +122,7 @@ export const changeVisibleArtifactDetails = (index?: number): ChangeVisibleArtif
 });
 
 export interface OpenDismissHeroPromptAction {
-  type: HeroWindowActionType.OpenDismissHeroPrompt;
+  readonly type: HeroWindowActionType.OpenDismissHeroPrompt;
 }
 
 export const openDismissHeroPrompt = (): OpenDismissHeroPromptAction => ({
@@ -130,7 +130,7 @@ export const openDismissHeroPrompt = (): OpenDismissHeroPromptAction => ({
 });
 
 export interface CloseDismissHeroPromptAction {
-  type: HeroWindowActionType.CloseDismissHeroPrompt;
+  readonly type: HeroWindowActionType.CloseDismissHeroPrompt;
 }
 
 export const closeDismissHeroPrompt = (): CloseDismissHeroPromptAction => ({

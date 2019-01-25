@@ -23,7 +23,7 @@ export type TownWindowAction =
   ChangeRecruitTroopCountAction;
 
 export interface OpenTownWindowAction {
-  type: TownWindowActionType.Open;
+  readonly type: TownWindowActionType.Open;
 }
 
 export const openTownWindow = (): OpenTownWindowAction => ({
@@ -31,7 +31,7 @@ export const openTownWindow = (): OpenTownWindowAction => ({
 });
 
 export interface CloseTownWindowAction {
-  type: TownWindowActionType.Close;
+  readonly type: TownWindowActionType.Close;
 }
 
 export const closeTownWindow = (): CloseTownWindowAction => ({
@@ -39,8 +39,8 @@ export const closeTownWindow = (): CloseTownWindowAction => ({
 });
 
 export interface SelectGarrisonTroopAction {
-  type: TownWindowActionType.SelectGarrisonTroop;
-  index: number;
+  readonly type: TownWindowActionType.SelectGarrisonTroop;
+  readonly index: number;
 }
 
 export const selectTownWindowGarrisonTroop = (index: number): SelectGarrisonTroopAction => ({
@@ -49,8 +49,8 @@ export const selectTownWindowGarrisonTroop = (index: number): SelectGarrisonTroo
 });
 
 export interface SelectHeroTroopAction {
-  type: TownWindowActionType.SelectHeroTroop;
-  index: number;
+  readonly type: TownWindowActionType.SelectHeroTroop;
+  readonly index: number;
 }
 
 export const selectTownWindowHeroTroop = (index: number): SelectHeroTroopAction => ({
@@ -59,8 +59,8 @@ export const selectTownWindowHeroTroop = (index: number): SelectHeroTroopAction 
 });
 
 export interface OpenStructureDetailsAction {
-  type: TownWindowActionType.OpenStructureDetails;
-  structure: string;
+  readonly type: TownWindowActionType.OpenStructureDetails;
+  readonly structure: string;
 }
 
 export const openStructureDetails = (structure: string): OpenStructureDetailsAction => ({
@@ -69,7 +69,7 @@ export const openStructureDetails = (structure: string): OpenStructureDetailsAct
 });
 
 export interface CloseStructureDetailsAction {
-  type: TownWindowActionType.CloseStructureDetails;
+  readonly type: TownWindowActionType.CloseStructureDetails;
 }
 
 export const closeStructureDetails = (): CloseStructureDetailsAction => ({
@@ -77,8 +77,8 @@ export const closeStructureDetails = (): CloseStructureDetailsAction => ({
 });
 
 export interface OpenOptionDetailsAction {
-  type: TownWindowActionType.OpenOptionDetails;
-  value: string;
+  readonly type: TownWindowActionType.OpenOptionDetails;
+  readonly value: string;
 }
 
 export const openOptionDetails = (value: string): OpenOptionDetailsAction => ({
@@ -87,7 +87,7 @@ export const openOptionDetails = (value: string): OpenOptionDetailsAction => ({
 });
 
 export interface CloseOptionDetailsAction {
-  type: TownWindowActionType.CloseOptionDetails;
+  readonly type: TownWindowActionType.CloseOptionDetails;
 }
 
 export const closeOptionDetails = (): CloseOptionDetailsAction => ({
@@ -95,8 +95,8 @@ export const closeOptionDetails = (): CloseOptionDetailsAction => ({
 });
 
 export interface ChangeRecruitTroopCountAction {
-  type: TownWindowActionType.ChangeRecruitTroopCount;
-  count: number;
+  readonly type: TownWindowActionType.ChangeRecruitTroopCount;
+  readonly count: number;
 }
 
 export const changeRecruitTroopCount = (count: number): ChangeRecruitTroopCountAction => ({

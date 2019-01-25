@@ -18,10 +18,10 @@ export type GameAction =
   EndTurnAction;
 
 export interface SwapHeroTroopsAction {
-  type: GameActionType.SwapHeroTroops;
-  hero: string;
-  index: number;
-  withIndex: number;
+  readonly type: GameActionType.SwapHeroTroops;
+  readonly hero: string;
+  readonly index: number;
+  readonly withIndex: number;
 }
 
 export const swapHeroTroops = (hero: string, index: number, withIndex: number): SwapHeroTroopsAction => ({
@@ -32,9 +32,9 @@ export const swapHeroTroops = (hero: string, index: number, withIndex: number): 
 });
 
 export interface DismissHeroTroopAction {
-  type: GameActionType.DismissHeroTroop;
-  hero: string;
-  index: number;
+  readonly type: GameActionType.DismissHeroTroop;
+  readonly hero: string;
+  readonly index: number;
 }
 
 export const dismissHeroTroop = (hero: string, index: number): DismissHeroTroopAction => ({
@@ -44,8 +44,8 @@ export const dismissHeroTroop = (hero: string, index: number): DismissHeroTroopA
 });
 
 export interface DismissHeroAction {
-  type: GameActionType.DismissHero;
-  hero: string;
+  readonly type: GameActionType.DismissHero;
+  readonly hero: string;
 }
 
 export const dismissHero = (hero: string): DismissHeroAction => ({
@@ -54,10 +54,10 @@ export const dismissHero = (hero: string): DismissHeroAction => ({
 });
 
 export interface SwapGarrisonTroopsAction {
-  type: GameActionType.SwapGarrisonTroops;
-  town: string;
-  index: number;
-  withIndex: number;
+  readonly type: GameActionType.SwapGarrisonTroops;
+  readonly town: string;
+  readonly index: number;
+  readonly withIndex: number;
 }
 
 export const swapGarrisonTroops = (town: string, index: number, withIndex: number): SwapGarrisonTroopsAction => ({
@@ -68,9 +68,9 @@ export const swapGarrisonTroops = (town: string, index: number, withIndex: numbe
 });
 
 export interface BuildStructureAction {
-  type: GameActionType.BuildStructure;
-  town: string;
-  structure: string;
+  readonly type: GameActionType.BuildStructure;
+  readonly town: string;
+  readonly structure: string;
 }
 
 export const buildStructure = (town: string, structure: string): BuildStructureAction => ({
@@ -80,10 +80,10 @@ export const buildStructure = (town: string, structure: string): BuildStructureA
 });
 
 export interface RecruitTroopAction {
-  type: GameActionType.RecruitTroop;
-  town: string;
-  structure: string;
-  count: number;
+  readonly type: GameActionType.RecruitTroop;
+  readonly town: string;
+  readonly structure: string;
+  readonly count: number;
 }
 
 export const recruitTroop = (town: string, structure: string, count: number): RecruitTroopAction => ({
@@ -94,7 +94,7 @@ export const recruitTroop = (town: string, structure: string, count: number): Re
 });
 
 export interface EndTurnAction {
-  type: GameActionType.EndTurn;
+  readonly type: GameActionType.EndTurn;
 }
 
 export const endTurn = (): EndTurnAction => ({

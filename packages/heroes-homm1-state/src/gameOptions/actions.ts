@@ -8,7 +8,7 @@ export type GameOptionsAction =
   CloseGameOptionsAction;
 
 export interface OpenGameOptionsAction {
-  type: GameOptionsActionType.Open;
+  readonly type: GameOptionsActionType.Open;
 }
 
 export const openGameOptions = (): OpenGameOptionsAction => ({
@@ -16,7 +16,7 @@ export const openGameOptions = (): OpenGameOptionsAction => ({
 });
 
 export interface CloseGameOptionsAction {
-  type: GameOptionsActionType.Close;
+  readonly type: GameOptionsActionType.Close;
 }
 
 export const closeGameOptions = (): CloseGameOptionsAction => ({

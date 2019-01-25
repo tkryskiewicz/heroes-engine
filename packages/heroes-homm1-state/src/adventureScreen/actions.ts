@@ -6,8 +6,8 @@ export type AdventureScreenAction =
   ChangeEndTurnPromptVisibleAction;
 
 export interface ChangeEndTurnPromptVisibleAction {
-  type: AdventureScreenActionType.ChangeEndTurnPromptVisible;
-  value: boolean;
+  readonly type: AdventureScreenActionType.ChangeEndTurnPromptVisible;
+  readonly value: boolean;
 }
 
 export const changeEndTurnPromptVisible = (value: boolean): ChangeEndTurnPromptVisibleAction => ({

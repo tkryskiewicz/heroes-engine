@@ -8,7 +8,7 @@ export type PuzzleWindowAction =
   ClosePuzzleWindowAction;
 
 export interface OpenPuzzleWindowAction {
-  type: PuzzleWindowActionType.Open;
+  readonly type: PuzzleWindowActionType.Open;
 }
 
 export const openPuzzleWindow = (): OpenPuzzleWindowAction => ({
@@ -16,7 +16,7 @@ export const openPuzzleWindow = (): OpenPuzzleWindowAction => ({
 });
 
 export interface ClosePuzzleWindowAction {
-  type: PuzzleWindowActionType.Close;
+  readonly type: PuzzleWindowActionType.Close;
 }
 
 export const closePuzzleWindow = (): ClosePuzzleWindowAction => ({

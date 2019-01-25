@@ -6,8 +6,8 @@ export type MageGuildWindowAction =
   ChangeVisibleSpellDetailAction;
 
 export interface ChangeVisibleSpellDetailAction {
-  type: MageGuildWindowActionType.ChangeVisibleSpellDetail;
-  spell?: string;
+  readonly type: MageGuildWindowActionType.ChangeVisibleSpellDetail;
+  readonly spell?: string;
 }
 
 export const changeVisibleSpellDetail = (spell?: string): ChangeVisibleSpellDetailAction => ({

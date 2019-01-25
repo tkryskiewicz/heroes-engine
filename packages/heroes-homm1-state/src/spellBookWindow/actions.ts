@@ -12,8 +12,8 @@ export type SpellBookWindowAction =
   ChangeVisibleSpellDetailsAction;
 
 export interface ChangeSpellTypeAction {
-  type: SpellBookWindowActionType.ChangeSpellType;
-  value: SpellType;
+  readonly type: SpellBookWindowActionType.ChangeSpellType;
+  readonly value: SpellType;
 }
 
 export const changeSpellType = (value: SpellType): ChangeSpellTypeAction => ({
@@ -22,8 +22,8 @@ export const changeSpellType = (value: SpellType): ChangeSpellTypeAction => ({
 });
 
 export interface ChangePageAction {
-  type: SpellBookWindowActionType.ChangePage;
-  value: number;
+  readonly type: SpellBookWindowActionType.ChangePage;
+  readonly value: number;
 }
 
 export const changePage = (value: number): ChangePageAction => ({
@@ -32,8 +32,8 @@ export const changePage = (value: number): ChangePageAction => ({
 });
 
 export interface ChangeVisibleSpellDetailsAction {
-  type: SpellBookWindowActionType.ChangeVisibleSpellDetails;
-  spell?: string;
+  readonly type: SpellBookWindowActionType.ChangeVisibleSpellDetails;
+  readonly spell?: string;
 }
 
 export const changeVisibleSpellDetails = (spell?: string): ChangeVisibleSpellDetailsAction => ({

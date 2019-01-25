@@ -8,8 +8,8 @@ export type LocatorsAction =
   SelectLocatorAction;
 
 export interface SelectLocatorAction {
-  type: LocatorsActionType.Select;
-  locator: Locator;
+  readonly type: LocatorsActionType.Select;
+  readonly locator: Locator;
 }
 
 export const selectLocator = (locator: Locator): SelectLocatorAction => ({
