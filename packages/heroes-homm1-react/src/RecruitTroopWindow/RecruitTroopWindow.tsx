@@ -3,7 +3,7 @@ import { InputNumberProps } from "antd/lib/input-number";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { enoughResources, multiplyResources, Resources } from "heroes-core";
+import { divideResources, multiplyResources, Resources } from "heroes-core";
 
 import * as styles from "./RecruitTroopWindow.module.scss";
 
@@ -135,14 +135,7 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
   }
 
   private readonly onMaxClick = () => {
-    let count = 0;
-
-    while (
-      count < this.props.availableCount &&
-      enoughResources(this.props.resources, multiplyResources(this.props.cost, count + 1))
-    ) {
-      count += 1;
-    }
+    const count = Math.min(divideResources(this.props.resources, this.props.cost), this.props.availableCount);
 
     this.props.onCountChange(count);
   }

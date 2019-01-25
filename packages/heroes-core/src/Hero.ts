@@ -35,13 +35,9 @@ export const canSelectNextHero = (heroes: Hero[]): boolean =>
 export const getNextHeroIndex = (heroes: Hero[], selectedIndex?: number): number | undefined => {
   const startIndex = selectedIndex !== undefined ? selectedIndex + 1 : 0;
 
-  for (let i = 0; i < heroes.length; i++) {
-    const index = (startIndex + i) % heroes.length;
+  const index = [...new Array(heroes.length).keys()]
+    .map((i) => (startIndex + i) % heroes.length)
+    .find((i) => heroes[i].mobility > 0 && i !== selectedIndex);
 
-    if (heroes[index].mobility && index !== selectedIndex) {
-      return index;
-    }
-  }
-
-  return undefined;
+  return index;
 };

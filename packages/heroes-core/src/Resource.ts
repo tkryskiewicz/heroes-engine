@@ -22,6 +22,12 @@ export const multiplyResources = (resources: Resources, multiplier: number): Res
   }, {});
 };
 
+export const divideResources = (resources: Resources, amount: Resources): number =>
+  Math.min(
+    ...Object.keys(amount)
+      .map((r) => Math.floor((resources[r] || 0) / amount[r])),
+  );
+
 export const enoughResources = (resources: Resources, amount: Resources): boolean => {
   if (!areResourcesValid(resources)) {
     throw new Error("Resources are not valid");

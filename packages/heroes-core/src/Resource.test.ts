@@ -1,5 +1,6 @@
 import {
   areResourcesValid,
+  divideResources,
   enoughResources,
   multiplyResources,
   Resources,
@@ -115,6 +116,64 @@ describe("multiplyResources", () => {
     };
 
     expect(() => multiplyResources(resources, 2)).toThrowError();
+  });
+});
+
+describe("divideResources", () => {
+  it("should return zero when resources are missing", () => {
+    const resources: Resources = {};
+
+    const amount: Resources = {
+      resource: 1,
+    };
+
+    const result = divideResources(resources, amount);
+
+    expect(result).toBe(0);
+  });
+
+  it("should return zero when not enough resources", () => {
+    const resources: Resources = {
+      resource: 1,
+    };
+
+    const amount: Resources = {
+      resource: 2,
+    };
+
+    const result = divideResources(resources, amount);
+
+    expect(result).toBe(0);
+  });
+
+  it("should return correct multiplier", () => {
+    const resources: Resources = {
+      resource: 2,
+    };
+
+    const amount: Resources = {
+      resource: 1,
+    };
+
+    const result = divideResources(resources, amount);
+
+    expect(result).toBe(2);
+  });
+
+  it("should return lowest multiplier when multiple resources", () => {
+    const resources: Resources = {
+      resourceA: 1,
+      resourceB: 2,
+    };
+
+    const amount: Resources = {
+      resourceA: 1,
+      resourceB: 1,
+    };
+
+    const result = divideResources(resources, amount);
+
+    expect(result).toBe(1);
   });
 });
 

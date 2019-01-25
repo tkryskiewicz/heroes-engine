@@ -22,7 +22,7 @@ export {
   endGameTurn,
 } from "./Game";
 export { Hero, HeroSkills, swapHeroTroops, canSelectNextHero, getNextHeroIndex } from "./Hero";
-export { Resources, multiplyResources, enoughResources } from "./Resource";
+export { Resources, multiplyResources, divideResources, enoughResources } from "./Resource";
 export { Scenario } from "./Scenario";
 export { Structure, Dwelling, buildStructure } from "./Structure";
 export { Town, isStructureBuilt } from "./Town";
