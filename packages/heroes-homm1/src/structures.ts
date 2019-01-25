@@ -5,9 +5,9 @@ import { CreatureId } from "./creatures";
 import { Resource } from "./Resource";
 
 interface DwellingType {
-  creature: string;
-  growth: number;
-  cost: Resources;
+  readonly creature: string;
+  readonly growth: number;
+  readonly cost: Resources;
 }
 
 const constructDwelling = (dwellingType: DwellingType): Dwelling => ({
@@ -18,9 +18,9 @@ const constructDwelling = (dwellingType: DwellingType): Dwelling => ({
 });
 
 export interface StructureType {
-  id: string;
-  cost: Resources;
-  dwelling?: DwellingType;
+  readonly id: string;
+  readonly cost: Resources;
+  readonly dwelling?: DwellingType;
 }
 
 export const constructStructure = (structureType: StructureType): Structure => ({

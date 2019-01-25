@@ -1,8 +1,8 @@
 import { SpellType } from "./SpellType";
 
 export interface Spell {
-  id: string;
-  type: SpellType;
-  level: number;
-  charges: number;
+  readonly id: string;
+  readonly type: SpellType;
+  readonly level: number;
+  readonly charges: number;
 }

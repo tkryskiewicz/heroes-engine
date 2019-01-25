@@ -55,7 +55,7 @@ export const BattlefieldWidth = 7;
 export const TerrainVariants = 7;
 
 // NOTE: can this be turned into a function?
-const experienceLevels: { [level: number]: number } = {
+const experienceLevels: { readonly [level: number]: number } = {
   1: 0,
   2: 1000,
   3: 2000,

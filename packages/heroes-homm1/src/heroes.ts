@@ -4,8 +4,8 @@ import { HeroClass } from "./HeroClass";
 import { heroClasses } from "./heroClasses";
 
 export interface HeroInfo {
-  id: string;
-  heroClass: string;
+  readonly id: string;
+  readonly heroClass: string;
 }
 
 // Knights

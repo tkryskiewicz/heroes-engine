@@ -412,8 +412,9 @@ export const creatures = [
   ...neutralCreatures,
 ];
 
-export const creaturesById = creatures.reduce<{ [id: string]: Creature }>((p, c) => {
-  p[c.id] = c;
-
-  return p;
+export const creaturesById = creatures.reduce<{ readonly [id: string]: Creature }>((p, c) => {
+  return {
+    ...p,
+    [c.id]: c,
+  };
 }, {});

@@ -15,9 +15,9 @@ import {
 import { TownId } from "./TownId";
 
 interface TownType {
-  id: TownId;
-  heroClass: HeroClass;
-  structures: StructureType[];
+  readonly id: TownId;
+  readonly heroClass: HeroClass;
+  readonly structures: StructureType[];
 }
 
 const towns: TownType[] = [

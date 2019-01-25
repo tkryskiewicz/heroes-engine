@@ -2,9 +2,9 @@ import { CampaignId } from "./campaigns";
 import { CreatureId } from "./creatures";
 
 export interface CampaignGameScore {
-  playerName: string;
-  campaign: string;
-  daysCount: number;
+  readonly playerName: string;
+  readonly campaign: string;
+  readonly daysCount: number;
 }
 
 export const initialCampaignGameScores: CampaignGameScore[] = [
@@ -60,7 +60,7 @@ export const initialCampaignGameScores: CampaignGameScore[] = [
   },
 ];
 
-const campaignGameRatings: { [days: number]: string } = {
+const campaignGameRatings: { readonly [days: number]: string } = {
   500: CreatureId.Paladin,
   700: CreatureId.Ghost,
   900: CreatureId.Druid,
@@ -82,9 +82,9 @@ export const getCampaignGameRating = (days: number) => {
 };
 
 export interface StandardGameScore {
-  playerName: string;
-  scenario: string;
-  score: number;
+  readonly playerName: string;
+  readonly scenario: string;
+  readonly score: number;
 }
 
 export const initialStandardGameScores: StandardGameScore[] = [
@@ -140,7 +140,7 @@ export const initialStandardGameScores: StandardGameScore[] = [
   },
 ];
 
-const standardGameRatings: { [score: number]: string } = {
+const standardGameRatings: { readonly [score: number]: string } = {
   130: CreatureId.Cavalry,
   110: CreatureId.Ogre,
   90: CreatureId.Elf,
