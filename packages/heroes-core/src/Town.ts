@@ -2,13 +2,13 @@ import { appendArmyTroop, Army, swapArmyTroops } from "./Army";
 import { buildStructure, getTroop, recruitTroop, Structure } from "./Structure";
 
 export interface Town {
-  id: string;
-  name: string;
-  alignment: string;
-  heroClass: string;
-  garrison: Army;
-  structures: Structure[];
-  canConstructStructures: boolean;
+  readonly id: string;
+  readonly name: string;
+  readonly alignment: string;
+  readonly heroClass: string;
+  readonly garrison: Army;
+  readonly structures: Structure[];
+  readonly canConstructStructures: boolean;
 }
 
 const getStructure = (town: Town, structure: string): Structure | undefined =>

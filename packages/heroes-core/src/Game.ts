@@ -4,12 +4,12 @@ import { Scenario } from "./Scenario";
 import { buildTownStructure, endTownTurn, recruitTownTroop, swapGarrisonTroops, Town } from "./Town";
 
 export interface Game {
-  scenario: Scenario;
-  alignment: string;
-  resources: Resources;
-  heroes: Hero[];
-  towns: Town[];
-  discoveredPuzzlePieces: number;
+  readonly scenario: Scenario;
+  readonly alignment: string;
+  readonly resources: Resources;
+  readonly heroes: Hero[];
+  readonly towns: Town[];
+  readonly discoveredPuzzlePieces: number;
 }
 
 export const swapGameHeroTroops = (game: Game, hero: string, index: number, withIndex: number): Game => ({

@@ -1,5 +1,5 @@
 export interface Artifact<T = {}> {
-  id: string;
-  data: T;
-  tradable: boolean;
+  readonly id: string;
+  readonly data: T;
+  readonly tradable: boolean;
 }

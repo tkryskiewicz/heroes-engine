@@ -1,4 +1,4 @@
 export interface Scenario {
-  name: string;
-  description: string;
+  readonly name: string;
+  readonly description: string;
 }

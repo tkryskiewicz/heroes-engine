@@ -17,7 +17,7 @@ storiesOf("TownView", module)
 
     return (
       <TownView
-        town={{ ...town, structures: town.structures.map(buildStructure) }}
+        town={{ id: town.id, structures: town.structures.map(buildStructure) }}
         onStructureClick={action("Structure Click")}
       />
     );

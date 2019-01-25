@@ -2,20 +2,20 @@ import { Army, dismissArmyTroop, swapArmyTroops } from "./Army";
 import { Artifact } from "./Artifact";
 
 export interface HeroSkills {
-  [skill: string]: number;
+  readonly [skill: string]: number;
 }
 
 export interface Hero {
-  id: string;
-  alignment: string;
-  heroClass: string;
-  skills: HeroSkills;
-  mobility: number;
-  army: Army;
-  morale: number;
-  luck: number;
-  experience: number;
-  artifacts: Array<Artifact | undefined>;
+  readonly id: string;
+  readonly alignment: string;
+  readonly heroClass: string;
+  readonly skills: HeroSkills;
+  readonly mobility: number;
+  readonly army: Army;
+  readonly morale: number;
+  readonly luck: number;
+  readonly experience: number;
+  readonly artifacts: Array<Artifact | undefined>;
 }
 
 export const swapHeroTroops = (hero: Hero, index: number, withIndex: number): Hero => ({

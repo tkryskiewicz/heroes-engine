@@ -1,5 +1,5 @@
 export interface Resources {
-  [resource: string]: number;
+  readonly [resource: string]: number;
 }
 
 export const areResourcesValid = (resources: Resources) =>
@@ -15,9 +15,10 @@ export const multiplyResources = (resources: Resources, multiplier: number): Res
   }
 
   return Object.keys(resources).reduce<Resources>((p, c) => {
-    p[c] = resources[c] * multiplier;
-
-    return p;
+    return {
+      ...p,
+      [c]: resources[c] * multiplier,
+    };
   }, {});
 };
 
@@ -47,9 +48,10 @@ export const subtractResources = (resources: Resources, amount: Resources): Reso
   return {
     ...resources,
     ...Object.keys(amount).reduce<Resources>((p, c) => {
-      p[c] = (resources[c] || 0) - amount[c];
-
-      return p;
+      return {
+        ...p,
+        [c]: (resources[c] || 0) - amount[c],
+      };
     }, {}),
   };
 };

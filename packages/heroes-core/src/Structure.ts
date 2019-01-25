@@ -2,10 +2,10 @@ import { Resources } from "./Resource";
 import { Troop } from "./Troop";
 
 export interface Dwelling {
-  creature: string;
-  availableCount: number;
-  growth: number;
-  cost: Resources;
+  readonly creature: string;
+  readonly availableCount: number;
+  readonly growth: number;
+  readonly cost: Resources;
 }
 
 const buildDwelling = (dwelling: Dwelling): Dwelling => ({
@@ -14,10 +14,10 @@ const buildDwelling = (dwelling: Dwelling): Dwelling => ({
 });
 
 export interface Structure {
-  id: string;
-  cost: Resources;
-  isBuilt: boolean;
-  dwelling?: Dwelling;
+  readonly id: string;
+  readonly cost: Resources;
+  readonly isBuilt: boolean;
+  readonly dwelling?: Dwelling;
 }
 
 export const buildStructure = (structure: Structure): Structure => ({

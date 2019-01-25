@@ -7,14 +7,14 @@ export enum BattlefieldObjectType {
 }
 
 export interface BattlefieldObstacleObject {
-  type: BattlefieldObjectType.Obstacle;
-  variant: number;
+  readonly type: BattlefieldObjectType.Obstacle;
+  readonly variant: number;
 }
 
 export interface BattlefieldTroopObject {
-  type: BattlefieldObjectType.Troop;
-  side: CombatSide;
-  troop: Troop;
+  readonly type: BattlefieldObjectType.Troop;
+  readonly side: CombatSide;
+  readonly troop: Troop;
 }
 
 export type BattlefieldObject =
@@ -22,16 +22,16 @@ export type BattlefieldObject =
   BattlefieldTroopObject;
 
 export interface BattlefieldCell {
-  terrainVariant: number;
-  object?: BattlefieldObject;
+  readonly terrainVariant: number;
+  readonly object?: BattlefieldObject;
 }
 
 export interface Battlefield {
-  width: number;
-  height: number;
-  terrainType: string;
-  woodyTerrain?: boolean;
-  cells: BattlefieldCell[];
+  readonly width: number;
+  readonly height: number;
+  readonly terrainType: string;
+  readonly woodyTerrain?: boolean;
+  readonly cells: BattlefieldCell[];
 }
 
 export const createBattlefield = (
