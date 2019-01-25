@@ -25,50 +25,57 @@ import {
 } from "heroes-homm1";
 
 interface SelectOptions {
-  [s: string]: string;
+  readonly [s: string]: string;
 }
 
 export const gameDifficultyOptions = Object.keys(GameDifficulty).reduce<SelectOptions>((p, c: any) => {
-  p[c] = GameDifficulty[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: GameDifficulty[c],
+  };
 }, {});
 
 export const alignmentOptions = Object.keys(Alignment).reduce<SelectOptions>((p, c: any) => {
-  p[c] = Alignment[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: Alignment[c],
+  };
 }, {});
 
 export const resourceOptions = Object.keys(Resource).reduce<SelectOptions>((p, c: any) => {
-  p[c] = Resource[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: Resource[c],
+  };
 }, {});
 
 export const heroClassOptions = Object.keys(HeroClass).reduce<SelectOptions>((p, c: any) => {
-  p[c] = HeroClass[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: HeroClass[c],
+  };
 }, {});
 
 // TODO: names should have spaces
 export const skillOptions = Object.keys(Skill).reduce<SelectOptions>((p, c: any) => {
-  p[c] = Skill[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: Skill[c],
+  };
 }, {});
 
 export const heroOptions = heroes.reduce<SelectOptions>((p, c) => {
-  p[c.id] = c.id;
-
-  return p;
+  return {
+    ...p,
+    [c.id]: c.id,
+  };
 }, {});
 
 export const townOptions = Object.keys(TownId).reduce<SelectOptions>((p, c: any) => {
-  p[c] = TownId[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: TownId[c],
+  };
 }, {});
 
 export const structureOptions = {
@@ -80,67 +87,78 @@ export const structureOptions = {
 };
 
 export const castleOptionStatusOptions = Object.keys(CastleOptionStatus).reduce<SelectOptions>((p, c: any) => {
-  p[c] = CastleOptionStatus[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: CastleOptionStatus[c],
+  };
 }, {});
 
 export const creatureOptions = creatures.reduce<SelectOptions>((p, c) => {
-  p[c.id] = c.id;
-
-  return p;
+  return {
+    ...p,
+    [c.id]: c.id,
+  };
 }, {});
 
 export const movementSpeedOptions = Object.keys(MovementSpeed).reduce<SelectOptions>((p, c: any) => {
-  p[c] = MovementSpeed[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: MovementSpeed[c],
+  };
 }, {});
 
 export const opponentSettingOptions = Object.keys(OpponentSetting).reduce<SelectOptions>((p, c: any) => {
-  p[c] = OpponentSetting[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: OpponentSetting[c],
+  };
 }, {});
 
 export const artifactOptions = Object.keys(ArtifactId).reduce<SelectOptions>((p, c: any) => {
-  p[c] = ArtifactId[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: ArtifactId[c],
+  };
 }, {});
 
 export const terrainTypeOptions = Object.keys(TerrainType).reduce<SelectOptions>((p, c: any) => {
-  p[c] = TerrainType[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: TerrainType[c],
+  };
 }, {});
 
 export const combatSideOptions = Object.keys(CombatSide).reduce<SelectOptions>((p, c: any) => {
-  p[c] = CombatSide[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: CombatSide[c],
+  };
 }, {});
 
 export const scenarioSizeOptions = Object.keys(ScenarioSize).reduce<SelectOptions>((p, c: any) => {
-  p[c] = ScenarioSize[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: ScenarioSize[c],
+  };
 }, {});
 
 export const scenarioDifficultyOptions = Object.keys(ScenarioDifficulty).reduce<SelectOptions>((p, c: any) => {
-  p[c] = ScenarioDifficulty[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: ScenarioDifficulty[c],
+  };
 }, {});
 
 export const spellTypeOptions = Object.keys(SpellType).reduce<SelectOptions>((p, c: any) => {
-  p[c] = SpellType[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: SpellType[c],
+  };
 }, {});
 
 export const spellOptions = Object.keys(SpellId).reduce<SelectOptions>((p, c: any) => {
-  p[c] = SpellId[c];
-
-  return p;
+  return {
+    ...p,
+    [c]: SpellId[c],
+  };
 }, {});

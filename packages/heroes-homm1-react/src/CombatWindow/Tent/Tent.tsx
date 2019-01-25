@@ -5,12 +5,12 @@ import { CombatSide } from "heroes-core";
 import * as styles from "./Tent.module.scss";
 
 export interface TentProps {
-  side: CombatSide;
-  alignment: string;
-  heroClass: string;
-  onMouseEnter: (side: CombatSide) => void;
-  onMouseLeave: (side: CombatSide) => void;
-  onClick: (side: CombatSide) => void;
+  readonly side: CombatSide;
+  readonly alignment: string;
+  readonly heroClass: string;
+  readonly onMouseEnter: (side: CombatSide) => void;
+  readonly onMouseLeave: (side: CombatSide) => void;
+  readonly onClick: (side: CombatSide) => void;
 }
 
 type DefaultProp =
@@ -19,7 +19,7 @@ type DefaultProp =
   "onClick";
 
 export class Tent extends React.Component<TentProps> {
-  public static defaultProps: Pick<TentProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<TentProps, DefaultProp> = {
     onClick: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,
@@ -57,15 +57,15 @@ export class Tent extends React.Component<TentProps> {
     );
   }
 
-  private onMouseEnter = () => {
+  private readonly onMouseEnter = () => {
     this.props.onMouseEnter(this.props.side);
   }
 
-  private onMouseLeave = () => {
+  private readonly onMouseLeave = () => {
     this.props.onMouseLeave(this.props.side);
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.side);
   }
 }

@@ -9,7 +9,7 @@ import { GameText } from "../../core";
 import { ResourceIcon } from "../ResourceIcon";
 
 export interface ResourceCostProps {
-  cost: Resources;
+  readonly cost: Resources;
 }
 
 export class ResourceCost extends React.Component<ResourceCostProps> {

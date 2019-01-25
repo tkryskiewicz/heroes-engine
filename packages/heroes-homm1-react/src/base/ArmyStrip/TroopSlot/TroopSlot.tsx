@@ -8,22 +8,22 @@ import { GameText } from "../../../core";
 import { CreatureIcon } from "../../CreatureIcon";
 
 interface Troop {
-  creature: string;
-  town?: string;
-  count: number;
+  readonly creature: string;
+  readonly town?: string;
+  readonly count: number;
 }
 
 export interface TroopSlotProps {
-  index: number;
-  troop?: Troop;
-  selected?: boolean;
-  onMouseEnter: (index: number) => void;
-  onMouseLeave: (index: number) => void;
-  onClick: (index: number) => void;
+  readonly index: number;
+  readonly troop?: Troop;
+  readonly selected?: boolean;
+  readonly onMouseEnter: (index: number) => void;
+  readonly onMouseLeave: (index: number) => void;
+  readonly onClick: (index: number) => void;
 }
 
 export class TroopSlot extends React.Component<TroopSlotProps> {
-  public static defaultProps: Pick<TroopSlotProps, "onMouseEnter" | "onMouseLeave" | "onClick"> = {
+  public static readonly defaultProps: Pick<TroopSlotProps, "onMouseEnter" | "onMouseLeave" | "onClick"> = {
     onClick: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,
@@ -95,15 +95,15 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
     );
   }
 
-  private onMouseEnter = () => {
+  private readonly onMouseEnter = () => {
     this.props.onMouseEnter(this.props.index);
   }
 
-  private onMouseLeave = () => {
+  private readonly onMouseLeave = () => {
     this.props.onMouseLeave(this.props.index);
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.index);
   }
 }

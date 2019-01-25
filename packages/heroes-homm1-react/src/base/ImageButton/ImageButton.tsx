@@ -3,16 +3,16 @@ import * as React from "react";
 import * as styles from "./ImageButton.module.scss";
 
 export interface ButtonImages {
-  enabled: string;
-  disabled: string;
+  readonly enabled: string;
+  readonly disabled: string;
 }
 
 export interface ImageButtonProps {
-  images: ButtonImages;
-  disabled: boolean;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-  onClick: () => void;
+  readonly images: ButtonImages;
+  readonly disabled: boolean;
+  readonly onMouseEnter: () => void;
+  readonly onMouseLeave: () => void;
+  readonly onClick: () => void;
 }
 
 interface ImageButtonState {
@@ -26,14 +26,14 @@ type DefaultProp =
   "onMouseLeave";
 
 export class ImageButton extends React.Component<ImageButtonProps, ImageButtonState> {
-  public static defaultProps: Pick<ImageButtonProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<ImageButtonProps, DefaultProp> = {
     disabled: false,
     onClick: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,
   };
 
-  public state: ImageButtonState = {
+  public readonly state: ImageButtonState = {
     pressed: false,
   };
 
@@ -57,13 +57,13 @@ export class ImageButton extends React.Component<ImageButtonProps, ImageButtonSt
     );
   }
 
-  private onMouseDown = () => {
+  private readonly onMouseDown = () => {
     this.setState({
       pressed: true,
     });
   }
 
-  private onMouseUp = () => {
+  private readonly onMouseUp = () => {
     this.setState({
       pressed: false,
     });

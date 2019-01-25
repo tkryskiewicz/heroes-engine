@@ -8,13 +8,13 @@ import * as styles from "./ArmyStrip.module.scss";
 import { TroopSlot } from "./TroopSlot";
 
 export interface ArmyStripProps {
-  army: Army;
-  onTroopMouseEnter: (index: number) => void;
-  onTroopMouseLeave: (index: number) => void;
-  selectedTroopIndex?: number;
-  onSelectTroop: (index: number) => void;
-  onSelectedTroopClick: (index: number) => void;
-  onSwapTroops: (index: number, withIndex: number) => void;
+  readonly army: Army;
+  readonly onTroopMouseEnter: (index: number) => void;
+  readonly onTroopMouseLeave: (index: number) => void;
+  readonly selectedTroopIndex?: number;
+  readonly onSelectTroop: (index: number) => void;
+  readonly onSelectedTroopClick: (index: number) => void;
+  readonly onSwapTroops: (index: number, withIndex: number) => void;
 }
 
 type DefaultProp =
@@ -25,7 +25,7 @@ type DefaultProp =
   "onSwapTroops";
 
 export class ArmyStrip extends React.Component<ArmyStripProps> {
-  public static defaultProps: Pick<ArmyStripProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<ArmyStripProps, DefaultProp> = {
     onSelectTroop: () => undefined,
     onSelectedTroopClick: () => undefined,
     onSwapTroops: () => undefined,
@@ -62,7 +62,7 @@ export class ArmyStrip extends React.Component<ArmyStripProps> {
     );
   }
 
-  private onTroopClick = (index: number) => {
+  private readonly onTroopClick = (index: number) => {
     const { selectedTroopIndex } = this.props;
 
     if (selectedTroopIndex === undefined && this.props.army[index]) {

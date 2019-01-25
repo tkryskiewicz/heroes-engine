@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { GameParagraph, GameParagraphProps } from "./GameParagraph";
 
-const textSizeOptions: { [s: string]: GameParagraphProps["textSize"] } = {
+const textSizeOptions: { readonly [s: string]: GameParagraphProps["textSize"] } = {
   Large: "large",
   Normal: "normal",
   Small: "small",

@@ -5,11 +5,11 @@ import * as styles from "./CreditsWindow.module.scss";
 import { withGameWindow } from "../core";
 
 export interface CreditsWindowProps {
-  onClick: () => void;
+  readonly onClick: () => void;
 }
 
 class CreditsWindow extends React.Component<CreditsWindowProps> {
-  public static defaultProps: CreditsWindowProps = {
+  public static readonly defaultProps: CreditsWindowProps = {
     onClick: () => undefined,
   };
 

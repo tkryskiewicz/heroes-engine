@@ -7,12 +7,12 @@ import { ImageButton, Menu } from "../base";
 import { buttonImages } from "./assets";
 
 export interface CampaignGameMenuProps {
-  onPlayClick: (campaign: string) => void;
-  onCancelClick: () => void;
+  readonly onPlayClick: (campaign: string) => void;
+  readonly onCancelClick: () => void;
 }
 
 export class CampaignGameMenu extends React.Component<CampaignGameMenuProps> {
-  public static defaultProps: Pick<CampaignGameMenuProps, "onPlayClick" | "onCancelClick"> = {
+  public static readonly defaultProps: Pick<CampaignGameMenuProps, "onPlayClick" | "onCancelClick"> = {
     onCancelClick: () => undefined,
     onPlayClick: () => undefined,
   };

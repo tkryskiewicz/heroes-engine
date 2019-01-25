@@ -8,14 +8,14 @@ import { CreatureIcon } from "../../base";
 import { GameParagraph } from "../../core";
 
 export interface CombatTroopProps {
-  side: CombatSide;
-  creature: string;
-  count: number;
-  selected: boolean;
+  readonly side: CombatSide;
+  readonly creature: string;
+  readonly count: number;
+  readonly selected: boolean;
 }
 
 export class CombatTroop extends React.Component<CombatTroopProps> {
-  public static defaultProps: Pick<CombatTroopProps, "selected"> = {
+  public static readonly defaultProps: Pick<CombatTroopProps, "selected"> = {
     selected: false,
   };
 

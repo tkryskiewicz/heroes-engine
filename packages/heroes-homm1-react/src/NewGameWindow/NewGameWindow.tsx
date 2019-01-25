@@ -21,16 +21,16 @@ import { messages } from "./messages";
 import { OpponentSettingBox } from "./OpponentSettingBox";
 
 export interface NewGameWindowProps {
-  selectedGameDifficulty: GameDifficulty;
-  onGameDifficultyChange: (value: GameDifficulty) => void;
-  opponentSettings: OpponentSetting[];
-  onOpponentSettingsChange: (settings: OpponentSetting[]) => void;
-  selectedAlignment: Alignment;
-  onAlignmentChange: (value: Alignment) => void;
-  kingOfTheHill: boolean;
-  onKingOfTheHillChange: (value: boolean) => void;
-  onOkayClick: () => void;
-  onCancelClick: () => void;
+  readonly selectedGameDifficulty: GameDifficulty;
+  readonly onGameDifficultyChange: (value: GameDifficulty) => void;
+  readonly opponentSettings: OpponentSetting[];
+  readonly onOpponentSettingsChange: (settings: OpponentSetting[]) => void;
+  readonly selectedAlignment: Alignment;
+  readonly onAlignmentChange: (value: Alignment) => void;
+  readonly kingOfTheHill: boolean;
+  readonly onKingOfTheHillChange: (value: boolean) => void;
+  readonly onOkayClick: () => void;
+  readonly onCancelClick: () => void;
 }
 
 type DefaultProp =
@@ -42,7 +42,7 @@ type DefaultProp =
   "onCancelClick";
 
 export class NewGameWindow extends React.Component<NewGameWindowProps> {
-  public static defaultProps: Pick<NewGameWindowProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<NewGameWindowProps, DefaultProp> = {
     onAlignmentChange: () => undefined,
     onCancelClick: () => undefined,
     onGameDifficultyChange: () => undefined,
@@ -153,7 +153,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
     );
   }
 
-  private onGameDifficultyClick = (value: GameDifficulty) => {
+  private readonly onGameDifficultyClick = (value: GameDifficulty) => {
     if (value !== this.props.selectedGameDifficulty) {
       this.props.onGameDifficultyChange(value);
     }
@@ -174,7 +174,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
     ));
   }
 
-  private onOpponentSettingChange = (index: number, setting: OpponentSetting) => {
+  private readonly onOpponentSettingChange = (index: number, setting: OpponentSetting) => {
     const settings = [...this.props.opponentSettings];
 
     settings[index] = setting;
@@ -182,7 +182,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
     this.props.onOpponentSettingsChange(settings);
   }
 
-  private onAlignmentClick = (value: Alignment) => {
+  private readonly onAlignmentClick = (value: Alignment) => {
     const newValue = changeAlignment(value);
 
     this.props.onAlignmentChange(newValue);

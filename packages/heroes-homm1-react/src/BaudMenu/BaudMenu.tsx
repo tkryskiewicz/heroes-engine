@@ -5,12 +5,12 @@ import { buttonImages } from "./assets";
 import { ImageButton, Menu } from "../base";
 
 export interface BaudMenuProps {
-  onOptionClick: (value: number) => void;
-  onCancelClick: () => void;
+  readonly onOptionClick: (value: number) => void;
+  readonly onCancelClick: () => void;
 }
 
 export class BaudMenu extends React.Component<BaudMenuProps> {
-  public static defaultProps: Pick<BaudMenuProps, "onOptionClick" | "onCancelClick"> = {
+  public static readonly defaultProps: Pick<BaudMenuProps, "onOptionClick" | "onCancelClick"> = {
     onCancelClick: () => undefined,
     onOptionClick: () => undefined,
   };
@@ -52,19 +52,19 @@ export class BaudMenu extends React.Component<BaudMenuProps> {
     );
   }
 
-  private on2400BaudClick = () => {
+  private readonly on2400BaudClick = () => {
     this.props.onOptionClick(2400);
   }
 
-  private on9600BaudClick = () => {
+  private readonly on9600BaudClick = () => {
     this.props.onOptionClick(9600);
   }
 
-  private on19200BaudClick = () => {
+  private readonly on19200BaudClick = () => {
     this.props.onOptionClick(19200);
   }
 
-  private on38400BaudClick = () => {
+  private readonly on38400BaudClick = () => {
     this.props.onOptionClick(38400);
   }
 }

@@ -3,16 +3,22 @@ import * as React from "react";
 import { isCommonStructure } from "heroes-homm1";
 
 export interface StructureViewProps {
-  town: string;
-  structure: string;
-  placeholder: boolean;
-  onMouseEnter: (structure: string) => void;
-  onMouseLeave: (structure: string) => void;
-  onClick: (structure: string) => void;
+  readonly town: string;
+  readonly structure: string;
+  readonly placeholder: boolean;
+  readonly onMouseEnter: (structure: string) => void;
+  readonly onMouseLeave: (structure: string) => void;
+  readonly onClick: (structure: string) => void;
 }
 
+type DefaultProp =
+  "placeholder" |
+  "onMouseEnter" |
+  "onMouseLeave" |
+  "onClick";
+
 export class StructureView extends React.Component<StructureViewProps> {
-  public static defaultProps: Pick<StructureViewProps, "placeholder" | "onMouseEnter" | "onMouseLeave" | "onClick"> = {
+  public static readonly defaultProps: Pick<StructureViewProps, DefaultProp> = {
     onClick: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,
@@ -36,15 +42,15 @@ export class StructureView extends React.Component<StructureViewProps> {
     );
   }
 
-  private onMouseEnter = () => {
+  private readonly onMouseEnter = () => {
     this.props.onMouseEnter(this.props.structure);
   }
 
-  private onMouseLeave = () => {
+  private readonly onMouseLeave = () => {
     this.props.onMouseLeave(this.props.structure);
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.structure);
   }
 }

@@ -5,7 +5,7 @@ import * as styles from "./CongratulationsWindow.module.scss";
 import { GameText, withGameWindow } from "../core";
 
 export interface CongratulationsWindowProps {
-  onClick?: () => void;
+  readonly onClick?: () => void;
 }
 
 class CongratulationsWindow extends React.Component<CongratulationsWindowProps> {

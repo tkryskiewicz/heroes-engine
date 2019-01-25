@@ -14,40 +14,40 @@ import { messages } from "./messages";
 import { Tent } from "./Tent";
 
 interface Hero {
-  id: string;
-  alignment: string;
-  heroClass: string;
-  skills: HeroSkills;
-  morale: number;
-  luck: number;
+  readonly id: string;
+  readonly alignment: string;
+  readonly heroClass: string;
+  readonly skills: HeroSkills;
+  readonly morale: number;
+  readonly luck: number;
 }
 
 interface BattleSide {
-  hero: Hero;
+  readonly hero: Hero;
 }
 
 export interface CombatWindowProps {
-  attacker: BattleSide;
-  defender: BattleSide;
-  battlefield: Battlefield;
-  visible?: boolean;
-  visibleHeroCombatOptions?: CombatSide;
-  onVisibleHeroCombatOptionsChange: (value?: CombatSide) => void;
+  readonly attacker: BattleSide;
+  readonly defender: BattleSide;
+  readonly battlefield: Battlefield;
+  readonly visible?: boolean;
+  readonly visibleHeroCombatOptions?: CombatSide;
+  readonly onVisibleHeroCombatOptionsChange: (value?: CombatSide) => void;
 }
 
 interface CombatWindowState {
-  statusText: string;
+  readonly statusText: string;
 }
 
 type DefaultProp =
   "onVisibleHeroCombatOptionsChange";
 
 class CombatWindow extends React.Component<CombatWindowProps & InjectedIntlProps, CombatWindowState> {
-  public static defaultProps: Pick<CombatWindowProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<CombatWindowProps, DefaultProp> = {
     onVisibleHeroCombatOptionsChange: () => undefined,
   };
 
-  public state: CombatWindowState = {
+  public readonly state: CombatWindowState = {
     statusText: "",
   };
 
@@ -149,7 +149,7 @@ class CombatWindow extends React.Component<CombatWindowProps & InjectedIntlProps
     );
   }
 
-  private onTentMouseEnter = (side: CombatSide) => {
+  private readonly onTentMouseEnter = (side: CombatSide) => {
     const statusText = this.props.intl.formatMessage(side === CombatSide.Attacker ?
       messages.generalsOptions :
       messages.opposingGeneralsOptions,
@@ -158,11 +158,11 @@ class CombatWindow extends React.Component<CombatWindowProps & InjectedIntlProps
     this.setStatusText(statusText);
   }
 
-  private onTentMouseLeave = () => {
+  private readonly onTentMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
-  private onTentClick = (side: CombatSide) => {
+  private readonly onTentClick = (side: CombatSide) => {
     this.props.onVisibleHeroCombatOptionsChange(side);
   }
 
@@ -191,47 +191,47 @@ class CombatWindow extends React.Component<CombatWindowProps & InjectedIntlProps
     );
   }
 
-  private onCastSpellMouseEnter = () => {
+  private readonly onCastSpellMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(heroCombatOptionsMessages.castSpellStatusText);
 
     this.setStatusText(statusText);
   }
 
-  private onCastSpellMouseLeave = () => {
+  private readonly onCastSpellMouseLeave = () => {
     this.setDefaultHeroCombatOptionsStatusText();
   }
 
-  private onRetreatMouseEnter = () => {
+  private readonly onRetreatMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(heroCombatOptionsMessages.retreatStatusText);
 
     this.setStatusText(statusText);
   }
 
-  private onRetreatMouseLeave = () => {
+  private readonly onRetreatMouseLeave = () => {
     this.setDefaultHeroCombatOptionsStatusText();
   }
 
-  private onSurrenderMouseEnter = () => {
+  private readonly onSurrenderMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(heroCombatOptionsMessages.surrenderStatusText);
 
     this.setStatusText(statusText);
   }
 
-  private onSurrenderMouseLeave = () => {
+  private readonly onSurrenderMouseLeave = () => {
     this.setDefaultHeroCombatOptionsStatusText();
   }
 
-  private onCloseHeroCombatOptionsMouseEnter = () => {
+  private readonly onCloseHeroCombatOptionsMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(heroCombatOptionsMessages.cancelStatusText);
 
     this.setStatusText(statusText);
   }
 
-  private onCloseHeroCombatOptionsMouseLeave = () => {
+  private readonly onCloseHeroCombatOptionsMouseLeave = () => {
     this.setDefaultHeroCombatOptionsStatusText();
   }
 
-  private onCloseHeroCombatOptionsClick = () => {
+  private readonly onCloseHeroCombatOptionsClick = () => {
     this.props.onVisibleHeroCombatOptionsChange();
   }
 

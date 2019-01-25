@@ -10,13 +10,13 @@ import { getOpponentSettingNameMessage } from "../../messages";
 import { opponentSettingImages } from "./assets";
 
 export interface OpponentSettingBoxProps {
-  index: number;
-  value: OpponentSetting;
-  onChange: (index: number, value: OpponentSetting) => void;
+  readonly index: number;
+  readonly value: OpponentSetting;
+  readonly onChange: (index: number, value: OpponentSetting) => void;
 }
 
 export class OpponentSettingBox extends React.Component<OpponentSettingBoxProps> {
-  public static defaultProps: Pick<OpponentSettingBoxProps, "onChange"> = {
+  public static readonly defaultProps: Pick<OpponentSettingBoxProps, "onChange"> = {
     onChange: () => undefined,
   };
 
@@ -34,7 +34,7 @@ export class OpponentSettingBox extends React.Component<OpponentSettingBoxProps>
     );
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     const value = changeOpponentSetting(this.props.value);
 
     this.props.onChange(this.props.index, value);

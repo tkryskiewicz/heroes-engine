@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { LuckIcon, LuckIconProps } from "./LuckIcon";
 
-const luckOptions: { [s: string]: LuckIconProps["type"] } = {
+const luckOptions: { readonly [s: string]: LuckIconProps["type"] } = {
   Bad: "bad",
   Good: "good",
   Neutral: "neutral",

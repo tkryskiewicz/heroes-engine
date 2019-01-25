@@ -10,17 +10,17 @@ import { getStructureDescriptionMessage } from "../messages";
 import { messages } from "./messages";
 
 export interface BuildStructureWindowProps {
-  town: string;
-  structure: string;
-  cost: Resources;
-  canBuild: boolean;
-  visible?: boolean;
-  onOkayClick: (town: string, structure: string) => void;
-  onCancelClick: () => void;
+  readonly town: string;
+  readonly structure: string;
+  readonly cost: Resources;
+  readonly canBuild: boolean;
+  readonly visible?: boolean;
+  readonly onOkayClick: (town: string, structure: string) => void;
+  readonly onCancelClick: () => void;
 }
 
 export class BuildStructureWindow extends React.Component<BuildStructureWindowProps> {
-  public static defaultProps: Pick<BuildStructureWindowProps, "onOkayClick" | "onCancelClick"> = {
+  public static readonly defaultProps: Pick<BuildStructureWindowProps, "onOkayClick" | "onCancelClick"> = {
     onCancelClick: () => undefined,
     onOkayClick: () => undefined,
   };
@@ -60,7 +60,7 @@ export class BuildStructureWindow extends React.Component<BuildStructureWindowPr
     );
   }
 
-  private onOkayClick = () => {
+  private readonly onOkayClick = () => {
     this.props.onOkayClick(this.props.town, this.props.structure);
   }
 }

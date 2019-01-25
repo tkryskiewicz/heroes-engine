@@ -2,10 +2,11 @@ const pattern = /luck-([a-z]+)\.png/;
 
 const req = require.context(".", false, /luck-([a-z]+)\.png/);
 
-export const luckImages = req.keys().reduce<{ [index: string]: string }>((p, key) => {
+export const luckImages = req.keys().reduce<{ readonly [index: string]: string }>((p, key) => {
   const index = key.match(pattern)![1];
 
-  p[index] = req(key);
-
-  return p;
+  return {
+    ...p,
+    [index]: req(key),
+  };
 }, {});

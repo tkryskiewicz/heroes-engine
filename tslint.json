@@ -40,6 +40,6 @@
     "no-throw": false,
     "no-try": false,
     "readonly-array": false,
-    "readonly-keyword": false
+    "readonly-keyword": true
   }
 }

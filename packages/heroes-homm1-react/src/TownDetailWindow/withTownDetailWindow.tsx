@@ -7,21 +7,21 @@ import { TownDetailWindow } from "./TownDetailWindow";
 type ExtractProps<C> = C extends React.ComponentClass<infer P> ? P : never;
 
 export interface Ref {
-  onExitMouseEnter?: () => void;
-  onExitMouseLeave?: () => void;
+  readonly onExitMouseEnter?: () => void;
+  readonly onExitMouseLeave?: () => void;
 }
 
 export interface InjectedProps {
-  onStatusTextChange: (value: string) => void;
+  readonly onStatusTextChange: (value: string) => void;
 }
 
 export interface Props {
-  visible?: boolean;
-  onExitClick?: () => void;
+  readonly visible?: boolean;
+  readonly onExitClick?: () => void;
 }
 
 interface State {
-  statusText: string;
+  readonly statusText: string;
 }
 
 export const withTownDetailWindow = () =>
@@ -29,11 +29,11 @@ export const withTownDetailWindow = () =>
     type P = JSX.LibraryManagedAttributes<C, ExtractProps<C>>;
 
     return class extends React.Component<Omit<P, keyof InjectedProps> & Props, State> {
-      public state: State = {
+      public readonly state: State = {
         statusText: "",
       };
 
-      private ref = React.createRef<C>();
+      private readonly ref = React.createRef<C>();
 
       public render() {
         const { visible, onExitClick, ...rest } = this.props as Props;
@@ -57,19 +57,19 @@ export const withTownDetailWindow = () =>
         );
       }
 
-      private onStatusTextChange = (value: string) => {
+      private readonly onStatusTextChange = (value: string) => {
         this.setState({
           statusText: value,
         });
       }
 
-      private onExitMouseEnter = () => {
+      private readonly onExitMouseEnter = () => {
         if (this.ref.current && this.ref.current.onExitMouseEnter) {
           this.ref.current.onExitMouseEnter();
         }
       }
 
-      private onExitMouseLeave = () => {
+      private readonly onExitMouseLeave = () => {
         if (this.ref.current && this.ref.current.onExitMouseLeave) {
           this.ref.current.onExitMouseLeave();
         }

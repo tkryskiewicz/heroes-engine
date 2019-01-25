@@ -12,11 +12,11 @@ import { GameParagraph } from "../core";
 import { messages } from "./messages";
 
 export interface BuildShipWindowProps {
-  cost: Resources;
-  canBuild: boolean;
-  visible?: boolean;
-  onOkayClick: () => void;
-  onCancelClick: () => void;
+  readonly cost: Resources;
+  readonly canBuild: boolean;
+  readonly visible?: boolean;
+  readonly onOkayClick: () => void;
+  readonly onCancelClick: () => void;
 }
 
 type DefaultProp =
@@ -24,7 +24,7 @@ type DefaultProp =
   "onCancelClick";
 
 export class BuildShipWindow extends React.Component<BuildShipWindowProps> {
-  public static defaultProps: Pick<BuildShipWindowProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<BuildShipWindowProps, DefaultProp> = {
     onCancelClick: () => undefined,
     onOkayClick: () => undefined,
   };

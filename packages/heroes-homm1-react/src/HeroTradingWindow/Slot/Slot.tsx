@@ -5,13 +5,13 @@ import * as styles from "./Slot.module.scss";
 import { SelectionImage } from "./assets";
 
 export interface SlotProps {
-  index: number;
-  selected: boolean;
-  onClick: (index: number) => void;
+  readonly index: number;
+  readonly selected: boolean;
+  readonly onClick: (index: number) => void;
 }
 
 export class Slot extends React.Component<SlotProps> {
-  public static defaultProps: Pick<SlotProps, "selected" | "onClick"> = {
+  public static readonly defaultProps: Pick<SlotProps, "selected" | "onClick"> = {
     onClick: () => undefined,
     selected: false,
   };
@@ -37,7 +37,7 @@ export class Slot extends React.Component<SlotProps> {
     );
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.index);
   }
 }

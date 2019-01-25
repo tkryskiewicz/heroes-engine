@@ -4,8 +4,8 @@ import * as React from "react";
 import * as styles from "./GameWindow.module.scss";
 
 export interface GameWindowProps {
-  width?: number;
-  visible?: boolean;
+  readonly width?: number;
+  readonly visible?: boolean;
 }
 
 export class GameWindow extends React.Component<GameWindowProps> {

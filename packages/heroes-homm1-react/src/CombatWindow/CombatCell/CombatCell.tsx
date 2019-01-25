@@ -12,10 +12,10 @@ import * as styles from "./CombatCell.module.scss";
 import { CombatTroop } from "../CombatTroop";
 
 export interface CombatCellProps {
-  index: number;
-  terrainType: string;
-  terrainVariant: number;
-  object?: BattlefieldObject;
+  readonly index: number;
+  readonly terrainType: string;
+  readonly terrainVariant: number;
+  readonly object?: BattlefieldObject;
 }
 
 export class CombatCell extends React.Component<CombatCellProps> {

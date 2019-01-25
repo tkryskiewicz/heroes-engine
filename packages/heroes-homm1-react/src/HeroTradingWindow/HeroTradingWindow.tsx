@@ -17,21 +17,21 @@ import { messages } from "./messages";
 import { TroopSlot } from "./TroopSlot";
 
 interface ArtifactSelection {
-  hero: string;
-  index: number;
+  readonly hero: string;
+  readonly index: number;
 }
 
 export interface HeroTradingWindowProps {
-  hero: Hero;
-  otherHero: Hero;
-  visible?: boolean;
-  onHeroPortraitClick: (hero: string) => void;
-  selectedArtifact?: ArtifactSelection;
-  onSelectedArtifactChange: (value: ArtifactSelection) => void;
-  onTradeArtifacts: (artifact: ArtifactSelection, withArtifact: ArtifactSelection) => void;
-  artifactNotTradablePromptVisible: boolean;
-  onArtifactNotTradablePromptVisibleChange: (visible: boolean) => void;
-  onExitClick: () => void;
+  readonly hero: Hero;
+  readonly otherHero: Hero;
+  readonly visible?: boolean;
+  readonly onHeroPortraitClick: (hero: string) => void;
+  readonly selectedArtifact?: ArtifactSelection;
+  readonly onSelectedArtifactChange: (value: ArtifactSelection) => void;
+  readonly onTradeArtifacts: (artifact: ArtifactSelection, withArtifact: ArtifactSelection) => void;
+  readonly artifactNotTradablePromptVisible: boolean;
+  readonly onArtifactNotTradablePromptVisibleChange: (visible: boolean) => void;
+  readonly onExitClick: () => void;
 }
 
 type DefaultProp =
@@ -43,7 +43,7 @@ type DefaultProp =
   "onExitClick";
 
 class HeroTradingWindow extends React.Component<HeroTradingWindowProps & InjectedIntlProps> {
-  public static defaultProps: Pick<HeroTradingWindowProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<HeroTradingWindowProps, DefaultProp> = {
     artifactNotTradablePromptVisible: false,
     onArtifactNotTradablePromptVisibleChange: () => undefined,
     onExitClick: () => undefined,
@@ -152,7 +152,7 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
     ));
   }
 
-  private onHeroPortraitClick = (hero?: string) => {
+  private readonly onHeroPortraitClick = (hero?: string) => {
     this.props.onHeroPortraitClick(hero!);
   }
 
@@ -191,7 +191,7 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
     });
   }
 
-  private onArtifactClick = (hero: string, index: number) => {
+  private readonly onArtifactClick = (hero: string, index: number) => {
     const h = this.props.hero.id === hero ?
       this.props.hero :
       this.props.otherHero;
@@ -233,7 +233,7 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
     );
   }
 
-  private onCloseArtifactNotTradablePrompt = () => {
+  private readonly onCloseArtifactNotTradablePrompt = () => {
     this.props.onArtifactNotTradablePromptVisibleChange(false);
   }
 }

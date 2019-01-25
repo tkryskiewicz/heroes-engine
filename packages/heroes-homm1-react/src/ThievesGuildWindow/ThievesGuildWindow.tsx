@@ -12,21 +12,21 @@ import {
 import { messages } from "./messages";
 
 export interface Ranking {
-  [index: number]: string[];
+  readonly [index: number]: string[];
 }
 
 export interface ThievesGuildWindowProps extends
   InjectedIntlProps,
   WithTownDetailWindowInjectedProps,
   WithTownDetailWindowProps {
-  townCount: Ranking;
-  castleCount: Ranking;
-  heroCount: Ranking;
-  gold: Ranking;
-  primaryResources: Ranking;
-  secondaryResources: Ranking;
-  foundObelisksCount: Ranking;
-  armyStrength: Ranking;
+  readonly townCount: Ranking;
+  readonly castleCount: Ranking;
+  readonly heroCount: Ranking;
+  readonly gold: Ranking;
+  readonly primaryResources: Ranking;
+  readonly secondaryResources: Ranking;
+  readonly foundObelisksCount: Ranking;
+  readonly armyStrength: Ranking;
 }
 
 class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {

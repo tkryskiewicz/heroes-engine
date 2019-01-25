@@ -8,7 +8,7 @@ import { ArtifactId } from "heroes-homm1";
 import { artifactOptions } from "../../stories";
 import { ArtifactIcon, ArtifactIconProps } from "./ArtifactIcon";
 
-const sizeOptions: { [s: string]: ArtifactIconProps["size"] } = {
+const sizeOptions: { readonly [s: string]: ArtifactIconProps["size"] } = {
   Large: "large",
   Small: "small",
 };

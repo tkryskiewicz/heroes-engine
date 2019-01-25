@@ -1,13 +1,13 @@
 import * as React from "react";
 
 export interface ResourceIconProps {
-  size: "large" | "small";
-  resource: string;
-  onClick: (resource: string) => void;
+  readonly size: "large" | "small";
+  readonly resource: string;
+  readonly onClick: (resource: string) => void;
 }
 
 export class ResourceIcon extends React.Component<ResourceIconProps> {
-  public static defaultProps: Pick<ResourceIconProps, "onClick"> = {
+  public static readonly defaultProps: Pick<ResourceIconProps, "onClick"> = {
     onClick: () => undefined,
   };
 
@@ -20,7 +20,7 @@ export class ResourceIcon extends React.Component<ResourceIconProps> {
     );
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.resource);
   }
 }

@@ -12,24 +12,24 @@ import { GameText, withGameWindow } from "../core";
 import { getMovementSpeedMessage, messages } from "./messages";
 
 export interface GameOptionsProps {
-  onNewGameClick: () => void;
-  onLoadGameClick: () => void;
-  onSaveGameClick: () => void;
-  onQuitClick: () => void;
-  musicVolume: SoundVolume;
-  onMusicVolumeChange: (volume: SoundVolume) => void;
-  effectsVolume: SoundVolume;
-  onEffectsVolumeChange: (volume: SoundVolume) => void;
-  movementSpeed: MovementSpeed;
-  onMovementSpeedChange: (value: MovementSpeed) => void;
-  autoSave: boolean;
-  onAutoSaveChange: (value: boolean) => void;
-  showPath: boolean;
-  onShowPathChange: (value: boolean) => void;
-  viewEnemyMovement: boolean;
-  onViewEnemyMovementChange: (value: boolean) => void;
-  onOkayClick: () => void;
-  onInfoClick: () => void;
+  readonly onNewGameClick: () => void;
+  readonly onLoadGameClick: () => void;
+  readonly onSaveGameClick: () => void;
+  readonly onQuitClick: () => void;
+  readonly musicVolume: SoundVolume;
+  readonly onMusicVolumeChange: (volume: SoundVolume) => void;
+  readonly effectsVolume: SoundVolume;
+  readonly onEffectsVolumeChange: (volume: SoundVolume) => void;
+  readonly movementSpeed: MovementSpeed;
+  readonly onMovementSpeedChange: (value: MovementSpeed) => void;
+  readonly autoSave: boolean;
+  readonly onAutoSaveChange: (value: boolean) => void;
+  readonly showPath: boolean;
+  readonly onShowPathChange: (value: boolean) => void;
+  readonly viewEnemyMovement: boolean;
+  readonly onViewEnemyMovementChange: (value: boolean) => void;
+  readonly onOkayClick: () => void;
+  readonly onInfoClick: () => void;
 }
 
 type DefaultProp =
@@ -47,7 +47,7 @@ type DefaultProp =
   "onInfoClick";
 
 class GameOptions extends React.Component<GameOptionsProps> {
-  public static defaultProps: Pick<GameOptionsProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<GameOptionsProps, DefaultProp> = {
     onAutoSaveChange: () => undefined,
     onEffectsVolumeChange: () => undefined,
     onInfoClick: () => undefined,
@@ -210,19 +210,19 @@ class GameOptions extends React.Component<GameOptionsProps> {
     );
   }
 
-  private onMusicVolumeChange = () => {
+  private readonly onMusicVolumeChange = () => {
     const value = changeVolume(this.props.musicVolume);
 
     this.props.onMusicVolumeChange(value);
   }
 
-  private onEffectsVolumeChange = () => {
+  private readonly onEffectsVolumeChange = () => {
     const value = changeVolume(this.props.effectsVolume);
 
     this.props.onEffectsVolumeChange(value);
   }
 
-  private onMovementSpeedChange = () => {
+  private readonly onMovementSpeedChange = () => {
     const movementSpeed = changeMovementSpeed(this.props.movementSpeed);
 
     this.props.onMovementSpeedChange(movementSpeed);

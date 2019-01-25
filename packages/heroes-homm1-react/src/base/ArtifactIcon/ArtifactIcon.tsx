@@ -1,9 +1,9 @@
 import * as React from "react";
 
 export interface ArtifactIconProps {
-  size: "large" | "small";
-  artifact: string;
-  onClick?: () => void;
+  readonly size: "large" | "small";
+  readonly artifact: string;
+  readonly onClick?: () => void;
 }
 
 export class ArtifactIcon extends React.Component<ArtifactIconProps> {

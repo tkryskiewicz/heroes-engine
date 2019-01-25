@@ -11,18 +11,18 @@ import { messages } from "./messages";
 import { RecruitHero } from "./RecruitHero";
 
 export interface Hero {
-  id: string;
-  heroClass: HeroClass;
+  readonly id: string;
+  readonly heroClass: HeroClass;
 }
 
 export interface RecruitHeroWindowProps {
-  heroes: Hero[];
-  resources: Resources;
-  cost: Resources;
-  visible?: boolean;
-  onHeroPortraitClick?: (id: string) => void;
-  onRecruitHeroClick?: (id: string) => void;
-  onCancelClick?: () => void;
+  readonly heroes: Hero[];
+  readonly resources: Resources;
+  readonly cost: Resources;
+  readonly visible?: boolean;
+  readonly onHeroPortraitClick?: (id: string) => void;
+  readonly onRecruitHeroClick?: (id: string) => void;
+  readonly onCancelClick?: () => void;
 }
 
 export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {

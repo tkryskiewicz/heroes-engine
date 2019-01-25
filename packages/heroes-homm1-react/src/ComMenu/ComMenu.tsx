@@ -5,8 +5,8 @@ import { buttonImages } from "./assets";
 import { ImageButton, Menu } from "../base";
 
 export interface ComMenuProps {
-  onOptionClick: (value: number) => void;
-  onCancelClick: () => void;
+  readonly onOptionClick: (value: number) => void;
+  readonly onCancelClick: () => void;
 }
 
 export class ComMenu extends React.Component<ComMenuProps> {
@@ -47,19 +47,19 @@ export class ComMenu extends React.Component<ComMenuProps> {
     );
   }
 
-  private onCom1Click = () => {
+  private readonly onCom1Click = () => {
     this.props.onOptionClick(1);
   }
 
-  private onCom2Click = () => {
+  private readonly onCom2Click = () => {
     this.props.onOptionClick(2);
   }
 
-  private onCom3Click = () => {
+  private readonly onCom3Click = () => {
     this.props.onOptionClick(3);
   }
 
-  private onCom4Click = () => {
+  private readonly onCom4Click = () => {
     this.props.onOptionClick(4);
   }
 }

@@ -9,11 +9,11 @@ import { GameText } from "../core";
 import { getStructureNameMessage } from "../messages";
 
 export interface CastleOptionIconProps {
-  town: string;
-  option: string;
-  onMouseEnter: (option: string) => void;
-  onMouseLeave: (option: string) => void;
-  onClick: (option: string) => void;
+  readonly town: string;
+  readonly option: string;
+  readonly onMouseEnter: (option: string) => void;
+  readonly onMouseLeave: (option: string) => void;
+  readonly onClick: (option: string) => void;
 }
 
 type DefaultProp =
@@ -22,7 +22,7 @@ type DefaultProp =
   "onClick";
 
 export class CastleOptionIcon extends React.Component<CastleOptionIconProps> {
-  public static defaultProps: Pick<CastleOptionIconProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<CastleOptionIconProps, DefaultProp> = {
     onClick: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,
@@ -54,15 +54,15 @@ export class CastleOptionIcon extends React.Component<CastleOptionIconProps> {
     );
   }
 
-  private onMouseEnter = () => {
+  private readonly onMouseEnter = () => {
     this.props.onMouseEnter(this.props.option);
   }
 
-  private onMouseLeave = () => {
+  private readonly onMouseLeave = () => {
     this.props.onMouseLeave(this.props.option);
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.option);
   }
 }

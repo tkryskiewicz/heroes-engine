@@ -8,11 +8,11 @@ import { ImageButton } from "../base";
 import { withGameWindow } from "../core";
 
 export interface AdventureOptionsProps {
-  onViewWorldClick?: () => void;
-  onViewPuzzleClick?: () => void;
-  onCastSpellClick?: () => void;
-  onDigClick?: () => void;
-  onOkayClick?: () => void;
+  readonly onViewWorldClick?: () => void;
+  readonly onViewPuzzleClick?: () => void;
+  readonly onCastSpellClick?: () => void;
+  readonly onDigClick?: () => void;
+  readonly onOkayClick?: () => void;
 }
 
 class AdventureOptions extends React.Component<AdventureOptionsProps> {

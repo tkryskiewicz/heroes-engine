@@ -6,7 +6,7 @@ import * as React from "react";
 import { GameText } from "../../core";
 import { GameModal, GameModalProps } from "./GameModal";
 
-const typeOptions: { [s: string]: GameModalProps["type"] } = {
+const typeOptions: { readonly [s: string]: GameModalProps["type"] } = {
   "Cancel": "cancel",
   "Okay": "okay",
   "Okay/Cancel": "okayCancel",

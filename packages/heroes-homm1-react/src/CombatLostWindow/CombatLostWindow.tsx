@@ -15,15 +15,15 @@ import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 
 export interface CombatLostWindowProps {
-  hero: string;
-  isRetreat: boolean;
-  attackerCasualties: Army;
-  defenderCasualties: Army;
-  onOkayClick?: () => void;
+  readonly hero: string;
+  readonly isRetreat: boolean;
+  readonly attackerCasualties: Army;
+  readonly defenderCasualties: Army;
+  readonly onOkayClick?: () => void;
 }
 
 class CombatLostWindow extends React.Component<CombatLostWindowProps & InjectedIntlProps> {
-  public static defaultProps: Pick<CombatLostWindowProps, "isRetreat"> = {
+  public static readonly defaultProps: Pick<CombatLostWindowProps, "isRetreat"> = {
     isRetreat: false,
   };
 

@@ -6,10 +6,10 @@ import { HeroLimit } from "heroes-homm1";
 import { HeroLocator } from "../HeroLocator";
 
 export interface HeroLocatorsProps {
-  heroes: Hero[];
-  selectedIndex?: number;
-  onSelectLocator?: (index: number) => void;
-  onSelectedLocatorClick?: (index: number) => void;
+  readonly heroes: Hero[];
+  readonly selectedIndex?: number;
+  readonly onSelectLocator?: (index: number) => void;
+  readonly onSelectedLocatorClick?: (index: number) => void;
 }
 
 // TODO: unify hero and town locators?
@@ -30,7 +30,7 @@ export class HeroLocators extends React.Component<HeroLocatorsProps> {
     });
   }
 
-  private onLocatorClick = (index: number) => {
+  private readonly onLocatorClick = (index: number) => {
     const hero = this.props.heroes[index];
 
     if (!hero) {

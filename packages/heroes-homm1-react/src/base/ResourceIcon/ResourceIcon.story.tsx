@@ -11,7 +11,7 @@ import Readme = require("./README.md");
 import { resourceOptions } from "../../stories";
 import { ResourceIcon, ResourceIconProps } from "./ResourceIcon";
 
-const sizeOptions: { [s: string]: ResourceIconProps["size"] } = {
+const sizeOptions: { readonly [s: string]: ResourceIconProps["size"] } = {
   Large: "large",
   Small: "small",
 };

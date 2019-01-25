@@ -7,7 +7,7 @@ import { CreatureId } from "heroes-homm1";
 import { creatureOptions } from "../../stories";
 import { CreatureIcon, CreatureIconProps } from "./CreatureIcon";
 
-const sizeOptions: { [s: string]: CreatureIconProps["size"] } = {
+const sizeOptions: { readonly [s: string]: CreatureIconProps["size"] } = {
   Large: "large",
   Medium: "medium",
   Small: "small",

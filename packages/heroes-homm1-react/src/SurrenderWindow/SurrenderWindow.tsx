@@ -11,10 +11,10 @@ import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 
 export interface SurrenderWindowProps {
-  hero: string;
-  cost: number;
-  onAcceptClick: () => void;
-  onDeclineClick: () => void;
+  readonly hero: string;
+  readonly cost: number;
+  readonly onAcceptClick: () => void;
+  readonly onDeclineClick: () => void;
 }
 
 class SurrenderWindow extends React.Component<SurrenderWindowProps & InjectedIntlProps> {

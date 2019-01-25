@@ -10,8 +10,8 @@ import { withGameWindow } from "../core";
 
 export interface ViewWindowProps {
   // FIXME: inject background
-  type: "world" | "puzzle";
-  onExitClick?: () => void;
+  readonly type: "world" | "puzzle";
+  readonly onExitClick?: () => void;
 }
 
 class ViewWindow extends React.Component<ViewWindowProps> {

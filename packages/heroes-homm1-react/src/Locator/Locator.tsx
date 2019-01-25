@@ -5,14 +5,14 @@ import * as styles from "./Locator.module.scss";
 import { backgroundImages, SelectionImage } from "./assets";
 
 export interface LocatorProps {
-  index: number;
-  selected: boolean;
-  onClick: (index: number) => void;
+  readonly index: number;
+  readonly selected: boolean;
+  readonly onClick: (index: number) => void;
 }
 
 // TODO: town locators have borders, without them we could limit locator size and center content
 export class Locator extends React.Component<LocatorProps> {
-  public static defaultProps: Pick<LocatorProps, "selected" | "onClick"> = {
+  public static readonly defaultProps: Pick<LocatorProps, "selected" | "onClick"> = {
     onClick: () => undefined,
     selected: false,
   };
@@ -49,7 +49,7 @@ export class Locator extends React.Component<LocatorProps> {
     );
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.index);
   }
 }

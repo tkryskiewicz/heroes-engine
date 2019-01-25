@@ -11,9 +11,9 @@ import { GameText } from "../core";
 import { messages } from "./messages";
 
 export interface CombatSummaryWindowProps {
-  attackerCasualties: Army;
-  defenderCasualties: Army;
-  actions: React.ReactNode;
+  readonly attackerCasualties: Army;
+  readonly defenderCasualties: Army;
+  readonly actions: React.ReactNode;
 }
 
 export class CombatSummaryWindow extends React.Component<CombatSummaryWindowProps> {

@@ -8,15 +8,15 @@ import { ArtifactIcon } from "../../base";
 import { Slot } from "../Slot";
 
 export interface ArtifactSlotProps {
-  hero: string;
-  index: number;
-  artifact?: string;
-  selected: boolean;
-  onClick: (hero: string, index: number) => void;
+  readonly hero: string;
+  readonly index: number;
+  readonly artifact?: string;
+  readonly selected: boolean;
+  readonly onClick: (hero: string, index: number) => void;
 }
 
 export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
-  public static defaultProps: Pick<ArtifactSlotProps, "selected" | "onClick"> = {
+  public static readonly defaultProps: Pick<ArtifactSlotProps, "selected" | "onClick"> = {
     onClick: () => undefined,
     selected: false,
   };
@@ -53,7 +53,7 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
     );
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.hero, this.props.index);
   }
 }

@@ -5,7 +5,7 @@ import * as styles from "./GameParagraph.module.scss";
 import { GameText, GameTextProps } from "../GameText";
 
 export interface GameParagraphProps {
-  textSize: GameTextProps["size"];
+  readonly textSize: GameTextProps["size"];
 }
 
 export class GameParagraph extends React.Component<GameParagraphProps> {

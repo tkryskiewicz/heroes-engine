@@ -3,12 +3,12 @@ import * as React from "react";
 import { Alignment } from "heroes-homm1";
 
 export interface AlignmentJewelProps {
-  value: Alignment;
-  onClick: (value: Alignment) => void;
+  readonly value: Alignment;
+  readonly onClick: (value: Alignment) => void;
 }
 
 export class AlignmentJewel extends React.Component<AlignmentJewelProps> {
-  public static defaultProps: Pick<AlignmentJewelProps, "onClick"> = {
+  public static readonly defaultProps: Pick<AlignmentJewelProps, "onClick"> = {
     onClick: () => undefined,
   };
 
@@ -21,7 +21,7 @@ export class AlignmentJewel extends React.Component<AlignmentJewelProps> {
     );
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.value);
   }
 }

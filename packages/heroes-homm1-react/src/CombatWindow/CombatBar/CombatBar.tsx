@@ -8,9 +8,9 @@ import { ImageButton } from "../../base";
 import { GameText } from "../../core";
 
 export interface CombatBarProps {
-  statusText: string;
-  onAutoClick: () => void;
-  onSkipClick: () => void;
+  readonly statusText: string;
+  readonly onAutoClick: () => void;
+  readonly onSkipClick: () => void;
 }
 
 type DefaultProp =
@@ -19,7 +19,7 @@ type DefaultProp =
   "onSkipClick";
 
 export class CombatBar extends React.Component<CombatBarProps> {
-  public static defaultProps: Pick<CombatBarProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<CombatBarProps, DefaultProp> = {
     onAutoClick: () => undefined,
     onSkipClick: () => undefined,
     statusText: "",

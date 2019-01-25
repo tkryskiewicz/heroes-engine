@@ -7,12 +7,12 @@ import { BorderImage, EmptyImage, UltimateBorderImage } from "./assets";
 import { ArtifactIcon } from "../../base";
 
 export interface ArtifactSlotProps {
-  index: number;
-  artifact?: string;
-  isUltimate: boolean;
-  onMouseEnter: (index: number) => void;
-  onMouseLeave: (index: number) => void;
-  onClick: (index: number) => void;
+  readonly index: number;
+  readonly artifact?: string;
+  readonly isUltimate: boolean;
+  readonly onMouseEnter: (index: number) => void;
+  readonly onMouseLeave: (index: number) => void;
+  readonly onClick: (index: number) => void;
 }
 
 type DefaultProp =
@@ -22,7 +22,7 @@ type DefaultProp =
   "onClick";
 
 export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
-  public static defaultProps: Pick<ArtifactSlotProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<ArtifactSlotProps, DefaultProp> = {
     isUltimate: false,
     onClick: () => undefined,
     onMouseEnter: () => undefined,
@@ -68,15 +68,15 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
     );
   }
 
-  private onMouseEnter = () => {
+  private readonly onMouseEnter = () => {
     this.props.onMouseEnter(this.props.index);
   }
 
-  private onMouseLeave = () => {
+  private readonly onMouseLeave = () => {
     this.props.onMouseLeave(this.props.index);
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.index);
   }
 }

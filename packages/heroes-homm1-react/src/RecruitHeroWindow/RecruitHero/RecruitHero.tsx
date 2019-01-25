@@ -13,15 +13,15 @@ import { GameText } from "../../core";
 import { getHeroClassNameMessage } from "../../messages";
 
 export interface RecruitHeroProps {
-  heroId: string;
-  heroClass: HeroClass;
-  disabled: boolean;
-  onPortraitClick: (id: string) => void;
-  onRecruitClick: (id: string) => void;
+  readonly heroId: string;
+  readonly heroClass: HeroClass;
+  readonly disabled: boolean;
+  readonly onPortraitClick: (id: string) => void;
+  readonly onRecruitClick: (id: string) => void;
 }
 
 export class RecruitHero extends React.Component<RecruitHeroProps> {
-  public static defaultProps: Pick<RecruitHeroProps, "disabled" | "onPortraitClick" | "onRecruitClick"> = {
+  public static readonly defaultProps: Pick<RecruitHeroProps, "disabled" | "onPortraitClick" | "onRecruitClick"> = {
     disabled: false,
     onPortraitClick: () => undefined,
     onRecruitClick: () => undefined,
@@ -54,11 +54,11 @@ export class RecruitHero extends React.Component<RecruitHeroProps> {
     );
   }
 
-  private onPortraitClick = () => {
+  private readonly onPortraitClick = () => {
     this.props.onPortraitClick(this.props.heroId);
   }
 
-  private onRecruitClick = () => {
+  private readonly onRecruitClick = () => {
     this.props.onRecruitClick(this.props.heroId);
   }
 }

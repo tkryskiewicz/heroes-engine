@@ -5,10 +5,10 @@ import { buttonImages } from "./assets";
 import { ImageButton, Menu } from "../base";
 
 export interface GameTypeMenuProps {
-  onStandardGameClick?: () => void;
-  onCampaignGameClick?: () => void;
-  onMultiPlayerGameClick?: () => void;
-  onCancelClick?: () => void;
+  readonly onStandardGameClick?: () => void;
+  readonly onCampaignGameClick?: () => void;
+  readonly onMultiPlayerGameClick?: () => void;
+  readonly onCancelClick?: () => void;
 }
 
 export class GameTypeMenu extends React.Component<GameTypeMenuProps> {

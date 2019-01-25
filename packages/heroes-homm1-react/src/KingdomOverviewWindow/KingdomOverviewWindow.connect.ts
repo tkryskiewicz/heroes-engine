@@ -24,23 +24,26 @@ type StateProp =
 const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowProps, StateProp> => ({
   alignment: state.game.alignment,
   castles: TownIds.reduce<TownSummary>((p, c) => {
-    p[c] = state.game.towns.filter((t) => t.id === c && isStructureBuilt(t, StructureId.Castle)).length;
-
-    return p;
+    return {
+      ...p,
+      [c]: state.game.towns.filter((t) => t.id === c && isStructureBuilt(t, StructureId.Castle)).length,
+    };
   }, {}),
   goldPerDay: 0,
   heroClasses: HeroClassIds.reduce<HeroClassSummary>((p, c) => {
-    p[c] = state.game.heroes.filter((h) => h.heroClass === c).length;
-
-    return p;
+    return {
+      ...p,
+      [c]: state.game.heroes.filter((h) => h.heroClass === c).length,
+    };
   }, {}),
   // TODO: implement mine count
   mines: {},
   resources: state.game.resources,
   towns: TownIds.reduce<TownSummary>((p, c) => {
-    p[c] = state.game.towns.filter((t) => t.id === c && !isStructureBuilt(t, StructureId.Castle)).length;
-
-    return p;
+    return {
+      ...p,
+      [c]: state.game.towns.filter((t) => t.id === c && !isStructureBuilt(t, StructureId.Castle)).length,
+    };
   }, {}),
 });
 

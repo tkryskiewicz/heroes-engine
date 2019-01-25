@@ -8,13 +8,13 @@ import { GameText } from "../../core";
 import { getSpellNameMessage } from "../../messages";
 
 export interface SpellBoxProps {
-  spell: string;
-  charges: number;
-  onClick: (spell: string) => void;
+  readonly spell: string;
+  readonly charges: number;
+  readonly onClick: (spell: string) => void;
 }
 
 export class SpellBox extends React.Component<SpellBoxProps> {
-  public static defaultProps: Pick<SpellBoxProps, "onClick"> = {
+  public static readonly defaultProps: Pick<SpellBoxProps, "onClick"> = {
     onClick: () => undefined,
   };
 

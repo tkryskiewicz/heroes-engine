@@ -15,18 +15,18 @@ import {
 import { messages } from "./messages";
 
 interface Dwelling {
-  id: string;
-  creature: string;
-  available?: number;
-  growthRate?: number;
+  readonly id: string;
+  readonly creature: string;
+  readonly available?: number;
+  readonly growthRate?: number;
 }
 
 export interface TownPopulationWindowProps extends
   InjectedIntlProps,
   WithTownDetailWindowInjectedProps,
   WithTownDetailWindowProps {
-  town: string;
-  dwellings: Dwelling[];
+  readonly town: string;
+  readonly dwellings: Dwelling[];
 }
 
 class TownPopulationWindow extends React.Component<TownPopulationWindowProps> {

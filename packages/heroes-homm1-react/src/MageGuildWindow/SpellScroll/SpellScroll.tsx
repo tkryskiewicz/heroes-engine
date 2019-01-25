@@ -8,13 +8,13 @@ import { GameText } from "../../core";
 import { getSpellNameMessage } from "../../messages";
 
 export interface SpellScrollProps {
-  spell: string;
-  unfolded: boolean;
-  onClick: (spell: string) => void;
+  readonly spell: string;
+  readonly unfolded: boolean;
+  readonly onClick: (spell: string) => void;
 }
 
 export class SpellScroll extends React.Component<SpellScrollProps> {
-  public static defaultProps: Pick<SpellScrollProps, "onClick"> = {
+  public static readonly defaultProps: Pick<SpellScrollProps, "onClick"> = {
     onClick: () => undefined,
   };
 
@@ -42,7 +42,7 @@ export class SpellScroll extends React.Component<SpellScrollProps> {
     );
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.spell);
   }
 }

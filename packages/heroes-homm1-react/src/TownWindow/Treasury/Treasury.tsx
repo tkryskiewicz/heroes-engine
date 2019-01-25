@@ -10,10 +10,10 @@ import { buttonImages } from "./assets";
 import { ImageButton, ResourceAmount } from "../../base";
 
 export interface TreasuryProps {
-  resources: Resources;
-  onExitMouseEnter?: () => void;
-  onExitMouseLeave?: () => void;
-  onExitClick?: () => void;
+  readonly resources: Resources;
+  readonly onExitMouseEnter?: () => void;
+  readonly onExitMouseLeave?: () => void;
+  readonly onExitClick?: () => void;
 }
 
 export class Treasury extends React.Component<TreasuryProps> {

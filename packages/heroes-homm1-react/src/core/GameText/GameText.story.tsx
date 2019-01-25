@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { GameText, GameTextProps } from "./GameText";
 
-const sizeOptions: { [s: string]: GameTextProps["size"] } = {
+const sizeOptions: { readonly [s: string]: GameTextProps["size"] } = {
   Large: "large",
   Normal: "normal",
   Small: "small",

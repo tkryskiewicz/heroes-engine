@@ -10,14 +10,14 @@ import { buttonImages } from "./assets";
 import { ImageButton } from "../base";
 
 export interface AdventureButtonsProps {
-  heroes: Hero[];
-  selectedIndex?: number;
-  onSelectHero: (index: number) => void;
-  onMoveClick: () => void;
-  onKingdomOverviewClick: () => void;
-  onEndTurnClick: () => void;
-  onAdventureOptionsClick: () => void;
-  onGameOptionsClick: () => void;
+  readonly heroes: Hero[];
+  readonly selectedIndex?: number;
+  readonly onSelectHero: (index: number) => void;
+  readonly onMoveClick: () => void;
+  readonly onKingdomOverviewClick: () => void;
+  readonly onEndTurnClick: () => void;
+  readonly onAdventureOptionsClick: () => void;
+  readonly onGameOptionsClick: () => void;
 }
 
 type DefaultProp =
@@ -29,7 +29,7 @@ type DefaultProp =
   "onGameOptionsClick";
 
 export class AdventureButtons extends React.Component<AdventureButtonsProps> {
-  public static defaultProps: Pick<AdventureButtonsProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<AdventureButtonsProps, DefaultProp> = {
     onAdventureOptionsClick: () => undefined,
     onEndTurnClick: () => undefined,
     onGameOptionsClick: () => undefined,
@@ -88,7 +88,7 @@ export class AdventureButtons extends React.Component<AdventureButtonsProps> {
     );
   }
 
-  private onNextHeroClick = () => {
+  private readonly onNextHeroClick = () => {
     const index = getNextHeroIndex(this.props.heroes, this.props.selectedIndex);
 
     if (index !== undefined) {

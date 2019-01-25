@@ -3,8 +3,8 @@ import * as React from "react";
 import { moraleImages } from "./assets";
 
 export interface MoraleIconProps {
-  type: "good" | "neutral" | "bad";
-  onClick?: () => void;
+  readonly type: "good" | "neutral" | "bad";
+  readonly onClick?: () => void;
 }
 
 export class MoraleIcon extends React.Component<MoraleIconProps> {

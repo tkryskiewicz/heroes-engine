@@ -4,8 +4,8 @@ import { luckImages } from "./assets";
 
 // TODO: is bad luck even possible?
 export interface LuckIconProps {
-  type: "good" | "neutral" | "bad";
-  onClick?: () => void;
+  readonly type: "good" | "neutral" | "bad";
+  readonly onClick?: () => void;
 }
 
 export class LuckIcon extends React.Component<LuckIconProps> {

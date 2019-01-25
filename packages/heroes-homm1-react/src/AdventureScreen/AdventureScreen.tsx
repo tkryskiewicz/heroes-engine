@@ -17,21 +17,21 @@ import { TownWindow } from "../TownWindow";
 import { messages } from "./messages";
 
 interface Hero {
-  mobility: number;
+  readonly mobility: number;
 }
 
 export interface AdventureScreenProps {
-  heroes: Hero[];
-  heroWindowVisible?: boolean;
-  kingdomOverviewWindowVisible?: boolean;
-  townWindowVisible?: boolean;
-  adventureOptionsVisible?: boolean;
-  gameOptionsVisible?: boolean;
-  puzzleWindowVisible?: boolean;
-  scenarioInfoWindowVisible?: boolean;
-  endTurnPromptVisible: boolean;
-  onEndTurnPromptVisibleChange: (value: boolean) => void;
-  onEndTurn: () => void;
+  readonly heroes: Hero[];
+  readonly heroWindowVisible?: boolean;
+  readonly kingdomOverviewWindowVisible?: boolean;
+  readonly townWindowVisible?: boolean;
+  readonly adventureOptionsVisible?: boolean;
+  readonly gameOptionsVisible?: boolean;
+  readonly puzzleWindowVisible?: boolean;
+  readonly scenarioInfoWindowVisible?: boolean;
+  readonly endTurnPromptVisible: boolean;
+  readonly onEndTurnPromptVisibleChange: (value: boolean) => void;
+  readonly onEndTurn: () => void;
 }
 
 type DefaultProp =
@@ -40,7 +40,7 @@ type DefaultProp =
   "onEndTurn";
 
 export class AdventureScreen extends React.Component<AdventureScreenProps> {
-  public static defaultProps: Pick<AdventureScreenProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<AdventureScreenProps, DefaultProp> = {
     endTurnPromptVisible: false,
     onEndTurn: () => undefined,
     onEndTurnPromptVisibleChange: () => undefined,
@@ -107,7 +107,7 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
     );
   }
 
-  private onEndTurnClick = () => {
+  private readonly onEndTurnClick = () => {
     if (this.props.heroes.some((h) => h.mobility !== 0)) {
       this.props.onEndTurnPromptVisibleChange(true);
 
@@ -132,11 +132,11 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
     );
   }
 
-  private onConfirmEndTurnClick = () => {
+  private readonly onConfirmEndTurnClick = () => {
     this.props.onEndTurn();
   }
 
-  private onCancelEndTurnClick = () => {
+  private readonly onCancelEndTurnClick = () => {
     this.props.onEndTurnPromptVisibleChange(false);
   }
 

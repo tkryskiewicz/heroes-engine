@@ -5,7 +5,7 @@ import { GameWindow } from "./GameWindow";
 type ExtractProps<C> = C extends React.ComponentType<infer P> ? P : never;
 
 export interface WithGameWindowProps {
-  visible?: boolean;
+  readonly visible?: boolean;
 }
 
 export const withGameWindow = (width?: number) =>

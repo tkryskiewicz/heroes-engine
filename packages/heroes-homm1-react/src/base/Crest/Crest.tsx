@@ -1,15 +1,15 @@
 import * as React from "react";
 
 export interface CrestProps {
-  alignment: string;
-  heroClass: string;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-  onClick: (alignment: string, heroClass: string) => void;
+  readonly alignment: string;
+  readonly heroClass: string;
+  readonly onMouseEnter: () => void;
+  readonly onMouseLeave: () => void;
+  readonly onClick: (alignment: string, heroClass: string) => void;
 }
 
 export class Crest extends React.Component<CrestProps> {
-  public static defaultProps: Pick<CrestProps, "onClick" | "onMouseEnter" | "onMouseLeave"> = {
+  public static readonly defaultProps: Pick<CrestProps, "onClick" | "onMouseEnter" | "onMouseLeave"> = {
     onClick: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,
@@ -26,7 +26,7 @@ export class Crest extends React.Component<CrestProps> {
     );
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.alignment, this.props.heroClass);
   }
 }

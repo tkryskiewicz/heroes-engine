@@ -3,8 +3,8 @@ import * as React from "react";
 import { ViewWindow } from "../ViewWindow";
 
 export interface WorldWindowProps {
-  visible?: boolean;
-  onExitClick?: () => void;
+  readonly visible?: boolean;
+  readonly onExitClick?: () => void;
 }
 
 export class WorldWindow extends React.Component<WorldWindowProps> {

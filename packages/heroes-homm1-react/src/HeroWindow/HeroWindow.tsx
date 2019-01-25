@@ -45,32 +45,32 @@ import { MiscInfo, MiscInfoType } from "./MiscInfo";
 import { SkillInfo } from "./SkillInfo";
 
 export interface HeroWindowProps {
-  hero: Hero;
-  dismissible: boolean;
-  visible?: boolean;
-  visibleSkillDetails?: string;
-  onVisibleSkillDetailsChange: (skill?: string) => void;
-  visibleMiscInfoDetails?: string;
-  onVisibleMiscInfoDetailsChange: (type?: string) => void;
-  onCrestClick: () => void;
-  selectedTroopIndex?: number;
-  onSelectTroop: (index: number) => void;
+  readonly hero: Hero;
+  readonly dismissible: boolean;
+  readonly visible?: boolean;
+  readonly visibleSkillDetails?: string;
+  readonly onVisibleSkillDetailsChange: (skill?: string) => void;
+  readonly visibleMiscInfoDetails?: string;
+  readonly onVisibleMiscInfoDetailsChange: (type?: string) => void;
+  readonly onCrestClick: () => void;
+  readonly selectedTroopIndex?: number;
+  readonly onSelectTroop: (index: number) => void;
   // TODO: should this be onOpenTroopDetails?
-  onSelectedTroopClick: (index: number) => void;
-  onSwapTroops: (hero: string, index: number, withIndex: number) => void;
-  troopDetailsVisible: boolean;
-  dismissTroopPromptVisible: boolean;
-  onDismissTroopClick: (index: number) => void;
-  onCancelDismissTroopClick: (index: number) => void;
-  onConfirmDismissTroopClick: (hero: string, index: number) => void;
-  onExitTroopDetails: () => void;
-  visibleArtifactDetails?: number;
-  onVisibleArtifactDetailsChange: (index?: number) => void;
-  dismissHeroPromptVisible: boolean;
-  onDismissHeroClick: () => void;
-  onCancelDismissHeroClick: () => void;
-  onConfirmDismissHeroClick: (hero: string) => void;
-  onExitClick: () => void;
+  readonly onSelectedTroopClick: (index: number) => void;
+  readonly onSwapTroops: (hero: string, index: number, withIndex: number) => void;
+  readonly troopDetailsVisible: boolean;
+  readonly dismissTroopPromptVisible: boolean;
+  readonly onDismissTroopClick: (index: number) => void;
+  readonly onCancelDismissTroopClick: (index: number) => void;
+  readonly onConfirmDismissTroopClick: (hero: string, index: number) => void;
+  readonly onExitTroopDetails: () => void;
+  readonly visibleArtifactDetails?: number;
+  readonly onVisibleArtifactDetailsChange: (index?: number) => void;
+  readonly dismissHeroPromptVisible: boolean;
+  readonly onDismissHeroClick: () => void;
+  readonly onCancelDismissHeroClick: () => void;
+  readonly onConfirmDismissHeroClick: (hero: string) => void;
+  readonly onExitClick: () => void;
 }
 
 type DefaultProp =
@@ -99,7 +99,7 @@ interface HeroWindowState {
 }
 
 class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, HeroWindowState> {
-  public static defaultProps: Pick<HeroWindowProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<HeroWindowProps, DefaultProp> = {
     dismissHeroPromptVisible: false,
     dismissTroopPromptVisible: false,
     dismissible: false,
@@ -121,7 +121,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     troopDetailsVisible: false,
   };
 
-  public state: HeroWindowState = {
+  public readonly state: HeroWindowState = {
     statusText: "",
   };
 
@@ -224,17 +224,17 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     );
   }
 
-  private onSkillMouseEnter = (skill: string) => {
+  private readonly onSkillMouseEnter = (skill: string) => {
     const skillName = this.props.intl.formatMessage(getSkillNameMessage(skill));
 
     this.setStatInfoStatusText(skillName);
   }
 
-  private onSkillMouseLeave = () => {
+  private readonly onSkillMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
-  private onSkillClick = (skill: string) => {
+  private readonly onSkillClick = (skill: string) => {
     this.props.onVisibleSkillDetailsChange(skill);
   }
 
@@ -256,7 +256,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     );
   }
 
-  private onCloseSkillDetailsClick = () => {
+  private readonly onCloseSkillDetailsClick = () => {
     this.props.onVisibleSkillDetailsChange();
   }
 
@@ -282,17 +282,17 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     );
   }
 
-  private onMiscInfoMouseEnter = () => {
+  private readonly onMiscInfoMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(messages.miscInfo);
 
     this.setStatusText(statusText);
   }
 
-  private onMiscInfoMouseLeave = () => {
+  private readonly onMiscInfoMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
-  private onInfoMouseEnter = (type: MiscInfoType) => {
+  private readonly onInfoMouseEnter = (type: MiscInfoType) => {
     const { formatMessage } = this.props.intl;
 
     let infoText = "";
@@ -312,11 +312,11 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     this.setStatInfoStatusText(infoText);
   }
 
-  private onInfoMouseLeave = () => {
+  private readonly onInfoMouseLeave = () => {
     this.onMiscInfoMouseEnter();
   }
 
-  private onInfoClick = (type: string) => {
+  private readonly onInfoClick = (type: string) => {
     this.props.onVisibleMiscInfoDetailsChange(type);
   }
 
@@ -413,17 +413,17 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     );
   }
 
-  private onCloseMiscInfoDetailsClick = () => {
+  private readonly onCloseMiscInfoDetailsClick = () => {
     this.props.onVisibleMiscInfoDetailsChange();
   }
 
-  private onCrestMouseEnter = () => {
+  private readonly onCrestMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(kingdomOverviewWindowMessages.title);
 
     this.setStatusText(statusText);
   }
 
-  private onCrestMouseLeave = () => {
+  private readonly onCrestMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
@@ -450,7 +450,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     );
   }
 
-  private onTroopMouseEnter = (index: number) => {
+  private readonly onTroopMouseEnter = (index: number) => {
     const { formatMessage } = this.props.intl;
 
     const selectedTroop = this.props.selectedTroopIndex !== undefined &&
@@ -487,11 +487,11 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     this.setStatusText(statusText);
   }
 
-  private onTroopMouseLeave = () => {
+  private readonly onTroopMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
-  private onSelectTroop = (index: number) => {
+  private readonly onSelectTroop = (index: number) => {
     const { formatMessage } = this.props.intl;
 
     const troop = this.props.hero.army[index]!;
@@ -505,7 +505,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     this.props.onSelectTroop(index);
   }
 
-  private onSwapTroops = (index: number, withIndex: number) => {
+  private readonly onSwapTroops = (index: number, withIndex: number) => {
     const { formatMessage } = this.props.intl;
 
     const troop = this.props.hero.army[index]!;
@@ -534,7 +534,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     );
   }
 
-  private onDismissTroopClick = (troop: Troop) => {
+  private readonly onDismissTroopClick = (troop: Troop) => {
     const { hero } = this.props;
 
     const index = hero.army.indexOf(troop);
@@ -542,7 +542,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     this.props.onDismissTroopClick(index);
   }
 
-  private onConfirmDismissTroopClick = (troop: Troop) => {
+  private readonly onConfirmDismissTroopClick = (troop: Troop) => {
     const { hero } = this.props;
 
     const index = hero.army.indexOf(troop);
@@ -550,7 +550,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     this.props.onConfirmDismissTroopClick(hero.id, index);
   }
 
-  private onCancelDismissTroopClick = (troop: Troop) => {
+  private readonly onCancelDismissTroopClick = (troop: Troop) => {
     const { hero } = this.props;
 
     const index = hero.army.indexOf(troop);
@@ -590,7 +590,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     );
   }
 
-  private onArtifactMouseEnter = (index: number) => {
+  private readonly onArtifactMouseEnter = (index: number) => {
     const artifact = this.props.hero.artifacts[index];
 
     const message = artifact ?
@@ -602,11 +602,11 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     this.setStatusText(statusText);
   }
 
-  private onArtifactMouseLeave = () => {
+  private readonly onArtifactMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
-  private onArtifactClick = (index: number) => {
+  private readonly onArtifactClick = (index: number) => {
     if (this.props.hero.artifacts[index]) {
       this.props.onVisibleArtifactDetailsChange(index);
     }
@@ -677,47 +677,47 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     this.setStatusText(statusText);
   }
 
-  private onPreviousSpellBookPageMouseEnter = () => {
+  private readonly onPreviousSpellBookPageMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(spellBookMessages.previousPageStatusText);
 
     this.setStatusText(statusText);
   }
 
-  private onPreviousSpellBookPageMouseLeave = () => {
+  private readonly onPreviousSpellBookPageMouseLeave = () => {
     this.setDefaultSpellBookStatusText();
   }
 
-  private onNextSpellBookPageMouseEnter = () => {
+  private readonly onNextSpellBookPageMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(spellBookMessages.nextPageStatusText);
 
     this.setStatusText(statusText);
   }
 
-  private onNextSpellBookPageMouseLeave = () => {
+  private readonly onNextSpellBookPageMouseLeave = () => {
     this.setDefaultSpellBookStatusText();
   }
 
-  private onSpellBookSpellTypeMouseEnter = (value: SpellType) => {
+  private readonly onSpellBookSpellTypeMouseEnter = (value: SpellType) => {
     const statusText = this.props.intl.formatMessage(getSpellTypeStatusTextMessage(value));
 
     this.setStatusText(statusText);
   }
 
-  private onSpellBookSpellTypeMouseLeave = () => {
+  private readonly onSpellBookSpellTypeMouseLeave = () => {
     this.setDefaultSpellBookStatusText();
   }
 
-  private onExitSpellBookMouseEnter = () => {
+  private readonly onExitSpellBookMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(spellBookMessages.exitStatusText);
 
     this.setStatusText(statusText);
   }
 
-  private onExitSpellBookMouseLeave = () => {
+  private readonly onExitSpellBookMouseLeave = () => {
     this.setDefaultSpellBookStatusText();
   }
 
-  private onCloseArtifactDetailsClick = () => {
+  private readonly onCloseArtifactDetailsClick = () => {
     this.props.onVisibleArtifactDetailsChange();
   }
 
@@ -735,7 +735,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     );
   }
 
-  private onDismissMouseEnter = () => {
+  private readonly onDismissMouseEnter = () => {
     const heroTitle = this.getHeroTitle();
 
     const statusText = this.props.intl.formatMessage(messages.dismiss, { heroName: heroTitle });
@@ -743,7 +743,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     this.setStatusText(statusText);
   }
 
-  private onDismissMouseLeave = () => {
+  private readonly onDismissMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
@@ -762,17 +762,17 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     );
   }
 
-  private onConfirmDismissHeroClick = () => {
+  private readonly onConfirmDismissHeroClick = () => {
     this.props.onConfirmDismissHeroClick(this.props.hero.id);
   }
 
-  private onExitMouseEnter = () => {
+  private readonly onExitMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(messages.exit);
 
     this.setStatusText(statusText);
   }
 
-  private onExitMouseLeave = () => {
+  private readonly onExitMouseLeave = () => {
     this.setDefaultStatusText();
   }
 

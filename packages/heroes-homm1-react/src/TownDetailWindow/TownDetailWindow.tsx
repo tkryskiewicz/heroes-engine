@@ -9,10 +9,10 @@ import { withGameWindow } from "../core";
 import { StatusBar } from "./StatusBar";
 
 export interface TownDetailWindowProps {
-  statusText: string;
-  onExitMouseEnter: () => void;
-  onExitMouseLeave: () => void;
-  onExitClick: () => void;
+  readonly statusText: string;
+  readonly onExitMouseEnter: () => void;
+  readonly onExitMouseLeave: () => void;
+  readonly onExitClick: () => void;
 }
 
 type DefaultProp =
@@ -22,7 +22,7 @@ type DefaultProp =
   "onExitClick";
 
 class TownDetailWindow extends React.Component<TownDetailWindowProps> {
-  public static defaultProps: Pick<TownDetailWindowProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<TownDetailWindowProps, DefaultProp> = {
     onExitClick: () => undefined,
     onExitMouseEnter: () => undefined,
     onExitMouseLeave: () => undefined,

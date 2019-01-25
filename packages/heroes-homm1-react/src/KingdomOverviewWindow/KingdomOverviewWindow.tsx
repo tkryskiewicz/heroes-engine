@@ -27,22 +27,26 @@ const resourceOrder = [
 ];
 
 export interface HeroClassSummary {
-  [heroClass: string]: number;
+  readonly [heroClass: string]: number;
 }
 
 export interface TownSummary {
-  [town: string]: number;
+  readonly [town: string]: number;
+}
+
+export interface ResourceSummary {
+  readonly [resource: string]: number;
 }
 
 export interface KingdomOverviewWindowProps {
-  alignment: string;
-  heroClasses: HeroClassSummary;
-  castles: TownSummary;
-  towns: TownSummary;
-  mines: { [resource: string]: number };
-  resources: Resources;
-  goldPerDay: number;
-  onExitClick?: () => void;
+  readonly alignment: string;
+  readonly heroClasses: HeroClassSummary;
+  readonly castles: TownSummary;
+  readonly towns: TownSummary;
+  readonly mines: ResourceSummary;
+  readonly resources: ResourceSummary;
+  readonly goldPerDay: number;
+  readonly onExitClick?: () => void;
 }
 
 class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> {
@@ -131,7 +135,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
     );
   }
 
-  private renderHeroClasses(heroClasses: { [heroClass: string]: number }) {
+  private renderHeroClasses(heroClasses: HeroClassSummary) {
     return HeroClassIds.map((c) => (
       <Col
         key={c}
@@ -145,7 +149,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
     ));
   }
 
-  private renderCastles(castles: { [town: string]: number }) {
+  private renderCastles(castles: TownSummary) {
     return TownIds.map((t) => (
       <Col
         key={t}
@@ -160,7 +164,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
     ));
   }
 
-  private renderTowns(towns: { [town: string]: number }) {
+  private renderTowns(towns: ResourceSummary) {
     return TownIds.map((t) => (
       <Col
         key={t}
@@ -174,7 +178,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
     ));
   }
 
-  private renderMines(mines: { [resource: string]: number }) {
+  private renderMines(mines: ResourceSummary) {
     return resourceOrder.map((r) => (
       <Col
         key={r}

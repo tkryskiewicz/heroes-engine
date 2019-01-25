@@ -5,8 +5,8 @@ import * as styles from "./MineOverview.module.scss";
 import { GameText } from "../../core";
 
 export interface MineOverviewProps {
-  resource: string;
-  count: number;
+  readonly resource: string;
+  readonly count: number;
 }
 
 export class MineOverview extends React.Component<MineOverviewProps> {

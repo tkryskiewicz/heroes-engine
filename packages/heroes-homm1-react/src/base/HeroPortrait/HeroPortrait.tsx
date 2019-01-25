@@ -3,14 +3,14 @@ import * as React from "react";
 import * as styles from "./HeroPortrait.module.scss";
 
 export interface HeroPortraitProps {
-  hero?: string;
-  onMouseEnter: (hero?: string) => void;
-  onMouseLeave: (hero?: string) => void;
-  onClick: (hero?: string) => void;
+  readonly hero?: string;
+  readonly onMouseEnter: (hero?: string) => void;
+  readonly onMouseLeave: (hero?: string) => void;
+  readonly onClick: (hero?: string) => void;
 }
 
 export class HeroPortrait extends React.Component<HeroPortraitProps> {
-  public static defaultProps: Pick<HeroPortraitProps, "onMouseEnter" | "onMouseLeave" | "onClick"> = {
+  public static readonly defaultProps: Pick<HeroPortraitProps, "onMouseEnter" | "onMouseLeave" | "onClick"> = {
     onClick: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,
@@ -41,15 +41,15 @@ export class HeroPortrait extends React.Component<HeroPortraitProps> {
     );
   }
 
-  private onMouseEnter = () => {
+  private readonly onMouseEnter = () => {
     this.props.onMouseEnter(this.props.hero);
   }
 
-  private onMouseLeave = () => {
+  private readonly onMouseLeave = () => {
     this.props.onMouseLeave(this.props.hero);
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.hero);
   }
 }

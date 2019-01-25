@@ -9,15 +9,15 @@ import { GameText } from "../../core";
 import { getSkillNameMessage } from "../../messages";
 
 export interface SkillInfoProps {
-  skill: string;
-  value: number;
-  onMouseEnter: (skill: string) => void;
-  onMouseLeave: (skill: string) => void;
-  onClick: (skill: string) => void;
+  readonly skill: string;
+  readonly value: number;
+  readonly onMouseEnter: (skill: string) => void;
+  readonly onMouseLeave: (skill: string) => void;
+  readonly onClick: (skill: string) => void;
 }
 
 export class SkillInfo extends React.Component<SkillInfoProps> {
-  public static defaultProps: Pick<SkillInfoProps, "onMouseEnter" | "onMouseLeave" | "onClick"> = {
+  public static readonly defaultProps: Pick<SkillInfoProps, "onMouseEnter" | "onMouseLeave" | "onClick"> = {
     onClick: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,
@@ -66,15 +66,15 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
     );
   }
 
-  private onMouseEnter = () => {
+  private readonly onMouseEnter = () => {
     this.props.onMouseEnter(this.props.skill);
   }
 
-  private onMouseLeave = () => {
+  private readonly onMouseLeave = () => {
     this.props.onMouseLeave(this.props.skill);
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.skill);
   }
 }

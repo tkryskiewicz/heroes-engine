@@ -11,14 +11,14 @@ import { GameText } from "../../core";
 import { Slot } from "../Slot";
 
 export interface TroopSlotProps {
-  index: number;
-  troop?: Troop;
-  selected: boolean;
-  onClick: (index: number) => void;
+  readonly index: number;
+  readonly troop?: Troop;
+  readonly selected: boolean;
+  readonly onClick: (index: number) => void;
 }
 
 export class TroopSlot extends React.Component<TroopSlotProps> {
-  public static defaultProps: Pick<TroopSlotProps, "selected" | "onClick"> = {
+  public static readonly defaultProps: Pick<TroopSlotProps, "selected" | "onClick"> = {
     onClick: () => undefined,
     selected: false,
   };

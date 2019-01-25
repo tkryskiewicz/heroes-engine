@@ -9,9 +9,9 @@ import { puzzleImages } from "./assets";
 import { ViewWindow } from "../ViewWindow";
 
 export interface PuzzleWindowProps {
-  discoveredPieces: number;
-  visible?: boolean;
-  onExitClick?: () => void;
+  readonly discoveredPieces: number;
+  readonly visible?: boolean;
+  readonly onExitClick?: () => void;
 }
 
 export class PuzzleWindow extends React.Component<PuzzleWindowProps> {

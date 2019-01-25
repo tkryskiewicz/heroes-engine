@@ -5,11 +5,11 @@ import * as styles from "./TownLocator.module.scss";
 import { Locator } from "../Locator";
 
 export interface TownLocatorProps {
-  index: number;
-  town?: string;
-  isCastleBuilt?: boolean;
-  selected?: boolean;
-  onClick?: (index: number) => void;
+  readonly index: number;
+  readonly town?: string;
+  readonly isCastleBuilt?: boolean;
+  readonly selected?: boolean;
+  readonly onClick?: (index: number) => void;
 }
 
 export class TownLocator extends React.Component<TownLocatorProps> {

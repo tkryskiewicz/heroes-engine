@@ -23,22 +23,22 @@ import { messages } from "./messages";
 import { Treasury } from "./Treasury";
 
 export interface TownWindowProps {
-  town: Town;
-  visitingHero?: Hero;
-  resources: Resources;
-  visible?: boolean;
-  selectedGarrisonTroopIndex?: number;
-  onSelectGarrisonTroop: (index: number) => void;
-  onSwapGarrisonTroops: (town: string, index: number, withIndex: number) => void;
-  selectedHeroTroopIndex?: number;
-  onSelectHeroTroop: (index: number) => void;
-  onSwapHeroTroops: (hero: string, index: number, withIndex: number) => void;
-  visibleStructureDetails?: string;
-  onCrestClick: () => void;
-  onOpenStructureDetailsClick: (structure: string) => void;
-  onCloseStructureDetailsClick: () => void;
-  onRecruitTroop: (town: string, structure: string, count: number) => void;
-  onExitClick: () => void;
+  readonly town: Town;
+  readonly visitingHero?: Hero;
+  readonly resources: Resources;
+  readonly visible?: boolean;
+  readonly selectedGarrisonTroopIndex?: number;
+  readonly onSelectGarrisonTroop: (index: number) => void;
+  readonly onSwapGarrisonTroops: (town: string, index: number, withIndex: number) => void;
+  readonly selectedHeroTroopIndex?: number;
+  readonly onSelectHeroTroop: (index: number) => void;
+  readonly onSwapHeroTroops: (hero: string, index: number, withIndex: number) => void;
+  readonly visibleStructureDetails?: string;
+  readonly onCrestClick: () => void;
+  readonly onOpenStructureDetailsClick: (structure: string) => void;
+  readonly onCloseStructureDetailsClick: () => void;
+  readonly onRecruitTroop: (town: string, structure: string, count: number) => void;
+  readonly onExitClick: () => void;
 }
 
 type DefaultProp =
@@ -57,7 +57,7 @@ interface TownWindowState {
 }
 
 class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, TownWindowState> {
-  public static defaultProps: Pick<TownWindowProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<TownWindowProps, DefaultProp> = {
     onCloseStructureDetailsClick: () => undefined,
     onCrestClick: () => undefined,
     onExitClick: () => undefined,
@@ -69,7 +69,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
     onSwapHeroTroops: () => undefined,
   };
 
-  public state: TownWindowState = {
+  public readonly state: TownWindowState = {
     statusText: "",
   };
 
@@ -148,35 +148,35 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
     );
   }
 
-  private onCrestMouseEnter = () => {
+  private readonly onCrestMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(kingdomOverviewWindowMessages.title);
 
     this.setStatusText(statusText);
   }
 
-  private onCrestMouseLeave = () => {
+  private readonly onCrestMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
-  private onHeroPortraitMouseEnter = () => {
+  private readonly onHeroPortraitMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(messages.viewHero);
 
     this.setStatusText(statusText);
   }
 
-  private onHeroPortraitMouseLeave = () => {
+  private readonly onHeroPortraitMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
-  private onSwapGarrisonTroops = (index: number, withIndex: number) => {
+  private readonly onSwapGarrisonTroops = (index: number, withIndex: number) => {
     this.props.onSwapGarrisonTroops(this.props.town.id, index, withIndex);
   }
 
-  private onSwapHeroTroops = (index: number, withIndex: number) => {
+  private readonly onSwapHeroTroops = (index: number, withIndex: number) => {
     this.props.onSwapHeroTroops(this.props.visitingHero!.id, index, withIndex);
   }
 
-  private onStructureMouseEnter = (structure: string) => {
+  private readonly onStructureMouseEnter = (structure: string) => {
     const { formatMessage } = this.props.intl;
 
     const struc = this.props.town.structures.find((s) => s.id === structure)!;
@@ -192,11 +192,11 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
     this.setStatusText(statusText);
   }
 
-  private onStructureMouseLeave = () => {
+  private readonly onStructureMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
-  private onStructureClick = (structure: string) => {
+  private readonly onStructureClick = (structure: string) => {
     this.props.onOpenStructureDetailsClick(structure);
   }
 
@@ -343,21 +343,21 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
     return structureDetails;
   }
 
-  private onCloseStructureDetailsClick = () => {
+  private readonly onCloseStructureDetailsClick = () => {
     this.props.onCloseStructureDetailsClick();
   }
 
-  private onRecruitTroop = (structure: string, count: number) => {
+  private readonly onRecruitTroop = (structure: string, count: number) => {
     this.props.onRecruitTroop(this.props.town.id, structure, count);
   }
 
-  private onExitMouseEnter = () => {
+  private readonly onExitMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(messages.exit);
 
     this.setStatusText(statusText);
   }
 
-  private onExitMouseLeave = () => {
+  private readonly onExitMouseLeave = () => {
     this.setDefaultStatusText();
   }
 

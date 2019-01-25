@@ -6,14 +6,16 @@ import { BackgroundImage, mobilityImages } from "./assets";
 
 import { Locator } from "../Locator";
 
+interface Hero {
+  readonly id: string;
+  readonly mobility: number;
+}
+
 export interface HeroLocatorProps {
-  index: number;
-  hero?: {
-    id: string;
-    mobility: number;
-  };
-  selected?: boolean;
-  onClick?: (index: number) => void;
+  readonly index: number;
+  readonly hero?: Hero;
+  readonly selected?: boolean;
+  readonly onClick?: (index: number) => void;
 }
 
 export class HeroLocator extends React.Component<HeroLocatorProps> {

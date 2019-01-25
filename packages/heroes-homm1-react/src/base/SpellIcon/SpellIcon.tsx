@@ -1,12 +1,12 @@
 import * as React from "react";
 
 export interface SpellIconProps {
-  spell: string;
-  onClick: (spell: string) => void;
+  readonly spell: string;
+  readonly onClick: (spell: string) => void;
 }
 
 export class SpellIcon extends React.Component<SpellIconProps> {
-  public static defaultProps: Pick<SpellIconProps, "onClick"> = {
+  public static readonly defaultProps: Pick<SpellIconProps, "onClick"> = {
     onClick: () => undefined,
   };
 
@@ -19,7 +19,7 @@ export class SpellIcon extends React.Component<SpellIconProps> {
     );
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.spell);
   }
 }

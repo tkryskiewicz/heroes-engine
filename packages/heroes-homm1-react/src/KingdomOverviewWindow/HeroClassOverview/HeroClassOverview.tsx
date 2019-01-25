@@ -5,8 +5,8 @@ import * as styles from "./HeroClassOverview.module.scss";
 import { GameText } from "../../core";
 
 export interface HeroClassOverviewProps {
-  heroClass: string;
-  count: number;
+  readonly heroClass: string;
+  readonly count: number;
 }
 
 export class HeroClassOverview extends React.Component<HeroClassOverviewProps> {

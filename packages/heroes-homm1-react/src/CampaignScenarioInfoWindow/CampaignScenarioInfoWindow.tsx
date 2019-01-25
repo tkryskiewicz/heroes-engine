@@ -8,14 +8,16 @@ import { buttonImages, scenarioNumberImages } from "./assets";
 import { ImageButton } from "../base";
 import { GameText, withGameWindow } from "../core";
 
+interface Scenario {
+  readonly scenarioNumber: number;
+  readonly name: string;
+  readonly description: string;
+}
+
 export interface CampaignScenarioInfoWindowProps {
-  scenario: {
-    scenarioNumber: number;
-    name: string;
-    description: string;
-  };
-  onOkayClick?: () => void;
-  onRestartScenarioClick?: () => void;
+  readonly scenario: Scenario;
+  readonly onOkayClick?: () => void;
+  readonly onRestartScenarioClick?: () => void;
 }
 
 class CampaignScenarioInfoWindow extends React.Component<CampaignScenarioInfoWindowProps> {

@@ -14,8 +14,8 @@ import { getStructureNameMessage } from "../messages";
 import { messages } from "./messages";
 
 export interface TavernWindowProps {
-  visible?: boolean;
-  onOkayClick?: () => void;
+  readonly visible?: boolean;
+  readonly onOkayClick?: () => void;
 }
 
 export class TavernWindow extends React.Component<TavernWindowProps> {

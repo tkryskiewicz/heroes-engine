@@ -10,13 +10,13 @@ import { getGameDifficultyMessage } from "../../messages";
 import { difficultyImages, SelectionImage } from "./assets";
 
 export interface GameDifficultyBoxProps {
-  value: GameDifficulty;
-  selected: boolean;
-  onClick: (value: GameDifficulty) => void;
+  readonly value: GameDifficulty;
+  readonly selected: boolean;
+  readonly onClick: (value: GameDifficulty) => void;
 }
 
 export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
-  public static defaultProps: Pick<GameDifficultyBoxProps, "selected" | "onClick"> = {
+  public static readonly defaultProps: Pick<GameDifficultyBoxProps, "selected" | "onClick"> = {
     onClick: () => undefined,
     selected: false,
   };
@@ -56,7 +56,7 @@ export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
     );
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onClick(this.props.value);
   }
 }

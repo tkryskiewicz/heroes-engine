@@ -15,11 +15,11 @@ type GameModalType =
   "cancel";
 
 export interface GameModalProps {
-  type: GameModalType;
-  size: number;
-  confirmDisabled: boolean;
-  onConfirmClick: () => void;
-  onCancelClick: () => void;
+  readonly type: GameModalType;
+  readonly size: number;
+  readonly confirmDisabled: boolean;
+  readonly onConfirmClick: () => void;
+  readonly onCancelClick: () => void;
 }
 
 type DefaultProp =
@@ -29,7 +29,7 @@ type DefaultProp =
   "onCancelClick";
 
 class GameModal extends React.Component<GameModalProps> {
-  public static defaultProps: Pick<GameModalProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<GameModalProps, DefaultProp> = {
     confirmDisabled: false,
     onCancelClick: () => undefined,
     onConfirmClick: () => undefined,

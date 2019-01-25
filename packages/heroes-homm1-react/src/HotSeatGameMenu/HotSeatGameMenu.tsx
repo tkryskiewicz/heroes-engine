@@ -5,8 +5,8 @@ import { buttonImages } from "./assets";
 import { ImageButton, Menu } from "../base";
 
 export interface HotSeatGameMenuProps {
-  onOptionClick: (value: number) => void;
-  onCancelClick: () => void;
+  readonly onOptionClick: (value: number) => void;
+  readonly onCancelClick: () => void;
 }
 
 export class HotSeatGameMenu extends React.Component<HotSeatGameMenuProps> {
@@ -41,15 +41,15 @@ export class HotSeatGameMenu extends React.Component<HotSeatGameMenuProps> {
     );
   }
 
-  private on2PlayersClick = () => {
+  private readonly on2PlayersClick = () => {
     this.props.onOptionClick(2);
   }
 
-  private on3PlayersClick = () => {
+  private readonly on3PlayersClick = () => {
     this.props.onOptionClick(3);
   }
 
-  private on4PlayersClick = () => {
+  private readonly on4PlayersClick = () => {
     this.props.onOptionClick(4);
   }
 }

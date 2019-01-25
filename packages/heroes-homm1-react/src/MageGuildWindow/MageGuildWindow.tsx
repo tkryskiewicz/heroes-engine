@@ -18,22 +18,22 @@ import { messages } from "./messages";
 import { SpellScroll } from "./SpellScroll";
 
 interface Spell {
-  id: string;
-  level: number;
+  readonly id: string;
+  readonly level: number;
 }
 
 export interface MageGuildWindowProps extends
   InjectedIntlProps,
   WithTownDetailWindowInjectedProps,
   WithTownDetailWindowProps {
-  spells: Spell[];
-  levelBuilt: number;
-  visibleSpellDetail?: string;
-  onVisibleSpellDetailChange: (spell?: string) => void;
+  readonly spells: Spell[];
+  readonly levelBuilt: number;
+  readonly visibleSpellDetail?: string;
+  readonly onVisibleSpellDetailChange: (spell?: string) => void;
 }
 
 class MageGuildWindow extends React.Component<MageGuildWindowProps> {
-  public static defaultProps: Pick<MageGuildWindowProps, "onVisibleSpellDetailChange"> = {
+  public static readonly defaultProps: Pick<MageGuildWindowProps, "onVisibleSpellDetailChange"> = {
     onVisibleSpellDetailChange: () => undefined,
   };
 
@@ -78,7 +78,7 @@ class MageGuildWindow extends React.Component<MageGuildWindowProps> {
     );
   }
 
-  private onSpellClick = (value: string) => {
+  private readonly onSpellClick = (value: string) => {
     const spell = this.props.spells.find((s) => s.id === value);
 
     if (spell && spell.level <= this.props.levelBuilt) {
@@ -110,7 +110,7 @@ class MageGuildWindow extends React.Component<MageGuildWindowProps> {
     );
   }
 
-  private onCloseSpellDetailClick = () => {
+  private readonly onCloseSpellDetailClick = () => {
     this.props.onVisibleSpellDetailChange();
   }
 }

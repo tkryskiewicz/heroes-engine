@@ -4,14 +4,15 @@ import { TownLimit } from "heroes-homm1";
 
 import { TownLocator } from "../TownLocator";
 
+interface Town {
+  readonly id: string;
+  readonly isCastleBuilt: boolean;
+}
 export interface TownLocatorsProps {
-  towns: Array<{
-    id: string,
-    isCastleBuilt: boolean;
-  }>;
-  selectedIndex?: number;
-  onSelectLocator?: (index: number) => void;
-  onSelectedLocatorClick?: (index: number) => void;
+  readonly towns: Town[];
+  readonly selectedIndex?: number;
+  readonly onSelectLocator?: (index: number) => void;
+  readonly onSelectedLocatorClick?: (index: number) => void;
 }
 
 // TODO: unify hero and town locators?
@@ -33,7 +34,7 @@ export class TownLocators extends React.Component<TownLocatorsProps> {
     });
   }
 
-  private onLocatorClick = (index: number) => {
+  private readonly onLocatorClick = (index: number) => {
     const town = this.props.towns[index];
 
     if (!town) {

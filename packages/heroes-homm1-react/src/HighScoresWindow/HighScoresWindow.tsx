@@ -18,18 +18,20 @@ import { CreatureIcon, ImageButton } from "../base";
 import { GameText } from "../core";
 import { getCampaignNameMessage, getCreatureNameMessage } from "../messages";
 
+interface HighScores {
+  readonly [GameType.Campaign]: CampaignGameScore[];
+  readonly [GameType.Standard]: StandardGameScore[];
+}
+
 export interface HighScoresWindowProps {
-  scores: {
-    [GameType.Campaign]: CampaignGameScore[];
-    [GameType.Standard]: StandardGameScore[];
-  };
-  gameType: GameType;
-  onGameTypeChange: (value: GameType) => void;
-  onExitClick: () => void;
+  readonly scores: HighScores;
+  readonly gameType: GameType;
+  readonly onGameTypeChange: (value: GameType) => void;
+  readonly onExitClick: () => void;
 }
 
 export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
-  public static defaultProps: Pick<HighScoresWindowProps, "onGameTypeChange" | "onExitClick"> = {
+  public static readonly defaultProps: Pick<HighScoresWindowProps, "onGameTypeChange" | "onExitClick"> = {
     onExitClick: () => undefined,
     onGameTypeChange: () => undefined,
   };
@@ -184,7 +186,7 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
     );
   }
 
-  private onCategoryClick = () => {
+  private readonly onCategoryClick = () => {
     const value = this.props.gameType === GameType.Campaign ?
       GameType.Standard :
       GameType.Campaign;

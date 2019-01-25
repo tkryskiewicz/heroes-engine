@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { MoraleIcon, MoraleIconProps } from "./MoraleIcon";
 
-const moraleOptions: { [s: string]: MoraleIconProps["type"] } = {
+const moraleOptions: { readonly [s: string]: MoraleIconProps["type"] } = {
   Bad: "bad",
   Good: "good",
   Neutral: "neutral",

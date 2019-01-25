@@ -6,8 +6,8 @@ import { GameText } from "../../core";
 import { ResourceIcon } from "../ResourceIcon";
 
 export interface ResourceAmountProps {
-  resource: string;
-  amount: number;
+  readonly resource: string;
+  readonly amount: number;
 }
 
 export class ResourceAmount extends React.Component<ResourceAmountProps> {

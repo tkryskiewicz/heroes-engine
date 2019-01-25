@@ -13,11 +13,11 @@ import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 
 export interface CombatWonWindowProps {
-  hero: string;
-  rewardedExperience: number;
-  attackerCasualties: Army;
-  defenderCasualties: Army;
-  onOkayClick?: () => void;
+  readonly hero: string;
+  readonly rewardedExperience: number;
+  readonly attackerCasualties: Army;
+  readonly defenderCasualties: Army;
+  readonly onOkayClick?: () => void;
 }
 
 export class CombatWonWindow extends React.Component<CombatWonWindowProps> {

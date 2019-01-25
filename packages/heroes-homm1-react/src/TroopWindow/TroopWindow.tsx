@@ -15,13 +15,13 @@ import { getCreatureNameMessage } from "../messages";
 import { getSpeedMessage, messages } from "./messages";
 
 export interface TroopWindowProps {
-  troop: Troop;
-  dismissible: boolean;
-  dismissPromptVisible: boolean;
-  onDismissClick: (troop: Troop) => void;
-  onConfirmDismissClick: (troop: Troop) => void;
-  onCancelDismissClick: (troop: Troop) => void;
-  onExitClick: () => void;
+  readonly troop: Troop;
+  readonly dismissible: boolean;
+  readonly dismissPromptVisible: boolean;
+  readonly onDismissClick: (troop: Troop) => void;
+  readonly onConfirmDismissClick: (troop: Troop) => void;
+  readonly onCancelDismissClick: (troop: Troop) => void;
+  readonly onExitClick: () => void;
 }
 
 type DefaultProp =
@@ -33,7 +33,7 @@ type DefaultProp =
   "onExitClick";
 
 class TroopWindow extends React.Component<TroopWindowProps> {
-  public static defaultProps: Pick<TroopWindowProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<TroopWindowProps, DefaultProp> = {
     dismissPromptVisible: false,
     dismissible: false,
     onCancelDismissClick: () => undefined,
@@ -149,7 +149,7 @@ class TroopWindow extends React.Component<TroopWindowProps> {
       damage.min;
   }
 
-  private onDismissClick = () => {
+  private readonly onDismissClick = () => {
     this.props.onDismissClick(this.props.troop);
   }
 
@@ -180,11 +180,11 @@ class TroopWindow extends React.Component<TroopWindowProps> {
     );
   }
 
-  private onConfirmDismiss = () => {
+  private readonly onConfirmDismiss = () => {
     this.props.onConfirmDismissClick(this.props.troop);
   }
 
-  private onCancelDismiss = () => {
+  private readonly onCancelDismiss = () => {
     this.props.onCancelDismissClick(this.props.troop);
   }
 }

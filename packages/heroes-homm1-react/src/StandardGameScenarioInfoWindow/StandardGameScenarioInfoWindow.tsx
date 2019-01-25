@@ -26,15 +26,15 @@ import {
 } from "../messages";
 
 export interface StandardGameScenarioInfoWindowProps {
-  scenarioName: string;
-  gameDifficulty: GameDifficulty;
-  opponentSettings: OpponentSetting[];
-  alignment: Alignment;
-  kingOfTheHill: boolean;
-  scenarioSize: ScenarioSize;
-  scenarioDescription: string;
-  scenarioDifficulty: ScenarioDifficulty;
-  onOkayClick: () => void;
+  readonly scenarioName: string;
+  readonly gameDifficulty: GameDifficulty;
+  readonly opponentSettings: OpponentSetting[];
+  readonly alignment: Alignment;
+  readonly kingOfTheHill: boolean;
+  readonly scenarioSize: ScenarioSize;
+  readonly scenarioDescription: string;
+  readonly scenarioDifficulty: ScenarioDifficulty;
+  readonly onOkayClick: () => void;
 }
 
 type DefaultProp =
@@ -42,7 +42,7 @@ type DefaultProp =
   "onOkayClick";
 
 class StandardGameScenarioInfoWindow extends React.Component<StandardGameScenarioInfoWindowProps> {
-  public static defaultProps: Pick<StandardGameScenarioInfoWindowProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<StandardGameScenarioInfoWindowProps, DefaultProp> = {
     kingOfTheHill: false,
     onOkayClick: () => undefined,
   };

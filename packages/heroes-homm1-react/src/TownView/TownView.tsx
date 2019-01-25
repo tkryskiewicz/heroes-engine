@@ -13,16 +13,16 @@ import {
 import { StructureView } from "../StructureView";
 
 interface StructurePosition {
-  left: number;
-  top: number;
+  readonly left: number;
+  readonly top: number;
 }
 
 interface StructureInfo {
-  position: StructurePosition;
-  placeholderPosition?: StructurePosition;
+  readonly position: StructurePosition;
+  readonly placeholderPosition?: StructurePosition;
 }
 
-const CommonStructuresInfo: { [structure: string]: StructureInfo } = {
+const CommonStructuresInfo: { readonly [structure: string]: StructureInfo } = {
   [StructureId.MageGuild]: {
     position: {
       left: 297,
@@ -55,7 +55,7 @@ const CommonStructuresInfo: { [structure: string]: StructureInfo } = {
   },
 };
 
-const FarmStructuresInfo: { [structure: string]: StructureInfo } = {
+const FarmStructuresInfo: { readonly [structure: string]: StructureInfo } = {
   [StructureId.Castle]: {
     // FIXME: fix position
     placeholderPosition: {
@@ -106,7 +106,7 @@ const FarmStructuresInfo: { [structure: string]: StructureInfo } = {
   },
 };
 
-const PlainsStructuresInfo: { [structure: string]: StructureInfo } = {
+const PlainsStructuresInfo: { readonly [structure: string]: StructureInfo } = {
   [StructureId.Castle]: {
     placeholderPosition: {
       left: 380,
@@ -156,7 +156,7 @@ const PlainsStructuresInfo: { [structure: string]: StructureInfo } = {
   },
 };
 
-const ForestStructuresInfo: { [structure: string]: StructureInfo } = {
+const ForestStructuresInfo: { readonly [structure: string]: StructureInfo } = {
   [StructureId.Castle]: {
     placeholderPosition: {
       left: 378,
@@ -206,7 +206,7 @@ const ForestStructuresInfo: { [structure: string]: StructureInfo } = {
   },
 };
 
-const MountainsStructuresInfo: { [structure: string]: StructureInfo } = {
+const MountainsStructuresInfo: { readonly [structure: string]: StructureInfo } = {
   [StructureId.Castle]: {
     placeholderPosition: {
       left: 372,
@@ -256,21 +256,23 @@ const MountainsStructuresInfo: { [structure: string]: StructureInfo } = {
   },
 };
 
-const StructuresInfo: { [town: string]: { [structure: string]: StructureInfo } } = {
+const StructuresInfo: { readonly [town: string]: { readonly [structure: string]: StructureInfo } } = {
   [TownId.Farm]: FarmStructuresInfo,
   [TownId.Plains]: PlainsStructuresInfo,
   [TownId.Forest]: ForestStructuresInfo,
   [TownId.Mountains]: MountainsStructuresInfo,
 };
 
+interface Town {
+  readonly id: string;
+  readonly structures: Structure[];
+}
+
 export interface TownViewProps {
-  town: {
-    id: string;
-    structures: Structure[];
-  };
-  onStructureMouseEnter?: (structure: string) => void;
-  onStructureMouseLeave?: (structure: string) => void;
-  onStructureClick?: (structure: string) => void;
+  readonly town: Town;
+  readonly onStructureMouseEnter?: (structure: string) => void;
+  readonly onStructureMouseLeave?: (structure: string) => void;
+  readonly onStructureClick?: (structure: string) => void;
 }
 
 export class TownView extends React.Component<TownViewProps> {

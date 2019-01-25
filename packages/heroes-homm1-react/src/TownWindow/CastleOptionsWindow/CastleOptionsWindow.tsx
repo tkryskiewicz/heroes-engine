@@ -22,13 +22,13 @@ export interface CastleOptionsWindowProps extends
   InjectedIntlProps,
   WithTownDetailWindowInjectedProps,
   WithTownDetailWindowProps {
-  town: string;
-  canConstructStructures: boolean;
-  options: Structure[];
-  resources: Resources;
-  visibleOptionDetails?: string;
-  onOpenOptionDetailsClick: (option: string) => void;
-  onCloseOptionDetailsClick: () => void;
+  readonly town: string;
+  readonly canConstructStructures: boolean;
+  readonly options: Structure[];
+  readonly resources: Resources;
+  readonly visibleOptionDetails?: string;
+  readonly onOpenOptionDetailsClick: (option: string) => void;
+  readonly onCloseOptionDetailsClick: () => void;
 }
 
 type DefaultProp =
@@ -36,7 +36,7 @@ type DefaultProp =
   "onCloseOptionDetailsClick";
 
 class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> implements WithTownDetailWindowRef {
-  public static defaultProps: Pick<CastleOptionsWindowProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<CastleOptionsWindowProps, DefaultProp> = {
     onCloseOptionDetailsClick: () => undefined,
     onOpenOptionDetailsClick: () => undefined,
   };
@@ -62,13 +62,13 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
     );
   }
 
-  public onExitMouseEnter = () => {
+  public readonly onExitMouseEnter = () => {
     const statusText = this.props.intl.formatMessage(messages.exitStatusText);
 
     this.props.onStatusTextChange(statusText);
   }
 
-  public onExitMouseLeave = () => {
+  public readonly onExitMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
@@ -92,7 +92,7 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
     );
   }
 
-  private onOptionMouseEnter = (structure: string, status: CastleOptionStatus) => {
+  private readonly onOptionMouseEnter = (structure: string, status: CastleOptionStatus) => {
     const { formatMessage } = this.props.intl;
 
     const optionName = formatMessage(getStructureNameMessage(structure));
@@ -102,11 +102,11 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
     this.props.onStatusTextChange(statusText);
   }
 
-  private onOptionMouseLeave = () => {
+  private readonly onOptionMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
-  private onOptionClick = (option: string) => {
+  private readonly onOptionClick = (option: string) => {
     this.props.onOpenOptionDetailsClick(option);
   }
 

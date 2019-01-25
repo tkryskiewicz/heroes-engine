@@ -5,11 +5,11 @@ import { buttonImages } from "./assets";
 import { ImageButton, Menu } from "../base";
 
 export interface MultiPlayerGameMenuProps {
-  onHotSeatClick: () => void;
-  onDirectConnectClick: () => void;
-  onModemClick: () => void;
-  onNetworkClick: () => void;
-  onCancelClick: () => void;
+  readonly onHotSeatClick: () => void;
+  readonly onDirectConnectClick: () => void;
+  readonly onModemClick: () => void;
+  readonly onNetworkClick: () => void;
+  readonly onCancelClick: () => void;
 }
 
 type DefaultProp =
@@ -20,7 +20,7 @@ type DefaultProp =
   "onCancelClick";
 
 export class MultiPlayerGameMenu extends React.Component<MultiPlayerGameMenuProps> {
-  public static defaultProps: Pick<MultiPlayerGameMenuProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<MultiPlayerGameMenuProps, DefaultProp> = {
     onCancelClick: () => undefined,
     onDirectConnectClick: () => undefined,
     onHotSeatClick: () => undefined,

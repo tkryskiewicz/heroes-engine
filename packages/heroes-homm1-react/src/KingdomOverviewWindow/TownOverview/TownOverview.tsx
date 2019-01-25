@@ -5,9 +5,9 @@ import * as styles from "./TownOverview.module.scss";
 import { GameText } from "../../core";
 
 export interface TownOverviewProps {
-  town: string;
-  isCastleBuilt?: boolean;
-  count: number;
+  readonly town: string;
+  readonly isCastleBuilt?: boolean;
+  readonly count: number;
 }
 
 export class TownOverview extends React.Component<TownOverviewProps> {

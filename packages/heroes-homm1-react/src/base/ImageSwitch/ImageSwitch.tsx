@@ -3,18 +3,18 @@ import * as React from "react";
 import * as styles from "./ImageSwitch.module.scss";
 
 export interface SwitchImages {
-  checked: string;
-  unchecked: string;
+  readonly checked: string;
+  readonly unchecked: string;
 }
 
 export interface ImageSwitchProps {
-  images: SwitchImages;
-  checked: boolean;
-  onChange: (value: boolean) => void;
+  readonly images: SwitchImages;
+  readonly checked: boolean;
+  readonly onChange: (value: boolean) => void;
 }
 
 export class ImageSwitch extends React.Component<ImageSwitchProps> {
-  public static defaultProps: Pick<ImageSwitchProps, "checked" | "onChange"> = {
+  public static readonly defaultProps: Pick<ImageSwitchProps, "checked" | "onChange"> = {
     checked: false,
     onChange: () => undefined,
   };
@@ -42,7 +42,7 @@ export class ImageSwitch extends React.Component<ImageSwitchProps> {
     );
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     this.props.onChange(!this.props.checked);
   }
 }

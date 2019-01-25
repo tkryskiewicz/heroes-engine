@@ -6,11 +6,11 @@ import { buttonImages } from "./assets";
 import { ImageButton, Menu } from "../base";
 
 export interface MainMenuProps {
-  onNewGameClick?: () => void;
-  onLoadGameClick?: () => void;
-  onViewHighScoresClick?: () => void;
-  onViewCreditsClick?: () => void;
-  onQuitClick?: () => void;
+  readonly onNewGameClick?: () => void;
+  readonly onLoadGameClick?: () => void;
+  readonly onViewHighScoresClick?: () => void;
+  readonly onViewCreditsClick?: () => void;
+  readonly onQuitClick?: () => void;
 }
 
 export class MainMenu extends React.Component<MainMenuProps> {

@@ -24,7 +24,7 @@ import { HeroWindow } from "./HeroWindow";
 import { MiscInfoType } from "./MiscInfo";
 
 // TODO: move or remove???
-export const miscInfoOptions: { [s: string]: MiscInfoType | "" } = {
+export const miscInfoOptions: { readonly [s: string]: MiscInfoType | "" } = {
   Experience: MiscInfoType.Experience,
   Luck: MiscInfoType.Luck,
   Morale: MiscInfoType.Morale,

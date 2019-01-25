@@ -9,12 +9,12 @@ import { statusImages } from "./assets";
 import { CastleOptionIcon } from "../../CastleOptionIcon";
 
 export interface CastleOptionProps {
-  town: string;
-  option: string;
-  status: CastleOptionStatus;
-  onMouseEnter: (option: string, status: CastleOptionStatus) => void;
-  onMouseLeave: (option: string, status: CastleOptionStatus) => void;
-  onClick: (option: string, status: CastleOptionStatus) => void;
+  readonly town: string;
+  readonly option: string;
+  readonly status: CastleOptionStatus;
+  readonly onMouseEnter: (option: string, status: CastleOptionStatus) => void;
+  readonly onMouseLeave: (option: string, status: CastleOptionStatus) => void;
+  readonly onClick: (option: string, status: CastleOptionStatus) => void;
 }
 
 type DefaultProp =
@@ -23,7 +23,7 @@ type DefaultProp =
   "onClick";
 
 export class CastleOption extends React.Component<CastleOptionProps> {
-  public static defaultProps: Pick<CastleOptionProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<CastleOptionProps, DefaultProp> = {
     onClick: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,
@@ -53,15 +53,15 @@ export class CastleOption extends React.Component<CastleOptionProps> {
     );
   }
 
-  private onMouseEnter = () => {
+  private readonly onMouseEnter = () => {
     this.props.onMouseEnter(this.props.option, this.props.status);
   }
 
-  private onMouseLeave = () => {
+  private readonly onMouseLeave = () => {
     this.props.onMouseLeave(this.props.option, this.props.status);
   }
 
-  private onClick = () => {
+  private readonly onClick = () => {
     if (this.props.status !== CastleOptionStatus.Available) {
       return;
     }

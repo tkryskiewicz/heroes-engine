@@ -14,29 +14,29 @@ import { SpellBox } from "./SpellBox";
 const SpellsPerPage = 4;
 
 interface Spell {
-  id: string;
-  type: SpellType;
-  charges: number;
+  readonly id: string;
+  readonly type: SpellType;
+  readonly charges: number;
 }
 
 export interface SpellBookWindowProps {
-  spells: Spell[];
-  spellType: SpellType;
-  onSpellTypeMouseEnter: (value: SpellType) => void;
-  onSpellTypeMouseLeave: (value: SpellType) => void;
-  onSpellTypeChange: (value: SpellType) => void;
-  page: number;
-  onPreviousPageMouseEnter: () => void;
-  onPreviousPageMouseLeave: () => void;
-  onNextPageMouseEnter: () => void;
-  onNextPageMouseLeave: () => void;
-  onPageChange: (value: number) => void;
-  onSpellClick: (value: string) => void;
-  visibleSpellDetails?: string;
-  onCloseSpellDetailsClick: () => void;
-  onExitMouseEnter: () => void;
-  onExitMouseLeave: () => void;
-  onExitClick: () => void;
+  readonly spells: Spell[];
+  readonly spellType: SpellType;
+  readonly onSpellTypeMouseEnter: (value: SpellType) => void;
+  readonly onSpellTypeMouseLeave: (value: SpellType) => void;
+  readonly onSpellTypeChange: (value: SpellType) => void;
+  readonly page: number;
+  readonly onPreviousPageMouseEnter: () => void;
+  readonly onPreviousPageMouseLeave: () => void;
+  readonly onNextPageMouseEnter: () => void;
+  readonly onNextPageMouseLeave: () => void;
+  readonly onPageChange: (value: number) => void;
+  readonly onSpellClick: (value: string) => void;
+  readonly visibleSpellDetails?: string;
+  readonly onCloseSpellDetailsClick: () => void;
+  readonly onExitMouseEnter: () => void;
+  readonly onExitMouseLeave: () => void;
+  readonly onExitClick: () => void;
 }
 
 type DefaultProp =
@@ -55,7 +55,7 @@ type DefaultProp =
   "onExitClick";
 
 class SpellBookWindow extends React.Component<SpellBookWindowProps> {
-  public static defaultProps: Pick<SpellBookWindowProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<SpellBookWindowProps, DefaultProp> = {
     onCloseSpellDetailsClick: () => undefined,
     onExitClick: () => undefined,
     onExitMouseEnter: () => undefined,
@@ -125,12 +125,12 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
 
     return (
       <div>
-        {visibleSpells.map(this.renderSpell)}
+        {visibleSpells.map((s, i) => this.renderSpell(s, i))}
       </div>
     );
   }
 
-  private renderSpell = (spell: Spell, index: number) => {
+  private renderSpell(spell: Spell, index: number) {
     return (
       <div
         key={spell.id}
@@ -169,35 +169,35 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
     );
   }
 
-  private onCombatSpellsMouseEnter = () => {
+  private readonly onCombatSpellsMouseEnter = () => {
     this.props.onSpellTypeMouseEnter(SpellType.Combat);
   }
 
-  private onCombatSpellsMouseLeave = () => {
+  private readonly onCombatSpellsMouseLeave = () => {
     this.props.onSpellTypeMouseLeave(SpellType.Combat);
   }
 
-  private onCombatSpellsClick = () => {
+  private readonly onCombatSpellsClick = () => {
     if (this.props.spellType !== SpellType.Combat) {
       this.props.onSpellTypeChange(SpellType.Combat);
     }
   }
 
-  private onAdventureSpellsMouseEnter = () => {
+  private readonly onAdventureSpellsMouseEnter = () => {
     this.props.onSpellTypeMouseEnter(SpellType.Adventure);
   }
 
-  private onAdventureSpellsMouseLeave = () => {
+  private readonly onAdventureSpellsMouseLeave = () => {
     this.props.onSpellTypeMouseLeave(SpellType.Adventure);
   }
 
-  private onAdventureSpellsClick = () => {
+  private readonly onAdventureSpellsClick = () => {
     if (this.props.spellType !== SpellType.Adventure) {
       this.props.onSpellTypeChange(SpellType.Adventure);
     }
   }
 
-  private onPreviousPageClick = () => {
+  private readonly onPreviousPageClick = () => {
     const firstPage = this.getFirstPage();
 
     const value = this.props.page > firstPage ?
@@ -209,7 +209,7 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
     }
   }
 
-  private onNextPageClick = () => {
+  private readonly onNextPageClick = () => {
     const lastPage = this.getLastPage();
 
     const value = this.props.page < lastPage ?

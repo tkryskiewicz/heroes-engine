@@ -15,18 +15,23 @@ import { getCreatureNameMessage } from "../messages";
 import { messages } from "./messages";
 
 export interface RecruitTroopWindowProps {
-  resources: Resources;
-  creature: string;
-  cost: Resources;
-  availableCount: number;
-  count: number;
-  onCountChange: (value: number) => void;
-  onOkayClick: (count: number) => void;
-  onCancelClick: () => void;
+  readonly resources: Resources;
+  readonly creature: string;
+  readonly cost: Resources;
+  readonly availableCount: number;
+  readonly count: number;
+  readonly onCountChange: (value: number) => void;
+  readonly onOkayClick: (count: number) => void;
+  readonly onCancelClick: () => void;
 }
 
+type DefaultProp =
+  "onCountChange" |
+  "onOkayClick" |
+  "onCancelClick";
+
 class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
-  public static defaultProps: Pick<RecruitTroopWindowProps, "onCountChange" | "onOkayClick" | "onCancelClick"> = {
+  public static readonly defaultProps: Pick<RecruitTroopWindowProps, DefaultProp> = {
     onCancelClick: () => undefined,
     onCountChange: () => undefined,
     onOkayClick: () => undefined,
@@ -119,7 +124,7 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
     );
   }
 
-  private onCountChange: InputNumberProps["onChange"] = (v) => {
+  private readonly onCountChange: InputNumberProps["onChange"] = (v) => {
     if (v === undefined) {
       return;
     }
@@ -129,7 +134,7 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
     this.props.onCountChange(value);
   }
 
-  private onMaxClick = () => {
+  private readonly onMaxClick = () => {
     let count = 0;
 
     while (
@@ -142,7 +147,7 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
     this.props.onCountChange(count);
   }
 
-  private onOkayClick = () => {
+  private readonly onOkayClick = () => {
     // FIXME: should this be handled here?
     if (this.props.count === 0) {
       this.onCancelClick();
@@ -153,7 +158,7 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
     this.props.onOkayClick(this.props.count);
   }
 
-  private onCancelClick = () => {
+  private readonly onCancelClick = () => {
     this.props.onCancelClick();
   }
 }

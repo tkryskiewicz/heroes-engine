@@ -20,31 +20,33 @@ import {
   moraleMessages,
 } from "../messages";
 
+interface Hero {
+  readonly id: string;
+  readonly alignment: string;
+  readonly heroClass: string;
+  readonly skills: HeroSkills;
+  readonly morale: number;
+  readonly luck: number;
+}
+
 export interface HeroCombatOptionsProps {
-  visible?: boolean;
-  hero: {
-    id: string;
-    alignment: string;
-    heroClass: string;
-    skills: HeroSkills;
-    morale: number;
-    luck: number;
-  };
-  canCastSpell: boolean;
-  onCastSpellMouseEnter: () => void;
-  onCastSpellMouseLeave: () => void;
-  onCastSpellClick: () => void;
-  canRetreat: boolean;
-  onRetreatMouseEnter: () => void;
-  onRetreatMouseLeave: () => void;
-  onRetreatClick: () => void;
-  canSurrender: boolean;
-  onSurrenderMouseEnter: () => void;
-  onSurrenderMouseLeave: () => void;
-  onSurrenderClick: () => void;
-  onCancelMouseEnter: () => void;
-  onCancelMouseLeave: () => void;
-  onCancelClick: () => void;
+  readonly visible?: boolean;
+  readonly hero: Hero;
+  readonly canCastSpell: boolean;
+  readonly onCastSpellMouseEnter: () => void;
+  readonly onCastSpellMouseLeave: () => void;
+  readonly onCastSpellClick: () => void;
+  readonly canRetreat: boolean;
+  readonly onRetreatMouseEnter: () => void;
+  readonly onRetreatMouseLeave: () => void;
+  readonly onRetreatClick: () => void;
+  readonly canSurrender: boolean;
+  readonly onSurrenderMouseEnter: () => void;
+  readonly onSurrenderMouseLeave: () => void;
+  readonly onSurrenderClick: () => void;
+  readonly onCancelMouseEnter: () => void;
+  readonly onCancelMouseLeave: () => void;
+  readonly onCancelClick: () => void;
 }
 
 type DefaultProp =
@@ -62,7 +64,7 @@ type DefaultProp =
   "onCancelClick";
 
 class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & InjectedIntlProps> {
-  public static defaultProps: Pick<HeroCombatOptionsProps, DefaultProp> = {
+  public static readonly defaultProps: Pick<HeroCombatOptionsProps, DefaultProp> = {
     onCancelClick: () => undefined,
     onCancelMouseEnter: () => undefined,
     onCancelMouseLeave: () => undefined,
