@@ -17,7 +17,7 @@ import * as styles from "./HeroWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { ArmyStrip, armyStripMessages, Crest, GameModal, HeroPortrait, ImageButton } from "../base";
+import { ArmyStrip, Crest, GameModal, getArmyStripStatusTextMessage, HeroPortrait, ImageButton } from "../base";
 import { GameParagraph, GameText, GameWindow } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
@@ -453,36 +453,18 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
   private readonly onTroopMouseEnter = (index: number) => {
     const { formatMessage } = this.props.intl;
 
-    const selectedTroop = this.props.selectedTroopIndex !== undefined &&
-      this.props.hero.army[this.props.selectedTroopIndex];
+    const selectedTroop = this.props.selectedTroopIndex !== undefined ?
+      this.props.hero.army[this.props.selectedTroopIndex] :
+      undefined;
     const troop = this.props.hero.army[index];
 
     const selectedTroopName = selectedTroop && formatMessage(getCreatureNameMessage(selectedTroop.creature));
     const troopName = troop && formatMessage(getCreatureNameMessage(troop.creature));
 
-    // TODO: simplify??
-    let statusText = "";
-
-    if (selectedTroop) {
-      if (troop) {
-        if (troop === selectedTroop) {
-          statusText = formatMessage(armyStripMessages.showTroopDetails, { troopName });
-        } else {
-          statusText = formatMessage(armyStripMessages.swapTroops, {
-            troopName: selectedTroopName,
-            withTroopName: troopName,
-          });
-        }
-      } else {
-        statusText = formatMessage(armyStripMessages.moveTroop, { troopName: selectedTroopName });
-      }
-    } else {
-      if (troop) {
-        statusText = formatMessage(armyStripMessages.selectSlot, { troopName });
-      } else {
-        statusText = formatMessage(armyStripMessages.slotEmpty);
-      }
-    }
+    const statusText = formatMessage(getArmyStripStatusTextMessage(selectedTroop, troop), {
+      selectedTroopName,
+      troopName,
+    });
 
     this.setStatusText(statusText);
   }
@@ -498,7 +480,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
 
     const troopName = formatMessage(getCreatureNameMessage(troop.creature));
 
-    const statusText = formatMessage(armyStripMessages.showTroopDetails, { troopName });
+    const statusText = formatMessage(getArmyStripStatusTextMessage(troop, troop), { troopName });
 
     this.setStatusText(statusText);
 
@@ -512,7 +494,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
 
     const troopName = formatMessage(getCreatureNameMessage(troop.creature));
 
-    const statusText = formatMessage(armyStripMessages.selectSlot, { troopName });
+    const statusText = formatMessage(getArmyStripStatusTextMessage(undefined, troop), { troopName });
 
     this.setStatusText(statusText);
 

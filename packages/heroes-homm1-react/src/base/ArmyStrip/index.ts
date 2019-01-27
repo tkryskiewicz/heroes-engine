@@ -1,2 +1,2 @@
 export { ArmyStrip, ArmyStripProps } from "./ArmyStrip";
-export { messages as armyStripMessages } from "./messages";
+export { getArmyStripStatusTextMessage } from "./messages";
