@@ -438,12 +438,10 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
       <div className={styles.army}>
         <ArmyStrip
           army={hero.army}
+          selectedTroopIndex={this.props.selectedTroopIndex}
           onTroopMouseEnter={this.onTroopMouseEnter}
           onTroopMouseLeave={this.onTroopMouseLeave}
-          selectedTroopIndex={this.props.selectedTroopIndex}
-          onSelectTroop={this.onSelectTroop}
-          onSelectedTroopClick={this.props.onSelectedTroopClick}
-          onSwapTroops={this.onSwapTroops}
+          onTroopClick={this.onTroopClick}
         />
         {selectedTroop && this.renderTroopDetails(selectedTroop, troopDismissible, this.props.troopDetailsVisible)}
       </div>
@@ -471,6 +469,18 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
 
   private readonly onTroopMouseLeave = () => {
     this.setDefaultStatusText();
+  }
+
+  private readonly onTroopClick = (index: number) => {
+    const { selectedTroopIndex } = this.props;
+
+    if (selectedTroopIndex === undefined && this.props.hero.army[index]) {
+      this.onSelectTroop(index);
+    } else if (index === selectedTroopIndex) {
+      this.props.onSelectedTroopClick(index);
+    } else if (selectedTroopIndex !== undefined && index !== selectedTroopIndex) {
+      this.onSwapTroops(selectedTroopIndex, index);
+    }
   }
 
   private readonly onSelectTroop = (index: number) => {

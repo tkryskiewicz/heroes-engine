@@ -20,23 +20,19 @@ storiesOf("base/ArmyStrip", module)
     return (
       <ArmyStrip
         army={army}
+        selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
         onTroopMouseEnter={action("Troop Mouse Enter")}
         onTroopMouseLeave={action("Troop Mouse Leave")}
-        selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
-        onSelectTroop={action("Select Troop")}
-        onSelectedTroopClick={action("Selected Troop Click")}
-        onSwapTroops={action("Swap Troops")}
+        onTroopClick={action("Troop Click")}
       />
     );
   })
   .add("empty", () => (
     <ArmyStrip
       army={[]}
+      selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
       onTroopMouseEnter={action("Troop Mouse Enter")}
       onTroopMouseLeave={action("Troop Mouse Leave")}
-      selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
-      onSelectTroop={action("Select Troop")}
-      onSelectedTroopClick={action("Selected Troop Click")}
-      onSwapTroops={action("Swap Troops")}
+      onTroopClick={action("Troop Click")}
     />
   ));
