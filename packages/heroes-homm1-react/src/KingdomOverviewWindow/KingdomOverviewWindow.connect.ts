@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 
 import { isStructureBuilt } from "heroes-core";
 import { HeroClassIds, StructureId, TownIds } from "heroes-homm1";
-import { AppState, closeKingdomOverviewWindow } from "heroes-homm1-state";
+import { AppState, kingdomOverviewWindowActions } from "heroes-homm1-state";
 
 import {
   HeroClassSummary,
@@ -52,7 +52,7 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<KingdomOverviewWindowProps, DispatchProp> => ({
   onExitClick() {
-    dispatch(closeKingdomOverviewWindow());
+    dispatch(kingdomOverviewWindowActions.close());
   },
 });
 

@@ -4,10 +4,10 @@ import { Dispatch } from "redux";
 import {
   AppState,
   gameOptionsActions,
+  kingdomOverviewWindowActions,
   Locator,
   LocatorType,
   openAdventureOptions,
-  openKingdomOverviewWindow,
   selectLocator,
 } from "heroes-homm1-state";
 
@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsProps, Dis
     dispatch(selectLocator(locator));
   },
   onKingdomOverviewClick() {
-    dispatch(openKingdomOverviewWindow());
+    dispatch(kingdomOverviewWindowActions.open());
   },
   onAdventureOptionsClick() {
     dispatch(openAdventureOptions());

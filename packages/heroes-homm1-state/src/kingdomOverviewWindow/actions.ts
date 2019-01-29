@@ -11,7 +11,7 @@ export interface OpenKingdomOverviewWindowAction {
   readonly type: KingdomOverviewWindowActionType.Open;
 }
 
-export const openKingdomOverviewWindow = (): OpenKingdomOverviewWindowAction => ({
+export const open = (): OpenKingdomOverviewWindowAction => ({
   type: KingdomOverviewWindowActionType.Open,
 });
 
@@ -19,6 +19,6 @@ export interface CloseKingdomOverviewWindowAction {
   readonly type: KingdomOverviewWindowActionType.Close;
 }
 
-export const closeKingdomOverviewWindow = (): CloseKingdomOverviewWindowAction => ({
+export const close = (): CloseKingdomOverviewWindowAction => ({
   type: KingdomOverviewWindowActionType.Close,
 });

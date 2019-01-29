@@ -12,10 +12,10 @@ import {
   closeHeroWindowTroopDetails,
   dismissHero,
   dismissHeroTroop,
+  kingdomOverviewWindowActions,
   openDismissHeroPrompt,
   openDismissHeroWindowTroopPrompt,
   openHeroWindowTroopDetails,
-  openKingdomOverviewWindow,
   selectHeroWindowTroop,
   swapHeroTroops,
 } from "heroes-homm1-state";
@@ -68,7 +68,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchP
     dispatch(changeVisibleHeroWindowMiscInfoDetails(type));
   },
   onCrestClick() {
-    dispatch(openKingdomOverviewWindow());
+    dispatch(kingdomOverviewWindowActions.open());
   },
   onSelectTroop(index) {
     dispatch(selectHeroWindowTroop(index));

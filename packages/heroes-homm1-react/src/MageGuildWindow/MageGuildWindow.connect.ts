@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, changeMageGuildWindowVisibleSpellDetail } from "heroes-homm1-state";
+import { AppState, mageGuildWindowActions } from "heroes-homm1-state";
 
 import { MageGuildWindow, MageGuildWindowProps } from "./MageGuildWindow";
 
@@ -17,7 +17,7 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<MageGuildWindowProps, DispatchProp> => ({
   onVisibleSpellDetailChange(spell) {
-    dispatch(changeMageGuildWindowVisibleSpellDetail(spell));
+    dispatch(mageGuildWindowActions.changeVisibleSpellDetail(spell));
   },
 });
 

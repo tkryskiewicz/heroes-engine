@@ -6,7 +6,7 @@ import {
   AppState,
   closeStructureDetails,
   closeTownWindow,
-  openKingdomOverviewWindow,
+  kingdomOverviewWindowActions,
   openStructureDetails,
   recruitTroop,
   selectTownWindowGarrisonTroop,
@@ -51,7 +51,7 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchProp> => ({
   onCrestClick() {
-    dispatch(openKingdomOverviewWindow());
+    dispatch(kingdomOverviewWindowActions.open());
   },
   onSelectGarrisonTroop(index) {
     dispatch(selectTownWindowGarrisonTroop(index));

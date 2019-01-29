@@ -1,3 +1,5 @@
-export { changeVisibleSpellDetail as changeMageGuildWindowVisibleSpellDetail } from "./actions";
+import * as mageGuildWindowActions from "./actions";
+
+export { mageGuildWindowActions };
 export { mageGuildWindowReducer } from "./reducers";
 export { MageGuildWindowState } from "./state";
