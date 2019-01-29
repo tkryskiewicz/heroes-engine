@@ -1,15 +1,6 @@
-export {
-  TownWindowActionType,
-  TownWindowAction,
-  openTownWindow,
-  closeTownWindow,
-  openStructureDetails,
-  closeStructureDetails,
-  openOptionDetails as openCastleOptionDetails,
-  closeOptionDetails as closeCastleOptionDetails,
-  changeRecruitTroopCount,
-  selectTownWindowGarrisonTroop,
-  selectTownWindowHeroTroop,
-} from "./actions";
+import * as townWindowActions from "./actions";
+
+export { townWindowActions };
+export { TownWindowAction, TownWindowActionType } from "./actions";
 export { townWindowReducer } from "./reducers";
 export { TownWindowState } from "./state";

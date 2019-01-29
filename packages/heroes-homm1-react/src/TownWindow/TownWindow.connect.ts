@@ -4,13 +4,9 @@ import { Dispatch } from "redux";
 import { TownId } from "heroes-homm1";
 import {
   AppState,
-  closeStructureDetails,
-  closeTownWindow,
   gameActions,
   kingdomOverviewWindowActions,
-  openStructureDetails,
-  selectTownWindowGarrisonTroop,
-  selectTownWindowHeroTroop,
+  townWindowActions,
 } from "heroes-homm1-state";
 
 import { TownWindow, TownWindowProps } from "./TownWindow";
@@ -52,28 +48,28 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchP
     dispatch(kingdomOverviewWindowActions.open());
   },
   onSelectGarrisonTroop(index) {
-    dispatch(selectTownWindowGarrisonTroop(index));
+    dispatch(townWindowActions.selectGarrisonTroop(index));
   },
   onSwapGarrisonTroops(town, index, withIndex) {
     dispatch(gameActions.swapGarrisonTroops(town, index, withIndex));
   },
   onSelectHeroTroop(index) {
-    dispatch(selectTownWindowHeroTroop(index));
+    dispatch(townWindowActions.selectHeroTroop(index));
   },
   onSwapHeroTroops(hero, index, withIndex) {
     dispatch(gameActions.swapHeroTroops(hero, index, withIndex));
   },
   onOpenStructureDetailsClick(structure) {
-    dispatch(openStructureDetails(structure));
+    dispatch(townWindowActions.openStructureDetails(structure));
   },
   onCloseStructureDetailsClick() {
-    dispatch(closeStructureDetails());
+    dispatch(townWindowActions.closeStructureDetails());
   },
   onRecruitTroop(town, structure, count) {
     dispatch(gameActions.recruitTroop(town, structure, count));
   },
   onExitClick() {
-    dispatch(closeTownWindow());
+    dispatch(townWindowActions.close());
   },
 });
 

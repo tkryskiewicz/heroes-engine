@@ -25,14 +25,4 @@ export { rootReducer } from "./reducers";
 export { AppState } from "./state";
 export { scenarioInforWindowActions } from "./scenarioInfoWindow";
 export { spellBookWindowActions } from "./spellBookWindow";
-export {
-  openTownWindow,
-  closeTownWindow,
-  openStructureDetails,
-  closeStructureDetails,
-  openCastleOptionDetails,
-  closeCastleOptionDetails,
-  changeRecruitTroopCount,
-  selectTownWindowGarrisonTroop,
-  selectTownWindowHeroTroop,
-} from "./townWindow";
+export { townWindowActions } from "./townWindow";

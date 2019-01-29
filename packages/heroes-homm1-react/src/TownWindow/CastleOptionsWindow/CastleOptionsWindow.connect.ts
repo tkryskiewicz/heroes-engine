@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, closeCastleOptionDetails, openCastleOptionDetails } from "heroes-homm1-state";
+import { AppState, townWindowActions } from "heroes-homm1-state";
 
 import { CastleOptionsWindow, CastleOptionsWindowProps } from "./CastleOptionsWindow";
 
@@ -18,10 +18,10 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<CastleOptionsWindowProps, DispatchProp> => ({
   onOpenOptionDetailsClick(option: string) {
-    dispatch(openCastleOptionDetails(option));
+    dispatch(townWindowActions.openOptionDetails(option));
   },
   onCloseOptionDetailsClick() {
-    dispatch(closeCastleOptionDetails());
+    dispatch(townWindowActions.closeOptionDetails());
   },
 });
 

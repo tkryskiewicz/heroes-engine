@@ -26,7 +26,7 @@ export interface OpenTownWindowAction {
   readonly type: TownWindowActionType.Open;
 }
 
-export const openTownWindow = (): OpenTownWindowAction => ({
+export const open = (): OpenTownWindowAction => ({
   type: TownWindowActionType.Open,
 });
 
@@ -34,7 +34,7 @@ export interface CloseTownWindowAction {
   readonly type: TownWindowActionType.Close;
 }
 
-export const closeTownWindow = (): CloseTownWindowAction => ({
+export const close = (): CloseTownWindowAction => ({
   type: TownWindowActionType.Close,
 });
 
@@ -43,7 +43,7 @@ export interface SelectGarrisonTroopAction {
   readonly index: number;
 }
 
-export const selectTownWindowGarrisonTroop = (index: number): SelectGarrisonTroopAction => ({
+export const selectGarrisonTroop = (index: number): SelectGarrisonTroopAction => ({
   index,
   type: TownWindowActionType.SelectGarrisonTroop,
 });
@@ -53,7 +53,7 @@ export interface SelectHeroTroopAction {
   readonly index: number;
 }
 
-export const selectTownWindowHeroTroop = (index: number): SelectHeroTroopAction => ({
+export const selectHeroTroop = (index: number): SelectHeroTroopAction => ({
   index,
   type: TownWindowActionType.SelectHeroTroop,
 });

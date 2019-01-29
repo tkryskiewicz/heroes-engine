@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, changeRecruitTroopCount } from "heroes-homm1-state";
+import { AppState, townWindowActions } from "heroes-homm1-state";
 
 import { RecruitTroopWindow, RecruitTroopWindowProps } from "./RecruitTroopWindow";
 
@@ -19,7 +19,7 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<RecruitTroopWindowProps, DispatchProp> => ({
   onCountChange(count) {
-    dispatch(changeRecruitTroopCount(count));
+    dispatch(townWindowActions.changeRecruitTroopCount(count));
   },
 });
 

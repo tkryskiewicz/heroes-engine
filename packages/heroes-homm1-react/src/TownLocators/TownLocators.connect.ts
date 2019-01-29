@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 
 import { isStructureBuilt } from "heroes-core";
 import { StructureId } from "heroes-homm1";
-import { AppState, Locator, locatorsActions, LocatorType, openTownWindow } from "heroes-homm1-state";
+import { AppState, Locator, locatorsActions, LocatorType, townWindowActions } from "heroes-homm1-state";
 
 import { TownLocators, TownLocatorsProps } from "./TownLocators";
 
@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownLocatorsProps, Dispatc
     dispatch(locatorsActions.selectLocator(locator));
   },
   onSelectedLocatorClick() {
-    dispatch(openTownWindow());
+    dispatch(townWindowActions.open());
   },
 });
 
