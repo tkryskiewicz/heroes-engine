@@ -1,22 +1,9 @@
 export { adventureOptionsActions } from "./adventureOptions";
 export { changeEndTurnPromptVisible } from "./adventureScreen";
-export { gameActions, GameAction, GameActionType } from "./game";
+export { gameActions } from "./game";
 export { gameOptionsActions } from "./gameOptions";
 export { gameSettingsActions } from "./gameSettings";
-export {
-  openHeroWindow,
-  closeHeroWindow,
-  changeVisibleHeroWindowSkillDetails,
-  changeVisibleHeroWindowMiscInfoDetails,
-  selectHeroWindowTroop,
-  openHeroWindowTroopDetails,
-  closeHeroWindowTroopDetails,
-  openDismissHeroWindowTroopPrompt,
-  closeDismissHeroWindowTroopPrompt,
-  changeVisibleHeroWindowArtifactDetails,
-  openDismissHeroPrompt,
-  closeDismissHeroPrompt,
-} from "./heroWindow";
+export { heroWindowActions } from "./heroWindow";
 export { kingdomOverviewWindowActions } from "./kingdomOverviewWindow";
 export { locatorsActions, Locator, LocatorType } from "./locators";
 export { mageGuildWindowActions } from "./mageGuildWindow";

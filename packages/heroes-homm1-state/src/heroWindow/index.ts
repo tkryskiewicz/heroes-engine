@@ -1,18 +1,6 @@
-export {
-  HeroWindowAction,
-  HeroWindowActionType,
-  openHeroWindow,
-  closeHeroWindow,
-  selectHeroWindowTroop,
-  openTroopDetails as openHeroWindowTroopDetails,
-  closeTroopDetails as closeHeroWindowTroopDetails,
-  openDismissTroopPrompt as openDismissHeroWindowTroopPrompt,
-  closeDismissTroopPrompt as closeDismissHeroWindowTroopPrompt,
-  changeVisibleArtifactDetails as changeVisibleHeroWindowArtifactDetails,
-  openDismissHeroPrompt,
-  closeDismissHeroPrompt,
-  changeVisibleHeroWindowSkillDetails as changeVisibleHeroWindowSkillDetails,
-  changeVisibleMiscInfoDetails as changeVisibleHeroWindowMiscInfoDetails,
-} from "./actions";
+import * as heroWindowActions from "./actions";
+
+export { heroWindowActions };
+export { HeroWindowAction, HeroWindowActionType } from "./actions";
 export { heroWindowReducer } from "./reducers";
 export { HeroWindowState } from "./state";

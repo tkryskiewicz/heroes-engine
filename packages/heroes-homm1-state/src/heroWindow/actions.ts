@@ -31,7 +31,7 @@ export interface OpenHeroWindowAction {
   readonly type: HeroWindowActionType.Open;
 }
 
-export const openHeroWindow = (): OpenHeroWindowAction => ({
+export const open = (): OpenHeroWindowAction => ({
   type: HeroWindowActionType.Open,
 });
 
@@ -39,7 +39,7 @@ export interface CloseHeroWindowAction {
   readonly type: HeroWindowActionType.Close;
 }
 
-export const closeHeroWindow = (): CloseHeroWindowAction => ({
+export const close = (): CloseHeroWindowAction => ({
   type: HeroWindowActionType.Close,
 });
 
@@ -48,7 +48,7 @@ export interface ChangeVisibleSkillDetailsAction {
   readonly skill?: string;
 }
 
-export const changeVisibleHeroWindowSkillDetails = (skill?: string): ChangeVisibleSkillDetailsAction => ({
+export const changeVisibleSkillDetails = (skill?: string): ChangeVisibleSkillDetailsAction => ({
   skill,
   type: HeroWindowActionType.ChangeVisibleSkillDetails,
 });
@@ -68,7 +68,7 @@ export interface SelectHeroWindowTroopAction {
   readonly index: number;
 }
 
-export const selectHeroWindowTroop = (index: number): SelectHeroWindowTroopAction => ({
+export const selectTroop = (index: number): SelectHeroWindowTroopAction => ({
   index,
   type: HeroWindowActionType.SelectTroop,
 });

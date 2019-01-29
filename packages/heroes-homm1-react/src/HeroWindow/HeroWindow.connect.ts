@@ -3,19 +3,9 @@ import { Dispatch } from "redux";
 
 import {
   AppState,
-  changeVisibleHeroWindowArtifactDetails,
-  changeVisibleHeroWindowMiscInfoDetails,
-  changeVisibleHeroWindowSkillDetails,
-  closeDismissHeroPrompt,
-  closeDismissHeroWindowTroopPrompt,
-  closeHeroWindow,
-  closeHeroWindowTroopDetails,
   gameActions,
+  heroWindowActions,
   kingdomOverviewWindowActions,
-  openDismissHeroPrompt,
-  openDismissHeroWindowTroopPrompt,
-  openHeroWindowTroopDetails,
-  selectHeroWindowTroop,
 } from "heroes-homm1-state";
 
 import { HeroWindow, HeroWindowProps } from "./HeroWindow";
@@ -60,28 +50,28 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchProp> => ({
   onVisibleSkillDetailsChange(skill) {
-    dispatch(changeVisibleHeroWindowSkillDetails(skill));
+    dispatch(heroWindowActions.changeVisibleSkillDetails(skill));
   },
   onVisibleMiscInfoDetailsChange(type) {
-    dispatch(changeVisibleHeroWindowMiscInfoDetails(type));
+    dispatch(heroWindowActions.changeVisibleMiscInfoDetails(type));
   },
   onCrestClick() {
     dispatch(kingdomOverviewWindowActions.open());
   },
   onSelectTroop(index) {
-    dispatch(selectHeroWindowTroop(index));
+    dispatch(heroWindowActions.selectTroop(index));
   },
   onSelectedTroopClick(index) {
-    dispatch(openHeroWindowTroopDetails(index));
+    dispatch(heroWindowActions.openTroopDetails(index));
   },
   onExitTroopDetails() {
-    dispatch(closeHeroWindowTroopDetails());
+    dispatch(heroWindowActions.closeTroopDetails());
   },
   onDismissTroopClick(index) {
-    dispatch(openDismissHeroWindowTroopPrompt(index));
+    dispatch(heroWindowActions.openDismissTroopPrompt(index));
   },
   onCancelDismissTroopClick(index) {
-    dispatch(closeDismissHeroWindowTroopPrompt(index));
+    dispatch(heroWindowActions.closeDismissTroopPrompt(index));
   },
   onConfirmDismissTroopClick(hero, index) {
     dispatch(gameActions.dismissHeroTroop(hero, index));
@@ -90,19 +80,19 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchP
     dispatch(gameActions.swapHeroTroops(hero, index, withIndex));
   },
   onVisibleArtifactDetailsChange(index) {
-    dispatch(changeVisibleHeroWindowArtifactDetails(index));
+    dispatch(heroWindowActions.changeVisibleArtifactDetails(index));
   },
   onDismissHeroClick() {
-    dispatch(openDismissHeroPrompt());
+    dispatch(heroWindowActions.openDismissHeroPrompt());
   },
   onCancelDismissHeroClick() {
-    dispatch(closeDismissHeroPrompt());
+    dispatch(heroWindowActions.closeDismissHeroPrompt());
   },
   onConfirmDismissHeroClick(hero) {
     dispatch(gameActions.dismissHero(hero));
   },
   onExitClick() {
-    dispatch(closeHeroWindow());
+    dispatch(heroWindowActions.close());
   },
 });
 
