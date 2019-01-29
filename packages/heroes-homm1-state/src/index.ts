@@ -10,14 +10,7 @@ export {
   endTurn,
 } from "./game";
 export { gameOptionsActions } from "./gameOptions";
-export {
-  changeAutoSave,
-  changeEffectsVolume,
-  changeMovementSpeed,
-  changeMusicVolume,
-  changeShowPath,
-  changeViewEnemyMovement,
-} from "./gameSettings";
+export { gameSettingsActions } from "./gameSettings";
 export {
   openHeroWindow,
   closeHeroWindow,

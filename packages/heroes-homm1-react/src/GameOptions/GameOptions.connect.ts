@@ -3,13 +3,8 @@ import { Dispatch } from "redux";
 
 import {
   AppState,
-  changeAutoSave,
-  changeEffectsVolume,
-  changeMovementSpeed,
-  changeMusicVolume,
-  changeShowPath,
-  changeViewEnemyMovement,
   gameOptionsActions,
+  gameSettingsActions,
   scenarioInforWindowActions,
 } from "heroes-homm1-state";
 
@@ -44,22 +39,22 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<GameOptionsProps, DispatchProp> => ({
   onMusicVolumeChange(volume) {
-    dispatch(changeMusicVolume(volume));
+    dispatch(gameSettingsActions.changeMusicVolume(volume));
   },
   onEffectsVolumeChange(volume) {
-    dispatch(changeEffectsVolume(volume));
+    dispatch(gameSettingsActions.changeEffectsVolume(volume));
   },
   onMovementSpeedChange(value) {
-    dispatch(changeMovementSpeed(value));
+    dispatch(gameSettingsActions.changeMovementSpeed(value));
   },
   onAutoSaveChange(value) {
-    dispatch(changeAutoSave(value));
+    dispatch(gameSettingsActions.changeAutoSave(value));
   },
   onShowPathChange(value) {
-    dispatch(changeShowPath(value));
+    dispatch(gameSettingsActions.changeShowPath(value));
   },
   onViewEnemyMovementChange(value) {
-    dispatch(changeViewEnemyMovement(value));
+    dispatch(gameSettingsActions.changeViewEnemyMovement(value));
   },
   onOkayClick() {
     dispatch(gameOptionsActions.close());

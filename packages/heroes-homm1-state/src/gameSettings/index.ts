@@ -1,10 +1,5 @@
-export {
-  changeAutoSave,
-  changeEffectsVolume,
-  changeMovementSpeed,
-  changeMusicVolume,
-  changeShowPath,
-  changeViewEnemyMovement,
-} from "./actions";
+import * as gameSettingsActions from "./actions";
+
+export { gameSettingsActions };
 export { gameSettingsReducer } from "./reducers";
 export { GameSettingsState } from "./state";
