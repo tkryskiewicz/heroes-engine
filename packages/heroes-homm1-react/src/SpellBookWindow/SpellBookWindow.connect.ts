@@ -3,9 +3,7 @@ import { Dispatch } from "redux";
 
 import {
   AppState,
-  changeSpellBookWindowPage,
-  changeSpellBookWindowSpellType,
-  changeVisibleSpellBookWindowSpellDetails,
+  spellBookWindowActions,
 } from "heroes-homm1-state";
 
 import { SpellBookWindow, SpellBookWindowProps } from "./SpellBookWindow";
@@ -29,16 +27,16 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<SpellBookWindowProps, DispatchProp> => ({
   onSpellTypeChange(value) {
-    dispatch(changeSpellBookWindowSpellType(value));
+    dispatch(spellBookWindowActions.changeSpellType(value));
   },
   onPageChange(value) {
-    dispatch(changeSpellBookWindowPage(value));
+    dispatch(spellBookWindowActions.changePage(value));
   },
   onSpellClick(value) {
-    dispatch(changeVisibleSpellBookWindowSpellDetails(value));
+    dispatch(spellBookWindowActions.changeVisibleSpellDetails(value));
   },
   onCloseSpellDetailsClick() {
-    dispatch(changeVisibleSpellBookWindowSpellDetails());
+    dispatch(spellBookWindowActions.changeVisibleSpellDetails());
   },
 });
 

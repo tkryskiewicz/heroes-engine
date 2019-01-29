@@ -1,7 +1,5 @@
-export {
-  changeSpellType as changeSpellBookWindowSpellType,
-  changePage as changeSpellBookWindowPage,
-  changeVisibleSpellDetails as changeVisibleSpellBookWindowSpellDetails,
-} from "./actions";
+import * as spellBookWindowActions from "./actions";
+
+export { spellBookWindowActions };
 export { spellBookWindowReducer } from "./reducers";
 export { SpellBookWindowState } from "./state";

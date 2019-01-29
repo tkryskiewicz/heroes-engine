@@ -39,11 +39,7 @@ export { openPuzzleWindow, closePuzzleWindow } from "./puzzleWindow";
 export { rootReducer } from "./reducers";
 export { AppState } from "./state";
 export { openScenarioInfoWindow, closeScenarioInfoWindow } from "./scenarioInfoWindow";
-export {
-  changeSpellBookWindowSpellType,
-  changeSpellBookWindowPage,
-  changeVisibleSpellBookWindowSpellDetails,
-} from "./spellBookWindow";
+export { spellBookWindowActions } from "./spellBookWindow";
 export {
   openTownWindow,
   closeTownWindow,
