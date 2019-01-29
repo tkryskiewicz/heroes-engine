@@ -1,4 +1,4 @@
-export { openAdventureOptions, closeAdventureOptions } from "./adventureOptions";
+export { adventureOptionsActions } from "./adventureOptions";
 export { changeEndTurnPromptVisible } from "./adventureScreen";
 export {
   swapHeroTroops,
@@ -26,7 +26,7 @@ export {
   closeDismissHeroPrompt,
 } from "./heroWindow";
 export { kingdomOverviewWindowActions } from "./kingdomOverviewWindow";
-export * from "./locators";
+export { locatorsActions, Locator, LocatorType } from "./locators";
 export { mageGuildWindowActions } from "./mageGuildWindow";
 export { openPuzzleWindow, closePuzzleWindow } from "./puzzleWindow";
 export { rootReducer } from "./reducers";

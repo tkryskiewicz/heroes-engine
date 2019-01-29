@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { closeAdventureOptions, openPuzzleWindow } from "heroes-homm1-state";
+import { adventureOptionsActions, openPuzzleWindow } from "heroes-homm1-state";
 
 import { AdventureOptions, AdventureOptionsProps } from "./AdventureOptions";
 
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureOptionsProps, Dis
     dispatch(openPuzzleWindow());
   },
   onOkayClick() {
-    dispatch(closeAdventureOptions());
+    dispatch(adventureOptionsActions.close());
   },
 });
 

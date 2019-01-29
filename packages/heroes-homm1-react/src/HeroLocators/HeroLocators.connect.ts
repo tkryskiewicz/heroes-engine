@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, Locator, LocatorType, openHeroWindow, selectLocator } from "heroes-homm1-state";
+import { AppState, Locator, locatorsActions, LocatorType, openHeroWindow } from "heroes-homm1-state";
 
 import { HeroLocators, HeroLocatorsProps } from "./HeroLocators";
 
@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroLocatorsProps, Dispatc
       type: LocatorType.Hero,
     };
 
-    dispatch(selectLocator(locator));
+    dispatch(locatorsActions.selectLocator(locator));
   },
   onSelectedLocatorClick() {
     dispatch(openHeroWindow());

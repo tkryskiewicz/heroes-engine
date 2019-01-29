@@ -2,13 +2,13 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
 import {
+  adventureOptionsActions,
   AppState,
   gameOptionsActions,
   kingdomOverviewWindowActions,
   Locator,
+  locatorsActions,
   LocatorType,
-  openAdventureOptions,
-  selectLocator,
 } from "heroes-homm1-state";
 
 import { AdventureButtons, AdventureButtonsProps } from "./AdventureButtons";
@@ -41,13 +41,13 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsProps, Dis
       type: LocatorType.Hero,
     };
 
-    dispatch(selectLocator(locator));
+    dispatch(locatorsActions.selectLocator(locator));
   },
   onKingdomOverviewClick() {
     dispatch(kingdomOverviewWindowActions.open());
   },
   onAdventureOptionsClick() {
-    dispatch(openAdventureOptions());
+    dispatch(adventureOptionsActions.open());
   },
   onGameOptionsClick() {
     dispatch(gameOptionsActions.open());

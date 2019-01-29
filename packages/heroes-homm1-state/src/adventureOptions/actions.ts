@@ -11,7 +11,7 @@ export interface OpenAdventureOptionsAction {
   readonly type: AdventureOptionsActionType.Open;
 }
 
-export const openAdventureOptions = (): OpenAdventureOptionsAction => ({
+export const open = (): OpenAdventureOptionsAction => ({
   type: AdventureOptionsActionType.Open,
 });
 
@@ -19,6 +19,6 @@ export interface CloseAdventureOptionsAction {
   readonly type: AdventureOptionsActionType.Close;
 }
 
-export const closeAdventureOptions = (): CloseAdventureOptionsAction => ({
+export const close = (): CloseAdventureOptionsAction => ({
   type: AdventureOptionsActionType.Close,
 });
