@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { buildStructure } from "heroes-homm1-state";
+import { gameActions } from "heroes-homm1-state";
 
 import { BuildStructureWindow, BuildStructureWindowProps } from "./BuildStructureWindow";
 
@@ -10,7 +10,7 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<BuildStructureWindowProps, DispatchProp> => ({
   onOkayClick(town, structure) {
-    dispatch(buildStructure(town, structure));
+    dispatch(gameActions.buildStructure(town, structure));
   },
 });
 

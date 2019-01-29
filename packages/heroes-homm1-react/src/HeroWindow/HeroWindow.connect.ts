@@ -10,14 +10,12 @@ import {
   closeDismissHeroWindowTroopPrompt,
   closeHeroWindow,
   closeHeroWindowTroopDetails,
-  dismissHero,
-  dismissHeroTroop,
+  gameActions,
   kingdomOverviewWindowActions,
   openDismissHeroPrompt,
   openDismissHeroWindowTroopPrompt,
   openHeroWindowTroopDetails,
   selectHeroWindowTroop,
-  swapHeroTroops,
 } from "heroes-homm1-state";
 
 import { HeroWindow, HeroWindowProps } from "./HeroWindow";
@@ -86,10 +84,10 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchP
     dispatch(closeDismissHeroWindowTroopPrompt(index));
   },
   onConfirmDismissTroopClick(hero, index) {
-    dispatch(dismissHeroTroop(hero, index));
+    dispatch(gameActions.dismissHeroTroop(hero, index));
   },
   onSwapTroops(hero, index, withIndex) {
-    dispatch(swapHeroTroops(hero, index, withIndex));
+    dispatch(gameActions.swapHeroTroops(hero, index, withIndex));
   },
   onVisibleArtifactDetailsChange(index) {
     dispatch(changeVisibleHeroWindowArtifactDetails(index));
@@ -101,7 +99,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchP
     dispatch(closeDismissHeroPrompt());
   },
   onConfirmDismissHeroClick(hero) {
-    dispatch(dismissHero(hero));
+    dispatch(gameActions.dismissHero(hero));
   },
   onExitClick() {
     dispatch(closeHeroWindow());

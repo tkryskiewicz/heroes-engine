@@ -6,13 +6,11 @@ import {
   AppState,
   closeStructureDetails,
   closeTownWindow,
+  gameActions,
   kingdomOverviewWindowActions,
   openStructureDetails,
-  recruitTroop,
   selectTownWindowGarrisonTroop,
   selectTownWindowHeroTroop,
-  swapGarrisonTroops,
-  swapHeroTroops,
 } from "heroes-homm1-state";
 
 import { TownWindow, TownWindowProps } from "./TownWindow";
@@ -57,13 +55,13 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchP
     dispatch(selectTownWindowGarrisonTroop(index));
   },
   onSwapGarrisonTroops(town, index, withIndex) {
-    dispatch(swapGarrisonTroops(town, index, withIndex));
+    dispatch(gameActions.swapGarrisonTroops(town, index, withIndex));
   },
   onSelectHeroTroop(index) {
     dispatch(selectTownWindowHeroTroop(index));
   },
   onSwapHeroTroops(hero, index, withIndex) {
-    dispatch(swapHeroTroops(hero, index, withIndex));
+    dispatch(gameActions.swapHeroTroops(hero, index, withIndex));
   },
   onOpenStructureDetailsClick(structure) {
     dispatch(openStructureDetails(structure));
@@ -72,7 +70,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchP
     dispatch(closeStructureDetails());
   },
   onRecruitTroop(town, structure, count) {
-    dispatch(recruitTroop(town, structure, count));
+    dispatch(gameActions.recruitTroop(town, structure, count));
   },
   onExitClick() {
     dispatch(closeTownWindow());

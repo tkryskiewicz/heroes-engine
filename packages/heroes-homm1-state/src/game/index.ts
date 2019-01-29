@@ -1,13 +1,6 @@
-export {
-  GameAction,
-  GameActionType,
-  swapHeroTroops,
-  dismissHeroTroop,
-  dismissHero,
-  swapGarrisonTroops,
-  buildStructure,
-  recruitTroop,
-  endTurn,
-} from "./actions";
+import * as gameActions from "./actions";
+
+export { gameActions };
+export { GameAction, GameActionType } from "./actions";
 export { gameReducer } from "./reducers";
 export { GameState } from "./state";

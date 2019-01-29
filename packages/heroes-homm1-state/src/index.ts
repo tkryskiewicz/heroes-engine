@@ -1,14 +1,6 @@
 export { adventureOptionsActions } from "./adventureOptions";
 export { changeEndTurnPromptVisible } from "./adventureScreen";
-export {
-  swapHeroTroops,
-  dismissHeroTroop,
-  dismissHero,
-  swapGarrisonTroops,
-  buildStructure,
-  recruitTroop,
-  endTurn,
-} from "./game";
+export { gameActions, GameAction, GameActionType } from "./game";
 export { gameOptionsActions } from "./gameOptions";
 export { gameSettingsActions } from "./gameSettings";
 export {
