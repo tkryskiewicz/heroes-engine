@@ -9,7 +9,7 @@ export {
   recruitTroop,
   endTurn,
 } from "./game";
-export { openGameOptions, closeGameOptions } from "./gameOptions";
+export { gameOptionsActions } from "./gameOptions";
 export {
   changeAutoSave,
   changeEffectsVolume,
@@ -38,7 +38,7 @@ export { changeMageGuildWindowVisibleSpellDetail } from "./mageGuildWindow";
 export { openPuzzleWindow, closePuzzleWindow } from "./puzzleWindow";
 export { rootReducer } from "./reducers";
 export { AppState } from "./state";
-export { openScenarioInfoWindow, closeScenarioInfoWindow } from "./scenarioInfoWindow";
+export { scenarioInforWindowActions } from "./scenarioInfoWindow";
 export { spellBookWindowActions } from "./spellBookWindow";
 export {
   openTownWindow,

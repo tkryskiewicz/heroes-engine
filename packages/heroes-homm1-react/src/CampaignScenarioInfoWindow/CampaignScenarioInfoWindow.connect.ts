@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, closeScenarioInfoWindow } from "heroes-homm1-state";
+import { AppState, scenarioInforWindowActions } from "heroes-homm1-state";
 
 import { CampaignScenarioInfoWindow, CampaignScenarioInfoWindowProps } from "./CampaignScenarioInfoWindow";
 
@@ -20,7 +20,7 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<CampaignScenarioInfoWindowProps, DispatchProp> => ({
   onOkayClick() {
-    dispatch(closeScenarioInfoWindow());
+    dispatch(scenarioInforWindowActions.close());
   },
 });
 

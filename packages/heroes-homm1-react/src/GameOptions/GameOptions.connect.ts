@@ -9,8 +9,8 @@ import {
   changeMusicVolume,
   changeShowPath,
   changeViewEnemyMovement,
-  closeGameOptions,
-  openScenarioInfoWindow,
+  gameOptionsActions,
+  scenarioInforWindowActions,
 } from "heroes-homm1-state";
 
 import { GameOptions, GameOptionsProps } from "./GameOptions";
@@ -62,10 +62,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<GameOptionsProps, Dispatch
     dispatch(changeViewEnemyMovement(value));
   },
   onOkayClick() {
-    dispatch(closeGameOptions());
+    dispatch(gameOptionsActions.close());
   },
   onInfoClick() {
-    dispatch(openScenarioInfoWindow());
+    dispatch(scenarioInforWindowActions.open());
+    dispatch(gameOptionsActions.close());
   },
 });
 

@@ -1,8 +1,5 @@
-export {
-  ScenarioInfoWindowAction,
-  ScenarioInfoWindowActionType,
-  openScenarioInfoWindow,
-  closeScenarioInfoWindow,
-} from "./actions";
+import * as scenarioInforWindowActions from "./actions";
+
+export { scenarioInforWindowActions };
 export { scenarioInfoWindowReducer } from "./reducers";
 export { ScenarioInfoWindowState } from "./state";

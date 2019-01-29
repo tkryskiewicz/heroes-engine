@@ -1,4 +1,3 @@
-import { ScenarioInfoWindowAction, ScenarioInfoWindowActionType } from "../scenarioInfoWindow";
 import { GameOptionsAction, GameOptionsActionType } from "./actions";
 import { GameOptionsState } from "./state";
 
@@ -8,7 +7,7 @@ const initialState: GameOptionsState = {
 
 export const gameOptionsReducer = (
   state: GameOptionsState = initialState,
-  action: GameOptionsAction | ScenarioInfoWindowAction,
+  action: GameOptionsAction,
 ): GameOptionsState => {
   switch (action.type) {
     case GameOptionsActionType.Open:
@@ -17,7 +16,6 @@ export const gameOptionsReducer = (
         visible: true,
       };
     case GameOptionsActionType.Close:
-    case ScenarioInfoWindowActionType.Open:
       return {
         ...state,
         visible: false,

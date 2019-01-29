@@ -1,3 +1,5 @@
-export { openGameOptions, closeGameOptions } from "./actions";
+import * as gameOptionsActions from "./actions";
+
+export { gameOptionsActions };
 export { gameOptionsReducer } from "./reducers";
 export { GameOptionsState } from "./state";
