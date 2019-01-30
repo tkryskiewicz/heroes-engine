@@ -11,6 +11,7 @@
     "jest": "^23.6.0",
     "ts-jest": "^23.10.3",
     "tslint": "^5.11.0",
+    "tslint-immutable": "^5.1.2",
     "tslint-no-circular-imports": "^0.6.1",
     "tslint-react": "^3.6.0",
     "typescript": "^3.0.3"
@@ -21,8 +22,5 @@
     "lint": "tslint -p .",
     "test": "jest",
     "test:watch": "jest --watch"
-  },
-  "dependencies": {
-    "tslint-immutable": "^5.1.0"
   }
 }
