@@ -1,3 +1,5 @@
-export { PuzzleWindowActionType, PuzzleWindowAction, openPuzzleWindow, closePuzzleWindow } from "./actions";
+import * as puzzleWindowActions from "./actions";
+
+export { puzzleWindowActions };
 export { puzzleWindowReducer } from "./reducers";
 export { PuzzleWindowState } from "./state";

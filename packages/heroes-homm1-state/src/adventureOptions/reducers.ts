@@ -1,4 +1,3 @@
-import { PuzzleWindowAction, PuzzleWindowActionType } from "../puzzleWindow";
 import { AdventureOptionsAction, AdventureOptionsActionType } from "./actions";
 import { AdventureOptionsState } from "./state";
 
@@ -8,7 +7,7 @@ const initialState: AdventureOptionsState = {
 
 export const adventureOptionsReducer = (
   state: AdventureOptionsState = initialState,
-  action: AdventureOptionsAction | PuzzleWindowAction,
+  action: AdventureOptionsAction,
 ): AdventureOptionsState => {
   switch (action.type) {
     case AdventureOptionsActionType.Open:
@@ -17,7 +16,6 @@ export const adventureOptionsReducer = (
         visible: true,
       };
     case AdventureOptionsActionType.Close:
-    case PuzzleWindowActionType.Open:
       return {
         ...state,
         visible: false,

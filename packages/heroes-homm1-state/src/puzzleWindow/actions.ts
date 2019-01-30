@@ -11,7 +11,7 @@ export interface OpenPuzzleWindowAction {
   readonly type: PuzzleWindowActionType.Open;
 }
 
-export const openPuzzleWindow = (): OpenPuzzleWindowAction => ({
+export const open = (): OpenPuzzleWindowAction => ({
   type: PuzzleWindowActionType.Open,
 });
 
@@ -19,6 +19,6 @@ export interface ClosePuzzleWindowAction {
   readonly type: PuzzleWindowActionType.Close;
 }
 
-export const closePuzzleWindow = (): ClosePuzzleWindowAction => ({
+export const close = (): ClosePuzzleWindowAction => ({
   type: PuzzleWindowActionType.Close,
 });

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, closePuzzleWindow } from "heroes-homm1-state";
+import { AppState, puzzleWindowActions } from "heroes-homm1-state";
 
 import { PuzzleWindow, PuzzleWindowProps } from "./PuzzleWindow";
 
@@ -17,7 +17,7 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<PuzzleWindowProps, DispatchProp> => ({
   onExitClick() {
-    dispatch(closePuzzleWindow());
+    dispatch(puzzleWindowActions.close());
   },
 });
 

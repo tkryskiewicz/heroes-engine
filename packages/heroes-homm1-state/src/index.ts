@@ -7,7 +7,7 @@ export { heroWindowActions } from "./heroWindow";
 export { kingdomOverviewWindowActions } from "./kingdomOverviewWindow";
 export { locatorsActions, Locator, LocatorType } from "./locators";
 export { mageGuildWindowActions } from "./mageGuildWindow";
-export { openPuzzleWindow, closePuzzleWindow } from "./puzzleWindow";
+export { puzzleWindowActions } from "./puzzleWindow";
 export { rootReducer } from "./reducers";
 export { AppState } from "./state";
 export { scenarioInforWindowActions } from "./scenarioInfoWindow";
