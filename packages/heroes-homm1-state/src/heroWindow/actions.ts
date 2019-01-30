@@ -29,9 +29,11 @@ export type HeroWindowAction =
 
 export interface OpenHeroWindowAction {
   readonly type: HeroWindowActionType.Open;
+  readonly heroIndex: number;
 }
 
-export const open = (): OpenHeroWindowAction => ({
+export const open = (heroIndex: number): OpenHeroWindowAction => ({
+  heroIndex,
   type: HeroWindowActionType.Open,
 });
 

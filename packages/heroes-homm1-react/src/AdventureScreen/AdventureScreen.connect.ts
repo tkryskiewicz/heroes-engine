@@ -20,12 +20,12 @@ const mapStateToProps = (state: AppState): Pick<AdventureScreenProps, StateProp>
   adventureOptionsVisible: state.adventureOptions.visible,
   endTurnPromptVisible: state.adventureScreen.endTurnPromptVisible,
   gameOptionsVisible: state.gameOptions.visible,
-  heroWindowVisible: state.heroWindow.visible,
+  heroWindowVisible: state.heroWindow.heroIndex !== undefined,
   heroes: state.game.heroes,
   kingdomOverviewWindowVisible: state.kingdomOverviewWindow.visible,
   puzzleWindowVisible: state.puzzleWindow.visible,
   scenarioInfoWindowVisible: state.scenarioInfoWindow.visible,
-  townWindowVisible: state.townWindow.visible,
+  townWindowVisible: state.townWindow.townIndex !== undefined,
 });
 
 type DispatchProp =

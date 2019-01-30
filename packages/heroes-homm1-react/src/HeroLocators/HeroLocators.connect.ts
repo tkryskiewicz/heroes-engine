@@ -31,8 +31,10 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroLocatorsProps, Dispatc
 
     dispatch(locatorsActions.selectLocator(locator));
   },
-  onSelectedLocatorClick() {
-    dispatch(heroWindowActions.open());
+  onSelectedLocatorClick(index: number) {
+    dispatch(locatorsActions.deselectLocator());
+
+    dispatch(heroWindowActions.open(index));
   },
 });
 

@@ -1,5 +1,5 @@
 export interface HeroWindowState {
-  readonly visible: boolean;
+  readonly heroIndex?: number;
   readonly visibleSkillDetails?: string;
   readonly visibleMiscInfoDetails?: string;
   readonly selectedTroopIndex?: number;

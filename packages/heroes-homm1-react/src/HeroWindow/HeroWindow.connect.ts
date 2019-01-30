@@ -23,7 +23,7 @@ type StateProp =
 const mapStateToProps = (state: AppState): Pick<HeroWindowProps, StateProp> => ({
   dismissHeroPromptVisible: state.heroWindow.dismissHeroPromptVisible,
   dismissTroopPromptVisible: state.heroWindow.dismissTroopPromptVisisble,
-  hero: state.game.heroes[state.locators.selectedLocator!.index],
+  hero: state.game.heroes[state.heroWindow.heroIndex!],
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,
   troopDetailsVisible: state.heroWindow.visibleTroopDetails,
   visibleArtifactDetails: state.heroWindow.visibleArtifactDetails,

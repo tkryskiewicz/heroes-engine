@@ -24,9 +24,11 @@ export type TownWindowAction =
 
 export interface OpenTownWindowAction {
   readonly type: TownWindowActionType.Open;
+  readonly townIndex: number;
 }
 
-export const open = (): OpenTownWindowAction => ({
+export const open = (townIndex: number): OpenTownWindowAction => ({
+  townIndex,
   type: TownWindowActionType.Open,
 });
 

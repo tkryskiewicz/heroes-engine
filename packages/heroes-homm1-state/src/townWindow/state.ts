@@ -1,5 +1,5 @@
 export interface TownWindowState {
-  readonly visible: boolean;
+  readonly townIndex?: number;
   readonly selectedGarrisonTroopIndex?: number;
   readonly selectedHeroTroopIndex?: number;
   readonly visibleStructureDetails?: string;

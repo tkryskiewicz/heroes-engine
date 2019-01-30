@@ -32,8 +32,10 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownLocatorsProps, Dispatc
 
     dispatch(locatorsActions.selectLocator(locator));
   },
-  onSelectedLocatorClick() {
-    dispatch(townWindowActions.open());
+  onSelectedLocatorClick(index) {
+    dispatch(locatorsActions.deselectLocator());
+
+    dispatch(townWindowActions.open(index));
   },
 });
 

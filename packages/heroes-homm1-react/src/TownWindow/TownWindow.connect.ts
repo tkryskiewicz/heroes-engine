@@ -20,7 +20,7 @@ type StateProp =
   "visibleStructureDetails";
 
 const mapStateToProps = (state: AppState): Pick<TownWindowProps, StateProp> => {
-  const town = state.game.towns[state.locators.selectedLocator!.index];
+  const town = state.game.towns[state.townWindow.townIndex!];
 
   return {
     resources: state.game.resources,
@@ -28,6 +28,7 @@ const mapStateToProps = (state: AppState): Pick<TownWindowProps, StateProp> => {
     selectedHeroTroopIndex: state.townWindow.selectedHeroTroopIndex,
     town,
     visibleStructureDetails: state.townWindow.visibleStructureDetails,
+    // TODO: resolve this dynamically
     visitingHero: town.id === TownId.Farm ? state.game.heroes[3] : undefined,
   };
 };
