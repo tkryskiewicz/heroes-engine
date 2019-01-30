@@ -61,6 +61,7 @@ export interface HeroWindowProps {
   readonly troopDetailsVisible: boolean;
   readonly dismissTroopPromptVisible: boolean;
   readonly onDismissTroopClick: (index: number) => void;
+  // TODO: is index needed? adds some complexity
   readonly onCancelDismissTroopClick: (index: number) => void;
   readonly onConfirmDismissTroopClick: (hero: string, index: number) => void;
   readonly onExitTroopDetails: () => void;

@@ -52,12 +52,16 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchP
     dispatch(townWindowActions.selectGarrisonTroop(index));
   },
   onSwapGarrisonTroops(town, index, withIndex) {
+    dispatch(townWindowActions.deselectGarrisonTroop());
+
     dispatch(gameActions.swapGarrisonTroops(town, index, withIndex));
   },
   onSelectHeroTroop(index) {
     dispatch(townWindowActions.selectHeroTroop(index));
   },
   onSwapHeroTroops(hero, index, withIndex) {
+    dispatch(townWindowActions.deselectHeroTroop());
+
     dispatch(gameActions.swapHeroTroops(hero, index, withIndex));
   },
   onOpenStructureDetailsClick(structure) {
@@ -67,6 +71,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchP
     dispatch(townWindowActions.closeStructureDetails());
   },
   onRecruitTroop(town, structure, count) {
+    dispatch(townWindowActions.closeStructureDetails());
+
     dispatch(gameActions.recruitTroop(town, structure, count));
   },
   onExitClick() {

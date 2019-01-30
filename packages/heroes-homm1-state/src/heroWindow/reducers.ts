@@ -1,4 +1,3 @@
-import { GameAction, GameActionType } from "../game";
 import { HeroWindowAction, HeroWindowActionType } from "./actions";
 import { HeroWindowState } from "./state";
 
@@ -10,7 +9,7 @@ const initialState: HeroWindowState = {
 
 export const heroWindowReducer = (
   state: HeroWindowState = initialState,
-  action: HeroWindowAction | GameAction,
+  action: HeroWindowAction,
 ): HeroWindowState => {
   switch (action.type) {
     case HeroWindowActionType.Open:
@@ -19,7 +18,6 @@ export const heroWindowReducer = (
         heroIndex: action.heroIndex,
       };
     case HeroWindowActionType.Close:
-    case GameActionType.DismissHero:
       return {
         ...initialState,
       };
@@ -37,6 +35,11 @@ export const heroWindowReducer = (
       return {
         ...state,
         selectedTroopIndex: action.index,
+      };
+    case HeroWindowActionType.DeselectTroop:
+      return {
+        ...state,
+        selectedTroopIndex: undefined,
       };
     case HeroWindowActionType.OpenTroopDetails:
       return {
@@ -59,18 +62,6 @@ export const heroWindowReducer = (
       return {
         ...state,
         dismissTroopPromptVisisble: false,
-      };
-    case GameActionType.DismissHeroTroop:
-      return {
-        ...state,
-        dismissTroopPromptVisisble: false,
-        selectedTroopIndex: undefined,
-        visibleTroopDetails: false,
-      };
-    case GameActionType.SwapHeroTroops:
-      return {
-        ...state,
-        selectedTroopIndex: undefined,
       };
     case HeroWindowActionType.ChangeVisibleArtifactDetails:
       return {

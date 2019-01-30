@@ -2,7 +2,9 @@ export enum TownWindowActionType {
   Open = "townWindow/open",
   Close = "townWindow/close",
   SelectGarrisonTroop = "townWindow/selectGarrisonTroop",
+  DeselectGarrisonTroop = "townWindow/deselectGarrisonTroop",
   SelectHeroTroop = "townWindow/selectHeroTroop",
+  DeselectHeroTroop = "townWindow/deselectHeroTroop",
   OpenStructureDetails = "townWindow/openStructureDetails",
   CloseStructureDetails = "townWindow/closeStructureDetails",
   OpenOptionDetails = "townWindow/openOptionDetails",
@@ -15,7 +17,9 @@ export type TownWindowAction =
   OpenTownWindowAction |
   CloseTownWindowAction |
   SelectGarrisonTroopAction |
+  DeselectGarrisonTroopAction |
   SelectHeroTroopAction |
+  DeselectHeroTroopAction |
   OpenStructureDetailsAction |
   CloseStructureDetailsAction |
   OpenOptionDetailsAction |
@@ -50,6 +54,14 @@ export const selectGarrisonTroop = (index: number): SelectGarrisonTroopAction =>
   type: TownWindowActionType.SelectGarrisonTroop,
 });
 
+export interface DeselectGarrisonTroopAction {
+  readonly type: TownWindowActionType.DeselectGarrisonTroop;
+}
+
+export const deselectGarrisonTroop = (): DeselectGarrisonTroopAction => ({
+  type: TownWindowActionType.DeselectGarrisonTroop,
+});
+
 export interface SelectHeroTroopAction {
   readonly type: TownWindowActionType.SelectHeroTroop;
   readonly index: number;
@@ -58,6 +70,14 @@ export interface SelectHeroTroopAction {
 export const selectHeroTroop = (index: number): SelectHeroTroopAction => ({
   index,
   type: TownWindowActionType.SelectHeroTroop,
+});
+
+export interface DeselectHeroTroopAction {
+  readonly type: TownWindowActionType.DeselectHeroTroop;
+}
+
+export const deselectHeroTroop = (): DeselectHeroTroopAction => ({
+  type: TownWindowActionType.DeselectHeroTroop,
 });
 
 export interface OpenStructureDetailsAction {

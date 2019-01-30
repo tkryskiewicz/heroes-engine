@@ -70,13 +70,19 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchP
   onDismissTroopClick(index) {
     dispatch(heroWindowActions.openDismissTroopPrompt(index));
   },
-  onCancelDismissTroopClick(index) {
-    dispatch(heroWindowActions.closeDismissTroopPrompt(index));
+  onCancelDismissTroopClick() {
+    dispatch(heroWindowActions.closeDismissTroopPrompt());
   },
   onConfirmDismissTroopClick(hero, index) {
+    dispatch(heroWindowActions.closeDismissTroopPrompt());
+    dispatch(heroWindowActions.closeTroopDetails());
+    dispatch(heroWindowActions.deselectTroop());
+
     dispatch(gameActions.dismissHeroTroop(hero, index));
   },
   onSwapTroops(hero, index, withIndex) {
+    dispatch(heroWindowActions.deselectTroop());
+
     dispatch(gameActions.swapHeroTroops(hero, index, withIndex));
   },
   onVisibleArtifactDetailsChange(index) {
@@ -89,6 +95,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchP
     dispatch(heroWindowActions.closeDismissHeroPrompt());
   },
   onConfirmDismissHeroClick(hero) {
+    dispatch(heroWindowActions.close());
+
     dispatch(gameActions.dismissHero(hero));
   },
   onExitClick() {

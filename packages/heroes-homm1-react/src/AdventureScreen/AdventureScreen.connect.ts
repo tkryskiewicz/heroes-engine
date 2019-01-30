@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, changeEndTurnPromptVisible, gameActions } from "heroes-homm1-state";
+import { adventureScreenActions, AppState, gameActions } from "heroes-homm1-state";
 
 import { AdventureScreen, AdventureScreenProps } from "./AdventureScreen";
 
@@ -34,9 +34,11 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureScreenProps, DispatchProp> => ({
   onEndTurnPromptVisibleChange(value: boolean) {
-    dispatch(changeEndTurnPromptVisible(value));
+    dispatch(adventureScreenActions.changeEndTurnPromptVisible(value));
   },
   onEndTurn() {
+    dispatch(adventureScreenActions.changeEndTurnPromptVisible(false));
+
     dispatch(gameActions.endTurn());
   },
 });

@@ -1,4 +1,3 @@
-import { GameAction, GameActionType } from "../game";
 import { TownWindowAction, TownWindowActionType } from "./actions";
 import { TownWindowState } from "./state";
 
@@ -8,7 +7,7 @@ const initialState: TownWindowState = {
 
 export const townWindowReducer = (
   state: TownWindowState = initialState,
-  action: TownWindowAction | GameAction,
+  action: TownWindowAction,
 ): TownWindowState => {
   switch (action.type) {
     case TownWindowActionType.Open:
@@ -25,7 +24,7 @@ export const townWindowReducer = (
         ...state,
         selectedGarrisonTroopIndex: action.index,
       };
-    case GameActionType.SwapGarrisonTroops:
+    case TownWindowActionType.DeselectGarrisonTroop:
       return {
         ...state,
         selectedGarrisonTroopIndex: undefined,
@@ -35,7 +34,7 @@ export const townWindowReducer = (
         ...state,
         selectedHeroTroopIndex: action.index,
       };
-    case GameActionType.SwapHeroTroops:
+    case TownWindowActionType.DeselectHeroTroop:
       return {
         ...state,
         selectedHeroTroopIndex: undefined,
@@ -46,7 +45,6 @@ export const townWindowReducer = (
         visibleStructureDetails: action.structure,
       };
     case TownWindowActionType.CloseStructureDetails:
-    case GameActionType.RecruitTroop:
       return {
         ...state,
         recruitTroopCount: 0,
@@ -66,12 +64,6 @@ export const townWindowReducer = (
       return {
         ...state,
         recruitTroopCount: action.count,
-      };
-    case GameActionType.BuildStructure:
-      return {
-        ...state,
-        visibleOptionDetails: undefined,
-        visibleStructureDetails: undefined,
       };
     default:
       return state;

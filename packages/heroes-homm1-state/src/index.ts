@@ -1,5 +1,5 @@
 export { adventureOptionsActions } from "./adventureOptions";
-export { changeEndTurnPromptVisible } from "./adventureScreen";
+export { adventureScreenActions } from "./adventureScreen";
 export { gameActions } from "./game";
 export { gameOptionsActions } from "./gameOptions";
 export { gameSettingsActions } from "./gameSettings";
