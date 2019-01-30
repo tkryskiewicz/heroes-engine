@@ -9,7 +9,7 @@ import * as styles from "./TownWindow.module.scss";
 import { ArmyStrip, BigBar, Crest, GameModal, getArmyStripStatusTextMessage, HeroPortrait } from "../base";
 import { BuildShipWindow } from "../BuildShipWindow";
 import { BuildStructureWindow } from "../BuildStructureWindow";
-import { GameText, GameWindow } from "../core";
+import { GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import { MageGuildWindow } from "../MageGuildWindow";
 import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
@@ -22,11 +22,10 @@ import { CastleOptionsWindow } from "./CastleOptionsWindow";
 import { messages } from "./messages";
 import { Treasury } from "./Treasury";
 
-export interface TownWindowProps {
+export interface TownWindowProps extends WithGameWindowProps {
   readonly town: Town;
   readonly visitingHero?: Hero;
   readonly resources: Resources;
-  readonly visible?: boolean;
   readonly selectedGarrisonTroopIndex?: number;
   readonly onSelectGarrisonTroop: (index: number) => void;
   readonly onSwapGarrisonTroops: (town: string, index: number, withIndex: number) => void;
@@ -81,72 +80,67 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
     const { town, resources, visibleStructureDetails } = this.props;
 
     return (
-      <GameWindow
-        width={640}
-        visible={this.props.visible}
-      >
-        <div className={styles.root}>
-          <TownView
-            town={town}
-            onStructureMouseEnter={this.onStructureMouseEnter}
-            onStructureMouseLeave={this.onStructureMouseLeave}
-            onStructureClick={this.onStructureClick}
-          />
-          <div className={styles.strip}>
-            <div className={styles.townName}>
-              <GameText size="small">
-                {town.name}
-              </GameText>
-            </div>
-            <div className={styles.crest}>
-              <Crest
-                alignment={town.alignment}
-                heroClass={town.heroClass}
-                onMouseEnter={this.onCrestMouseEnter}
-                onMouseLeave={this.onCrestMouseLeave}
-                onClick={this.props.onCrestClick}
-              />
-            </div>
-            <div className={styles.garrisonArmy}>
-              <ArmyStrip
-                army={town.garrison}
-                selectedTroopIndex={this.props.selectedGarrisonTroopIndex}
-                onTroopMouseEnter={this.onGarrisonTroopMouseEnter}
-                onTroopMouseLeave={this.onTroopMouseLeave}
-                onTroopClick={this.onGarrisonTroopClick}
-              />
-            </div>
-            <div className={styles.heroPortrait}>
-              <HeroPortrait
-                hero={this.props.visitingHero ? this.props.visitingHero.id : undefined}
-                onMouseEnter={this.onHeroPortraitMouseEnter}
-                onMouseLeave={this.onHeroPortraitMouseLeave}
-              />
-            </div>
-            <div className={styles.heroArmy}>
-              <ArmyStrip
-                army={this.props.visitingHero ? this.props.visitingHero.army : []}
-                selectedTroopIndex={this.props.selectedHeroTroopIndex}
-                onTroopMouseEnter={this.onHeroTroopMouseEnter}
-                onTroopMouseLeave={this.onTroopMouseLeave}
-                onTroopClick={this.onHeroTroopClick}
-              />
-            </div>
-            <div className={styles.treasury}>
-              <Treasury
-                resources={this.props.resources}
-                onExitMouseEnter={this.onExitMouseEnter}
-                onExitMouseLeave={this.onExitMouseLeave}
-                onExitClick={this.props.onExitClick}
-              />
-            </div>
+      <div className={styles.root}>
+        <TownView
+          town={town}
+          onStructureMouseEnter={this.onStructureMouseEnter}
+          onStructureMouseLeave={this.onStructureMouseLeave}
+          onStructureClick={this.onStructureClick}
+        />
+        <div className={styles.strip}>
+          <div className={styles.townName}>
+            <GameText size="small">
+              {town.name}
+            </GameText>
           </div>
-          <BigBar>
-            {this.state.statusText}
-          </BigBar>
-          {visibleStructureDetails && this.renderStructureDetails(town, resources, visibleStructureDetails)}
+          <div className={styles.crest}>
+            <Crest
+              alignment={town.alignment}
+              heroClass={town.heroClass}
+              onMouseEnter={this.onCrestMouseEnter}
+              onMouseLeave={this.onCrestMouseLeave}
+              onClick={this.props.onCrestClick}
+            />
+          </div>
+          <div className={styles.garrisonArmy}>
+            <ArmyStrip
+              army={town.garrison}
+              selectedTroopIndex={this.props.selectedGarrisonTroopIndex}
+              onTroopMouseEnter={this.onGarrisonTroopMouseEnter}
+              onTroopMouseLeave={this.onTroopMouseLeave}
+              onTroopClick={this.onGarrisonTroopClick}
+            />
+          </div>
+          <div className={styles.heroPortrait}>
+            <HeroPortrait
+              hero={this.props.visitingHero ? this.props.visitingHero.id : undefined}
+              onMouseEnter={this.onHeroPortraitMouseEnter}
+              onMouseLeave={this.onHeroPortraitMouseLeave}
+            />
+          </div>
+          <div className={styles.heroArmy}>
+            <ArmyStrip
+              army={this.props.visitingHero ? this.props.visitingHero.army : []}
+              selectedTroopIndex={this.props.selectedHeroTroopIndex}
+              onTroopMouseEnter={this.onHeroTroopMouseEnter}
+              onTroopMouseLeave={this.onTroopMouseLeave}
+              onTroopClick={this.onHeroTroopClick}
+            />
+          </div>
+          <div className={styles.treasury}>
+            <Treasury
+              resources={this.props.resources}
+              onExitMouseEnter={this.onExitMouseEnter}
+              onExitMouseLeave={this.onExitMouseLeave}
+              onExitClick={this.props.onExitClick}
+            />
+          </div>
         </div>
-      </GameWindow>
+        <BigBar>
+          {this.state.statusText}
+        </BigBar>
+        {visibleStructureDetails && this.renderStructureDetails(town, resources, visibleStructureDetails)}
+      </div>
     );
   }
 
@@ -490,7 +484,9 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
   }
 }
 
-const TownWindowWrapped = injectIntl(TownWindow);
+const TownWindowWrapped = injectIntl(
+  withGameWindow(640)(TownWindow),
+);
 
 export {
   TownWindowWrapped as TownWindow,

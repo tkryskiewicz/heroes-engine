@@ -18,7 +18,7 @@ import * as styles from "./HeroWindow.module.scss";
 import { buttonImages } from "./assets";
 
 import { ArmyStrip, Crest, GameModal, getArmyStripStatusTextMessage, HeroPortrait, ImageButton } from "../base";
-import { GameParagraph, GameText, GameWindow } from "../core";
+import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
   experienceMessages,
@@ -44,10 +44,9 @@ import { messages } from "./messages";
 import { MiscInfo, MiscInfoType } from "./MiscInfo";
 import { SkillInfo } from "./SkillInfo";
 
-export interface HeroWindowProps {
+export interface HeroWindowProps extends WithGameWindowProps {
   readonly hero: Hero;
   readonly dismissible: boolean;
-  readonly visible?: boolean;
   readonly visibleSkillDetails?: string;
   readonly onVisibleSkillDetailsChange: (skill?: string) => void;
   readonly visibleMiscInfoDetails?: string;
@@ -134,50 +133,45 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     const { hero, selectedTroopIndex } = this.props;
 
     return (
-      <GameWindow
-        width={640}
-        visible={this.props.visible}
-      >
-        <div className={styles.root}>
-          <div className={styles.name}>
-            <GameText size="large">
-              {this.getHeroTitle()}
-            </GameText>
-          </div>
-          <div className={styles.portrait}>
-            <HeroPortrait
-              hero={hero.id}
-            />
-          </div>
-          {this.renderSkills(hero.skills, this.props.visibleSkillDetails)}
-          {this.renderMiscInfo(hero, this.props.visibleMiscInfoDetails)}
-          <div className={styles.crest}>
-            <Crest
-              alignment={hero.alignment}
-              heroClass={hero.heroClass}
-              onMouseEnter={this.onCrestMouseEnter}
-              onMouseLeave={this.onCrestMouseLeave}
-              onClick={this.props.onCrestClick}
-            />
-          </div>
-          {this.renderArmy(hero, selectedTroopIndex)}
-          {this.props.dismissible && this.renderDismissal(this.props.dismissHeroPromptVisible)}
-          {this.renderArtifacts(hero.artifacts, this.props.visibleArtifactDetails)}
-          <div className={styles.exit}>
-            <ImageButton
-              images={buttonImages.exit}
-              onMouseEnter={this.onExitMouseEnter}
-              onMouseLeave={this.onExitMouseLeave}
-              onClick={this.props.onExitClick}
-            />
-          </div>
-          <div className={styles.title}>
-            <GameText size="large">
-              {this.state.statusText}
-            </GameText>
-          </div>
+      <div className={styles.root}>
+        <div className={styles.name}>
+          <GameText size="large">
+            {this.getHeroTitle()}
+          </GameText>
         </div>
-      </GameWindow>
+        <div className={styles.portrait}>
+          <HeroPortrait
+            hero={hero.id}
+          />
+        </div>
+        {this.renderSkills(hero.skills, this.props.visibleSkillDetails)}
+        {this.renderMiscInfo(hero, this.props.visibleMiscInfoDetails)}
+        <div className={styles.crest}>
+          <Crest
+            alignment={hero.alignment}
+            heroClass={hero.heroClass}
+            onMouseEnter={this.onCrestMouseEnter}
+            onMouseLeave={this.onCrestMouseLeave}
+            onClick={this.props.onCrestClick}
+          />
+        </div>
+        {this.renderArmy(hero, selectedTroopIndex)}
+        {this.props.dismissible && this.renderDismissal(this.props.dismissHeroPromptVisible)}
+        {this.renderArtifacts(hero.artifacts, this.props.visibleArtifactDetails)}
+        <div className={styles.exit}>
+          <ImageButton
+            images={buttonImages.exit}
+            onMouseEnter={this.onExitMouseEnter}
+            onMouseLeave={this.onExitMouseLeave}
+            onClick={this.props.onExitClick}
+          />
+        </div>
+        <div className={styles.title}>
+          <GameText size="large">
+            {this.state.statusText}
+          </GameText>
+        </div>
+      </div>
     );
   }
 
@@ -782,7 +776,9 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
   }
 }
 
-const HeroWindowWrapped = injectIntl(HeroWindow);
+const HeroWindowWrapped = injectIntl(
+  withGameWindow(640)(HeroWindow),
+);
 
 export {
   HeroWindowWrapped as HeroWindow,

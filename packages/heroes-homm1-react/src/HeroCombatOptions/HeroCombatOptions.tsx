@@ -9,7 +9,7 @@ import * as styles from "./HeroCombatOptions.module.scss";
 import { buttonImages } from "./assets";
 
 import { HeroPortrait, ImageButton } from "../base";
-import { GameParagraph, GameText, GameWindow } from "../core";
+import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "../core";
 import {
   getHeroClassTitleMessage,
   getHeroNameMessage,
@@ -29,8 +29,7 @@ interface Hero {
   readonly luck: number;
 }
 
-export interface HeroCombatOptionsProps {
-  readonly visible?: boolean;
+export interface HeroCombatOptionsProps extends WithGameWindowProps {
   readonly hero: Hero;
   readonly canCastSpell: boolean;
   readonly onCastSpellMouseEnter: () => void;
@@ -83,59 +82,54 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
     const { hero } = this.props;
 
     return (
-      <GameWindow
-        width={250}
-        visible={this.props.visible}
-      >
-        <div className={styles.root}>
-          <div className={styles.name}>
-            <GameText size="large">
-              {this.getHeroTitle()}
-            </GameText>
-          </div>
-          <div className={styles.portrait}>
-            <HeroPortrait
-              hero={hero.id}
-            />
-          </div>
-          {this.renderCharacteristics(hero.alignment, hero.skills, hero.morale, hero.luck)}
-          <div className={styles.castSpell}>
-            <ImageButton
-              images={buttonImages.castSpell}
-              disabled={!this.props.canCastSpell}
-              onMouseEnter={this.props.onCastSpellMouseEnter}
-              onMouseLeave={this.props.onCastSpellMouseLeave}
-              onClick={this.props.onCastSpellClick}
-            />
-          </div>
-          <div className={styles.retreat}>
-            <ImageButton
-              images={buttonImages.retreat}
-              disabled={!this.props.canRetreat}
-              onMouseEnter={this.props.onRetreatMouseEnter}
-              onMouseLeave={this.props.onRetreatMouseLeave}
-              onClick={this.props.onRetreatClick}
-            />
-          </div>
-          <div className={styles.surrender}>
-            <ImageButton
-              images={buttonImages.surrender}
-              disabled={!this.props.canSurrender}
-              onMouseEnter={this.props.onSurrenderMouseEnter}
-              onMouseLeave={this.props.onSurrenderMouseLeave}
-              onClick={this.props.onSurrenderClick}
-            />
-          </div>
-          <div className={styles.cancel}>
-            <ImageButton
-              images={buttonImages.cancel}
-              onMouseEnter={this.props.onCancelMouseEnter}
-              onMouseLeave={this.props.onCancelMouseLeave}
-              onClick={this.props.onCancelClick}
-            />
-          </div>
+      <div className={styles.root}>
+        <div className={styles.name}>
+          <GameText size="large">
+            {this.getHeroTitle()}
+          </GameText>
         </div>
-      </GameWindow>
+        <div className={styles.portrait}>
+          <HeroPortrait
+            hero={hero.id}
+          />
+        </div>
+        {this.renderCharacteristics(hero.alignment, hero.skills, hero.morale, hero.luck)}
+        <div className={styles.castSpell}>
+          <ImageButton
+            images={buttonImages.castSpell}
+            disabled={!this.props.canCastSpell}
+            onMouseEnter={this.props.onCastSpellMouseEnter}
+            onMouseLeave={this.props.onCastSpellMouseLeave}
+            onClick={this.props.onCastSpellClick}
+          />
+        </div>
+        <div className={styles.retreat}>
+          <ImageButton
+            images={buttonImages.retreat}
+            disabled={!this.props.canRetreat}
+            onMouseEnter={this.props.onRetreatMouseEnter}
+            onMouseLeave={this.props.onRetreatMouseLeave}
+            onClick={this.props.onRetreatClick}
+          />
+        </div>
+        <div className={styles.surrender}>
+          <ImageButton
+            images={buttonImages.surrender}
+            disabled={!this.props.canSurrender}
+            onMouseEnter={this.props.onSurrenderMouseEnter}
+            onMouseLeave={this.props.onSurrenderMouseLeave}
+            onClick={this.props.onSurrenderClick}
+          />
+        </div>
+        <div className={styles.cancel}>
+          <ImageButton
+            images={buttonImages.cancel}
+            onMouseEnter={this.props.onCancelMouseEnter}
+            onMouseLeave={this.props.onCancelMouseLeave}
+            onClick={this.props.onCancelClick}
+          />
+        </div>
+      </div>
     );
   }
 
@@ -175,7 +169,9 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & Injecte
   }
 }
 
-const HeroCombatOptionsWrapped = injectIntl(HeroCombatOptions);
+const HeroCombatOptionsWrapped = injectIntl(
+  withGameWindow(250)(HeroCombatOptions),
+);
 
 export {
   HeroCombatOptionsWrapped as HeroCombatOptions,

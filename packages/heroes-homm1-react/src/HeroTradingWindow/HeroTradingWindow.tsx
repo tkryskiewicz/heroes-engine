@@ -10,7 +10,7 @@ import * as styles from "./HeroTradingWindow.module.scss";
 import { buttonImages } from "./assets";
 
 import { GameModal, HeroPortrait, ImageButton } from "../base";
-import { GameText, GameWindow } from "../core";
+import { GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { getHeroNameMessage, getSkillNameMessage } from "../messages";
 import { ArtifactSlot } from "./ArtifactSlot";
 import { messages } from "./messages";
@@ -21,10 +21,9 @@ interface ArtifactSelection {
   readonly index: number;
 }
 
-export interface HeroTradingWindowProps {
+export interface HeroTradingWindowProps extends WithGameWindowProps {
   readonly hero: Hero;
   readonly otherHero: Hero;
-  readonly visible?: boolean;
   readonly onHeroPortraitClick: (hero: string) => void;
   readonly selectedArtifact?: ArtifactSelection;
   readonly onSelectedArtifactChange: (value: ArtifactSelection) => void;
@@ -56,52 +55,47 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
     const { hero, otherHero, selectedArtifact } = this.props;
 
     return (
-      <GameWindow
-        width={448}
-        visible={this.props.visible}
-      >
-        <div className={styles.root}>
-          <div className={styles.title}>
-            <GameText size="large">
-              {this.getTitle(hero.id, otherHero.id)}
-            </GameText>
-          </div>
-          <div className={styles.portrait}>
-            <HeroPortrait
-              hero={hero.id}
-              onClick={this.onHeroPortraitClick}
-            />
-          </div>
-          <div className={styles.otherPortrait}>
-            <HeroPortrait
-              hero={otherHero.id}
-              onClick={this.onHeroPortraitClick}
-            />
-          </div>
-          <div className={styles.army}>
-            {this.renderHeroArmy(hero.army)}
-          </div>
-          <div className={styles.otherArmy}>
-            {this.renderHeroArmy(otherHero.army)}
-          </div>
-          <div className={styles.skills}>
-            {this.renderSkills(hero, otherHero)}
-          </div>
-          <div className={styles.artifacts}>
-            {this.renderArtifacts(hero, selectedArtifact)}
-          </div>
-          <div className={styles.otherArtifacts}>
-            {this.renderArtifacts(otherHero, selectedArtifact)}
-          </div>
-          <div className={styles.exit}>
-            <ImageButton
-              images={buttonImages.exit}
-              onClick={this.props.onExitClick}
-            />
-          </div>
-          {this.props.artifactNotTradablePromptVisible && this.renderArtifactNotTradablePrompt()}
+      <div className={styles.root}>
+        <div className={styles.title}>
+          <GameText size="large">
+            {this.getTitle(hero.id, otherHero.id)}
+          </GameText>
         </div>
-      </GameWindow>
+        <div className={styles.portrait}>
+          <HeroPortrait
+            hero={hero.id}
+            onClick={this.onHeroPortraitClick}
+          />
+        </div>
+        <div className={styles.otherPortrait}>
+          <HeroPortrait
+            hero={otherHero.id}
+            onClick={this.onHeroPortraitClick}
+          />
+        </div>
+        <div className={styles.army}>
+          {this.renderHeroArmy(hero.army)}
+        </div>
+        <div className={styles.otherArmy}>
+          {this.renderHeroArmy(otherHero.army)}
+        </div>
+        <div className={styles.skills}>
+          {this.renderSkills(hero, otherHero)}
+        </div>
+        <div className={styles.artifacts}>
+          {this.renderArtifacts(hero, selectedArtifact)}
+        </div>
+        <div className={styles.otherArtifacts}>
+          {this.renderArtifacts(otherHero, selectedArtifact)}
+        </div>
+        <div className={styles.exit}>
+          <ImageButton
+            images={buttonImages.exit}
+            onClick={this.props.onExitClick}
+          />
+        </div>
+        {this.props.artifactNotTradablePromptVisible && this.renderArtifactNotTradablePrompt()}
+      </div>
     );
   }
 
@@ -238,7 +232,9 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps & Injecte
   }
 }
 
-const HeroTradingWindowWrapped = injectIntl(HeroTradingWindow);
+const HeroTradingWindowWrapped = injectIntl(
+  withGameWindow(448)(HeroTradingWindow),
+);
 
 export {
   HeroTradingWindowWrapped as HeroTradingWindow,
