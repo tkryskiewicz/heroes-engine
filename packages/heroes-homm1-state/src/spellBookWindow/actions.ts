@@ -4,12 +4,15 @@ export enum SpellBookWindowActionType {
   ChangeSpellType = "spellBookWindow/changeSpellType",
   ChangePage = "spellBookWindow/changePage",
   ChangeVisibleSpellDetails = "spellBookWindow/changeVisibleSpellDetails",
+  // FIXME: should an action like this exist?
+  Reset = "spellBookWindow/reset",
 }
 
 export type SpellBookWindowAction =
   ChangePageAction |
   ChangeSpellTypeAction |
-  ChangeVisibleSpellDetailsAction;
+  ChangeVisibleSpellDetailsAction |
+  ResetAction;
 
 export interface ChangeSpellTypeAction {
   readonly type: SpellBookWindowActionType.ChangeSpellType;
@@ -39,4 +42,12 @@ export interface ChangeVisibleSpellDetailsAction {
 export const changeVisibleSpellDetails = (spell?: string): ChangeVisibleSpellDetailsAction => ({
   spell,
   type: SpellBookWindowActionType.ChangeVisibleSpellDetails,
+});
+
+export interface ResetAction {
+  readonly type: SpellBookWindowActionType.Reset;
+}
+
+export const reset = (): ResetAction => ({
+  type: SpellBookWindowActionType.Reset,
 });

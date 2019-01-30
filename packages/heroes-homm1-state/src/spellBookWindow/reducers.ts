@@ -1,6 +1,5 @@
 import { SpellType } from "heroes-homm1";
 
-import { HeroWindowAction, HeroWindowActionType } from "../heroWindow";
 import { SpellBookWindowAction, SpellBookWindowActionType } from "./actions";
 import { SpellBookWindowState } from "./state";
 
@@ -11,7 +10,7 @@ const initialState: SpellBookWindowState = {
 
 export const spellBookWindowReducer = (
   state: SpellBookWindowState = initialState,
-  action: SpellBookWindowAction | HeroWindowAction,
+  action: SpellBookWindowAction,
 ): SpellBookWindowState => {
   switch (action.type) {
     case SpellBookWindowActionType.ChangeSpellType:
@@ -29,7 +28,7 @@ export const spellBookWindowReducer = (
         ...state,
         visibleSpellDetails: action.spell,
       };
-    case HeroWindowActionType.ChangeVisibleArtifactDetails:
+    case SpellBookWindowActionType.Reset:
       return {
         ...initialState,
       };

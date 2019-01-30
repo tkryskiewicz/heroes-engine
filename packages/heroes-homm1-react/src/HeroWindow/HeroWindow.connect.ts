@@ -6,6 +6,7 @@ import {
   gameActions,
   heroWindowActions,
   kingdomOverviewWindowActions,
+  spellBookWindowActions,
 } from "heroes-homm1-state";
 
 import { HeroWindow, HeroWindowProps } from "./HeroWindow";
@@ -86,6 +87,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchP
     dispatch(gameActions.swapHeroTroops(hero, index, withIndex));
   },
   onVisibleArtifactDetailsChange(index) {
+    dispatch(spellBookWindowActions.reset());
+
     dispatch(heroWindowActions.changeVisibleArtifactDetails(index));
   },
   onDismissHeroClick() {
