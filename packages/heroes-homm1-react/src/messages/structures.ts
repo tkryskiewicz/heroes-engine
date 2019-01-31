@@ -1,17 +1,25 @@
 import { defineMessages, FormattedMessage, Messages } from "react-intl";
 
+import { FarmStructureId, ForestStructureId, MountainsStructureId, PlainsStructureId, StructureId } from "heroes-homm1";
+
 import { convertValue, unknownMessage } from "./util";
+
+const getDescriptionKey = (structure: string) =>
+  `${convertValue(structure)}Description`;
+
+const getPlaceholderKey = (structure: string) =>
+  `${convertValue(structure)}Placeholder`;
 
 const commonStructureMessages = defineMessages({
   castle: {
     defaultMessage: "Castle",
     id: "game.structure.castle",
   },
-  castleDescription: {
+  [getDescriptionKey(StructureId.Castle)]: {
     defaultMessage: "The {structureName} improves town defense and income.",
     id: "game.structure.castle.description",
   },
-  castlePlaceholder: {
+  [getPlaceholderKey(StructureId.Castle)]: {
     defaultMessage: "Tent",
     id: "game.structure.castle.placeholder",
   },
@@ -19,7 +27,7 @@ const commonStructureMessages = defineMessages({
     defaultMessage: "Mage Guild",
     id: "game.structure.mageGuild",
   },
-  mageGuildDescription: {
+  [getDescriptionKey(StructureId.MageGuild)]: {
     defaultMessage: "The {structureName} allows heroes to learn and replenish spells.",
     id: "game.structure.mageGuild.description",
   },
@@ -27,7 +35,7 @@ const commonStructureMessages = defineMessages({
     defaultMessage: "Shipyard",
     id: "game.structure.shipyard",
   },
-  shipyardDescription: {
+  [getDescriptionKey(StructureId.Shipyard)]: {
     defaultMessage: "The {structureName} allows ships to be built.",
     id: "game.structure.shipyard.description",
   },
@@ -35,7 +43,7 @@ const commonStructureMessages = defineMessages({
     defaultMessage: "Tavern",
     id: "game.structure.tavern",
   },
-  tavernDescription: {
+  [getDescriptionKey(StructureId.Tavern)]: {
     defaultMessage: "The {structureName} increases morale for troops defending the castle.",
     id: "game.structure.tavern.description",
   },
@@ -43,7 +51,7 @@ const commonStructureMessages = defineMessages({
     defaultMessage: "Thieves' Guild",
     id: "game.structure.thievesGuild",
   },
-  thievesGuildDescription: {
+  [getDescriptionKey(StructureId.ThievesGuild)]: {
     defaultMessage: "The {structureName} provides information on enemy players. " +
       "{structureName} can also provide scouting information on enemy towns. " +
       "Additional Guilds provide more information.",
@@ -53,7 +61,7 @@ const commonStructureMessages = defineMessages({
     defaultMessage: "Well",
     id: "game.structure.well",
   },
-  wellDescription: {
+  [getDescriptionKey(StructureId.Well)]: {
     defaultMessage: "The {structureName} increases the growth rate of all dwellings by 2 creatures per week.",
     id: "game.structure.well.description",
   },
@@ -69,42 +77,42 @@ const farmStructureMessages = defineMessages({
     defaultMessage: "Archery Range",
     id: "game.structure.farm.archeryRange",
   },
-  archeryRangeDescription: {
+  [getDescriptionKey(FarmStructureId.ArcheryRange)]: {
     ...dwellingStructureDescriptionMessage,
   },
   armory: {
     defaultMessage: "Armory",
     id: "game.structure.farm.armory",
   },
-  armoryDescription: {
+  [getDescriptionKey(FarmStructureId.Armory)]: {
     ...dwellingStructureDescriptionMessage,
   },
   blacksmith: {
     defaultMessage: "Blacksmith",
     id: "game.structure.farm.blacksmith",
   },
-  blacksmithDescription: {
+  [getDescriptionKey(FarmStructureId.Blacksmith)]: {
     ...dwellingStructureDescriptionMessage,
   },
   cathedral: {
     defaultMessage: "Cathedral",
     id: "game.structure.farm.cathedral",
   },
-  cathedralDescription: {
+  [getDescriptionKey(FarmStructureId.Cathedral)]: {
     ...dwellingStructureDescriptionMessage,
   },
   joustingArena: {
     defaultMessage: "Jousting Arena",
     id: "game.structure.farm.joustingArena",
   },
-  joustingArenaDescription: {
+  [getDescriptionKey(FarmStructureId.JoustingArena)]: {
     ...dwellingStructureDescriptionMessage,
   },
   thatchedHut: {
     defaultMessage: "Thatched Hut",
     id: "game.structure.farm.thatchedHut",
   },
-  thatchedHutDescription: {
+  [getDescriptionKey(FarmStructureId.ThatchedHut)]: {
     ...dwellingStructureDescriptionMessage,
   },
 });
@@ -114,42 +122,42 @@ const plainsStructureMessages = defineMessages({
     defaultMessage: "Adobe",
     id: "game.structure.plains.adobe",
   },
-  adobeDescription: {
+  [getDescriptionKey(PlainsStructureId.Adobe)]: {
     ...dwellingStructureDescriptionMessage,
   },
   bridge: {
     defaultMessage: "Bridge",
     id: "game.structure.plains.bridge",
   },
-  bridgeDescription: {
+  [getDescriptionKey(PlainsStructureId.Bridge)]: {
     ...dwellingStructureDescriptionMessage,
   },
   den: {
     defaultMessage: "Den",
     id: "game.structure.plains.den",
   },
-  denDescription: {
+  [getDescriptionKey(PlainsStructureId.Den)]: {
     ...dwellingStructureDescriptionMessage,
   },
   hut: {
     defaultMessage: "Hut",
     id: "game.structure.plains.hut",
   },
-  hutDescription: {
+  [getDescriptionKey(PlainsStructureId.Hut)]: {
     ...dwellingStructureDescriptionMessage,
   },
   pyramid: {
     defaultMessage: "Pyramid",
     id: "game.structure.plains.pyramid",
   },
-  pyramidDescription: {
+  [getDescriptionKey(PlainsStructureId.Pyramid)]: {
     ...dwellingStructureDescriptionMessage,
   },
   stickHut: {
     defaultMessage: "Stick Hut",
     id: "game.structure.plains.stickHut",
   },
-  stickHutDescription: {
+  [getDescriptionKey(PlainsStructureId.StickHut)]: {
     ...dwellingStructureDescriptionMessage,
   },
 });
@@ -159,42 +167,42 @@ const forestStructureMessages = defineMessages({
     defaultMessage: "Archery Range",
     id: "game.structure.forest.archeryRange",
   },
-  archeryRangeDescription: {
+  [getDescriptionKey(ForestStructureId.ArcheryRange)]: {
     ...dwellingStructureDescriptionMessage,
   },
   cottage: {
     defaultMessage: "Cottage",
     id: "game.structure.forest.cottage",
   },
-  cottageDescription: {
+  [getDescriptionKey(ForestStructureId.Cottage)]: {
     ...dwellingStructureDescriptionMessage,
   },
   fencedMeadow: {
     defaultMessage: "Fenced Meadow",
     id: "game.structure.forest.fencedMeadow",
   },
-  fencedMeadowDescription: {
+  [getDescriptionKey(ForestStructureId.FencedMeadow)]: {
     ...dwellingStructureDescriptionMessage,
   },
   redTower: {
     defaultMessage: "Red Tower",
     id: "game.structure.forest.redTower",
   },
-  redTowerDescription: {
+  [getDescriptionKey(ForestStructureId.RedTower)]: {
     ...dwellingStructureDescriptionMessage,
   },
   stonehenge: {
     defaultMessage: "Stonehenge",
     id: "game.structure.forest.stonehenge",
   },
-  stonehengeDescription: {
+  [getDescriptionKey(ForestStructureId.Stonehenge)]: {
     ...dwellingStructureDescriptionMessage,
   },
   treehouse: {
     defaultMessage: "Treehouse",
     id: "game.structure.forest.treehouse",
   },
-  treehouseDescription: {
+  [getDescriptionKey(ForestStructureId.Treehouse)]: {
     ...dwellingStructureDescriptionMessage,
   },
 });
@@ -204,42 +212,42 @@ const mountainsStructureMessages = defineMessages({
     defaultMessage: "Black Tower",
     id: "game.structure.mountains.blackTower",
   },
-  blackTowerDescription: {
+  [getDescriptionKey(MountainsStructureId.BlackTower)]: {
     ...dwellingStructureDescriptionMessage,
   },
   cave: {
     defaultMessage: "Cave",
     id: "game.structure.mountains.cave",
   },
-  caveDescription: {
+  [getDescriptionKey(MountainsStructureId.Cave)]: {
     ...dwellingStructureDescriptionMessage,
   },
   crypt: {
     defaultMessage: "Crypt",
     id: "game.structure.mountains.crypt",
   },
-  cryptDescription: {
+  [getDescriptionKey(MountainsStructureId.Crypt)]: {
     ...dwellingStructureDescriptionMessage,
   },
   maze: {
     defaultMessage: "Maze",
     id: "game.structure.mountains.maze",
   },
-  mazeDescription: {
+  [getDescriptionKey(MountainsStructureId.Maze)]: {
     ...dwellingStructureDescriptionMessage,
   },
   nest: {
     defaultMessage: "Nest",
     id: "game.structure.mountains.nest",
   },
-  nestDescription: {
+  [getDescriptionKey(MountainsStructureId.Nest)]: {
     ...dwellingStructureDescriptionMessage,
   },
   swamp: {
     defaultMessage: "Swamp",
     id: "game.structure.mountains.swamp",
   },
-  swampDescription: {
+  [getDescriptionKey(MountainsStructureId.Swamp)]: {
     ...dwellingStructureDescriptionMessage,
   },
 });
@@ -257,10 +265,10 @@ export const getStructureNameMessage = (structure: string, isBuilt: boolean = tr
   const index = convertValue(structure);
 
   const nameMessage = structureMessages[index];
-  const placeholderNameMessage = structureMessages[`${index}Placeholder`];
+  const placeholderNameMessage = structureMessages[getPlaceholderKey(structure)];
 
   return (!isBuilt && placeholderNameMessage) || nameMessage || unknownMessage;
 };
 
 export const getStructureDescriptionMessage = (structure: string) =>
-  structureMessages[`${convertValue(structure)}Description`] || unknownMessage;
+  structureMessages[getDescriptionKey(structure)] || unknownMessage;

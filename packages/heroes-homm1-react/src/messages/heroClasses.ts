@@ -4,12 +4,15 @@ import { HeroClass } from "heroes-homm1";
 
 import { unknownMessage } from "./util";
 
+const getTitleKey = (heroClass: string) =>
+  `${heroClass}Title`;
+
 const heroClassMessages: Messages = defineMessages({
   [HeroClass.Knight]: {
     defaultMessage: "Knight",
     id: "game.heroClass.knight",
   },
-  [`${HeroClass.Knight}Title`]: {
+  [getTitleKey(HeroClass.Knight)]: {
     defaultMessage: "{heroName} the Knight",
     id: "game.heroClass.knight.title",
   },
@@ -17,7 +20,7 @@ const heroClassMessages: Messages = defineMessages({
     defaultMessage: "Barbarian",
     id: "game.heroClass.barbarian",
   },
-  [`${HeroClass.Barbarian}Title`]: {
+  [getTitleKey(HeroClass.Barbarian)]: {
     defaultMessage: "{heroName} the Barbarian",
     id: "game.heroClass.barbarian.title",
   },
@@ -25,7 +28,7 @@ const heroClassMessages: Messages = defineMessages({
     defaultMessage: "Sorceress",
     id: "game.heroClass.sorceress",
   },
-  [`${HeroClass.Sorceress}Title`]: {
+  [getTitleKey(HeroClass.Sorceress)]: {
     defaultMessage: "{heroName} the Sorceress",
     id: "game.heroClass.sorceress.title",
   },
@@ -33,7 +36,7 @@ const heroClassMessages: Messages = defineMessages({
     defaultMessage: "Warlock",
     id: "game.heroClass.warlock",
   },
-  [`${HeroClass.Warlock}Title`]: {
+  [getTitleKey(HeroClass.Warlock)]: {
     defaultMessage: "{heroName} the Warlock",
     id: "game.heroClass.warlock.title",
   },
@@ -43,4 +46,4 @@ export const getHeroClassNameMessage = (heroClass: string) =>
   heroClassMessages[heroClass] || unknownMessage;
 
 export const getHeroClassTitleMessage = (heroCLass: string) =>
-  heroClassMessages[`${heroCLass}Title`] || unknownMessage;
+  heroClassMessages[getTitleKey(heroCLass)] || unknownMessage;

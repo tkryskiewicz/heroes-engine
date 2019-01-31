@@ -4,6 +4,9 @@ import { ArtifactId } from "heroes-homm1";
 
 import { unknownMessage } from "./util";
 
+const getDescriptionKey = (artifact: string) =>
+  `${artifact}Description`;
+
 export const artifactMessages: Messages = defineMessages({
   // Attack
   [ArtifactId.ThunderMaceOfDominion]: {
@@ -175,4 +178,4 @@ export const getArtifactNameMessage = (artifact: string) =>
   artifactMessages[artifact] || unknownMessage;
 
 export const getArtifactDescriptionMessage = (artifact: string) =>
-  artifactMessages[`${artifact}Description`] || unknownMessage;
+  artifactMessages[getDescriptionKey(artifact)] || unknownMessage;
