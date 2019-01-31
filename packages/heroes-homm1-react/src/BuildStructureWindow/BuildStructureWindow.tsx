@@ -1,17 +1,19 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Resources } from "heroes-core";
 
 import { GameModal, ResourceCost } from "../base";
 import { CastleOptionIcon } from "../CastleOptionIcon";
 import { GameText } from "../core";
-import { getStructureDescriptionMessage } from "../messages";
+import { getCreaturePluralNameMessage, getStructureDescriptionMessage, getStructureNameMessage } from "../messages";
 import { messages } from "./messages";
 
 export interface BuildStructureWindowProps {
   readonly town: string;
   readonly structure: string;
+  // FIXME: should this be here? resolve somehow else? inject from state?
+  readonly dwellingCreature?: string;
   readonly cost: Resources;
   readonly canBuild: boolean;
   readonly visible?: boolean;
@@ -19,13 +21,25 @@ export interface BuildStructureWindowProps {
   readonly onCancelClick: () => void;
 }
 
-export class BuildStructureWindow extends React.Component<BuildStructureWindowProps> {
-  public static readonly defaultProps: Pick<BuildStructureWindowProps, "onOkayClick" | "onCancelClick"> = {
+type DefaultProp =
+  "onOkayClick" |
+  "onCancelClick";
+
+class BuildStructureWindow extends React.Component<BuildStructureWindowProps & InjectedIntlProps> {
+  public static readonly defaultProps: Pick<BuildStructureWindowProps, DefaultProp> = {
     onCancelClick: () => undefined,
     onOkayClick: () => undefined,
   };
 
   public render() {
+    const { structure, dwellingCreature } = this.props;
+    const { formatMessage } = this.props.intl;
+
+    const structureName = formatMessage(getStructureNameMessage(structure));
+    const creatureName = dwellingCreature ?
+      formatMessage(getCreaturePluralNameMessage(dwellingCreature)) :
+      undefined;
+
     return (
       <GameModal
         type="okayCancel"
@@ -43,12 +57,12 @@ export class BuildStructureWindow extends React.Component<BuildStructureWindowPr
         <div>
           <CastleOptionIcon
             town={this.props.town}
-            option={this.props.structure}
+            option={structure}
           />
         </div>
         <div>
           <GameText size="large">
-            <FormattedMessage {...getStructureDescriptionMessage(this.props.structure)} />
+            <FormattedMessage {...getStructureDescriptionMessage(structure)} values={{ structureName, creatureName }} />
           </GameText>
         </div>
         <div>
@@ -64,3 +78,9 @@ export class BuildStructureWindow extends React.Component<BuildStructureWindowPr
     this.props.onOkayClick(this.props.town, this.props.structure);
   }
 }
+
+const BuildStructureWindowWrapped = injectIntl(BuildStructureWindow);
+
+export {
+  BuildStructureWindowWrapped as BuildStructureWindow,
+};

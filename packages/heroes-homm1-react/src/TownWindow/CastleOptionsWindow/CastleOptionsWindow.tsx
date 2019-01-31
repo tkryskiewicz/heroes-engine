@@ -113,11 +113,16 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
   }
 
   private renderOptionDetails(town: string, option: Structure) {
+    const dwellingCreature = option.dwelling ?
+      option.dwelling.creature :
+      undefined;
+
     return (
       <BuildStructureWindow
         visible={true}
         town={town}
         structure={option.id}
+        dwellingCreature={dwellingCreature}
         cost={option.cost}
         canBuild={true}
         onCancelClick={this.props.onCloseOptionDetailsClick}

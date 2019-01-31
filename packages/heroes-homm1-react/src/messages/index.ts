@@ -3,7 +3,7 @@ import { defineMessages, Messages } from "react-intl";
 import { CampaignId, Skill } from "heroes-homm1";
 
 export { getArtifactNameMessage, getArtifactDescriptionMessage } from "./artifacts";
-export { getCreatureNameMessage } from "./creatures";
+export { getCreatureNameMessage, getCreaturePluralNameMessage } from "./creatures";
 export { getHeroClassNameMessage, getHeroClassTitleMessage } from "./heroClasses";
 export { getHeroNameMessage } from "./heroes";
 export {
