@@ -5,6 +5,7 @@ describe("buildStructure", () => {
   it("should build structure", () => {
     const structure: Structure = {
       cost: {},
+      data: {},
       id: "structure",
       isBuilt: false,
     };
@@ -17,6 +18,7 @@ describe("buildStructure", () => {
   it("should set creature availablity to growth when structure is a dwelling", () => {
     const structure: Structure = {
       cost: {},
+      data: {},
       dwelling: {
         availableCount: 0,
         cost: {},
@@ -37,6 +39,7 @@ describe("getTroop", () => {
   it("should return troop", () => {
     const structure: Structure = {
       cost: {},
+      data: {},
       dwelling: {
         availableCount: 1,
         cost: {},
@@ -60,6 +63,7 @@ describe("getTroop", () => {
   it("should throw when structure is not a dwelling", () => {
     const structure: Structure = {
       cost: {},
+      data: {},
       id: "structure",
       isBuilt: false,
     };
@@ -70,6 +74,7 @@ describe("getTroop", () => {
   it("should throw when count is negative", () => {
     const structure: Structure = {
       cost: {},
+      data: {},
       dwelling: {
         availableCount: 1,
         cost: {},
@@ -86,6 +91,7 @@ describe("getTroop", () => {
   it("should throw when count is less than available count", () => {
     const structure: Structure = {
       cost: {},
+      data: {},
       dwelling: {
         availableCount: 0,
         cost: {},
@@ -104,6 +110,7 @@ describe("recruitTroop", () => {
   it("should reduce available count", () => {
     const structure: Structure = {
       cost: {},
+      data: {},
       dwelling: {
         availableCount: 1,
         cost: {},
@@ -122,6 +129,7 @@ describe("recruitTroop", () => {
   it("should throw when structure is not a dwelling", () => {
     const structure: Structure = {
       cost: {},
+      data: {},
       id: "structure",
       isBuilt: false,
     };
@@ -132,6 +140,7 @@ describe("recruitTroop", () => {
   it("should throw when count is negative", () => {
     const structure: Structure = {
       cost: {},
+      data: {},
       dwelling: {
         availableCount: 1,
         cost: {},
@@ -148,6 +157,7 @@ describe("recruitTroop", () => {
   it("should throw when count is less than available count", () => {
     const structure: Structure = {
       cost: {},
+      data: {},
       dwelling: {
         availableCount: 0,
         cost: {},
