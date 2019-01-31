@@ -7,5 +7,5 @@ declare namespace ReactIntl {
     options?: InjectIntlConfig,
   ):
     React.ComponentClass<Pick<JSX.LibraryManagedAttributes<C, P>, Exclude<keyof P, keyof InjectedIntlProps>>> &
-    { WrappedComponent: React.ComponentType<P> };
+    { readonly WrappedComponent: React.ComponentType<P> };
 }
