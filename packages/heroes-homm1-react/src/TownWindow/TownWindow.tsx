@@ -1,24 +1,17 @@
 import * as React from "react";
-import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
+import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { enoughResources, Hero, Resources, Town } from "heroes-core";
-import { MageGuild, Shipyard, spells as allSpells, StructureId } from "heroes-homm1";
+import { Hero, Resources, Town } from "heroes-core";
 
 import * as styles from "./TownWindow.module.scss";
 
-import { ArmyStrip, BigBar, Crest, GameModal, getArmyStripStatusTextMessage, HeroPortrait } from "../base";
-import { BuildShipWindow } from "../BuildShipWindow";
-import { BuildStructureWindow } from "../BuildStructureWindow";
+import { ArmyStrip, BigBar, Crest, getArmyStripStatusTextMessage, HeroPortrait } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
-import { MageGuildWindow } from "../MageGuildWindow";
 import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
 import { RecruitTroopWindow, recruitTroopWindowMessages } from "../RecruitTroopWindow";
-import { TavernWindow } from "../TavernWindow";
-import { ThievesGuildWindow } from "../ThievesGuildWindow";
-import { TownPopulationWindow, TownPopulationWindowProps } from "../TownPopulationWindow";
 import { TownView } from "../TownView";
-import { CastleOptionsWindow } from "./CastleOptionsWindow";
+import { getStructureDetails } from "./config";
 import { messages } from "./messages";
 import { Treasury } from "./Treasury";
 
@@ -313,127 +306,26 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
   private renderStructureDetails(town: Town, resources: Resources, structure: string) {
     const struc = town.structures.find((s) => s.id === structure)!;
 
-    let structureDetails: React.ReactNode | undefined;
+    // TODO: optimize and handle case with result missing
+    const structureDetails = getStructureDetails(struc, town, resources, this.onCloseStructureDetailsClick);
 
-    switch (structure) {
-      case StructureId.Castle:
-        structureDetails = !struc.isBuilt ? (
-          <BuildStructureWindow
-            town={town.id}
-            structure={structure}
-            cost={struc.cost}
-            canBuild={enoughResources(resources, struc.cost)}
-            visible={true}
-            onCancelClick={this.onCloseStructureDetailsClick}
-          />) : (
-            <CastleOptionsWindow
-              town={town.id}
-              canConstructStructures={town.canConstructStructures}
-              resources={resources}
-              options={town.structures.filter((s) => s.id !== StructureId.Castle)}
-              visible={true}
-              onExitClick={this.onCloseStructureDetailsClick}
-            />
-          );
-        break;
-      case StructureId.MageGuild:
-        const mageGuild = struc as MageGuild;
+    if (structureDetails) {
+      return structureDetails;
+    }
 
-        structureDetails = (
-          <MageGuildWindow
-            spells={allSpells.filter((s) => mageGuild.data.spells.indexOf(s.id) !== -1)}
-            levelBuilt={1}
-            visible={true}
-            onExitClick={this.onCloseStructureDetailsClick}
-          />
-        );
-        break;
-      case StructureId.ThievesGuild:
-        structureDetails = (
-          <ThievesGuildWindow
-            visible={true}
-            onExitClick={this.onCloseStructureDetailsClick}
-          />
-        );
-        break;
-      case StructureId.Tavern:
-        structureDetails = (
-          <TavernWindow
-            visible={true}
-            onOkayClick={this.onCloseStructureDetailsClick}
-          />
-        );
-        break;
-      case StructureId.Shipyard:
-        const shipyard = struc as Shipyard;
+    if (struc.dwelling) {
+      const onOkayClick = (count: number) => this.onRecruitTroop(struc.id, count);
 
-        // TODO: implement
-        const shipAlreadyBuilt = false;
-
-        if (shipAlreadyBuilt) {
-          return (
-            <GameModal
-              visible={true}
-              type="okay"
-              onConfirmClick={this.onCloseStructureDetailsClick}
-            >
-              <GameText size="large">
-                <FormattedMessage {...messages.cannotBuildShip} />
-              </GameText>
-            </GameModal>
-          );
-        }
-
-        const canBuild = enoughResources(resources, shipyard.data.shipCost);
-
-        // TODO: implement
-        const onConfirm = () => undefined;
-
-        structureDetails = (
-          <BuildShipWindow
-            visible={true}
-            cost={shipyard.data.shipCost}
-            canBuild={canBuild}
-            onOkayClick={onConfirm}
-            onCancelClick={this.onCloseStructureDetailsClick}
-          />
-        );
-        break;
-      case StructureId.Well:
-        const dwellings = town.structures
-          .map((s) => s.dwelling ? {
-            available: s.dwelling.availableCount,
-            creature: s.dwelling.creature,
-            growthRate: s.dwelling.growth,
-            id: s.id,
-          } : undefined)
-          .filter((d) => d) as TownPopulationWindowProps["dwellings"];
-
-        structureDetails = (
-          <TownPopulationWindow
-            visible={true}
-            town={town.id}
-            dwellings={dwellings}
-            onExitClick={this.onCloseStructureDetailsClick}
-          />
-        );
-        break;
-      default:
-        if (struc.dwelling) {
-          const onOkayClick = (count: number) => this.onRecruitTroop(struc.id, count);
-
-          structureDetails = (
-            <RecruitTroopWindow
-              creature={struc.dwelling.creature}
-              cost={struc.dwelling.cost}
-              availableCount={struc.dwelling.availableCount}
-              visible={true}
-              onOkayClick={onOkayClick}
-              onCancelClick={this.onCloseStructureDetailsClick}
-            />
-          );
-        }
-        break;
+      return (
+        <RecruitTroopWindow
+          creature={struc.dwelling.creature}
+          cost={struc.dwelling.cost}
+          availableCount={struc.dwelling.availableCount}
+          visible={true}
+          onOkayClick={onOkayClick}
+          onCancelClick={this.onCloseStructureDetailsClick}
+        />
+      );
     }
 
     return structureDetails;
