@@ -38,6 +38,7 @@ export {
   PlainsStructureId,
   ForestStructureId,
   MountainsStructureId,
+  Shipyard,
 } from "./structures";
 export { TerrainType } from "./TerrainType";
 export { TownId, TownIds } from "./TownId";

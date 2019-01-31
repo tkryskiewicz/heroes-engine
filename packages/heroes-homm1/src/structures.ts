@@ -17,14 +17,16 @@ const constructDwelling = (dwellingType: DwellingType): Dwelling => ({
   growth: dwellingType.growth,
 });
 
-export interface StructureType {
+export interface StructureType<TData = {}> {
   readonly id: string;
   readonly cost: Resources;
   readonly dwelling?: DwellingType;
+  readonly data?: TData;
 }
 
 export const constructStructure = (structureType: StructureType): Structure => ({
   cost: structureType.cost,
+  data: structureType.data || {},
   dwelling: structureType.dwelling ?
     constructDwelling(structureType.dwelling) :
     undefined,
@@ -57,8 +59,22 @@ export enum StructureId {
   MageGuild = "mage-guild",
   ThievesGuild = "thieves-guild",
   Tavern = "tavern",
-  Shipyard = "shipyard",
   Well = "well",
+}
+
+// Shipyard
+
+export enum StructureId {
+  Shipyard = "shipyard",
+}
+
+interface ShipyardData {
+  readonly shipCost: Resources;
+}
+
+export interface Shipyard extends Structure {
+  readonly id: StructureId.Shipyard;
+  readonly data: ShipyardData;
 }
 
 export const coreStructures: StructureType[] = [
@@ -110,6 +126,12 @@ export const commonStructures: StructureType[] = [
     cost: {
       [Resource.Gold]: 2000,
       [Resource.Wood]: 20,
+    },
+    data: {
+      shipCost: {
+        [Resource.Gold]: 1000,
+        [Resource.Wood]: 10,
+      },
     },
     id: StructureId.Shipyard,
   },

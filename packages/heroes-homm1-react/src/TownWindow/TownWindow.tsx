@@ -2,7 +2,7 @@ import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { enoughResources, Hero, Resources, Town } from "heroes-core";
-import { Resource, SpellId, spells as allSpells, StructureId } from "heroes-homm1";
+import { Shipyard, SpellId, spells as allSpells, StructureId } from "heroes-homm1";
 
 import * as styles from "./TownWindow.module.scss";
 
@@ -376,6 +376,8 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
         );
         break;
       case StructureId.Shipyard:
+        const shipyard = struc as Shipyard;
+
         // TODO: implement
         const shipAlreadyBuilt = false;
 
@@ -393,12 +395,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
           );
         }
 
-        const cost: Resources = {
-          [Resource.Gold]: 1000,
-          [Resource.Wood]: 10,
-        };
-
-        const canBuild = enoughResources(resources, cost);
+        const canBuild = enoughResources(resources, shipyard.data.shipCost);
 
         // TODO: implement
         const onConfirm = () => undefined;
@@ -406,7 +403,7 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
         structureDetails = (
           <BuildShipWindow
             visible={true}
-            cost={cost}
+            cost={shipyard.data.shipCost}
             canBuild={canBuild}
             onOkayClick={onConfirm}
             onCancelClick={this.onCloseStructureDetailsClick}

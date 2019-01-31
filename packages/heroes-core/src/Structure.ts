@@ -13,11 +13,12 @@ const buildDwelling = (dwelling: Dwelling): Dwelling => ({
   availableCount: dwelling.growth,
 });
 
-export interface Structure {
+export interface Structure<TData = {}> {
   readonly id: string;
   readonly cost: Resources;
   readonly isBuilt: boolean;
   readonly dwelling?: Dwelling;
+  readonly data: TData;
 }
 
 export const buildStructure = (structure: Structure): Structure => ({
