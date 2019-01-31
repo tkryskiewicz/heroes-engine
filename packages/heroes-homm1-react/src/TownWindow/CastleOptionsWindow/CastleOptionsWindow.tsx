@@ -3,7 +3,7 @@ import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Resources, Structure } from "heroes-core";
-import { CastleOptionStatus, getCastleOptionStatus } from "heroes-homm1";
+import { CastleOptionStatus, getCastleOptionStatus, StructureId } from "heroes-homm1";
 
 import * as styles from "./CastleOptionsWindow.module.scss";
 
@@ -48,6 +48,8 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
   public render() {
     const { town, options, canConstructStructures, resources, visibleOptionDetails } = this.props;
 
+    const visibleOptions = options.filter((s) => s.id !== StructureId.Castle);
+
     const optionDetails = visibleOptionDetails ?
       options.find((s) => s.id === visibleOptionDetails) :
       undefined;
@@ -55,7 +57,7 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
     return (
       <div className={styles.root}>
         <Row>
-          {options.map((s) => this.renderOption(town, s, canConstructStructures, resources))}
+          {visibleOptions.map((s) => this.renderOption(town, s, canConstructStructures, resources))}
           {optionDetails && this.renderOptionDetails(town, optionDetails)}
         </Row>
       </div>

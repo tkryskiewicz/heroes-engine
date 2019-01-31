@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { enoughResources, Resources, Structure, Town } from "heroes-core";
+import { enoughResources, Resources, Structure } from "heroes-core";
 import { MageGuild, Shipyard, spells as allSpells, StructureId } from "heroes-homm1";
 
 import { GameModal } from "../base";
@@ -17,7 +17,7 @@ import { messages } from "./messages";
 
 export const getStructureDetails = (
   structure: Structure,
-  town: Town,
+  town: string,
   resources: Resources,
   onClose: () => void,
 ): React.ReactNode | undefined => {
@@ -27,7 +27,7 @@ export const getStructureDetails = (
         return (
           <BuildStructureWindow
             visible={true}
-            town={town.id}
+            town={town}
             structure={structure.id}
             cost={structure.cost}
             canBuild={enoughResources(resources, structure.cost)}
@@ -39,10 +39,7 @@ export const getStructureDetails = (
       return (
         <CastleOptionsWindow
           visible={true}
-          town={town.id}
-          canConstructStructures={town.canConstructStructures}
-          resources={resources}
-          options={town.structures.filter((s) => s.id !== StructureId.Castle)}
+          town={town}
           onExitClick={onClose}
         />
       );
@@ -109,7 +106,7 @@ export const getStructureDetails = (
       return (
         <TownPopulationWindow
           visible={true}
-          town={town.id}
+          town={town}
           onExitClick={onClose}
         />
       );
