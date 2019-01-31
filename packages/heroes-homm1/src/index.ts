@@ -38,6 +38,7 @@ export {
   PlainsStructureId,
   ForestStructureId,
   MountainsStructureId,
+  MageGuild,
   Shipyard,
 } from "./structures";
 export { TerrainType } from "./TerrainType";

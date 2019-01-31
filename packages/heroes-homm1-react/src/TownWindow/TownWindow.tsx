@@ -2,7 +2,7 @@ import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { enoughResources, Hero, Resources, Town } from "heroes-core";
-import { Shipyard, SpellId, spells as allSpells, StructureId } from "heroes-homm1";
+import { MageGuild, Shipyard, spells as allSpells, StructureId } from "heroes-homm1";
 
 import * as styles from "./TownWindow.module.scss";
 
@@ -337,22 +337,11 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
           );
         break;
       case StructureId.MageGuild:
-        // FIXME: move to structure
-        const spells = [
-          SpellId.Bless,
-          SpellId.Protection,
-          SpellId.ViewResources,
-          SpellId.Haste,
-          SpellId.SummonBoat,
-          SpellId.ViewHeroes,
-          SpellId.Fireball,
-          SpellId.MeteorShower,
-          SpellId.ViewAll,
-        ];
+        const mageGuild = struc as MageGuild;
 
         structureDetails = (
           <MageGuildWindow
-            spells={allSpells.filter((s) => spells.indexOf(s.id) !== -1)}
+            spells={allSpells.filter((s) => mageGuild.data.spells.indexOf(s.id) !== -1)}
             levelBuilt={1}
             visible={true}
             onExitClick={this.onCloseStructureDetailsClick}

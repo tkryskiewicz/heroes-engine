@@ -3,6 +3,7 @@ import { Dwelling, enoughResources, Resources, Structure } from "heroes-core";
 import { CastleOptionStatus } from "./CastleOptionStatus";
 import { CreatureId } from "./creatures";
 import { Resource } from "./Resource";
+import { SpellId } from "./spells";
 
 interface DwellingType {
   readonly creature: string;
@@ -56,10 +57,23 @@ export enum StructureId {
   Castle = "castle",
 
   // Common Structures
-  MageGuild = "mage-guild",
   ThievesGuild = "thieves-guild",
   Tavern = "tavern",
   Well = "well",
+}
+
+// Mage Guild
+
+export enum StructureId {
+  MageGuild = "mage-guild",
+}
+
+interface MageGuildData {
+  readonly spells: string[];
+}
+
+export interface MageGuild extends Structure<MageGuildData> {
+  readonly id: StructureId.MageGuild;
 }
 
 // Shipyard
@@ -105,6 +119,19 @@ export const commonStructures: StructureType[] = [
       [Resource.Gold]: 2000,
       [Resource.Wood]: 5,
       [Resource.Ore]: 5,
+    },
+    data: {
+      spells: [
+        SpellId.Bless,
+        SpellId.Protection,
+        SpellId.ViewResources,
+        SpellId.Haste,
+        SpellId.SummonBoat,
+        SpellId.ViewHeroes,
+        SpellId.Fireball,
+        SpellId.MeteorShower,
+        SpellId.ViewAll,
+      ],
     },
     id: StructureId.MageGuild,
   },
