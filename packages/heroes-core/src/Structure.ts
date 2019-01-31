@@ -21,6 +21,9 @@ export interface Structure<TData = {}> {
   readonly data: TData;
 }
 
+export const isDwellingStructure = (structure: Structure): boolean =>
+  structure.dwelling !== undefined;
+
 export const buildStructure = (structure: Structure): Structure => ({
   ...structure,
   dwelling: structure.dwelling ?

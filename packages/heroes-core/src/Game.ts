@@ -40,6 +40,9 @@ export const swapGameGarrisonTroops = (game: Game, townId: string, index: number
   };
 };
 
+export const getGameTown = (game: Game, town: string): Town | undefined =>
+  game.towns.find((t) => t.id === town);
+
 export const buildGameStructure = (game: Game, town: string, structure: string): Game => {
   const twn = game.towns.find((t) => t.id === town);
 

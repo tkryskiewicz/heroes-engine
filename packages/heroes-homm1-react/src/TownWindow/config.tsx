@@ -11,7 +11,7 @@ import { GameText } from "../core";
 import { MageGuildWindow } from "../MageGuildWindow";
 import { TavernWindow } from "../TavernWindow";
 import { ThievesGuildWindow } from "../ThievesGuildWindow";
-import { TownPopulationWindow, TownPopulationWindowProps } from "../TownPopulationWindow";
+import { TownPopulationWindow } from "../TownPopulationWindow";
 import { CastleOptionsWindow } from "./CastleOptionsWindow";
 import { messages } from "./messages";
 
@@ -26,11 +26,11 @@ export const getStructureDetails = (
       if (!structure.isBuilt) {
         return (
           <BuildStructureWindow
+            visible={true}
             town={town.id}
             structure={structure.id}
             cost={structure.cost}
             canBuild={enoughResources(resources, structure.cost)}
-            visible={true}
             onCancelClick={onClose}
           />
         );
@@ -38,11 +38,11 @@ export const getStructureDetails = (
 
       return (
         <CastleOptionsWindow
+          visible={true}
           town={town.id}
           canConstructStructures={town.canConstructStructures}
           resources={resources}
           options={town.structures.filter((s) => s.id !== StructureId.Castle)}
-          visible={true}
           onExitClick={onClose}
         />
       );
@@ -51,9 +51,9 @@ export const getStructureDetails = (
 
       return (
         <MageGuildWindow
+          visible={true}
           spells={allSpells.filter((s) => mageGuild.data.spells.indexOf(s.id) !== -1)}
           levelBuilt={1}
-          visible={true}
           onExitClick={onClose}
         />
       );
@@ -106,20 +106,10 @@ export const getStructureDetails = (
         />
       );
     case StructureId.Well:
-      const dwellings = town.structures
-        .map((s) => s.dwelling ? {
-          available: s.dwelling.availableCount,
-          creature: s.dwelling.creature,
-          growthRate: s.dwelling.growth,
-          id: s.id,
-        } : undefined)
-        .filter((d) => d) as TownPopulationWindowProps["dwellings"];
-
       return (
         <TownPopulationWindow
           visible={true}
           town={town.id}
-          dwellings={dwellings}
           onExitClick={onClose}
         />
       );
