@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { SpellType } from "heroes-homm1";
 
@@ -9,6 +9,7 @@ import { GameModal, SpellIcon } from "../base";
 import { GameParagraph, withGameWindow } from "../core";
 import { getSpellDescriptionMessage, getSpellLongNameMessage, getSpellNameMessage } from "../messages";
 import { AdventureSpellsImage, CombatSpellsImage, ExitImage, NextPageImage, PreviousPageImage } from "./assets";
+import { getSpellTypeStatusTextMessage, messages } from "./messages";
 import { SpellBox } from "./SpellBox";
 
 const SpellsPerPage = 4;
@@ -22,54 +23,37 @@ interface Spell {
 export interface SpellBookWindowProps {
   readonly spells: Spell[];
   readonly spellType: SpellType;
-  readonly onSpellTypeMouseEnter: (value: SpellType) => void;
-  readonly onSpellTypeMouseLeave: (value: SpellType) => void;
   readonly onSpellTypeChange: (value: SpellType) => void;
   readonly page: number;
-  readonly onPreviousPageMouseEnter: () => void;
-  readonly onPreviousPageMouseLeave: () => void;
-  readonly onNextPageMouseEnter: () => void;
-  readonly onNextPageMouseLeave: () => void;
   readonly onPageChange: (value: number) => void;
   readonly onSpellClick: (value: string) => void;
   readonly visibleSpellDetails?: string;
   readonly onCloseSpellDetailsClick: () => void;
-  readonly onExitMouseEnter: () => void;
-  readonly onExitMouseLeave: () => void;
+  readonly onStatusTextChange: (statusText: string) => void;
   readonly onExitClick: () => void;
 }
 
 type DefaultProp =
-  "onSpellTypeMouseEnter" |
-  "onSpellTypeMouseLeave" |
   "onSpellTypeChange" |
-  "onPreviousPageMouseEnter" |
-  "onPreviousPageMouseLeave" |
-  "onNextPageMouseEnter" |
-  "onNextPageMouseLeave" |
   "onPageChange" |
   "onSpellClick" |
   "onCloseSpellDetailsClick" |
-  "onExitMouseEnter" |
-  "onExitMouseLeave" |
+  "onStatusTextChange" |
   "onExitClick";
 
-class SpellBookWindow extends React.Component<SpellBookWindowProps> {
+class SpellBookWindow extends React.Component<SpellBookWindowProps & InjectedIntlProps> {
   public static readonly defaultProps: Pick<SpellBookWindowProps, DefaultProp> = {
     onCloseSpellDetailsClick: () => undefined,
     onExitClick: () => undefined,
-    onExitMouseEnter: () => undefined,
-    onExitMouseLeave: () => undefined,
-    onNextPageMouseEnter: () => undefined,
-    onNextPageMouseLeave: () => undefined,
     onPageChange: () => undefined,
-    onPreviousPageMouseEnter: () => undefined,
-    onPreviousPageMouseLeave: () => undefined,
     onSpellClick: () => undefined,
     onSpellTypeChange: () => undefined,
-    onSpellTypeMouseEnter: () => undefined,
-    onSpellTypeMouseLeave: () => undefined,
+    onStatusTextChange: () => undefined,
   };
+
+  public componentDidMount() {
+    this.setDefaultStatusText();
+  }
 
   public render() {
     return (
@@ -79,15 +63,15 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
         <img
           className={styles.previousPage}
           src={PreviousPageImage}
-          onMouseEnter={this.props.onPreviousPageMouseEnter}
-          onMouseLeave={this.props.onPreviousPageMouseLeave}
+          onMouseEnter={this.onPreviousPageMouseEnter}
+          onMouseLeave={this.onPreviousPageMouseLeave}
           onClick={this.onPreviousPageClick}
         />
         <img
           className={styles.nextPage}
           src={NextPageImage}
-          onMouseEnter={this.props.onNextPageMouseEnter}
-          onMouseLeave={this.props.onNextPageMouseLeave}
+          onMouseEnter={this.onNextPageMouseEnter}
+          onMouseLeave={this.onNextPageMouseLeave}
           onClick={this.onNextPageClick}
         />
         <img
@@ -107,8 +91,8 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
         <img
           className={styles.exit}
           src={ExitImage}
-          onMouseEnter={this.props.onExitMouseEnter}
-          onMouseLeave={this.props.onExitMouseLeave}
+          onMouseEnter={this.onExitMouseEnter}
+          onMouseLeave={this.onExitMouseLeave}
           onClick={this.props.onExitClick}
         />
       </div>
@@ -170,11 +154,11 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
   }
 
   private readonly onCombatSpellsMouseEnter = () => {
-    this.props.onSpellTypeMouseEnter(SpellType.Combat);
+    this.onSpellTypeMouseEnter(SpellType.Combat);
   }
 
   private readonly onCombatSpellsMouseLeave = () => {
-    this.props.onSpellTypeMouseLeave(SpellType.Combat);
+    this.onSpellTypeMouseLeave();
   }
 
   private readonly onCombatSpellsClick = () => {
@@ -184,17 +168,37 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
   }
 
   private readonly onAdventureSpellsMouseEnter = () => {
-    this.props.onSpellTypeMouseEnter(SpellType.Adventure);
+    this.onSpellTypeMouseEnter(SpellType.Adventure);
   }
 
   private readonly onAdventureSpellsMouseLeave = () => {
-    this.props.onSpellTypeMouseLeave(SpellType.Adventure);
+    this.onSpellTypeMouseLeave();
   }
 
   private readonly onAdventureSpellsClick = () => {
     if (this.props.spellType !== SpellType.Adventure) {
       this.props.onSpellTypeChange(SpellType.Adventure);
     }
+  }
+
+  private readonly onSpellTypeMouseEnter = (value: SpellType) => {
+    const statusText = this.props.intl.formatMessage(getSpellTypeStatusTextMessage(value));
+
+    this.setStatusText(statusText);
+  }
+
+  private readonly onSpellTypeMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
+  private readonly onPreviousPageMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(messages.previousPageStatusText);
+
+    this.setStatusText(statusText);
+  }
+
+  private readonly onPreviousPageMouseLeave = () => {
+    this.setDefaultStatusText();
   }
 
   private readonly onPreviousPageClick = () => {
@@ -207,6 +211,16 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
     if (value !== this.props.page) {
       this.props.onPageChange(value);
     }
+  }
+
+  private readonly onNextPageMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(messages.nextPageStatusText);
+
+    this.setStatusText(statusText);
+  }
+
+  private readonly onNextPageMouseLeave = () => {
+    this.setDefaultStatusText();
   }
 
   private readonly onNextPageClick = () => {
@@ -232,9 +246,31 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
 
     return value;
   }
+
+  private readonly onExitMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(messages.exitStatusText);
+
+    this.setStatusText(statusText);
+  }
+
+  private readonly onExitMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
+  private setDefaultStatusText() {
+    const statusText = this.props.intl.formatMessage(messages.defaultStatusText);
+
+    this.setStatusText(statusText);
+  }
+
+  private setStatusText(statusText: string) {
+    this.props.onStatusTextChange(statusText);
+  }
 }
 
-const SpellBookWindowWrapped = withGameWindow(324)(SpellBookWindow);
+const SpellBookWindowWrapped = injectIntl(
+  withGameWindow(324)(SpellBookWindow),
+);
 
 export {
   SpellBookWindowWrapped as SpellBookWindow,
