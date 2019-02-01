@@ -307,7 +307,9 @@ class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, To
     const struc = town.structures.find((s) => s.id === structure)!;
 
     // TODO: optimize and handle case with result missing
-    const structureDetails = getStructureDetails(struc, town.id, resources, this.onCloseStructureDetailsClick);
+    const structureDetails = getStructureDetails(struc, town.id, resources, {
+      onCloseClick: this.onCloseStructureDetailsClick,
+    });
 
     if (structureDetails) {
       return structureDetails;

@@ -3,13 +3,10 @@ import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Artifact, getArmySize, Hero, HeroSkills, Troop } from "heroes-core";
 import {
-  ArtifactId,
   ArtifactLimit,
   getCurrentLevel,
   getNextLevelExperience,
   SkillIds,
-  Spell,
-  SpellBook,
 } from "heroes-homm1";
 
 import * as styles from "./HeroWindow.module.scss";
@@ -36,9 +33,9 @@ import {
   luckMessages,
   moraleMessages,
 } from "../messages";
-import { SpellBookWindow } from "../SpellBookWindow";
 import { TroopWindow } from "../TroopWindow";
 import { ArtifactSlot, artifactSlotMessages } from "./ArtifactSlot";
+import { getArtifactDetails } from "./config";
 import { messages } from "./messages";
 import { MiscInfo, MiscInfoType } from "./MiscInfo";
 import { SkillInfo } from "./SkillInfo";
@@ -599,14 +596,13 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
   }
 
   private renderArtifactDetails(artifact: Artifact) {
-    if (artifact.id === ArtifactId.Spellbook) {
-      const spellBook = artifact as SpellBook;
+    const artifactDetails = getArtifactDetails(artifact, {
+      onCloseClick: this.onCloseArtifactDetailsClick,
+      onStatusTextChange: this.onArtifactStatusTextChange,
+    });
 
-      if (!spellBook.data.length) {
-        return this.renderNoSpellsPrompt();
-      }
-
-      return this.renderSpellBook(spellBook.data);
+    if (artifactDetails) {
+      return artifactDetails;
     }
 
     return (
@@ -622,31 +618,6 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
           <FormattedMessage {...getArtifactDescriptionMessage(artifact.id)} />
         </GameParagraph>
       </GameModal>
-    );
-  }
-
-  private renderNoSpellsPrompt() {
-    return (
-      <GameModal
-        type="okay"
-        visible={true}
-        onConfirmClick={this.onCloseArtifactDetailsClick}
-      >
-        <GameText size="large">
-          <FormattedMessage {...messages.noSpells} />
-        </GameText>
-      </GameModal>
-    );
-  }
-
-  private renderSpellBook(spells: Spell[]) {
-    return (
-      <SpellBookWindow
-        visible={true}
-        spells={spells}
-        onStatusTextChange={this.onArtifactStatusTextChange}
-        onExitClick={this.onCloseArtifactDetailsClick}
-      />
     );
   }
 

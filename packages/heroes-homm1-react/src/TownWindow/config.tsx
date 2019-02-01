@@ -19,7 +19,9 @@ export const getStructureDetails = (
   structure: Structure,
   town: string,
   resources: Resources,
-  onClose: () => void,
+  props: {
+    readonly onCloseClick: () => void;
+  },
 ): React.ReactNode | undefined => {
   switch (structure.id) {
     case StructureId.Castle:
@@ -31,7 +33,7 @@ export const getStructureDetails = (
             structure={structure.id}
             cost={structure.cost}
             canBuild={enoughResources(resources, structure.cost)}
-            onCancelClick={onClose}
+            onCancelClick={props.onCloseClick}
           />
         );
       }
@@ -40,7 +42,7 @@ export const getStructureDetails = (
         <CastleOptionsWindow
           visible={true}
           town={town}
-          onExitClick={onClose}
+          onExitClick={props.onCloseClick}
         />
       );
     case StructureId.MageGuild:
@@ -51,21 +53,21 @@ export const getStructureDetails = (
           visible={true}
           spells={allSpells.filter((s) => mageGuild.data.spells.indexOf(s.id) !== -1)}
           levelBuilt={1}
-          onExitClick={onClose}
+          onExitClick={props.onCloseClick}
         />
       );
     case StructureId.ThievesGuild:
       return (
         <ThievesGuildWindow
           visible={true}
-          onExitClick={onClose}
+          onExitClick={props.onCloseClick}
         />
       );
     case StructureId.Tavern:
       return (
         <TavernWindow
           visible={true}
-          onOkayClick={onClose}
+          onOkayClick={props.onCloseClick}
         />
       );
     case StructureId.Shipyard:
@@ -79,7 +81,7 @@ export const getStructureDetails = (
           <GameModal
             visible={true}
             type="okay"
-            onConfirmClick={onClose}
+            onConfirmClick={props.onCloseClick}
           >
             <GameText size="large">
               <FormattedMessage {...messages.cannotBuildShip} />
@@ -99,7 +101,7 @@ export const getStructureDetails = (
           cost={shipyard.data.shipCost}
           canBuild={canBuild}
           onOkayClick={onConfirm}
-          onCancelClick={onClose}
+          onCancelClick={props.onCloseClick}
         />
       );
     case StructureId.Well:
@@ -107,7 +109,7 @@ export const getStructureDetails = (
         <TownPopulationWindow
           visible={true}
           town={town}
-          onExitClick={onClose}
+          onExitClick={props.onCloseClick}
         />
       );
   }
