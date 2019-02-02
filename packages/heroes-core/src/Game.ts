@@ -1,9 +1,15 @@
+import { Creature } from "./Creature";
 import { dismissHeroTroop, Hero, swapHeroTroops } from "./Hero";
 import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { buildTownStructure, endTownTurn, recruitTownTroop, swapGarrisonTroops, Town } from "./Town";
 
+export interface GameData {
+  readonly creatureById: { readonly [creature: string]: Creature; };
+}
+
 export interface Game {
+  readonly data: GameData;
   readonly scenario: Scenario;
   readonly alignment: string;
   readonly resources: Resources;

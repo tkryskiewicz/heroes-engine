@@ -17,6 +17,7 @@ import {
   constructArtifact,
   constructHero,
   constructTown,
+  creatureById,
   CreatureId,
   HeroId,
   MaxMobility,
@@ -118,6 +119,9 @@ const towns: Town[] = [
 
 const initialState: GameState = {
   alignment: Alignment.Red,
+  data: {
+    creatureById,
+  },
   discoveredPuzzlePieces: 0,
   heroes,
   resources: {

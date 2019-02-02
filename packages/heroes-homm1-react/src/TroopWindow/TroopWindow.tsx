@@ -2,8 +2,7 @@ import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Damage, Troop } from "heroes-core";
-import { creaturesById } from "heroes-homm1";
+import { Creature, Damage, Troop } from "heroes-core";
 
 import * as styles from "./TroopWindow.module.scss";
 
@@ -16,6 +15,7 @@ import { getSpeedMessage, messages } from "./messages";
 
 export interface TroopWindowProps {
   readonly troop: Troop;
+  readonly creature: Creature;
   readonly dismissible: boolean;
   readonly dismissPromptVisible: boolean;
   readonly onDismissClick: (troop: Troop) => void;
@@ -43,7 +43,7 @@ class TroopWindow extends React.Component<TroopWindowProps> {
   };
 
   public render() {
-    const creature = creaturesById[this.props.troop.creature];
+    const { creature } = this.props;
 
     return (
       <Row className={styles.root}>
