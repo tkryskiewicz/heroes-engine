@@ -425,6 +425,11 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
 
     const troopDismissible = getArmySize(hero.army) > 1;
 
+    const troopDetails = selectedTroopIndex !== undefined &&
+      selectedTroop &&
+      this.props.troopDetailsVisible &&
+      this.renderTroopDetails(selectedTroopIndex, selectedTroop, troopDismissible);
+
     return (
       <div className={styles.army}>
         <ArmyStrip
@@ -434,7 +439,7 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
           onTroopMouseLeave={this.onTroopMouseLeave}
           onTroopClick={this.onTroopClick}
         />
-        {selectedTroop && this.renderTroopDetails(selectedTroop, troopDismissible, this.props.troopDetailsVisible)}
+        {troopDetails}
       </div>
     );
   }
@@ -502,43 +507,25 @@ class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, He
     this.props.onSwapTroops(this.props.hero.id, index, withIndex);
   }
 
-  private renderTroopDetails(troop: Troop, dismissible: boolean, visible: boolean) {
+  private renderTroopDetails(index: number, troop: Troop, dismissible: boolean) {
     return (
       <TroopWindow
-        troop={troop}
+        visible={true}
+        index={index}
+        creature={troop.creature}
+        count={troop.count}
         dismissible={dismissible}
-        visible={visible}
         dismissPromptVisible={this.props.dismissTroopPromptVisible}
-        onDismissClick={this.onDismissTroopClick}
+        onDismissClick={this.props.onDismissTroopClick}
         onConfirmDismissClick={this.onConfirmDismissTroopClick}
-        onCancelDismissClick={this.onCancelDismissTroopClick}
+        onCancelDismissClick={this.props.onCancelDismissTroopClick}
         onExitClick={this.props.onExitTroopDetails}
       />
     );
   }
 
-  private readonly onDismissTroopClick = (troop: Troop) => {
-    const { hero } = this.props;
-
-    const index = hero.army.indexOf(troop);
-
-    this.props.onDismissTroopClick(index);
-  }
-
-  private readonly onConfirmDismissTroopClick = (troop: Troop) => {
-    const { hero } = this.props;
-
-    const index = hero.army.indexOf(troop);
-
-    this.props.onConfirmDismissTroopClick(hero.id, index);
-  }
-
-  private readonly onCancelDismissTroopClick = (troop: Troop) => {
-    const { hero } = this.props;
-
-    const index = hero.army.indexOf(troop);
-
-    this.props.onCancelDismissTroopClick(index);
+  private readonly onConfirmDismissTroopClick = (index: number) => {
+    this.props.onConfirmDismissTroopClick(this.props.hero.id, index);
   }
 
   private renderArtifacts(artifacts: Array<Artifact | undefined>, visibleArtifactDetails?: number) {

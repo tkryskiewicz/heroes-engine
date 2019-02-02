@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Troop } from "heroes-core";
-import { creatureById, CreatureId } from "heroes-homm1";
+import { ArmySize, creatureById, CreatureId } from "heroes-homm1";
 
 import { creatureOptions } from "../stories";
 import { TroopWindow } from "./TroopWindow";
@@ -15,26 +15,20 @@ const troopBase: Troop = {
 };
 
 storiesOf("TroopWindow", module)
-  .add("default", () => {
-    const troop: Troop = {
-      ...troopBase,
-      count: number("Count", 1, { range: true, min: 0, max: 9999, step: 1 }, "troop"),
-      creature: select("Creature", creatureOptions, CreatureId.Peasant, "troop"),
-    };
-
-    return (
-      <TroopWindow
-        troop={troop}
-        creature={creatureById[troop.creature]}
-        visible={boolean("Visible", true)}
-        onExitClick={action("Exit Click")}
-      />
-    );
-  })
+  .add("default", () => (
+    <TroopWindow
+      index={number("Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
+      creature={creatureById[select("Creature", creatureOptions, CreatureId.Peasant)]}
+      count={number("Count", 1, { range: true, min: 0, max: 9999, step: 1 })}
+      visible={boolean("Visible", true)}
+      onExitClick={action("Exit Click")}
+    />
+  ))
   .add("dismissal", () => (
     <TroopWindow
-      troop={troopBase}
+      index={number("Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
       creature={creatureById[troopBase.creature]}
+      count={troopBase.count}
       dismissible={boolean("Dismissible", true)}
       visible={true}
       dismissPromptVisible={boolean("Dismiss Prompt Visible", false)}

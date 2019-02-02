@@ -2,25 +2,26 @@ import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Creature, Damage, Troop } from "heroes-core";
+import { Creature, Damage } from "heroes-core";
 
 import * as styles from "./TroopWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
 import { CreatureIcon, GameModal, ImageButton } from "../base";
-import { GameParagraph, GameText, withGameWindow } from "../core";
+import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { getCreatureNameMessage } from "../messages";
 import { getSpeedMessage, messages } from "./messages";
 
-export interface TroopWindowProps {
-  readonly troop: Troop;
+export interface TroopWindowProps extends WithGameWindowProps {
+  readonly index: number;
   readonly creature: Creature;
+  readonly count: number;
   readonly dismissible: boolean;
   readonly dismissPromptVisible: boolean;
-  readonly onDismissClick: (troop: Troop) => void;
-  readonly onConfirmDismissClick: (troop: Troop) => void;
-  readonly onCancelDismissClick: (troop: Troop) => void;
+  readonly onDismissClick: (index: number) => void;
+  readonly onConfirmDismissClick: (index: number) => void;
+  readonly onCancelDismissClick: (index: number) => void;
   readonly onExitClick: () => void;
 }
 
@@ -53,7 +54,7 @@ class TroopWindow extends React.Component<TroopWindowProps> {
         >
           <CreatureIcon
             size="large"
-            creature={this.props.troop.creature}
+            creature={this.props.creature.id}
           />
         </Col>
         <Col span={12}>
@@ -116,7 +117,7 @@ class TroopWindow extends React.Component<TroopWindowProps> {
             </Col>
           </Row>
         </Col>
-        {this.renderCount(this.props.troop.count)}
+        {this.renderCount(this.props.count)}
       </Row>
     );
   }
@@ -150,7 +151,7 @@ class TroopWindow extends React.Component<TroopWindowProps> {
   }
 
   private readonly onDismissClick = () => {
-    this.props.onDismissClick(this.props.troop);
+    this.props.onDismissClick(this.props.index);
   }
 
   private renderDismissal(visible: boolean) {
@@ -181,11 +182,11 @@ class TroopWindow extends React.Component<TroopWindowProps> {
   }
 
   private readonly onConfirmDismiss = () => {
-    this.props.onConfirmDismissClick(this.props.troop);
+    this.props.onConfirmDismissClick(this.props.index);
   }
 
   private readonly onCancelDismiss = () => {
-    this.props.onCancelDismissClick(this.props.troop);
+    this.props.onCancelDismissClick(this.props.index);
   }
 }
 

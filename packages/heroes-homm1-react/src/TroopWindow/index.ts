@@ -1,1 +1,1 @@
-export { TroopWindow, TroopWindowProps } from "./TroopWindow.connect";
+export { TroopWindow } from "./TroopWindowContainer.connect";
