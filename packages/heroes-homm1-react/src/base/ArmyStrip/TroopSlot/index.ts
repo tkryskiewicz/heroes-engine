@@ -1,1 +1,1 @@
-export { TroopSlot } from "./TroopSlot";
+export { TroopSlot } from "./TroopSlotContainer.connect";
