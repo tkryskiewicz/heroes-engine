@@ -40,7 +40,7 @@ import { messages } from "./messages";
 import { MiscInfo, MiscInfoType } from "./MiscInfo";
 import { SkillInfo } from "./SkillInfo";
 
-export interface HeroWindowProps extends WithGameWindowProps {
+interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
   readonly dismissible: boolean;
   readonly visibleSkillDetails?: string;
@@ -94,7 +94,7 @@ interface HeroWindowState {
   readonly statusText: string;
 }
 
-class HeroWindow extends React.Component<HeroWindowProps & InjectedIntlProps, HeroWindowState> {
+class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
   public static readonly defaultProps: Pick<HeroWindowProps, DefaultProp> = {
     dismissHeroPromptVisible: false,
     dismissTroopPromptVisible: false,
@@ -688,6 +688,9 @@ const HeroWindowWrapped = injectIntl(
   withGameWindow(640)(HeroWindow),
 );
 
+type HeroWindowWrappedProps = ExtractProps<typeof HeroWindowWrapped>;
+
 export {
   HeroWindowWrapped as HeroWindow,
+  HeroWindowWrappedProps as HeroWindowProps,
 };

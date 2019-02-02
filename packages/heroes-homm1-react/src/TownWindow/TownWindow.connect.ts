@@ -82,7 +82,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchP
 
 const TownWindowConnected = connect(mapStateToProps, mapDispatchToProps)(TownWindow);
 
+type TownWindowConnectedProps = ExtractProps<typeof TownWindowConnected>;
+
 export {
   TownWindowConnected as TownWindow,
-  TownWindowProps,
+  TownWindowConnectedProps as TownWindowProps,
 };

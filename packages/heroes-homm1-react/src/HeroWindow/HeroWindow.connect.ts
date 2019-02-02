@@ -109,7 +109,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchP
 
 const HeroWindowConnected = connect(mapStateToProps, mapDispatchToProps)(HeroWindow);
 
+type HeroWindowConnectedProps = ExtractProps<typeof HeroWindowConnected>;
+
 export {
   HeroWindowConnected as HeroWindow,
-  HeroWindowProps,
+  HeroWindowConnectedProps as HeroWindowProps,
 };

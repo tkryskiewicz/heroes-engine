@@ -9,7 +9,7 @@ import { GameText } from "../core";
 import { getCreaturePluralNameMessage, getStructureDescriptionMessage, getStructureNameMessage } from "../messages";
 import { messages } from "./messages";
 
-export interface BuildStructureWindowProps {
+interface BuildStructureWindowProps extends InjectedIntlProps {
   readonly town: string;
   readonly structure: string;
   // FIXME: should this be here? resolve somehow else? inject from state?
@@ -25,7 +25,7 @@ type DefaultProp =
   "onOkayClick" |
   "onCancelClick";
 
-class BuildStructureWindow extends React.Component<BuildStructureWindowProps & InjectedIntlProps> {
+class BuildStructureWindow extends React.Component<BuildStructureWindowProps> {
   public static readonly defaultProps: Pick<BuildStructureWindowProps, DefaultProp> = {
     onCancelClick: () => undefined,
     onOkayClick: () => undefined,
@@ -81,6 +81,9 @@ class BuildStructureWindow extends React.Component<BuildStructureWindowProps & I
 
 const BuildStructureWindowWrapped = injectIntl(BuildStructureWindow);
 
+type BuildStructureWindowWrappedProps = ExtractProps<typeof BuildStructureWindowWrapped>;
+
 export {
   BuildStructureWindowWrapped as BuildStructureWindow,
+  BuildStructureWindowWrappedProps as BuildStructureWindowProps,
 };

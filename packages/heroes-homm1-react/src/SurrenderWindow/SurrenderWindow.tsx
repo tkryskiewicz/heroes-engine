@@ -10,14 +10,14 @@ import { GameText, withGameWindow } from "../core";
 import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 
-export interface SurrenderWindowProps {
+interface SurrenderWindowProps extends InjectedIntlProps {
   readonly hero: string;
   readonly cost: number;
   readonly onAcceptClick: () => void;
   readonly onDeclineClick: () => void;
 }
 
-class SurrenderWindow extends React.Component<SurrenderWindowProps & InjectedIntlProps> {
+class SurrenderWindow extends React.Component<SurrenderWindowProps> {
   public render() {
     const heroName = this.props.intl.formatMessage(getHeroNameMessage(this.props.hero));
 
@@ -61,6 +61,9 @@ const SurrenderWindowWrapped = injectIntl(
   withGameWindow(470)(SurrenderWindow),
 );
 
+type SurrenderWindowWrappedProps = ExtractProps<typeof SurrenderWindowWrapped>;
+
 export {
   SurrenderWindowWrapped as SurrenderWindow,
+  SurrenderWindowWrappedProps as SurrenderWindowProps,
 };

@@ -1,1 +1,1 @@
-export { CombatLostWindow } from "./CombatLostWindow";
+export { CombatLostWindow, CombatLostWindowProps } from "./CombatLostWindow";

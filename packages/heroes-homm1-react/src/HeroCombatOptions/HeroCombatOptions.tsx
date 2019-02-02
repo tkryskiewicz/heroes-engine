@@ -29,7 +29,7 @@ interface Hero {
   readonly luck: number;
 }
 
-export interface HeroCombatOptionsProps extends WithGameWindowProps {
+interface HeroCombatOptionsProps extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
   readonly canCastSpell: boolean;
   readonly onCastSpellMouseEnter: () => void;
@@ -62,7 +62,7 @@ type DefaultProp =
   "onCancelMouseLeave" |
   "onCancelClick";
 
-class HeroCombatOptions extends React.Component<HeroCombatOptionsProps & InjectedIntlProps> {
+class HeroCombatOptions extends React.Component<HeroCombatOptionsProps> {
   public static readonly defaultProps: Pick<HeroCombatOptionsProps, DefaultProp> = {
     onCancelClick: () => undefined,
     onCancelMouseEnter: () => undefined,
@@ -173,6 +173,9 @@ const HeroCombatOptionsWrapped = injectIntl(
   withGameWindow(250)(HeroCombatOptions),
 );
 
+type HeroCombatOptionsWrappedProps = ExtractProps<typeof HeroCombatOptionsWrapped>;
+
 export {
   HeroCombatOptionsWrapped as HeroCombatOptions,
+  HeroCombatOptionsWrappedProps as HeroCombatOptionsProps,
 };

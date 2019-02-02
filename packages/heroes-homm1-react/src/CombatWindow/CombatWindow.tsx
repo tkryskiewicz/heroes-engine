@@ -26,7 +26,7 @@ interface BattleSide {
   readonly hero: Hero;
 }
 
-export interface CombatWindowProps {
+interface CombatWindowProps extends InjectedIntlProps {
   readonly attacker: BattleSide;
   readonly defender: BattleSide;
   readonly battlefield: Battlefield;
@@ -42,7 +42,7 @@ interface CombatWindowState {
 type DefaultProp =
   "onVisibleHeroCombatOptionsChange";
 
-class CombatWindow extends React.Component<CombatWindowProps & InjectedIntlProps, CombatWindowState> {
+class CombatWindow extends React.Component<CombatWindowProps, CombatWindowState> {
   public static readonly defaultProps: Pick<CombatWindowProps, DefaultProp> = {
     onVisibleHeroCombatOptionsChange: () => undefined,
   };
@@ -258,6 +258,9 @@ const CombatWindowWrapped = injectIntl(
   withGameWindow(640)(CombatWindow),
 );
 
+type CombatWindowWrappedProps = ExtractProps<typeof CombatWindowWrapped>;
+
 export {
   CombatWindowWrapped as CombatWindow,
+  CombatWindowWrappedProps as CombatWindowProps,
 };

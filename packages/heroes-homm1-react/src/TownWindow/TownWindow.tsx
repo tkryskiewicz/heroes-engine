@@ -15,7 +15,7 @@ import { getStructureDetails } from "./config";
 import { messages } from "./messages";
 import { Treasury } from "./Treasury";
 
-export interface TownWindowProps extends WithGameWindowProps {
+interface TownWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly town: Town;
   readonly visitingHero?: Hero;
   readonly resources: Resources;
@@ -48,7 +48,7 @@ interface TownWindowState {
   readonly statusText: string;
 }
 
-class TownWindow extends React.Component<TownWindowProps & InjectedIntlProps, TownWindowState> {
+class TownWindow extends React.Component<TownWindowProps, TownWindowState> {
   public static readonly defaultProps: Pick<TownWindowProps, DefaultProp> = {
     onCloseStructureDetailsClick: () => undefined,
     onCrestClick: () => undefined,
@@ -368,6 +368,9 @@ const TownWindowWrapped = injectIntl(
   withGameWindow(640)(TownWindow),
 );
 
+type TownWindowWrappedProps = ExtractProps<typeof TownWindowWrapped>;
+
 export {
   TownWindowWrapped as TownWindow,
+  TownWindowWrappedProps as TownWindowProps,
 };

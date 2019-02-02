@@ -14,7 +14,7 @@ import { GameText } from "../core";
 import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 
-export interface CombatLostWindowProps {
+interface CombatLostWindowProps extends InjectedIntlProps {
   readonly hero: string;
   readonly isRetreat: boolean;
   readonly attackerCasualties: Army;
@@ -22,7 +22,7 @@ export interface CombatLostWindowProps {
   readonly onOkayClick?: () => void;
 }
 
-class CombatLostWindow extends React.Component<CombatLostWindowProps & InjectedIntlProps> {
+class CombatLostWindow extends React.Component<CombatLostWindowProps> {
   public static readonly defaultProps: Pick<CombatLostWindowProps, "isRetreat"> = {
     isRetreat: false,
   };
@@ -75,6 +75,9 @@ class CombatLostWindow extends React.Component<CombatLostWindowProps & InjectedI
 
 const CombatLostWindowWrapped = injectIntl(CombatLostWindow);
 
+type CombatLostWindowWrappedProps = ExtractProps<typeof CombatLostWindowWrapped>;
+
 export {
   CombatLostWindowWrapped as CombatLostWindow,
+  CombatLostWindowWrappedProps as CombatLostWindowProps,
 };

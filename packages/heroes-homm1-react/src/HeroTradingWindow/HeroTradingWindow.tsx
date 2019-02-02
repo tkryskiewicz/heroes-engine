@@ -21,7 +21,7 @@ interface ArtifactSelection {
   readonly index: number;
 }
 
-export interface HeroTradingWindowProps extends WithGameWindowProps {
+interface HeroTradingWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
   readonly otherHero: Hero;
   readonly onHeroPortraitClick: (hero: string) => void;
@@ -41,7 +41,7 @@ type DefaultProp =
   "onArtifactNotTradablePromptVisibleChange" |
   "onExitClick";
 
-class HeroTradingWindow extends React.Component<HeroTradingWindowProps & InjectedIntlProps> {
+class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
   public static readonly defaultProps: Pick<HeroTradingWindowProps, DefaultProp> = {
     artifactNotTradablePromptVisible: false,
     onArtifactNotTradablePromptVisibleChange: () => undefined,
@@ -236,6 +236,9 @@ const HeroTradingWindowWrapped = injectIntl(
   withGameWindow(448)(HeroTradingWindow),
 );
 
+type HeroTradingWindowWrappedProps = ExtractProps<typeof HeroTradingWindowWrapped>;
+
 export {
   HeroTradingWindowWrapped as HeroTradingWindow,
+  HeroTradingWindowWrappedProps as HeroTradingWindowProps,
 };
