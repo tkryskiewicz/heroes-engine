@@ -4,8 +4,8 @@ import { AppState } from "heroes-homm1-state";
 
 import { TroopWindowContainer, TroopWindowContainerProps } from "./TroopWindowContainer";
 
-const mapStateToProps = (state: AppState): Pick<TroopWindowContainerProps, "creatures"> => ({
-  creatures: state.game.data.creatureById,
+const mapStateToProps = (state: AppState): Pick<TroopWindowContainerProps, "creatureById"> => ({
+  creatureById: state.game.data.creatureById,
 });
 
 const TroopWindowContainerConnected = connect(mapStateToProps)(TroopWindowContainer);

@@ -13,7 +13,7 @@ import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "..
 import { getCreatureNameMessage } from "../messages";
 import { getSpeedMessage, messages } from "./messages";
 
-export interface TroopWindowProps extends WithGameWindowProps {
+interface TroopWindowProps extends WithGameWindowProps {
   readonly index: number;
   readonly creature: Creature;
   readonly count: number;
@@ -192,6 +192,9 @@ class TroopWindow extends React.Component<TroopWindowProps> {
 
 const TroopWindowWrapped = withGameWindow(402)(TroopWindow);
 
+type TroopWindowWrappedProps = ExtractProps<typeof TroopWindowWrapped>;
+
 export {
   TroopWindowWrapped as TroopWindow,
+  TroopWindowWrappedProps as TroopWindowProps,
 };

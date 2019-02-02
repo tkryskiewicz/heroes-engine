@@ -2,7 +2,7 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { enoughResources, Resources, Structure } from "heroes-core";
-import { MageGuild, Shipyard, spells as allSpells, StructureId } from "heroes-homm1";
+import { MageGuild, Shipyard, StructureId } from "heroes-homm1";
 
 import { GameModal } from "../base";
 import { BuildShipWindow } from "../BuildShipWindow";
@@ -51,7 +51,7 @@ export const getStructureDetails = (
       return (
         <MageGuildWindow
           visible={true}
-          spells={allSpells.filter((s) => mageGuild.data.spells.indexOf(s.id) !== -1)}
+          spells={mageGuild.data.spells}
           levelBuilt={1}
           onExitClick={props.onCloseClick}
         />

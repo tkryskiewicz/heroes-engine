@@ -22,7 +22,7 @@ interface Spell {
   readonly level: number;
 }
 
-export interface MageGuildWindowProps extends
+interface MageGuildWindowProps extends
   InjectedIntlProps,
   WithTownDetailWindowInjectedProps,
   WithTownDetailWindowProps {
@@ -119,6 +119,9 @@ const MageGuildWindowWrapped = injectIntl(
   withTownDetailWindow()(MageGuildWindow),
 );
 
+type MageGuildWindowWrappedProps = ExtractProps<typeof MageGuildWindowWrapped>;
+
 export {
   MageGuildWindowWrapped as MageGuildWindow,
+  MageGuildWindowWrappedProps as MageGuildWindowProps,
 };

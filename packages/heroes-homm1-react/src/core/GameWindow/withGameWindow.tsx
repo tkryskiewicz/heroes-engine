@@ -2,8 +2,6 @@ import * as React from "react";
 
 import { GameWindow } from "./GameWindow";
 
-type ExtractProps<C> = C extends React.ComponentType<infer P> ? P : never;
-
 export interface WithGameWindowProps {
   readonly visible?: boolean;
 }

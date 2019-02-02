@@ -22,6 +22,7 @@ import {
   HeroId,
   MaxMobility,
   Resource,
+  spells,
   StructureId,
   TownId,
 } from "heroes-homm1";
@@ -121,6 +122,10 @@ const initialState: GameState = {
   alignment: Alignment.Red,
   data: {
     creatureById,
+    spellById: spells.reduce((p, c) => ({
+      ...p,
+      [c.id]: c,
+    }), {}),
   },
   discoveredPuzzlePieces: 0,
   heroes,

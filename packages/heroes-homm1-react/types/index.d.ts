@@ -21,3 +21,5 @@ declare module "*.md" {
 
   export = content;
 }
+
+type ExtractProps<C> = C extends React.ComponentType<infer P> ? P : never;
