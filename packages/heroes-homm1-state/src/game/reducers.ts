@@ -22,6 +22,7 @@ import {
   HeroId,
   MaxMobility,
   Resource,
+  SpellId,
   spells,
   StructureId,
   TownId,
@@ -68,7 +69,15 @@ const heroes: Hero[] = [
       Alignment.Red,
     ),
     artifacts: [
-      constructArtifact(ArtifactId.Spellbook),
+      {
+        ...constructArtifact(ArtifactId.Spellbook),
+        data: [
+          {
+            charges: 2,
+            id: SpellId.Bless,
+          },
+        ],
+      },
     ],
     luck: 3,
     mobility: 10,

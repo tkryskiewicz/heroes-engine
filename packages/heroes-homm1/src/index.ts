@@ -26,7 +26,7 @@ export {
 export { Skill, SkillIds } from "./Skill";
 export { SoundVolume, changeVolume } from "./SoundVolume";
 export { Spell } from "./Spell";
-export { SpellBook } from "./SpellBook";
+export { SpellBook, SpellBookSpell } from "./SpellBook";
 export { SpellId, spells } from "./spells";
 export { SpellType } from "./SpellType";
 export {

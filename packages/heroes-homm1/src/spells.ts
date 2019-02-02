@@ -1,3 +1,4 @@
+import { Spell } from "./Spell";
 import { SpellType } from "./SpellType";
 
 export enum SpellId {
@@ -32,7 +33,7 @@ export enum SpellId {
   ViewTowns = "view-towns",
 }
 
-export const spells = [
+export const spells: Spell[] = [
   {
     id: SpellId.Antimagic,
     level: 2,

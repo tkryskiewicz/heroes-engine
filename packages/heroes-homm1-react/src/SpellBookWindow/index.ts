@@ -1,1 +1,1 @@
-export { SpellBookWindow, SpellBookWindowProps } from "./SpellBookWindow.connect";
+export { SpellBookWindow, SpellBookWindowProps } from "./SpellBookWindowContainer.connect";

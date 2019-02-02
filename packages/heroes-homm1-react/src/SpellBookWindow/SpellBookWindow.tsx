@@ -6,7 +6,7 @@ import { SpellType } from "heroes-homm1";
 import * as styles from "./SpellBookWindow.module.scss";
 
 import { GameModal, SpellIcon } from "../base";
-import { GameParagraph, withGameWindow } from "../core";
+import { GameParagraph, withGameWindow, WithGameWindowProps } from "../core";
 import { getSpellDescriptionMessage, getSpellLongNameMessage, getSpellNameMessage } from "../messages";
 import { AdventureSpellsImage, CombatSpellsImage, ExitImage, NextPageImage, PreviousPageImage } from "./assets";
 import { getSpellTypeStatusTextMessage, messages } from "./messages";
@@ -20,7 +20,7 @@ interface Spell {
   readonly charges: number;
 }
 
-export interface SpellBookWindowProps {
+interface SpellBookWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly spells: Spell[];
   readonly spellType: SpellType;
   readonly onSpellTypeChange: (value: SpellType) => void;
@@ -41,7 +41,7 @@ type DefaultProp =
   "onStatusTextChange" |
   "onExitClick";
 
-class SpellBookWindow extends React.Component<SpellBookWindowProps & InjectedIntlProps> {
+class SpellBookWindow extends React.Component<SpellBookWindowProps> {
   public static readonly defaultProps: Pick<SpellBookWindowProps, DefaultProp> = {
     onCloseSpellDetailsClick: () => undefined,
     onExitClick: () => undefined,
@@ -272,6 +272,9 @@ const SpellBookWindowWrapped = injectIntl(
   withGameWindow(324)(SpellBookWindow),
 );
 
+type SpellBookWindowWrappedProps = ExtractProps<typeof SpellBookWindowWrapped>;
+
 export {
   SpellBookWindowWrapped as SpellBookWindow,
+  SpellBookWindowWrappedProps as SpellBookWindowProps,
 };

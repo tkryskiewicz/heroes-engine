@@ -6,15 +6,17 @@ import {
   spellBookWindowActions,
 } from "heroes-homm1-state";
 
-import { SpellBookWindow, SpellBookWindowProps } from "./SpellBookWindow";
+import { SpellBookWindowContainer, SpellBookWindowContainerProps } from "./SpellBookWindowContainer";
 
 type StateProp =
+  "spellById" |
   "spellType" |
   "page" |
   "visibleSpellDetails";
 
-const mapStateToProps = (state: AppState): Pick<SpellBookWindowProps, StateProp> => ({
+const mapStateToProps = (state: AppState): Pick<SpellBookWindowContainerProps, StateProp> => ({
   page: state.spellBookWindow.page,
+  spellById: state.game.data.spellById as SpellBookWindowContainerProps["spellById"],
   spellType: state.spellBookWindow.spellType,
   visibleSpellDetails: state.spellBookWindow.visibleSpellDetails,
 });
@@ -25,7 +27,7 @@ type DispatchProp =
   "onSpellClick" |
   "onCloseSpellDetailsClick";
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<SpellBookWindowProps, DispatchProp> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<SpellBookWindowContainerProps, DispatchProp> => ({
   onSpellTypeChange(value) {
     dispatch(spellBookWindowActions.changeSpellType(value));
   },
@@ -40,9 +42,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<SpellBookWindowProps, Disp
   },
 });
 
-const SpellBookWindowConnected = connect(mapStateToProps, mapDispatchToProps)(SpellBookWindow);
+const SpellBookWindowContainerConnected = connect(mapStateToProps, mapDispatchToProps)(SpellBookWindowContainer);
+
+type SpellBookWindowContainerConnectedProps = ExtractProps<typeof SpellBookWindowContainerConnected>;
 
 export {
-  SpellBookWindowConnected as SpellBookWindow,
-  SpellBookWindowProps,
+  SpellBookWindowContainerConnected as SpellBookWindow,
+  SpellBookWindowContainerConnectedProps as SpellBookWindowProps,
 };
