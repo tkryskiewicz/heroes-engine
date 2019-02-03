@@ -11,7 +11,7 @@ import Readme = require("./README.md");
 import { spellOptions } from "../stories";
 import { MageGuildWindow, MageGuildWindowProps } from "./MageGuildWindow";
 
-const availableSpells = [
+const availableSpells: string[] = [
   SpellId.Bless,
   SpellId.Protection,
   SpellId.ViewResources,
