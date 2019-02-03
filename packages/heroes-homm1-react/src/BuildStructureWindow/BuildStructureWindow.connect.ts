@@ -19,7 +19,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<BuildStructureWindowProps,
 
 const BuildStructureWindowConnected = connect(null, mapDispatchToProps)(BuildStructureWindow);
 
+type BuildStructureWindowConnectedProps = ExtractProps<typeof BuildStructureWindowConnected>;
+
 export {
   BuildStructureWindowConnected as BuildStructureWindow,
-  BuildStructureWindowProps,
+  BuildStructureWindowConnectedProps as BuildStructureWindowProps,
 };

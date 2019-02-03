@@ -10,6 +10,9 @@ const mapStateToProps = (state: AppState): Pick<TroopWindowContainerProps, "crea
 
 const TroopWindowContainerConnected = connect(mapStateToProps)(TroopWindowContainer);
 
+type TroopWindowContainerConnectedProps = ExtractProps<typeof TroopWindowContainerConnected>;
+
 export {
   TroopWindowContainerConnected as TroopWindow,
+  TroopWindowContainerConnectedProps as TroopWindowProps,
 };

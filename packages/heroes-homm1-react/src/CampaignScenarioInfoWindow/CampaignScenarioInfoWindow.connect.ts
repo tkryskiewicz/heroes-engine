@@ -29,7 +29,9 @@ const CampaignScenarioInfoWindowConnected = connect(
   mapDispatchToProps,
 )(CampaignScenarioInfoWindow);
 
+type CampaignScenarioInfoWindowConnectedProps = ExtractProps<typeof CampaignScenarioInfoWindowConnected>;
+
 export {
   CampaignScenarioInfoWindowConnected as CampaignScenarioInfoWindow,
-  CampaignScenarioInfoWindowProps,
+  CampaignScenarioInfoWindowConnectedProps as CampaignScenarioInfoWindowProps,
 };

@@ -15,7 +15,7 @@ export interface Ranking {
   readonly [index: number]: string[];
 }
 
-export interface ThievesGuildWindowProps extends
+interface ThievesGuildWindowProps extends
   InjectedIntlProps,
   WithTownDetailWindowInjectedProps,
   WithTownDetailWindowProps {
@@ -167,6 +167,9 @@ const ThievesGuildWindowWrapped = injectIntl(
   withTownDetailWindow()(ThievesGuildWindow),
 );
 
+type ThievesGuildWindowWrappedProps = ExtractProps<typeof ThievesGuildWindowWrapped>;
+
 export {
   ThievesGuildWindowWrapped as ThievesGuildWindow,
+  ThievesGuildWindowWrappedProps as ThievesGuildWindowProps,
 };

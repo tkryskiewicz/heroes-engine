@@ -21,7 +21,7 @@ interface Dwelling {
   readonly growthRate?: number;
 }
 
-export interface TownPopulationWindowProps extends
+interface TownPopulationWindowProps extends
   InjectedIntlProps,
   WithTownDetailWindowInjectedProps,
   WithTownDetailWindowProps {
@@ -88,6 +88,9 @@ const TownPopulationWindowWrapped = injectIntl(
   withTownDetailWindow()(TownPopulationWindow),
 );
 
+type TownPopulationWindowWrappedProps = ExtractProps<typeof TownPopulationWindowWrapped>;
+
 export {
   TownPopulationWindowWrapped as TownPopulationWindow,
+  TownPopulationWindowWrappedProps as TownPopulationWindowProps,
 };

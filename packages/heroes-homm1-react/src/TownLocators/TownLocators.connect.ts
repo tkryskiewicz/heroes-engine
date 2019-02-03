@@ -41,7 +41,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownLocatorsProps, Dispatc
 
 const TownLocatorsConnected = connect(mapStateToProps, mapDispatchToProps)(TownLocators);
 
+type TownLocatorsConnectedProps = ExtractProps<typeof TownLocatorsConnected>;
+
 export {
   TownLocatorsConnected as TownLocators,
-  TownLocatorsProps,
+  TownLocatorsConnectedProps as TownLocatorsProps,
 };

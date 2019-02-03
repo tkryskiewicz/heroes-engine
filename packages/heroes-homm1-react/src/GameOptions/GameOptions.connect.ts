@@ -67,7 +67,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<GameOptionsProps, Dispatch
 
 const GameOptionsConnected = connect(mapStateToProps, mapDispatchToProps)(GameOptions);
 
+type GameOptionsConnectedProps = ExtractProps<typeof GameOptionsConnected>;
+
 export {
   GameOptionsConnected as GameOptions,
-  GameOptionsProps,
+  GameOptionsConnectedProps as GameOptionsProps,
 };

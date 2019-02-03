@@ -40,7 +40,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroLocatorsProps, Dispatc
 
 const HeroLocatorsConnected = connect(mapStateToProps, mapDispatchToProps)(HeroLocators);
 
+type HeroLocatorsConnectedProps = ExtractProps<typeof HeroLocatorsConnected>;
+
 export {
   HeroLocatorsConnected as HeroLocators,
-  HeroLocatorsProps,
+  HeroLocatorsConnectedProps as HeroLocatorsProps,
 };

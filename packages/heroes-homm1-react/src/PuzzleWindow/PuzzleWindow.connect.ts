@@ -23,7 +23,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<PuzzleWindowProps, Dispatc
 
 const PuzzleWindowConnected = connect(mapStateToProps, mapDispatchToProps)(PuzzleWindow);
 
+type PuzzleWindowConnectedProps = ExtractProps<typeof PuzzleWindowConnected>;
+
 export {
   PuzzleWindowConnected as PuzzleWindow,
-  PuzzleWindowProps,
+  PuzzleWindowConnectedProps as PuzzleWindowProps,
 };

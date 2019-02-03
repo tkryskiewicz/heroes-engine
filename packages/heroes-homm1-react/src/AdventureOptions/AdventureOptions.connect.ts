@@ -22,7 +22,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureOptionsProps, Dis
 
 const AdventureOptionsConnected = connect(null, mapDispatchToProps)(AdventureOptions);
 
+type AdventureOptionsConnectedProps = ExtractProps<typeof AdventureOptionsConnected>;
+
 export {
   AdventureOptionsConnected as AdventureOptions,
-  AdventureOptionsProps,
+  AdventureOptionsConnectedProps as AdventureOptionsProps,
 };

@@ -25,7 +25,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<RecruitTroopWindowProps, D
 
 const RecruitTroopWindowConnected = connect(mapStateToProps, mapDispatchToProps)(RecruitTroopWindow);
 
+type RecruitTroopWindowConnectedProps = ExtractProps<typeof RecruitTroopWindowConnected>;
+
 export {
   RecruitTroopWindowConnected as RecruitTroopWindow,
-  RecruitTroopWindowProps,
+  RecruitTroopWindowConnectedProps as RecruitTroopWindowProps,
 };

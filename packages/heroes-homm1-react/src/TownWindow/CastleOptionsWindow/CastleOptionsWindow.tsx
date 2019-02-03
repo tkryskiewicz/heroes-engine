@@ -18,7 +18,7 @@ import {
 import { CastleOption } from "../CastleOption";
 import { getOptionStatusTextMessage, messages } from "./messages";
 
-export interface CastleOptionsWindowProps extends
+interface CastleOptionsWindowProps extends
   InjectedIntlProps,
   WithTownDetailWindowInjectedProps,
   WithTownDetailWindowProps {
@@ -141,6 +141,9 @@ const CastleOptionsWindowWrapped = injectIntl(
   withTownDetailWindow()(CastleOptionsWindow),
 );
 
+type CastleOptionsWindowWrappedProps = ExtractProps<typeof CastleOptionsWindowWrapped>;
+
 export {
   CastleOptionsWindowWrapped as CastleOptionsWindow,
+  CastleOptionsWindowWrappedProps as CastleOptionsWindowProps,
 };

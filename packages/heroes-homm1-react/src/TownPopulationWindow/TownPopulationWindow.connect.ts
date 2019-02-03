@@ -31,7 +31,9 @@ const mapStateToProps = (
 
 const TownPopulationWindowConnected = connect(mapStateToProps)(TownPopulationWindow);
 
+type TownPopulationWindowConnectedProps = ExtractProps<typeof TownPopulationWindowConnected>;
+
 export {
   TownPopulationWindowConnected as TownPopulationWindow,
-  TownPopulationWindowProps,
+  TownPopulationWindowConnectedProps as TownPopulationWindowProps,
 };

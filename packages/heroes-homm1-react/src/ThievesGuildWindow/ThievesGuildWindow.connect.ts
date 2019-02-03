@@ -25,7 +25,9 @@ const mapStateToProps = (): Pick<ThievesGuildWindowProps, StateProp> => ({
 
 const ThievesGuildWindowConnected = connect(mapStateToProps)(ThievesGuildWindow);
 
+type ThievesGuildWindowConnectedProps = ExtractProps<typeof ThievesGuildWindowConnected>;
+
 export {
   ThievesGuildWindowConnected as ThievesGuildWindow,
-  ThievesGuildWindowProps,
+  ThievesGuildWindowConnectedProps as ThievesGuildWindowProps,
 };
