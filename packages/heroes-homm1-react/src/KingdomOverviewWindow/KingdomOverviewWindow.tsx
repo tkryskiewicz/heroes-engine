@@ -4,13 +4,13 @@ import { FormattedMessage } from "react-intl";
 
 import { Resources } from "heroes-core";
 import { HeroClassIds, Resource, TownIds } from "heroes-homm1";
+import { GameText, withGameWindow } from "heroes-homm1-react-components";
 
 import * as styles from "./KingdomOverviewWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
 import { ImageButton, ResourceAmount } from "../base";
-import { GameText, withGameWindow } from "../core";
 import { HeroClassOverview } from "./HeroClassOverview";
 import { messages } from "./messages";
 import { MineOverview } from "./MineOverview";

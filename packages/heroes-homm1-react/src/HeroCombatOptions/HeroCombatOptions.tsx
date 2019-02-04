@@ -3,13 +3,13 @@ import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { HeroSkills } from "heroes-core";
 import { SkillIds } from "heroes-homm1";
+import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "heroes-homm1-react-components";
 
 import * as styles from "./HeroCombatOptions.module.scss";
 
 import { buttonImages } from "./assets";
 
 import { HeroPortrait, ImageButton } from "../base";
-import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "../core";
 import {
   getHeroClassTitleMessage,
   getHeroNameMessage,

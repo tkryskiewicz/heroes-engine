@@ -2,10 +2,10 @@ import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Battlefield, CombatSide, HeroSkills } from "heroes-core";
+import { withGameWindow } from "heroes-homm1-react-components";
 
 import * as styles from "./CombatWindow.module.scss";
 
-import { withGameWindow } from "../core";
 import { HeroCombatOptions, heroCombatOptionsMessages } from "../HeroCombatOptions";
 import { terrainBackgrounds } from "./assets";
 import { CombatBar } from "./CombatBar";

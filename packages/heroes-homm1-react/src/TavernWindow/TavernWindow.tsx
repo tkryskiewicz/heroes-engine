@@ -3,13 +3,13 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { StructureId } from "heroes-homm1";
+import { GameText } from "heroes-homm1-react-components";
 
 import * as styles from "./TavernWindow.module.scss";
 
 import { AnimationImage } from "./assets";
 
 import { GameModal } from "../base";
-import { GameText } from "../core";
 import { getStructureNameMessage } from "../messages";
 import { messages } from "./messages";
 

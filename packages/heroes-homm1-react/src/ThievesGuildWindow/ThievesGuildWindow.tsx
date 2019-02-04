@@ -1,9 +1,10 @@
 import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
+import { GameText } from "heroes-homm1-react-components";
+
 import * as styles from "./ThievesGuildWindow.module.scss";
 
-import { GameText } from "../core";
 import {
   withTownDetailWindow,
   WithTownDetailWindowInjectedProps,

@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import * as styles from "./MineOverview.module.scss";
+import { GameText } from "heroes-homm1-react-components";
 
-import { GameText } from "../../core";
+import * as styles from "./MineOverview.module.scss";
 
 export interface MineOverviewProps {
   readonly resource: string;

@@ -3,7 +3,8 @@ import { boolean, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { GameText } from "../core";
+import { GameText } from "heroes-homm1-react-components";
+
 import { TownDetailWindow } from "./TownDetailWindow";
 
 storiesOf("TownDetailWindow", module)

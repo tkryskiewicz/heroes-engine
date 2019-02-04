@@ -2,10 +2,10 @@ import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Resources } from "heroes-core";
+import { GameText } from "heroes-homm1-react-components";
 
 import { GameModal, ResourceCost } from "../base";
 import { CastleOptionIcon } from "../CastleOptionIcon";
-import { GameText } from "../core";
 import { getCreaturePluralNameMessage, getStructureDescriptionMessage, getStructureNameMessage } from "../messages";
 import { messages } from "./messages";
 

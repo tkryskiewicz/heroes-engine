@@ -1,12 +1,13 @@
 import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
+import { GameText, withGameWindow } from "heroes-homm1-react-components";
+
 import * as styles from "./SurrenderWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
 import { Frame, HeroPortrait, ImageButton } from "../base";
-import { GameText, withGameWindow } from "../core";
 import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 

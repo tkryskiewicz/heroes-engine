@@ -2,10 +2,10 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { isCommonStructure } from "heroes-homm1";
+import { GameText } from "heroes-homm1-react-components";
 
 import * as styles from "./CastleOptionIcon.module.scss";
 
-import { GameText } from "../core";
 import { getStructureNameMessage } from "../messages";
 
 export interface CastleOptionIconProps {

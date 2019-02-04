@@ -2,13 +2,13 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { changeMovementSpeed, changeVolume, MovementSpeed, SoundVolume } from "heroes-homm1";
+import { GameText, withGameWindow } from "heroes-homm1-react-components";
 
 import * as styles from "./GameOptions.module.scss";
 
 import { buttonImages, movementSpeedImages, switchImages } from "./assets";
 
 import { ImageButton, ImageSwitch } from "../base";
-import { GameText, withGameWindow } from "../core";
 import { getMovementSpeedMessage, messages } from "./messages";
 
 export interface GameOptionsProps {

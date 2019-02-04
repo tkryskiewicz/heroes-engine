@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import * as styles from "./HeroClassOverview.module.scss";
+import { GameText } from "heroes-homm1-react-components";
 
-import { GameText } from "../../core";
+import * as styles from "./HeroClassOverview.module.scss";
 
 export interface HeroClassOverviewProps {
   readonly heroClass: string;

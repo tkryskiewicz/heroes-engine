@@ -1,0 +1,19 @@
+{
+  "name": "heroes-homm1-react-components",
+  "version": "0.0.0",
+  "peerDependencies": {
+    "antd": "^3.9.3",
+    "react": "^16.5.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-knobs": "^4.0.0",
+    "@storybook/react": "^4.0.0",
+    "@types/storybook__addon-knobs": "^3.4.1",
+    "@types/storybook__react": "^3.0.9",
+    "antd": "^3.9.3",
+    "react": "^16.5.2"
+  },
+  "scripts": {
+    "clean": "rimraf dist"
+  }
+}

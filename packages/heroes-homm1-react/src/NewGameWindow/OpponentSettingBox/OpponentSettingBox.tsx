@@ -2,10 +2,10 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { changeOpponentSetting, OpponentSetting } from "heroes-homm1";
+import { GameParagraph } from "heroes-homm1-react-components";
 
 import * as styles from "./OpponentSettingBox.module.scss";
 
-import { GameParagraph } from "../../core";
 import { getOpponentSettingNameMessage } from "../../messages";
 import { opponentSettingImages } from "./assets";
 

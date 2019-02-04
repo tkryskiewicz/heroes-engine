@@ -4,13 +4,13 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { divideResources, multiplyResources, Resources } from "heroes-core";
+import { GameText, withGameWindow } from "heroes-homm1-react-components";
 
 import * as styles from "./RecruitTroopWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
 import { CreatureIcon, ImageButton, ResourceCost } from "../base";
-import { GameText, withGameWindow } from "../core";
 import { getCreatureNameMessage } from "../messages";
 import { messages } from "./messages";
 

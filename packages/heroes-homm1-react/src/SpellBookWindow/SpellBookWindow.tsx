@@ -2,11 +2,11 @@ import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { SpellType } from "heroes-homm1";
+import { GameParagraph, withGameWindow, WithGameWindowProps } from "heroes-homm1-react-components";
 
 import * as styles from "./SpellBookWindow.module.scss";
 
 import { GameModal, SpellIcon } from "../base";
-import { GameParagraph, withGameWindow, WithGameWindowProps } from "../core";
 import { getSpellDescriptionMessage, getSpellLongNameMessage, getSpellNameMessage } from "../messages";
 import { AdventureSpellsImage, CombatSpellsImage, ExitImage, NextPageImage, PreviousPageImage } from "./assets";
 import { getSpellTypeStatusTextMessage, messages } from "./messages";

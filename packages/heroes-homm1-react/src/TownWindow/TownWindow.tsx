@@ -2,11 +2,11 @@ import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Hero, Resources, Town } from "heroes-core";
+import { GameText, withGameWindow, WithGameWindowProps } from "heroes-homm1-react-components";
 
 import * as styles from "./TownWindow.module.scss";
 
 import { ArmyStrip, BigBar, Crest, getArmyStripStatusTextMessage, HeroPortrait } from "../base";
-import { GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
 import { RecruitTroopWindow, recruitTroopWindowMessages } from "../RecruitTroopWindow";

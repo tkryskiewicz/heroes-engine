@@ -2,10 +2,10 @@ import * as React from "react";
 
 import { Resources } from "heroes-core";
 import { Resource } from "heroes-homm1";
+import { GameText } from "heroes-homm1-react-components";
 
 import * as styles from "./ResourceCost.module.scss";
 
-import { GameText } from "../../core";
 import { ResourceIcon } from "../ResourceIcon";
 
 export interface ResourceCostProps {

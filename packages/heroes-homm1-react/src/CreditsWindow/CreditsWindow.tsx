@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import * as styles from "./CreditsWindow.module.scss";
+import { withGameWindow } from "heroes-homm1-react-components";
 
-import { withGameWindow } from "../core";
+import * as styles from "./CreditsWindow.module.scss";
 
 export interface CreditsWindowProps {
   readonly onClick: () => void;

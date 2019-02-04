@@ -8,13 +8,13 @@ import {
   getNextLevelExperience,
   SkillIds,
 } from "heroes-homm1";
+import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "heroes-homm1-react-components";
 
 import * as styles from "./HeroWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
 import { ArmyStrip, Crest, GameModal, getArmyStripStatusTextMessage, HeroPortrait, ImageButton } from "../base";
-import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
   experienceMessages,

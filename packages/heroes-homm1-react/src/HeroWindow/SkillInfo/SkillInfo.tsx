@@ -1,11 +1,12 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
+import { GameText } from "heroes-homm1-react-components";
+
 import * as styles from "./SkillInfo.module.scss";
 
 import { skillImages } from "./assets";
 
-import { GameText } from "../../core";
 import { getSkillNameMessage } from "../../messages";
 
 export interface SkillInfoProps {

@@ -1,11 +1,12 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
+import { withGameWindow } from "heroes-homm1-react-components";
+
 import * as styles from "./GameModal.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { withGameWindow } from "../../core";
 import { ImageButton } from "../ImageButton";
 
 type GameModalType =

@@ -1,10 +1,11 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
+import { GameText } from "heroes-homm1-react-components";
+
 import * as styles from "./SpellBox.module.scss";
 
 import { SpellIcon } from "../../base";
-import { GameText } from "../../core";
 import { getSpellNameMessage } from "../../messages";
 
 export interface SpellBoxProps {

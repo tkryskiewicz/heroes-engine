@@ -3,13 +3,13 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Creature, Damage } from "heroes-core";
+import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "heroes-homm1-react-components";
 
 import * as styles from "./TroopWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
 import { CreatureIcon, GameModal, ImageButton } from "../base";
-import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { getCreatureNameMessage } from "../messages";
 import { getSpeedMessage, messages } from "./messages";
 
