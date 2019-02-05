@@ -1,0 +1,49 @@
+.root {
+  position: relative;
+  width: 640px;
+  height: 480px;
+  background: url("./assets/background.jpg");
+}
+
+.adventure-map {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+.world-map {
+  position: absolute;
+  top: 16px;
+  left: 480px;
+}
+
+%locators {
+  height: 128px;
+  overflow: hidden;
+}
+
+.hero-locators {
+  @extend %locators;
+  position: absolute;
+  top: 176px;
+  left: 480px;
+}
+
+.town-locators {
+  @extend %locators;
+  position: absolute;
+  top: 176px;
+  left: 552px;
+}
+
+.adventure-buttons {
+  position: absolute;
+  top: 320px;
+  left: 480px;
+}
+
+.status-window {
+  position: absolute;
+  top: 393px;
+  left: 481px;
+}

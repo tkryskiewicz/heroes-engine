@@ -1,10 +1,8 @@
-import { Col, Row } from "antd";
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
 
-import { AdventureButtons } from "../AdventureButtons";
+import * as styles from "./AdventureScreen.module.scss";
+
 import { AdventureOptions } from "../AdventureOptions";
-import { GameModal } from "../base";
 import { CampaignScenarioInfoWindow } from "../CampaignScenarioInfoWindow";
 import { GameText } from "../core";
 import { GameOptions } from "../GameOptions";
@@ -14,14 +12,9 @@ import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
 import { PuzzleWindow } from "../PuzzleWindow";
 import { TownLocators } from "../TownLocators";
 import { TownWindow } from "../TownWindow";
-import { messages } from "./messages";
-
-interface Hero {
-  readonly mobility: number;
-}
 
 export interface AdventureScreenProps {
-  readonly heroes: Hero[];
+  readonly renderAdventureButtons: () => React.ReactNode;
   readonly heroWindowVisible?: boolean;
   readonly kingdomOverviewWindowVisible?: boolean;
   readonly townWindowVisible?: boolean;
@@ -29,23 +22,9 @@ export interface AdventureScreenProps {
   readonly gameOptionsVisible?: boolean;
   readonly puzzleWindowVisible?: boolean;
   readonly scenarioInfoWindowVisible?: boolean;
-  readonly endTurnPromptVisible: boolean;
-  readonly onEndTurnPromptVisibleChange: (value: boolean) => void;
-  readonly onEndTurn: () => void;
 }
 
-type DefaultProp =
-  "endTurnPromptVisible" |
-  "onEndTurnPromptVisibleChange" |
-  "onEndTurn";
-
 export class AdventureScreen extends React.Component<AdventureScreenProps> {
-  public static readonly defaultProps: Pick<AdventureScreenProps, DefaultProp> = {
-    endTurnPromptVisible: false,
-    onEndTurn: () => undefined,
-    onEndTurnPromptVisibleChange: () => undefined,
-  };
-
   public render() {
     const {
       heroWindowVisible,
@@ -58,86 +37,40 @@ export class AdventureScreen extends React.Component<AdventureScreenProps> {
     } = this.props;
 
     return (
-      <Row>
-        <Col span={20}>
-          <h1>
+      <div className={styles.root}>
+        <div className={styles.adventureMap}>
+          <GameText size="normal">
             Adventure Window
-          </h1>
-        </Col>
-        <Col span={4}>
-          <Row>
-            <h1>
-              World Map
-            </h1>
-          </Row>
-          <Row>
-            <h1>
-              Locators
-            </h1>
-            <Col span={12}>
-              <HeroLocators />
-              {heroWindowVisible && this.renderHeroWindow(heroWindowVisible)}
-            </Col>
-            <Col span={12}>
-              <TownLocators />
-              {townWindowVisible && this.renderTownWindow(townWindowVisible)}
-            </Col>
-          </Row>
-          <Row>
-            <h1>
-              Adventure Buttons
-            </h1>
-            <AdventureButtons
-              onEndTurnClick={this.onEndTurnClick}
-            />
-            {this.props.endTurnPromptVisible && this.renderEndTurnPrompt()}
-            {kingdomOverviewWindowVisible && this.renderKingdomOverviewWindow(kingdomOverviewWindowVisible)}
-            {adventureOptionsVisible && this.renderAdventureOptions(adventureOptionsVisible)}
-            {gameOptionsVisible && this.renderGameOptions(gameOptionsVisible)}
-            {puzzleWindowVisible && this.renderPuzzleWindow(puzzleWindowVisible)}
-            {scenarioInfoWindowVisible && this.renderScenarioInfoWindow(scenarioInfoWindowVisible)}
-          </Row>
-          <Row>
-            <h1>
-              Status Window
-            </h1>
-          </Row>
-        </Col>
-      </Row>
+          </GameText>
+        </div>
+        <div className={styles.worldMap}>
+          <GameText size="normal">
+            World Map
+          </GameText>
+          {kingdomOverviewWindowVisible && this.renderKingdomOverviewWindow(kingdomOverviewWindowVisible)}
+          {adventureOptionsVisible && this.renderAdventureOptions(adventureOptionsVisible)}
+          {gameOptionsVisible && this.renderGameOptions(gameOptionsVisible)}
+          {puzzleWindowVisible && this.renderPuzzleWindow(puzzleWindowVisible)}
+          {scenarioInfoWindowVisible && this.renderScenarioInfoWindow(scenarioInfoWindowVisible)}
+        </div>
+        <div className={styles.heroLocators}>
+          <HeroLocators />
+          {heroWindowVisible && this.renderHeroWindow(heroWindowVisible)}
+        </div>
+        <div className={styles.townLocators}>
+          <TownLocators />
+          {townWindowVisible && this.renderTownWindow(townWindowVisible)}
+        </div>
+        <div className={styles.adventureButtons}>
+          {this.props.renderAdventureButtons()}
+        </div>
+        <div className={styles.statusWindow}>
+          <GameText size="normal">
+            Status Window
+          </GameText>
+        </div>
+      </div>
     );
-  }
-
-  private readonly onEndTurnClick = () => {
-    if (this.props.heroes.some((h) => h.mobility !== 0)) {
-      this.props.onEndTurnPromptVisibleChange(true);
-
-      return;
-    }
-
-    this.props.onEndTurn();
-  }
-
-  private renderEndTurnPrompt() {
-    return (
-      <GameModal
-        type="yesNo"
-        onConfirmClick={this.onConfirmEndTurnClick}
-        onCancelClick={this.onCancelEndTurnClick}
-        visible={true}
-      >
-        <GameText size="large">
-          <FormattedMessage {...messages.endTurnWarning} />
-        </GameText>
-      </GameModal>
-    );
-  }
-
-  private readonly onConfirmEndTurnClick = () => {
-    this.props.onEndTurn();
-  }
-
-  private readonly onCancelEndTurnClick = () => {
-    this.props.onEndTurnPromptVisibleChange(false);
   }
 
   private renderHeroWindow(visible: boolean) {

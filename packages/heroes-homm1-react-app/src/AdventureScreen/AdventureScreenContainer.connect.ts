@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 
 import { adventureScreenActions, AppState, gameActions } from "heroes-homm1-state";
 
-import { AdventureScreen, AdventureScreenProps } from "./AdventureScreen";
+import { AdventureScreenContainer, AdventureScreenContainerProps } from "./AdventureScreenContainer";
 
 type StateProp =
   "heroes" |
@@ -16,7 +16,7 @@ type StateProp =
   "townWindowVisible" |
   "endTurnPromptVisible";
 
-const mapStateToProps = (state: AppState): Pick<AdventureScreenProps, StateProp> => ({
+const mapStateToProps = (state: AppState): Pick<AdventureScreenContainerProps, StateProp> => ({
   adventureOptionsVisible: state.adventureOptions.visible,
   endTurnPromptVisible: state.adventureScreen.endTurnPromptVisible,
   gameOptionsVisible: state.gameOptions.visible,
@@ -32,7 +32,7 @@ type DispatchProp =
   "onEndTurnPromptVisibleChange" |
   "onEndTurn";
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureScreenProps, DispatchProp> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureScreenContainerProps, DispatchProp> => ({
   onEndTurnPromptVisibleChange(value: boolean) {
     dispatch(adventureScreenActions.changeEndTurnPromptVisible(value));
   },
@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureScreenProps, Disp
   },
 });
 
-const AdventureScreenConnected = connect(mapStateToProps, mapDispatchToProps)(AdventureScreen);
+const AdventureScreenConnected = connect(mapStateToProps, mapDispatchToProps)(AdventureScreenContainer);
 
 type AdventureScreenConnectedProps = ExtractProps<typeof AdventureScreenConnected>;
 

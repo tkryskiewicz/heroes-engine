@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { AdventureScreen } from "heroes-homm1-react";
+import { AdventureScreen } from "./AdventureScreen";
 
 export class App extends React.Component {
   public render() {
