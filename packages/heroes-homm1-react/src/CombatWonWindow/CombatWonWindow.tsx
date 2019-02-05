@@ -3,12 +3,12 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Army } from "heroes-core";
-import { GameText } from "heroes-homm1-react-components";
 
 import { AnimationImage, buttonImages } from "./assets";
 
 import { ImageButton } from "../base";
 import { CombatSummaryWindow } from "../CombatSummaryWindow";
+import { GameText } from "../core";
 import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 

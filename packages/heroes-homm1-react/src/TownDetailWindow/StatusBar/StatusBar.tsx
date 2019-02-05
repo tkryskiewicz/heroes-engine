@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import { GameText } from "heroes-homm1-react-components";
-
 import * as styles from "./StatusBar.module.scss";
+
+import { GameText } from "../../core";
 
 export interface StatusBarProps {
   readonly statusText: string;

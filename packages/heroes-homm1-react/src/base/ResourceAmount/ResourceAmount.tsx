@@ -1,9 +1,8 @@
 import * as React from "react";
 
-import { GameText } from "heroes-homm1-react-components";
-
 import * as styles from "./ResourceAmount.module.scss";
 
+import { GameText } from "../../core";
 import { ResourceIcon } from "../ResourceIcon";
 
 export interface ResourceAmountProps {

@@ -3,7 +3,6 @@ import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Army } from "heroes-core";
-import { GameText } from "heroes-homm1-react-components";
 
 import * as styles from "./CombatLostWindow.module.scss";
 
@@ -11,6 +10,7 @@ import { AnimationImage, buttonImages } from "./assets";
 
 import { ImageButton } from "../base";
 import { CombatSummaryWindow } from "../CombatSummaryWindow";
+import { GameText } from "../core";
 import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 

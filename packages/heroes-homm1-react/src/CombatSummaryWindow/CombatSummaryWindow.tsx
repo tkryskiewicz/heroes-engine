@@ -3,11 +3,11 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Army, Troop } from "heroes-core";
-import { GameText } from "heroes-homm1-react-components";
 
 import * as styles from "./CombatSummaryWindow.module.scss";
 
 import { CreatureIcon } from "../base";
+import { GameText } from "../core";
 import { messages } from "./messages";
 
 export interface CombatSummaryWindowProps {

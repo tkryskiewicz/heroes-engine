@@ -2,10 +2,10 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { GameDifficulty } from "heroes-homm1";
-import { GameText } from "heroes-homm1-react-components";
 
 import * as styles from "./GameDifficultyBox.module.scss";
 
+import { GameText } from "../../core";
 import { getGameDifficultyMessage } from "../../messages";
 import { difficultyImages, SelectionImage } from "./assets";
 

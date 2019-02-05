@@ -1,12 +1,11 @@
 import * as React from "react";
 
-import { withGameWindow } from "heroes-homm1-react-components";
-
 import * as styles from "./AdventureOptions.module.scss";
 
 import { buttonImages } from "./assets";
 
 import { ImageButton } from "../base";
+import { withGameWindow } from "../core";
 
 export interface AdventureOptionsProps {
   readonly onViewWorldClick?: () => void;

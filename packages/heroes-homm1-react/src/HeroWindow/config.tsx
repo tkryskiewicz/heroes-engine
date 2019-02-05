@@ -3,9 +3,9 @@ import { FormattedMessage } from "react-intl";
 
 import { Artifact } from "heroes-core";
 import { ArtifactId, SpellBook } from "heroes-homm1";
-import { GameText } from "heroes-homm1-react-components";
 
 import { GameModal } from "../base";
+import { GameText } from "../core";
 import { SpellBookWindow } from "../SpellBookWindow";
 import { messages } from "./messages";
 

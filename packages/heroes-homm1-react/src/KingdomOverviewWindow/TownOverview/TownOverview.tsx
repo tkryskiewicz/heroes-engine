@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import { GameText } from "heroes-homm1-react-components";
-
 import * as styles from "./TownOverview.module.scss";
+
+import { GameText } from "../../core";
 
 export interface TownOverviewProps {
   readonly town: string;

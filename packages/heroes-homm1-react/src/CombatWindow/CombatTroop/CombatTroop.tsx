@@ -1,11 +1,11 @@
 import * as React from "react";
 
 import { CombatSide } from "heroes-core";
-import { GameParagraph } from "heroes-homm1-react-components";
 
 import * as styles from "./CombatTroop.module.scss";
 
 import { CreatureIcon } from "../../base";
+import { GameParagraph } from "../../core";
 
 export interface CombatTroopProps {
   readonly side: CombatSide;

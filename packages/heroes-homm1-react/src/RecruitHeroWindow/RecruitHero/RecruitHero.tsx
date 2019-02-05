@@ -3,13 +3,13 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { HeroClass } from "heroes-homm1";
-import { GameText } from "heroes-homm1-react-components";
 
 import "./RecruitHero.scss";
 
 import { buttonImages } from "./assets";
 
 import { Frame, HeroPortrait, ImageButton } from "../../base";
+import { GameText } from "../../core";
 import { getHeroClassNameMessage } from "../../messages";
 
 export interface RecruitHeroProps {

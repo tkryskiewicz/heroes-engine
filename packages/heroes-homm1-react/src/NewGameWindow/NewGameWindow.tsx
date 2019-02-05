@@ -9,13 +9,13 @@ import {
   getOpponentSettingRating,
   OpponentSetting,
 } from "heroes-homm1";
-import { GameText } from "heroes-homm1-react-components";
 
 import * as styles from "./NewGameWindow.module.scss";
 
 import { buttonImages, switchImages } from "./assets";
 
 import { AlignmentJewel, ImageButton, ImageSwitch } from "../base";
+import { GameText } from "../core";
 import { GameDifficultyBox } from "./GameDifficultyBox";
 import { messages } from "./messages";
 import { OpponentSettingBox } from "./OpponentSettingBox";

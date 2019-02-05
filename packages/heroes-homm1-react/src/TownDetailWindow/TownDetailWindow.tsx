@@ -1,12 +1,11 @@
 import * as React from "react";
 
-import { withGameWindow } from "heroes-homm1-react-components";
-
 import * as styles from "./TownDetailWindow.module.scss";
 
 import { buttonImages } from "../TownWindow/Treasury/assets";
 
 import { ImageButton } from "../base";
+import { withGameWindow } from "../core";
 import { StatusBar } from "./StatusBar";
 
 export interface TownDetailWindowProps {

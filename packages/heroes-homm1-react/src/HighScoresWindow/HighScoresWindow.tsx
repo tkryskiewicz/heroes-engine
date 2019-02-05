@@ -9,13 +9,13 @@ import {
   getStandardGameRating,
   StandardGameScore,
 } from "heroes-homm1";
-import { GameText } from "heroes-homm1-react-components";
 
 import * as styles from "./HighScoresWindow.module.scss";
 
 import { buttonImages, DaysImage, LandImage, LeaderImage, PlayerImage, ScoreImage, TitleImage } from "./assets";
 
 import { CreatureIcon, ImageButton } from "../base";
+import { GameText } from "../core";
 import { getCampaignNameMessage, getCreatureNameMessage } from "../messages";
 
 interface HighScores {

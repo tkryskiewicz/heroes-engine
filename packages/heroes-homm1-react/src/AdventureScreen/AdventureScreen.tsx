@@ -2,12 +2,11 @@ import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { GameText } from "heroes-homm1-react-components";
-
 import { AdventureButtons } from "../AdventureButtons";
 import { AdventureOptions } from "../AdventureOptions";
 import { GameModal } from "../base";
 import { CampaignScenarioInfoWindow } from "../CampaignScenarioInfoWindow";
+import { GameText } from "../core";
 import { GameOptions } from "../GameOptions";
 import { HeroLocators } from "../HeroLocators";
 import { HeroWindow } from "../HeroWindow";

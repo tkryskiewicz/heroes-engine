@@ -3,8 +3,7 @@ import { boolean, number, select, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { GameText } from "heroes-homm1-react-components";
-
+import { GameText } from "../../core";
 import { GameModal, GameModalProps } from "./GameModal";
 
 const typeOptions: { readonly [s: string]: GameModalProps["type"] } = {

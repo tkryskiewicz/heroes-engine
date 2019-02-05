@@ -1,13 +1,13 @@
 import * as React from "react";
 
 import { Troop } from "heroes-core";
-import { GameText } from "heroes-homm1-react-components";
 
 import * as styles from "./TroopSlot.module.scss";
 
 import { BackgroundImage } from "./assets";
 
 import { CreatureIcon } from "../../base";
+import { GameText } from "../../core";
 import { Slot } from "../Slot";
 
 export interface TroopSlotProps {

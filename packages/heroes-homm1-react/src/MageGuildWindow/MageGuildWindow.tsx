@@ -2,11 +2,11 @@ import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { StructureId } from "heroes-homm1";
-import { GameParagraph } from "heroes-homm1-react-components";
 
 import * as styles from "./MageGuildWindow.module.scss";
 
 import { GameModal, SpellIcon } from "../base";
+import { GameParagraph } from "../core";
 import { getSpellDescriptionMessage, getSpellLongNameMessage, getSpellNameMessage } from "../messages";
 import { StructureView } from "../StructureView";
 import {

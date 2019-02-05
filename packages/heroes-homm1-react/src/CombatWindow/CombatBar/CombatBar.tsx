@@ -1,12 +1,11 @@
 import * as React from "react";
 
-import { GameText } from "heroes-homm1-react-components";
-
 import * as styles from "./CombatBar.module.scss";
 
 import { buttonImages } from "./assets";
 
 import { ImageButton } from "../../base";
+import { GameText } from "../../core";
 
 export interface CombatBarProps {
   readonly statusText: string;

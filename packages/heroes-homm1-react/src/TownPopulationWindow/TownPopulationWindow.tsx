@@ -1,12 +1,11 @@
 import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
-import { GameText } from "heroes-homm1-react-components";
-
 import * as styles from "./TownPopulationWindow.module.scss";
 
 import { CreatureIcon } from "../base";
 import { CastleOptionIcon } from "../CastleOptionIcon";
+import { GameText } from "../core";
 import { getCreatureNameMessage } from "../messages";
 import {
   withTownDetailWindow,

@@ -1,13 +1,12 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
-import { withGameWindow } from "heroes-homm1-react-components";
-
 import * as styles from "./ViewWindow.module.scss";
 
 import { buttonImages, legendImages } from "./assets";
 
 import { ImageButton } from "../base";
+import { withGameWindow } from "../core";
 
 export interface ViewWindowProps {
   // FIXME: inject background

@@ -1,13 +1,12 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
-import { GameText, withGameWindow } from "heroes-homm1-react-components";
-
 import * as styles from "./CampaignScenarioInfoWindow.module.scss";
 
 import { buttonImages, scenarioNumberImages } from "./assets";
 
 import { ImageButton } from "../base";
+import { GameText, withGameWindow } from "../core";
 
 interface Scenario {
   readonly scenarioNumber: number;

@@ -4,13 +4,13 @@ import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Army, Hero, HeroSkills } from "heroes-core";
 import { ArmySize, ArtifactLimit, SkillIds } from "heroes-homm1";
-import { GameText, withGameWindow, WithGameWindowProps } from "heroes-homm1-react-components";
 
 import * as styles from "./HeroTradingWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
 import { GameModal, HeroPortrait, ImageButton } from "../base";
+import { GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { getHeroNameMessage, getSkillNameMessage } from "../messages";
 import { ArtifactSlot } from "./ArtifactSlot";
 import { messages } from "./messages";

@@ -1,12 +1,11 @@
 import { Row } from "antd";
 import * as React from "react";
 
-import { GameText } from "heroes-homm1-react-components";
-
 import * as styles from "./MiscInfo.module.scss";
 
 import { BackgroundImage, ExperienceImage } from "./assets";
 
+import { GameText } from "../../core";
 import { LuckIcon } from "../LuckIcon";
 import { MoraleIcon } from "../MoraleIcon";
 

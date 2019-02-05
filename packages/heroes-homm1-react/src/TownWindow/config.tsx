@@ -3,11 +3,11 @@ import { FormattedMessage } from "react-intl";
 
 import { enoughResources, Resources, Structure } from "heroes-core";
 import { MageGuild, Shipyard, StructureId } from "heroes-homm1";
-import { GameText } from "heroes-homm1-react-components";
 
 import { GameModal } from "../base";
 import { BuildShipWindow } from "../BuildShipWindow";
 import { BuildStructureWindow } from "../BuildStructureWindow";
+import { GameText } from "../core";
 import { MageGuildWindow } from "../MageGuildWindow";
 import { TavernWindow } from "../TavernWindow";
 import { ThievesGuildWindow } from "../ThievesGuildWindow";

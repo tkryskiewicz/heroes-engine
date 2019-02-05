@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import { GameText, withGameWindow } from "heroes-homm1-react-components";
-
 import * as styles from "./CongratulationsWindow.module.scss";
+
+import { GameText, withGameWindow } from "../core";
 
 export interface CongratulationsWindowProps {
   readonly onClick?: () => void;

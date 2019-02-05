@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import { GameText } from "heroes-homm1-react-components";
-
 import * as styles from "./BigBar.module.scss";
+
+import { GameText } from "../../core";
 
 export class BigBar extends React.Component {
   public render() {

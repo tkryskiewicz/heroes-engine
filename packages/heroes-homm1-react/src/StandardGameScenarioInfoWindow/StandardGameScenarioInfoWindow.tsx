@@ -10,13 +10,13 @@ import {
   ScenarioDifficulty,
   ScenarioSize,
 } from "heroes-homm1";
-import { GameText, withGameWindow } from "heroes-homm1-react-components";
 
 import * as styles from "./StandardGameScenarioInfoWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
 import { AlignmentJewel, ImageButton } from "../base";
+import { GameText, withGameWindow } from "../core";
 import {
   getGameDifficultyMessage,
   getKingOfTheHillMessage,
