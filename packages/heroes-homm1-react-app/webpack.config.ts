@@ -1,4 +1,5 @@
 import { TsConfigPathsPlugin } from "awesome-typescript-loader";
+import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as Webpack from "webpack";
 
 const styleRegex = /\.(scss|css)$/;
@@ -46,6 +47,11 @@ const config: Webpack.Configuration = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "src/index.html",
+    }),
+  ],
   resolve: {
     extensions: [
       ".tsx",
