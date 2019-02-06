@@ -1,9 +1,8 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { HeroLocators, HeroLocatorsProps } from "heroes-homm1-react";
 import { AppState, heroWindowActions, Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
-
-import { HeroLocators, HeroLocatorsProps } from "./HeroLocators";
 
 type StateProp =
   "heroes" |

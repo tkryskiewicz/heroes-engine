@@ -2,21 +2,21 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import {
-  AdventureButtons,
-  AdventureOptions,
   AdventureScreen,
-  CampaignScenarioInfoWindow,
   GameModal,
-  GameOptions,
   GameText,
-  HeroLocators,
-  HeroWindow,
-  KingdomOverviewWindow,
-  PuzzleWindow,
-  TownLocators,
-  TownWindow,
 } from "heroes-homm1-react";
 
+import { AdventureButtons } from "../AdventureButtons";
+import { AdventureOptions } from "../AdventureOptions";
+import { CampaignScenarioInfoWindow } from "../CampaignScenarioInfoWindow";
+import { GameOptions } from "../GameOptions";
+import { HeroLocators } from "../HeroLocators";
+import { HeroWindow } from "../HeroWindow";
+import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
+import { PuzzleWindow } from "../PuzzleWindow";
+import { TownLocators } from "../TownLocators";
+import { TownWindow } from "../TownWindow";
 import { messages } from "./messages";
 
 interface Hero {

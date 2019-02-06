@@ -1,9 +1,8 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { PuzzleWindow, PuzzleWindowProps } from "heroes-homm1-react";
 import { AppState, puzzleWindowActions } from "heroes-homm1-state";
-
-import { PuzzleWindow, PuzzleWindowProps } from "./PuzzleWindow";
 
 type StateProp =
   "discoveredPieces";

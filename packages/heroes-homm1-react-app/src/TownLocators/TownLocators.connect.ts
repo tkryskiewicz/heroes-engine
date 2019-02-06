@@ -3,9 +3,8 @@ import { Dispatch } from "redux";
 
 import { isStructureBuilt } from "heroes-core";
 import { StructureId } from "heroes-homm1";
+import { TownLocators, TownLocatorsProps } from "heroes-homm1-react";
 import { AppState, Locator, locatorsActions, LocatorType, townWindowActions } from "heroes-homm1-state";
-
-import { TownLocators, TownLocatorsProps } from "./TownLocators";
 
 const mapStateToProps = (state: AppState): TownLocatorsProps => {
   const { selectedLocator } = state.locators;

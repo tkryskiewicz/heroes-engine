@@ -2,14 +2,13 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
 import { TownId } from "heroes-homm1";
+import { TownWindow, TownWindowProps } from "heroes-homm1-react";
 import {
   AppState,
   gameActions,
   kingdomOverviewWindowActions,
   townWindowActions,
 } from "heroes-homm1-state";
-
-import { TownWindow, TownWindowProps } from "./TownWindow";
 
 type StateProp =
   "town" |

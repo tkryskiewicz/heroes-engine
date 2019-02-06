@@ -1,1 +1,1 @@
-export { TownWindow, TownWindowProps } from "./TownWindow.connect";
+export { TownWindow, TownWindowProps } from "./TownWindow";

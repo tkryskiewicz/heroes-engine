@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { AdventureButtons, AdventureButtonsProps } from "heroes-homm1-react";
 import {
   adventureOptionsActions,
   AppState,
@@ -10,8 +11,6 @@ import {
   locatorsActions,
   LocatorType,
 } from "heroes-homm1-state";
-
-import { AdventureButtons, AdventureButtonsProps } from "./AdventureButtons";
 
 type StateProp =
   "heroes" |

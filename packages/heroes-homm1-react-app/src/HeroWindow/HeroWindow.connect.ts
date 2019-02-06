@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { HeroWindow, HeroWindowProps } from "heroes-homm1-react";
 import {
   AppState,
   gameActions,
@@ -8,8 +9,6 @@ import {
   kingdomOverviewWindowActions,
   spellBookWindowActions,
 } from "heroes-homm1-state";
-
-import { HeroWindow, HeroWindowProps } from "./HeroWindow";
 
 type StateProp =
   "hero" |

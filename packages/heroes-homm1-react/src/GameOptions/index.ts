@@ -1,1 +1,1 @@
-export { GameOptions, GameOptionsProps } from "./GameOptions.connect";
+export { GameOptions, GameOptionsProps } from "./GameOptions";

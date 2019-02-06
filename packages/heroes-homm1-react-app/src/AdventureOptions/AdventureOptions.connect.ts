@@ -1,9 +1,8 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { AdventureOptions, AdventureOptionsProps } from "heroes-homm1-react";
 import { adventureOptionsActions, puzzleWindowActions } from "heroes-homm1-state";
-
-import { AdventureOptions, AdventureOptionsProps } from "./AdventureOptions";
 
 type DispatchProp =
   "onViewPuzzleClick" |

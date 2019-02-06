@@ -1,14 +1,13 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { GameOptions, GameOptionsProps } from "heroes-homm1-react";
 import {
   AppState,
   gameOptionsActions,
   gameSettingsActions,
   scenarioInforWindowActions,
 } from "heroes-homm1-state";
-
-import { GameOptions, GameOptionsProps } from "./GameOptions";
 
 type StateProp =
   "autoSave" |

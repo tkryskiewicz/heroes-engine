@@ -3,14 +3,8 @@ import { Dispatch } from "redux";
 
 import { isStructureBuilt } from "heroes-core";
 import { HeroClassIds, StructureId, TownIds } from "heroes-homm1";
+import { KingdomOverviewWindow, KingdomOverviewWindowProps } from "heroes-homm1-react";
 import { AppState, kingdomOverviewWindowActions } from "heroes-homm1-state";
-
-import {
-  HeroClassSummary,
-  KingdomOverviewWindow,
-  KingdomOverviewWindowProps,
-  TownSummary,
-} from "./KingdomOverviewWindow";
 
 type StateProp =
   "alignment" |
@@ -23,14 +17,14 @@ type StateProp =
 
 const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowProps, StateProp> => ({
   alignment: state.game.alignment,
-  castles: TownIds.reduce<TownSummary>((p, c) => {
+  castles: TownIds.reduce((p, c) => {
     return {
       ...p,
       [c]: state.game.towns.filter((t) => t.id === c && isStructureBuilt(t, StructureId.Castle)).length,
     };
   }, {}),
   goldPerDay: 0,
-  heroClasses: HeroClassIds.reduce<HeroClassSummary>((p, c) => {
+  heroClasses: HeroClassIds.reduce((p, c) => {
     return {
       ...p,
       [c]: state.game.heroes.filter((h) => h.heroClass === c).length,
@@ -39,7 +33,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowProps, Stat
   // TODO: implement mine count
   mines: {},
   resources: state.game.resources,
-  towns: TownIds.reduce<TownSummary>((p, c) => {
+  towns: TownIds.reduce((p, c) => {
     return {
       ...p,
       [c]: state.game.towns.filter((t) => t.id === c && !isStructureBuilt(t, StructureId.Castle)).length,

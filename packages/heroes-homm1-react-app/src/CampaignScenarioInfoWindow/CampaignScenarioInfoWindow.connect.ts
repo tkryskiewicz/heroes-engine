@@ -1,9 +1,8 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { CampaignScenarioInfoWindow, CampaignScenarioInfoWindowProps } from "heroes-homm1-react";
 import { AppState, scenarioInforWindowActions } from "heroes-homm1-state";
-
-import { CampaignScenarioInfoWindow, CampaignScenarioInfoWindowProps } from "./CampaignScenarioInfoWindow";
 
 type StateProp =
   "scenario";
