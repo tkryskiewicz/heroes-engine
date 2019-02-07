@@ -10,18 +10,22 @@ import {
   townWindowActions,
 } from "heroes-homm1-state";
 
+import { getStructureDetails } from "./config";
+
 type StateProp =
   "town" |
   "visitingHero" |
   "resources" |
   "selectedGarrisonTroopIndex" |
   "selectedHeroTroopIndex" |
+  "getStructureDetails" |
   "visibleStructureDetails";
 
 const mapStateToProps = (state: AppState): Pick<TownWindowProps, StateProp> => {
   const town = state.game.towns[state.townWindow.townIndex!];
 
   return {
+    getStructureDetails,
     resources: state.game.resources,
     selectedGarrisonTroopIndex: state.townWindow.selectedGarrisonTroopIndex,
     selectedHeroTroopIndex: state.townWindow.selectedHeroTroopIndex,

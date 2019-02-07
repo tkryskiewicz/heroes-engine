@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Hero, Resources, Town } from "heroes-core";
+import { Hero, Resources, Structure, Town } from "heroes-core";
 
 import * as styles from "./TownWindow.module.scss";
 
@@ -11,7 +11,6 @@ import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
 import { RecruitTroopWindow, recruitTroopWindowMessages } from "../RecruitTroopWindow";
 import { TownView } from "../TownView";
-import { getStructureDetails } from "./config";
 import { messages } from "./messages";
 import { Treasury } from "./Treasury";
 
@@ -27,6 +26,9 @@ interface TownWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly onSwapHeroTroops: (hero: string, index: number, withIndex: number) => void;
   readonly visibleStructureDetails?: string;
   readonly onCrestClick: () => void;
+  readonly getStructureDetails: (structure: Structure, town: string, resources: Resources, props: {
+    readonly onCloseClick: () => void;
+  }) => React.ReactNode | undefined;
   readonly onOpenStructureDetailsClick: (structure: string) => void;
   readonly onCloseStructureDetailsClick: () => void;
   readonly onRecruitTroop: (town: string, structure: string, count: number) => void;
@@ -39,6 +41,7 @@ type DefaultProp =
   "onSelectHeroTroop" |
   "onSwapHeroTroops" |
   "onCrestClick" |
+  "getStructureDetails" |
   "onOpenStructureDetailsClick" |
   "onCloseStructureDetailsClick" |
   "onRecruitTroop" |
@@ -50,6 +53,7 @@ interface TownWindowState {
 
 class TownWindow extends React.Component<TownWindowProps, TownWindowState> {
   public static readonly defaultProps: Pick<TownWindowProps, DefaultProp> = {
+    getStructureDetails: () => undefined,
     onCloseStructureDetailsClick: () => undefined,
     onCrestClick: () => undefined,
     onExitClick: () => undefined,
@@ -307,7 +311,7 @@ class TownWindow extends React.Component<TownWindowProps, TownWindowState> {
     const struc = town.structures.find((s) => s.id === structure)!;
 
     // TODO: optimize and handle case with result missing
-    const structureDetails = getStructureDetails(struc, town.id, resources, {
+    const structureDetails = this.props.getStructureDetails(struc, town.id, resources, {
       onCloseClick: this.onCloseStructureDetailsClick,
     });
 

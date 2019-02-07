@@ -6,10 +6,10 @@ import * as React from "react";
 import { buildStructure } from "heroes-core";
 import { Alignment, constructTown, TownId } from "heroes-homm1";
 
-import { townOptions } from "../../stories";
+import { townOptions } from "../stories";
 import { CastleOptionsWindow } from "./CastleOptionsWindow";
 
-storiesOf("TownWindow/CastleOptionsWindow", module)
+storiesOf("CastleOptionsWindow", module)
   .add("default", () => {
     const townId = select("Town", townOptions, TownId.Farm);
 

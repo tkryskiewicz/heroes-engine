@@ -7,15 +7,15 @@ import { CastleOptionStatus, getCastleOptionStatus, StructureId } from "heroes-h
 
 import * as styles from "./CastleOptionsWindow.module.scss";
 
-import { BuildStructureWindow } from "../../BuildStructureWindow";
-import { getStructureNameMessage } from "../../messages";
+import { BuildStructureWindow } from "../BuildStructureWindow";
+import { getStructureNameMessage } from "../messages";
 import {
   withTownDetailWindow,
   WithTownDetailWindowInjectedProps,
   WithTownDetailWindowProps,
   WithTownDetailWindowRef,
-} from "../../TownDetailWindow";
-import { CastleOption } from "../CastleOption";
+} from "../TownDetailWindow";
+import { CastleOption } from "./CastleOption";
 import { getOptionStatusTextMessage, messages } from "./messages";
 
 interface CastleOptionsWindowProps extends

@@ -1,27 +1,28 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { enoughResources, Resources, Structure } from "heroes-core";
+import { enoughResources } from "heroes-core";
 import { MageGuild, Shipyard, StructureId } from "heroes-homm1";
+import {
+  BuildShipWindow,
+  BuildStructureWindow,
+  CastleOptionsWindow,
+  GameModal,
+  GameText,
+  MageGuildWindow,
+  TavernWindow,
+  ThievesGuildWindow,
+  TownPopulationWindow,
+  TownWindowProps,
+} from "heroes-homm1-react";
 
-import { GameModal } from "../base";
-import { BuildShipWindow } from "../BuildShipWindow";
-import { BuildStructureWindow } from "../BuildStructureWindow";
-import { GameText } from "../core";
-import { MageGuildWindow } from "../MageGuildWindow";
-import { TavernWindow } from "../TavernWindow";
-import { ThievesGuildWindow } from "../ThievesGuildWindow";
-import { TownPopulationWindow } from "../TownPopulationWindow";
-import { CastleOptionsWindow } from "./CastleOptionsWindow";
 import { messages } from "./messages";
 
-export const getStructureDetails = (
-  structure: Structure,
-  town: string,
-  resources: Resources,
-  props: {
-    readonly onCloseClick: () => void;
-  },
+export const getStructureDetails: TownWindowProps["getStructureDetails"] = (
+  structure,
+  town,
+  resources,
+  props,
 ): React.ReactNode | undefined => {
   switch (structure.id) {
     case StructureId.Castle:

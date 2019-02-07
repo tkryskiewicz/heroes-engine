@@ -8,6 +8,7 @@ export * from "./BuildStructureWindow";
 export * from "./CampaignGameMenu";
 export * from "./CampaignScenarioInfoWindow";
 export * from "./CastleOptionIcon";
+export * from "./CastleOptionsWindow";
 export * from "./CombatLostWindow";
 export * from "./CombatSummaryWindow";
 export * from "./CombatWindow";

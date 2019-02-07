@@ -8,7 +8,7 @@ import { CastleOptionStatus, StructureId, TownId } from "heroes-homm1";
 import { castleOptionStatusOptions, structureOptions, townOptions } from "../../stories";
 import { CastleOption } from "./CastleOption";
 
-storiesOf("TownWindow/CastleOption", module)
+storiesOf("CastleOptionsWindow/CastleOption", module)
   .add("default", () => (
     <CastleOption
       town={select("Town", townOptions, TownId.Farm)}
