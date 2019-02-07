@@ -35,7 +35,6 @@ import {
 } from "../messages";
 import { TroopWindow } from "../TroopWindow";
 import { ArtifactSlot, artifactSlotMessages } from "./ArtifactSlot";
-import { getArtifactDetails } from "./config";
 import { messages } from "./messages";
 import { MiscInfo, MiscInfoType } from "./MiscInfo";
 import { SkillInfo } from "./SkillInfo";
@@ -60,6 +59,10 @@ interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly onCancelDismissTroopClick: (index: number) => void;
   readonly onConfirmDismissTroopClick: (hero: string, index: number) => void;
   readonly onExitTroopDetails: () => void;
+  readonly getArtifactDetails: (artifact: Artifact, props: {
+    readonly onCloseClick: () => void;
+    readonly onStatusTextChange: (statusText: string) => void;
+  }) => React.ReactNode | undefined;
   readonly visibleArtifactDetails?: number;
   readonly onVisibleArtifactDetailsChange: (index?: number) => void;
   readonly dismissHeroPromptVisible: boolean;
@@ -83,6 +86,7 @@ type DefaultProp =
   "onCancelDismissTroopClick" |
   "onConfirmDismissTroopClick" |
   "onExitTroopDetails" |
+  "getArtifactDetails" |
   "onVisibleArtifactDetailsChange" |
   "dismissHeroPromptVisible" |
   "onDismissHeroClick" |
@@ -99,6 +103,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     dismissHeroPromptVisible: false,
     dismissTroopPromptVisible: false,
     dismissible: false,
+    getArtifactDetails: () => undefined,
     onCancelDismissHeroClick: () => undefined,
     onCancelDismissTroopClick: () => undefined,
     onConfirmDismissHeroClick: () => undefined,
@@ -583,7 +588,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
   }
 
   private renderArtifactDetails(artifact: Artifact) {
-    const artifactDetails = getArtifactDetails(artifact, {
+    const artifactDetails = this.props.getArtifactDetails(artifact, {
       onCloseClick: this.onCloseArtifactDetailsClick,
       onStatusTextChange: this.onArtifactStatusTextChange,
     });

@@ -1,8 +1,7 @@
 import * as React from "react";
 
 import { Spell, SpellBookSpell } from "heroes-homm1";
-
-import { SpellBookWindow, SpellBookWindowProps } from "./SpellBookWindow";
+import { SpellBookWindow, SpellBookWindowProps } from "heroes-homm1-react";
 
 export interface SpellBookWindowContainerProps extends
   Pick<SpellBookWindowProps, Exclude<keyof SpellBookWindowProps, "spells">> {

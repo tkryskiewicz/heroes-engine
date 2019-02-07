@@ -10,6 +10,8 @@ import {
   spellBookWindowActions,
 } from "heroes-homm1-state";
 
+import { getArtifactDetails } from "./config";
+
 type StateProp =
   "hero" |
   "visibleSkillDetails" |
@@ -17,12 +19,14 @@ type StateProp =
   "selectedTroopIndex" |
   "troopDetailsVisible" |
   "dismissTroopPromptVisible" |
+  "getArtifactDetails" |
   "visibleArtifactDetails" |
   "dismissHeroPromptVisible";
 
 const mapStateToProps = (state: AppState): Pick<HeroWindowProps, StateProp> => ({
   dismissHeroPromptVisible: state.heroWindow.dismissHeroPromptVisible,
   dismissTroopPromptVisible: state.heroWindow.dismissTroopPromptVisisble,
+  getArtifactDetails,
   hero: state.game.heroes[state.heroWindow.heroIndex!],
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,
   troopDetailsVisible: state.heroWindow.visibleTroopDetails,
