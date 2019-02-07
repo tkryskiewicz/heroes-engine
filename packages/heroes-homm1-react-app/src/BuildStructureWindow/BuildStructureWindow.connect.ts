@@ -1,9 +1,8 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { BuildStructureWindow, BuildStructureWindowProps } from "heroes-homm1-react";
 import { gameActions, townWindowActions } from "heroes-homm1-state";
-
-import { BuildStructureWindow, BuildStructureWindowProps } from "./BuildStructureWindow";
 
 type DispatchProp =
   "onOkayClick";

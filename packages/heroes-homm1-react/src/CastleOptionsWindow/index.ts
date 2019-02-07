@@ -1,1 +1,1 @@
-export { CastleOptionsWindow, CastleOptionsWindowProps } from "./CastleOptionsWindow.connect";
+export { CastleOptionsWindow, CastleOptionsWindowProps } from "./CastleOptionsWindow";

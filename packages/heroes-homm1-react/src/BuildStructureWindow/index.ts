@@ -1,1 +1,1 @@
-export { BuildStructureWindow, BuildStructureWindowProps } from "./BuildStructureWindow.connect";
+export { BuildStructureWindow, BuildStructureWindowProps } from "./BuildStructureWindow";

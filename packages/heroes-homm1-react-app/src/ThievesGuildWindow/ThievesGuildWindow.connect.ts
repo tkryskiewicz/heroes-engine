@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { ThievesGuildWindow, ThievesGuildWindowProps } from "./ThievesGuildWindow";
+import { ThievesGuildWindow, ThievesGuildWindowProps } from "heroes-homm1-react";
 
 type StateProp =
   "townCount" |

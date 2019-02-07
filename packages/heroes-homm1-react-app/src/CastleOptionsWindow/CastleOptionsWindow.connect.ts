@@ -2,14 +2,15 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
 import { getGameTown } from "heroes-core";
+import { CastleOptionsWindow, CastleOptionsWindowProps } from "heroes-homm1-react";
 import { AppState, townWindowActions } from "heroes-homm1-state";
-
-import { CastleOptionsWindow, CastleOptionsWindowProps } from "./CastleOptionsWindow";
+import { getOptionDetails } from "./config";
 
 type StateProp =
   "canConstructStructures" |
   "resources" |
   "options" |
+  "getOptionDetails" |
   "visibleOptionDetails";
 
 const mapStateToProps = (
@@ -20,6 +21,7 @@ const mapStateToProps = (
 
   return {
     canConstructStructures: town.canConstructStructures,
+    getOptionDetails,
     options: town.structures,
     resources: state.game.resources,
     visibleOptionDetails: state.townWindow.visibleOptionDetails,

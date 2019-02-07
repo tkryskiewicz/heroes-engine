@@ -7,7 +7,6 @@ import { CastleOptionStatus, getCastleOptionStatus, StructureId } from "heroes-h
 
 import * as styles from "./CastleOptionsWindow.module.scss";
 
-import { BuildStructureWindow } from "../BuildStructureWindow";
 import { getStructureNameMessage } from "../messages";
 import {
   withTownDetailWindow,
@@ -26,17 +25,22 @@ interface CastleOptionsWindowProps extends
   readonly canConstructStructures: boolean;
   readonly options: Structure[];
   readonly resources: Resources;
+  readonly getOptionDetails: (town: string, option: Structure, props: {
+    readonly onCloseClick: () => void;
+  }) => React.ReactNode | undefined;
   readonly visibleOptionDetails?: string;
   readonly onOpenOptionDetailsClick: (option: string) => void;
   readonly onCloseOptionDetailsClick: () => void;
 }
 
 type DefaultProp =
+  "getOptionDetails" |
   "onOpenOptionDetailsClick" |
   "onCloseOptionDetailsClick";
 
 class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> implements WithTownDetailWindowRef {
   public static readonly defaultProps: Pick<CastleOptionsWindowProps, DefaultProp> = {
+    getOptionDetails: () => undefined,
     onCloseOptionDetailsClick: () => undefined,
     onOpenOptionDetailsClick: () => undefined,
   };
@@ -113,21 +117,11 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
   }
 
   private renderOptionDetails(town: string, option: Structure) {
-    const dwellingCreature = option.dwelling ?
-      option.dwelling.creature :
-      undefined;
+    const optionDetails = this.props.getOptionDetails(town, option, {
+      onCloseClick: this.props.onCloseOptionDetailsClick,
+    });
 
-    return (
-      <BuildStructureWindow
-        visible={true}
-        town={town}
-        structure={option.id}
-        dwellingCreature={dwellingCreature}
-        cost={option.cost}
-        canBuild={true}
-        onCancelClick={this.props.onCloseOptionDetailsClick}
-      />
-    );
+    return optionDetails;
   }
 
   private setDefaultStatusText() {

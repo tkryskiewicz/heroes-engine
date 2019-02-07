@@ -5,17 +5,17 @@ import { enoughResources } from "heroes-core";
 import { MageGuild, Shipyard, StructureId } from "heroes-homm1";
 import {
   BuildShipWindow,
-  BuildStructureWindow,
-  CastleOptionsWindow,
   GameModal,
   GameText,
-  MageGuildWindow,
   TavernWindow,
-  ThievesGuildWindow,
-  TownPopulationWindow,
   TownWindowProps,
 } from "heroes-homm1-react";
 
+import { BuildStructureWindow } from "../BuildStructureWindow";
+import { CastleOptionsWindow } from "../CastleOptionsWindow";
+import { MageGuildWindow } from "../MageGuildWindow";
+import { ThievesGuildWindow } from "../ThievesGuildWindow";
+import { TownPopulationWindow } from "../TownPopulationWindow";
 import { messages } from "./messages";
 
 export const getStructureDetails: TownWindowProps["getStructureDetails"] = (
