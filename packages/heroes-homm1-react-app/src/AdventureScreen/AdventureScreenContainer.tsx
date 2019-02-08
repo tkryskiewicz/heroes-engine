@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { AdventureScreen, EndTurnPrompt, GameText } from "heroes-homm1-react";
+import { AdventureScreen, GameText } from "heroes-homm1-react";
 
 import { AdventureButtons } from "../AdventureButtons";
 import { AdventureOptions } from "../AdventureOptions";
@@ -26,23 +26,9 @@ export interface AdventureScreenContainerProps {
   readonly gameOptionsVisible?: boolean;
   readonly puzzleWindowVisible?: boolean;
   readonly scenarioInfoWindowVisible?: boolean;
-  readonly endTurnPromptVisible: boolean;
-  readonly onEndTurnPromptVisibleChange: (value: boolean) => void;
-  readonly onEndTurn: () => void;
 }
 
-type DefaultProp =
-  "endTurnPromptVisible" |
-  "onEndTurnPromptVisibleChange" |
-  "onEndTurn";
-
 export class AdventureScreenContainer extends React.Component<AdventureScreenContainerProps> {
-  public static readonly defaultProps: Pick<AdventureScreenContainerProps, DefaultProp> = {
-    endTurnPromptVisible: false,
-    onEndTurn: () => undefined,
-    onEndTurnPromptVisibleChange: () => undefined,
-  };
-
   public render() {
     return (
       <>
@@ -61,7 +47,6 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
         {this.props.gameOptionsVisible && this.renderGameOptions()}
         {this.props.puzzleWindowVisible && this.renderPuzzleWindow()}
         {this.props.scenarioInfoWindowVisible && this.renderScenarioInfoWindow()}
-        {this.props.endTurnPromptVisible && this.renderEndTurnPrompt()}
       </>
     );
   }
@@ -112,9 +97,7 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
 
   private readonly renderAdventureButtons = () => {
     return (
-      <AdventureButtons
-        onEndTurnClick={this.onEndTurnClick}
-      />
+      <AdventureButtons />
     );
   }
 
@@ -156,34 +139,6 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
         visible={true}
       />
     );
-  }
-
-  private readonly onEndTurnClick = () => {
-    if (this.props.heroes.some((h) => h.mobility !== 0)) {
-      this.props.onEndTurnPromptVisibleChange(true);
-
-      return;
-    }
-
-    this.props.onEndTurn();
-  }
-
-  private renderEndTurnPrompt() {
-    return (
-      <EndTurnPrompt
-        visible={true}
-        onConfirmClick={this.onConfirmEndTurnClick}
-        onCancelClick={this.onCancelEndTurnClick}
-      />
-    );
-  }
-
-  private readonly onConfirmEndTurnClick = () => {
-    this.props.onEndTurn();
-  }
-
-  private readonly onCancelEndTurnClick = () => {
-    this.props.onEndTurnPromptVisibleChange(false);
   }
 
   private readonly renderStatusWindow = () => {

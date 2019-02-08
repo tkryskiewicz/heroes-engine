@@ -3,7 +3,9 @@ import { Dispatch } from "redux";
 
 import {
   adventureOptionsActions,
+  adventureScreenActions,
   AppState,
+  gameActions,
   gameOptionsActions,
   kingdomOverviewWindowActions,
   Locator,
@@ -15,12 +17,14 @@ import { AdventureButtonsContainer, AdventureButtonsContainerProps } from "./Adv
 
 type StateProp =
   "heroes" |
-  "selectedIndex";
+  "selectedIndex" |
+  "endTurnPromptVisible";
 
 const mapStateToProps = (state: AppState): Pick<AdventureButtonsContainerProps, StateProp> => {
   const { selectedLocator } = state.locators;
 
   return {
+    endTurnPromptVisible: state.adventureScreen.endTurnPromptVisible,
     heroes: state.game.heroes,
     selectedIndex: selectedLocator && selectedLocator.type === LocatorType.Hero ?
       selectedLocator.index :
@@ -31,6 +35,8 @@ const mapStateToProps = (state: AppState): Pick<AdventureButtonsContainerProps, 
 type DispatchProp =
   "onNextHeroClick" |
   "onKingdomOverviewClick" |
+  "onEndTurnPromptVisibleChange" |
+  "onEndTurn" |
   "onAdventureOptionsClick" |
   "onGameOptionsClick";
 
@@ -45,6 +51,14 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsContainerP
   },
   onKingdomOverviewClick() {
     dispatch(kingdomOverviewWindowActions.open());
+  },
+  onEndTurnPromptVisibleChange(value: boolean) {
+    dispatch(adventureScreenActions.changeEndTurnPromptVisible(value));
+  },
+  onEndTurn() {
+    dispatch(adventureScreenActions.changeEndTurnPromptVisible(false));
+
+    dispatch(gameActions.endTurn());
   },
   onAdventureOptionsClick() {
     dispatch(adventureOptionsActions.open());

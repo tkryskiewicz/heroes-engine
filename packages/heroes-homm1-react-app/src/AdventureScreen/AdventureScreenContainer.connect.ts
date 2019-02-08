@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
 
-import { adventureScreenActions, AppState, gameActions } from "heroes-homm1-state";
+import { AppState } from "heroes-homm1-state";
 
 import { AdventureScreenContainer, AdventureScreenContainerProps } from "./AdventureScreenContainer";
 
@@ -13,12 +12,10 @@ type StateProp =
   "kingdomOverviewWindowVisible" |
   "puzzleWindowVisible" |
   "scenarioInfoWindowVisible" |
-  "townWindowVisible" |
-  "endTurnPromptVisible";
+  "townWindowVisible";
 
 const mapStateToProps = (state: AppState): Pick<AdventureScreenContainerProps, StateProp> => ({
   adventureOptionsVisible: state.adventureOptions.visible,
-  endTurnPromptVisible: state.adventureScreen.endTurnPromptVisible,
   gameOptionsVisible: state.gameOptions.visible,
   heroWindowVisible: state.heroWindow.heroIndex !== undefined,
   heroes: state.game.heroes,
@@ -28,22 +25,7 @@ const mapStateToProps = (state: AppState): Pick<AdventureScreenContainerProps, S
   townWindowVisible: state.townWindow.townIndex !== undefined,
 });
 
-type DispatchProp =
-  "onEndTurnPromptVisibleChange" |
-  "onEndTurn";
-
-const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureScreenContainerProps, DispatchProp> => ({
-  onEndTurnPromptVisibleChange(value: boolean) {
-    dispatch(adventureScreenActions.changeEndTurnPromptVisible(value));
-  },
-  onEndTurn() {
-    dispatch(adventureScreenActions.changeEndTurnPromptVisible(false));
-
-    dispatch(gameActions.endTurn());
-  },
-});
-
-const AdventureScreenConnected = connect(mapStateToProps, mapDispatchToProps)(AdventureScreenContainer);
+const AdventureScreenConnected = connect(mapStateToProps)(AdventureScreenContainer);
 
 type AdventureScreenConnectedProps = ExtractProps<typeof AdventureScreenConnected>;
 
