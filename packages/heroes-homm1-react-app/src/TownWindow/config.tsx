@@ -14,6 +14,7 @@ import {
 import { BuildStructureWindow } from "../BuildStructureWindow";
 import { CastleOptionsWindow } from "../CastleOptionsWindow";
 import { MageGuildWindow } from "../MageGuildWindow";
+import { RecruitTroopWindow } from "../RecruitTroopWindow";
 import { ThievesGuildWindow } from "../ThievesGuildWindow";
 import { TownPopulationWindow } from "../TownPopulationWindow";
 import { messages } from "./messages";
@@ -113,5 +114,21 @@ export const getStructureDetails: TownWindowProps["getStructureDetails"] = (
           onExitClick={props.onCloseClick}
         />
       );
+    default: {
+      if (structure.dwelling) {
+        const onOkayClick = (count: number) => props.onRecruitTroop(structure.id, count);
+
+        return (
+          <RecruitTroopWindow
+            creature={structure.dwelling.creature}
+            cost={structure.dwelling.cost}
+            availableCount={structure.dwelling.availableCount}
+            visible={true}
+            onOkayClick={onOkayClick}
+            onCancelClick={props.onCloseClick}
+          />
+        );
+      }
+    }
   }
 };

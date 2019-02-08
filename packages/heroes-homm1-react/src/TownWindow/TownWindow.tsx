@@ -9,7 +9,7 @@ import { ArmyStrip, BigBar, Crest, getArmyStripStatusTextMessage, HeroPortrait }
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
-import { RecruitTroopWindow, recruitTroopWindowMessages } from "../RecruitTroopWindow";
+import { recruitTroopWindowMessages } from "../RecruitTroopWindow";
 import { TownView } from "../TownView";
 import { messages } from "./messages";
 import { Treasury } from "./Treasury";
@@ -27,6 +27,7 @@ interface TownWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly visibleStructureDetails?: string;
   readonly onCrestClick: () => void;
   readonly getStructureDetails: (structure: Structure, town: string, resources: Resources, props: {
+    readonly onRecruitTroop: (structure: string, count: number) => void;
     readonly onCloseClick: () => void;
   }) => React.ReactNode | undefined;
   readonly onOpenStructureDetailsClick: (structure: string) => void;
@@ -313,26 +314,8 @@ class TownWindow extends React.Component<TownWindowProps, TownWindowState> {
     // TODO: optimize and handle case with result missing
     const structureDetails = this.props.getStructureDetails(struc, town.id, resources, {
       onCloseClick: this.onCloseStructureDetailsClick,
+      onRecruitTroop: this.onRecruitTroop,
     });
-
-    if (structureDetails) {
-      return structureDetails;
-    }
-
-    if (struc.dwelling) {
-      const onOkayClick = (count: number) => this.onRecruitTroop(struc.id, count);
-
-      return (
-        <RecruitTroopWindow
-          creature={struc.dwelling.creature}
-          cost={struc.dwelling.cost}
-          availableCount={struc.dwelling.availableCount}
-          visible={true}
-          onOkayClick={onOkayClick}
-          onCancelClick={this.onCloseStructureDetailsClick}
-        />
-      );
-    }
 
     return structureDetails;
   }

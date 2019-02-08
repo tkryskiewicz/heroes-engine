@@ -1,9 +1,8 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { RecruitTroopWindow, RecruitTroopWindowProps } from "heroes-homm1-react";
 import { AppState, townWindowActions } from "heroes-homm1-state";
-
-import { RecruitTroopWindow, RecruitTroopWindowProps } from "./RecruitTroopWindow";
 
 type StateProp =
   "resources" |
