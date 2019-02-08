@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Omit } from "react-redux";
 
 import { TownDetailWindow } from "./TownDetailWindow";
 
@@ -28,7 +27,7 @@ export const withTownDetailWindow = () =>
   <C extends React.ComponentClass<ExtractProps<C> & InjectedProps> & Ref>(WrappedComponent: C) => {
     type P = JSX.LibraryManagedAttributes<C, ExtractProps<C>>;
 
-    return class extends React.Component<Omit<P, keyof InjectedProps> & Props, State> {
+    return class extends React.Component<Pick<P, Exclude<keyof P, keyof InjectedProps>> & Props, State> {
       public readonly state: State = {
         statusText: "",
       };
