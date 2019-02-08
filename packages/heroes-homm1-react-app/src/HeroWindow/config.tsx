@@ -1,12 +1,10 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
 
 import { Artifact } from "heroes-core";
 import { ArtifactId, SpellBook } from "heroes-homm1";
-import { GameModal, GameText } from "heroes-homm1-react";
+import { NoSpellsPrompt } from "heroes-homm1-react";
 
 import { SpellBookWindow } from "../SpellBookWindow";
-import { messages } from "./messages";
 
 export const getArtifactDetails = (
   artifact: Artifact,
@@ -21,15 +19,10 @@ export const getArtifactDetails = (
 
       if (!spellBook.data.length) {
         return (
-          <GameModal
-            type="okay"
+          <NoSpellsPrompt
             visible={true}
-            onConfirmClick={props.onCloseClick}
-          >
-            <GameText size="large">
-              <FormattedMessage {...messages.noSpells} />
-            </GameText>
-          </GameModal>
+            onOkayClick={props.onCloseClick}
+          />
         );
       }
 

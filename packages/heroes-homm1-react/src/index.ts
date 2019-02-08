@@ -33,6 +33,7 @@ export * from "./MageGuildWindow";
 export * from "./MainMenu";
 export * from "./MultiPlayerGameMenu";
 export * from "./NewGameWindow";
+export * from "./NoSpellsPrompt";
 export * from "./PuzzleWindow";
 export * from "./RecruitHeroWindow";
 export * from "./RecruitTroopWindow";
