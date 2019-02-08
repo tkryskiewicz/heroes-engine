@@ -1,7 +1,4 @@
-import { Col, Row } from "antd";
 import * as React from "react";
-
-import { canSelectNextHero, getNextHeroIndex, Hero } from "heroes-core";
 
 import * as styles from "./AdventureButtons.module.scss";
 
@@ -10,9 +7,9 @@ import { buttonImages } from "./assets";
 import { ImageButton } from "../base";
 
 export interface AdventureButtonsProps {
-  readonly heroes: Hero[];
-  readonly selectedIndex?: number;
-  readonly onSelectHero: (index: number) => void;
+  readonly nextHeroDisabled: boolean;
+  readonly onNextHeroClick: () => void;
+  readonly moveDisabled: boolean;
   readonly onMoveClick: () => void;
   readonly onKingdomOverviewClick: () => void;
   readonly onEndTurnClick: () => void;
@@ -21,7 +18,9 @@ export interface AdventureButtonsProps {
 }
 
 type DefaultProp =
-  "onSelectHero" |
+  "nextHeroDisabled" |
+  "onNextHeroClick" |
+  "moveDisabled" |
   "onMoveClick" |
   "onKingdomOverviewClick" |
   "onEndTurnClick" |
@@ -30,69 +29,50 @@ type DefaultProp =
 
 export class AdventureButtons extends React.Component<AdventureButtonsProps> {
   public static readonly defaultProps: Pick<AdventureButtonsProps, DefaultProp> = {
+    moveDisabled: false,
+    nextHeroDisabled: false,
     onAdventureOptionsClick: () => undefined,
     onEndTurnClick: () => undefined,
     onGameOptionsClick: () => undefined,
     onKingdomOverviewClick: () => undefined,
     onMoveClick: () => undefined,
-    onSelectHero: () => undefined,
+    onNextHeroClick: () => undefined,
   };
 
   public render() {
-    const nextHeroEnabled = canSelectNextHero(this.props.heroes);
-
     return (
       <div className={styles.root}>
-        <Row>
-          <Col span={8}>
-            <ImageButton
-              images={buttonImages.nextHero}
-              disabled={!nextHeroEnabled}
-              onClick={this.onNextHeroClick}
-            />
-          </Col>
-          <Col span={8}>
-            <ImageButton
-              images={buttonImages.move}
-              onClick={this.props.onMoveClick}
-            />
-          </Col>
-          <Col span={8}>
-            <ImageButton
-              images={buttonImages.kingdomOverview}
-              onClick={this.props.onKingdomOverviewClick}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col span={8}>
-            <ImageButton
-              images={buttonImages.endTurn}
-              onClick={this.props.onEndTurnClick}
-            />
-          </Col>
-          <Col span={8}>
-            <ImageButton
-              images={buttonImages.adventureOptions}
-              onClick={this.props.onAdventureOptionsClick}
-            />
-          </Col>
-          <Col span={8}>
-            <ImageButton
-              images={buttonImages.gameOptions}
-              onClick={this.props.onGameOptionsClick}
-            />
-          </Col>
-        </Row>
+        <div>
+          <ImageButton
+            images={buttonImages.nextHero}
+            disabled={this.props.nextHeroDisabled}
+            onClick={this.props.onNextHeroClick}
+          />
+          <ImageButton
+            images={buttonImages.move}
+            disabled={this.props.moveDisabled}
+            onClick={this.props.onMoveClick}
+          />
+          <ImageButton
+            images={buttonImages.kingdomOverview}
+            onClick={this.props.onKingdomOverviewClick}
+          />
+        </div>
+        <div>
+          <ImageButton
+            images={buttonImages.endTurn}
+            onClick={this.props.onEndTurnClick}
+          />
+          <ImageButton
+            images={buttonImages.adventureOptions}
+            onClick={this.props.onAdventureOptionsClick}
+          />
+          <ImageButton
+            images={buttonImages.gameOptions}
+            onClick={this.props.onGameOptionsClick}
+          />
+        </div>
       </div>
     );
-  }
-
-  private readonly onNextHeroClick = () => {
-    const index = getNextHeroIndex(this.props.heroes, this.props.selectedIndex);
-
-    if (index !== undefined) {
-      this.props.onSelectHero(index);
-    }
   }
 }

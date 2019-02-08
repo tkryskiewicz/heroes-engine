@@ -1,1 +1,1 @@
-export { AdventureButtons, AdventureButtonsProps } from "./AdventureButtons.connect";
+export { AdventureButtons, AdventureButtonsProps } from "./AdventureButtonsContainer.connect";

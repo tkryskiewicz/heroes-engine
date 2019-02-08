@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AdventureButtons, AdventureButtonsProps } from "heroes-homm1-react";
 import {
   adventureOptionsActions,
   AppState,
@@ -12,11 +11,13 @@ import {
   LocatorType,
 } from "heroes-homm1-state";
 
+import { AdventureButtonsContainer, AdventureButtonsContainerProps } from "./AdventureButtonsContainer";
+
 type StateProp =
   "heroes" |
   "selectedIndex";
 
-const mapStateToProps = (state: AppState): Pick<AdventureButtonsProps, StateProp> => {
+const mapStateToProps = (state: AppState): Pick<AdventureButtonsContainerProps, StateProp> => {
   const { selectedLocator } = state.locators;
 
   return {
@@ -28,13 +29,13 @@ const mapStateToProps = (state: AppState): Pick<AdventureButtonsProps, StateProp
 };
 
 type DispatchProp =
-  "onSelectHero" |
+  "onNextHeroClick" |
   "onKingdomOverviewClick" |
   "onAdventureOptionsClick" |
   "onGameOptionsClick";
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsProps, DispatchProp> => ({
-  onSelectHero(index) {
+const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsContainerProps, DispatchProp> => ({
+  onNextHeroClick(index) {
     const locator: Locator = {
       index,
       type: LocatorType.Hero,
@@ -53,11 +54,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsProps, Dis
   },
 });
 
-const AdventureButtonsConnected = connect(mapStateToProps, mapDispatchToProps)(AdventureButtons);
+const AdventureButtonsContainerConnected = connect(mapStateToProps, mapDispatchToProps)(AdventureButtonsContainer);
 
-type AdventureButtonsConnectedProps = ExtractProps<typeof AdventureButtonsConnected>;
+type AdventureButtonsContainerConnectedProps = ExtractProps<typeof AdventureButtonsContainerConnected>;
 
 export {
-  AdventureButtonsConnected as AdventureButtons,
-  AdventureButtonsConnectedProps as AdventureButtonsProps,
+  AdventureButtonsContainerConnected as AdventureButtons,
+  AdventureButtonsContainerConnectedProps as AdventureButtonsProps,
 };
