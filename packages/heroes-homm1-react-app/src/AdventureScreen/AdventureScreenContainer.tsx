@@ -1,11 +1,6 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
 
-import {
-  AdventureScreen,
-  GameModal,
-  GameText,
-} from "heroes-homm1-react";
+import { AdventureScreen, EndTurnPrompt, GameText } from "heroes-homm1-react";
 
 import { AdventureButtons } from "../AdventureButtons";
 import { AdventureOptions } from "../AdventureOptions";
@@ -17,7 +12,6 @@ import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
 import { PuzzleWindow } from "../PuzzleWindow";
 import { TownLocators } from "../TownLocators";
 import { TownWindow } from "../TownWindow";
-import { messages } from "./messages";
 
 interface Hero {
   readonly mobility: number;
@@ -176,16 +170,11 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
 
   private renderEndTurnPrompt() {
     return (
-      <GameModal
-        type="yesNo"
+      <EndTurnPrompt
+        visible={true}
         onConfirmClick={this.onConfirmEndTurnClick}
         onCancelClick={this.onCancelEndTurnClick}
-        visible={true}
-      >
-        <GameText size="large">
-          <FormattedMessage {...messages.endTurnWarning} />
-        </GameText>
-      </GameModal>
+      />
     );
   }
 

@@ -17,6 +17,7 @@ export * from "./ComMenu";
 export * from "./CongratulationsWindow";
 export * from "./core";
 export * from "./CreditsWindow";
+export * from "./EndTurnPrompt";
 export * from "./GameOptions";
 export * from "./GameTypeMenu";
 export * from "./HeroCombatOptions";
