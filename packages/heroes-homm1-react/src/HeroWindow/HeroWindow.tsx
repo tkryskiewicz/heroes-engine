@@ -15,6 +15,7 @@ import { buttonImages } from "./assets";
 
 import { ArmyStrip, Crest, GameModal, getArmyStripStatusTextMessage, HeroPortrait, ImageButton } from "../base";
 import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "../core";
+import { DismissHeroPrompt } from "../DismissHeroPrompt";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
   experienceMessages,
@@ -599,16 +600,11 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
 
   private renderDismissHeroPrompt(visible: boolean) {
     return (
-      <GameModal
-        type="yesNo"
+      <DismissHeroPrompt
         visible={visible}
         onConfirmClick={this.onConfirmDismissHeroClick}
         onCancelClick={this.props.onCancelDismissHeroClick}
-      >
-        <GameParagraph textSize="large">
-          <FormattedMessage {...messages.dismissHeroMessage} />
-        </GameParagraph>
-      </GameModal>
+      />
     );
   }
 

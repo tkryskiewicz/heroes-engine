@@ -9,10 +9,6 @@ export const messages = defineMessages({
     defaultMessage: "Dismiss {heroName}",
     id: "ui.heroWindow.dismiss",
   },
-  dismissHeroMessage: {
-    defaultMessage: "Are you sure you want to dismiss this Hero?",
-    id: "ui.heroWindow.dismiss.message",
-  },
   exit: {
     defaultMessage: "Exit Hero Screen",
     id: "ui.heroWindow.exit",
@@ -24,10 +20,6 @@ export const messages = defineMessages({
   noModifiers: {
     defaultMessage: "none",
     id: "ui.heroWindow.noModifiers",
-  },
-  noSpells: {
-    defaultMessage: "No spells to cast.",
-    id: "ui.heroWindow.noSpells",
   },
   statInfo: {
     defaultMessage: "View {statName} Info",
