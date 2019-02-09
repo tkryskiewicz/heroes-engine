@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { Menu } from "./Menu";
 
-storiesOf("base/Menu", module)
+storiesOf("menu/Menu", module)
   .add("default", () => (
     <Menu>
       {text("Content", "Content")}

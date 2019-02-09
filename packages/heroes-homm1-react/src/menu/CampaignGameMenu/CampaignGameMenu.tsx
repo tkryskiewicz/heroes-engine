@@ -3,7 +3,8 @@ import * as React from "react";
 
 import { CampaignIds } from "heroes-homm1";
 
-import { ImageButton, Menu } from "../base";
+import { ImageButton } from "../../base";
+import { Menu } from "../Menu";
 import { buttonImages } from "./assets";
 
 export interface CampaignGameMenuProps {

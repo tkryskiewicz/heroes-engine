@@ -9,7 +9,6 @@ export { GameModal, GameModalProps } from "./GameModal";
 export { HeroPortrait, HeroPortraitProps } from "./HeroPortrait";
 export { ImageButton, ImageButtonProps, ButtonImages } from "./ImageButton";
 export { ImageSwitch, ImageSwitchProps, SwitchImages } from "./ImageSwitch";
-export { Menu } from "./Menu";
 export { ResourceAmount, ResourceAmountProps } from "./ResourceAmount";
 export { ResourceCost, ResourceCostProps } from "./ResourceCost";
 export { ResourceIcon, ResourceIconProps } from "./ResourceIcon";

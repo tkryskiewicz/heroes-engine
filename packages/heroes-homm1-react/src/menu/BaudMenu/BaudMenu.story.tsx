@@ -2,11 +2,11 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { ComMenu } from "./ComMenu";
+import { BaudMenu } from "./BaudMenu";
 
-storiesOf("ComMenu", module)
+storiesOf("menu/BaudMenu", module)
   .add("default", () => (
-    <ComMenu
+    <BaudMenu
       onOptionClick={action("Option Click")}
       onCancelClick={action("Cancel Click")}
     />

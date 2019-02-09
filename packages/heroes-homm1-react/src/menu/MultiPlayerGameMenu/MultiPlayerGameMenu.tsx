@@ -2,7 +2,8 @@ import * as React from "react";
 
 import { buttonImages } from "./assets";
 
-import { ImageButton, Menu } from "../base";
+import { ImageButton } from "../../base";
+import { Menu } from "../Menu";
 
 export interface MultiPlayerGameMenuProps {
   readonly onHotSeatClick: () => void;

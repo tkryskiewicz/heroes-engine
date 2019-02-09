@@ -1,4 +1,4 @@
-import { ButtonImages } from "../../base";
+import { ButtonImages } from "../../../base";
 
 const buttonImages: { readonly [index: string]: ButtonImages } = {
   "cancel": {

@@ -2,12 +2,12 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { CampaignGameMenu } from "./CampaignGameMenu";
+import { HotSeatGameMenu } from "./HotSeatGameMenu";
 
-storiesOf("CampaignGameMenu", module)
+storiesOf("menu/HotSeatGameMenu", module)
   .add("default", () => (
-    <CampaignGameMenu
-      onPlayClick={action("Play Click")}
+    <HotSeatGameMenu
+      onOptionClick={action("Option Click")}
       onCancelClick={action("Cancel Click")}
     />
   ));
