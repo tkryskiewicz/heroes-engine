@@ -10,8 +10,7 @@ export interface HeroWindowContainerProps extends
   readonly dismissTroopPromptVisible: boolean;
   readonly onDismissTroopClick: (index: number) => void;
   readonly onConfirmDismissTroopClick: (hero: string, index: number) => void;
-  // TODO: is index needed? adds some complexity
-  readonly onCancelDismissTroopClick: (index: number) => void;
+  readonly onCancelDismissTroopClick: () => void;
 }
 
 export class HeroWindowContainer extends React.Component<HeroWindowContainerProps> {

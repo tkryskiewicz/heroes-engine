@@ -21,7 +21,7 @@ interface TroopWindowProps extends WithGameWindowProps {
   readonly dismissPromptVisible: boolean;
   readonly onDismissClick: (index: number) => void;
   readonly onConfirmDismissClick: (index: number) => void;
-  readonly onCancelDismissClick: (index: number) => void;
+  readonly onCancelDismissClick: () => void;
   readonly onExitClick: () => void;
 }
 
@@ -172,7 +172,7 @@ class TroopWindow extends React.Component<TroopWindowProps> {
         type="yesNo"
         visible={visible}
         onConfirmClick={this.onConfirmDismiss}
-        onCancelClick={this.onCancelDismiss}
+        onCancelClick={this.props.onCancelDismissClick}
       >
         <GameParagraph textSize="large">
           <FormattedMessage {...messages.dismissMessage} />
@@ -183,10 +183,6 @@ class TroopWindow extends React.Component<TroopWindowProps> {
 
   private readonly onConfirmDismiss = () => {
     this.props.onConfirmDismissClick(this.props.index);
-  }
-
-  private readonly onCancelDismiss = () => {
-    this.props.onCancelDismissClick(this.props.index);
   }
 }
 
