@@ -1,1 +1,1 @@
-export { HeroLocators, HeroLocatorsProps } from "./HeroLocators.connect";
+export { HeroLocators, HeroLocatorsProps } from "./HeroLocatorsContainer.connect";

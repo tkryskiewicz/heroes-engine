@@ -7,7 +7,6 @@ import { AdventureOptions } from "../AdventureOptions";
 import { CampaignScenarioInfoWindow } from "../CampaignScenarioInfoWindow";
 import { GameOptions } from "../GameOptions";
 import { HeroLocators } from "../HeroLocators";
-import { HeroWindow } from "../HeroWindow";
 import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
 import { PuzzleWindow } from "../PuzzleWindow";
 import { TownLocators } from "../TownLocators";
@@ -18,7 +17,6 @@ interface Hero {
 }
 
 export interface AdventureScreenContainerProps {
-  readonly heroWindowVisible?: boolean;
   readonly townWindowVisible?: boolean;
   readonly heroes: Hero[];
   readonly kingdomOverviewWindowVisible?: boolean;
@@ -40,7 +38,6 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
           renderTownLocators={this.renderTownLocators}
           renderStatusWindow={this.renderStatusWindow}
         />
-        {this.props.heroWindowVisible && this.renderHeroWindow()}
         {this.props.townWindowVisible && this.renderTownWindow()}
         {this.props.kingdomOverviewWindowVisible && this.renderKingdomOverviewWindow()}
         {this.props.adventureOptionsVisible && this.renderAdventureOptions()}
@@ -70,14 +67,6 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
   private readonly renderHeroLocators = () => {
     return (
       <HeroLocators />
-    );
-  }
-
-  private renderHeroWindow() {
-    return (
-      <HeroWindow
-        visible={true}
-      />
     );
   }
 
