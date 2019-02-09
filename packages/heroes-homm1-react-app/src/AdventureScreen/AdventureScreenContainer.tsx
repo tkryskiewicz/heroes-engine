@@ -10,14 +10,12 @@ import { HeroLocators } from "../HeroLocators";
 import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
 import { PuzzleWindow } from "../PuzzleWindow";
 import { TownLocators } from "../TownLocators";
-import { TownWindow } from "../TownWindow";
 
 interface Hero {
   readonly mobility: number;
 }
 
 export interface AdventureScreenContainerProps {
-  readonly townWindowVisible?: boolean;
   readonly heroes: Hero[];
   readonly kingdomOverviewWindowVisible?: boolean;
   readonly adventureOptionsVisible?: boolean;
@@ -38,7 +36,6 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
           renderTownLocators={this.renderTownLocators}
           renderStatusWindow={this.renderStatusWindow}
         />
-        {this.props.townWindowVisible && this.renderTownWindow()}
         {this.props.kingdomOverviewWindowVisible && this.renderKingdomOverviewWindow()}
         {this.props.adventureOptionsVisible && this.renderAdventureOptions()}
         {this.props.gameOptionsVisible && this.renderGameOptions()}
@@ -73,14 +70,6 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
   private readonly renderTownLocators = () => {
     return (
       <TownLocators />
-    );
-  }
-
-  private renderTownWindow() {
-    return (
-      <TownWindow
-        visible={true}
-      />
     );
   }
 

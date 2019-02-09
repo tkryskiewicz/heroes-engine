@@ -10,8 +10,7 @@ type StateProp =
   "gameOptionsVisible" |
   "kingdomOverviewWindowVisible" |
   "puzzleWindowVisible" |
-  "scenarioInfoWindowVisible" |
-  "townWindowVisible";
+  "scenarioInfoWindowVisible";
 
 const mapStateToProps = (state: AppState): Pick<AdventureScreenContainerProps, StateProp> => ({
   adventureOptionsVisible: state.adventureOptions.visible,
@@ -20,7 +19,6 @@ const mapStateToProps = (state: AppState): Pick<AdventureScreenContainerProps, S
   kingdomOverviewWindowVisible: state.kingdomOverviewWindow.visible,
   puzzleWindowVisible: state.puzzleWindow.visible,
   scenarioInfoWindowVisible: state.scenarioInfoWindow.visible,
-  townWindowVisible: state.townWindow.townIndex !== undefined,
 });
 
 const AdventureScreenConnected = connect(mapStateToProps)(AdventureScreenContainer);
