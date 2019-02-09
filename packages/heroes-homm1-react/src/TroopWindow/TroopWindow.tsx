@@ -8,8 +8,9 @@ import * as styles from "./TroopWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { CreatureIcon, GameModal, ImageButton } from "../base";
-import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "../core";
+import { CreatureIcon, ImageButton } from "../base";
+import { GameText, withGameWindow, WithGameWindowProps } from "../core";
+import { DismissTroopPrompt } from "../DismissTroopPrompt";
 import { getCreatureNameMessage } from "../messages";
 import { getSpeedMessage, messages } from "./messages";
 
@@ -168,16 +169,11 @@ class TroopWindow extends React.Component<TroopWindowProps> {
 
   private renderDismissPrompt(visible: boolean) {
     return (
-      <GameModal
-        type="yesNo"
+      <DismissTroopPrompt
         visible={visible}
         onConfirmClick={this.onConfirmDismiss}
         onCancelClick={this.props.onCancelDismissClick}
-      >
-        <GameParagraph textSize="large">
-          <FormattedMessage {...messages.dismissMessage} />
-        </GameParagraph>
-      </GameModal>
+      />
     );
   }
 

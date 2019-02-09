@@ -15,10 +15,6 @@ export const messages = defineMessages({
     defaultMessage: "Defense Skill",
     id: "game.creature.defense",
   },
-  dismissMessage: {
-    defaultMessage: "Are you sure you want to dismiss this army?",
-    id: "game.creature.dismissMessage",
-  },
   hitPoints: {
     defaultMessage: "Hit Points",
     id: "game.creature.hitPoints",
