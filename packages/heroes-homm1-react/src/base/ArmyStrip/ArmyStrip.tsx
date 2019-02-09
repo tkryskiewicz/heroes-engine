@@ -5,7 +5,7 @@ import { ArmySize } from "heroes-homm1";
 
 import * as styles from "./ArmyStrip.module.scss";
 
-import { TroopSlot } from "./TroopSlot";
+import { TroopSlot } from "../TroopSlot";
 
 export interface ArmyStripProps {
   readonly army: Army;

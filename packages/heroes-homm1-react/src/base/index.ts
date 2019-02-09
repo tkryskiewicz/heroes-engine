@@ -14,3 +14,4 @@ export { ResourceAmount, ResourceAmountProps } from "./ResourceAmount";
 export { ResourceCost, ResourceCostProps } from "./ResourceCost";
 export { ResourceIcon, ResourceIconProps } from "./ResourceIcon";
 export { SpellIcon, SpellIconProps } from "./SpellIcon";
+export { TroopSlot, TroopSlotProps } from "./TroopSlot";

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Creature } from "heroes-core";
 
-import { TroopSlot, TroopSlotProps } from "./TroopSlot";
+import { TroopSlot, TroopSlotProps } from "heroes-homm1-react";
 
 interface Troop {
   readonly creature: string;

@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { ArmySize, CreatureId, TownId } from "heroes-homm1";
 
-import { creatureOptions, townOptions } from "../../../stories";
+import { creatureOptions, townOptions } from "../../stories";
 import { TroopSlot } from "./TroopSlot";
 
 storiesOf("base/ArmyStrip/TroopSlot", module)
