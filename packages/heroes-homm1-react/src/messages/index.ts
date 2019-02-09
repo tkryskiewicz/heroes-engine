@@ -145,7 +145,7 @@ export const moraleMessages = defineMessages({
     id: "game.morale.bad",
   },
   badDescription: {
-    defaultMessage: "???",
+    defaultMessage: "Bad morale may cause your armies to freeze in combat.",
     id: "game.morale.bad.description",
   },
   badValue: {
@@ -181,7 +181,7 @@ export const moraleMessages = defineMessages({
     id: "game.morale.neutral",
   },
   neutralDescription: {
-    defaultMessage: "???",
+    defaultMessage: "Neutral morale means your armies will never be blessed with extra attacks or freeze in combat.",
     id: "game.morale.neutral.description",
   },
   neutralValue: {
@@ -236,7 +236,7 @@ export const luckMessages = defineMessages({
     id: "game.luck.bad",
   },
   badDescription: {
-    defaultMessage: "???",
+    defaultMessage: "Bad luck sometimes falls on your armies in combat, causing their attacks to only do half damage.",
     id: "game.luck.bad.description",
   },
   badValue: {
@@ -248,7 +248,7 @@ export const luckMessages = defineMessages({
     id: "game.luck.good",
   },
   goodDescription: {
-    defaultMessage: "???",
+    defaultMessage: "Good luck sometimes lets your armies get lucky attacks (double strength) in combat.",
     id: "game.luck.good.description",
   },
   goodValue: {
