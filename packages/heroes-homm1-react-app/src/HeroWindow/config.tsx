@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Artifact } from "heroes-core";
 import { ArtifactId, SpellBook } from "heroes-homm1";
-import { NoSpellsPrompt } from "heroes-homm1-react";
+import { ArtifactDetailsPrompt, NoSpellsPrompt } from "heroes-homm1-react";
 
 import { SpellBookWindow } from "../SpellBookWindow";
 
@@ -32,6 +32,15 @@ export const getArtifactDetails = (
           spells={spellBook.data}
           onStatusTextChange={props.onStatusTextChange}
           onExitClick={props.onCloseClick}
+        />
+      );
+    }
+    default: {
+      return (
+        <ArtifactDetailsPrompt
+          artifact={artifact.id}
+          visible={true}
+          onConfirmClick={props.onCloseClick}
         />
       );
     }

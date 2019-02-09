@@ -18,7 +18,6 @@ import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "..
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
   experienceMessages,
-  getArtifactDescriptionMessage,
   getArtifactNameMessage,
   getCreatureNameMessage,
   getHeroClassNameMessage,
@@ -561,24 +560,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
       onStatusTextChange: this.onArtifactStatusTextChange,
     });
 
-    if (artifactDetails) {
-      return artifactDetails;
-    }
-
-    return (
-      <GameModal
-        type="okay"
-        visible={true}
-        onConfirmClick={this.onCloseArtifactDetailsClick}
-      >
-        <GameParagraph textSize="large">
-          <FormattedMessage {...getArtifactNameMessage(artifact.id)} />
-        </GameParagraph>
-        <GameParagraph textSize="large">
-          <FormattedMessage {...getArtifactDescriptionMessage(artifact.id)} />
-        </GameParagraph>
-      </GameModal>
-    );
+    return artifactDetails;
   }
 
   private readonly onArtifactStatusTextChange = (statusText: string) => {
