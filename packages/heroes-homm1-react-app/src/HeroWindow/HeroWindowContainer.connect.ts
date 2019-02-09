@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { HeroWindow, HeroWindowProps } from "heroes-homm1-react";
 import {
   AppState,
   gameActions,
@@ -11,6 +10,7 @@ import {
 } from "heroes-homm1-state";
 
 import { getArtifactDetails } from "./config";
+import { HeroWindowContainer, HeroWindowContainerProps } from "./HeroWindowContainer";
 
 type StateProp =
   "hero" |
@@ -23,7 +23,7 @@ type StateProp =
   "visibleArtifactDetails" |
   "dismissHeroPromptVisible";
 
-const mapStateToProps = (state: AppState): Pick<HeroWindowProps, StateProp> => ({
+const mapStateToProps = (state: AppState): Pick<HeroWindowContainerProps, StateProp> => ({
   dismissHeroPromptVisible: state.heroWindow.dismissHeroPromptVisible,
   dismissTroopPromptVisible: state.heroWindow.dismissTroopPromptVisisble,
   getArtifactDetails,
@@ -52,7 +52,7 @@ type DispatchProp =
   "onConfirmDismissHeroClick" |
   "onExitClick";
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchProp> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowContainerProps, DispatchProp> => ({
   onVisibleSkillDetailsChange(skill) {
     dispatch(heroWindowActions.changeVisibleSkillDetails(skill));
   },
@@ -110,11 +110,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowProps, DispatchP
   },
 });
 
-const HeroWindowConnected = connect(mapStateToProps, mapDispatchToProps)(HeroWindow);
+const HeroWindowContainerConnected = connect(mapStateToProps, mapDispatchToProps)(HeroWindowContainer);
 
-type HeroWindowConnectedProps = ExtractProps<typeof HeroWindowConnected>;
+type HeroWindowContainerConnectedProps = ExtractProps<typeof HeroWindowContainerConnected>;
 
 export {
-  HeroWindowConnected as HeroWindow,
-  HeroWindowConnectedProps as HeroWindowProps,
+  HeroWindowContainerConnected as HeroWindow,
+  HeroWindowContainerConnectedProps as HeroWindowProps,
 };

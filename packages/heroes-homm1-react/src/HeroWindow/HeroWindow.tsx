@@ -33,7 +33,6 @@ import {
   luckMessages,
   moraleMessages,
 } from "../messages";
-import { TroopWindow } from "../TroopWindow";
 import { ArtifactSlot, artifactSlotMessages } from "./ArtifactSlot";
 import { messages } from "./messages";
 import { MiscInfo, MiscInfoType } from "./MiscInfo";
@@ -52,12 +51,8 @@ interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
   // TODO: should this be onOpenTroopDetails?
   readonly onSelectedTroopClick: (index: number) => void;
   readonly onSwapTroops: (hero: string, index: number, withIndex: number) => void;
+  readonly renderTroopDetails: (index: number, troop: Troop, dismissible: boolean) => React.ReactNode | undefined;
   readonly troopDetailsVisible: boolean;
-  readonly dismissTroopPromptVisible: boolean;
-  readonly onDismissTroopClick: (index: number) => void;
-  // TODO: is index needed? adds some complexity
-  readonly onCancelDismissTroopClick: (index: number) => void;
-  readonly onConfirmDismissTroopClick: (hero: string, index: number) => void;
   readonly onExitTroopDetails: () => void;
   readonly getArtifactDetails: (artifact: Artifact, props: {
     readonly onCloseClick: () => void;
@@ -80,11 +75,8 @@ type DefaultProp =
   "onSelectTroop" |
   "onSelectedTroopClick" |
   "onSwapTroops" |
+  "renderTroopDetails" |
   "troopDetailsVisible" |
-  "dismissTroopPromptVisible" |
-  "onDismissTroopClick" |
-  "onCancelDismissTroopClick" |
-  "onConfirmDismissTroopClick" |
   "onExitTroopDetails" |
   "getArtifactDetails" |
   "onVisibleArtifactDetailsChange" |
@@ -101,16 +93,12 @@ interface HeroWindowState {
 class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
   public static readonly defaultProps: Pick<HeroWindowProps, DefaultProp> = {
     dismissHeroPromptVisible: false,
-    dismissTroopPromptVisible: false,
     dismissible: false,
     getArtifactDetails: () => undefined,
     onCancelDismissHeroClick: () => undefined,
-    onCancelDismissTroopClick: () => undefined,
     onConfirmDismissHeroClick: () => undefined,
-    onConfirmDismissTroopClick: () => undefined,
     onCrestClick: () => undefined,
     onDismissHeroClick: () => undefined,
-    onDismissTroopClick: () => undefined,
     onExitClick: () => undefined,
     onExitTroopDetails: () => undefined,
     onSelectTroop: () => undefined,
@@ -119,6 +107,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     onVisibleArtifactDetailsChange: () => undefined,
     onVisibleMiscInfoDetailsChange: () => undefined,
     onVisibleSkillDetailsChange: () => undefined,
+    renderTroopDetails: () => undefined,
     troopDetailsVisible: false,
   };
 
@@ -433,7 +422,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     const troopDetails = selectedTroopIndex !== undefined &&
       selectedTroop &&
       this.props.troopDetailsVisible &&
-      this.renderTroopDetails(selectedTroopIndex, selectedTroop, troopDismissible);
+      this.props.renderTroopDetails(selectedTroopIndex, selectedTroop, troopDismissible);
 
     return (
       <div className={styles.army}>
@@ -510,27 +499,6 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     this.setStatusText(statusText);
 
     this.props.onSwapTroops(this.props.hero.id, index, withIndex);
-  }
-
-  private renderTroopDetails(index: number, troop: Troop, dismissible: boolean) {
-    return (
-      <TroopWindow
-        visible={true}
-        index={index}
-        creature={troop.creature}
-        count={troop.count}
-        dismissible={dismissible}
-        dismissPromptVisible={this.props.dismissTroopPromptVisible}
-        onDismissClick={this.props.onDismissTroopClick}
-        onConfirmDismissClick={this.onConfirmDismissTroopClick}
-        onCancelDismissClick={this.props.onCancelDismissTroopClick}
-        onExitClick={this.props.onExitTroopDetails}
-      />
-    );
-  }
-
-  private readonly onConfirmDismissTroopClick = (index: number) => {
-    this.props.onConfirmDismissTroopClick(this.props.hero.id, index);
   }
 
   private renderArtifacts(artifacts: Array<Artifact | undefined>, visibleArtifactDetails?: number) {

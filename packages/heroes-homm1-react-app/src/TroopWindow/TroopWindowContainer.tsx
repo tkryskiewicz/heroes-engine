@@ -1,8 +1,7 @@
 import * as React from "react";
 
 import { Creature } from "heroes-core";
-
-import { TroopWindow, TroopWindowProps } from "./TroopWindow";
+import { TroopWindow, TroopWindowProps } from "heroes-homm1-react";
 
 export interface TroopWindowContainerProps extends Pick<TroopWindowProps, Exclude<keyof TroopWindowProps, "creature">> {
   readonly creatureById: { readonly [id: string]: Creature; };

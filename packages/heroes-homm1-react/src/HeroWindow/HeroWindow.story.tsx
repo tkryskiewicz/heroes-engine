@@ -128,19 +128,20 @@ storiesOf("HeroWindow", module)
       />
     );
   })
-  .add("troop details", () => (
-    <HeroWindow
-      hero={heroBase}
-      visible={true}
-      selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
-      troopDetailsVisible={boolean("Troop Details Visible", false)}
-      onExitTroopDetails={action("Exit Troop Details")}
-      onDismissTroopClick={action("Dismiss Troop Click")}
-      dismissTroopPromptVisible={boolean("Dismiss Troop Prompt Visible", false)}
-      onCancelDismissTroopClick={action("Cancel Dismiss Troop Click")}
-      onConfirmDismissTroopClick={action("Confirm Dismiss Troop Click")}
-    />
-  ))
+  // FIXME: move to container story?
+  // .add("troop details", () => (
+  //   <HeroWindow
+  //     hero={heroBase}
+  //     visible={true}
+  //     selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
+  //     troopDetailsVisible={boolean("Troop Details Visible", false)}
+  //     onExitTroopDetails={action("Exit Troop Details")}
+  //     onDismissTroopClick={action("Dismiss Troop Click")}
+  //     dismissTroopPromptVisible={boolean("Dismiss Troop Prompt Visible", false)}
+  //     onCancelDismissTroopClick={action("Cancel Dismiss Troop Click")}
+  //     onConfirmDismissTroopClick={action("Confirm Dismiss Troop Click")}
+  //   />
+  // ))
   .add("artifacts", () => {
     const hero: Hero = {
       ...heroBase,

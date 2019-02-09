@@ -1,1 +1,1 @@
-export { HeroWindow, HeroWindowProps } from "./HeroWindow.connect";
+export { HeroWindow, HeroWindowProps } from "./HeroWindowContainer.connect";
