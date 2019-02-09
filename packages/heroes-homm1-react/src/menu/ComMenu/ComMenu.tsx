@@ -1,12 +1,14 @@
 import * as React from "react";
 
+import { ComPort } from "heroes-homm1";
+
 import { buttonImages } from "./assets";
 
 import { ImageButton } from "../../base";
 import { Menu } from "../Menu";
 
 export interface ComMenuProps {
-  readonly onOptionClick: (value: number) => void;
+  readonly onOptionClick: (value: ComPort) => void;
   readonly onCancelClick: () => void;
 }
 
@@ -49,18 +51,18 @@ export class ComMenu extends React.Component<ComMenuProps> {
   }
 
   private readonly onCom1Click = () => {
-    this.props.onOptionClick(1);
+    this.props.onOptionClick(ComPort.Com1);
   }
 
   private readonly onCom2Click = () => {
-    this.props.onOptionClick(2);
+    this.props.onOptionClick(ComPort.Com2);
   }
 
   private readonly onCom3Click = () => {
-    this.props.onOptionClick(3);
+    this.props.onOptionClick(ComPort.Com3);
   }
 
   private readonly onCom4Click = () => {
-    this.props.onOptionClick(4);
+    this.props.onOptionClick(ComPort.Com4);
   }
 }

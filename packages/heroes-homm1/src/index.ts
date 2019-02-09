@@ -2,6 +2,7 @@ export { Alignment, changeAlignment } from "./Alignment";
 export { ArtifactId, constructArtifact } from "./artifacts";
 export { CampaignId, CampaignIds } from "./campaigns";
 export { CastleOptionStatus } from "./CastleOptionStatus";
+export { ComPort } from "./ComPort";
 export { CreatureId, creatures, creatureById } from "./creatures";
 export { CreatureSpeed } from "./CreatureSpeed";
 export { GameDifficulty, getGameDifficultyRating } from "./GameDifficulty";
