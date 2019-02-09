@@ -1,18 +1,21 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { GameModal } from "../base";
 import { GameParagraph } from "../core";
-import { getArtifactDescriptionMessage, getArtifactNameMessage } from "../messages";
+import { getArtifactDescriptionMessage, getArtifactNameMessage, getArtifactShortNameMessage } from "../messages";
 
-export interface ArtifactDetailsPromptProps {
+interface ArtifactDetailsPromptProps extends InjectedIntlProps {
   readonly artifact: string;
   readonly visible?: boolean;
   readonly onConfirmClick?: () => void;
 }
 
-export class ArtifactDetailsPrompt extends React.Component<ArtifactDetailsPromptProps> {
+// TODO: display bonus
+class ArtifactDetailsPrompt extends React.Component<ArtifactDetailsPromptProps> {
   public render() {
+    const artifactName = this.props.intl.formatMessage(getArtifactNameMessage(this.props.artifact));
+
     return (
       <GameModal
         type="okay"
@@ -20,12 +23,24 @@ export class ArtifactDetailsPrompt extends React.Component<ArtifactDetailsPrompt
         onConfirmClick={this.props.onConfirmClick}
       >
         <GameParagraph textSize="large">
-          <FormattedMessage {...getArtifactNameMessage(this.props.artifact)} />
+          <FormattedMessage {...getArtifactShortNameMessage(this.props.artifact)} />
         </GameParagraph>
         <GameParagraph textSize="large">
-          <FormattedMessage {...getArtifactDescriptionMessage(this.props.artifact)} />
+          <FormattedMessage
+            {...getArtifactDescriptionMessage(this.props.artifact)}
+            values={{ name: artifactName }}
+          />
         </GameParagraph>
       </GameModal>
     );
   }
 }
+
+const ArtifactDetailsPromptWrapped = injectIntl(ArtifactDetailsPrompt);
+
+type ArtifactDetailsPromptWrappedProps = ExtractProps<typeof ArtifactDetailsPromptWrapped>;
+
+export {
+  ArtifactDetailsPromptWrapped as ArtifactDetailsPrompt,
+  ArtifactDetailsPromptWrappedProps as ArtifactDetailsPromptProps,
+};
