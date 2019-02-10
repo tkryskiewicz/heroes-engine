@@ -9,7 +9,8 @@ import * as styles from "./HeroTradingWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { GameModal, HeroPortrait, ImageButton } from "../base";
+import { ArtifactNotTradablePrompt } from "../ArtifactNotTradablePrompt";
+import { HeroPortrait, ImageButton } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { getHeroNameMessage, getSkillNameMessage } from "../messages";
 import { ArtifactSlot } from "./ArtifactSlot";
@@ -215,15 +216,10 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
 
   private renderArtifactNotTradablePrompt() {
     return (
-      <GameModal
-        type="okay"
+      <ArtifactNotTradablePrompt
         visible={true}
         onConfirmClick={this.onCloseArtifactNotTradablePrompt}
-      >
-        <GameText size="large">
-          <FormattedMessage {...messages.artifactNotTradable} />
-        </GameText>
-      </GameModal>
+      />
     );
   }
 

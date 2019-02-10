@@ -2,6 +2,7 @@ export * from "./AdventureButtons";
 export * from "./AdventureOptions";
 export * from "./AdventureScreen";
 export * from "./ArtifactDetailsPrompt";
+export * from "./ArtifactNotTradablePrompt";
 export * from "./base";
 export * from "./BuildShipWindow";
 export * from "./BuildStructureWindow";
