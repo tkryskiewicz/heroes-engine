@@ -33,6 +33,7 @@ export * from "./NoSpellsPrompt";
 export * from "./PuzzleWindow";
 export * from "./RecruitHeroWindow";
 export * from "./RecruitTroopWindow";
+export * from "./SkillDetailsPrompt";
 export * from "./SpellBookWindow";
 export * from "./StandardGameScenarioInfoWindow";
 export * from "./StructureView";

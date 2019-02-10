@@ -28,11 +28,11 @@ import {
   getLuckNameMessage,
   getMoraleDescriptionMessage,
   getMoraleNameMessage,
-  getSkillDescriptionMessage,
   getSkillNameMessage,
   luckMessages,
   moraleMessages,
 } from "../messages";
+import { SkillDetailsPrompt } from "../SkillDetailsPrompt";
 import { ArtifactSlot, artifactSlotMessages } from "./ArtifactSlot";
 import { messages } from "./messages";
 import { MiscInfo, MiscInfoType } from "./MiscInfo";
@@ -225,19 +225,11 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
 
   private renderSkillDetails(skill: string) {
     return (
-      <GameModal
-        type="okay"
-        size={2}
+      <SkillDetailsPrompt
         visible={true}
+        skill={skill}
         onConfirmClick={this.onCloseSkillDetailsClick}
-      >
-        <GameParagraph textSize="large">
-          <FormattedMessage {...getSkillNameMessage(skill)} />
-        </GameParagraph>
-        <GameParagraph textSize="large">
-          <FormattedMessage {...getSkillDescriptionMessage(skill)} />
-        </GameParagraph>
-      </GameModal>
+      />
     );
   }
 
