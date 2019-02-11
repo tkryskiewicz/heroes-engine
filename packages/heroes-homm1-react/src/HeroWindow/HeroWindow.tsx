@@ -1,21 +1,17 @@
 import * as React from "react";
-import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
+import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Artifact, getArmySize, Hero, HeroSkills, Troop } from "heroes-core";
-import {
-  ArtifactLimit,
-  getCurrentLevel,
-  getNextLevelExperience,
-  SkillIds,
-} from "heroes-homm1";
+import { ArtifactLimit, SkillIds } from "heroes-homm1";
 
 import * as styles from "./HeroWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { ArmyStrip, Crest, GameModal, getArmyStripStatusTextMessage, HeroPortrait, ImageButton } from "../base";
-import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "../core";
+import { ArmyStrip, Crest, getArmyStripStatusTextMessage, HeroPortrait, ImageButton } from "../base";
+import { GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { DismissHeroPrompt } from "../DismissHeroPrompt";
+import { ExperienceDetailsPrompt } from "../ExperienceDetailsPrompt";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import { LuckDetailsPrompt } from "../LuckDetailsPrompt";
 import {
@@ -334,26 +330,13 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     );
   }
 
-  private renderExperienceDetails(experience: number) {
-    const currentLevel = getCurrentLevel(experience);
-    const nextLevelExperience = getNextLevelExperience(experience);
-
+  private renderExperienceDetails(value: number) {
     return (
-      <GameModal
-        type="okay"
-        size={2}
+      <ExperienceDetailsPrompt
         visible={true}
+        value={value}
         onConfirmClick={this.onCloseMiscInfoDetailsClick}
-      >
-        <GameParagraph textSize="large">
-          <FormattedMessage {...experienceMessages.level} values={{ value: currentLevel }} />
-        </GameParagraph>
-        <GameParagraph textSize="large">
-          <FormattedMessage {...experienceMessages.value} values={{ value: experience }} />
-          <br />
-          <FormattedMessage {...experienceMessages.nextLevel} values={{ value: nextLevelExperience }} />
-        </GameParagraph>
-      </GameModal>
+      />
     );
   }
 
