@@ -22,15 +22,13 @@ import {
   experienceMessages,
   getArtifactNameMessage,
   getCreatureNameMessage,
-  getHeroClassNameMessage,
   getHeroClassTitleMessage,
   getHeroNameMessage,
   getLuckNameMessage,
-  getMoraleDescriptionMessage,
   getMoraleNameMessage,
   getSkillNameMessage,
-  moraleMessages,
 } from "../messages";
+import { MoraleDetailsPrompt } from "../MoraleDetailsPrompt";
 import { SkillDetailsPrompt } from "../SkillDetailsPrompt";
 import { ArtifactSlot, artifactSlotMessages } from "./ArtifactSlot";
 import { messages } from "./messages";
@@ -316,38 +314,21 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     return content;
   }
 
-  private renderMoraleDetails(morale: number) {
+  private renderMoraleDetails(value: number) {
     return (
-      <GameModal
-        type="okay"
-        size={3}
+      <MoraleDetailsPrompt
         visible={true}
+        value={value}
         onConfirmClick={this.onCloseMiscInfoDetailsClick}
-      >
-        <GameParagraph textSize="large">
-          <FormattedMessage {...getMoraleNameMessage(morale)} />
-        </GameParagraph>
-        <GameParagraph textSize="large">
-          <FormattedMessage {...getMoraleDescriptionMessage(morale)} />
-        </GameParagraph>
-        <GameParagraph textSize="large">
-          <FormattedMessage {...moraleMessages.modifiers} />:
-            <br />
-          <FormattedMessage {...getHeroClassNameMessage(this.props.hero.heroClass)}>
-            {(className) => (<FormattedMessage {...moraleMessages.heroClassBonus} values={{ className }} />)}
-          </FormattedMessage>
-          <br />
-          <FormattedMessage {...moraleMessages.humanTroopsBonus} />
-        </GameParagraph>
-      </GameModal>
+      />
     );
   }
 
-  private renderLuckDetails(luck: number) {
+  private renderLuckDetails(value: number) {
     return (
       <LuckDetailsPrompt
         visible={true}
-        value={luck}
+        value={value}
         onConfirmClick={this.onCloseMiscInfoDetailsClick}
       />
     );
