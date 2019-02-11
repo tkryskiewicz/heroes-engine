@@ -1,13 +1,11 @@
 import * as React from "react";
-import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
+import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { StructureId } from "heroes-homm1";
 
 import * as styles from "./MageGuildWindow.module.scss";
 
-import { GameModal, SpellIcon } from "../base";
-import { GameParagraph } from "../core";
-import { getSpellDescriptionMessage, getSpellLongNameMessage, getSpellNameMessage } from "../messages";
+import { SpellDetailsPrompt } from "../SpellDetailsPrompt";
 import { StructureView } from "../StructureView";
 import {
   withTownDetailWindow,
@@ -86,27 +84,13 @@ class MageGuildWindow extends React.Component<MageGuildWindowProps> {
     }
   }
 
-  private renderSpellDetail(spell: string) {
+  private renderSpellDetail(value: string) {
     return (
-      <GameModal
-        type="okay"
-        size={3}
-        onConfirmClick={this.onCloseSpellDetailClick}
+      <SpellDetailsPrompt
         visible={true}
-      >
-        <GameParagraph textSize="large">
-          <FormattedMessage {...getSpellLongNameMessage(spell)} />
-        </GameParagraph>
-        <GameParagraph textSize="large">
-          <FormattedMessage {...getSpellDescriptionMessage(spell)} />
-        </GameParagraph>
-        <SpellIcon
-          spell={spell}
-        />
-        <GameParagraph textSize="normal">
-          <FormattedMessage {...getSpellNameMessage(spell)} />
-        </GameParagraph>
-      </GameModal>
+        spell={value}
+        onConfirmClick={this.onCloseSpellDetailClick}
+      />
     );
   }
 
