@@ -1,3 +1,5 @@
+import { select } from "@storybook/addon-knobs";
+
 import { CombatSide } from "heroes-core";
 import {
   Alignment,
@@ -156,9 +158,11 @@ export const spellTypeOptions = Object.keys(SpellType).reduce<SelectOptions>((p,
   };
 }, {});
 
-export const spellOptions = Object.keys(SpellId).reduce<SelectOptions>((p, c: any) => {
+const spellOptions = Object.keys(SpellId).reduce<SelectOptions>((p, c: any) => {
   return {
     ...p,
     [c]: SpellId[c],
   };
 }, {});
+
+export const spell = (name: string) => select(name, spellOptions, SpellId.Bless);

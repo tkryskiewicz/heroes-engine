@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { boolean, number, select } from "@storybook/addon-knobs";
+import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { withReadme } from "storybook-readme";
@@ -8,7 +8,7 @@ import { SpellId, spells as allSpells } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
-import { spellOptions } from "../stories";
+import { spell } from "../stories";
 import { MageGuildWindow, MageGuildWindowProps } from "./MageGuildWindow";
 
 const availableSpells: string[] = [
@@ -45,7 +45,7 @@ storiesOf("MageGuildWindow", module)
       visible={true}
       spells={spells}
       levelBuilt={4}
-      visibleSpellDetail={select("Visible Spell Detail", spellOptions, SpellId.Bless)}
+      visibleSpellDetail={spell("Visible Spell Detail")}
       onVisibleSpellDetailChange={action("Visible Spell Detail Change")}
     />
   ));
