@@ -1,4 +1,4 @@
-import { select } from "@storybook/addon-knobs";
+import { number, select } from "@storybook/addon-knobs";
 
 import { CombatSide } from "heroes-core";
 import {
@@ -65,6 +65,10 @@ export const skillOptions = Object.keys(Skill).reduce<SelectOptions>((p, c: any)
     [c]: Skill[c],
   };
 }, {});
+
+export const morale = (name: string) => number(name, 0, { range: true, min: -3, max: 3, step: 1 });
+
+export const luck = (name: string) => number(name, 0, { range: true, min: -3, max: 3, step: 1 });
 
 export const heroOptions = heroes.reduce<SelectOptions>((p, c) => {
   return {
