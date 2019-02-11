@@ -17,6 +17,7 @@ import { ArmyStrip, Crest, GameModal, getArmyStripStatusTextMessage, HeroPortrai
 import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { DismissHeroPrompt } from "../DismissHeroPrompt";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
+import { LuckDetailsPrompt } from "../LuckDetailsPrompt";
 import {
   experienceMessages,
   getArtifactNameMessage,
@@ -24,12 +25,10 @@ import {
   getHeroClassNameMessage,
   getHeroClassTitleMessage,
   getHeroNameMessage,
-  getLuckDescriptionMessage,
   getLuckNameMessage,
   getMoraleDescriptionMessage,
   getMoraleNameMessage,
   getSkillNameMessage,
-  luckMessages,
   moraleMessages,
 } from "../messages";
 import { SkillDetailsPrompt } from "../SkillDetailsPrompt";
@@ -346,24 +345,11 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
 
   private renderLuckDetails(luck: number) {
     return (
-      <GameModal
-        type="okay"
-        size={4}
+      <LuckDetailsPrompt
         visible={true}
+        value={luck}
         onConfirmClick={this.onCloseMiscInfoDetailsClick}
-      >
-        <GameParagraph textSize="large">
-          <FormattedMessage {...getLuckNameMessage(luck)} />
-        </GameParagraph>
-        <GameParagraph textSize="large">
-          <FormattedMessage {...getLuckDescriptionMessage(luck)} />
-        </GameParagraph>
-        <GameParagraph textSize="large">
-          <FormattedMessage {...luckMessages.modifiers} />:
-            <br />
-          <FormattedMessage {...messages.noModifiers} />
-        </GameParagraph>
-      </GameModal>
+      />
     );
   }
 

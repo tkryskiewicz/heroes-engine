@@ -17,10 +17,6 @@ export const messages = defineMessages({
     defaultMessage: "Additional hero characteristics",
     id: "ui.heroWindow.miscInfo",
   },
-  noModifiers: {
-    defaultMessage: "none",
-    id: "ui.heroWindow.noModifiers",
-  },
   statInfo: {
     defaultMessage: "View {statName} Info",
     id: "ui.heroWindow.statInfo",
