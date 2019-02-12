@@ -11,6 +11,7 @@ import {
   GameDifficulty,
   HeroClass,
   heroes,
+  HeroId,
   MountainsStructureId,
   MovementSpeed,
   OpponentSetting,
@@ -70,12 +71,14 @@ export const morale = (name: string) => number(name, 0, { range: true, min: -3, 
 
 export const luck = (name: string) => number(name, 0, { range: true, min: -3, max: 3, step: 1 });
 
-export const heroOptions = heroes.reduce<SelectOptions>((p, c) => {
+const heroOptions = heroes.reduce<SelectOptions>((p, c) => {
   return {
     ...p,
     [c.id]: c.id,
   };
 }, {});
+
+export const hero = (name: string) => select(name, heroOptions, HeroId.LordKilburn);
 
 export const townOptions = Object.keys(TownId).reduce<SelectOptions>((p, c: any) => {
   return {

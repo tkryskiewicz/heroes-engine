@@ -19,7 +19,7 @@ import {
 
 import Readme = require("./README.md");
 
-import { alignmentOptions, artifactOptions, heroClassOptions, heroOptions, luck, morale, skillOptions } from "../stories";
+import { alignmentOptions, artifactOptions, hero, heroClassOptions, luck, morale, skillOptions } from "../stories";
 import { HeroWindow } from "./HeroWindow";
 import { MiscInfoType } from "./MiscInfo";
 
@@ -57,16 +57,16 @@ const heroBase: Hero = {
 storiesOf("HeroWindow", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => {
-    const hero: Hero = {
+    const h: Hero = {
       ...heroBase,
       alignment: select("Alignment", alignmentOptions, Alignment.Red),
       heroClass: select("Hero Class", heroClassOptions, HeroClass.Knight),
-      id: select("Hero", heroOptions, HeroId.LordKilburn),
+      id: hero("Hero"),
     };
 
     return (
       <HeroWindow
-        hero={hero}
+        hero={h}
         visible={boolean("Visible", true)}
         onCrestClick={action("Crest Click")}
         onExitClick={action("Exit Click")}
@@ -74,7 +74,7 @@ storiesOf("HeroWindow", module)
     );
   })
   .add("skills", () => {
-    const hero: Hero = {
+    const h: Hero = {
       ...heroBase,
       skills: {
         [Skill.AttackSkill]: number("Attack Skill", 0, { range: true, min: 0, max: 999, step: 1 }),
@@ -86,7 +86,7 @@ storiesOf("HeroWindow", module)
 
     return (
       <HeroWindow
-        hero={hero}
+        hero={h}
         visible={true}
         visibleSkillDetails={select("Visible Skill Details", { None: "", ...skillOptions }, "")}
         onVisibleSkillDetailsChange={action("Visible Skill Details Change")}
@@ -94,7 +94,7 @@ storiesOf("HeroWindow", module)
     );
   })
   .add("additional characteristics", () => {
-    const hero: Hero = {
+    const h: Hero = {
       ...heroBase,
       experience: number("Experience", 0, { range: true, min: 0, max: 3000000000, step: 1 }),
       luck: luck("Luck"),
@@ -103,7 +103,7 @@ storiesOf("HeroWindow", module)
 
     return (
       <HeroWindow
-        hero={hero}
+        hero={h}
         visible={true}
         visibleMiscInfoDetails={select("Visible Misc Info Details", { None: "", ...miscInfoOptions }, "")}
         onVisibleMiscInfoDetailsChange={action("Visible Misc Info Details Change")}
@@ -143,7 +143,7 @@ storiesOf("HeroWindow", module)
   //   />
   // ))
   .add("artifacts", () => {
-    const hero: Hero = {
+    const h: Hero = {
       ...heroBase,
       artifacts: [
         constructArtifact(select("Artifact", artifactOptions, ArtifactId.ThunderMaceOfDominion)),
@@ -156,7 +156,7 @@ storiesOf("HeroWindow", module)
 
     return (
       <HeroWindow
-        hero={hero}
+        hero={h}
         visible={true}
         visibleArtifactDetails={visibleArtifactDetails}
         onVisibleArtifactDetailsChange={action("Visible Artifact Details Change")}

@@ -4,20 +4,20 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { withReadme } from "storybook-readme";
 
-import { Alignment, HeroClass, HeroId } from "heroes-homm1";
+import { Alignment, HeroClass } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
-import { alignmentOptions, heroClassOptions, heroOptions } from "../stories";
+import { alignmentOptions, hero, heroClassOptions } from "../stories";
 import { HeroCombatOptions, HeroCombatOptionsProps } from "./HeroCombatOptions";
 
 storiesOf("HeroCombatOptions", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => {
-    const hero: HeroCombatOptionsProps["hero"] = {
+    const h: HeroCombatOptionsProps["hero"] = {
       alignment: select("Alignment", alignmentOptions, Alignment.Red),
       heroClass: select("Hero Class", heroClassOptions, HeroClass.Knight),
-      id: select("Hero", heroOptions, HeroId.LordKilburn),
+      id: hero("Hero"),
       luck: 1,
       morale: -1,
       skills: {},
@@ -26,7 +26,7 @@ storiesOf("HeroCombatOptions", module)
     return (
       <HeroCombatOptions
         visible={boolean("Visible", true)}
-        hero={hero}
+        hero={h}
         canCastSpell={boolean("Can Cast Spell", true)}
         onCastSpellMouseEnter={action("Cast Spell Mouse Enter")}
         onCastSpellMouseLeave={action("Cast Spell Mouse Leave")}
