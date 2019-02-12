@@ -1,12 +1,12 @@
 import { action } from "@storybook/addon-actions";
-import { boolean, number, select } from "@storybook/addon-knobs";
+import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Troop } from "heroes-core";
 import { ArmySize, creatureById, CreatureId } from "heroes-homm1";
 
-import { creatureOptions } from "../stories";
+import { creature } from "../stories";
 import { TroopWindow } from "./TroopWindow";
 
 const troopBase: Troop = {
@@ -18,7 +18,7 @@ storiesOf("TroopWindow", module)
   .add("default", () => (
     <TroopWindow
       index={number("Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
-      creature={creatureById[select("Creature", creatureOptions, CreatureId.Peasant)]}
+      creature={creatureById[creature("Creature")]}
       count={number("Count", 1, { range: true, min: 0, max: 9999, step: 1 })}
       visible={boolean("Visible", true)}
       onExitClick={action("Exit Click")}

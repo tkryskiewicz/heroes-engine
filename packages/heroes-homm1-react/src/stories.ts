@@ -5,6 +5,7 @@ import {
   Alignment,
   ArtifactId,
   CastleOptionStatus,
+  CreatureId,
   creatures,
   FarmStructureId,
   ForestStructureId,
@@ -106,12 +107,14 @@ export const castleOptionStatusOptions = Object.keys(CastleOptionStatus).reduce<
   };
 }, {});
 
-export const creatureOptions = creatures.reduce<SelectOptions>((p, c) => {
+const creatureOptions = creatures.reduce<SelectOptions>((p, c) => {
   return {
     ...p,
     [c.id]: c.id,
   };
 }, {});
+
+export const creature = (name: string) => select(name, creatureOptions, CreatureId.Peasant);
 
 export const movementSpeedOptions = Object.keys(MovementSpeed).reduce<SelectOptions>((p, c: any) => {
   return {

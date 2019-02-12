@@ -3,16 +3,16 @@ import { boolean, number, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { ArmySize, CreatureId, TownId } from "heroes-homm1";
+import { ArmySize, TownId } from "heroes-homm1";
 
-import { creatureOptions, townOptions } from "../../stories";
+import { creature, townOptions } from "../../stories";
 import { TroopSlot } from "./TroopSlot";
 
 storiesOf("base/ArmyStrip/TroopSlot", module)
   .add("default", () => {
     const troop = {
       count: number("Count", 1, { range: true, min: 0, max: 9999, step: 1 }),
-      creature: select("Creature", creatureOptions, CreatureId.Peasant),
+      creature: creature("Creature"),
       town: !boolean("Neutral", false) ? select("Town", townOptions, TownId.Farm) : undefined,
     };
 

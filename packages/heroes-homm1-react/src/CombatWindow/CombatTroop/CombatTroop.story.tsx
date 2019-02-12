@@ -3,9 +3,8 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { CombatSide } from "heroes-core";
-import { CreatureId } from "heroes-homm1";
 
-import { combatSideOptions, creatureOptions } from "../../stories";
+import { combatSideOptions, creature } from "../../stories";
 import { CombatTroop } from "./CombatTroop";
 
 storiesOf("CombatWindow/CombatTroop", module)
@@ -13,7 +12,7 @@ storiesOf("CombatWindow/CombatTroop", module)
     return (
       <CombatTroop
         side={select("Side", combatSideOptions, CombatSide.Attacker)}
-        creature={select("Creature", creatureOptions, CreatureId.Peasant)}
+        creature={creature("Creature")}
         count={number("Count", 1, { range: true, min: 1, max: 9999, step: 1 })}
         selected={boolean("Selected", false)}
       />
