@@ -1,16 +1,16 @@
-import { boolean, number, select } from "@storybook/addon-knobs";
+import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { TownId, TownLimit } from "heroes-homm1";
+import { TownLimit } from "heroes-homm1";
 
-import { townOptions } from "../../stories";
+import { town } from "../../stories";
 import { TownOverview } from "./TownOverview";
 
 storiesOf("KingdomOverviewWindow/TownOverview", module)
   .add("default", () => (
     <TownOverview
-      town={select("Town", townOptions, TownId.Farm)}
+      town={town("Town")}
       isCastleBuilt={boolean("Is Castle Built", false)}
       count={number("Count", 0, { range: true, min: 0, max: TownLimit, step: 1 })}
     />

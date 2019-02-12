@@ -1,5 +1,4 @@
 import { action } from "@storybook/addon-actions";
-import { select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { withReadme } from "storybook-readme";
@@ -8,6 +7,7 @@ import { GameType, initialCampaignGameScores, initialStandardGameScores } from "
 
 import Readme = require("./README.md");
 
+import { gameType } from "../stories";
 import { HighScoresWindow } from "./HighScoresWindow";
 
 const scores = {
@@ -15,17 +15,12 @@ const scores = {
   [GameType.Standard]: initialStandardGameScores,
 };
 
-const gameTypeOptions = {
-  Campaign: GameType.Campaign,
-  Standard: GameType.Standard,
-};
-
 storiesOf("HighScoresWindow", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <HighScoresWindow
       scores={scores}
-      gameType={select("Game Type", gameTypeOptions, GameType.Standard)}
+      gameType={gameType("Game Type")}
       onGameTypeChange={action("Game Type Change")}
       onExitClick={action("Exit Click")}
     />

@@ -1,21 +1,21 @@
 import { action } from "@storybook/addon-actions";
-import { boolean, select } from "@storybook/addon-knobs";
+import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { withReadme } from "storybook-readme";
 
-import { GameDifficulty, OpponentSetting } from "heroes-homm1";
+import { OpponentSetting } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
-import { alignment, gameDifficultyOptions } from "../stories";
+import { alignment, gameDifficulty } from "../stories";
 import { NewGameWindow } from "./NewGameWindow";
 
 storiesOf("NewGameWindow", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <NewGameWindow
-      selectedGameDifficulty={select("Difficulty", gameDifficultyOptions, GameDifficulty.Easy)}
+      selectedGameDifficulty={gameDifficulty("Difficulty")}
       onGameDifficultyChange={action("Game Difficulty Change")}
       opponentSettings={[OpponentSetting.Dumb, OpponentSetting.Average, OpponentSetting.None]}
       onOpponentSettingsChange={action("Opponent Settings Change")}

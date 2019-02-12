@@ -1,18 +1,18 @@
 import { action } from "@storybook/addon-actions";
-import { boolean, select } from "@storybook/addon-knobs";
+import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { Resource, StructureId, TownId } from "heroes-homm1";
+import { Resource } from "heroes-homm1";
 
-import { structureOptions, townOptions } from "../stories";
+import { structure, town } from "../stories";
 import { BuildStructureWindow } from "./BuildStructureWindow";
 
 storiesOf("BuildStructureWindow", module)
   .add("default", () => (
     <BuildStructureWindow
-      town={select("Town", townOptions, TownId.Farm)}
-      structure={select("Structure", structureOptions, StructureId.Castle)}
+      town={town("Town")}
+      structure={structure("Structure")}
       cost={{ [Resource.Gold]: 2000, [Resource.Ore]: 20 }}
       canBuild={boolean("Can Build", true)}
       visible={boolean("Visible", true)}

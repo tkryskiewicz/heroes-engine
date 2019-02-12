@@ -7,7 +7,6 @@ import { withReadme } from "storybook-readme";
 import { Hero } from "heroes-core";
 import {
   Alignment,
-  ArmySize,
   ArtifactLimit,
   constructArtifact,
   CreatureId,
@@ -18,7 +17,7 @@ import {
 
 import Readme = require("./README.md");
 
-import { alignment, artifact, hero, heroClass, luck, morale, skillOptions } from "../stories";
+import { alignment, artifact, hero, heroClass, luck, morale, skill, skillValue, troopIndex } from "../stories";
 import { HeroWindow } from "./HeroWindow";
 import { MiscInfoType } from "./MiscInfo";
 
@@ -76,18 +75,22 @@ storiesOf("HeroWindow", module)
     const h: Hero = {
       ...heroBase,
       skills: {
-        [Skill.AttackSkill]: number("Attack Skill", 0, { range: true, min: 0, max: 999, step: 1 }),
-        [Skill.DefenseSkill]: number("Defense Skill", 0, { range: true, min: 0, max: 999, step: 1 }),
-        [Skill.SpellPower]: number("Spell Power", 0, { range: true, min: 0, max: 999, step: 1 }),
-        [Skill.Knowledge]: number("Knowledge", 0, { range: true, min: 0, max: 999, step: 1 }),
+        [Skill.AttackSkill]: skillValue("Attack Skill"),
+        [Skill.DefenseSkill]: skillValue("Defense Skill"),
+        [Skill.SpellPower]: skillValue("Spell Power"),
+        [Skill.Knowledge]: skillValue("Knowledge"),
       },
     };
+
+    const visibleSkillDetails = boolean("Skill Details Visible?", false) ?
+      skill("Visible Skill Details") :
+      undefined;
 
     return (
       <HeroWindow
         hero={h}
         visible={true}
-        visibleSkillDetails={select("Visible Skill Details", { None: "", ...skillOptions }, "")}
+        visibleSkillDetails={visibleSkillDetails}
         onVisibleSkillDetailsChange={action("Visible Skill Details Change")}
       />
     );
@@ -112,15 +115,15 @@ storiesOf("HeroWindow", module)
   .add("army", () => {
     const troopSelected = boolean("Troop Selected", false);
 
-    const troopIndex = troopSelected ?
-      number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 }) :
+    const selectedTroopIndex = troopSelected ?
+      troopIndex("Selected Troop Index") :
       undefined;
 
     return (
       <HeroWindow
         hero={heroBase}
         visible={true}
-        selectedTroopIndex={troopIndex}
+        selectedTroopIndex={selectedTroopIndex}
         onSelectTroop={action("Select Troop")}
         onSelectedTroopClick={action("Selected Troop Click")}
         onSwapTroops={action("Swap Troops")}
@@ -132,7 +135,7 @@ storiesOf("HeroWindow", module)
   //   <HeroWindow
   //     hero={heroBase}
   //     visible={true}
-  //     selectedTroopIndex={number("Selected Troop Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
+  //     selectedTroopIndex={troopIndex("Selected Troop Index")}
   //     troopDetailsVisible={boolean("Troop Details Visible", false)}
   //     onExitTroopDetails={action("Exit Troop Details")}
   //     onDismissTroopClick={action("Dismiss Troop Click")}

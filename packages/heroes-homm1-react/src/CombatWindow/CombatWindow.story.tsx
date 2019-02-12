@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { boolean, select } from "@storybook/addon-knobs";
+import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -11,22 +11,11 @@ import {
   CreatureId,
   HeroClass,
   HeroId,
-  TerrainType,
   TerrainVariants,
 } from "heroes-homm1";
 
-import { combatSideOptions as combatSideOptionsBase, terrainTypeOptions as terrainTypeOptionsBase } from "../stories";
+import { combatSide, terrainType } from "../stories";
 import { CombatWindow, CombatWindowProps } from "./CombatWindow";
-
-const terrainOptions = {
-  ...terrainTypeOptionsBase,
-  Graveyard: "graveyard",
-};
-
-const combatSideOptions = {
-  None: "",
-  ...combatSideOptionsBase,
-};
 
 storiesOf("CombatWindow", module)
   .add("default", () => {
@@ -55,7 +44,7 @@ storiesOf("CombatWindow", module)
     const battlefieldBase = createBattlefield(
       BattlefieldWidth,
       BattlefieldHeigth,
-      select("Terrain Type", terrainOptions, TerrainType.Water),
+      terrainType("Terrain Type"),
       boolean("Woody Terrain", false),
       TerrainVariants,
     );
@@ -105,13 +94,17 @@ storiesOf("CombatWindow", module)
         }),
     };
 
+    const visibleHeroCombatOptions = boolean("Hero Combat Options Visible?", false) ?
+      combatSide("Visible Hero Combat Options") :
+      undefined;
+
     return (
       <CombatWindow
         visible={boolean("Visible", true)}
         attacker={attacker}
         defender={defender}
         battlefield={battlefield}
-        visibleHeroCombatOptions={select("Visible Hero Combat Options", combatSideOptions, "" as any)}
+        visibleHeroCombatOptions={visibleHeroCombatOptions}
         onVisibleHeroCombatOptionsChange={action("Visible Hero Combat Options Change")}
       />
     );

@@ -4,9 +4,9 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Troop } from "heroes-core";
-import { ArmySize, creatureById, CreatureId } from "heroes-homm1";
+import { creatureById, CreatureId } from "heroes-homm1";
 
-import { creature } from "../stories";
+import { creature, troopIndex } from "../stories";
 import { TroopWindow } from "./TroopWindow";
 
 const troopBase: Troop = {
@@ -17,7 +17,7 @@ const troopBase: Troop = {
 storiesOf("TroopWindow", module)
   .add("default", () => (
     <TroopWindow
-      index={number("Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
+      index={troopIndex("Index")}
       creature={creatureById[creature("Creature")]}
       count={number("Count", 1, { range: true, min: 0, max: 9999, step: 1 })}
       visible={boolean("Visible", true)}
@@ -26,7 +26,7 @@ storiesOf("TroopWindow", module)
   ))
   .add("dismissal", () => (
     <TroopWindow
-      index={number("Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
+      index={troopIndex("Index")}
       creature={creatureById[troopBase.creature]}
       count={troopBase.count}
       dismissible={boolean("Dismissible", true)}

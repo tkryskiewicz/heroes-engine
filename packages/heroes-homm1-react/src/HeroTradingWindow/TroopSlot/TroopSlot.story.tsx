@@ -4,9 +4,8 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Troop } from "heroes-core";
-import { ArmySize } from "heroes-homm1";
 
-import { creature } from "../../stories";
+import { creature, troopIndex } from "../../stories";
 import { TroopSlot } from "./TroopSlot";
 
 storiesOf("HeroTradingWindow/TroopSlot", module)
@@ -18,7 +17,7 @@ storiesOf("HeroTradingWindow/TroopSlot", module)
 
     return (
       <TroopSlot
-        index={number("Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
+        index={troopIndex("Index")}
         troop={troop}
         selected={boolean("Selected", false)}
         onClick={action("Click")}
@@ -27,7 +26,7 @@ storiesOf("HeroTradingWindow/TroopSlot", module)
   })
   .add("empty", () => (
     <TroopSlot
-      index={number("Index", 0, { range: true, min: 0, max: ArmySize - 1, step: 1 })}
+      index={troopIndex("Index")}
       selected={boolean("Selected", false)}
       onClick={action("Click")}
     />
