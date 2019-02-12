@@ -25,6 +25,8 @@
       "allow-leading-underscore",
       "allow-pascal-case"
     ],
+    // tslint-no-circular-imports
+    "no-circular-imports": true,
     // tslint-immutable
     "no-array-mutation": false,
     "no-class": false,
