@@ -10,10 +10,7 @@ import { buttonImages } from "./assets";
 
 import { ArmyStrip, Crest, getArmyStripStatusTextMessage, HeroPortrait, ImageButton } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
-import { DismissHeroPrompt } from "../DismissHeroPrompt";
-import { ExperienceDetailsPrompt } from "../ExperienceDetailsPrompt";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
-import { LuckDetailsPrompt } from "../LuckDetailsPrompt";
 import {
   experienceMessages,
   getArtifactNameMessage,
@@ -24,8 +21,13 @@ import {
   getMoraleNameMessage,
   getSkillNameMessage,
 } from "../messages";
-import { MoraleDetailsPrompt } from "../MoraleDetailsPrompt";
-import { SkillDetailsPrompt } from "../SkillDetailsPrompt";
+import {
+  DismissHeroPrompt,
+  ExperienceDetailsPrompt,
+  LuckDetailsPrompt,
+  MoraleDetailsPrompt,
+  SkillDetailsPrompt,
+} from "../prompt";
 import { ArtifactSlot, artifactSlotMessages } from "./ArtifactSlot";
 import { messages } from "./messages";
 import { MiscInfo, MiscInfoType } from "./MiscInfo";

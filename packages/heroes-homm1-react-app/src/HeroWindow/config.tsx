@@ -21,7 +21,7 @@ export const getArtifactDetails = (
         return (
           <NoSpellsPrompt
             visible={true}
-            onOkayClick={props.onCloseClick}
+            onConfirmClick={props.onCloseClick}
           />
         );
       }

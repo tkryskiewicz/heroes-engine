@@ -5,7 +5,7 @@ import { StructureId } from "heroes-homm1";
 
 import * as styles from "./MageGuildWindow.module.scss";
 
-import { SpellDetailsPrompt } from "../SpellDetailsPrompt";
+import { SpellDetailsPrompt } from "../prompt";
 import { StructureView } from "../StructureView";
 import {
   withTownDetailWindow,

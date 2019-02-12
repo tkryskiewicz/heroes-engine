@@ -9,10 +9,10 @@ import * as styles from "./HeroTradingWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { ArtifactNotTradablePrompt } from "../ArtifactNotTradablePrompt";
 import { HeroPortrait, ImageButton } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { getHeroNameMessage, getSkillNameMessage } from "../messages";
+import { ArtifactNotTradablePrompt } from "../prompt";
 import { ArtifactSlot } from "./ArtifactSlot";
 import { messages } from "./messages";
 import { TroopSlot } from "./TroopSlot";

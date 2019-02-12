@@ -10,8 +10,8 @@ import { buttonImages } from "./assets";
 
 import { CreatureIcon, ImageButton } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
-import { DismissTroopPrompt } from "../DismissTroopPrompt";
 import { getCreatureNameMessage } from "../messages";
+import { DismissTroopPrompt } from "../prompt";
 import { getSpeedMessage, messages } from "./messages";
 
 interface TroopWindowProps extends WithGameWindowProps {
