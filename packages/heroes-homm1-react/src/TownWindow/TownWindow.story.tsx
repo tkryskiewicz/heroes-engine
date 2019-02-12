@@ -5,11 +5,11 @@ import * as React from "react";
 import { withReadme } from "storybook-readme";
 
 import { Town } from "heroes-core";
-import { Alignment, ArmySize, HeroClass, TownId } from "heroes-homm1";
+import { Alignment, ArmySize, TownId } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
-import { alignmentOptions, heroClassOptions, townOptions } from "../stories";
+import { alignmentOptions, heroClass, townOptions } from "../stories";
 import { TownWindow } from "./TownWindow";
 
 storiesOf("TownWindow", module)
@@ -19,7 +19,7 @@ storiesOf("TownWindow", module)
       alignment: select("Alignment", alignmentOptions, Alignment.Red),
       canConstructStructures: boolean("Can Construct Structures", true),
       garrison: [],
-      heroClass: select("Hero Class", heroClassOptions, HeroClass.Knight),
+      heroClass: heroClass("Hero Class"),
       id: select("Town", townOptions, TownId.Farm),
       name: text("Town Name", "Town Name"),
       structures: [],

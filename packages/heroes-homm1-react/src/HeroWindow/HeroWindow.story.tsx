@@ -19,7 +19,7 @@ import {
 
 import Readme = require("./README.md");
 
-import { alignmentOptions, artifactOptions, hero, heroClassOptions, luck, morale, skillOptions } from "../stories";
+import { alignmentOptions, artifactOptions, hero, heroClass, luck, morale, skillOptions } from "../stories";
 import { HeroWindow } from "./HeroWindow";
 import { MiscInfoType } from "./MiscInfo";
 
@@ -60,7 +60,7 @@ storiesOf("HeroWindow", module)
     const h: Hero = {
       ...heroBase,
       alignment: select("Alignment", alignmentOptions, Alignment.Red),
-      heroClass: select("Hero Class", heroClassOptions, HeroClass.Knight),
+      heroClass: heroClass("Hero Class"),
       id: hero("Hero"),
     };
 

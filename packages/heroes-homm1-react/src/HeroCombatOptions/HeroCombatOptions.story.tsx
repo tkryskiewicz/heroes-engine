@@ -4,11 +4,11 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { withReadme } from "storybook-readme";
 
-import { Alignment, HeroClass } from "heroes-homm1";
+import { Alignment } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
-import { alignmentOptions, hero, heroClassOptions } from "../stories";
+import { alignmentOptions, hero, heroClass } from "../stories";
 import { HeroCombatOptions, HeroCombatOptionsProps } from "./HeroCombatOptions";
 
 storiesOf("HeroCombatOptions", module)
@@ -16,7 +16,7 @@ storiesOf("HeroCombatOptions", module)
   .add("default", () => {
     const h: HeroCombatOptionsProps["hero"] = {
       alignment: select("Alignment", alignmentOptions, Alignment.Red),
-      heroClass: select("Hero Class", heroClassOptions, HeroClass.Knight),
+      heroClass: heroClass("Hero Class"),
       id: hero("Hero"),
       luck: 1,
       morale: -1,

@@ -52,12 +52,14 @@ export const resourceOptions = Object.keys(Resource).reduce<SelectOptions>((p, c
   };
 }, {});
 
-export const heroClassOptions = Object.keys(HeroClass).reduce<SelectOptions>((p, c: any) => {
+const heroClassOptions = Object.keys(HeroClass).reduce<SelectOptions>((p, c: any) => {
   return {
     ...p,
     [c]: HeroClass[c],
   };
 }, {});
+
+export const heroClass = (name: string) => select(name, heroClassOptions, HeroClass.Knight);
 
 // TODO: names should have spaces
 export const skillOptions = Object.keys(Skill).reduce<SelectOptions>((p, c: any) => {
