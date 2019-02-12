@@ -1,14 +1,11 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
+import { GameOption } from "heroes-homm1";
+
 import { GameModal } from "../base";
 import { GameText } from "../core";
 import { getTextMessage } from "./messages";
-
-export type GameOption =
-  "new-game" |
-  "load-game" |
-  "quit";
 
 export interface EndGamePromptProps {
   readonly visible?: boolean;

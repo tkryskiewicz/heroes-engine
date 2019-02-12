@@ -11,6 +11,7 @@ import {
   FarmStructureId,
   ForestStructureId,
   GameDifficulty,
+  GameOption,
   GameType,
   HeroClass,
   heroes,
@@ -34,6 +35,15 @@ import {
 interface SelectOptions {
   readonly [s: string]: string;
 }
+
+const gameOptionOptions = Object.keys(GameOption).reduce<SelectOptions>((p, c: any) => {
+  return {
+    ...p,
+    [c]: GameDifficulty[c],
+  };
+}, {});
+
+export const gameOption = (name: string) => select(name, gameOptionOptions, GameOption.NewGame);
 
 const gameTypeOptions = {
   Campaign: GameType.Campaign,
