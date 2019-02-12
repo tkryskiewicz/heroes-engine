@@ -125,12 +125,14 @@ export const opponentSettingOptions = Object.keys(OpponentSetting).reduce<Select
   };
 }, {});
 
-export const artifactOptions = Object.keys(ArtifactId).reduce<SelectOptions>((p, c: any) => {
+const artifactOptions = Object.keys(ArtifactId).reduce<SelectOptions>((p, c: any) => {
   return {
     ...p,
     [c]: ArtifactId[c],
   };
 }, {});
+
+export const artifact = (name: string) => select(name, artifactOptions, ArtifactId.ThunderMaceOfDominion);
 
 export const terrainTypeOptions = Object.keys(TerrainType).reduce<SelectOptions>((p, c: any) => {
   return {

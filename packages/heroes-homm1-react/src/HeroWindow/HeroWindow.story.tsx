@@ -8,7 +8,6 @@ import { Hero } from "heroes-core";
 import {
   Alignment,
   ArmySize,
-  ArtifactId,
   ArtifactLimit,
   constructArtifact,
   CreatureId,
@@ -19,7 +18,7 @@ import {
 
 import Readme = require("./README.md");
 
-import { alignmentOptions, artifactOptions, hero, heroClass, luck, morale, skillOptions } from "../stories";
+import { alignmentOptions, artifact, hero, heroClass, luck, morale, skillOptions } from "../stories";
 import { HeroWindow } from "./HeroWindow";
 import { MiscInfoType } from "./MiscInfo";
 
@@ -146,7 +145,7 @@ storiesOf("HeroWindow", module)
     const h: Hero = {
       ...heroBase,
       artifacts: [
-        constructArtifact(select("Artifact", artifactOptions, ArtifactId.ThunderMaceOfDominion)),
+        constructArtifact(artifact("Artifact")),
       ],
     };
 

@@ -3,9 +3,7 @@ import { select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { ArtifactId } from "heroes-homm1";
-
-import { artifactOptions } from "../../stories";
+import { artifact } from "../../stories";
 import { ArtifactIcon, ArtifactIconProps } from "./ArtifactIcon";
 
 const sizeOptions: { readonly [s: string]: ArtifactIconProps["size"] } = {
@@ -17,7 +15,7 @@ storiesOf("base/ArtifactIcon", module)
   .add("default", () => (
     <ArtifactIcon
       size={select("Size", sizeOptions, "large")}
-      artifact={select("Artifact", artifactOptions, ArtifactId.ThunderMaceOfDominion)}
+      artifact={artifact("Artifact")}
       onClick={action("Click")}
     />
   ));
