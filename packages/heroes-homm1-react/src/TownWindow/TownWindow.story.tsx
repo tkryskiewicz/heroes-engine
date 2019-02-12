@@ -5,18 +5,18 @@ import * as React from "react";
 import { withReadme } from "storybook-readme";
 
 import { Town } from "heroes-core";
-import { Alignment, ArmySize, TownId } from "heroes-homm1";
+import { ArmySize, TownId } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
-import { alignmentOptions, heroClass, townOptions } from "../stories";
+import { alignment, heroClass, townOptions } from "../stories";
 import { TownWindow } from "./TownWindow";
 
 storiesOf("TownWindow", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => {
     const town: Town = {
-      alignment: select("Alignment", alignmentOptions, Alignment.Red),
+      alignment: alignment("Alignment"),
       canConstructStructures: boolean("Can Construct Structures", true),
       garrison: [],
       heroClass: heroClass("Hero Class"),

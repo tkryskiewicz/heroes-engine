@@ -18,7 +18,7 @@ import {
 
 import Readme = require("./README.md");
 
-import { alignmentOptions, artifact, hero, heroClass, luck, morale, skillOptions } from "../stories";
+import { alignment, artifact, hero, heroClass, luck, morale, skillOptions } from "../stories";
 import { HeroWindow } from "./HeroWindow";
 import { MiscInfoType } from "./MiscInfo";
 
@@ -58,7 +58,7 @@ storiesOf("HeroWindow", module)
   .add("default", () => {
     const h: Hero = {
       ...heroBase,
-      alignment: select("Alignment", alignmentOptions, Alignment.Red),
+      alignment: alignment("Alignment"),
       heroClass: heroClass("Hero Class"),
       id: hero("Hero"),
     };

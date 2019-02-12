@@ -38,12 +38,14 @@ export const gameDifficultyOptions = Object.keys(GameDifficulty).reduce<SelectOp
   };
 }, {});
 
-export const alignmentOptions = Object.keys(Alignment).reduce<SelectOptions>((p, c: any) => {
+const alignmentOptions = Object.keys(Alignment).reduce<SelectOptions>((p, c: any) => {
   return {
     ...p,
     [c]: Alignment[c],
   };
 }, {});
+
+export const alignment = (name: string) => select(name, alignmentOptions, Alignment.Red);
 
 export const resourceOptions = Object.keys(Resource).reduce<SelectOptions>((p, c: any) => {
   return {

@@ -1,21 +1,19 @@
 import { action } from "@storybook/addon-actions";
-import { boolean, select } from "@storybook/addon-knobs";
+import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { withReadme } from "storybook-readme";
 
-import { Alignment } from "heroes-homm1";
-
 import Readme = require("./README.md");
 
-import { alignmentOptions, hero, heroClass } from "../stories";
+import { alignment, hero, heroClass } from "../stories";
 import { HeroCombatOptions, HeroCombatOptionsProps } from "./HeroCombatOptions";
 
 storiesOf("HeroCombatOptions", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => {
     const h: HeroCombatOptionsProps["hero"] = {
-      alignment: select("Alignment", alignmentOptions, Alignment.Red),
+      alignment: alignment("Alignment"),
       heroClass: heroClass("Hero Class"),
       id: hero("Hero"),
       luck: 1,
