@@ -26,25 +26,21 @@ import {
   getHeroNameMessage,
   getLuckNameMessage,
   getMoraleNameMessage,
-  getSkillNameMessage,
 } from "../messages";
 import {
   DismissHeroPrompt,
   ExperienceDetailsPrompt,
   LuckDetailsPrompt,
   MoraleDetailsPrompt,
-  SkillDetailsPrompt,
 } from "../prompt";
 import { messages } from "./messages";
 import { MiscInfo, MiscInfoType } from "./MiscInfo";
-import { SkillInfo } from "./SkillInfo";
 
 interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
   readonly renderHeroPortrait: (hero: string) => React.ReactNode;
+  readonly renderSkill: (skill: string, value: number) => React.ReactNode;
   readonly dismissible: boolean;
-  readonly visibleSkillDetails?: string;
-  readonly onVisibleSkillDetailsChange: (skill?: string) => void;
   readonly visibleMiscInfoDetails?: string;
   readonly onVisibleMiscInfoDetailsChange: (type?: string) => void;
   readonly onCrestClick: () => void;
@@ -62,6 +58,7 @@ interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
   }) => React.ReactNode | undefined;
   readonly visibleArtifactDetails?: number;
   readonly onVisibleArtifactDetailsChange: (index?: number) => void;
+  readonly statusText: string;
   readonly dismissHeroPromptVisible: boolean;
   readonly onDismissHeroClick: () => void;
   readonly onCancelDismissHeroClick: () => void;
@@ -71,9 +68,9 @@ interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
 
 type DefaultProp =
   "renderHeroPortrait" |
+  "renderSkill" |
   "dismissible" |
   "onCrestClick" |
-  "onVisibleSkillDetailsChange" |
   "onVisibleMiscInfoDetailsChange" |
   "onSelectTroop" |
   "onSelectedTroopClick" |
@@ -83,6 +80,7 @@ type DefaultProp =
   "onExitTroopDetails" |
   "getArtifactDetails" |
   "onVisibleArtifactDetailsChange" |
+  "statusText" |
   "dismissHeroPromptVisible" |
   "onDismissHeroClick" |
   "onCancelDismissHeroClick" |
@@ -109,9 +107,10 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     onSwapTroops: () => undefined,
     onVisibleArtifactDetailsChange: () => undefined,
     onVisibleMiscInfoDetailsChange: () => undefined,
-    onVisibleSkillDetailsChange: () => undefined,
     renderHeroPortrait: () => undefined,
+    renderSkill: () => undefined,
     renderTroopDetails: () => undefined,
+    statusText: "",
     troopDetailsVisible: false,
   };
 
@@ -136,7 +135,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
         <div className={styles.portrait}>
           {this.props.renderHeroPortrait(hero.id)}
         </div>
-        {this.renderSkills(hero.skills, this.props.visibleSkillDetails)}
+        {this.renderSkills(hero.skills)}
         {this.renderMiscInfo(hero, this.props.visibleMiscInfoDetails)}
         <div className={styles.crest}>
           <Crest
@@ -160,7 +159,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
         </div>
         <div className={styles.title}>
           <GameText size="large">
-            {this.state.statusText}
+            {this.props.statusText || this.state.statusText}
           </GameText>
         </div>
       </div>
@@ -183,13 +182,12 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     return heroTitle;
   }
 
-  private renderSkills(skills: HeroSkills, visibleSkillDetails?: string) {
+  private renderSkills(skills: HeroSkills) {
     const content = SkillIds.map((s) => this.renderSkill(s, skills[s] || 0));
 
     return (
       <div className={styles.skills}>
         {content}
-        {visibleSkillDetails && this.renderSkillDetails(visibleSkillDetails)}
       </div>
     );
   }
@@ -200,43 +198,9 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
         className={styles.skill}
         key={skill}
       >
-        <SkillInfo
-          skill={skill}
-          value={value}
-          onMouseEnter={this.onSkillMouseEnter}
-          onMouseLeave={this.onSkillMouseLeave}
-          onClick={this.onSkillClick}
-        />
+        {this.props.renderSkill(skill, value)}
       </div>
     );
-  }
-
-  private readonly onSkillMouseEnter = (skill: string) => {
-    const skillName = this.props.intl.formatMessage(getSkillNameMessage(skill));
-
-    this.setStatInfoStatusText(skillName);
-  }
-
-  private readonly onSkillMouseLeave = () => {
-    this.setDefaultStatusText();
-  }
-
-  private readonly onSkillClick = (skill: string) => {
-    this.props.onVisibleSkillDetailsChange(skill);
-  }
-
-  private renderSkillDetails(skill: string) {
-    return (
-      <SkillDetailsPrompt
-        visible={true}
-        skill={skill}
-        onConfirmClick={this.onCloseSkillDetailsClick}
-      />
-    );
-  }
-
-  private readonly onCloseSkillDetailsClick = () => {
-    this.props.onVisibleSkillDetailsChange();
   }
 
   private renderMiscInfo(hero: Hero, visibleMiscInfoDetails?: string) {

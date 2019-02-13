@@ -15,5 +15,6 @@ export * from "./MoraleIcon";
 export * from "./ResourceAmount";
 export * from "./ResourceCost";
 export * from "./ResourceIcon";
+export * from "./SkillInfo";
 export * from "./SpellIcon";
 export * from "./TroopSlot";

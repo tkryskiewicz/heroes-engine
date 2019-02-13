@@ -6,7 +6,7 @@ import * as React from "react";
 import { skill } from "../../stories";
 import { SkillInfo } from "./SkillInfo";
 
-storiesOf("HeroWindow/SkillInfo", module)
+storiesOf("base/SkillInfo", module)
   .add("default", () => (
     <SkillInfo
       skill={skill("Skill")}

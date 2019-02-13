@@ -1,26 +1,55 @@
 import * as React from "react";
+import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Troop } from "heroes-core";
-import { HeroPortrait, HeroWindow, HeroWindowProps } from "heroes-homm1-react";
+import {
+  getSkillNameMessage,
+  HeroPortrait,
+  HeroWindow,
+  heroWindowMessages,
+  HeroWindowProps,
+  SkillDetailsPrompt,
+  SkillInfo,
+} from "heroes-homm1-react";
 
 import { TroopWindow } from "../TroopWindow";
 
 export interface HeroWindowContainerProps extends
-  Pick<HeroWindowProps, Exclude<keyof HeroWindowProps, "renderHeroPortrait" | "renderTroopDetails">> {
+  Pick<HeroWindowProps, Exclude<keyof HeroWindowProps, "renderHeroPortrait" | "renderTroopDetails">>,
+  InjectedIntlProps {
+  readonly visibleSkillDetails?: string;
+  readonly onVisibleSkillDetailsChange: (skill?: string) => void;
   readonly dismissTroopPromptVisible: boolean;
   readonly onDismissTroopClick: (index: number) => void;
   readonly onConfirmDismissTroopClick: (hero: string, index: number) => void;
   readonly onCancelDismissTroopClick: () => void;
 }
 
-export class HeroWindowContainer extends React.Component<HeroWindowContainerProps> {
+interface HeroWindowContainerState {
+  readonly statusText: string;
+}
+
+class HeroWindowContainer extends React.Component<HeroWindowContainerProps, HeroWindowContainerState> {
+  public readonly state: HeroWindowContainerState = {
+    statusText: "",
+  };
+
+  public componentDidMount() {
+    this.setDefaultStatusText();
+  }
+
   public render() {
     return (
-      <HeroWindow
-        {...this.props}
-        renderHeroPortrait={this.renderHeroPortrait}
-        renderTroopDetails={this.renderTroopDetails}
-      />
+      <>
+        <HeroWindow
+          {...this.props}
+          renderHeroPortrait={this.renderHeroPortrait}
+          renderSkill={this.renderSkill}
+          renderTroopDetails={this.renderTroopDetails}
+          statusText={this.state.statusText}
+        />
+        {this.props.visibleSkillDetails && this.renderSkillDetails(this.props.visibleSkillDetails)}
+      </>
     );
   }
 
@@ -30,6 +59,50 @@ export class HeroWindowContainer extends React.Component<HeroWindowContainerProp
         hero={hero}
       />
     );
+  }
+
+  private readonly renderSkill = (skill: string, value: number) => {
+    return (
+      <SkillInfo
+        skill={skill}
+        value={value}
+        onMouseEnter={this.onSkillMouseEnter}
+        onMouseLeave={this.onSkillMouseLeave}
+        onClick={this.onSkillClick}
+      />
+    );
+  }
+
+  private readonly onSkillMouseEnter = (skill: string) => {
+    const { formatMessage } = this.props.intl;
+
+    const skillName = formatMessage(getSkillNameMessage(skill));
+
+    const statusText = formatMessage(heroWindowMessages.statInfo, { statName: skillName });
+
+    this.setStatusText(statusText);
+  }
+
+  private readonly onSkillMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
+  private readonly onSkillClick = (skill: string) => {
+    this.props.onVisibleSkillDetailsChange(skill);
+  }
+
+  private renderSkillDetails(skill: string) {
+    return (
+      <SkillDetailsPrompt
+        visible={true}
+        skill={skill}
+        onConfirmClick={this.onCloseSkillDetailsClick}
+      />
+    );
+  }
+
+  private readonly onCloseSkillDetailsClick = () => {
+    this.props.onVisibleSkillDetailsChange();
   }
 
   private readonly renderTroopDetails = (index: number, troop: Troop, dismissible: boolean) => {
@@ -52,4 +125,22 @@ export class HeroWindowContainer extends React.Component<HeroWindowContainerProp
   private readonly onConfirmDismissTroopClick = (index: number) => {
     this.props.onConfirmDismissTroopClick(this.props.hero.id, index);
   }
+
+  private setDefaultStatusText() {
+    const statusText = this.props.intl.formatMessage(heroWindowMessages.defaultStatusText);
+
+    this.setStatusText(statusText);
+  }
+
+  private setStatusText(statusText: string) {
+    this.setState({
+      statusText,
+    });
+  }
 }
+
+const HeroWindowContainerWrapped = injectIntl(HeroWindowContainer);
+
+export {
+  HeroWindowContainerWrapped as HeroWindowContainer,
+};

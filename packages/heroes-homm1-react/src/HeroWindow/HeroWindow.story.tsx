@@ -12,12 +12,11 @@ import {
   CreatureId,
   HeroClass,
   HeroId,
-  Skill,
 } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
-import { alignment, artifact, hero, heroClass, luck, morale, skill, skillValue, troopIndex } from "../stories";
+import { alignment, artifact, hero, heroClass, luck, morale, troopIndex } from "../stories";
 import { HeroWindow } from "./HeroWindow";
 import { MiscInfoType } from "./MiscInfo";
 
@@ -71,30 +70,30 @@ storiesOf("HeroWindow", module)
       />
     );
   })
-  .add("skills", () => {
-    const h: Hero = {
-      ...heroBase,
-      skills: {
-        [Skill.AttackSkill]: skillValue("Attack Skill"),
-        [Skill.DefenseSkill]: skillValue("Defense Skill"),
-        [Skill.SpellPower]: skillValue("Spell Power"),
-        [Skill.Knowledge]: skillValue("Knowledge"),
-      },
-    };
+  // .add("skills", () => {
+  //   const h: Hero = {
+  //     ...heroBase,
+  //     skills: {
+  //       [Skill.AttackSkill]: skillValue("Attack Skill"),
+  //       [Skill.DefenseSkill]: skillValue("Defense Skill"),
+  //       [Skill.SpellPower]: skillValue("Spell Power"),
+  //       [Skill.Knowledge]: skillValue("Knowledge"),
+  //     },
+  //   };
 
-    const visibleSkillDetails = boolean("Skill Details Visible?", false) ?
-      skill("Visible Skill Details") :
-      undefined;
+  //   const visibleSkillDetails = boolean("Skill Details Visible?", false) ?
+  //     skill("Visible Skill Details") :
+  //     undefined;
 
-    return (
-      <HeroWindow
-        hero={h}
-        visible={true}
-        visibleSkillDetails={visibleSkillDetails}
-        onVisibleSkillDetailsChange={action("Visible Skill Details Change")}
-      />
-    );
-  })
+  //   return (
+  //     <HeroWindow
+  //       hero={h}
+  //       visible={true}
+  //       visibleSkillDetails={visibleSkillDetails}
+  //       onVisibleSkillDetailsChange={action("Visible Skill Details Change")}
+  //     />
+  //   );
+  // })
   .add("additional characteristics", () => {
     const h: Hero = {
       ...heroBase,

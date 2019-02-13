@@ -25,6 +25,7 @@ export * from "./KingdomOverviewWindow";
 export * from "./Locator";
 export * from "./MageGuildWindow";
 export * from "./menu";
+export * from "./messages";
 export * from "./NewGameWindow";
 export * from "./prompt";
 export * from "./PuzzleWindow";
