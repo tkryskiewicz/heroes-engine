@@ -8,7 +8,15 @@ import * as styles from "./HeroWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { ArmyStrip, Crest, getArmyStripStatusTextMessage, HeroPortrait, ImageButton } from "../base";
+import {
+  ArmyStrip,
+  ArtifactSlot,
+  artifactSlotMessages,
+  Crest,
+  getArmyStripStatusTextMessage,
+  HeroPortrait,
+  ImageButton,
+} from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
 import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
@@ -28,7 +36,6 @@ import {
   MoraleDetailsPrompt,
   SkillDetailsPrompt,
 } from "../prompt";
-import { ArtifactSlot, artifactSlotMessages } from "./ArtifactSlot";
 import { messages } from "./messages";
 import { MiscInfo, MiscInfoType } from "./MiscInfo";
 import { SkillInfo } from "./SkillInfo";

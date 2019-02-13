@@ -1,6 +1,7 @@
 export * from "./AlignmentJewel";
 export * from "./ArmyStrip";
 export * from "./ArtifactIcon";
+export * from "./ArtifactSlot";
 export * from "./BigBar";
 export * from "./CreatureIcon";
 export * from "./Crest";

@@ -4,7 +4,7 @@ import * as styles from "./ArtifactSlot.module.scss";
 
 import { BorderImage, EmptyImage, UltimateBorderImage } from "./assets";
 
-import { ArtifactIcon } from "../../base";
+import { ArtifactIcon } from "../ArtifactIcon";
 
 export interface ArtifactSlotProps {
   readonly index: number;
