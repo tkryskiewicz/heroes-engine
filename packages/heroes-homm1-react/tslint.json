@@ -1,15 +1,3 @@
 {
-  "extends": "../../tslint.json",
-  "rules": {
-    // tslint
-    "no-implicit-dependencies": [
-      true,
-      "dev",
-      [
-        "heroes-homm1-react"
-      ]
-    ],
-    // tslint-no-circular-imports
-    "no-circular-imports": false
-  }
+  "extends": "../../tslint.json"
 }
