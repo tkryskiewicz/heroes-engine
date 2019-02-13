@@ -14,7 +14,6 @@ import {
   artifactSlotMessages,
   Crest,
   getArmyStripStatusTextMessage,
-  HeroPortrait,
   ImageButton,
 } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
@@ -42,6 +41,7 @@ import { SkillInfo } from "./SkillInfo";
 
 interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
+  readonly renderHeroPortrait: (hero: string) => React.ReactNode;
   readonly dismissible: boolean;
   readonly visibleSkillDetails?: string;
   readonly onVisibleSkillDetailsChange: (skill?: string) => void;
@@ -70,6 +70,7 @@ interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
 }
 
 type DefaultProp =
+  "renderHeroPortrait" |
   "dismissible" |
   "onCrestClick" |
   "onVisibleSkillDetailsChange" |
@@ -109,6 +110,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     onVisibleArtifactDetailsChange: () => undefined,
     onVisibleMiscInfoDetailsChange: () => undefined,
     onVisibleSkillDetailsChange: () => undefined,
+    renderHeroPortrait: () => undefined,
     renderTroopDetails: () => undefined,
     troopDetailsVisible: false,
   };
@@ -132,9 +134,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
           </GameText>
         </div>
         <div className={styles.portrait}>
-          <HeroPortrait
-            hero={hero.id}
-          />
+          {this.props.renderHeroPortrait(hero.id)}
         </div>
         {this.renderSkills(hero.skills, this.props.visibleSkillDetails)}
         {this.renderMiscInfo(hero, this.props.visibleMiscInfoDetails)}

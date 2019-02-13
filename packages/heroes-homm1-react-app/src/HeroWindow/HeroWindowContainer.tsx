@@ -1,12 +1,12 @@
 import * as React from "react";
 
 import { Troop } from "heroes-core";
-import { HeroWindow, HeroWindowProps } from "heroes-homm1-react";
+import { HeroPortrait, HeroWindow, HeroWindowProps } from "heroes-homm1-react";
 
 import { TroopWindow } from "../TroopWindow";
 
 export interface HeroWindowContainerProps extends
-  Pick<HeroWindowProps, Exclude<keyof HeroWindowProps, "renderTroopDetails">> {
+  Pick<HeroWindowProps, Exclude<keyof HeroWindowProps, "renderHeroPortrait" | "renderTroopDetails">> {
   readonly dismissTroopPromptVisible: boolean;
   readonly onDismissTroopClick: (index: number) => void;
   readonly onConfirmDismissTroopClick: (hero: string, index: number) => void;
@@ -18,7 +18,16 @@ export class HeroWindowContainer extends React.Component<HeroWindowContainerProp
     return (
       <HeroWindow
         {...this.props}
+        renderHeroPortrait={this.renderHeroPortrait}
         renderTroopDetails={this.renderTroopDetails}
+      />
+    );
+  }
+
+  private readonly renderHeroPortrait = (hero: string) => {
+    return (
+      <HeroPortrait
+        hero={hero}
       />
     );
   }
