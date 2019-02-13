@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 
 import { HeroClass } from "heroes-homm1";
 
-import "./RecruitHero.scss";
+import * as styles from "./RecruitHero.module.scss";
 
 import { buttonImages } from "./assets";
 
@@ -29,7 +29,7 @@ export class RecruitHero extends React.Component<RecruitHeroProps> {
 
   public render() {
     return (
-      <div className="recruit-hero">
+      <div className={styles.root}>
         <Row>
           <Frame>
             <HeroPortrait
@@ -38,7 +38,7 @@ export class RecruitHero extends React.Component<RecruitHeroProps> {
             />
           </Frame>
         </Row>
-        <Row className="recruit-hero-hero-name">
+        <Row className={styles.heroName}>
           <GameText size="normal">
             <FormattedMessage {...getHeroClassNameMessage(this.props.heroClass)} />
           </GameText>
