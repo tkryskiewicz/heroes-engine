@@ -1,1 +1,0 @@
-export { luckImages } from "./luck";

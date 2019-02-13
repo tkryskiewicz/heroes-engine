@@ -5,9 +5,8 @@ import * as styles from "./MiscInfo.module.scss";
 
 import { BackgroundImage, ExperienceImage } from "./assets";
 
+import { LuckIcon, MoraleIcon } from "../../base";
 import { GameText } from "../../core";
-import { LuckIcon } from "../LuckIcon";
-import { MoraleIcon } from "../MoraleIcon";
 
 export enum MiscInfoType {
   Morale = "morale",
