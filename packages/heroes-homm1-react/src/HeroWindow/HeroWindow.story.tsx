@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { boolean, number, select } from "@storybook/addon-knobs";
+import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { withReadme } from "storybook-readme";
@@ -16,17 +16,16 @@ import {
 
 import Readme = require("./README.md");
 
-import { alignment, artifact, hero, heroClass, luck, morale, troopIndex } from "../stories";
+import { alignment, artifact, hero, heroClass, troopIndex } from "../stories";
 import { HeroWindow } from "./HeroWindow";
-import { MiscInfoType } from "./MiscInfo";
 
-// TODO: move or remove???
-export const miscInfoOptions: { readonly [s: string]: MiscInfoType | "" } = {
-  Experience: MiscInfoType.Experience,
-  Luck: MiscInfoType.Luck,
-  Morale: MiscInfoType.Morale,
-  None: "",
-};
+// // TODO: move or remove???
+// export const miscInfoOptions: { readonly [s: string]: MiscInfoType | "" } = {
+//   Experience: MiscInfoType.Experience,
+//   Luck: MiscInfoType.Luck,
+//   Morale: MiscInfoType.Morale,
+//   None: "",
+// };
 
 const heroBase: Hero = {
   alignment: Alignment.Red,
@@ -94,23 +93,23 @@ storiesOf("HeroWindow", module)
   //     />
   //   );
   // })
-  .add("additional characteristics", () => {
-    const h: Hero = {
-      ...heroBase,
-      experience: number("Experience", 0, { range: true, min: 0, max: 3000000000, step: 1 }),
-      luck: luck("Luck"),
-      morale: morale("Morale"),
-    };
+  // .add("additional characteristics", () => {
+  //   const h: Hero = {
+  //     ...heroBase,
+  //     experience: number("Experience", 0, { range: true, min: 0, max: 3000000000, step: 1 }),
+  //     luck: luck("Luck"),
+  //     morale: morale("Morale"),
+  //   };
 
-    return (
-      <HeroWindow
-        hero={h}
-        visible={true}
-        visibleMiscInfoDetails={select("Visible Misc Info Details", { None: "", ...miscInfoOptions }, "")}
-        onVisibleMiscInfoDetailsChange={action("Visible Misc Info Details Change")}
-      />
-    );
-  })
+  //   return (
+  //     <HeroWindow
+  //       hero={h}
+  //       visible={true}
+  //       visibleMiscInfoDetails={select("Visible Misc Info Details", { None: "", ...miscInfoOptions }, "")}
+  //       onVisibleMiscInfoDetailsChange={action("Visible Misc Info Details Change")}
+  //     />
+  //   );
+  // })
   .add("army", () => {
     const troopSelected = boolean("Troop Selected", false);
 

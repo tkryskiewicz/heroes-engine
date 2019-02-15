@@ -4,12 +4,20 @@ import { InjectedIntlProps, injectIntl } from "react-intl";
 import { Troop } from "heroes-core";
 import {
   Crest,
+  ExperienceDetailsPrompt,
+  experienceMessages,
+  getLuckNameMessage,
+  getMoraleNameMessage,
   getSkillNameMessage,
   HeroPortrait,
   HeroWindow,
   heroWindowMessages,
   HeroWindowProps,
   kingdomOverviewWindowMessages,
+  LuckDetailsPrompt,
+  MiscInfo,
+  MiscInfoType,
+  MoraleDetailsPrompt,
   SkillDetailsPrompt,
   SkillInfo,
 } from "heroes-homm1-react";
@@ -21,6 +29,8 @@ export interface HeroWindowContainerProps extends
   InjectedIntlProps {
   readonly visibleSkillDetails?: string;
   readonly onVisibleSkillDetailsChange: (skill?: string) => void;
+  readonly visibleAdditionalStatDetails?: string;
+  readonly onVisibleAdditionalStatDetailsChange: (type?: string) => void;
   readonly onCrestClick: () => void;
   readonly dismissTroopPromptVisible: boolean;
   readonly onDismissTroopClick: (index: number) => void;
@@ -48,6 +58,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
           {...this.props}
           renderHeroPortrait={this.renderHeroPortrait}
           renderSkill={this.renderSkill}
+          renderAdditionalStats={this.renderAdditionalStats}
           renderCrest={this.renderCrest}
           renderTroopDetails={this.renderTroopDetails}
           statusText={this.state.statusText}
@@ -119,6 +130,124 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
         onClick={this.onCrestClick}
       />
     );
+  }
+
+  private readonly renderAdditionalStats = () => {
+    const { hero, visibleAdditionalStatDetails } = this.props;
+
+    const values = {
+      [MiscInfoType.Morale]: hero.morale,
+      [MiscInfoType.Luck]: hero.luck,
+      [MiscInfoType.Experience]: hero.experience,
+    };
+
+    return (
+      <>
+        <MiscInfo
+          values={values}
+          onMouseEnter={this.onMiscInfoMouseEnter}
+          onMouseLeave={this.onMiscInfoMouseLeave}
+          onInfoMouseEnter={this.onInfoMouseEnter}
+          onInfoMouseLeave={this.onInfoMouseLeave}
+          onInfoClick={this.onInfoClick}
+        />
+        {visibleAdditionalStatDetails && this.renderMiscInfoDetails(visibleAdditionalStatDetails)}
+      </>
+    );
+  }
+
+  private readonly onMiscInfoMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(heroWindowMessages.miscInfo);
+
+    this.setStatusText(statusText);
+  }
+
+  private readonly onMiscInfoMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
+  private readonly onInfoMouseEnter = (type: MiscInfoType) => {
+    const { formatMessage } = this.props.intl;
+
+    let infoText = "";
+
+    switch (type) {
+      case MiscInfoType.Morale:
+        infoText = formatMessage(getMoraleNameMessage(this.props.hero.morale));
+        break;
+      case MiscInfoType.Luck:
+        infoText = formatMessage(getLuckNameMessage(this.props.hero.luck));
+        break;
+      case MiscInfoType.Experience:
+        infoText = formatMessage(experienceMessages.title);
+        break;
+    }
+
+    const statusText = formatMessage(heroWindowMessages.statInfo, { statName: infoText });
+
+    this.setStatusText(statusText);
+  }
+
+  private readonly onInfoMouseLeave = () => {
+    this.onMiscInfoMouseEnter();
+  }
+
+  private readonly onInfoClick = (type: string) => {
+    this.props.onVisibleAdditionalStatDetailsChange(type);
+  }
+
+  private renderMiscInfoDetails(type: string) {
+    const { hero } = this.props;
+
+    let content;
+
+    switch (type) {
+      case MiscInfoType.Morale:
+        content = this.renderMoraleDetails(hero.morale);
+        break;
+      case MiscInfoType.Luck:
+        content = this.renderLuckDetails(hero.luck);
+        break;
+      case MiscInfoType.Experience:
+        content = this.renderExperienceDetails(hero.experience);
+        break;
+    }
+
+    return content;
+  }
+
+  private renderMoraleDetails(value: number) {
+    return (
+      <MoraleDetailsPrompt
+        visible={true}
+        value={value}
+        onConfirmClick={this.onCloseMiscInfoDetailsClick}
+      />
+    );
+  }
+
+  private renderLuckDetails(value: number) {
+    return (
+      <LuckDetailsPrompt
+        visible={true}
+        value={value}
+        onConfirmClick={this.onCloseMiscInfoDetailsClick}
+      />
+    );
+  }
+
+  private renderExperienceDetails(value: number) {
+    return (
+      <ExperienceDetailsPrompt
+        visible={true}
+        value={value}
+        onConfirmClick={this.onCloseMiscInfoDetailsClick}
+      />
+    );
+  }
+
+  private readonly onCloseMiscInfoDetailsClick = () => {
+    this.props.onVisibleAdditionalStatDetailsChange();
   }
 
   private readonly onCrestMouseEnter = () => {

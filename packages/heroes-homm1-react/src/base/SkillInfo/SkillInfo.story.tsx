@@ -1,16 +1,15 @@
 import { action } from "@storybook/addon-actions";
-import { number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { skill } from "../../stories";
+import { skill, skillValue } from "../../stories";
 import { SkillInfo } from "./SkillInfo";
 
 storiesOf("base/SkillInfo", module)
   .add("default", () => (
     <SkillInfo
       skill={skill("Skill")}
-      value={number("Value", 0, { range: true, min: 0, max: 10, step: 1 })}
+      value={skillValue("Value")}
       onMouseEnter={action("Mouse Enter")}
       onMouseLeave={action("Mouse Leave")}
       onClick={action("Click")}

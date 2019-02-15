@@ -17,31 +17,23 @@ import {
 } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
 import {
-  experienceMessages,
   getArtifactNameMessage,
   getCreatureNameMessage,
   getHeroClassTitleMessage,
   getHeroNameMessage,
-  getLuckNameMessage,
-  getMoraleNameMessage,
 } from "../messages";
 import {
   DismissHeroPrompt,
-  ExperienceDetailsPrompt,
-  LuckDetailsPrompt,
-  MoraleDetailsPrompt,
 } from "../prompt";
 import { messages } from "./messages";
-import { MiscInfo, MiscInfoType } from "./MiscInfo";
 
 interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
   readonly renderHeroPortrait: (hero: string) => React.ReactNode;
   readonly renderSkill: (skill: string, value: number) => React.ReactNode;
+  readonly renderAdditionalStats: () => React.ReactNode;
   readonly renderCrest: (alignment: string, heroClass: string) => React.ReactNode;
   readonly dismissible: boolean;
-  readonly visibleMiscInfoDetails?: string;
-  readonly onVisibleMiscInfoDetailsChange: (type?: string) => void;
   readonly selectedTroopIndex?: number;
   readonly onSelectTroop: (index: number) => void;
   // TODO: should this be onOpenTroopDetails?
@@ -67,9 +59,9 @@ interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
 type DefaultProp =
   "renderHeroPortrait" |
   "renderSkill" |
+  "renderAdditionalStats" |
   "renderCrest" |
   "dismissible" |
-  "onVisibleMiscInfoDetailsChange" |
   "onSelectTroop" |
   "onSelectedTroopClick" |
   "onSwapTroops" |
@@ -103,7 +95,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     onSelectedTroopClick: () => undefined,
     onSwapTroops: () => undefined,
     onVisibleArtifactDetailsChange: () => undefined,
-    onVisibleMiscInfoDetailsChange: () => undefined,
+    renderAdditionalStats: () => undefined,
     renderCrest: () => undefined,
     renderHeroPortrait: () => undefined,
     renderSkill: () => undefined,
@@ -134,7 +126,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
           {this.props.renderHeroPortrait(hero.id)}
         </div>
         {this.renderSkills(hero.skills)}
-        {this.renderMiscInfo(hero, this.props.visibleMiscInfoDetails)}
+        {this.renderMiscInfo()}
         <div className={styles.crest}>
           {this.props.renderCrest(hero.alignment, hero.heroClass)}
         </div>
@@ -156,12 +148,6 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
         </div>
       </div>
     );
-  }
-
-  private setStatInfoStatusText(statName: string) {
-    const statusText = this.props.intl.formatMessage(messages.statInfo, { statName });
-
-    this.setStatusText(statusText);
   }
 
   private getHeroTitle() {
@@ -195,118 +181,12 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     );
   }
 
-  private renderMiscInfo(hero: Hero, visibleMiscInfoDetails?: string) {
-    const values = {
-      [MiscInfoType.Morale]: hero.morale,
-      [MiscInfoType.Luck]: hero.luck,
-      [MiscInfoType.Experience]: hero.experience,
-    };
-
+  private renderMiscInfo() {
     return (
       <div className={styles.miscInfo}>
-        <MiscInfo
-          values={values}
-          onMouseEnter={this.onMiscInfoMouseEnter}
-          onMouseLeave={this.onMiscInfoMouseLeave}
-          onInfoMouseEnter={this.onInfoMouseEnter}
-          onInfoMouseLeave={this.onInfoMouseLeave}
-          onInfoClick={this.onInfoClick}
-        />
-        {visibleMiscInfoDetails && this.renderMiscInfoDetails(visibleMiscInfoDetails)}
+        {this.props.renderAdditionalStats()}
       </div>
     );
-  }
-
-  private readonly onMiscInfoMouseEnter = () => {
-    const statusText = this.props.intl.formatMessage(messages.miscInfo);
-
-    this.setStatusText(statusText);
-  }
-
-  private readonly onMiscInfoMouseLeave = () => {
-    this.setDefaultStatusText();
-  }
-
-  private readonly onInfoMouseEnter = (type: MiscInfoType) => {
-    const { formatMessage } = this.props.intl;
-
-    let infoText = "";
-
-    switch (type) {
-      case MiscInfoType.Morale:
-        infoText = formatMessage(getMoraleNameMessage(this.props.hero.morale));
-        break;
-      case MiscInfoType.Luck:
-        infoText = formatMessage(getLuckNameMessage(this.props.hero.luck));
-        break;
-      case MiscInfoType.Experience:
-        infoText = formatMessage(experienceMessages.title);
-        break;
-    }
-
-    this.setStatInfoStatusText(infoText);
-  }
-
-  private readonly onInfoMouseLeave = () => {
-    this.onMiscInfoMouseEnter();
-  }
-
-  private readonly onInfoClick = (type: string) => {
-    this.props.onVisibleMiscInfoDetailsChange(type);
-  }
-
-  private renderMiscInfoDetails(type: string) {
-    const { hero } = this.props;
-
-    let content;
-
-    switch (type) {
-      case MiscInfoType.Morale:
-        content = this.renderMoraleDetails(hero.morale);
-        break;
-      case MiscInfoType.Luck:
-        content = this.renderLuckDetails(hero.luck);
-        break;
-      case MiscInfoType.Experience:
-        content = this.renderExperienceDetails(hero.experience);
-        break;
-    }
-
-    return content;
-  }
-
-  private renderMoraleDetails(value: number) {
-    return (
-      <MoraleDetailsPrompt
-        visible={true}
-        value={value}
-        onConfirmClick={this.onCloseMiscInfoDetailsClick}
-      />
-    );
-  }
-
-  private renderLuckDetails(value: number) {
-    return (
-      <LuckDetailsPrompt
-        visible={true}
-        value={value}
-        onConfirmClick={this.onCloseMiscInfoDetailsClick}
-      />
-    );
-  }
-
-  private renderExperienceDetails(value: number) {
-    return (
-      <ExperienceDetailsPrompt
-        visible={true}
-        value={value}
-        onConfirmClick={this.onCloseMiscInfoDetailsClick}
-      />
-    );
-  }
-
-  private readonly onCloseMiscInfoDetailsClick = () => {
-    this.props.onVisibleMiscInfoDetailsChange();
   }
 
   private renderArmy(hero: Hero, selectedTroopIndex?: number) {

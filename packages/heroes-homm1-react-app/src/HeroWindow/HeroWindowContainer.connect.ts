@@ -15,7 +15,7 @@ import { HeroWindowContainer, HeroWindowContainerProps } from "./HeroWindowConta
 type StateProp =
   "hero" |
   "visibleSkillDetails" |
-  "visibleMiscInfoDetails" |
+  "visibleAdditionalStatDetails" |
   "selectedTroopIndex" |
   "troopDetailsVisible" |
   "dismissTroopPromptVisible" |
@@ -30,14 +30,14 @@ const mapStateToProps = (state: AppState): Pick<HeroWindowContainerProps, StateP
   hero: state.game.heroes[state.heroWindow.heroIndex!],
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,
   troopDetailsVisible: state.heroWindow.visibleTroopDetails,
+  visibleAdditionalStatDetails: state.heroWindow.visibleMiscInfoDetails,
   visibleArtifactDetails: state.heroWindow.visibleArtifactDetails,
-  visibleMiscInfoDetails: state.heroWindow.visibleMiscInfoDetails,
   visibleSkillDetails: state.heroWindow.visibleSkillDetails,
 });
 
 type DispatchProp =
   "onVisibleSkillDetailsChange" |
-  "onVisibleMiscInfoDetailsChange" |
+  "onVisibleAdditionalStatDetailsChange" |
   "onCrestClick" |
   "onSelectTroop" |
   "onSelectedTroopClick" |
@@ -56,7 +56,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowContainerProps, 
   onVisibleSkillDetailsChange(skill) {
     dispatch(heroWindowActions.changeVisibleSkillDetails(skill));
   },
-  onVisibleMiscInfoDetailsChange(type) {
+  onVisibleAdditionalStatDetailsChange(type) {
     dispatch(heroWindowActions.changeVisibleMiscInfoDetails(type));
   },
   onCrestClick() {
