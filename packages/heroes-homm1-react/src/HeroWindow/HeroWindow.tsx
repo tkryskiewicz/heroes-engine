@@ -2,7 +2,6 @@ import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { HeroSkills } from "heroes-core";
-import { ArmySize, ArtifactLimit, SkillIds } from "heroes-homm1";
 
 import * as styles from "./HeroWindow.module.scss";
 
@@ -10,6 +9,10 @@ import { buttonImages } from "./assets";
 
 import { ImageButton } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
+
+const SkillSlotCount = 4;
+const TroopSlotCount = 5;
+const ArtifactSlotCount = 14;
 
 interface Hero {
   readonly skills: HeroSkills;
@@ -112,7 +115,9 @@ class HeroWindow extends React.Component<HeroWindowProps> {
   }
 
   private renderSkills(skills: HeroSkills) {
-    const content = SkillIds.map((s) => this.renderSkill(s, skills[s] || 0));
+    const content = [...new Array(SkillSlotCount).keys()]
+      .map((i) => Object.keys(skills)[i])
+      .map((s) => this.renderSkill(s, skills[s] || 0));
 
     return (
       <div className={styles.skills}>
@@ -124,8 +129,8 @@ class HeroWindow extends React.Component<HeroWindowProps> {
   private renderSkill(skill: string, value: number) {
     return (
       <div
-        className={styles.skill}
         key={skill}
+        className={styles.skill}
       >
         {this.props.renderSkill(skill, value)}
       </div>
@@ -133,7 +138,7 @@ class HeroWindow extends React.Component<HeroWindowProps> {
   }
 
   private renderArmy() {
-    const content = [...new Array(ArmySize).keys()].map((i) => this.renderTroop(i));
+    const content = [...new Array(TroopSlotCount).keys()].map((i) => this.renderTroop(i));
 
     return (
       <div className={styles.army}>
@@ -154,7 +159,7 @@ class HeroWindow extends React.Component<HeroWindowProps> {
   }
 
   private renderArtifacts() {
-    const content = [...new Array(ArtifactLimit).keys()].map((i) => this.renderArtifact(i));
+    const content = [...new Array(ArtifactSlotCount).keys()].map((i) => this.renderArtifact(i));
 
     return (
       <div className={styles.artifacts}>
