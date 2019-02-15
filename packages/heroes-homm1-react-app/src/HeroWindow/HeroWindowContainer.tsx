@@ -6,8 +6,11 @@ import {
   AdditionalStatsInfo,
   AdditionalStatType,
   Crest,
+  DismissHeroPrompt,
   ExperienceDetailsPrompt,
   experienceMessages,
+  getHeroClassTitleMessage,
+  getHeroNameMessage,
   getLuckNameMessage,
   getMoraleNameMessage,
   getSkillNameMessage,
@@ -24,7 +27,7 @@ import {
 
 import { TroopWindow } from "../TroopWindow";
 
-export interface HeroWindowContainerProps extends
+interface HeroWindowContainerProps extends
   HeroWindowProps,
   InjectedIntlProps {
   readonly visibleSkillDetails?: string;
@@ -36,13 +39,25 @@ export interface HeroWindowContainerProps extends
   readonly onDismissTroopClick: (index: number) => void;
   readonly onConfirmDismissTroopClick: (hero: string, index: number) => void;
   readonly onCancelDismissTroopClick: () => void;
+  readonly dismissible: boolean;
+  readonly onDismissHeroClick: () => void;
+  readonly dismissHeroPromptVisible: boolean;
+  readonly onConfirmDismissHeroClick: (hero: string) => void;
+  readonly onCancelDismissHeroClick: () => void;
 }
+
+type DefaultProp =
+  "dismissible";
 
 interface HeroWindowContainerState {
   readonly statusText: string;
 }
 
 class HeroWindowContainer extends React.Component<HeroWindowContainerProps, HeroWindowContainerState> {
+  public static readonly defaultProps: Pick<HeroWindowContainerProps, DefaultProp> = {
+    dismissible: false,
+  };
+
   public readonly state: HeroWindowContainerState = {
     statusText: "",
   };
@@ -56,16 +71,36 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
       <>
         <HeroWindow
           {...this.props}
+          title={this.getHeroTitle()}
           renderHeroPortrait={this.renderHeroPortrait}
           renderSkill={this.renderSkill}
           renderAdditionalStats={this.renderAdditionalStats}
           renderCrest={this.renderCrest}
           renderTroopDetails={this.renderTroopDetails}
+          dismissVisible={this.props.dismissible}
+          onDismissMouseEnter={this.onDismissHeroMouseEnter}
+          onDismissMouseLeave={this.onDismissHeroMouseLeave}
+          onDismissClick={this.props.onDismissHeroClick}
+          onExitMouseEnter={this.onExitMouseEnter}
+          onExitMouseLeave={this.onExitMouseLeave}
+          onExitClick={this.props.onExitClick}
           statusText={this.state.statusText}
         />
         {this.props.visibleSkillDetails && this.renderSkillDetails(this.props.visibleSkillDetails)}
+        {this.props.dismissible && this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
       </>
     );
+  }
+
+  private getHeroTitle() {
+    const { hero } = this.props;
+    const { formatMessage } = this.props.intl;
+
+    const heroName = formatMessage(getHeroNameMessage(hero.id));
+
+    const heroTitle = formatMessage(getHeroClassTitleMessage(hero.heroClass), { heroName });
+
+    return heroTitle;
   }
 
   private readonly renderHeroPortrait = () => {
@@ -287,6 +322,42 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     this.props.onConfirmDismissTroopClick(this.props.hero.id, index);
   }
 
+  private readonly onDismissHeroMouseEnter = () => {
+    const heroTitle = this.getHeroTitle();
+
+    const statusText = this.props.intl.formatMessage(heroWindowMessages.dismiss, { heroName: heroTitle });
+
+    this.setStatusText(statusText);
+  }
+
+  private readonly onDismissHeroMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
+  private renderDismissHeroPrompt(visible: boolean) {
+    return (
+      <DismissHeroPrompt
+        visible={visible}
+        onConfirmClick={this.onConfirmDismissHeroClick}
+        onCancelClick={this.props.onCancelDismissHeroClick}
+      />
+    );
+  }
+
+  private readonly onConfirmDismissHeroClick = () => {
+    this.props.onConfirmDismissHeroClick(this.props.hero.id);
+  }
+
+  private readonly onExitMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(heroWindowMessages.exit);
+
+    this.setStatusText(statusText);
+  }
+
+  private readonly onExitMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
   private setDefaultStatusText() {
     const statusText = this.props.intl.formatMessage(heroWindowMessages.defaultStatusText);
 
@@ -302,6 +373,9 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
 
 const HeroWindowContainerWrapped = injectIntl(HeroWindowContainer);
 
+type HeroWindowContainerWrappedProps = ExtractProps<typeof HeroWindowContainerWrapped>;
+
 export {
   HeroWindowContainerWrapped as HeroWindowContainer,
+  HeroWindowContainerWrappedProps as HeroWindowContainerProps,
 };

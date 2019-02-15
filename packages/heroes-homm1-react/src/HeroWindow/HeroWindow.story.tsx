@@ -64,7 +64,8 @@ storiesOf("HeroWindow", module)
       <HeroWindow
         hero={h}
         visible={boolean("Visible", true)}
-        // onCrestClick={action("Crest Click")}
+        onExitMouseEnter={action("Exit Mouse Enter")}
+        onExitMouseLeave={action("Exit Mouse Leave")}
         onExitClick={action("Exit Click")}
       />
     );
@@ -167,10 +168,9 @@ storiesOf("HeroWindow", module)
     <HeroWindow
       hero={heroBase}
       visible={true}
-      dismissible={boolean("Dismissible", true)}
-      dismissHeroPromptVisible={boolean("Dismiss Hero Prompt Visible", false)}
-      onDismissHeroClick={action("Dismiss Hero Click")}
-      onCancelDismissHeroClick={action("Cancel Dismiss Hero Click")}
-      onConfirmDismissHeroClick={action("Confirm Dismiss Hero Click")}
+      dismissVisible={boolean("Dismiss Visible", true)}
+      onDismissMouseEnter={action("Dismiss Mouse Enter")}
+      onDismissMouseLeave={action("Dismiss Mouse Leave")}
+      onDismissClick={action("Dismiss Hero Click")}
     />
   ));

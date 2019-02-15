@@ -24,6 +24,8 @@ export class HeroLocatorsContainer extends React.Component<HeroLocatorsContainer
     return (
       <HeroWindow
         visible={true}
+        // FIXME: should be optional
+        dismissible={false}
       />
     );
   }

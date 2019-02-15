@@ -19,21 +19,20 @@ import { GameText, withGameWindow, WithGameWindowProps } from "../core";
 import {
   getArtifactNameMessage,
   getCreatureNameMessage,
-  getHeroClassTitleMessage,
-  getHeroNameMessage,
 } from "../messages";
-import {
-  DismissHeroPrompt,
-} from "../prompt";
 import { messages } from "./messages";
 
 interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
+  readonly title: string;
   readonly renderHeroPortrait: () => React.ReactNode;
   readonly renderSkill: (skill: string, value: number) => React.ReactNode;
   readonly renderAdditionalStats: () => React.ReactNode;
   readonly renderCrest: () => React.ReactNode;
-  readonly dismissible: boolean;
+  readonly dismissVisible: boolean;
+  readonly onDismissMouseEnter: () => void;
+  readonly onDismissMouseLeave: () => void;
+  readonly onDismissClick: () => void;
   readonly selectedTroopIndex?: number;
   readonly onSelectTroop: (index: number) => void;
   // TODO: should this be onOpenTroopDetails?
@@ -48,20 +47,22 @@ interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
   }) => React.ReactNode | undefined;
   readonly visibleArtifactDetails?: number;
   readonly onVisibleArtifactDetailsChange: (index?: number) => void;
-  readonly statusText: string;
-  readonly dismissHeroPromptVisible: boolean;
-  readonly onDismissHeroClick: () => void;
-  readonly onCancelDismissHeroClick: () => void;
-  readonly onConfirmDismissHeroClick: (hero: string) => void;
+  readonly onExitMouseEnter: () => void;
+  readonly onExitMouseLeave: () => void;
   readonly onExitClick: () => void;
+  readonly statusText: string;
 }
 
 type DefaultProp =
+  "title" |
   "renderHeroPortrait" |
   "renderSkill" |
   "renderAdditionalStats" |
   "renderCrest" |
-  "dismissible" |
+  "dismissVisible" |
+  "onDismissMouseEnter" |
+  "onDismissMouseLeave" |
+  "onDismissClick" |
   "onSelectTroop" |
   "onSelectedTroopClick" |
   "onSwapTroops" |
@@ -70,12 +71,10 @@ type DefaultProp =
   "onExitTroopDetails" |
   "getArtifactDetails" |
   "onVisibleArtifactDetailsChange" |
-  "statusText" |
-  "dismissHeroPromptVisible" |
-  "onDismissHeroClick" |
-  "onCancelDismissHeroClick" |
-  "onConfirmDismissHeroClick" |
-  "onExitClick";
+  "onExitMouseEnter" |
+  "onExitMouseLeave" |
+  "onExitClick" |
+  "statusText";
 
 interface HeroWindowState {
   readonly statusText: string;
@@ -83,13 +82,14 @@ interface HeroWindowState {
 
 class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
   public static readonly defaultProps: Pick<HeroWindowProps, DefaultProp> = {
-    dismissHeroPromptVisible: false,
-    dismissible: false,
+    dismissVisible: false,
     getArtifactDetails: () => undefined,
-    onCancelDismissHeroClick: () => undefined,
-    onConfirmDismissHeroClick: () => undefined,
-    onDismissHeroClick: () => undefined,
+    onDismissClick: () => undefined,
+    onDismissMouseEnter: () => undefined,
+    onDismissMouseLeave: () => undefined,
     onExitClick: () => undefined,
+    onExitMouseEnter: () => undefined,
+    onExitMouseLeave: () => undefined,
     onExitTroopDetails: () => undefined,
     onSelectTroop: () => undefined,
     onSelectedTroopClick: () => undefined,
@@ -101,6 +101,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     renderSkill: () => undefined,
     renderTroopDetails: () => undefined,
     statusText: "",
+    title: "",
     troopDetailsVisible: false,
   };
 
@@ -119,7 +120,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
       <div className={styles.root}>
         <div className={styles.name}>
           <GameText size="large">
-            {this.getHeroTitle()}
+            {this.props.title}
           </GameText>
         </div>
         <div className={styles.portrait}>
@@ -133,13 +134,13 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
           {this.props.renderCrest()}
         </div>
         {this.renderArmy(hero, selectedTroopIndex)}
-        {this.props.dismissible && this.renderDismissal(this.props.dismissHeroPromptVisible)}
+        {this.props.dismissVisible && this.renderDismissal()}
         {this.renderArtifacts(hero.artifacts, this.props.visibleArtifactDetails)}
         <div className={styles.exit}>
           <ImageButton
             images={buttonImages.exit}
-            onMouseEnter={this.onExitMouseEnter}
-            onMouseLeave={this.onExitMouseLeave}
+            onMouseEnter={this.props.onExitMouseEnter}
+            onMouseLeave={this.props.onExitMouseLeave}
             onClick={this.props.onExitClick}
           />
         </div>
@@ -150,16 +151,6 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
         </div>
       </div>
     );
-  }
-
-  private getHeroTitle() {
-    const { formatMessage } = this.props.intl;
-
-    const heroName = formatMessage(getHeroNameMessage(this.props.hero.id));
-
-    const heroTitle = formatMessage(getHeroClassTitleMessage(this.props.hero.heroClass), { heroName });
-
-    return heroTitle;
   }
 
   private renderSkills(skills: HeroSkills) {
@@ -343,54 +334,17 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     this.props.onVisibleArtifactDetailsChange();
   }
 
-  private renderDismissal(dismissHeroPromptVisible: boolean) {
+  private renderDismissal() {
     return (
       <div className={styles.dismiss}>
         <ImageButton
           images={buttonImages.dismiss}
-          onMouseEnter={this.onDismissMouseEnter}
-          onMouseLeave={this.onDismissMouseLeave}
-          onClick={this.props.onDismissHeroClick}
+          onMouseEnter={this.props.onDismissMouseEnter}
+          onMouseLeave={this.props.onDismissMouseLeave}
+          onClick={this.props.onDismissClick}
         />
-        {this.renderDismissHeroPrompt(dismissHeroPromptVisible)}
       </div>
     );
-  }
-
-  private readonly onDismissMouseEnter = () => {
-    const heroTitle = this.getHeroTitle();
-
-    const statusText = this.props.intl.formatMessage(messages.dismiss, { heroName: heroTitle });
-
-    this.setStatusText(statusText);
-  }
-
-  private readonly onDismissMouseLeave = () => {
-    this.setDefaultStatusText();
-  }
-
-  private renderDismissHeroPrompt(visible: boolean) {
-    return (
-      <DismissHeroPrompt
-        visible={visible}
-        onConfirmClick={this.onConfirmDismissHeroClick}
-        onCancelClick={this.props.onCancelDismissHeroClick}
-      />
-    );
-  }
-
-  private readonly onConfirmDismissHeroClick = () => {
-    this.props.onConfirmDismissHeroClick(this.props.hero.id);
-  }
-
-  private readonly onExitMouseEnter = () => {
-    const statusText = this.props.intl.formatMessage(messages.exit);
-
-    this.setStatusText(statusText);
-  }
-
-  private readonly onExitMouseLeave = () => {
-    this.setDefaultStatusText();
   }
 
   private setStatusText(statusText: string) {
