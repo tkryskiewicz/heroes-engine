@@ -5,7 +5,7 @@
   background: url("./assets/background.jpg");
 }
 
-.name {
+.title {
   position: absolute;
   width: 100%;
   top: 68px;
@@ -47,12 +47,6 @@
   left: 156px;
 }
 
-.dismiss {
-  position: absolute;
-  top: 317px;
-  left: 10px;
-}
-
 .artifacts {
   position: absolute;
   top: 302px;
@@ -65,13 +59,19 @@
   margin-bottom: 3px;
 }
 
+.dismiss {
+  position: absolute;
+  top: 317px;
+  left: 10px;
+}
+
 .exit {
   position: absolute;
   top: 317px;
   left: 602px;
 }
 
-.title {
+.status-text {
   position: absolute;
   width: 100%;
   bottom: 0px;

@@ -1,17 +1,20 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Artifact, Troop } from "heroes-core";
+import { Artifact, getArmySize, Hero, Troop } from "heroes-core";
 import {
   AdditionalStatsInfo,
   AdditionalStatType,
+  ArmyStrip,
   ArtifactSlot,
   artifactSlotMessages,
   Crest,
   DismissHeroPrompt,
   ExperienceDetailsPrompt,
   experienceMessages,
+  getArmyStripStatusTextMessage,
   getArtifactNameMessage,
+  getCreatureNameMessage,
   getHeroClassTitleMessage,
   getHeroNameMessage,
   getLuckNameMessage,
@@ -20,24 +23,32 @@ import {
   HeroPortrait,
   HeroWindow,
   heroWindowMessages,
-  HeroWindowProps,
   kingdomOverviewWindowMessages,
   LuckDetailsPrompt,
   MoraleDetailsPrompt,
   SkillDetailsPrompt,
   SkillInfo,
+  WithGameWindowProps,
 } from "heroes-homm1-react";
 
 import { TroopWindow } from "../TroopWindow";
 
-interface HeroWindowContainerProps extends
-  HeroWindowProps,
-  InjectedIntlProps {
+interface HeroWindowContainerProps extends InjectedIntlProps, WithGameWindowProps {
+  readonly hero: Hero;
+
   readonly visibleSkillDetails?: string;
   readonly onVisibleSkillDetailsChange: (skill?: string) => void;
   readonly visibleAdditionalStatDetails?: string;
   readonly onVisibleAdditionalStatDetailsChange: (type?: string) => void;
+
   readonly onCrestClick: () => void;
+
+  readonly selectedTroopIndex?: number;
+  readonly onSelectTroop: (index: number) => void;
+  readonly onSwapTroops: (hero: string, index: number, withIndex: number) => void;
+  readonly onSelectedTroopClick: (index: number) => void;
+  readonly troopDetailsVisible: boolean;
+  readonly onExitTroopDetails: () => void;
   readonly dismissTroopPromptVisible: boolean;
   readonly onDismissTroopClick: (index: number) => void;
   readonly onConfirmDismissTroopClick: (hero: string, index: number) => void;
@@ -46,7 +57,7 @@ interface HeroWindowContainerProps extends
   readonly getArtifactDetails: (artifact: Artifact, props: {
     readonly onCloseClick: () => void;
     readonly onStatusTextChange: (statusText: string) => void;
-  }) => React.ReactNode | undefined;
+  }) => React.ReactNode;
   readonly visibleArtifactDetails?: number;
   readonly onVisibleArtifactDetailsChange: (index?: number) => void;
 
@@ -55,6 +66,8 @@ interface HeroWindowContainerProps extends
   readonly dismissHeroPromptVisible: boolean;
   readonly onConfirmDismissHeroClick: (hero: string) => void;
   readonly onCancelDismissHeroClick: () => void;
+
+  readonly onExitClick: () => void;
 }
 
 type DefaultProp =
@@ -83,13 +96,14 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     return (
       <>
         <HeroWindow
-          {...this.props}
+          visible={this.props.visible}
+          hero={this.props.hero}
           title={this.getHeroTitle()}
           renderHeroPortrait={this.renderHeroPortrait}
           renderSkill={this.renderSkill}
           renderAdditionalStats={this.renderAdditionalStats}
           renderCrest={this.renderCrest}
-          renderTroopDetails={this.renderTroopDetails}
+          renderArmy={this.renderArmy}
           renderArtifact={this.renderArtifact}
           dismissVisible={this.props.dismissible}
           onDismissMouseEnter={this.onDismissHeroMouseEnter}
@@ -314,6 +328,97 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
 
   private readonly onCrestClick = () => {
     this.props.onCrestClick();
+  }
+
+  private readonly renderArmy = () => {
+    const { hero, selectedTroopIndex } = this.props;
+
+    const selectedTroop = selectedTroopIndex !== undefined ?
+      hero.army[selectedTroopIndex] :
+      undefined;
+
+    const troopDismissible = getArmySize(hero.army) > 1;
+
+    const troopDetails = selectedTroopIndex !== undefined &&
+      selectedTroop &&
+      this.props.troopDetailsVisible &&
+      this.renderTroopDetails(selectedTroopIndex, selectedTroop, troopDismissible);
+
+    return (
+      <>
+        <ArmyStrip
+          army={this.props.hero.army}
+          selectedTroopIndex={this.props.selectedTroopIndex}
+          onTroopMouseEnter={this.onTroopMouseEnter}
+          onTroopMouseLeave={this.onTroopMouseLeave}
+          onTroopClick={this.onTroopClick}
+        />
+        {troopDetails}
+      </>
+    );
+  }
+
+  private readonly onTroopMouseEnter = (index: number) => {
+    const { formatMessage } = this.props.intl;
+
+    const selectedTroop = this.props.selectedTroopIndex !== undefined ?
+      this.props.hero.army[this.props.selectedTroopIndex] :
+      undefined;
+    const troop = this.props.hero.army[index];
+
+    const selectedTroopName = selectedTroop && formatMessage(getCreatureNameMessage(selectedTroop.creature));
+    const troopName = troop && formatMessage(getCreatureNameMessage(troop.creature));
+
+    const statusText = formatMessage(getArmyStripStatusTextMessage(selectedTroop, troop), {
+      selectedTroopName,
+      troopName,
+    });
+
+    this.setStatusText(statusText);
+  }
+
+  private readonly onTroopMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
+  private readonly onTroopClick = (index: number) => {
+    const { selectedTroopIndex } = this.props;
+
+    if (selectedTroopIndex === undefined && this.props.hero.army[index]) {
+      this.onSelectTroop(index);
+    } else if (index === selectedTroopIndex) {
+      this.props.onSelectedTroopClick(index);
+    } else if (selectedTroopIndex !== undefined && index !== selectedTroopIndex) {
+      this.onSwapTroops(selectedTroopIndex, index);
+    }
+  }
+
+  private readonly onSelectTroop = (index: number) => {
+    const { formatMessage } = this.props.intl;
+
+    const troop = this.props.hero.army[index]!;
+
+    const troopName = formatMessage(getCreatureNameMessage(troop.creature));
+
+    const statusText = formatMessage(getArmyStripStatusTextMessage(troop, troop), { troopName });
+
+    this.setStatusText(statusText);
+
+    this.props.onSelectTroop(index);
+  }
+
+  private readonly onSwapTroops = (index: number, withIndex: number) => {
+    const { formatMessage } = this.props.intl;
+
+    const troop = this.props.hero.army[index]!;
+
+    const troopName = formatMessage(getCreatureNameMessage(troop.creature));
+
+    const statusText = formatMessage(getArmyStripStatusTextMessage(undefined, troop), { troopName });
+
+    this.setStatusText(statusText);
+
+    this.props.onSwapTroops(this.props.hero.id, index, withIndex);
   }
 
   private readonly renderTroopDetails = (index: number, troop: Troop, dismissible: boolean) => {
