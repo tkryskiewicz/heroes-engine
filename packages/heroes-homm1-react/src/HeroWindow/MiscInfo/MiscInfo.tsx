@@ -3,9 +3,9 @@ import * as React from "react";
 
 import * as styles from "./MiscInfo.module.scss";
 
-import { BackgroundImage, ExperienceImage } from "./assets";
+import { BackgroundImage } from "./assets";
 
-import { LuckIcon, MoraleIcon } from "../../base";
+import { ExperienceIcon, LuckIcon, MoraleIcon } from "../../base";
 import { GameText } from "../../core";
 
 export enum MiscInfoType {
@@ -149,7 +149,9 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
         onMouseLeave={this.onExperienceMouseLeave}
         onClick={this.onExperienceClick}
       >
-        <img src={ExperienceImage} />
+        <ExperienceIcon
+          size="small"
+        />
         <div className={styles.experienceValue}>
           <GameText size="small">
             {experience}
