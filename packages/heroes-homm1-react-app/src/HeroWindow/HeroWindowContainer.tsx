@@ -3,11 +3,13 @@ import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Troop } from "heroes-core";
 import {
+  Crest,
   getSkillNameMessage,
   HeroPortrait,
   HeroWindow,
   heroWindowMessages,
   HeroWindowProps,
+  kingdomOverviewWindowMessages,
   SkillDetailsPrompt,
   SkillInfo,
 } from "heroes-homm1-react";
@@ -19,6 +21,7 @@ export interface HeroWindowContainerProps extends
   InjectedIntlProps {
   readonly visibleSkillDetails?: string;
   readonly onVisibleSkillDetailsChange: (skill?: string) => void;
+  readonly onCrestClick: () => void;
   readonly dismissTroopPromptVisible: boolean;
   readonly onDismissTroopClick: (index: number) => void;
   readonly onConfirmDismissTroopClick: (hero: string, index: number) => void;
@@ -45,6 +48,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
           {...this.props}
           renderHeroPortrait={this.renderHeroPortrait}
           renderSkill={this.renderSkill}
+          renderCrest={this.renderCrest}
           renderTroopDetails={this.renderTroopDetails}
           statusText={this.state.statusText}
         />
@@ -103,6 +107,32 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
 
   private readonly onCloseSkillDetailsClick = () => {
     this.props.onVisibleSkillDetailsChange();
+  }
+
+  private readonly renderCrest = (alignment: string, heroClass: string) => {
+    return (
+      <Crest
+        alignment={alignment}
+        heroClass={heroClass}
+        onMouseEnter={this.onCrestMouseEnter}
+        onMouseLeave={this.onCrestMouseLeave}
+        onClick={this.onCrestClick}
+      />
+    );
+  }
+
+  private readonly onCrestMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(kingdomOverviewWindowMessages.title);
+
+    this.setStatusText(statusText);
+  }
+
+  private readonly onCrestMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
+  private readonly onCrestClick = () => {
+    this.props.onCrestClick();
   }
 
   private readonly renderTroopDetails = (index: number, troop: Troop, dismissible: boolean) => {

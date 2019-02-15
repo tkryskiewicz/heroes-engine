@@ -65,7 +65,7 @@ storiesOf("HeroWindow", module)
       <HeroWindow
         hero={h}
         visible={boolean("Visible", true)}
-        onCrestClick={action("Crest Click")}
+        // onCrestClick={action("Crest Click")}
         onExitClick={action("Exit Click")}
       />
     );

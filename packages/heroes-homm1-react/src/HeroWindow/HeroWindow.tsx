@@ -12,12 +12,10 @@ import {
   ArmyStrip,
   ArtifactSlot,
   artifactSlotMessages,
-  Crest,
   getArmyStripStatusTextMessage,
   ImageButton,
 } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
-import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import {
   experienceMessages,
   getArtifactNameMessage,
@@ -40,10 +38,10 @@ interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
   readonly renderHeroPortrait: (hero: string) => React.ReactNode;
   readonly renderSkill: (skill: string, value: number) => React.ReactNode;
+  readonly renderCrest: (alignment: string, heroClass: string) => React.ReactNode;
   readonly dismissible: boolean;
   readonly visibleMiscInfoDetails?: string;
   readonly onVisibleMiscInfoDetailsChange: (type?: string) => void;
-  readonly onCrestClick: () => void;
   readonly selectedTroopIndex?: number;
   readonly onSelectTroop: (index: number) => void;
   // TODO: should this be onOpenTroopDetails?
@@ -69,8 +67,8 @@ interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
 type DefaultProp =
   "renderHeroPortrait" |
   "renderSkill" |
+  "renderCrest" |
   "dismissible" |
-  "onCrestClick" |
   "onVisibleMiscInfoDetailsChange" |
   "onSelectTroop" |
   "onSelectedTroopClick" |
@@ -98,7 +96,6 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     getArtifactDetails: () => undefined,
     onCancelDismissHeroClick: () => undefined,
     onConfirmDismissHeroClick: () => undefined,
-    onCrestClick: () => undefined,
     onDismissHeroClick: () => undefined,
     onExitClick: () => undefined,
     onExitTroopDetails: () => undefined,
@@ -107,6 +104,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     onSwapTroops: () => undefined,
     onVisibleArtifactDetailsChange: () => undefined,
     onVisibleMiscInfoDetailsChange: () => undefined,
+    renderCrest: () => undefined,
     renderHeroPortrait: () => undefined,
     renderSkill: () => undefined,
     renderTroopDetails: () => undefined,
@@ -138,13 +136,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
         {this.renderSkills(hero.skills)}
         {this.renderMiscInfo(hero, this.props.visibleMiscInfoDetails)}
         <div className={styles.crest}>
-          <Crest
-            alignment={hero.alignment}
-            heroClass={hero.heroClass}
-            onMouseEnter={this.onCrestMouseEnter}
-            onMouseLeave={this.onCrestMouseLeave}
-            onClick={this.props.onCrestClick}
-          />
+          {this.props.renderCrest(hero.alignment, hero.heroClass)}
         </div>
         {this.renderArmy(hero, selectedTroopIndex)}
         {this.props.dismissible && this.renderDismissal(this.props.dismissHeroPromptVisible)}
@@ -315,16 +307,6 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
 
   private readonly onCloseMiscInfoDetailsClick = () => {
     this.props.onVisibleMiscInfoDetailsChange();
-  }
-
-  private readonly onCrestMouseEnter = () => {
-    const statusText = this.props.intl.formatMessage(kingdomOverviewWindowMessages.title);
-
-    this.setStatusText(statusText);
-  }
-
-  private readonly onCrestMouseLeave = () => {
-    this.setDefaultStatusText();
   }
 
   private renderArmy(hero: Hero, selectedTroopIndex?: number) {
