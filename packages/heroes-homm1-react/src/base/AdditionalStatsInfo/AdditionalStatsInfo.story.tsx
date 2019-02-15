@@ -4,9 +4,9 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { luck, morale } from "../../stories";
-import { MiscInfo } from "./MiscInfo";
+import { AdditionalStatsInfo } from "./AdditionalStatsInfo";
 
-storiesOf("base/MiscInfo", module)
+storiesOf("base/AdditionalStatsInfo", module)
   .add("default", () => {
     const values = {
       experience: number("Experience", 0, { range: true, min: 0, max: 999999, step: 1 }),
@@ -15,7 +15,7 @@ storiesOf("base/MiscInfo", module)
     };
 
     return (
-      <MiscInfo
+      <AdditionalStatsInfo
         values={values}
         onMouseEnter={action("Mouse Enter")}
         onMouseLeave={action("Mouse Leave")}

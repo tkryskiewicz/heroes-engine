@@ -1,6 +1,10 @@
 import { defineMessages } from "react-intl";
 
 export const messages = defineMessages({
+  additionalStats: {
+    defaultMessage: "Additional hero characteristics",
+    id: "ui.heroWindow.additionalStats",
+  },
   defaultStatusText: {
     defaultMessage: "Hero Screen",
     id: "ui.heroWindow.defaultStatusText",
@@ -12,10 +16,6 @@ export const messages = defineMessages({
   exit: {
     defaultMessage: "Exit Hero Screen",
     id: "ui.heroWindow.exit",
-  },
-  miscInfo: {
-    defaultMessage: "Additional hero characteristics",
-    id: "ui.heroWindow.miscInfo",
   },
   statInfo: {
     defaultMessage: "View {statName} Info",

@@ -2,7 +2,7 @@ export enum HeroWindowActionType {
   Open = "heroWindow/open",
   Close = "heroWindow/close",
   ChangeVisibleSkillDetails = "heroWindow/changeVisibleSkillDetails",
-  ChangeVisibleMiscInfoDetails = "heroWindow/changeVisibleMiscInfoDetails",
+  ChangeVisibleAdditionalStatDetails = "heroWindow/changeVisibleAdditionalStatDetails",
   SelectTroop = "heroWindow/selectTroop",
   DeselectTroop = "heroWindow/deselectTroop",
   OpenTroopDetails = "heroWindow/openTroopDetails",
@@ -18,7 +18,7 @@ export type HeroWindowAction =
   OpenHeroWindowAction |
   CloseHeroWindowAction |
   ChangeVisibleSkillDetailsAction |
-  ChangeVisibleMiscInfoDetailsAction |
+  ChangeVisibleAdditionalStatDetailsAction |
   SelectHeroWindowTroopAction |
   DeselectTroopAction |
   OpenTroopDetails |
@@ -57,14 +57,14 @@ export const changeVisibleSkillDetails = (skill?: string): ChangeVisibleSkillDet
   type: HeroWindowActionType.ChangeVisibleSkillDetails,
 });
 
-export interface ChangeVisibleMiscInfoDetailsAction {
-  readonly type: HeroWindowActionType.ChangeVisibleMiscInfoDetails;
-  readonly infoType?: string;
+export interface ChangeVisibleAdditionalStatDetailsAction {
+  readonly type: HeroWindowActionType.ChangeVisibleAdditionalStatDetails;
+  readonly stat?: string;
 }
 
-export const changeVisibleMiscInfoDetails = (infoType?: string): ChangeVisibleMiscInfoDetailsAction => ({
-  infoType,
-  type: HeroWindowActionType.ChangeVisibleMiscInfoDetails,
+export const changeVisibleAdditionalStatDetails = (stat?: string): ChangeVisibleAdditionalStatDetailsAction => ({
+  stat,
+  type: HeroWindowActionType.ChangeVisibleAdditionalStatDetails,
 });
 
 export interface SelectHeroWindowTroopAction {

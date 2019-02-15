@@ -3,6 +3,8 @@ import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Troop } from "heroes-core";
 import {
+  AdditionalStatsInfo,
+  AdditionalStatType,
   Crest,
   ExperienceDetailsPrompt,
   experienceMessages,
@@ -15,8 +17,6 @@ import {
   HeroWindowProps,
   kingdomOverviewWindowMessages,
   LuckDetailsPrompt,
-  MiscInfo,
-  MiscInfoType,
   MoraleDetailsPrompt,
   SkillDetailsPrompt,
   SkillInfo,
@@ -25,7 +25,7 @@ import {
 import { TroopWindow } from "../TroopWindow";
 
 export interface HeroWindowContainerProps extends
-  Pick<HeroWindowProps, Exclude<keyof HeroWindowProps, "renderHeroPortrait" | "renderTroopDetails">>,
+  HeroWindowProps,
   InjectedIntlProps {
   readonly visibleSkillDetails?: string;
   readonly onVisibleSkillDetailsChange: (skill?: string) => void;
@@ -68,10 +68,10 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     );
   }
 
-  private readonly renderHeroPortrait = (hero: string) => {
+  private readonly renderHeroPortrait = () => {
     return (
       <HeroPortrait
-        hero={hero}
+        hero={this.props.hero.id}
       />
     );
   }
@@ -120,11 +120,13 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     this.props.onVisibleSkillDetailsChange();
   }
 
-  private readonly renderCrest = (alignment: string, heroClass: string) => {
+  private readonly renderCrest = () => {
+    const { hero } = this.props;
+
     return (
       <Crest
-        alignment={alignment}
-        heroClass={heroClass}
+        alignment={hero.alignment}
+        heroClass={hero.heroClass}
         onMouseEnter={this.onCrestMouseEnter}
         onMouseLeave={this.onCrestMouseLeave}
         onClick={this.onCrestClick}
@@ -136,49 +138,49 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     const { hero, visibleAdditionalStatDetails } = this.props;
 
     const values = {
-      [MiscInfoType.Morale]: hero.morale,
-      [MiscInfoType.Luck]: hero.luck,
-      [MiscInfoType.Experience]: hero.experience,
+      [AdditionalStatType.Morale]: hero.morale,
+      [AdditionalStatType.Luck]: hero.luck,
+      [AdditionalStatType.Experience]: hero.experience,
     };
 
     return (
       <>
-        <MiscInfo
+        <AdditionalStatsInfo
           values={values}
-          onMouseEnter={this.onMiscInfoMouseEnter}
-          onMouseLeave={this.onMiscInfoMouseLeave}
+          onMouseEnter={this.onAdditionalStatMouseEnter}
+          onMouseLeave={this.onAdditionalStatMouseLeave}
           onInfoMouseEnter={this.onInfoMouseEnter}
           onInfoMouseLeave={this.onInfoMouseLeave}
           onInfoClick={this.onInfoClick}
         />
-        {visibleAdditionalStatDetails && this.renderMiscInfoDetails(visibleAdditionalStatDetails)}
+        {visibleAdditionalStatDetails && this.renderAdditionalStatDetails(visibleAdditionalStatDetails)}
       </>
     );
   }
 
-  private readonly onMiscInfoMouseEnter = () => {
-    const statusText = this.props.intl.formatMessage(heroWindowMessages.miscInfo);
+  private readonly onAdditionalStatMouseEnter = () => {
+    const statusText = this.props.intl.formatMessage(heroWindowMessages.additionalStats);
 
     this.setStatusText(statusText);
   }
 
-  private readonly onMiscInfoMouseLeave = () => {
+  private readonly onAdditionalStatMouseLeave = () => {
     this.setDefaultStatusText();
   }
 
-  private readonly onInfoMouseEnter = (type: MiscInfoType) => {
+  private readonly onInfoMouseEnter = (type: AdditionalStatType) => {
     const { formatMessage } = this.props.intl;
 
     let infoText = "";
 
     switch (type) {
-      case MiscInfoType.Morale:
+      case AdditionalStatType.Morale:
         infoText = formatMessage(getMoraleNameMessage(this.props.hero.morale));
         break;
-      case MiscInfoType.Luck:
+      case AdditionalStatType.Luck:
         infoText = formatMessage(getLuckNameMessage(this.props.hero.luck));
         break;
-      case MiscInfoType.Experience:
+      case AdditionalStatType.Experience:
         infoText = formatMessage(experienceMessages.title);
         break;
     }
@@ -189,26 +191,26 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 
   private readonly onInfoMouseLeave = () => {
-    this.onMiscInfoMouseEnter();
+    this.onAdditionalStatMouseEnter();
   }
 
   private readonly onInfoClick = (type: string) => {
     this.props.onVisibleAdditionalStatDetailsChange(type);
   }
 
-  private renderMiscInfoDetails(type: string) {
+  private renderAdditionalStatDetails(type: string) {
     const { hero } = this.props;
 
     let content;
 
     switch (type) {
-      case MiscInfoType.Morale:
+      case AdditionalStatType.Morale:
         content = this.renderMoraleDetails(hero.morale);
         break;
-      case MiscInfoType.Luck:
+      case AdditionalStatType.Luck:
         content = this.renderLuckDetails(hero.luck);
         break;
-      case MiscInfoType.Experience:
+      case AdditionalStatType.Experience:
         content = this.renderExperienceDetails(hero.experience);
         break;
     }
@@ -221,7 +223,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
       <MoraleDetailsPrompt
         visible={true}
         value={value}
-        onConfirmClick={this.onCloseMiscInfoDetailsClick}
+        onConfirmClick={this.onCloseAdditionalStatDetailsClick}
       />
     );
   }
@@ -231,7 +233,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
       <LuckDetailsPrompt
         visible={true}
         value={value}
-        onConfirmClick={this.onCloseMiscInfoDetailsClick}
+        onConfirmClick={this.onCloseAdditionalStatDetailsClick}
       />
     );
   }
@@ -241,12 +243,12 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
       <ExperienceDetailsPrompt
         visible={true}
         value={value}
-        onConfirmClick={this.onCloseMiscInfoDetailsClick}
+        onConfirmClick={this.onCloseAdditionalStatDetailsClick}
       />
     );
   }
 
-  private readonly onCloseMiscInfoDetailsClick = () => {
+  private readonly onCloseAdditionalStatDetailsClick = () => {
     this.props.onVisibleAdditionalStatDetailsChange();
   }
 

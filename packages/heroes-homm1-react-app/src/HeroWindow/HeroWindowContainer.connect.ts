@@ -30,7 +30,7 @@ const mapStateToProps = (state: AppState): Pick<HeroWindowContainerProps, StateP
   hero: state.game.heroes[state.heroWindow.heroIndex!],
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,
   troopDetailsVisible: state.heroWindow.visibleTroopDetails,
-  visibleAdditionalStatDetails: state.heroWindow.visibleMiscInfoDetails,
+  visibleAdditionalStatDetails: state.heroWindow.visibleAdditionalStatDetails,
   visibleArtifactDetails: state.heroWindow.visibleArtifactDetails,
   visibleSkillDetails: state.heroWindow.visibleSkillDetails,
 });
@@ -57,7 +57,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowContainerProps, 
     dispatch(heroWindowActions.changeVisibleSkillDetails(skill));
   },
   onVisibleAdditionalStatDetailsChange(type) {
-    dispatch(heroWindowActions.changeVisibleMiscInfoDetails(type));
+    dispatch(heroWindowActions.changeVisibleAdditionalStatDetails(type));
   },
   onCrestClick() {
     dispatch(kingdomOverviewWindowActions.open());

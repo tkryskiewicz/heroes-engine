@@ -1,32 +1,32 @@
 import { Row } from "antd";
 import * as React from "react";
 
-import * as styles from "./MiscInfo.module.scss";
+import * as styles from "./AdditionalStatsInfo.module.scss";
 
 import { BackgroundImage } from "./assets";
 
 import { ExperienceIcon, LuckIcon, MoraleIcon } from "../../base";
 import { GameText } from "../../core";
 
-export enum MiscInfoType {
+export enum AdditionalStatType {
   Morale = "morale",
   Luck = "luck",
   Experience = "experience",
 }
 
-interface MiscInfoValues {
-  readonly [MiscInfoType.Morale]: number;
-  readonly [MiscInfoType.Luck]: number;
-  readonly [MiscInfoType.Experience]: number;
+interface AdditionalStatValues {
+  readonly [AdditionalStatType.Morale]: number;
+  readonly [AdditionalStatType.Luck]: number;
+  readonly [AdditionalStatType.Experience]: number;
 }
 
-export interface MiscInfoProps {
-  readonly values: MiscInfoValues;
+export interface AdditionalStatsInfoProps {
+  readonly values: AdditionalStatValues;
   readonly onMouseEnter: () => void;
   readonly onMouseLeave: () => void;
-  readonly onInfoMouseEnter: (type: MiscInfoType) => void;
-  readonly onInfoMouseLeave: (type: MiscInfoType) => void;
-  readonly onInfoClick: (type: MiscInfoType) => void;
+  readonly onInfoMouseEnter: (type: AdditionalStatType) => void;
+  readonly onInfoMouseLeave: (type: AdditionalStatType) => void;
+  readonly onInfoClick: (type: AdditionalStatType) => void;
 }
 
 type DefaultProp =
@@ -36,8 +36,8 @@ type DefaultProp =
   "onInfoMouseLeave" |
   "onInfoClick";
 
-export class MiscInfo extends React.Component<MiscInfoProps> {
-  public static readonly defaultProps: Pick<MiscInfoProps, DefaultProp> = {
+export class AdditionalStatsInfo extends React.Component<AdditionalStatsInfoProps> {
+  public static readonly defaultProps: Pick<AdditionalStatsInfoProps, DefaultProp> = {
     onInfoClick: () => undefined,
     onInfoMouseEnter: () => undefined,
     onInfoMouseLeave: () => undefined,
@@ -53,9 +53,9 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
         onMouseLeave={this.props.onMouseLeave}
       >
         {this.renderBackground()}
-        {this.renderMorale(this.props.values[MiscInfoType.Morale || 0])}
-        {this.renderLuck(this.props.values[MiscInfoType.Luck] || 0)}
-        {this.renderExperience(this.props.values[MiscInfoType.Experience] || 0)}
+        {this.renderMorale(this.props.values[AdditionalStatType.Morale || 0])}
+        {this.renderLuck(this.props.values[AdditionalStatType.Luck] || 0)}
+        {this.renderExperience(this.props.values[AdditionalStatType.Experience] || 0)}
       </div>
     );
   }
@@ -94,15 +94,15 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
   }
 
   private readonly onMoraleMouseEnter = () => {
-    this.props.onInfoMouseEnter(MiscInfoType.Morale);
+    this.props.onInfoMouseEnter(AdditionalStatType.Morale);
   }
 
   private readonly onMoraleMouseLeave = () => {
-    this.props.onInfoMouseLeave(MiscInfoType.Morale);
+    this.props.onInfoMouseLeave(AdditionalStatType.Morale);
   }
 
   private readonly onMoraleClick = () => {
-    this.props.onInfoClick(MiscInfoType.Morale);
+    this.props.onInfoClick(AdditionalStatType.Morale);
   }
 
   private renderLuck(luck: number) {
@@ -130,15 +130,15 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
   }
 
   private readonly onLuckMouseEnter = () => {
-    this.props.onInfoMouseEnter(MiscInfoType.Luck);
+    this.props.onInfoMouseEnter(AdditionalStatType.Luck);
   }
 
   private readonly onLuckMouseLeave = () => {
-    this.props.onInfoMouseLeave(MiscInfoType.Luck);
+    this.props.onInfoMouseLeave(AdditionalStatType.Luck);
   }
 
   private readonly onLuckClick = () => {
-    this.props.onInfoClick(MiscInfoType.Luck);
+    this.props.onInfoClick(AdditionalStatType.Luck);
   }
 
   private renderExperience(experience: number) {
@@ -162,14 +162,14 @@ export class MiscInfo extends React.Component<MiscInfoProps> {
   }
 
   private readonly onExperienceMouseEnter = () => {
-    this.props.onInfoMouseEnter(MiscInfoType.Experience);
+    this.props.onInfoMouseEnter(AdditionalStatType.Experience);
   }
 
   private readonly onExperienceMouseLeave = () => {
-    this.props.onInfoMouseLeave(MiscInfoType.Experience);
+    this.props.onInfoMouseLeave(AdditionalStatType.Experience);
   }
 
   private readonly onExperienceClick = () => {
-    this.props.onInfoClick(MiscInfoType.Experience);
+    this.props.onInfoClick(AdditionalStatType.Experience);
   }
 }

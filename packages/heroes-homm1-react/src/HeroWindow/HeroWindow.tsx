@@ -29,10 +29,10 @@ import { messages } from "./messages";
 
 interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
-  readonly renderHeroPortrait: (hero: string) => React.ReactNode;
+  readonly renderHeroPortrait: () => React.ReactNode;
   readonly renderSkill: (skill: string, value: number) => React.ReactNode;
   readonly renderAdditionalStats: () => React.ReactNode;
-  readonly renderCrest: (alignment: string, heroClass: string) => React.ReactNode;
+  readonly renderCrest: () => React.ReactNode;
   readonly dismissible: boolean;
   readonly selectedTroopIndex?: number;
   readonly onSelectTroop: (index: number) => void;
@@ -123,12 +123,14 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
           </GameText>
         </div>
         <div className={styles.portrait}>
-          {this.props.renderHeroPortrait(hero.id)}
+          {this.props.renderHeroPortrait()}
         </div>
         {this.renderSkills(hero.skills)}
-        {this.renderMiscInfo()}
+        <div className={styles.additionalStats}>
+          {this.props.renderAdditionalStats()}
+        </div>
         <div className={styles.crest}>
-          {this.props.renderCrest(hero.alignment, hero.heroClass)}
+          {this.props.renderCrest()}
         </div>
         {this.renderArmy(hero, selectedTroopIndex)}
         {this.props.dismissible && this.renderDismissal(this.props.dismissHeroPromptVisible)}
@@ -177,14 +179,6 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
         key={skill}
       >
         {this.props.renderSkill(skill, value)}
-      </div>
-    );
-  }
-
-  private renderMiscInfo() {
-    return (
-      <div className={styles.miscInfo}>
-        {this.props.renderAdditionalStats()}
       </div>
     );
   }

@@ -26,10 +26,10 @@ export const heroWindowReducer = (
         ...state,
         visibleSkillDetails: action.skill,
       };
-    case HeroWindowActionType.ChangeVisibleMiscInfoDetails:
+    case HeroWindowActionType.ChangeVisibleAdditionalStatDetails:
       return {
         ...state,
-        visibleMiscInfoDetails: action.infoType,
+        visibleAdditionalStatDetails: action.stat,
       };
     case HeroWindowActionType.SelectTroop:
       return {

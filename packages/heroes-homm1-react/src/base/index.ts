@@ -1,3 +1,4 @@
+export * from "./AdditionalStatsInfo";
 export * from "./AlignmentJewel";
 export * from "./ArmyStrip";
 export * from "./ArtifactIcon";
@@ -12,7 +13,6 @@ export * from "./HeroPortrait";
 export * from "./ImageButton";
 export * from "./ImageSwitch";
 export * from "./LuckIcon";
-export * from "./MiscInfo";
 export * from "./MoraleIcon";
 export * from "./ResourceAmount";
 export * from "./ResourceCost";
