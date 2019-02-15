@@ -1,11 +1,10 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Artifact, getArmySize, Hero, Troop } from "heroes-core";
+import { Artifact, getArmySize, Hero } from "heroes-core";
 import {
   AdditionalStatsInfo,
   AdditionalStatType,
-  ArmyStrip,
   ArtifactSlot,
   artifactSlotMessages,
   Crest,
@@ -31,6 +30,7 @@ import {
   WithGameWindowProps,
 } from "heroes-homm1-react";
 
+import { TroopSlot } from "../TroopSlot";
 import { TroopWindow } from "../TroopWindow";
 
 interface HeroWindowContainerProps extends InjectedIntlProps, WithGameWindowProps {
@@ -91,7 +91,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 
   public render() {
-    const { visibleSkillDetails, visibleArtifactDetails } = this.props;
+    const { visibleSkillDetails, selectedTroopIndex, troopDetailsVisible, visibleArtifactDetails } = this.props;
 
     return (
       <>
@@ -103,7 +103,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
           renderSkill={this.renderSkill}
           renderAdditionalStats={this.renderAdditionalStats}
           renderCrest={this.renderCrest}
-          renderArmy={this.renderArmy}
+          renderTroop={this.renderTroop}
           renderArtifact={this.renderArtifact}
           dismissVisible={this.props.dismissible}
           onDismissMouseEnter={this.onDismissHeroMouseEnter}
@@ -115,6 +115,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
           statusText={this.state.statusText}
         />
         {visibleSkillDetails && this.renderSkillDetails(visibleSkillDetails)}
+        {selectedTroopIndex !== undefined && troopDetailsVisible && this.renderTroopDetails(selectedTroopIndex)}
         {visibleArtifactDetails !== undefined && this.renderArtifactDetails(visibleArtifactDetails)}
         {this.props.dismissible && this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
       </>
@@ -330,31 +331,20 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     this.props.onCrestClick();
   }
 
-  private readonly renderArmy = () => {
-    const { hero, selectedTroopIndex } = this.props;
+  private readonly renderTroop = (index: number) => {
+    const { army } = this.props.hero;
 
-    const selectedTroop = selectedTroopIndex !== undefined ?
-      hero.army[selectedTroopIndex] :
-      undefined;
-
-    const troopDismissible = getArmySize(hero.army) > 1;
-
-    const troopDetails = selectedTroopIndex !== undefined &&
-      selectedTroop &&
-      this.props.troopDetailsVisible &&
-      this.renderTroopDetails(selectedTroopIndex, selectedTroop, troopDismissible);
+    const troop = army[index];
 
     return (
-      <>
-        <ArmyStrip
-          army={this.props.hero.army}
-          selectedTroopIndex={this.props.selectedTroopIndex}
-          onTroopMouseEnter={this.onTroopMouseEnter}
-          onTroopMouseLeave={this.onTroopMouseLeave}
-          onTroopClick={this.onTroopClick}
-        />
-        {troopDetails}
-      </>
+      <TroopSlot
+        index={index}
+        troop={troop}
+        selected={this.props.selectedTroopIndex === index}
+        onMouseEnter={this.onTroopMouseEnter}
+        onMouseLeave={this.onTroopMouseLeave}
+        onClick={this.onTroopClick}
+      />
     );
   }
 
@@ -421,7 +411,13 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     this.props.onSwapTroops(this.props.hero.id, index, withIndex);
   }
 
-  private readonly renderTroopDetails = (index: number, troop: Troop, dismissible: boolean) => {
+  private readonly renderTroopDetails = (index: number) => {
+    const { army } = this.props.hero;
+
+    const troop = army[index]!;
+
+    const dismissible = getArmySize(army) > 1;
+
     return (
       <TroopWindow
         visible={true}

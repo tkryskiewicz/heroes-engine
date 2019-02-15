@@ -2,7 +2,7 @@ import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { HeroSkills } from "heroes-core";
-import { ArtifactLimit, SkillIds } from "heroes-homm1";
+import { ArmySize, ArtifactLimit, SkillIds } from "heroes-homm1";
 
 import * as styles from "./HeroWindow.module.scss";
 
@@ -22,7 +22,7 @@ interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly renderSkill: (skill: string, value: number) => React.ReactNode;
   readonly renderAdditionalStats: () => React.ReactNode;
   readonly renderCrest: () => React.ReactNode;
-  readonly renderArmy: () => React.ReactNode;
+  readonly renderTroop: (index: number) => React.ReactNode;
   readonly renderArtifact: (index: number) => React.ReactNode;
 
   readonly dismissVisible: boolean;
@@ -43,7 +43,7 @@ type DefaultProp =
   "renderSkill" |
   "renderAdditionalStats" |
   "renderCrest" |
-  "renderArmy" |
+  "renderTroop" |
   "renderArtifact" |
   "dismissVisible" |
   "onDismissMouseEnter" |
@@ -64,11 +64,11 @@ class HeroWindow extends React.Component<HeroWindowProps> {
     onExitMouseEnter: () => undefined,
     onExitMouseLeave: () => undefined,
     renderAdditionalStats: () => undefined,
-    renderArmy: () => undefined,
     renderArtifact: () => undefined,
     renderCrest: () => undefined,
     renderHeroPortrait: () => undefined,
     renderSkill: () => undefined,
+    renderTroop: () => undefined,
     statusText: "",
     title: "",
   };
@@ -91,9 +91,7 @@ class HeroWindow extends React.Component<HeroWindowProps> {
         <div className={styles.crest}>
           {this.props.renderCrest()}
         </div>
-        <div className={styles.army}>
-          {this.props.renderArmy()}
-        </div>
+        {this.renderArmy()}
         {this.renderArtifacts()}
         {this.props.dismissVisible && this.renderDismissal()}
         <div className={styles.exit}>
@@ -130,6 +128,27 @@ class HeroWindow extends React.Component<HeroWindowProps> {
         key={skill}
       >
         {this.props.renderSkill(skill, value)}
+      </div>
+    );
+  }
+
+  private renderArmy() {
+    const content = [...new Array(ArmySize).keys()].map((i) => this.renderTroop(i));
+
+    return (
+      <div className={styles.army}>
+        {content}
+      </div>
+    );
+  }
+
+  private renderTroop(index: number) {
+    return (
+      <div
+        key={index}
+        className={styles.troop}
+      >
+        {this.props.renderTroop(index)}
       </div>
     );
   }
