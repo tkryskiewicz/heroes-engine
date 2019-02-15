@@ -1,14 +1,17 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Troop } from "heroes-core";
+import { Artifact, Troop } from "heroes-core";
 import {
   AdditionalStatsInfo,
   AdditionalStatType,
+  ArtifactSlot,
+  artifactSlotMessages,
   Crest,
   DismissHeroPrompt,
   ExperienceDetailsPrompt,
   experienceMessages,
+  getArtifactNameMessage,
   getHeroClassTitleMessage,
   getHeroNameMessage,
   getLuckNameMessage,
@@ -39,6 +42,14 @@ interface HeroWindowContainerProps extends
   readonly onDismissTroopClick: (index: number) => void;
   readonly onConfirmDismissTroopClick: (hero: string, index: number) => void;
   readonly onCancelDismissTroopClick: () => void;
+
+  readonly getArtifactDetails: (artifact: Artifact, props: {
+    readonly onCloseClick: () => void;
+    readonly onStatusTextChange: (statusText: string) => void;
+  }) => React.ReactNode | undefined;
+  readonly visibleArtifactDetails?: number;
+  readonly onVisibleArtifactDetailsChange: (index?: number) => void;
+
   readonly dismissible: boolean;
   readonly onDismissHeroClick: () => void;
   readonly dismissHeroPromptVisible: boolean;
@@ -67,6 +78,8 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 
   public render() {
+    const { visibleSkillDetails, visibleArtifactDetails } = this.props;
+
     return (
       <>
         <HeroWindow
@@ -77,6 +90,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
           renderAdditionalStats={this.renderAdditionalStats}
           renderCrest={this.renderCrest}
           renderTroopDetails={this.renderTroopDetails}
+          renderArtifact={this.renderArtifact}
           dismissVisible={this.props.dismissible}
           onDismissMouseEnter={this.onDismissHeroMouseEnter}
           onDismissMouseLeave={this.onDismissHeroMouseLeave}
@@ -86,7 +100,8 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
           onExitClick={this.props.onExitClick}
           statusText={this.state.statusText}
         />
-        {this.props.visibleSkillDetails && this.renderSkillDetails(this.props.visibleSkillDetails)}
+        {visibleSkillDetails && this.renderSkillDetails(visibleSkillDetails)}
+        {visibleArtifactDetails !== undefined && this.renderArtifactDetails(visibleArtifactDetails)}
         {this.props.dismissible && this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
       </>
     );
@@ -320,6 +335,61 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
 
   private readonly onConfirmDismissTroopClick = (index: number) => {
     this.props.onConfirmDismissTroopClick(this.props.hero.id, index);
+  }
+
+  private readonly renderArtifact = (index: number) => {
+    const artifact = this.props.hero.artifacts[index];
+
+    return (
+      <ArtifactSlot
+        index={index}
+        artifact={artifact ? artifact.id : undefined}
+        onMouseEnter={this.onArtifactMouseEnter}
+        onMouseLeave={this.onArtifactMouseLeave}
+        onClick={this.onArtifactClick}
+      />
+    );
+  }
+
+  private readonly onArtifactMouseEnter = (index: number) => {
+    const artifact = this.props.hero.artifacts[index];
+
+    const message = artifact ?
+      getArtifactNameMessage(artifact.id) :
+      artifactSlotMessages.empty;
+
+    const statusText = this.props.intl.formatMessage(message);
+
+    this.setStatusText(statusText);
+  }
+
+  private readonly onArtifactMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
+  private readonly onArtifactClick = (index: number) => {
+    if (this.props.hero.artifacts[index]) {
+      this.props.onVisibleArtifactDetailsChange(index);
+    }
+  }
+
+  private renderArtifactDetails(visibleArtifactDetails: number) {
+    const artifact = this.props.hero.artifacts[visibleArtifactDetails]!;
+
+    const artifactDetails = this.props.getArtifactDetails(artifact, {
+      onCloseClick: this.onCloseArtifactDetailsClick,
+      onStatusTextChange: this.onArtifactStatusTextChange,
+    });
+
+    return artifactDetails;
+  }
+
+  private readonly onArtifactStatusTextChange = (statusText: string) => {
+    this.setStatusText(statusText);
+  }
+
+  private readonly onCloseArtifactDetailsClick = () => {
+    this.props.onVisibleArtifactDetailsChange();
   }
 
   private readonly onDismissHeroMouseEnter = () => {

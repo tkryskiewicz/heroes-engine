@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { boolean, number } from "@storybook/addon-knobs";
+import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { withReadme } from "storybook-readme";
@@ -7,8 +7,6 @@ import { withReadme } from "storybook-readme";
 import { Hero } from "heroes-core";
 import {
   Alignment,
-  ArtifactLimit,
-  constructArtifact,
   CreatureId,
   HeroClass,
   HeroId,
@@ -16,7 +14,7 @@ import {
 
 import Readme = require("./README.md");
 
-import { alignment, artifact, hero, heroClass, troopIndex } from "../stories";
+import { alignment, hero, heroClass, troopIndex } from "../stories";
 import { HeroWindow } from "./HeroWindow";
 
 // // TODO: move or remove???
@@ -143,27 +141,27 @@ storiesOf("HeroWindow", module)
   //     onConfirmDismissTroopClick={action("Confirm Dismiss Troop Click")}
   //   />
   // ))
-  .add("artifacts", () => {
-    const h: Hero = {
-      ...heroBase,
-      artifacts: [
-        constructArtifact(artifact("Artifact")),
-      ],
-    };
+  // .add("artifacts", () => {
+  //   const h: Hero = {
+  //     ...heroBase,
+  //     artifacts: [
+  //       constructArtifact(artifact("Artifact")),
+  //     ],
+  //   };
 
-    const visibleArtifactDetails = boolean("Show Artifact Details", false) ?
-      number("Visible Artifact Details", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 }) :
-      undefined;
+  //   const visibleArtifactDetails = boolean("Show Artifact Details", false) ?
+  //     number("Visible Artifact Details", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 }) :
+  //     undefined;
 
-    return (
-      <HeroWindow
-        hero={h}
-        visible={true}
-        visibleArtifactDetails={visibleArtifactDetails}
-        onVisibleArtifactDetailsChange={action("Visible Artifact Details Change")}
-      />
-    );
-  })
+  //   return (
+  //     <HeroWindow
+  //       hero={h}
+  //       visible={true}
+  //       visibleArtifactDetails={visibleArtifactDetails}
+  //       onVisibleArtifactDetailsChange={action("Visible Artifact Details Change")}
+  //     />
+  //   );
+  // })
   .add("dismissal", () => (
     <HeroWindow
       hero={heroBase}

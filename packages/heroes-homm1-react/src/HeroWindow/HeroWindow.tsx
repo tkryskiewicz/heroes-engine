@@ -1,25 +1,16 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Artifact, getArmySize, Hero, HeroSkills, Troop } from "heroes-core";
+import { getArmySize, Hero, HeroSkills, Troop } from "heroes-core";
 import { ArtifactLimit, SkillIds } from "heroes-homm1";
 
 import * as styles from "./HeroWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
-import {
-  ArmyStrip,
-  ArtifactSlot,
-  artifactSlotMessages,
-  getArmyStripStatusTextMessage,
-  ImageButton,
-} from "../base";
+import { ArmyStrip, getArmyStripStatusTextMessage, ImageButton } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
-import {
-  getArtifactNameMessage,
-  getCreatureNameMessage,
-} from "../messages";
+import { getCreatureNameMessage } from "../messages";
 import { messages } from "./messages";
 
 interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
@@ -29,27 +20,26 @@ interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly renderSkill: (skill: string, value: number) => React.ReactNode;
   readonly renderAdditionalStats: () => React.ReactNode;
   readonly renderCrest: () => React.ReactNode;
+  readonly renderArtifact: (index: number) => React.ReactNode;
+
   readonly dismissVisible: boolean;
   readonly onDismissMouseEnter: () => void;
   readonly onDismissMouseLeave: () => void;
   readonly onDismissClick: () => void;
+
   readonly selectedTroopIndex?: number;
   readonly onSelectTroop: (index: number) => void;
   // TODO: should this be onOpenTroopDetails?
   readonly onSelectedTroopClick: (index: number) => void;
   readonly onSwapTroops: (hero: string, index: number, withIndex: number) => void;
-  readonly renderTroopDetails: (index: number, troop: Troop, dismissible: boolean) => React.ReactNode | undefined;
+  readonly renderTroopDetails: (index: number, troop: Troop, dismissible: boolean) => React.ReactNode;
   readonly troopDetailsVisible: boolean;
   readonly onExitTroopDetails: () => void;
-  readonly getArtifactDetails: (artifact: Artifact, props: {
-    readonly onCloseClick: () => void;
-    readonly onStatusTextChange: (statusText: string) => void;
-  }) => React.ReactNode | undefined;
-  readonly visibleArtifactDetails?: number;
-  readonly onVisibleArtifactDetailsChange: (index?: number) => void;
+
   readonly onExitMouseEnter: () => void;
   readonly onExitMouseLeave: () => void;
   readonly onExitClick: () => void;
+
   readonly statusText: string;
 }
 
@@ -59,6 +49,7 @@ type DefaultProp =
   "renderSkill" |
   "renderAdditionalStats" |
   "renderCrest" |
+  "renderArtifact" |
   "dismissVisible" |
   "onDismissMouseEnter" |
   "onDismissMouseLeave" |
@@ -69,8 +60,6 @@ type DefaultProp =
   "renderTroopDetails" |
   "troopDetailsVisible" |
   "onExitTroopDetails" |
-  "getArtifactDetails" |
-  "onVisibleArtifactDetailsChange" |
   "onExitMouseEnter" |
   "onExitMouseLeave" |
   "onExitClick" |
@@ -83,7 +72,6 @@ interface HeroWindowState {
 class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
   public static readonly defaultProps: Pick<HeroWindowProps, DefaultProp> = {
     dismissVisible: false,
-    getArtifactDetails: () => undefined,
     onDismissClick: () => undefined,
     onDismissMouseEnter: () => undefined,
     onDismissMouseLeave: () => undefined,
@@ -94,8 +82,8 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     onSelectTroop: () => undefined,
     onSelectedTroopClick: () => undefined,
     onSwapTroops: () => undefined,
-    onVisibleArtifactDetailsChange: () => undefined,
     renderAdditionalStats: () => undefined,
+    renderArtifact: () => undefined,
     renderCrest: () => undefined,
     renderHeroPortrait: () => undefined,
     renderSkill: () => undefined,
@@ -135,7 +123,7 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
         </div>
         {this.renderArmy(hero, selectedTroopIndex)}
         {this.props.dismissVisible && this.renderDismissal()}
-        {this.renderArtifacts(hero.artifacts, this.props.visibleArtifactDetails)}
+        {this.renderArtifacts()}
         <div className={styles.exit}>
           <ImageButton
             images={buttonImages.exit}
@@ -263,75 +251,25 @@ class HeroWindow extends React.Component<HeroWindowProps, HeroWindowState> {
     this.props.onSwapTroops(this.props.hero.id, index, withIndex);
   }
 
-  private renderArtifacts(artifacts: Array<Artifact | undefined>, visibleArtifactDetails?: number) {
-    const content = [...new Array(ArtifactLimit).keys()].map((i) => this.renderArtifact(i, artifacts[i]));
-
-    const artifactDetails = visibleArtifactDetails !== undefined ?
-      artifacts[visibleArtifactDetails] :
-      undefined;
+  private renderArtifacts() {
+    const content = [...new Array(ArtifactLimit).keys()].map((i) => this.renderArtifact(i));
 
     return (
       <div className={styles.artifacts}>
         {content}
-        {artifactDetails && this.renderArtifactDetails(artifactDetails)}
       </div>
     );
   }
 
-  private renderArtifact(index: number, artifact: Artifact | undefined) {
+  private renderArtifact(index: number) {
     return (
       <div
         className={styles.artifact}
         key={index}
       >
-        <ArtifactSlot
-          index={index}
-          artifact={artifact ? artifact.id : undefined}
-          onMouseEnter={this.onArtifactMouseEnter}
-          onMouseLeave={this.onArtifactMouseLeave}
-          onClick={this.onArtifactClick}
-        />
+        {this.props.renderArtifact(index)}
       </div>
     );
-  }
-
-  private readonly onArtifactMouseEnter = (index: number) => {
-    const artifact = this.props.hero.artifacts[index];
-
-    const message = artifact ?
-      getArtifactNameMessage(artifact.id) :
-      artifactSlotMessages.empty;
-
-    const statusText = this.props.intl.formatMessage(message);
-
-    this.setStatusText(statusText);
-  }
-
-  private readonly onArtifactMouseLeave = () => {
-    this.setDefaultStatusText();
-  }
-
-  private readonly onArtifactClick = (index: number) => {
-    if (this.props.hero.artifacts[index]) {
-      this.props.onVisibleArtifactDetailsChange(index);
-    }
-  }
-
-  private renderArtifactDetails(artifact: Artifact) {
-    const artifactDetails = this.props.getArtifactDetails(artifact, {
-      onCloseClick: this.onCloseArtifactDetailsClick,
-      onStatusTextChange: this.onArtifactStatusTextChange,
-    });
-
-    return artifactDetails;
-  }
-
-  private readonly onArtifactStatusTextChange = (statusText: string) => {
-    this.setStatusText(statusText);
-  }
-
-  private readonly onCloseArtifactDetailsClick = () => {
-    this.props.onVisibleArtifactDetailsChange();
   }
 
   private renderDismissal() {
