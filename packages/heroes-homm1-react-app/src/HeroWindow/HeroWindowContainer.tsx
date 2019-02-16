@@ -97,7 +97,6 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
       <>
         <HeroWindow
           visible={this.props.visible}
-          hero={this.props.hero}
           title={this.getHeroTitle()}
           renderHeroPortrait={this.renderHeroPortrait}
           renderSkill={this.renderSkill}
@@ -141,11 +140,13 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     );
   }
 
-  private readonly renderSkill = (skill: string, value: number) => {
+  private readonly renderSkill = (index: number) => {
+    const skill = Object.keys(this.props.hero.skills)[index];
+
     return (
       <SkillInfo
         skill={skill}
-        value={value}
+        value={this.props.hero.skills[skill] || 0}
         onMouseEnter={this.onSkillMouseEnter}
         onMouseLeave={this.onSkillMouseLeave}
         onClick={this.onSkillClick}

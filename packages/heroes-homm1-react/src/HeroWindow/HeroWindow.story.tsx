@@ -6,19 +6,28 @@ import { withReadme } from "storybook-readme";
 
 import Readme = require("./README.md");
 
-import { HeroWindow, HeroWindowProps } from "./HeroWindow";
+import { GameText } from "../core";
+import { HeroWindow } from "./HeroWindow";
 
-const heroBase: HeroWindowProps["hero"] = {
-  skills: {},
-};
+const renderHeroPortrait = () => <GameText size="normal">Hero Portrait</GameText>;
+const renderSkill = (index: number) => <GameText size="normal">Skill {index}</GameText>;
+const renderAdditionalStats = () => <GameText size="normal">Additional Stats</GameText>;
+const renderCrest = () => <GameText size="normal">Crest</GameText>;
+const renderTroop = (index: number) => <GameText size="normal">Troop {index}</GameText>;
+const renderArtifact = (index: number) => <GameText size="normal">Artifact {index}</GameText>;
 
 storiesOf("HeroWindow", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <HeroWindow
       visible={boolean("Visible", true)}
-      hero={heroBase}
       title={text("Title", "Title")}
+      renderHeroPortrait={renderHeroPortrait}
+      renderSkill={renderSkill}
+      renderAdditionalStats={renderAdditionalStats}
+      renderCrest={renderCrest}
+      renderTroop={renderTroop}
+      renderArtifact={renderArtifact}
       onExitMouseEnter={action("Exit Mouse Enter")}
       onExitMouseLeave={action("Exit Mouse Leave")}
       onExitClick={action("Exit Click")}
@@ -27,7 +36,6 @@ storiesOf("HeroWindow", module)
   ))
   .add("dismissal", () => (
     <HeroWindow
-      hero={heroBase}
       visible={true}
       dismissVisible={boolean("Dismiss Visible", true)}
       onDismissMouseEnter={action("Dismiss Mouse Enter")}

@@ -1,8 +1,6 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { HeroSkills } from "heroes-core";
-
 import * as styles from "./HeroWindow.module.scss";
 
 import { buttonImages } from "./assets";
@@ -14,15 +12,10 @@ const SkillSlotCount = 4;
 const TroopSlotCount = 5;
 const ArtifactSlotCount = 14;
 
-interface Hero {
-  readonly skills: HeroSkills;
-}
-
 interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
-  readonly hero: Hero;
   readonly title: string;
   readonly renderHeroPortrait: () => React.ReactNode;
-  readonly renderSkill: (skill: string, value: number) => React.ReactNode;
+  readonly renderSkill: (index: number) => React.ReactNode;
   readonly renderAdditionalStats: () => React.ReactNode;
   readonly renderCrest: () => React.ReactNode;
   readonly renderTroop: (index: number) => React.ReactNode;
@@ -87,7 +80,7 @@ class HeroWindow extends React.Component<HeroWindowProps> {
         <div className={styles.portrait}>
           {this.props.renderHeroPortrait()}
         </div>
-        {this.renderSkills(this.props.hero.skills)}
+        {this.renderSkills()}
         <div className={styles.additionalStats}>
           {this.props.renderAdditionalStats()}
         </div>
@@ -96,7 +89,7 @@ class HeroWindow extends React.Component<HeroWindowProps> {
         </div>
         {this.renderArmy()}
         {this.renderArtifacts()}
-        {this.props.dismissVisible && this.renderDismissal()}
+        {this.props.dismissVisible && this.renderDismiss()}
         <div className={styles.exit}>
           <ImageButton
             images={buttonImages.exit}
@@ -114,10 +107,9 @@ class HeroWindow extends React.Component<HeroWindowProps> {
     );
   }
 
-  private renderSkills(skills: HeroSkills) {
+  private renderSkills() {
     const content = [...new Array(SkillSlotCount).keys()]
-      .map((i) => Object.keys(skills)[i])
-      .map((s) => this.renderSkill(s, skills[s] || 0));
+      .map((i) => this.renderSkill(i));
 
     return (
       <div className={styles.skills}>
@@ -126,19 +118,20 @@ class HeroWindow extends React.Component<HeroWindowProps> {
     );
   }
 
-  private renderSkill(skill: string, value: number) {
+  private renderSkill(index: number) {
     return (
       <div
-        key={skill}
+        key={index}
         className={styles.skill}
       >
-        {this.props.renderSkill(skill, value)}
+        {this.props.renderSkill(index)}
       </div>
     );
   }
 
   private renderArmy() {
-    const content = [...new Array(TroopSlotCount).keys()].map((i) => this.renderTroop(i));
+    const content = [...new Array(TroopSlotCount).keys()]
+      .map((i) => this.renderTroop(i));
 
     return (
       <div className={styles.army}>
@@ -159,7 +152,8 @@ class HeroWindow extends React.Component<HeroWindowProps> {
   }
 
   private renderArtifacts() {
-    const content = [...new Array(ArtifactSlotCount).keys()].map((i) => this.renderArtifact(i));
+    const content = [...new Array(ArtifactSlotCount).keys()]
+      .map((i) => this.renderArtifact(i));
 
     return (
       <div className={styles.artifacts}>
@@ -179,7 +173,7 @@ class HeroWindow extends React.Component<HeroWindowProps> {
     );
   }
 
-  private renderDismissal() {
+  private renderDismiss() {
     return (
       <div className={styles.dismiss}>
         <ImageButton

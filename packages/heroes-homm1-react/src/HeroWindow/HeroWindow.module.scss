@@ -16,6 +16,7 @@
   position: absolute;
   top: 101px;
   left: 49px;
+  width: 101px;
 }
 
 .skills {
@@ -26,6 +27,7 @@
 
 .skill {
   display: inline-block;
+  width: 82px;
   margin-right: 6px;
 }
 
@@ -33,12 +35,14 @@
   position: absolute;
   top: 101px;
   left: 508px;
+  width: 82px;
 }
 
 .crest {
   position: absolute;
   top: 200px;
   left: 49px;
+  width: 101px;
 }
 
 .army {
@@ -49,6 +53,7 @@
 
 .troop {
   display: inline-block;
+  width: 82px;
   margin-right: 6px;
 }
 
@@ -60,6 +65,8 @@
 
 .artifact {
   display: inline-block;
+  width: 76px;
+  height: 76px;
   margin-right: 3px;
   margin-bottom: 3px;
 }
