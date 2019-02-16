@@ -28,10 +28,8 @@ interface TownWindowContainerProps extends InjectedIntlProps, TownWindowProps {
 
   readonly visibleStructureDetails?: string;
   readonly getStructureDetails: (structure: Structure, town: string, resources: Resources, props: {
-    readonly onRecruitTroop: (structure: string, count: number) => void;
     readonly onCloseClick: () => void;
   }) => React.ReactNode;
-  readonly onRecruitTroop: (town: string, structure: string, count: number) => void;
   readonly onOpenStructureDetailsClick: (structure: string) => void;
   readonly onCloseStructureDetailsClick: () => void;
 
@@ -118,7 +116,6 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
     // TODO: optimize and handle case with result missing
     const structureDetails = this.props.getStructureDetails(struc, town.id, resources, {
       onCloseClick: this.onCloseStructureDetailsClick,
-      onRecruitTroop: this.onRecruitTroop,
     });
 
     return structureDetails;
@@ -126,10 +123,6 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
 
   private readonly onCloseStructureDetailsClick = () => {
     this.props.onCloseStructureDetailsClick();
-  }
-
-  private readonly onRecruitTroop = (structure: string, count: number) => {
-    this.props.onRecruitTroop(this.props.town.id, structure, count);
   }
 
   private readonly renderCrest = () => {

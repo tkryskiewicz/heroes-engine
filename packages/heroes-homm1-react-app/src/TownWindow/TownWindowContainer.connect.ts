@@ -44,7 +44,6 @@ type DispatchProp =
   "onSwapHeroTroops" |
   "onOpenStructureDetailsClick" |
   "onCloseStructureDetailsClick" |
-  "onRecruitTroop" |
   "onExitClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowContainerProps, DispatchProp> => ({
@@ -72,11 +71,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowContainerProps, 
   },
   onCloseStructureDetailsClick() {
     dispatch(townWindowActions.closeStructureDetails());
-  },
-  onRecruitTroop(town, structure, count) {
-    dispatch(townWindowActions.closeStructureDetails());
-
-    dispatch(gameActions.recruitTroop(town, structure, count));
   },
   onExitClick() {
     dispatch(townWindowActions.close());
