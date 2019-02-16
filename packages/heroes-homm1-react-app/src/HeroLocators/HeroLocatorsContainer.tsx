@@ -11,6 +11,7 @@ export interface HeroLocatorsContainerProps {
   readonly onSelectLocator: (index: number) => void;
   readonly heroDetailsVisible: boolean;
   readonly onOpenHeroDetailsClick: () => void;
+  readonly onConfirmDismissHeroClick: () => void;
   readonly onCloseHeroDetailsClick: () => void;
 }
 
@@ -54,6 +55,7 @@ export class HeroLocatorsContainer extends React.Component<HeroLocatorsContainer
         visible={true}
         hero={hero}
         dismissible={true}
+        onConfirmDismissHeroClick={this.props.onConfirmDismissHeroClick}
         onExitClick={this.props.onCloseHeroDetailsClick}
       />
     );

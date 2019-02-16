@@ -52,7 +52,7 @@ type DispatchProp =
 
 const mapDispatchToProps = (
   dispatch: Dispatch,
-  ownProps: Pick<HeroWindowContainerProps, "onExitClick">,
+  ownProps: Pick<HeroWindowContainerProps, "onConfirmDismissHeroClick" | "onExitClick">,
 ): Pick<HeroWindowContainerProps, DispatchProp> => ({
   onVisibleSkillDetailsChange(skill) {
     dispatch(heroWindowActions.changeVisibleSkillDetails(skill));
@@ -106,7 +106,9 @@ const mapDispatchToProps = (
 
     dispatch(heroWindowActions.reset());
 
-    ownProps.onExitClick();
+    if (ownProps.onConfirmDismissHeroClick) {
+      ownProps.onConfirmDismissHeroClick(hero);
+    }
   },
   onExitClick() {
     dispatch(heroWindowActions.reset());

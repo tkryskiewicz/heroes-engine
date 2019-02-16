@@ -71,7 +71,8 @@ interface HeroWindowContainerProps extends InjectedIntlProps, WithGameWindowProp
 }
 
 type DefaultProp =
-  "dismissible";
+  "dismissible" |
+  "onConfirmDismissHeroClick";
 
 interface HeroWindowContainerState {
   readonly statusText: string;
@@ -80,6 +81,7 @@ interface HeroWindowContainerState {
 class HeroWindowContainer extends React.Component<HeroWindowContainerProps, HeroWindowContainerState> {
   public static readonly defaultProps: Pick<HeroWindowContainerProps, DefaultProp> = {
     dismissible: false,
+    onConfirmDismissHeroClick: () => undefined,
   };
 
   public readonly state: HeroWindowContainerState = {
