@@ -17,6 +17,7 @@ type StateProp =
   "visitingHero" |
   "resources" |
   "selectedGarrisonTroopIndex" |
+  "visitingHeroDetailsVisible" |
   "selectedHeroTroopIndex" |
   "getStructureDetails" |
   "visibleStructureDetails";
@@ -33,6 +34,7 @@ const mapStateToProps = (state: AppState): Pick<TownWindowContainerProps, StateP
     visibleStructureDetails: state.townWindow.visibleStructureDetails,
     // TODO: resolve this dynamically
     visitingHero: town.id === TownId.Farm ? state.game.heroes[3] : undefined,
+    visitingHeroDetailsVisible: state.townWindow.visitingHeroDetailsVisible,
   };
 };
 
@@ -40,6 +42,8 @@ type DispatchProp =
   "onCrestClick" |
   "onSelectGarrisonTroop" |
   "onSwapGarrisonTroops" |
+  "onOpenVisitingHeroDetailsClick" |
+  "onCloseVisitingHeroDetailsClick" |
   "onSelectHeroTroop" |
   "onSwapHeroTroops" |
   "onOpenStructureDetailsClick" |
@@ -57,6 +61,12 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowContainerProps, 
     dispatch(townWindowActions.deselectGarrisonTroop());
 
     dispatch(gameActions.swapGarrisonTroops(town, index, withIndex));
+  },
+  onOpenVisitingHeroDetailsClick() {
+    dispatch(townWindowActions.openVisitingHeroDetails());
+  },
+  onCloseVisitingHeroDetailsClick() {
+    dispatch(townWindowActions.closeVisitingHeroDetails());
   },
   onSelectHeroTroop(index) {
     dispatch(townWindowActions.selectHeroTroop(index));

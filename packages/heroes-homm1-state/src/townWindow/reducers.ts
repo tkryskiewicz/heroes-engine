@@ -3,6 +3,7 @@ import { TownWindowState } from "./state";
 
 const initialState: TownWindowState = {
   recruitTroopCount: 0,
+  visitingHeroDetailsVisible: false,
 };
 
 export const townWindowReducer = (
@@ -28,6 +29,16 @@ export const townWindowReducer = (
       return {
         ...state,
         selectedGarrisonTroopIndex: undefined,
+      };
+    case TownWindowActionType.OpenVisitingHeroDetails:
+      return {
+        ...state,
+        visitingHeroDetailsVisible: true,
+      };
+    case TownWindowActionType.CloseVisitingHeroDetails:
+      return {
+        ...state,
+        visitingHeroDetailsVisible: false,
       };
     case TownWindowActionType.SelectHeroTroop:
       return {

@@ -3,6 +3,8 @@ export enum TownWindowActionType {
   Close = "townWindow/close",
   SelectGarrisonTroop = "townWindow/selectGarrisonTroop",
   DeselectGarrisonTroop = "townWindow/deselectGarrisonTroop",
+  OpenVisitingHeroDetails = "townWindow/openVisitingHeroDetails",
+  CloseVisitingHeroDetails = "townWindow/closeVisitingHeroDetails",
   SelectHeroTroop = "townWindow/selectHeroTroop",
   DeselectHeroTroop = "townWindow/deselectHeroTroop",
   OpenStructureDetails = "townWindow/openStructureDetails",
@@ -18,6 +20,8 @@ export type TownWindowAction =
   CloseTownWindowAction |
   SelectGarrisonTroopAction |
   DeselectGarrisonTroopAction |
+  OpenVisitingHeroDetailsAction |
+  CloseVisitingHeroDetailsAction |
   SelectHeroTroopAction |
   DeselectHeroTroopAction |
   OpenStructureDetailsAction |
@@ -60,6 +64,22 @@ export interface DeselectGarrisonTroopAction {
 
 export const deselectGarrisonTroop = (): DeselectGarrisonTroopAction => ({
   type: TownWindowActionType.DeselectGarrisonTroop,
+});
+
+export interface OpenVisitingHeroDetailsAction {
+  readonly type: TownWindowActionType.OpenVisitingHeroDetails;
+}
+
+export const openVisitingHeroDetails = (): OpenVisitingHeroDetailsAction => ({
+  type: TownWindowActionType.OpenVisitingHeroDetails,
+});
+
+export interface CloseVisitingHeroDetailsAction {
+  readonly type: TownWindowActionType.CloseVisitingHeroDetails;
+}
+
+export const closeVisitingHeroDetails = (): CloseVisitingHeroDetailsAction => ({
+  type: TownWindowActionType.CloseVisitingHeroDetails,
 });
 
 export interface SelectHeroTroopAction {

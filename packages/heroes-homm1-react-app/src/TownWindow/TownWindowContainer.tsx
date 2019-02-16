@@ -13,13 +13,14 @@ import {
   TownView,
   TownWindow,
   townWindowMessages,
-  TownWindowProps,
   Treasury,
+  WithGameWindowProps,
 } from "heroes-homm1-react";
 
+import { HeroWindow } from "../HeroWindow";
 import { TroopSlot } from "../TroopSlot";
 
-interface TownWindowContainerProps extends InjectedIntlProps, TownWindowProps {
+interface TownWindowContainerProps extends InjectedIntlProps, WithGameWindowProps {
   readonly town: Town;
   readonly visitingHero?: Hero;
   readonly resources: Resources;
@@ -36,6 +37,10 @@ interface TownWindowContainerProps extends InjectedIntlProps, TownWindowProps {
   readonly selectedGarrisonTroopIndex?: number;
   readonly onSelectGarrisonTroop: (index: number) => void;
   readonly onSwapGarrisonTroops: (town: string, index: number, withIndex: number) => void;
+
+  readonly visitingHeroDetailsVisible: boolean;
+  readonly onOpenVisitingHeroDetailsClick: () => void;
+  readonly onCloseVisitingHeroDetailsClick: () => void;
 
   readonly selectedHeroTroopIndex?: number;
   readonly onSelectHeroTroop: (index: number) => void;
@@ -59,7 +64,8 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
     return (
       <>
         <TownWindow
-          {...this.props}
+          visible={this.props.visible}
+          townName={town.name}
           renderTownView={this.renderTownView}
           renderCrest={this.renderCrest}
           renderGarrisonTroop={this.renderGarrisonTroop}
@@ -228,14 +234,18 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   }
 
   private readonly renderHeroPortrait = () => {
-    const { visitingHero } = this.props;
+    const { visitingHero, visitingHeroDetailsVisible } = this.props;
 
     return (
-      <HeroPortrait
-        hero={visitingHero ? visitingHero.id : undefined}
-        onMouseEnter={this.onHeroPortraitMouseEnter}
-        onMouseLeave={this.onHeroPortraitMouseLeave}
-      />
+      <>
+        <HeroPortrait
+          hero={visitingHero ? visitingHero.id : undefined}
+          onMouseEnter={this.onHeroPortraitMouseEnter}
+          onMouseLeave={this.onHeroPortraitMouseLeave}
+          onClick={this.props.onOpenVisitingHeroDetailsClick}
+        />
+        {visitingHero && visitingHeroDetailsVisible && this.renderVisitingHeroDetails(visitingHero)}
+      </>
     );
   }
 
@@ -251,6 +261,17 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
 
   private readonly onHeroPortraitMouseLeave = () => {
     this.setDefaultStatusText();
+  }
+
+  private readonly renderVisitingHeroDetails = (hero: Hero) => {
+    return (
+      <HeroWindow
+        visible={true}
+        hero={hero}
+        dismissible={false}
+        onExitClick={this.props.onCloseVisitingHeroDetailsClick}
+      />
+    );
   }
 
   private readonly renderHeroTroop = (index: number) => {
