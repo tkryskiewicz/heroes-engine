@@ -491,6 +491,8 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 
   private readonly onCloseArtifactDetailsClick = () => {
+    this.setDefaultStatusText();
+
     this.props.onVisibleArtifactDetailsChange();
   }
 
