@@ -5,6 +5,7 @@ export interface Town {
   readonly id: string;
   readonly name: string;
   readonly alignment: string;
+  // TODO: is this needed? e.g. for recruiting heroes?
   readonly heroClass: string;
   readonly garrison: Army;
   readonly structures: Structure[];

@@ -9,6 +9,14 @@ storiesOf("base/Crest", module)
   .add("default", () => (
     <Crest
       alignment={alignment("Alignment")}
+      onMouseEnter={action("Mouse Enter")}
+      onMouseLeave={action("Mouse Leave")}
+      onClick={action("Click")}
+    />
+  ))
+  .add("hero crest", () => (
+    <Crest
+      alignment={alignment("Alignment")}
       heroClass={heroClass("Hero Class")}
       onClick={action("Click")}
     />

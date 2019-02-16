@@ -133,12 +133,10 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   }
 
   private readonly renderCrest = () => {
-    const { town } = this.props;
-
     return (
       <Crest
-        alignment={town.alignment}
-        heroClass={town.heroClass}
+        alignment={this.props.town.alignment}
+        heroClass={this.props.visitingHero ? this.props.visitingHero.heroClass : undefined}
         onMouseEnter={this.onCrestMouseEnter}
         onMouseLeave={this.onCrestMouseLeave}
         onClick={this.props.onCrestClick}
