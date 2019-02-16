@@ -13,7 +13,6 @@ import { getArtifactDetails } from "./config";
 import { HeroWindowContainer, HeroWindowContainerProps } from "./HeroWindowContainer";
 
 type StateProp =
-  "hero" |
   "visibleSkillDetails" |
   "visibleAdditionalStatDetails" |
   "selectedTroopIndex" |
@@ -27,7 +26,6 @@ const mapStateToProps = (state: AppState): Pick<HeroWindowContainerProps, StateP
   dismissHeroPromptVisible: state.heroWindow.dismissHeroPromptVisible,
   dismissTroopPromptVisible: state.heroWindow.dismissTroopPromptVisisble,
   getArtifactDetails,
-  hero: state.game.heroes[state.heroWindow.heroIndex!],
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,
   troopDetailsVisible: state.heroWindow.visibleTroopDetails,
   visibleAdditionalStatDetails: state.heroWindow.visibleAdditionalStatDetails,
@@ -52,7 +50,10 @@ type DispatchProp =
   "onConfirmDismissHeroClick" |
   "onExitClick";
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowContainerProps, DispatchProp> => ({
+const mapDispatchToProps = (
+  dispatch: Dispatch,
+  ownProps: Pick<HeroWindowContainerProps, "onExitClick">,
+): Pick<HeroWindowContainerProps, DispatchProp> => ({
   onVisibleSkillDetailsChange(skill) {
     dispatch(heroWindowActions.changeVisibleSkillDetails(skill));
   },
@@ -101,12 +102,16 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroWindowContainerProps, 
     dispatch(heroWindowActions.closeDismissHeroPrompt());
   },
   onConfirmDismissHeroClick(hero) {
-    dispatch(heroWindowActions.close());
-
     dispatch(gameActions.dismissHero(hero));
+
+    dispatch(heroWindowActions.reset());
+
+    ownProps.onExitClick();
   },
   onExitClick() {
-    dispatch(heroWindowActions.close());
+    dispatch(heroWindowActions.reset());
+
+    ownProps.onExitClick();
   },
 });
 

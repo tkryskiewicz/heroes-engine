@@ -1,6 +1,4 @@
 export enum HeroWindowActionType {
-  Open = "heroWindow/open",
-  Close = "heroWindow/close",
   ChangeVisibleSkillDetails = "heroWindow/changeVisibleSkillDetails",
   ChangeVisibleAdditionalStatDetails = "heroWindow/changeVisibleAdditionalStatDetails",
   SelectTroop = "heroWindow/selectTroop",
@@ -12,11 +10,10 @@ export enum HeroWindowActionType {
   ChangeVisibleArtifactDetails = "heroWindow/changeVisibleArtifactDetails",
   OpenDismissHeroPrompt = "heroWindow/openDismissHeroPrompt",
   CloseDismissHeroPrompt = "heroWindow/closeDismissHeroPrompt",
+  Reset = "heroWindow/reset",
 }
 
 export type HeroWindowAction =
-  OpenHeroWindowAction |
-  CloseHeroWindowAction |
   ChangeVisibleSkillDetailsAction |
   ChangeVisibleAdditionalStatDetailsAction |
   SelectHeroWindowTroopAction |
@@ -27,25 +24,8 @@ export type HeroWindowAction =
   CloseDismissTroopPromptAction |
   ChangeVisibleArtifactDetailsAction |
   OpenDismissHeroPromptAction |
-  CloseDismissHeroPromptAction;
-
-export interface OpenHeroWindowAction {
-  readonly type: HeroWindowActionType.Open;
-  readonly heroIndex: number;
-}
-
-export const open = (heroIndex: number): OpenHeroWindowAction => ({
-  heroIndex,
-  type: HeroWindowActionType.Open,
-});
-
-export interface CloseHeroWindowAction {
-  readonly type: HeroWindowActionType.Close;
-}
-
-export const close = (): CloseHeroWindowAction => ({
-  type: HeroWindowActionType.Close,
-});
+  CloseDismissHeroPromptAction |
+  ResetAction;
 
 export interface ChangeVisibleSkillDetailsAction {
   readonly type: HeroWindowActionType.ChangeVisibleSkillDetails;
@@ -145,4 +125,12 @@ export interface CloseDismissHeroPromptAction {
 
 export const closeDismissHeroPrompt = (): CloseDismissHeroPromptAction => ({
   type: HeroWindowActionType.CloseDismissHeroPrompt,
+});
+
+export interface ResetAction {
+  readonly type: HeroWindowActionType.Reset;
+}
+
+export const reset = (): ResetAction => ({
+  type: HeroWindowActionType.Reset,
 });

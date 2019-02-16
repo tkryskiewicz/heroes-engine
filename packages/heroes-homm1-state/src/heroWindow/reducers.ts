@@ -12,15 +12,6 @@ export const heroWindowReducer = (
   action: HeroWindowAction,
 ): HeroWindowState => {
   switch (action.type) {
-    case HeroWindowActionType.Open:
-      return {
-        ...state,
-        heroIndex: action.heroIndex,
-      };
-    case HeroWindowActionType.Close:
-      return {
-        ...initialState,
-      };
     case HeroWindowActionType.ChangeVisibleSkillDetails:
       return {
         ...state,
@@ -77,6 +68,10 @@ export const heroWindowReducer = (
       return {
         ...state,
         dismissHeroPromptVisible: false,
+      };
+    case HeroWindowActionType.Reset:
+      return {
+        ...initialState,
       };
     default:
       return state;

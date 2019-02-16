@@ -10,4 +10,5 @@ export interface Locator {
 
 export interface LocatorsState {
   readonly selectedLocator?: Locator;
+  readonly heroDetailsVisible: boolean;
 }

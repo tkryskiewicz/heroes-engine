@@ -1,7 +1,9 @@
 import { LocatorsAction, LocatorsActionType } from "./actions";
 import { LocatorsState } from "./state";
 
-const initialState: LocatorsState = {};
+const initialState: LocatorsState = {
+  heroDetailsVisible: false,
+};
 
 export const locatorsReducer = (
   state: LocatorsState = initialState,
@@ -17,6 +19,16 @@ export const locatorsReducer = (
       return {
         ...state,
         selectedLocator: undefined,
+      };
+    case LocatorsActionType.OpenHeroDetails:
+      return {
+        ...state,
+        heroDetailsVisible: true,
+      };
+    case LocatorsActionType.CloseHeroDetails:
+      return {
+        ...state,
+        heroDetailsVisible: false,
       };
     default:
       return state;
