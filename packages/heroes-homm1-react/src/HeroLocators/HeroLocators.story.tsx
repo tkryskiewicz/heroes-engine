@@ -28,15 +28,13 @@ storiesOf("HeroLocators", module)
     <HeroLocators
       heroes={heroes}
       selectedIndex={number("Selected Index", 0, { range: true, min: 0, max: HeroLimit - 1, step: 1 })}
-      onSelectLocator={action("Select Locator")}
-      onSelectedLocatorClick={action("Selected Locator Click")}
+      onLocatorClick={action("Locator Click")}
     />
   ))
   .add("empty", () => (
     <HeroLocators
       heroes={[]}
       selectedIndex={number("Selected Index", 0, { range: true, min: 0, max: HeroLimit - 1, step: 1 })}
-      onSelectLocator={action("Select Locator")}
-      onSelectedLocatorClick={action("Selected Locator Click")}
+      onLocatorClick={action("Locator Click")}
     />
   ));

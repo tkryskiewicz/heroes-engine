@@ -8,39 +8,32 @@ import { HeroLocator } from "../HeroLocator";
 export interface HeroLocatorsProps {
   readonly heroes: Hero[];
   readonly selectedIndex?: number;
-  readonly onSelectLocator?: (index: number) => void;
-  readonly onSelectedLocatorClick?: (index: number) => void;
+  readonly onLocatorClick: (index: number) => void;
 }
+
+type DefaultProp =
+  "onLocatorClick";
 
 // TODO: unify hero and town locators?
 export class HeroLocators extends React.Component<HeroLocatorsProps> {
-  public render() {
-    return [...new Array(HeroLimit).keys()].map((i) => {
-      const hero = this.props.heroes[i];
+  public static readonly defaultProps: Pick<HeroLocatorsProps, DefaultProp> = {
+    onLocatorClick: () => undefined,
+  };
 
-      return (
-        <HeroLocator
-          key={i}
-          index={i}
-          hero={hero ? { id: hero.id, mobility: hero.mobility } : undefined}
-          selected={i === this.props.selectedIndex}
-          onClick={this.onLocatorClick}
-        />
-      );
-    });
+  public render() {
+    return [...new Array(HeroLimit).keys()]
+      .map((i) => this.renderLocator(i, this.props.heroes[i]));
   }
 
-  private readonly onLocatorClick = (index: number) => {
-    const hero = this.props.heroes[index];
-
-    if (!hero) {
-      return;
-    }
-
-    if (index !== this.props.selectedIndex && this.props.onSelectLocator) {
-      this.props.onSelectLocator(index);
-    } else if (this.props.onSelectedLocatorClick) {
-      this.props.onSelectedLocatorClick(index);
-    }
+  private renderLocator(index: number, hero?: Hero) {
+    return (
+      <HeroLocator
+        key={index}
+        index={index}
+        hero={hero ? { id: hero.id, mobility: hero.mobility } : undefined}
+        selected={index === this.props.selectedIndex}
+        onClick={this.props.onLocatorClick}
+      />
+    );
   }
 }

@@ -1,11 +1,14 @@
 import * as React from "react";
 
 import { Hero } from "heroes-core";
-import { HeroLocators, HeroLocatorsProps } from "heroes-homm1-react";
+import { HeroLocators } from "heroes-homm1-react";
 
 import { HeroWindow } from "../HeroWindow";
 
-export interface HeroLocatorsContainerProps extends HeroLocatorsProps {
+export interface HeroLocatorsContainerProps {
+  readonly heroes: Hero[];
+  readonly selectedIndex?: number;
+  readonly onSelectLocator: (index: number) => void;
   readonly heroDetailsVisible: boolean;
   readonly onOpenHeroDetailsClick: () => void;
   readonly onCloseHeroDetailsClick: () => void;
@@ -24,12 +27,25 @@ export class HeroLocatorsContainer extends React.Component<HeroLocatorsContainer
         <HeroLocators
           heroes={this.props.heroes}
           selectedIndex={this.props.selectedIndex}
-          onSelectLocator={this.props.onSelectLocator}
-          onSelectedLocatorClick={this.props.onOpenHeroDetailsClick}
+          onLocatorClick={this.onLocatorClick}
         />
         {selectedHero && heroDetailsVisible && this.renderHeroDetails(selectedHero)}
       </>
     );
+  }
+
+  private readonly onLocatorClick = (index: number) => {
+    const hero = this.props.heroes[index];
+
+    if (!hero) {
+      return;
+    }
+
+    if (index !== this.props.selectedIndex && this.props.onSelectLocator) {
+      this.props.onSelectLocator(index);
+    } else {
+      this.props.onOpenHeroDetailsClick();
+    }
   }
 
   private renderHeroDetails(hero: Hero) {

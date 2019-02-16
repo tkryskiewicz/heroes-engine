@@ -22,7 +22,6 @@ const mapStateToProps = (state: AppState): Pick<HeroLocatorsContainerProps, Stat
 
 type DispatchProp =
   "onSelectLocator" |
-  "onSelectedLocatorClick" |
   "onOpenHeroDetailsClick" |
   "onCloseHeroDetailsClick";
 
@@ -34,9 +33,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroLocatorsContainerProps
     };
 
     dispatch(locatorsActions.selectLocator(locator));
-  },
-  onSelectedLocatorClick() {
-    dispatch(locatorsActions.openHeroDetails());
   },
   onOpenHeroDetailsClick() {
     dispatch(locatorsActions.openHeroDetails());
