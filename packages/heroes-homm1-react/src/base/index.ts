@@ -19,4 +19,5 @@ export * from "./ResourceCost";
 export * from "./ResourceIcon";
 export * from "./SkillInfo";
 export * from "./SpellIcon";
+export * from "./Treasury";
 export * from "./TroopSlot";

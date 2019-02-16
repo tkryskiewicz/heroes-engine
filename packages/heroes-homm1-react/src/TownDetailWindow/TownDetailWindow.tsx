@@ -2,7 +2,8 @@ import * as React from "react";
 
 import * as styles from "./TownDetailWindow.module.scss";
 
-import { buttonImages } from "../TownWindow/Treasury/assets";
+// FIXME: find right assets
+import { buttonImages } from "../base/Treasury/assets";
 
 import { ImageButton } from "../base";
 import { withGameWindow } from "../core";

@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
 import { TownId } from "heroes-homm1";
-import { TownWindow, TownWindowProps } from "heroes-homm1-react";
 import {
   AppState,
   gameActions,
@@ -11,6 +10,7 @@ import {
 } from "heroes-homm1-state";
 
 import { getStructureDetails } from "./config";
+import { TownWindowContainer, TownWindowContainerProps } from "./TownWindowContainer";
 
 type StateProp =
   "town" |
@@ -21,7 +21,7 @@ type StateProp =
   "getStructureDetails" |
   "visibleStructureDetails";
 
-const mapStateToProps = (state: AppState): Pick<TownWindowProps, StateProp> => {
+const mapStateToProps = (state: AppState): Pick<TownWindowContainerProps, StateProp> => {
   const town = state.game.towns[state.townWindow.townIndex!];
 
   return {
@@ -47,7 +47,7 @@ type DispatchProp =
   "onRecruitTroop" |
   "onExitClick";
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchProp> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowContainerProps, DispatchProp> => ({
   onCrestClick() {
     dispatch(kingdomOverviewWindowActions.open());
   },
@@ -83,11 +83,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowProps, DispatchP
   },
 });
 
-const TownWindowConnected = connect(mapStateToProps, mapDispatchToProps)(TownWindow);
+const TownWindowContainerConnected = connect(mapStateToProps, mapDispatchToProps)(TownWindowContainer);
 
-type TownWindowConnectedProps = ExtractProps<typeof TownWindowConnected>;
+type TownWindowContainerConnectedProps = ExtractProps<typeof TownWindowContainerConnected>;
 
 export {
-  TownWindowConnected as TownWindow,
-  TownWindowConnectedProps as TownWindowProps,
+  TownWindowContainerConnected as TownWindow,
+  TownWindowContainerConnectedProps as TownWindowProps,
 };

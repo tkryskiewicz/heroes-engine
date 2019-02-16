@@ -5,19 +5,19 @@ import { Hero, Resources, Structure, Town } from "heroes-core";
 
 import * as styles from "./TownWindow.module.scss";
 
-import { ArmyStrip, BigBar, Crest, getArmyStripStatusTextMessage, HeroPortrait } from "../base";
+import { ArmyStrip, BigBar, getArmyStripStatusTextMessage, HeroPortrait } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
-import { kingdomOverviewWindowMessages } from "../KingdomOverviewWindow";
 import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
 import { recruitTroopWindowMessages } from "../RecruitTroopWindow";
 import { TownView } from "../TownView";
 import { messages } from "./messages";
-import { Treasury } from "./Treasury";
 
 interface TownWindowProps extends InjectedIntlProps, WithGameWindowProps {
   readonly town: Town;
   readonly visitingHero?: Hero;
   readonly resources: Resources;
+  readonly renderCrest: () => React.ReactNode;
+  readonly renderTreasury: () => React.ReactNode;
   readonly selectedGarrisonTroopIndex?: number;
   readonly onSelectGarrisonTroop: (index: number) => void;
   readonly onSwapGarrisonTroops: (town: string, index: number, withIndex: number) => void;
@@ -37,6 +37,8 @@ interface TownWindowProps extends InjectedIntlProps, WithGameWindowProps {
 }
 
 type DefaultProp =
+  "renderCrest" |
+  "renderTreasury" |
   "onSelectGarrisonTroop" |
   "onSwapGarrisonTroops" |
   "onSelectHeroTroop" |
@@ -64,6 +66,8 @@ class TownWindow extends React.Component<TownWindowProps, TownWindowState> {
     onSelectHeroTroop: () => undefined,
     onSwapGarrisonTroops: () => undefined,
     onSwapHeroTroops: () => undefined,
+    renderCrest: () => undefined,
+    renderTreasury: () => undefined,
   };
 
   public readonly state: TownWindowState = {
@@ -92,13 +96,7 @@ class TownWindow extends React.Component<TownWindowProps, TownWindowState> {
             </GameText>
           </div>
           <div className={styles.crest}>
-            <Crest
-              alignment={town.alignment}
-              heroClass={town.heroClass}
-              onMouseEnter={this.onCrestMouseEnter}
-              onMouseLeave={this.onCrestMouseLeave}
-              onClick={this.props.onCrestClick}
-            />
+            {this.props.renderCrest()}
           </div>
           <div className={styles.garrisonArmy}>
             <ArmyStrip
@@ -126,12 +124,7 @@ class TownWindow extends React.Component<TownWindowProps, TownWindowState> {
             />
           </div>
           <div className={styles.treasury}>
-            <Treasury
-              resources={this.props.resources}
-              onExitMouseEnter={this.onExitMouseEnter}
-              onExitMouseLeave={this.onExitMouseLeave}
-              onExitClick={this.props.onExitClick}
-            />
+            {this.props.renderTreasury()}
           </div>
         </div>
         <BigBar>
@@ -140,16 +133,6 @@ class TownWindow extends React.Component<TownWindowProps, TownWindowState> {
         {visibleStructureDetails && this.renderStructureDetails(town, resources, visibleStructureDetails)}
       </div>
     );
-  }
-
-  private readonly onCrestMouseEnter = () => {
-    const statusText = this.props.intl.formatMessage(kingdomOverviewWindowMessages.title);
-
-    this.setStatusText(statusText);
-  }
-
-  private readonly onCrestMouseLeave = () => {
-    this.setDefaultStatusText();
   }
 
   private readonly onHeroPortraitMouseEnter = () => {
@@ -326,16 +309,6 @@ class TownWindow extends React.Component<TownWindowProps, TownWindowState> {
 
   private readonly onRecruitTroop = (structure: string, count: number) => {
     this.props.onRecruitTroop(this.props.town.id, structure, count);
-  }
-
-  private readonly onExitMouseEnter = () => {
-    const statusText = this.props.intl.formatMessage(messages.exit);
-
-    this.setStatusText(statusText);
-  }
-
-  private readonly onExitMouseLeave = () => {
-    this.setDefaultStatusText();
   }
 
   private setStatusText(statusText: string) {

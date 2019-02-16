@@ -8,8 +8,12 @@ import { Town } from "heroes-core";
 
 import Readme = require("./README.md");
 
+import { GameText } from "../core";
 import { alignment, heroClass, town, troopIndex } from "../stories";
 import { TownWindow } from "./TownWindow";
+
+const renderCrest = () => <GameText size="small">Crest</GameText>;
+const renderTreasury = () => <GameText size="small">Treasury</GameText>;
 
 storiesOf("TownWindow", module)
   .addDecorator(withReadme(Readme))
@@ -31,6 +35,8 @@ storiesOf("TownWindow", module)
         town={t}
         resources={{}}
         visible={boolean("Visible", true)}
+        renderCrest={renderCrest}
+        renderTreasury={renderTreasury}
         selectedGarrisonTroopIndex={selectedGarrisonTroopIndex}
         onSelectGarrisonTroop={action("Select Garrison Troop")}
         onSwapGarrisonTroops={action("Swap Garrison Troops")}

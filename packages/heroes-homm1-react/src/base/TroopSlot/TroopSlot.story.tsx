@@ -6,7 +6,7 @@ import * as React from "react";
 import { creature, town, troopIndex } from "../../stories";
 import { TroopSlot } from "./TroopSlot";
 
-storiesOf("base/ArmyStrip/TroopSlot", module)
+storiesOf("base/TroopSlot", module)
   .add("default", () => {
     const troop = {
       count: number("Count", 1, { range: true, min: 0, max: 9999, step: 1 }),
