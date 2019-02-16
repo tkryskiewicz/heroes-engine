@@ -27,6 +27,12 @@
   width: 101px;
 }
 
+.troop {
+  display: inline-block;
+  width: 82px;
+  margin-right: 6px;
+}
+
 .garrison-army {
   position: absolute;
   top: 14px;
@@ -37,6 +43,7 @@
   position: absolute;
   top: 113px;
   left: 5px;
+  width: 101px;
 }
 
 .hero-army {

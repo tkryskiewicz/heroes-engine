@@ -165,8 +165,8 @@ class HeroWindow extends React.Component<HeroWindowProps> {
   private renderArtifact(index: number) {
     return (
       <div
-        className={styles.artifact}
         key={index}
+        className={styles.artifact}
       >
         {this.props.renderArtifact(index)}
       </div>
