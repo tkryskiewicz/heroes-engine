@@ -1,95 +1,55 @@
 import * as React from "react";
-import { InjectedIntlProps, injectIntl } from "react-intl";
-
-import { Hero, Resources, Structure, Town } from "heroes-core";
 
 import * as styles from "./TownWindow.module.scss";
 
 import { BigBar } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
-import { getCreatureNameMessage, getStructureNameMessage } from "../messages";
-import { recruitTroopWindowMessages } from "../RecruitTroopWindow";
-import { TownView } from "../TownView";
-import { messages } from "./messages";
 
 const TroopSlotCount = 5;
 
-interface TownWindowProps extends InjectedIntlProps, WithGameWindowProps {
-  readonly town: Town;
-  readonly visitingHero?: Hero;
-  readonly resources: Resources;
+interface TownWindowProps extends WithGameWindowProps {
+  readonly townName: string;
+  readonly renderTownView: () => React.ReactNode;
   readonly renderCrest: () => React.ReactNode;
   readonly renderGarrisonTroop: (index: number) => React.ReactNode;
   readonly renderHeroPortrait: () => React.ReactNode;
   readonly renderHeroTroop: (index: number) => React.ReactNode;
   readonly renderTreasury: () => React.ReactNode;
-  readonly visibleStructureDetails?: string;
-  readonly getStructureDetails: (structure: Structure, town: string, resources: Resources, props: {
-    readonly onRecruitTroop: (structure: string, count: number) => void;
-    readonly onCloseClick: () => void;
-  }) => React.ReactNode | undefined;
-  readonly onOpenStructureDetailsClick: (structure: string) => void;
-  readonly onCloseStructureDetailsClick: () => void;
-  readonly onRecruitTroop: (town: string, structure: string, count: number) => void;
-  readonly onExitClick: () => void;
   readonly statusText: string;
 }
 
 type DefaultProp =
+  "townName" |
+  "renderTownView" |
   "renderCrest" |
   "renderGarrisonTroop" |
   "renderHeroPortrait" |
   "renderHeroTroop" |
   "renderTreasury" |
-  "getStructureDetails" |
-  "onOpenStructureDetailsClick" |
-  "onCloseStructureDetailsClick" |
-  "onRecruitTroop" |
-  "onExitClick" |
   "statusText";
 
-interface TownWindowState {
-  readonly statusText: string;
-}
-
-class TownWindow extends React.Component<TownWindowProps, TownWindowState> {
+class TownWindow extends React.Component<TownWindowProps> {
   public static readonly defaultProps: Pick<TownWindowProps, DefaultProp> = {
-    getStructureDetails: () => undefined,
-    onCloseStructureDetailsClick: () => undefined,
-    onExitClick: () => undefined,
-    onOpenStructureDetailsClick: () => undefined,
-    onRecruitTroop: () => undefined,
     renderCrest: () => undefined,
     renderGarrisonTroop: () => undefined,
     renderHeroPortrait: () => undefined,
     renderHeroTroop: () => undefined,
+    renderTownView: () => undefined,
     renderTreasury: () => undefined,
     statusText: "",
+    townName: "",
   };
-
-  public readonly state: TownWindowState = {
-    statusText: "",
-  };
-
-  public componentDidMount() {
-    this.setDefaultStatusText();
-  }
 
   public render() {
-    const { town, resources, visibleStructureDetails } = this.props;
-
     return (
       <div className={styles.root}>
-        <TownView
-          town={town}
-          onStructureMouseEnter={this.onStructureMouseEnter}
-          onStructureMouseLeave={this.onStructureMouseLeave}
-          onStructureClick={this.onStructureClick}
-        />
+        <div className={styles.townView}>
+          {this.props.renderTownView()}
+        </div>
         <div className={styles.strip}>
           <div className={styles.townName}>
             <GameText size="small">
-              {town.name}
+              {this.props.townName}
             </GameText>
           </div>
           <div className={styles.crest}>
@@ -105,9 +65,8 @@ class TownWindow extends React.Component<TownWindowProps, TownWindowState> {
           </div>
         </div>
         <BigBar>
-          {this.props.statusText || this.state.statusText}
+          {this.props.statusText}
         </BigBar>
-        {visibleStructureDetails && this.renderStructureDetails(town, resources, visibleStructureDetails)}
       </div>
     );
   }
@@ -155,67 +114,9 @@ class TownWindow extends React.Component<TownWindowProps, TownWindowState> {
       </div>
     );
   }
-
-  private readonly onStructureMouseEnter = (structure: string) => {
-    const { formatMessage } = this.props.intl;
-
-    const struc = this.props.town.structures.find((s) => s.id === structure)!;
-
-    let statusText = formatMessage(getStructureNameMessage(struc.id, struc.isBuilt));
-
-    if (struc.dwelling) {
-      const creatureName = formatMessage(getCreatureNameMessage(struc.dwelling.creature));
-
-      statusText = formatMessage(recruitTroopWindowMessages.title, { creature: creatureName });
-    }
-
-    this.setStatusText(statusText);
-  }
-
-  private readonly onStructureMouseLeave = () => {
-    this.setDefaultStatusText();
-  }
-
-  private readonly onStructureClick = (structure: string) => {
-    this.props.onOpenStructureDetailsClick(structure);
-  }
-
-  private renderStructureDetails(town: Town, resources: Resources, structure: string) {
-    const struc = town.structures.find((s) => s.id === structure)!;
-
-    // TODO: optimize and handle case with result missing
-    const structureDetails = this.props.getStructureDetails(struc, town.id, resources, {
-      onCloseClick: this.onCloseStructureDetailsClick,
-      onRecruitTroop: this.onRecruitTroop,
-    });
-
-    return structureDetails;
-  }
-
-  private readonly onCloseStructureDetailsClick = () => {
-    this.props.onCloseStructureDetailsClick();
-  }
-
-  private readonly onRecruitTroop = (structure: string, count: number) => {
-    this.props.onRecruitTroop(this.props.town.id, structure, count);
-  }
-
-  private setStatusText(statusText: string) {
-    this.setState({
-      statusText,
-    });
-  }
-
-  private setDefaultStatusText() {
-    const statusText = this.props.intl.formatMessage(messages.defaultStatusText);
-
-    this.setStatusText(statusText);
-  }
 }
 
-const TownWindowWrapped = injectIntl(
-  withGameWindow(640)(TownWindow),
-);
+const TownWindowWrapped = withGameWindow(640)(TownWindow);
 
 type TownWindowWrappedProps = ExtractProps<typeof TownWindowWrapped>;
 

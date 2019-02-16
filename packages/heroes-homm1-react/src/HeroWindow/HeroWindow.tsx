@@ -1,5 +1,4 @@
 import * as React from "react";
-import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import * as styles from "./HeroWindow.module.scss";
 
@@ -12,7 +11,7 @@ const SkillSlotCount = 4;
 const TroopSlotCount = 5;
 const ArtifactSlotCount = 14;
 
-interface HeroWindowProps extends InjectedIntlProps, WithGameWindowProps {
+interface HeroWindowProps extends WithGameWindowProps {
   readonly title: string;
   readonly renderHeroPortrait: () => React.ReactNode;
   readonly renderSkill: (index: number) => React.ReactNode;
@@ -187,9 +186,7 @@ class HeroWindow extends React.Component<HeroWindowProps> {
   }
 }
 
-const HeroWindowWrapped = injectIntl(
-  withGameWindow(640)(HeroWindow),
-);
+const HeroWindowWrapped = withGameWindow(640)(HeroWindow);
 
 type HeroWindowWrappedProps = ExtractProps<typeof HeroWindowWrapped>;
 

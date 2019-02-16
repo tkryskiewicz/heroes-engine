@@ -1,12 +1,16 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
+import { Hero, Resources, Structure, Town } from "heroes-core";
 import {
   Crest,
   getArmyStripStatusTextMessage,
   getCreatureNameMessage,
+  getStructureNameMessage,
   HeroPortrait,
   kingdomOverviewWindowMessages,
+  recruitTroopWindowMessages,
+  TownView,
   TownWindow,
   townWindowMessages,
   TownWindowProps,
@@ -16,7 +20,20 @@ import {
 import { TroopSlot } from "../TroopSlot";
 
 interface TownWindowContainerProps extends InjectedIntlProps, TownWindowProps {
+  readonly town: Town;
+  readonly visitingHero?: Hero;
+  readonly resources: Resources;
+
   readonly onCrestClick: () => void;
+
+  readonly visibleStructureDetails?: string;
+  readonly getStructureDetails: (structure: Structure, town: string, resources: Resources, props: {
+    readonly onRecruitTroop: (structure: string, count: number) => void;
+    readonly onCloseClick: () => void;
+  }) => React.ReactNode;
+  readonly onRecruitTroop: (town: string, structure: string, count: number) => void;
+  readonly onOpenStructureDetailsClick: (structure: string) => void;
+  readonly onCloseStructureDetailsClick: () => void;
 
   readonly selectedGarrisonTroopIndex?: number;
   readonly onSelectGarrisonTroop: (index: number) => void;
@@ -25,6 +42,8 @@ interface TownWindowContainerProps extends InjectedIntlProps, TownWindowProps {
   readonly selectedHeroTroopIndex?: number;
   readonly onSelectHeroTroop: (index: number) => void;
   readonly onSwapHeroTroops: (hero: string, index: number, withIndex: number) => void;
+
+  readonly onExitClick: () => void;
 }
 
 interface TownWindowContainerState {
@@ -37,17 +56,80 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   };
 
   public render() {
+    const { town, resources, visibleStructureDetails } = this.props;
+
     return (
-      <TownWindow
-        {...this.props}
-        renderCrest={this.renderCrest}
-        renderGarrisonTroop={this.renderGarrisonTroop}
-        renderHeroPortrait={this.renderHeroPortrait}
-        renderHeroTroop={this.renderHeroTroop}
-        renderTreasury={this.renderTreasury}
-        statusText={this.state.statusText}
+      <>
+        <TownWindow
+          {...this.props}
+          renderTownView={this.renderTownView}
+          renderCrest={this.renderCrest}
+          renderGarrisonTroop={this.renderGarrisonTroop}
+          renderHeroPortrait={this.renderHeroPortrait}
+          renderHeroTroop={this.renderHeroTroop}
+          renderTreasury={this.renderTreasury}
+          statusText={this.state.statusText}
+        />
+        {visibleStructureDetails && this.renderStructureDetails(town, resources, visibleStructureDetails)}
+      </>
+    );
+  }
+
+  private readonly renderTownView = () => {
+    const { town } = this.props;
+
+    return (
+      <TownView
+        town={town}
+        onStructureMouseEnter={this.onStructureMouseEnter}
+        onStructureMouseLeave={this.onStructureMouseLeave}
+        onStructureClick={this.onStructureClick}
       />
     );
+  }
+
+  private readonly onStructureMouseEnter = (structure: string) => {
+    const { formatMessage } = this.props.intl;
+
+    const struc = this.props.town.structures.find((s) => s.id === structure)!;
+
+    let statusText = formatMessage(getStructureNameMessage(struc.id, struc.isBuilt));
+
+    if (struc.dwelling) {
+      const creatureName = formatMessage(getCreatureNameMessage(struc.dwelling.creature));
+
+      statusText = formatMessage(recruitTroopWindowMessages.title, { creature: creatureName });
+    }
+
+    this.setStatusText(statusText);
+  }
+
+  private readonly onStructureMouseLeave = () => {
+    this.setDefaultStatusText();
+  }
+
+  private readonly onStructureClick = (structure: string) => {
+    this.props.onOpenStructureDetailsClick(structure);
+  }
+
+  private renderStructureDetails(town: Town, resources: Resources, structure: string) {
+    const struc = town.structures.find((s) => s.id === structure)!;
+
+    // TODO: optimize and handle case with result missing
+    const structureDetails = this.props.getStructureDetails(struc, town.id, resources, {
+      onCloseClick: this.onCloseStructureDetailsClick,
+      onRecruitTroop: this.onRecruitTroop,
+    });
+
+    return structureDetails;
+  }
+
+  private readonly onCloseStructureDetailsClick = () => {
+    this.props.onCloseStructureDetailsClick();
+  }
+
+  private readonly onRecruitTroop = (structure: string, count: number) => {
+    this.props.onRecruitTroop(this.props.town.id, structure, count);
   }
 
   private readonly renderCrest = () => {

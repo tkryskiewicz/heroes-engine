@@ -8,7 +8,6 @@ import {
   GameModal,
   GameText,
   TavernWindow,
-  TownWindowProps,
 } from "heroes-homm1-react";
 
 import { BuildStructureWindow } from "../BuildStructureWindow";
@@ -18,13 +17,14 @@ import { RecruitTroopWindow } from "../RecruitTroopWindow";
 import { ThievesGuildWindow } from "../ThievesGuildWindow";
 import { TownPopulationWindow } from "../TownPopulationWindow";
 import { messages } from "./messages";
+import { TownWindowContainerProps } from "./TownWindowContainer";
 
-export const getStructureDetails: TownWindowProps["getStructureDetails"] = (
+export const getStructureDetails: TownWindowContainerProps["getStructureDetails"] = (
   structure,
   town,
   resources,
   props,
-): React.ReactNode | undefined => {
+): React.ReactNode => {
   switch (structure.id) {
     case StructureId.Castle:
       if (!structure.isBuilt) {

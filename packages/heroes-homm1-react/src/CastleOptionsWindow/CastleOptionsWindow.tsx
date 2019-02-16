@@ -27,7 +27,7 @@ interface CastleOptionsWindowProps extends
   readonly resources: Resources;
   readonly getOptionDetails: (town: string, option: Structure, props: {
     readonly onCloseClick: () => void;
-  }) => React.ReactNode | undefined;
+  }) => React.ReactNode;
   readonly visibleOptionDetails?: string;
   readonly onOpenOptionDetailsClick: (option: string) => void;
   readonly onCloseOptionDetailsClick: () => void;

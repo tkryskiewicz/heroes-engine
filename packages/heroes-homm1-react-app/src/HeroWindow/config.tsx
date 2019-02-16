@@ -12,7 +12,7 @@ export const getArtifactDetails = (
     readonly onStatusTextChange: (statusText: string) => void;
     readonly onCloseClick: () => void;
   },
-): React.ReactNode | undefined => {
+): React.ReactNode => {
   switch (artifact.id) {
     case ArtifactId.Spellbook: {
       const spellBook = artifact as SpellBook;
