@@ -17,7 +17,7 @@ export const getArtifactDetails = (
     case ArtifactId.Spellbook: {
       const spellBook = artifact as SpellBook;
 
-      if (!spellBook.data.length) {
+      if (!spellBook.data.spells.length) {
         return (
           <NoSpellsPrompt
             visible={true}
@@ -29,7 +29,7 @@ export const getArtifactDetails = (
       return (
         <SpellBookWindow
           visible={true}
-          spells={spellBook.data}
+          spells={spellBook.data.spells}
           onStatusTextChange={props.onStatusTextChange}
           onExitClick={props.onCloseClick}
         />

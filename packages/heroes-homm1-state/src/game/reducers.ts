@@ -13,6 +13,7 @@ import {
 import {
   Alignment,
   ArtifactId,
+  buyMageGuildSpellBook,
   campaignScenarios,
   constructArtifact,
   constructHero,
@@ -57,7 +58,9 @@ const heroes: Hero[] = [
       Alignment.Red,
     ),
     artifacts: [
-      constructArtifact(ArtifactId.Spellbook),
+      constructArtifact(ArtifactId.Spellbook, {
+        spells: [],
+      }),
     ],
     luck: -1,
     mobility: 0,
@@ -70,13 +73,14 @@ const heroes: Hero[] = [
     ),
     artifacts: [
       {
-        ...constructArtifact(ArtifactId.Spellbook),
-        data: [
-          {
-            charges: 2,
-            id: SpellId.Bless,
-          },
-        ],
+        ...constructArtifact(ArtifactId.Spellbook, {
+          spells: [
+            {
+              charges: 2,
+              id: SpellId.Bless,
+            },
+          ],
+        }),
       },
     ],
     luck: 3,
@@ -176,6 +180,10 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
     case GameActionType.RecruitTroop:
       return {
         ...recruitGameTroop(state, action.town, action.structure, action.count),
+      };
+    case GameActionType.BuyMageGuildSpellBook:
+      return {
+        ...buyMageGuildSpellBook(state, action.hero, action.town, action.cost),
       };
     case GameActionType.EndTurn:
       return {

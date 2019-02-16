@@ -1,3 +1,5 @@
+import { Resources } from "heroes-core";
+
 export enum GameActionType {
   SwapHeroTroops = "game/swapHeroTroops",
   DismissHeroTroop = "game/dismissHeroTroop",
@@ -5,6 +7,7 @@ export enum GameActionType {
   SwapGarrisonTroops = "game/swapGarrisonTroops",
   BuildStructure = "game/buildStructure",
   RecruitTroop = "game/recruitTroop",
+  BuyMageGuildSpellBook = "game/buyMageGuildSpellBook",
   EndTurn = "game/endTurn",
 }
 
@@ -15,6 +18,7 @@ export type GameAction =
   SwapGarrisonTroopsAction |
   BuildStructureAction |
   RecruitTroopAction |
+  BuyMageGuildSpellBookAction |
   EndTurnAction;
 
 export interface SwapHeroTroopsAction {
@@ -91,6 +95,20 @@ export const recruitTroop = (town: string, structure: string, count: number): Re
   structure,
   town,
   type: GameActionType.RecruitTroop,
+});
+
+export interface BuyMageGuildSpellBookAction {
+  readonly type: GameActionType.BuyMageGuildSpellBook;
+  readonly hero: string;
+  readonly town: string;
+  readonly cost: Resources;
+}
+
+export const buyMageGuildSpellBook = (hero: string, town: string, cost: Resources): BuyMageGuildSpellBookAction => ({
+  cost,
+  hero,
+  town,
+  type: GameActionType.BuyMageGuildSpellBook,
 });
 
 export interface EndTurnAction {

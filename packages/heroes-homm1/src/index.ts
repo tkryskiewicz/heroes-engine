@@ -5,6 +5,7 @@ export { CastleOptionStatus } from "./CastleOptionStatus";
 export { ComPort } from "./ComPort";
 export { CreatureId, creatures, creatureById } from "./creatures";
 export { CreatureSpeed } from "./CreatureSpeed";
+export { buyMageGuildSpellBook } from "./Game";
 export { GameDifficulty, getGameDifficultyRating } from "./GameDifficulty";
 export { GameOption } from "./GameOption";
 export { GameSettings } from "./GameSettings";

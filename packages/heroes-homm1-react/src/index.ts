@@ -4,6 +4,7 @@ export * from "./AdventureScreen";
 export * from "./base";
 export * from "./BuildShipWindow";
 export * from "./BuildStructureWindow";
+export * from "./BuySpellBookWindow";
 export * from "./CampaignScenarioInfoWindow";
 export * from "./CastleOptionIcon";
 export * from "./CastleOptionsWindow";

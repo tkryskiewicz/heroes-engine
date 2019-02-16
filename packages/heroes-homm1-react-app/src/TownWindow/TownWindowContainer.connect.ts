@@ -33,7 +33,7 @@ const mapStateToProps = (state: AppState): Pick<TownWindowContainerProps, StateP
     town,
     visibleStructureDetails: state.townWindow.visibleStructureDetails,
     // TODO: resolve this dynamically
-    visitingHero: town.id === TownId.Farm ? state.game.heroes[3] : undefined,
+    visitingHero: town.id === TownId.Farm ? state.game.heroes[0] : undefined,
     visitingHeroDetailsVisible: state.townWindow.visitingHeroDetailsVisible,
   };
 };

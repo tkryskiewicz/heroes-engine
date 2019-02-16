@@ -86,8 +86,10 @@ export enum ArtifactId {
   UltimateBookOfKnowledge = "ultimate-book-of-knowledge",
 }
 
-export const constructArtifact = (artifact: string): Artifact => ({
-  data: {},
+export const constructArtifact = (artifact: string, data: {} = {}): Artifact => ({
+  data: {
+    ...data,
+  },
   id: artifact,
   tradable: artifact !== ArtifactId.Spellbook,
 });

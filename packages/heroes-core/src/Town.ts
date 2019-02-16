@@ -12,7 +12,7 @@ export interface Town {
   readonly canConstructStructures: boolean;
 }
 
-const getStructure = (town: Town, structure: string): Structure | undefined =>
+export const getTownStructure = (town: Town, structure: string): Structure | undefined =>
   town.structures.find((s) => s.id === structure);
 
 export const swapGarrisonTroops = (town: Town, index: number, withIndex: number): Town => ({
@@ -21,7 +21,7 @@ export const swapGarrisonTroops = (town: Town, index: number, withIndex: number)
 });
 
 export const isStructureBuilt = (town: Town, structure: string): boolean => {
-  const s = getStructure(town, structure);
+  const s = getTownStructure(town, structure);
 
   return s !== undefined && s.isBuilt;
 };

@@ -7,6 +7,10 @@ export interface SpellBookSpell {
   readonly charges: number;
 }
 
-export interface SpellBook extends Artifact<SpellBookSpell[]> {
+export interface SpellBookData {
+  readonly spells: SpellBookSpell[];
+}
+
+export interface SpellBook extends Artifact<SpellBookData> {
   readonly id: ArtifactId.Spellbook;
 }

@@ -20,6 +20,9 @@ export interface Game {
   readonly discoveredPuzzlePieces: number;
 }
 
+export const getGameHero = (game: Game, hero: string): Hero | undefined =>
+  game.heroes.find((h) => h.id === hero);
+
 export const swapGameHeroTroops = (game: Game, hero: string, index: number, withIndex: number): Game => ({
   ...game,
   heroes: game.heroes.map((h) => h.id === hero ? swapHeroTroops(h, index, withIndex) : h),

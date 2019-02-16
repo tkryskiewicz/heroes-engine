@@ -1,8 +1,8 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { enoughResources } from "heroes-core";
-import { MageGuild, Shipyard, StructureId } from "heroes-homm1";
+import { enoughResources, heroHasArtifact } from "heroes-core";
+import { ArtifactId, MageGuild, Shipyard, StructureId } from "heroes-homm1";
 import {
   BuildShipWindow,
   GameModal,
@@ -15,6 +15,7 @@ import { CastleOptionsWindow } from "../CastleOptionsWindow";
 import { MageGuildWindow } from "../MageGuildWindow";
 import { ThievesGuildWindow } from "../ThievesGuildWindow";
 import { TownPopulationWindow } from "../TownPopulationWindow";
+import { BuyMageGuildSpellBookWindow } from "./BuyMageGuildSpellBookWindow";
 import { messages } from "./messages";
 import { RecruitStructureTroopWindow } from "./RecruitStructureTroopWindow";
 import { TownWindowContainerProps } from "./TownWindowContainer";
@@ -22,6 +23,7 @@ import { TownWindowContainerProps } from "./TownWindowContainer";
 export const getStructureDetails: TownWindowContainerProps["getStructureDetails"] = (
   structure,
   town,
+  visitingHero,
   resources,
   props,
 ): React.ReactNode => {
@@ -49,6 +51,21 @@ export const getStructureDetails: TownWindowContainerProps["getStructureDetails"
       );
     case StructureId.MageGuild:
       const mageGuild = structure as MageGuild;
+
+      if (visitingHero && !heroHasArtifact(visitingHero, ArtifactId.Spellbook)) {
+        const canBuySpellBook = enoughResources(resources, mageGuild.data.spellBookCost);
+
+        return (
+          <BuyMageGuildSpellBookWindow
+            visible={true}
+            hero={visitingHero.id}
+            town={town}
+            cost={mageGuild.data.spellBookCost}
+            confirmDisabled={!canBuySpellBook}
+            onCancelClick={props.onCloseClick}
+          />
+        );
+      }
 
       return (
         <MageGuildWindow

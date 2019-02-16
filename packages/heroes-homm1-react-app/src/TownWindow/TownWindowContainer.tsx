@@ -28,9 +28,10 @@ interface TownWindowContainerProps extends InjectedIntlProps, WithGameWindowProp
   readonly onCrestClick: () => void;
 
   readonly visibleStructureDetails?: string;
-  readonly getStructureDetails: (structure: Structure, town: string, resources: Resources, props: {
-    readonly onCloseClick: () => void;
-  }) => React.ReactNode;
+  readonly getStructureDetails: (
+    structure: Structure, town: string, visitingHero: Hero | undefined, resources: Resources, props: {
+      readonly onCloseClick: () => void;
+    }) => React.ReactNode;
   readonly onOpenStructureDetailsClick: (structure: string) => void;
   readonly onCloseStructureDetailsClick: () => void;
 
@@ -59,7 +60,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   };
 
   public render() {
-    const { town, resources, visibleStructureDetails } = this.props;
+    const { town, visibleStructureDetails } = this.props;
 
     return (
       <>
@@ -74,7 +75,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
           renderTreasury={this.renderTreasury}
           statusText={this.state.statusText}
         />
-        {visibleStructureDetails && this.renderStructureDetails(town, resources, visibleStructureDetails)}
+        {visibleStructureDetails && this.renderStructureDetails(town, visibleStructureDetails)}
       </>
     );
   }
@@ -116,11 +117,13 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
     this.props.onOpenStructureDetailsClick(structure);
   }
 
-  private renderStructureDetails(town: Town, resources: Resources, structure: string) {
+  private renderStructureDetails(town: Town, structure: string) {
+    const { visitingHero, resources } = this.props;
+
     const struc = town.structures.find((s) => s.id === structure)!;
 
     // TODO: optimize and handle case with result missing
-    const structureDetails = this.props.getStructureDetails(struc, town.id, resources, {
+    const structureDetails = this.props.getStructureDetails(struc, town.id, visitingHero, resources, {
       onCloseClick: this.onCloseStructureDetailsClick,
     });
 

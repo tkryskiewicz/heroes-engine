@@ -70,6 +70,7 @@ export enum StructureId {
 
 interface MageGuildData {
   readonly spells: string[];
+  readonly spellBookCost: Resources;
 }
 
 export interface MageGuild extends Structure<MageGuildData> {
@@ -121,6 +122,9 @@ export const commonStructures: StructureType[] = [
       [Resource.Ore]: 5,
     },
     data: {
+      spellBookCost: {
+        [Resource.Gold]: 500,
+      },
       spells: [
         SpellId.Bless,
         SpellId.Protection,

@@ -16,6 +16,7 @@ export const spellBookWindowReducer = (
     case SpellBookWindowActionType.ChangeSpellType:
       return {
         ...state,
+        page: 0,
         spellType: action.value,
       };
     case SpellBookWindowActionType.ChangePage:

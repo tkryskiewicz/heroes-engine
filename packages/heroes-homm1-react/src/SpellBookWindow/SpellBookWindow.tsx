@@ -242,7 +242,7 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
   private getLastPage() {
     const spells = this.props.spells.filter((s) => s.type === this.props.spellType);
 
-    const value = Math.floor(spells.length / SpellsPerPage);
+    const value = Math.floor((spells.length - 1) / SpellsPerPage);
 
     return value;
   }

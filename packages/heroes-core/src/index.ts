@@ -14,6 +14,7 @@ export { Creature, Damage } from "./Creature";
 export {
   Game,
   getGameTown,
+  getGameHero,
   swapGameHeroTroops,
   dismissGameHeroTroop,
   dismissGameHero,
@@ -22,9 +23,17 @@ export {
   recruitGameTroop,
   endGameTurn,
 } from "./Game";
-export { Hero, HeroSkills, swapHeroTroops, canSelectNextHero, getNextHeroIndex } from "./Hero";
-export { Resources, multiplyResources, divideResources, enoughResources } from "./Resource";
+export {
+  Hero,
+  HeroSkills,
+  swapHeroTroops,
+  canSelectNextHero,
+  getNextHeroIndex,
+  heroHasArtifact,
+  addHeroArtifact,
+} from "./Hero";
+export { Resources, subtractResources, multiplyResources, divideResources, enoughResources } from "./Resource";
 export { Scenario } from "./Scenario";
 export { Structure, Dwelling, isDwellingStructure, buildStructure } from "./Structure";
-export { Town, isStructureBuilt } from "./Town";
+export { Town, isStructureBuilt, getTownStructure } from "./Town";
 export { Troop } from "./Troop";

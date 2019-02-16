@@ -41,3 +41,14 @@ export const getNextHeroIndex = (heroes: Hero[], selectedIndex?: number): number
 
   return index;
 };
+
+export const heroHasArtifact = (hero: Hero, artifact: string): boolean =>
+  hero.artifacts.some((a) => a && a.id === artifact ? true : false);
+
+export const addHeroArtifact = (hero: Hero, artifact: Artifact): Hero => ({
+  ...hero,
+  artifacts: [
+    ...hero.artifacts,
+    artifact,
+  ],
+});
