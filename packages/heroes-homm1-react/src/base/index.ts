@@ -6,6 +6,7 @@ export * from "./ArtifactSlot";
 export * from "./BigBar";
 export * from "./CreatureIcon";
 export * from "./Crest";
+export * from "./ExperienceAmount";
 export * from "./ExperienceIcon";
 export * from "./Frame";
 export * from "./GameModal";

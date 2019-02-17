@@ -11,3 +11,4 @@ export * from "./MoraleDetailsPrompt";
 export * from "./NoSpellsPrompt";
 export * from "./SkillDetailsPrompt";
 export * from "./SpellDetailsPrompt";
+export * from "./TreasureChestPrompt";
