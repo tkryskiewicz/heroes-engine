@@ -12,7 +12,7 @@ storiesOf("prompt/MoraleDetailsPrompt", module)
   .add("default", () => (
     <MoraleDetailsPrompt
       visible={boolean("Visible", true)}
-      value={moraleType("Value")}
+      type={moraleType("Value")}
       onConfirmClick={action("Confirm Click")}
     />
   ))
@@ -58,7 +58,7 @@ storiesOf("prompt/MoraleDetailsPrompt", module)
     return (
       <MoraleDetailsPrompt
         visible={true}
-        value={MoraleType.Neutral}
+        type={MoraleType.Neutral}
         modifiers={modifiers}
       />
     );

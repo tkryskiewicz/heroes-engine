@@ -1,6 +1,8 @@
 import { Row } from "antd";
 import * as React from "react";
 
+import { LuckType, MoraleType } from "heroes-homm1";
+
 import * as styles from "./AdditionalStatsInfo.module.scss";
 
 import { BackgroundImage } from "./assets";
@@ -72,12 +74,12 @@ export class AdditionalStatsInfo extends React.Component<AdditionalStatsInfoProp
   private renderMorale(morale: number) {
     const content = morale === 0 ? (
       <MoraleIcon
-        type="neutral"
+        type={MoraleType.Neutral}
       />
     ) : [...new Array(Math.abs(morale)).keys()].map((i) => (
       <MoraleIcon
         key={i}
-        type={morale > 0 ? "good" : "bad"}
+        type={morale > 0 ? MoraleType.Good : MoraleType.Bad}
       />
     ));
 
@@ -108,12 +110,12 @@ export class AdditionalStatsInfo extends React.Component<AdditionalStatsInfoProp
   private renderLuck(luck: number) {
     const content = luck === 0 ? (
       <LuckIcon
-        type="neutral"
+        type={LuckType.Neutral}
       />
     ) : [...new Array(Math.abs(luck)).keys()].map((i) => (
       <LuckIcon
         key={i}
-        type={luck > 0 ? "good" : "bad"}
+        type={luck > 0 ? LuckType.Good : LuckType.Bad}
       />
     ));
 

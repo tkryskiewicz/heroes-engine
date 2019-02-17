@@ -1,10 +1,11 @@
 import * as React from "react";
 
+import { LuckType } from "heroes-homm1";
+
 import { luckImages } from "./assets";
 
-// TODO: is bad luck even possible?
 export interface LuckIconProps {
-  readonly type: "good" | "neutral" | "bad";
+  readonly type: LuckType;
   readonly onClick?: () => void;
 }
 

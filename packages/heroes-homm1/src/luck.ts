@@ -1,6 +1,7 @@
 export enum LuckType {
   Good = "good",
   Neutral = "neutral",
+  // TODO: is bad luck possible?
   Bad = "bad",
 }
 

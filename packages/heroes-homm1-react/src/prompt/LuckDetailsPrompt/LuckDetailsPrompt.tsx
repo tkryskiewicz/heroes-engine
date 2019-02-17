@@ -10,7 +10,7 @@ import { ConfirmPromptProps } from "../prompt";
 import { messages } from "./messages";
 
 export interface LuckDetailsPromptProps extends ConfirmPromptProps {
-  readonly value: LuckType;
+  readonly type: LuckType;
 }
 
 export class LuckDetailsPrompt extends React.Component<LuckDetailsPromptProps> {
@@ -23,10 +23,10 @@ export class LuckDetailsPrompt extends React.Component<LuckDetailsPromptProps> {
         onConfirmClick={this.props.onConfirmClick}
       >
         <GameParagraph textSize="large">
-          <FormattedMessage {...getLuckNameMessage(this.props.value)} />
+          <FormattedMessage {...getLuckNameMessage(this.props.type)} />
         </GameParagraph>
         <GameParagraph textSize="large">
-          <FormattedMessage {...getLuckDescriptionMessage(this.props.value)} />
+          <FormattedMessage {...getLuckDescriptionMessage(this.props.type)} />
         </GameParagraph>
         <GameParagraph textSize="large">
           <FormattedMessage {...messages.modifiers} />:

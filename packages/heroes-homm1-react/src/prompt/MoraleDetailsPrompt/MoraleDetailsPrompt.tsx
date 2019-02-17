@@ -18,7 +18,7 @@ import { ConfirmPromptProps } from "../prompt";
 import { messages } from "./messages";
 
 export interface MoraleDetailsPromptProps extends InjectedIntlProps, ConfirmPromptProps {
-  readonly value: MoraleType;
+  readonly type: MoraleType;
   readonly modifiers: MoraleModifier[];
 }
 
@@ -41,10 +41,10 @@ class MoraleDetailsPrompt extends React.Component<MoraleDetailsPromptProps> {
         onConfirmClick={this.props.onConfirmClick}
       >
         <GameParagraph textSize="large">
-          <FormattedMessage {...getMoraleTypeNameMessage(this.props.value)} />
+          <FormattedMessage {...getMoraleTypeNameMessage(this.props.type)} />
         </GameParagraph>
         <GameParagraph textSize="large">
-          <FormattedMessage {...getMoraleTypeDescriptionMessage(this.props.value)} />
+          <FormattedMessage {...getMoraleTypeDescriptionMessage(this.props.type)} />
         </GameParagraph>
         <GameParagraph textSize="large">
           <FormattedMessage {...messages.modifiers} />:

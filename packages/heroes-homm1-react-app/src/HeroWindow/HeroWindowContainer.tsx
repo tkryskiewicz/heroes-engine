@@ -292,7 +292,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     return (
       <MoraleDetailsPrompt
         visible={true}
-        value={value}
+        type={value}
         onConfirmClick={this.onCloseAdditionalStatDetailsClick}
       />
     );
@@ -302,7 +302,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     return (
       <LuckDetailsPrompt
         visible={true}
-        value={value}
+        type={value}
         onConfirmClick={this.onCloseAdditionalStatDetailsClick}
       />
     );

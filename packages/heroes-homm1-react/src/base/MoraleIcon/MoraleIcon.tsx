@@ -1,9 +1,11 @@
 import * as React from "react";
 
+import { MoraleType } from "heroes-homm1";
+
 import { moraleImages } from "./assets";
 
 export interface MoraleIconProps {
-  readonly type: "good" | "neutral" | "bad";
+  readonly type: MoraleType;
   readonly onClick?: () => void;
 }
 
