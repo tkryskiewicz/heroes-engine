@@ -415,17 +415,18 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 
   private readonly renderTroopDetails = (index: number) => {
-    const { army } = this.props.hero;
+    const { hero } = this.props;
 
-    const troop = army[index]!;
+    const troop = hero.army[index]!;
 
-    const dismissible = getArmySize(army) > 1;
+    const dismissible = getArmySize(hero.army) > 1;
 
     return (
       <TroopWindow
         visible={true}
         index={index}
         creature={troop.creature}
+        skillEnhancements={hero.skills}
         count={troop.count}
         dismissible={dismissible}
         dismissPromptVisible={this.props.dismissTroopPromptVisible}

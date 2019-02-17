@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Troop } from "heroes-core";
-import { creatureById, CreatureId } from "heroes-homm1";
+import { creatureById, CreatureId, Skill } from "heroes-homm1";
 
 import { creature, troopIndex } from "../stories";
 import { TroopWindow } from "./TroopWindow";
@@ -22,6 +22,15 @@ storiesOf("TroopWindow", module)
       count={number("Count", 1, { range: true, min: 0, max: 9999, step: 1 })}
       visible={boolean("Visible", true)}
       onExitClick={action("Exit Click")}
+    />
+  ))
+  .add("skill enhancements", () => (
+    <TroopWindow
+      visible={true}
+      index={0}
+      creature={creatureById[creature("Creature")]}
+      skillEnhancements={{ [Skill.AttackSkill]: 1, [Skill.DefenseSkill]: 2 }}
+      count={1}
     />
   ))
   .add("dismissal", () => (

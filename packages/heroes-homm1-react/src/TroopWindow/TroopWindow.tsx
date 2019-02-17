@@ -2,7 +2,8 @@ import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Creature, Damage } from "heroes-core";
+import { Creature, Damage, HeroSkills } from "heroes-core";
+import { Skill } from "heroes-homm1";
 
 import * as styles from "./TroopWindow.module.scss";
 
@@ -17,6 +18,8 @@ import { getSpeedMessage, messages } from "./messages";
 interface TroopWindowProps extends WithGameWindowProps {
   readonly index: number;
   readonly creature: Creature;
+  // FIXME: not really connected to hero skills
+  readonly skillEnhancements: HeroSkills;
   readonly count: number;
   readonly dismissible: boolean;
   readonly dismissPromptVisible: boolean;
@@ -27,6 +30,7 @@ interface TroopWindowProps extends WithGameWindowProps {
 }
 
 type DefaultProp =
+  "skillEnhancements" |
   "dismissible" |
   "dismissPromptVisible" |
   "onDismissClick" |
@@ -42,10 +46,11 @@ class TroopWindow extends React.Component<TroopWindowProps> {
     onConfirmDismissClick: () => undefined,
     onDismissClick: () => undefined,
     onExitClick: () => undefined,
+    skillEnhancements: {},
   };
 
   public render() {
-    const { creature } = this.props;
+    const { creature, skillEnhancements } = this.props;
 
     return (
       <Row className={styles.root}>
@@ -66,12 +71,14 @@ class TroopWindow extends React.Component<TroopWindowProps> {
           </Row>
           <Row>
             <GameText size="normal">
-              <FormattedMessage {...messages.attack} />: {creature.attack} (?)
+              <FormattedMessage {...messages.attack} />: {creature.attack}
+              {this.renderEnhancedValue(creature.attack, skillEnhancements[Skill.AttackSkill])}
             </GameText>
           </Row>
           <Row>
             <GameText size="normal">
-              <FormattedMessage {...messages.defense} />: {creature.defense} (?)
+              <FormattedMessage {...messages.defense} />: {creature.defense}
+              {this.renderEnhancedValue(creature.defense, skillEnhancements[Skill.DefenseSkill])}
             </GameText>
           </Row>
           {creature.shots && this.renderShots(creature.shots)}
@@ -121,6 +128,12 @@ class TroopWindow extends React.Component<TroopWindowProps> {
         {this.renderCount(this.props.count)}
       </Row>
     );
+  }
+
+  private renderEnhancedValue(baseValue: number, bonus: number) {
+    return bonus ?
+      ` (${baseValue + bonus})` :
+      undefined;
   }
 
   private renderCount(value: number) {

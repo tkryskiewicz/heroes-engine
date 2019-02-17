@@ -5,6 +5,7 @@ export * from "./DismissTroopPrompt";
 export * from "./EndGamePrompt";
 export * from "./EndTurnPrompt";
 export * from "./ExperienceDetailsPrompt";
+export * from "./HeroLevelUpPrompt";
 export * from "./LuckDetailsPrompt";
 export * from "./MoraleDetailsPrompt";
 export * from "./NoSpellsPrompt";
