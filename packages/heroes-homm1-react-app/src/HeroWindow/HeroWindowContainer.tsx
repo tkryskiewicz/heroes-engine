@@ -2,6 +2,7 @@ import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Artifact, getArmySize, Hero } from "heroes-core";
+import { getMoraleType, MoraleType } from "heroes-homm1";
 import {
   AdditionalStatsInfo,
   AdditionalStatType,
@@ -17,7 +18,7 @@ import {
   getHeroClassTitleMessage,
   getHeroNameMessage,
   getLuckNameMessage,
-  getMoraleNameMessage,
+  getMoraleTypeNameMessage,
   getSkillNameMessage,
   HeroPortrait,
   HeroWindow,
@@ -237,16 +238,17 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 
   private readonly onInfoMouseEnter = (type: AdditionalStatType) => {
+    const { hero } = this.props;
     const { formatMessage } = this.props.intl;
 
     let infoText = "";
 
     switch (type) {
       case AdditionalStatType.Morale:
-        infoText = formatMessage(getMoraleNameMessage(this.props.hero.morale));
+        infoText = formatMessage(getMoraleTypeNameMessage(getMoraleType(hero.morale)));
         break;
       case AdditionalStatType.Luck:
-        infoText = formatMessage(getLuckNameMessage(this.props.hero.luck));
+        infoText = formatMessage(getLuckNameMessage(hero.luck));
         break;
       case AdditionalStatType.Experience:
         infoText = formatMessage(experienceMessages.title);
@@ -273,7 +275,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
 
     switch (type) {
       case AdditionalStatType.Morale:
-        content = this.renderMoraleDetails(hero.morale);
+        content = this.renderMoraleDetails(getMoraleType(hero.morale));
         break;
       case AdditionalStatType.Luck:
         content = this.renderLuckDetails(hero.luck);
@@ -286,7 +288,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     return content;
   }
 
-  private renderMoraleDetails(value: number) {
+  private renderMoraleDetails(value: MoraleType) {
     return (
       <MoraleDetailsPrompt
         visible={true}

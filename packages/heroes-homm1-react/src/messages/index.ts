@@ -7,6 +7,21 @@ export { getCreatureNameMessage, getCreaturePluralNameMessage } from "./creature
 export { getHeroClassNameMessage, getHeroClassTitleMessage } from "./heroClasses";
 export { getHeroNameMessage } from "./heroes";
 export {
+  getLuckDescriptionMessage,
+  getLuckNameMessage,
+  getLuckValueMessage,
+  luckMessages,
+} from "./luck";
+export { getMapObjectNameMessage } from "./mapObjects";
+export {
+  moraleMessages,
+  getMoraleTypeDescriptionMessage,
+  getMoraleModifierTypeMessage,
+  getMoraleTypeNameMessage,
+  getMoraleTypeValueMessage,
+  getOriginNameMessage,
+} from "./morale";
+export {
   getScenarioDifficultyMessage,
   getScenarioSizeMessage,
   getKingOfTheHillMessage,
@@ -137,180 +152,6 @@ export const getCampaignNameMessage = (campaign: string) => {
     default:
       return unknownMessage;
   }
-};
-
-export const moraleMessages = defineMessages({
-  bad: {
-    defaultMessage: "Bad Morale",
-    id: "game.morale.bad",
-  },
-  badDescription: {
-    defaultMessage: "Bad morale may cause your armies to freeze in combat.",
-    id: "game.morale.bad.description",
-  },
-  badValue: {
-    defaultMessage: "Bad",
-    id: "game.morale.badValue",
-  },
-  good: {
-    defaultMessage: "Good Morale",
-    id: "game.morale.good",
-  },
-  goodDescription: {
-    defaultMessage: "Good morale may give your armies extra attacks in combat.",
-    id: "game.morale.good.description",
-  },
-  goodValue: {
-    defaultMessage: "Good",
-    id: "game.morale.goodValue",
-  },
-  heroClassBonus: {
-    defaultMessage: "{className} bonus +1",
-    id: "game.morale.bonus.heroClass",
-  },
-  humanTroopsBonus: {
-    defaultMessage: "All human troops +1",
-    id: "game.morale.bonus.humanTroops",
-  },
-  modifiers: {
-    defaultMessage: "Current morale modifiers",
-    id: "game.morale.modifiers",
-  },
-  neutral: {
-    defaultMessage: "Neutral Morale",
-    id: "game.morale.neutral",
-  },
-  neutralDescription: {
-    defaultMessage: "Neutral morale means your armies will never be blessed with extra attacks or freeze in combat.",
-    id: "game.morale.neutral.description",
-  },
-  neutralValue: {
-    defaultMessage: "Neutral",
-    id: "game.morale.neutralValue",
-  },
-  title: {
-    defaultMessage: "Morale",
-    id: "game.morale.title",
-  },
-});
-
-export const getMoraleNameMessage = (morale: number) => {
-  if (morale === 0) {
-    return moraleMessages.neutral;
-  }
-
-  if (morale > 0) {
-    return moraleMessages.good;
-  }
-
-  return moraleMessages.bad;
-};
-
-export const getMoraleDescriptionMessage = (morale: number) => {
-  if (morale === 0) {
-    return moraleMessages.neutralDescription;
-  }
-
-  if (morale > 0) {
-    return moraleMessages.goodDescription;
-  }
-
-  return moraleMessages.badDescription;
-};
-
-export const getMoraleValueMessage = (morale: number) => {
-  if (morale === 0) {
-    return moraleMessages.neutralValue;
-  }
-
-  if (morale > 0) {
-    return moraleMessages.goodValue;
-  }
-
-  return moraleMessages.badValue;
-};
-
-export const luckMessages = defineMessages({
-  bad: {
-    defaultMessage: "Bad Luck",
-    id: "game.luck.bad",
-  },
-  badDescription: {
-    defaultMessage: "Bad luck sometimes falls on your armies in combat, causing their attacks to only do half damage.",
-    id: "game.luck.bad.description",
-  },
-  badValue: {
-    defaultMessage: "Bad",
-    id: "game.luck.badValue",
-  },
-  good: {
-    defaultMessage: "Good Luck",
-    id: "game.luck.good",
-  },
-  goodDescription: {
-    defaultMessage: "Good luck sometimes lets your armies get lucky attacks (double strength) in combat.",
-    id: "game.luck.good.description",
-  },
-  goodValue: {
-    defaultMessage: "Good",
-    id: "game.luck.goodValue",
-  },
-  modifiers: {
-    defaultMessage: "Current Luck modifiers",
-    id: "game.luck.modifiers",
-  },
-  neutral: {
-    defaultMessage: "Netural Luck",
-    id: "game.luck.neutral",
-  },
-  neutralDescription: {
-    defaultMessage: "Neutral luck means your armies will never get lucky or unlucky attacks on the enemy.",
-    id: "game.luck.neutral.description",
-  },
-  neutralValue: {
-    defaultMessage: "Neutral",
-    id: "game.luck.neutralValue",
-  },
-  title: {
-    defaultMessage: "Luck",
-    id: "game.luck",
-  },
-});
-
-export const getLuckNameMessage = (luck: number) => {
-  if (luck === 0) {
-    return luckMessages.neutral;
-  }
-
-  if (luck > 0) {
-    return luckMessages.good;
-  }
-
-  return luckMessages.bad;
-};
-
-export const getLuckDescriptionMessage = (luck: number) => {
-  if (luck === 0) {
-    return luckMessages.neutralDescription;
-  }
-
-  if (luck > 0) {
-    return luckMessages.goodDescription;
-  }
-
-  return luckMessages.badDescription;
-};
-
-export const getLuckValueMessage = (luck: number) => {
-  if (luck === 0) {
-    return luckMessages.neutralValue;
-  }
-
-  if (luck > 0) {
-    return luckMessages.goodValue;
-  }
-
-  return luckMessages.badValue;
 };
 
 export const experienceMessages = defineMessages({

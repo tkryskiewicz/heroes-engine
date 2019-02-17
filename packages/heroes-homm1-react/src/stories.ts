@@ -16,6 +16,7 @@ import {
   HeroClass,
   heroes,
   HeroId,
+  MoraleType,
   MountainsStructureId,
   MovementSpeed,
   OpponentSetting,
@@ -100,6 +101,15 @@ export const skill = (name: string) => select(name, skillOptions, Skill.AttackSk
 export const skillValue = (name: string) => number(name, 0, { range: true, min: 0, max: 999, step: 1 });
 
 export const morale = (name: string) => number(name, 0, { range: true, min: -3, max: 3, step: 1 });
+
+const moraleTypeOptions = Object.keys(MoraleType).reduce<SelectOptions>((p, c: any) => {
+  return {
+    ...p,
+    [c]: MoraleType[c],
+  };
+}, {});
+
+export const moraleType = (name: string) => select(name, moraleTypeOptions, MoraleType.Good);
 
 export const luck = (name: string) => number(name, 0, { range: true, min: -3, max: 3, step: 1 });
 

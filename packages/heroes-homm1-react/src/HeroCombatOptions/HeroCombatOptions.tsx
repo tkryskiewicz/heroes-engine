@@ -2,7 +2,7 @@ import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { HeroSkills } from "heroes-core";
-import { SkillIds } from "heroes-homm1";
+import { MoraleType, SkillIds } from "heroes-homm1";
 
 import * as styles from "./HeroCombatOptions.module.scss";
 
@@ -14,7 +14,7 @@ import {
   getHeroClassTitleMessage,
   getHeroNameMessage,
   getLuckValueMessage,
-  getMoraleValueMessage,
+  getMoraleTypeValueMessage,
   getSkillNameMessage,
   luckMessages,
   moraleMessages,
@@ -25,7 +25,7 @@ interface Hero {
   readonly alignment: string;
   readonly heroClass: string;
   readonly skills: HeroSkills;
-  readonly morale: number;
+  readonly morale: MoraleType;
   readonly luck: number;
 }
 
@@ -143,7 +143,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps> {
     return heroTitle;
   }
 
-  private renderCharacteristics(alignment: string, skills: HeroSkills, morale: number, luck: number) {
+  private renderCharacteristics(alignment: string, skills: HeroSkills, morale: MoraleType, luck: number) {
     const content = SkillIds.map((s) => (
       <span key={s}>
         <FormattedMessage {...getSkillNameMessage(s)} />
@@ -158,7 +158,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps> {
         <GameParagraph textSize="small">
           {content}
           <FormattedMessage {...moraleMessages.title} />
-          : <FormattedMessage {...getMoraleValueMessage(morale)} />
+          : <FormattedMessage {...getMoraleTypeValueMessage(morale)} />
           <br />
           <FormattedMessage {...luckMessages.title} />
           : <FormattedMessage {...getLuckValueMessage(luck)} />
