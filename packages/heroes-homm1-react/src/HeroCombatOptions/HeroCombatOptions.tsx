@@ -2,7 +2,7 @@ import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { HeroSkills } from "heroes-core";
-import { MoraleType, SkillIds } from "heroes-homm1";
+import { LuckType, MoraleType, SkillIds } from "heroes-homm1";
 
 import * as styles from "./HeroCombatOptions.module.scss";
 
@@ -26,7 +26,7 @@ interface Hero {
   readonly heroClass: string;
   readonly skills: HeroSkills;
   readonly morale: MoraleType;
-  readonly luck: number;
+  readonly luck: LuckType;
 }
 
 interface HeroCombatOptionsProps extends InjectedIntlProps, WithGameWindowProps {
@@ -143,7 +143,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps> {
     return heroTitle;
   }
 
-  private renderCharacteristics(alignment: string, skills: HeroSkills, morale: MoraleType, luck: number) {
+  private renderCharacteristics(alignment: string, skills: HeroSkills, morale: MoraleType, luck: LuckType) {
     const content = SkillIds.map((s) => (
       <span key={s}>
         <FormattedMessage {...getSkillNameMessage(s)} />

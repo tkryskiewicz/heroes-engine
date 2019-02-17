@@ -19,14 +19,6 @@ export const messages = defineMessages({
     defaultMessage: "Hit Points",
     id: "game.creature.hitPoints",
   },
-  luck: {
-    defaultMessage: "Luck",
-    id: "game.creature.luck",
-  },
-  morale: {
-    defaultMessage: "Morale",
-    id: "game.creature.morale",
-  },
   shots: {
     defaultMessage: "Shots",
     id: "game.creature.shots",

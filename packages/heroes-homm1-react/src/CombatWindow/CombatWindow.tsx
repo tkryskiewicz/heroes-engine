@@ -2,7 +2,7 @@ import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Battlefield, CombatSide, HeroSkills } from "heroes-core";
-import { getMoraleType } from "heroes-homm1";
+import { getLuckType, getMoraleType } from "heroes-homm1";
 
 import * as styles from "./CombatWindow.module.scss";
 
@@ -175,7 +175,7 @@ class CombatWindow extends React.Component<CombatWindowProps, CombatWindowState>
     return (
       <HeroCombatOptions
         // FIXME
-        hero={{ ...hero, morale: getMoraleType(hero.morale) }}
+        hero={{ ...hero, morale: getMoraleType(hero.morale), luck: getLuckType(hero.luck) }}
         canCastSpell={side === CombatSide.Attacker}
         onCastSpellMouseEnter={this.onCastSpellMouseEnter}
         onCastSpellMouseLeave={this.onCastSpellMouseLeave}

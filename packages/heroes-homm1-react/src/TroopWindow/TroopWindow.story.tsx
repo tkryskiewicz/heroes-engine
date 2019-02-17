@@ -4,9 +4,9 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Troop } from "heroes-core";
-import { creatureById, CreatureId, Skill } from "heroes-homm1";
+import { creatureById, CreatureId, LuckType, MoraleType, Skill } from "heroes-homm1";
 
-import { creature, troopIndex } from "../stories";
+import { creature, luckType, moraleType, troopIndex } from "../stories";
 import { TroopWindow } from "./TroopWindow";
 
 const troopBase: Troop = {
@@ -19,6 +19,8 @@ storiesOf("TroopWindow", module)
     <TroopWindow
       index={troopIndex("Index")}
       creature={creatureById[creature("Creature")]}
+      morale={moraleType("Morale")}
+      luck={luckType("Luck")}
       count={number("Count", 1, { range: true, min: 0, max: 9999, step: 1 })}
       visible={boolean("Visible", true)}
       onExitClick={action("Exit Click")}
@@ -29,6 +31,8 @@ storiesOf("TroopWindow", module)
       visible={true}
       index={0}
       creature={creatureById[creature("Creature")]}
+      morale={MoraleType.Neutral}
+      luck={LuckType.Neutral}
       skillEnhancements={{ [Skill.AttackSkill]: 1, [Skill.DefenseSkill]: 2 }}
       count={1}
     />
@@ -37,6 +41,8 @@ storiesOf("TroopWindow", module)
     <TroopWindow
       index={troopIndex("Index")}
       creature={creatureById[troopBase.creature]}
+      morale={MoraleType.Neutral}
+      luck={LuckType.Neutral}
       count={troopBase.count}
       dismissible={boolean("Dismissible", true)}
       visible={true}

@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { withReadme } from "storybook-readme";
 
-import { MoraleType } from "heroes-homm1";
+import { LuckType, MoraleType } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
@@ -18,7 +18,7 @@ storiesOf("HeroCombatOptions", module)
       alignment: alignment("Alignment"),
       heroClass: heroClass("Hero Class"),
       id: hero("Hero"),
-      luck: 1,
+      luck: LuckType.Good,
       morale: MoraleType.Bad,
       skills: {},
     };

@@ -3,7 +3,7 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Creature, Damage, HeroSkills } from "heroes-core";
-import { Skill } from "heroes-homm1";
+import { LuckType, MoraleType, Skill } from "heroes-homm1";
 
 import * as styles from "./TroopWindow.module.scss";
 
@@ -11,7 +11,13 @@ import { buttonImages } from "./assets";
 
 import { CreatureIcon, ImageButton } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
-import { getCreatureNameMessage } from "../messages";
+import {
+  getCreatureNameMessage,
+  getLuckValueMessage,
+  getMoraleTypeValueMessage,
+  luckMessages,
+  moraleMessages,
+} from "../messages";
 import { DismissTroopPrompt } from "../prompt";
 import { getSpeedMessage, messages } from "./messages";
 
@@ -20,6 +26,8 @@ interface TroopWindowProps extends WithGameWindowProps {
   readonly creature: Creature;
   // FIXME: not really connected to hero skills
   readonly skillEnhancements: HeroSkills;
+  readonly morale: MoraleType;
+  readonly luck: LuckType;
   readonly count: number;
   readonly dismissible: boolean;
   readonly dismissPromptVisible: boolean;
@@ -99,12 +107,14 @@ class TroopWindow extends React.Component<TroopWindowProps> {
           </Row>
           <Row>
             <GameText size="normal">
-              <FormattedMessage {...messages.morale} />: ?
+              <FormattedMessage {...moraleMessages.title} />
+              : <FormattedMessage {...getMoraleTypeValueMessage(this.props.morale)} />
             </GameText>
           </Row>
           <Row>
             <GameText size="normal">
-              <FormattedMessage {...messages.luck} />: ?
+              <FormattedMessage {...luckMessages.title} />
+              : <FormattedMessage {...getLuckValueMessage(this.props.luck)} />
             </GameText>
           </Row>
           <Row>

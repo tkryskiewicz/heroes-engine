@@ -1,14 +1,16 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
+import { LuckType } from "heroes-homm1";
+
 import { GameModal } from "../../base";
 import { GameParagraph } from "../../core";
-import { getLuckDescriptionMessage, getLuckNameMessage, luckMessages } from "../../messages";
+import { getLuckDescriptionMessage, getLuckNameMessage } from "../../messages";
 import { ConfirmPromptProps } from "../prompt";
 import { messages } from "./messages";
 
 export interface LuckDetailsPromptProps extends ConfirmPromptProps {
-  readonly value: number;
+  readonly value: LuckType;
 }
 
 export class LuckDetailsPrompt extends React.Component<LuckDetailsPromptProps> {
@@ -27,7 +29,7 @@ export class LuckDetailsPrompt extends React.Component<LuckDetailsPromptProps> {
           <FormattedMessage {...getLuckDescriptionMessage(this.props.value)} />
         </GameParagraph>
         <GameParagraph textSize="large">
-          <FormattedMessage {...luckMessages.modifiers} />:
+          <FormattedMessage {...messages.modifiers} />:
             <br />
           <FormattedMessage {...messages.noModifiers} />
         </GameParagraph>

@@ -13,6 +13,7 @@ export { GameSettings } from "./GameSettings";
 export { GameType } from "./GameType";
 export { HeroClass, HeroClassIds } from "./HeroClass";
 export { HeroInfo, HeroId, heroes, constructHero } from "./heroes";
+export { LuckType, getLuckType } from "./luck";
 export {
   MoraleType,
   getMoraleType,

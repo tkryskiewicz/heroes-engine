@@ -16,6 +16,7 @@ import {
   HeroClass,
   heroes,
   HeroId,
+  LuckType,
   MoraleType,
   MountainsStructureId,
   MovementSpeed,
@@ -112,6 +113,15 @@ const moraleTypeOptions = Object.keys(MoraleType).reduce<SelectOptions>((p, c: a
 export const moraleType = (name: string) => select(name, moraleTypeOptions, MoraleType.Good);
 
 export const luck = (name: string) => number(name, 0, { range: true, min: -3, max: 3, step: 1 });
+
+const luckTypeOptions = Object.keys(LuckType).reduce<SelectOptions>((p, c: any) => {
+  return {
+    ...p,
+    [c]: LuckType[c],
+  };
+}, {});
+
+export const luckType = (name: string) => select(name, luckTypeOptions, LuckType.Good);
 
 export const troopIndex = (name: string) => number(name, 0, { range: true, min: 0, max: ArmySize - 1, step: 1 });
 

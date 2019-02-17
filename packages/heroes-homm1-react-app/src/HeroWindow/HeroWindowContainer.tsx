@@ -2,7 +2,7 @@ import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Artifact, getArmySize, Hero } from "heroes-core";
-import { getMoraleType, MoraleType } from "heroes-homm1";
+import { getLuckType, getMoraleType, LuckType, MoraleType } from "heroes-homm1";
 import {
   AdditionalStatsInfo,
   AdditionalStatType,
@@ -248,7 +248,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
         infoText = formatMessage(getMoraleTypeNameMessage(getMoraleType(hero.morale)));
         break;
       case AdditionalStatType.Luck:
-        infoText = formatMessage(getLuckNameMessage(hero.luck));
+        infoText = formatMessage(getLuckNameMessage(getLuckType(hero.luck)));
         break;
       case AdditionalStatType.Experience:
         infoText = formatMessage(experienceMessages.title);
@@ -278,7 +278,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
         content = this.renderMoraleDetails(getMoraleType(hero.morale));
         break;
       case AdditionalStatType.Luck:
-        content = this.renderLuckDetails(hero.luck);
+        content = this.renderLuckDetails(getLuckType(hero.luck));
         break;
       case AdditionalStatType.Experience:
         content = this.renderExperienceDetails(hero.experience);
@@ -298,7 +298,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     );
   }
 
-  private renderLuckDetails(value: number) {
+  private renderLuckDetails(value: LuckType) {
     return (
       <LuckDetailsPrompt
         visible={true}
@@ -421,6 +421,10 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
 
     const troop = hero.army[index]!;
 
+    // TODO: resolve
+    const morale = MoraleType.Neutral;
+    const luck = LuckType.Neutral;
+
     const dismissible = getArmySize(hero.army) > 1;
 
     return (
@@ -429,6 +433,8 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
         index={index}
         creature={troop.creature}
         skillEnhancements={hero.skills}
+        morale={morale}
+        luck={luck}
         count={troop.count}
         dismissible={dismissible}
         dismissPromptVisible={this.props.dismissTroopPromptVisible}
