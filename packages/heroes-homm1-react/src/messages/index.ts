@@ -7,10 +7,11 @@ export { getCreatureNameMessage, getCreaturePluralNameMessage } from "./creature
 export { getHeroClassNameMessage, getHeroClassTitleMessage } from "./heroClasses";
 export { getHeroNameMessage } from "./heroes";
 export {
+  luckMessages,
   getLuckDescriptionMessage,
+  getLuckModifierTypeMessage,
   getLuckNameMessage,
   getLuckValueMessage,
-  luckMessages,
 } from "./luck";
 export { getMapObjectNameMessage } from "./mapObjects";
 export {

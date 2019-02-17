@@ -1,6 +1,6 @@
 import { defineMessages } from "react-intl";
 
-import { LuckType } from "heroes-homm1";
+import { LuckModifierType, LuckType } from "heroes-homm1";
 
 export const luckMessages = defineMessages({
   title: {
@@ -62,3 +62,20 @@ export const getLuckDescriptionMessage = (value: LuckType) =>
 
 export const getLuckValueMessage = (value: LuckType) =>
   luckTypeMessages[getTypeValueKey(value)];
+
+const getLuckModifierTypeId = (value: LuckModifierType) =>
+  `game.luck.modifier.${value}`;
+
+const luckModifierTypeMessages = defineMessages({
+  [LuckModifierType.Artifact]: {
+    defaultMessage: "{name}",
+    id: getLuckModifierTypeId(LuckModifierType.Artifact),
+  },
+  [LuckModifierType.StructureVisited]: {
+    defaultMessage: "{name} visited",
+    id: getLuckModifierTypeId(LuckModifierType.StructureVisited),
+  },
+});
+
+export const getLuckModifierTypeMessage = (value: LuckModifierType) =>
+  luckModifierTypeMessages[value];

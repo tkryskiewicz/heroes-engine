@@ -16,3 +16,30 @@ export const getLuckType = (value: number): LuckType => {
 
   return LuckType.Neutral;
 };
+
+export interface LuckModifierBase {
+  readonly type: LuckModifierType;
+  readonly value: number;
+}
+
+export enum LuckModifierType {
+  Artifact = "artifact",
+}
+
+export interface ArtifactLuckModifier extends LuckModifierBase {
+  readonly type: LuckModifierType.Artifact;
+  readonly artifact: string;
+}
+
+export enum LuckModifierType {
+  StructureVisited = "structure-visited",
+}
+
+export interface StructureVisitedLuckModifier extends LuckModifierBase {
+  readonly type: LuckModifierType.StructureVisited;
+  readonly structure: string;
+}
+
+export type LuckModifier =
+  ArtifactLuckModifier |
+  StructureVisitedLuckModifier;
