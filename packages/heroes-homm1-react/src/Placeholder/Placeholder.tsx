@@ -1,7 +1,7 @@
 import * as React from "react";
 import Measure, { ContentRect, Params } from "react-measure";
 
-import { GameText } from "./core";
+import * as styles from "./Placeholder.module.scss";
 
 export interface PlaceholderProps {
   readonly name: string;
@@ -38,23 +38,17 @@ export class Placeholder extends React.Component<PlaceholderProps, PlaceholderSt
   private readonly renderContent = (params: Params) => {
     const { width, height } = this.state;
 
-    const styles: React.CSSProperties = {
-      backgroundColor: "darkgrey",
-      height: "100%",
-      textAlign: "center",
-      width: "100%",
-    };
-
     return (
       <div
+        className={styles.root}
         ref={params.measureRef}
-        style={styles}
       >
-        <GameText size="normal">
+        <span className={styles.name}>
           {this.props.name}
-          <br />
-          {Math.floor(width)}px x {Math.floor(height)}px
-        </GameText>
+        </span>
+        <span className={styles.measures}>
+          {Math.floor(width)} x {Math.floor(height)}
+        </span>
       </div>
     );
   }

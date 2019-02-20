@@ -7,8 +7,10 @@ import * as styles from "./AdditionalStatsInfo.module.scss";
 
 import { BackgroundImage } from "./assets";
 
-import { ExperienceIcon, LuckIcon, MoraleIcon } from "../../base";
 import { GameText } from "../../core";
+import { ExperienceIcon } from "../ExperienceIcon";
+import { LuckIcon } from "../LuckIcon";
+import { MoraleIcon } from "../MoraleIcon";
 
 export enum AdditionalStatType {
   Morale = "morale",

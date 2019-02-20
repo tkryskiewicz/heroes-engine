@@ -7,7 +7,8 @@ import * as styles from "./Treasury.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { ImageButton, ResourceAmount } from "../../base";
+import { ImageButton } from "../ImageButton";
+import { ResourceAmount } from "../ResourceAmount";
 
 export interface TreasuryProps {
   readonly resources: Resources;
