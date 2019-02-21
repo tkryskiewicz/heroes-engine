@@ -1,66 +1,69 @@
 declare module "react-measure" {
   import * as React from "react";
 
-  export interface ClientOffsetScroll {
-    readonly top: number;
-    readonly left: number;
+  export interface SizeRect {
     readonly width: number;
     readonly height: number;
   }
 
-  export interface Bounds {
+  export interface SimplePositionRect {
     readonly top: number;
-    readonly right: number;
-    readonly bottom: number;
     readonly left: number;
-    readonly width: number;
-    readonly height: number;
   }
 
-  export interface Margin {
+  export interface PositionRect {
     readonly top: number;
     readonly right: number;
     readonly bottom: number;
     readonly left: number;
   }
 
-  interface Measurements {
-    readonly client?: ClientOffsetScroll;
-    readonly offset?: ClientOffsetScroll;
-    readonly scroll?: ClientOffsetScroll;
-    readonly bounds?: Bounds;
-    readonly margin?: Margin;
+  export type ClientRect = SizeRect & SimplePositionRect;
+  export type OffsetRect = SizeRect & SimplePositionRect;
+  export type ScrollRect = SizeRect & SimplePositionRect;
+  export type BoundsRect = SizeRect & PositionRect;
+  export type MarginRect = PositionRect;
+
+  export interface Measures {
+    readonly client?: ClientRect;
+    readonly offset?: OffsetRect;
+    readonly scroll?: ScrollRect;
+    readonly bounds?: BoundsRect;
+    readonly margin?: MarginRect;
   }
 
-  type Measurement = keyof Measurements;
-
-  export interface ContentRect extends Measurements {
+  export interface ContentRect extends Measures {
     readonly entry: DOMRectReadOnly;
   }
 
-  export interface Params {
+  export interface InjectedMeasureProps {
     readonly measureRef: React.Ref<any>;
-    readonly measure: () => any;
+    readonly measure: () => void;
     readonly contentRect: ContentRect;
   }
 
-  type RenderChildren = (params: Params) => React.ReactNode;
-
-  interface MeasureProps {
+  export interface MeasureProps {
     readonly client?: boolean;
     readonly offset?: boolean;
     readonly scroll?: boolean;
     readonly bounds?: boolean;
     readonly margin?: boolean;
-    // readonly [m: keyof Measurements]: boolean;
     readonly innerRef?: React.Ref<any>;
     readonly onResize?: (contentRect: ContentRect) => void;
-    readonly children: RenderChildren;
+    readonly children: (props: InjectedMeasureProps) => React.ReactNode;
   }
 
   class Measure extends React.Component<MeasureProps> { }
 
-  export const withContentRect: (types: Measurement | Measurement[]) => RenderChildren;
-
   export default Measure;
+
+  type ExtractProps<C> = C extends React.ComponentType<infer P> ? P : never;
+
+  type HocFunc = <C extends React.ComponentType<ExtractProps<C> & InjectedMeasureProps>, P = ExtractProps<C>>(
+    component: C,
+  ) => React.ComponentClass<Pick<JSX.LibraryManagedAttributes<C, P>, Exclude<keyof P, keyof InjectedMeasureProps>>>;
+
+  export function withContentRect(
+    types: keyof Measures | Measures[],
+  ): HocFunc;
 }

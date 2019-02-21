@@ -1,5 +1,5 @@
 import * as React from "react";
-import Measure, { ContentRect, Params } from "react-measure";
+import Measure, { MeasureProps } from "react-measure";
 
 import * as styles from "./Placeholder.module.scss";
 
@@ -29,19 +29,19 @@ export class Placeholder extends React.Component<PlaceholderProps, PlaceholderSt
     );
   }
 
-  private readonly onResize = (contentRect: ContentRect) => {
+  private readonly onResize: MeasureProps["onResize"] = (contentRect) => {
     this.setState({
       ...contentRect.bounds || { width: 0, height: 0 },
     });
   }
 
-  private readonly renderContent = (params: Params) => {
+  private readonly renderContent: MeasureProps["children"] = (props) => {
     const { width, height } = this.state;
 
     return (
       <div
         className={styles.root}
-        ref={params.measureRef}
+        ref={props.measureRef}
       >
         <span className={styles.name}>
           {this.props.name}
