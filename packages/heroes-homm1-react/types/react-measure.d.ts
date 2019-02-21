@@ -64,6 +64,6 @@ declare module "react-measure" {
   ) => React.ComponentClass<Pick<JSX.LibraryManagedAttributes<C, P>, Exclude<keyof P, keyof InjectedMeasureProps>>>;
 
   export function withContentRect(
-    types: keyof Measures | Measures[],
+    types: keyof Measures | keyof Measures[],
   ): HocFunc;
 }
