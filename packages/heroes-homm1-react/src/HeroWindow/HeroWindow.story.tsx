@@ -6,15 +6,15 @@ import { withReadme } from "storybook-readme";
 
 import Readme = require("./README.md");
 
-import { GameText } from "../core";
+import { Placeholder } from "../Placeholder";
 import { HeroWindow } from "./HeroWindow";
 
-const renderHeroPortrait = () => <GameText size="normal">Hero Portrait</GameText>;
-const renderSkill = (index: number) => <GameText size="normal">Skill {index}</GameText>;
-const renderAdditionalStats = () => <GameText size="normal">Additional Stats</GameText>;
-const renderCrest = () => <GameText size="normal">Crest</GameText>;
-const renderTroop = (index: number) => <GameText size="normal">Troop {index}</GameText>;
-const renderArtifact = (index: number) => <GameText size="normal">Artifact {index}</GameText>;
+const renderHeroPortrait = () => <Placeholder name="Hero Portrait" />;
+const renderSkill = (index: number) => <Placeholder name={`Skill ${index}`} />;
+const renderAdditionalStats = () => <Placeholder name="Additional Stats" />;
+const renderCrest = () => <Placeholder name="Crest" />;
+const renderTroop = (index: number) => <Placeholder name={`Troop ${index}`} />;
+const renderArtifact = (index: number) => <Placeholder name={`Artifact ${index}`} />;
 
 storiesOf("HeroWindow", module)
   .addDecorator(withReadme(Readme))

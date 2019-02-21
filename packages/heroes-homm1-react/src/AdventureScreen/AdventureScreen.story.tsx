@@ -1,14 +1,15 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
+import { Placeholder } from "../Placeholder";
 import { AdventureScreen } from "./AdventureScreen";
 
-const renderAdventureWindow = () => <span>Adventure Window</span>;
-const renderWorldMap = () => <span>World Map</span>;
-const renderAdventureButtons = () => <span>Adventure Buttons</span>;
-const renderHeroLocators = () => <span>Hero Locators</span>;
-const renderTownLocators = () => <span>Town Locators</span>;
-const renderStatusWindow = () => <span>Status Window</span>;
+const renderAdventureWindow = () => <Placeholder name="Adventure Window" />;
+const renderWorldMap = () => <Placeholder name="World Map" />;
+const renderAdventureButtons = () => <Placeholder name="Adventure Buttons" />;
+const renderHeroLocators = () => <Placeholder name="Hero Locators" />;
+const renderTownLocators = () => <Placeholder name="Town Locators" />;
+const renderStatusWindow = () => <Placeholder name="Status Window" />;
 
 storiesOf("AdventureScreen", module)
   .add("default", () => (
