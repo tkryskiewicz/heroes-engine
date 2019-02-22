@@ -42,12 +42,7 @@ declare module "react-measure" {
     readonly contentRect: ContentRect;
   }
 
-  export interface MeasureProps {
-    readonly client?: boolean;
-    readonly offset?: boolean;
-    readonly scroll?: boolean;
-    readonly bounds?: boolean;
-    readonly margin?: boolean;
+  export interface MeasureProps extends Partial<Record<keyof Measures, boolean>> {
     readonly innerRef?: React.Ref<any>;
     readonly onResize?: (contentRect: ContentRect) => void;
     readonly children: (props: InjectedMeasureProps) => React.ReactNode;
