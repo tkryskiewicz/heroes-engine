@@ -436,7 +436,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
         morale={morale}
         luck={luck}
         count={troop.count}
-        dismissVisible={dismissible}
+        dismissible={dismissible}
         dismissPromptVisible={this.props.dismissTroopPromptVisible}
         onDismissClick={this.props.onDismissTroopClick}
         onConfirmDismissClick={this.onConfirmDismissTroopClick}
