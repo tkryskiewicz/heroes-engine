@@ -31,7 +31,7 @@ const skillMessages = defineMessages({
     defaultMessage: "Knowledge",
     id: "game.skill.knowledge.name",
   },
-  [getDescriptionKey(Skill.Defense)]: {
+  [getDescriptionKey(Skill.Knowledge)]: {
     defaultMessage: "Your knowledge is the number of each spell you are able to memorize.",
     id: "game.skill.knowledge.description",
   },
