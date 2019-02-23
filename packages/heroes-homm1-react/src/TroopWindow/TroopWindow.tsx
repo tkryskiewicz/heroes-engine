@@ -17,7 +17,6 @@ import {
   luckMessages,
   moraleMessages,
 } from "../messages";
-import { DismissTroopPrompt } from "../prompt";
 import { getSpeedMessage, messages } from "./messages";
 
 interface TroopWindowProps extends WithGameWindowProps {
@@ -29,30 +28,21 @@ interface TroopWindowProps extends WithGameWindowProps {
   readonly luck: LuckType;
   readonly count: number;
   readonly renderCreature: () => React.ReactNode;
-  readonly dismissible: boolean;
-  readonly dismissPromptVisible: boolean;
+  readonly dismissVisible: boolean;
   readonly onDismissClick: (index: number) => void;
-  readonly onConfirmDismissClick: (index: number) => void;
-  readonly onCancelDismissClick: () => void;
   readonly onExitClick: () => void;
 }
 
 type DefaultProp =
   "skillEnhancements" |
   "renderCreature" |
-  "dismissible" |
-  "dismissPromptVisible" |
+  "dismissVisible" |
   "onDismissClick" |
-  "onConfirmDismissClick" |
-  "onCancelDismissClick" |
   "onExitClick";
 
 class TroopWindow extends React.Component<TroopWindowProps> {
   public static readonly defaultProps: Pick<TroopWindowProps, DefaultProp> = {
-    dismissPromptVisible: false,
-    dismissible: false,
-    onCancelDismissClick: () => undefined,
-    onConfirmDismissClick: () => undefined,
+    dismissVisible: false,
     onDismissClick: () => undefined,
     onExitClick: () => undefined,
     renderCreature: () => undefined,
@@ -75,7 +65,7 @@ class TroopWindow extends React.Component<TroopWindowProps> {
         <div className={styles.rightPanel}>
           {this.renderSkills(creature, skillEnhancements)}
           <div className={styles.actions}>
-            {this.props.dismissible && this.renderDismissal(this.props.dismissPromptVisible)}
+            {this.props.dismissVisible && this.renderDismissal()}
             <div className={styles.exit}>
               <ImageButton
                 images={buttonImages.exit}
@@ -159,30 +149,15 @@ class TroopWindow extends React.Component<TroopWindowProps> {
     this.props.onDismissClick(this.props.index);
   }
 
-  private renderDismissal(visible: boolean) {
+  private renderDismissal() {
     return (
       <div className={styles.dismiss}>
         <ImageButton
           images={buttonImages.dismiss}
           onClick={this.onDismissClick}
         />
-        {this.renderDismissPrompt(visible)}
       </div>
     );
-  }
-
-  private renderDismissPrompt(visible: boolean) {
-    return (
-      <DismissTroopPrompt
-        visible={visible}
-        onConfirmClick={this.onConfirmDismiss}
-        onCancelClick={this.props.onCancelDismissClick}
-      />
-    );
-  }
-
-  private readonly onConfirmDismiss = () => {
-    this.props.onConfirmDismissClick(this.props.index);
   }
 }
 

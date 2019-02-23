@@ -20,13 +20,13 @@ const renderCreature = () => <Placeholder name="Creature" />;
 storiesOf("TroopWindow", module)
   .add("default", () => (
     <TroopWindow
+      visible={boolean("Visible", true)}
       index={troopIndex("Index")}
       creature={creatureById[creature("Creature")]}
       morale={moraleType("Morale")}
       luck={luckType("Luck")}
       count={number("Count", 1, { range: true, min: 0, max: 9999, step: 1 })}
       renderCreature={renderCreature}
-      visible={boolean("Visible", true)}
       onExitClick={action("Exit Click")}
     />
   ))
@@ -43,16 +43,13 @@ storiesOf("TroopWindow", module)
   ))
   .add("dismissal", () => (
     <TroopWindow
+      visible={true}
       index={troopIndex("Index")}
       creature={creatureById[troopBase.creature]}
       morale={MoraleType.Neutral}
       luck={LuckType.Neutral}
       count={troopBase.count}
-      dismissible={boolean("Dismissible", true)}
-      visible={true}
-      dismissPromptVisible={boolean("Dismiss Prompt Visible", false)}
+      dismissVisible={boolean("Dismiss Visible", true)}
       onDismissClick={action("Dismiss Click")}
-      onCancelDismissClick={action("Cancel Dismiss Click")}
-      onConfirmDismissClick={action("Confirm Dismiss Click")}
     />
   ));
