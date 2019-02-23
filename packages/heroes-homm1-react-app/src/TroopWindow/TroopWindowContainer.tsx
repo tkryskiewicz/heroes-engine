@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Creature } from "heroes-core";
-import { TroopWindow, TroopWindowProps } from "heroes-homm1-react";
+import { CreatureIcon, TroopWindow, TroopWindowProps } from "heroes-homm1-react";
 
 export interface TroopWindowContainerProps extends Pick<TroopWindowProps, Exclude<keyof TroopWindowProps, "creature">> {
   readonly creatureById: { readonly [id: string]: Creature; };
@@ -16,6 +16,16 @@ export class TroopWindowContainer extends React.Component<TroopWindowContainerPr
       <TroopWindow
         {...rest}
         creature={creatureById[creature]}
+        renderCreature={this.renderCreature}
+      />
+    );
+  }
+
+  private readonly renderCreature = () => {
+    return (
+      <CreatureIcon
+        size="large"
+        creature={this.props.creature}
       />
     );
   }

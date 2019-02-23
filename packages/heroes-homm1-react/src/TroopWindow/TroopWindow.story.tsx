@@ -6,6 +6,7 @@ import * as React from "react";
 import { Troop } from "heroes-core";
 import { creatureById, CreatureId, LuckType, MoraleType, Skill } from "heroes-homm1";
 
+import { Placeholder } from "../Placeholder";
 import { creature, luckType, moraleType, troopIndex } from "../stories";
 import { TroopWindow } from "./TroopWindow";
 
@@ -13,6 +14,8 @@ const troopBase: Troop = {
   count: 1,
   creature: CreatureId.Peasant,
 };
+
+const renderCreature = () => <Placeholder name="Creature" />;
 
 storiesOf("TroopWindow", module)
   .add("default", () => (
@@ -22,6 +25,7 @@ storiesOf("TroopWindow", module)
       morale={moraleType("Morale")}
       luck={luckType("Luck")}
       count={number("Count", 1, { range: true, min: 0, max: 9999, step: 1 })}
+      renderCreature={renderCreature}
       visible={boolean("Visible", true)}
       onExitClick={action("Exit Click")}
     />

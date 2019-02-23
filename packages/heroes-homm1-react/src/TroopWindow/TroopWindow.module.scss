@@ -6,8 +6,42 @@
   width: 402px;
 }
 
+@mixin panel {
+  position: absolute;
+  top: 15px;
+  height: 195px;
+}
+
+.left-panel {
+  left: 35px;
+  width: 155px;
+  text-align: center;
+
+  @include panel();
+}
+
+.right-panel {
+  width: 165px;
+  right: 35px;
+
+  @include panel();
+}
+
+.creature {
+  position:relative;
+  height: 160px;
+  text-align: center;
+}
+
+.creature-inner {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .count {
-  background: url("./assets/count-background.jpg");
+    background: url("./assets/count-background.jpg");
   bottom: 17px;
   display: inline-block;
   height: 38px;
@@ -18,14 +52,22 @@
   width: 142px;
 }
 
-.creature, .creature-name {
+.creature-name {
   text-align: center;
 }
 
+.actions {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
 .dismiss {
-  text-align: left;
+  float: left;
 }
 
 .exit {
-  text-align: right;
+  float: right;
 }
