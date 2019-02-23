@@ -3,8 +3,9 @@ import { Dispatch } from "redux";
 
 import { isStructureBuilt } from "heroes-core";
 import { HeroClassIds, StructureId, TownIds } from "heroes-homm1";
-import { KingdomOverviewWindow, KingdomOverviewWindowProps } from "heroes-homm1-react";
 import { AppState, kingdomOverviewWindowActions } from "heroes-homm1-state";
+
+import { KingdomOverviewWindowContainer, KingdomOverviewWindowContainerProps } from "./KingdomOverviewWindowContainer";
 
 type StateProp =
   "alignment" |
@@ -15,7 +16,7 @@ type StateProp =
   "resources" |
   "goldPerDay";
 
-const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowProps, StateProp> => ({
+const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerProps, StateProp> => ({
   alignment: state.game.alignment,
   castles: TownIds.reduce((p, c) => {
     return {
@@ -44,17 +45,17 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowProps, Stat
 type DispatchProp =
   "onExitClick";
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<KingdomOverviewWindowProps, DispatchProp> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<KingdomOverviewWindowContainerProps, DispatchProp> => ({
   onExitClick() {
     dispatch(kingdomOverviewWindowActions.close());
   },
 });
 
-const KingdomOverviewWindowConnected = connect(mapStateToProps, mapDispatchToProps)(KingdomOverviewWindow);
+const ContainerConnected = connect(mapStateToProps, mapDispatchToProps)(KingdomOverviewWindowContainer);
 
-type KingdomOverviewWindowConnectedProps = ExtractProps<typeof KingdomOverviewWindowConnected>;
+type ContainerConnectedProps = ExtractProps<typeof ContainerConnected>;
 
 export {
-  KingdomOverviewWindowConnected as KingdomOverviewWindow,
-  KingdomOverviewWindowConnectedProps as KingdomOverviewWindowProps,
+  ContainerConnected as KingdomOverviewWindow,
+  ContainerConnectedProps as KingdomOverviewWindowProps,
 };

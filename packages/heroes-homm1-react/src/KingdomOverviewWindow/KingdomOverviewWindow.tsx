@@ -1,20 +1,15 @@
-import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Resources } from "heroes-core";
 import { HeroClassIds, Resource, TownIds } from "heroes-homm1";
 
 import * as styles from "./KingdomOverviewWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { ImageButton, ResourceAmount } from "../base";
+import { ImageButton } from "../base";
 import { GameText, withGameWindow } from "../core";
-import { HeroClassOverview } from "./HeroClassOverview";
 import { messages } from "./messages";
-import { MineOverview } from "./MineOverview";
-import { TownOverview } from "./TownOverview";
 
 const resourceOrder = [
   Resource.Wood,
@@ -26,102 +21,106 @@ const resourceOrder = [
   Resource.Gold,
 ];
 
-export interface HeroClassSummary {
-  readonly [heroClass: string]: number;
-}
-
-export interface TownSummary {
-  readonly [town: string]: number;
-}
-
-export interface ResourceSummary {
-  readonly [resource: string]: number;
-}
-
-export interface KingdomOverviewWindowProps {
+interface KingdomOverviewWindowProps {
   readonly alignment: string;
-  readonly heroClasses: HeroClassSummary;
-  readonly castles: TownSummary;
-  readonly towns: TownSummary;
-  readonly mines: ResourceSummary;
-  readonly resources: ResourceSummary;
+  readonly renderHeroClassSummary: (heroClass: string) => React.ReactNode;
+  readonly renderCastleSummary: (town: string) => React.ReactNode;
+  readonly renderTownSummary: (town: string) => React.ReactNode;
+  readonly renderMineSummary: (resource: string) => React.ReactNode;
+  readonly renderResourceSummary: (resource: string) => React.ReactNode;
   readonly goldPerDay: number;
   readonly onExitClick?: () => void;
 }
 
+type DefaultProp =
+  "renderHeroClassSummary" |
+  "renderCastleSummary" |
+  "renderTownSummary" |
+  "renderMineSummary" |
+  "renderResourceSummary";
+
 class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> {
+  public static readonly defaultProps: Pick<KingdomOverviewWindowProps, DefaultProp> = {
+    renderCastleSummary: () => undefined,
+    renderHeroClassSummary: () => undefined,
+    renderMineSummary: () => undefined,
+    renderResourceSummary: () => undefined,
+    renderTownSummary: () => undefined,
+  };
+
   public render() {
     return (
       <div className={styles.root}>
         {this.renderBanner(this.props.alignment)}
-        <Row>
-          <Col span={3} />
-          <Col span={10}>
+        <div className={styles.titleContainer}>
+          <div className={styles.title}>
             <GameText size="large">
               <FormattedMessage {...messages.title} />
             </GameText>
-          </Col>
-          <Col span={10}>
+          </div>
+          <div className={styles.date}>
             <GameText size="large">
               Month 1, Week 1, Day 1
             </GameText>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={3}>
+          </div>
+        </div>
+        <div className={styles.heroClassSummary}>
+          <div className={styles.summaryTitle}>
             <GameText size="normal">
               <FormattedMessage {...messages.heroClassOverview} />
             </GameText>
-          </Col>
-          {this.renderHeroClasses(this.props.heroClasses)}
-        </Row>
-        <Row>
-          <Col span={3}>
+          </div>
+          <div className={styles.summaryContent}>
+            {this.renderHeroClasses()}
+          </div>
+        </div>
+        <div className={styles.castleSummary}>
+          <div className={styles.summaryTitle}>
             <GameText size="normal">
               <FormattedMessage {...messages.castleOverview} />
             </GameText>
-          </Col>
-          {this.renderCastles(this.props.castles)}
-        </Row>
-        <Row>
-          <Col span={3}>
+          </div>
+          <div className={styles.summaryContent}>
+            {this.renderCastles()}
+          </div>
+        </div>
+        <div className={styles.townSummary}>
+          <div className={styles.summaryTitle}>
             <GameText size="normal">
               <FormattedMessage {...messages.townOverview} />
             </GameText>
-          </Col>
-          {this.renderTowns(this.props.towns)}
-        </Row>
-        <Row>
-          <Col span={3}>
+          </div>
+          <div className={styles.summaryContent}>
+            {this.renderTowns()}
+          </div>
+        </div>
+        <div className={styles.mineSummary}>
+          <div className={styles.summaryTitle}>
             <GameText size="normal">
               <FormattedMessage {...messages.mineOverview} />
             </GameText>
-          </Col>
-          {this.renderMines(this.props.mines)}
-        </Row>
-        <Row>
-          <Col span={3}>
+          </div>
+          <div className={styles.summaryContent}>
+            {this.renderMines()}
+          </div>
+        </div>
+        <div className={styles.resourceSummary}>
+          <div className={styles.summaryTitle}>
             <GameText size="normal">
               <FormattedMessage {...messages.resourceOverview} />
             </GameText>
-          </Col>
-          {this.renderResources(this.props.resources)}
-        </Row>
-        <Row>
-          <Col span={3} />
-          <Col span={16}>
-            {this.renderGoldPerDay(this.props.goldPerDay)}
-          </Col>
-          <Col
-            className={styles.exit}
-            span={4}
-          >
-            <ImageButton
-              images={buttonImages.exit}
-              onClick={this.props.onExitClick}
-            />
-          </Col>
-        </Row>
+          </div>
+          <div className={styles.summaryContent}>
+            {this.renderResources()}
+          </div>
+        </div>
+        {this.renderGoldPerDay(this.props.goldPerDay)}
+        <div className={styles.exit}>
+          <ImageButton
+            images={buttonImages.exit}
+            onClick={this.props.onExitClick}
+          />
+        </div>
       </div>
     );
   }
@@ -135,74 +134,58 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
     );
   }
 
-  private renderHeroClasses(heroClasses: HeroClassSummary) {
+  private renderHeroClasses() {
     return HeroClassIds.map((c) => (
-      <Col
+      <div
         key={c}
-        span={5}
+        className={styles.heroClassSummaryItem}
       >
-        <HeroClassOverview
-          heroClass={c}
-          count={heroClasses[c] || 0}
-        />
-      </Col>
+        {this.props.renderHeroClassSummary(c)}
+      </div>
     ));
   }
 
-  private renderCastles(castles: TownSummary) {
+  private renderCastles() {
     return TownIds.map((t) => (
-      <Col
+      <div
         key={t}
-        span={5}
+        className={styles.castleSummaryItem}
       >
-        <TownOverview
-          town={t}
-          isCastleBuilt={true}
-          count={castles[t] || 0}
-        />
-      </Col>
+        {this.props.renderCastleSummary(t)}
+      </div>
     ));
   }
 
-  private renderTowns(towns: ResourceSummary) {
+  private renderTowns() {
     return TownIds.map((t) => (
-      <Col
+      <div
         key={t}
-        span={5}
+        className={styles.townSummaryItem}
       >
-        <TownOverview
-          town={t}
-          count={towns[t] || 0}
-        />
-      </Col>
+        {this.props.renderTownSummary(t)}
+      </div>
     ));
   }
 
-  private renderMines(mines: ResourceSummary) {
+  private renderMines() {
     return resourceOrder.map((r) => (
-      <Col
+      <div
         key={r}
-        span={3}
+        className={styles.mineSummaryItem}
       >
-        <MineOverview
-          resource={r}
-          count={mines[r] || 0}
-        />
-      </Col>
+        {this.props.renderMineSummary(r)}
+      </div>
     ));
   }
 
-  private renderResources(resources: Resources) {
+  private renderResources() {
     return resourceOrder.map((r) => (
-      <Col
+      <div
         key={r}
-        span={3}
+        className={styles.resourceSummaryItem}
       >
-        <ResourceAmount
-          resource={r}
-          amount={resources[r] || 0}
-        />
-      </Col>
+        {this.props.renderResourceSummary(r)}
+      </div>
     ));
   }
 
@@ -220,8 +203,11 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
   }
 }
 
-const KingdomOverviewWindowWrapped = withGameWindow(640)(KingdomOverviewWindow);
+const Wrapped = withGameWindow(640)(KingdomOverviewWindow);
+
+type WrappedProps = ExtractProps<typeof Wrapped>;
 
 export {
-  KingdomOverviewWindowWrapped as KingdomOverviewWindow,
+  Wrapped as KingdomOverviewWindow,
+  WrappedProps as KingdomOverviewWindowProps,
 };

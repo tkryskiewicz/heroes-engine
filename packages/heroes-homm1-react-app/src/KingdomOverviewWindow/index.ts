@@ -1,1 +1,1 @@
-export { KingdomOverviewWindow, KingdomOverviewWindowProps } from "./KingdomOverviewWindow.connect";
+export { KingdomOverviewWindow, KingdomOverviewWindowProps } from "./KingdomOverviewWindowContainer.connect";

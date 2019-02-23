@@ -1,4 +1,5 @@
 .root {
+  position: relative;
   background: url("./assets/background.jpg");
   background-position-x: 96px;
   position: relative;
@@ -13,9 +14,110 @@
   top: 0px;
 }
 
-.gold-per-day {
+.title-container {
+  position: absolute;
+  top: 3px;
+  left: 96px;
+  width: 640px - 96;
+  padding: 0 40px;
+}
+
+.title {
   display: inline-block;
-  position: relative;
+  width: 50%;
+}
+
+.date {
+  display: inline-block;
+  width: 50%;
+}
+
+.summary-title {
+  width: 96px;
+  height: 100%;
+  float: left;
+}
+
+.summary-content {
+  display: inline-block;
+  width: 640px - 96;
+  height: 100%;
+}
+
+@mixin summary {
+  position: absolute;
+  width: 100%;
+}
+
+.hero-class-summary {
+  @include summary();
+
+  top: 27px;
+  height: 81px;
+}
+
+.hero-class-summary-item {
+  display: inline-block;
+  width: 25%;
+  height: 100%;
+}
+
+.castle-summary {
+  @include summary();
+
+  top: 110px;
+  height: 86px;
+}
+
+.castle-summary-item {
+  display: inline-block;
+  width: 25%;
+  height: 100%;
+}
+
+.town-summary {
+  @include summary();
+
+  top: 198px;
+  height: 86px;
+}
+
+.town-summary-item {
+  display: inline-block;
+  width: 25%;
+  height: 100%;
+}
+
+.mine-summary {
+  @include summary();
+
+  top: 286px;
+  height: 87px;
+}
+
+.mine-summary-item {
+  display: inline-block;
+  width: 14.28%;
+  height: 100%;
+}
+
+.resource-summary {
+  @include summary();
+
+  top: 375px;
+  height: 53px;
+}
+
+.resource-summary-item {
+  display: inline-block;
+  width: 14.28%;
+  height: 100%;
+}
+
+.gold-per-day {
+  position: absolute;
+  bottom: 5px;
+  left: 240px;
   width: 201px;
   height: 46px;
   background: url("./assets/gold-per-day-background.jpg");
@@ -24,12 +126,14 @@
 .gold-per-day-text {
   bottom: 2px;
   left: 0px;
-  padding-right: 20px;
+  padding-left: 20px;
   position: absolute;
-  text-align: right;
+  text-align: center;
   width: 100%;
 }
 
 .exit {
-  text-align: right;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }

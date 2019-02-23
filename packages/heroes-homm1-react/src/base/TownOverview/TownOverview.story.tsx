@@ -7,7 +7,7 @@ import { TownLimit } from "heroes-homm1";
 import { town } from "../../stories";
 import { TownOverview } from "./TownOverview";
 
-storiesOf("KingdomOverviewWindow/TownOverview", module)
+storiesOf("base/TownOverview", module)
   .add("default", () => (
     <TownOverview
       town={town("Town")}
