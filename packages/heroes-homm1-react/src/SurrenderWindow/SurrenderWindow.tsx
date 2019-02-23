@@ -5,19 +5,31 @@ import * as styles from "./SurrenderWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { Frame, HeroPortrait, ImageButton } from "../base";
+import { Frame, ImageButton } from "../base";
 import { GameText, withGameWindow } from "../core";
 import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 
 interface SurrenderWindowProps extends InjectedIntlProps {
   readonly hero: string;
+  readonly renderHeroPortrait: () => React.ReactNode;
   readonly cost: number;
   readonly onAcceptClick: () => void;
   readonly onDeclineClick: () => void;
 }
 
+type DefaultProp =
+  "renderHeroPortrait" |
+  "onAcceptClick" |
+  "onDeclineClick";
+
 class SurrenderWindow extends React.Component<SurrenderWindowProps> {
+  public static readonly defaultProps: Pick<SurrenderWindowProps, DefaultProp> = {
+    onAcceptClick: () => undefined,
+    onDeclineClick: () => undefined,
+    renderHeroPortrait: () => undefined,
+  };
+
   public render() {
     const heroName = this.props.intl.formatMessage(getHeroNameMessage(this.props.hero));
 
@@ -25,9 +37,7 @@ class SurrenderWindow extends React.Component<SurrenderWindowProps> {
       <div className={styles.root}>
         <div className={styles.heroPortrait}>
           <Frame>
-            <HeroPortrait
-              hero={this.props.hero}
-            />
+            {this.props.renderHeroPortrait()}
           </Frame>
         </div>
         <div className={styles.title}>
