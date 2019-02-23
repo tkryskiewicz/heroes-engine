@@ -97,7 +97,7 @@ const skillOptions = Object.keys(Skill).reduce<SelectOptions>((p, c: any) => {
   };
 }, {});
 
-export const skill = (name: string) => select(name, skillOptions, Skill.AttackSkill);
+export const skill = (name: string) => select(name, skillOptions, Skill.Attack);
 
 export const skillValue = (name: string) => number(name, 0, { range: true, min: 0, max: 999, step: 1 });
 

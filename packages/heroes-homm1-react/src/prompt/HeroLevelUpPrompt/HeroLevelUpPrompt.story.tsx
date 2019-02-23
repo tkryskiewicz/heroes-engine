@@ -13,7 +13,7 @@ storiesOf("prompt/HeroLevelUpPrompt", module)
     <HeroLevelUpPrompt
       visible={boolean("Visible", true)}
       hero={hero("Hero")}
-      skillBonuses={{ [Skill.AttackSkill]: 1, [Skill.DefenseSkill]: 2 }}
+      skillBonuses={{ [Skill.Attack]: 1, [Skill.Defense]: 2 }}
       onConfirmClick={action("Confirm Click")}
     />
   ));

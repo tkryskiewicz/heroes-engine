@@ -18,8 +18,8 @@ export const heroClasses = [
     ],
     id: HeroClass.Knight,
     skills: {
-      [Skill.AttackSkill]: 1,
-      [Skill.DefenseSkill]: 2,
+      [Skill.Attack]: 1,
+      [Skill.Defense]: 2,
       [Skill.SpellPower]: 1,
       [Skill.Knowledge]: 1,
     },
@@ -39,8 +39,8 @@ export const heroClasses = [
     ],
     id: HeroClass.Barbarian,
     skills: {
-      [Skill.AttackSkill]: 2,
-      [Skill.DefenseSkill]: 1,
+      [Skill.Attack]: 2,
+      [Skill.Defense]: 1,
       [Skill.SpellPower]: 1,
       [Skill.Knowledge]: 1,
     },
@@ -60,8 +60,8 @@ export const heroClasses = [
     ],
     id: HeroClass.Sorceress,
     skills: {
-      [Skill.AttackSkill]: 0,
-      [Skill.DefenseSkill]: 0,
+      [Skill.Attack]: 0,
+      [Skill.Defense]: 0,
       [Skill.SpellPower]: 2,
       [Skill.Knowledge]: 3,
     },
@@ -81,8 +81,8 @@ export const heroClasses = [
     ],
     id: HeroClass.Warlock,
     skills: {
-      [Skill.AttackSkill]: 0,
-      [Skill.DefenseSkill]: 0,
+      [Skill.Attack]: 0,
+      [Skill.Defense]: 0,
       [Skill.SpellPower]: 3,
       [Skill.Knowledge]: 2,
     },

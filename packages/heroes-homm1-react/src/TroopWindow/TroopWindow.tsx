@@ -80,13 +80,13 @@ class TroopWindow extends React.Component<TroopWindowProps> {
           <Row>
             <GameText size="normal">
               <FormattedMessage {...messages.attack} />: {creature.attack}
-              {this.renderEnhancedValue(creature.attack, skillEnhancements[Skill.AttackSkill])}
+              {this.renderEnhancedValue(creature.attack, skillEnhancements[Skill.Attack])}
             </GameText>
           </Row>
           <Row>
             <GameText size="normal">
               <FormattedMessage {...messages.defense} />: {creature.defense}
-              {this.renderEnhancedValue(creature.defense, skillEnhancements[Skill.DefenseSkill])}
+              {this.renderEnhancedValue(creature.defense, skillEnhancements[Skill.Defense])}
             </GameText>
           </Row>
           {creature.shots && this.renderShots(creature.shots)}

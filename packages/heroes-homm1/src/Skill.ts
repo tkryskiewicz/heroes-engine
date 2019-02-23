@@ -1,14 +1,13 @@
 export enum Skill {
-  // TODO: rename to just "attack" to align with creature stats?
-  AttackSkill = "attack-skill",
-  DefenseSkill = "defense-skill",
+  Attack = "attack",
+  Defense = "defense",
   SpellPower = "spell-power",
   Knowledge = "knowledge",
 }
 
 export const SkillIds: Skill[] = [
-  Skill.AttackSkill,
-  Skill.DefenseSkill,
+  Skill.Attack,
+  Skill.Defense,
   Skill.SpellPower,
   Skill.Knowledge,
 ];

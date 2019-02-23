@@ -33,7 +33,7 @@ storiesOf("TroopWindow", module)
       creature={creatureById[creature("Creature")]}
       morale={MoraleType.Neutral}
       luck={LuckType.Neutral}
-      skillEnhancements={{ [Skill.AttackSkill]: 1, [Skill.DefenseSkill]: 2 }}
+      skillEnhancements={{ [Skill.Attack]: 1, [Skill.Defense]: 2 }}
       count={1}
     />
   ))
