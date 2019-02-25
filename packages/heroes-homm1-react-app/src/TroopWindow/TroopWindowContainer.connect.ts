@@ -8,11 +8,11 @@ const mapStateToProps = (state: AppState): Pick<TroopWindowContainerProps, "crea
   creatureById: state.game.data.creatureById,
 });
 
-const TroopWindowContainerConnected = connect(mapStateToProps)(TroopWindowContainer);
+const ContainerConnected = connect(mapStateToProps)(TroopWindowContainer);
 
-type TroopWindowContainerConnectedProps = ExtractProps<typeof TroopWindowContainerConnected>;
+type ContainerConnectedProps = ExtractProps<typeof ContainerConnected>;
 
 export {
-  TroopWindowContainerConnected as TroopWindow,
-  TroopWindowContainerConnectedProps as TroopWindowProps,
+  ContainerConnected as TroopWindow,
+  ContainerConnectedProps as TroopWindowProps,
 };

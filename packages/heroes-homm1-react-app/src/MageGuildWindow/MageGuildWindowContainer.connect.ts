@@ -23,11 +23,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<MageGuildWindowContainerPr
   },
 });
 
-const MageGuildWindowContainerConnected = connect(mapStateToProps, mapDispatchToProps)(MageGuildWindowContainer);
+const ContainerConnected = connect(mapStateToProps, mapDispatchToProps)(MageGuildWindowContainer);
 
-type MageGuildWindowContainerConnectedProps = ExtractProps<typeof MageGuildWindowContainerConnected>;
+type ContainerConnectedProps = ExtractProps<typeof ContainerConnected>;
 
 export {
-  MageGuildWindowContainerConnected as MageGuildWindow,
-  MageGuildWindowContainerConnectedProps as MageGuildWindowProps,
+  ContainerConnected as MageGuildWindow,
+  ContainerConnectedProps as MageGuildWindowProps,
 };

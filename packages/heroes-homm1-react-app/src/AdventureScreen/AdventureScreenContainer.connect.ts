@@ -21,11 +21,11 @@ const mapStateToProps = (state: AppState): Pick<AdventureScreenContainerProps, S
   scenarioInfoWindowVisible: state.scenarioInfoWindow.visible,
 });
 
-const AdventureScreenConnected = connect(mapStateToProps)(AdventureScreenContainer);
+const ContainerConnected = connect(mapStateToProps)(AdventureScreenContainer);
 
-type AdventureScreenConnectedProps = ExtractProps<typeof AdventureScreenConnected>;
+type ContainerConnectedProps = ExtractProps<typeof ContainerConnected>;
 
 export {
-  AdventureScreenConnected as AdventureScreen,
-  AdventureScreenConnectedProps as AdventureScreenProps,
+  ContainerConnected as AdventureScreen,
+  ContainerConnectedProps as AdventureScreenProps,
 };

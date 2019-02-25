@@ -23,11 +23,11 @@ const mapStateToProps = (): Pick<ThievesGuildWindowProps, StateProp> => ({
   townCount: [],
 });
 
-const ThievesGuildWindowConnected = connect(mapStateToProps)(ThievesGuildWindow);
+const ComponentConnected = connect(mapStateToProps)(ThievesGuildWindow);
 
-type ThievesGuildWindowConnectedProps = ExtractProps<typeof ThievesGuildWindowConnected>;
+type ComponentConnectedProps = ExtractProps<typeof ComponentConnected>;
 
 export {
-  ThievesGuildWindowConnected as ThievesGuildWindow,
-  ThievesGuildWindowConnectedProps as ThievesGuildWindowProps,
+  ComponentConnected as ThievesGuildWindow,
+  ComponentConnectedProps as ThievesGuildWindowProps,
 };

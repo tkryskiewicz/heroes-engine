@@ -68,11 +68,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsContainerP
   },
 });
 
-const AdventureButtonsContainerConnected = connect(mapStateToProps, mapDispatchToProps)(AdventureButtonsContainer);
+const ContainerConnected = connect(mapStateToProps, mapDispatchToProps)(AdventureButtonsContainer);
 
-type AdventureButtonsContainerConnectedProps = ExtractProps<typeof AdventureButtonsContainerConnected>;
+type ContainerConnectedProps = ExtractProps<typeof ContainerConnected>;
 
 export {
-  AdventureButtonsContainerConnected as AdventureButtons,
-  AdventureButtonsContainerConnectedProps as AdventureButtonsProps,
+  ContainerConnected as AdventureButtons,
+  ContainerConnectedProps as AdventureButtonsProps,
 };

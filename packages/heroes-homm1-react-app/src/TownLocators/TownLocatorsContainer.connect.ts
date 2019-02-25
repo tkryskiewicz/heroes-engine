@@ -45,11 +45,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownLocatorsContainerProps
   },
 });
 
-const TownLocatorsContainerConnected = connect(mapStateToProps, mapDispatchToProps)(TownLocatorsContainer);
+const ContainerConnected = connect(mapStateToProps, mapDispatchToProps)(TownLocatorsContainer);
 
-type TownLocatorsContainerConnectedProps = ExtractProps<typeof TownLocatorsContainerConnected>;
+type ContainerConnectedProps = ExtractProps<typeof ContainerConnected>;
 
 export {
-  TownLocatorsContainerConnected as TownLocators,
-  TownLocatorsContainerConnectedProps as TownLocatorsProps,
+  ContainerConnected as TownLocators,
+  ContainerConnectedProps as TownLocatorsProps,
 };

@@ -16,8 +16,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<BuyMageGuildSpellBookWindo
   },
 });
 
-const BuyMageGuildSpellBookWindowConnected = connect(null, mapDispatchToProps)(BuyMageGuildSpellBookWindow);
+const ComponentConnected = connect(null, mapDispatchToProps)(BuyMageGuildSpellBookWindow);
+
+type ComponentConnectedProps = ExtractProps<typeof ComponentConnected>;
 
 export {
-  BuyMageGuildSpellBookWindowConnected as BuyMageGuildSpellBookWindow,
+  ComponentConnected as BuyMageGuildSpellBookWindow,
+  ComponentConnectedProps as BuyMageGuildSpellBookWindowProps,
 };

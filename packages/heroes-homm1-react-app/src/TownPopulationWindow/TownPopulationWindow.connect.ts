@@ -28,11 +28,11 @@ const mapStateToProps = (
   };
 };
 
-const TownPopulationWindowConnected = connect(mapStateToProps)(TownPopulationWindow);
+const ComponentConnected = connect(mapStateToProps)(TownPopulationWindow);
 
-type TownPopulationWindowConnectedProps = ExtractProps<typeof TownPopulationWindowConnected>;
+type ComponentConnectedProps = ExtractProps<typeof ComponentConnected>;
 
 export {
-  TownPopulationWindowConnected as TownPopulationWindow,
-  TownPopulationWindowConnectedProps as TownPopulationWindowProps,
+  ComponentConnected as TownPopulationWindow,
+  ComponentConnectedProps as TownPopulationWindowProps,
 };

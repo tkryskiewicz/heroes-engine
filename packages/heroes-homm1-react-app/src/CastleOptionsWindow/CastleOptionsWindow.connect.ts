@@ -41,11 +41,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<CastleOptionsWindowProps, 
   },
 });
 
-const CastleOptionsWindowConnected = connect(mapStateToProps, mapDispatchToProps)(CastleOptionsWindow);
+const ComponentConnected = connect(mapStateToProps, mapDispatchToProps)(CastleOptionsWindow);
 
-type CastleOptionsWindowConnectedProps = ExtractProps<typeof CastleOptionsWindowConnected>;
+type ComponentConnectedProps = ExtractProps<typeof ComponentConnected>;
 
 export {
-  CastleOptionsWindowConnected as CastleOptionsWindow,
-  CastleOptionsWindowConnectedProps as CastleOptionsWindowProps,
+  ComponentConnected as CastleOptionsWindow,
+  ComponentConnectedProps as CastleOptionsWindowProps,
 };

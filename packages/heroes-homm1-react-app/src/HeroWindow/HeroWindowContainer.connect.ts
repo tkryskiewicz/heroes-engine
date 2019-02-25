@@ -117,11 +117,11 @@ const mapDispatchToProps = (
   },
 });
 
-const HeroWindowContainerConnected = connect(mapStateToProps, mapDispatchToProps)(HeroWindowContainer);
+const ContainerConnected = connect(mapStateToProps, mapDispatchToProps)(HeroWindowContainer);
 
-type HeroWindowContainerConnectedProps = ExtractProps<typeof HeroWindowContainerConnected>;
+type ContainerConnectedProps = ExtractProps<typeof ContainerConnected>;
 
 export {
-  HeroWindowContainerConnected as HeroWindow,
-  HeroWindowContainerConnectedProps as HeroWindowProps,
+  ContainerConnected as HeroWindow,
+  ContainerConnectedProps as HeroWindowProps,
 };

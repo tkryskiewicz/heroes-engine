@@ -42,11 +42,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<SpellBookWindowContainerPr
   },
 });
 
-const SpellBookWindowContainerConnected = connect(mapStateToProps, mapDispatchToProps)(SpellBookWindowContainer);
+const ContainerConnected = connect(mapStateToProps, mapDispatchToProps)(SpellBookWindowContainer);
 
-type SpellBookWindowContainerConnectedProps = ExtractProps<typeof SpellBookWindowContainerConnected>;
+type ContainerConnectedProps = ExtractProps<typeof ContainerConnected>;
 
 export {
-  SpellBookWindowContainerConnected as SpellBookWindow,
-  SpellBookWindowContainerConnectedProps as SpellBookWindowProps,
+  ContainerConnected as SpellBookWindow,
+  ContainerConnectedProps as SpellBookWindowProps,
 };
