@@ -9,7 +9,7 @@ import { ImageButton } from "../base";
 import { withGameWindow } from "../core";
 import { StatusBar } from "./StatusBar";
 
-export interface TownDetailWindowProps {
+interface TownDetailWindowProps {
   readonly statusText: string;
   readonly onExitMouseEnter: () => void;
   readonly onExitMouseLeave: () => void;
@@ -52,8 +52,11 @@ class TownDetailWindow extends React.Component<TownDetailWindowProps> {
   }
 }
 
-const TownDetailWindowWrapped = withGameWindow(640)(TownDetailWindow);
+const ComponentWrapped = withGameWindow(640)(TownDetailWindow);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  TownDetailWindowWrapped as TownDetailWindow,
+  ComponentWrapped as TownDetailWindow,
+  ComponentWrappedProps as TownDetailWindowProps,
 };

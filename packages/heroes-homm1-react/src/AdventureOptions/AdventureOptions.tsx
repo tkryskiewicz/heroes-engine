@@ -7,7 +7,7 @@ import { buttonImages } from "./assets";
 import { ImageButton } from "../base";
 import { withGameWindow } from "../core";
 
-export interface AdventureOptionsProps {
+interface AdventureOptionsProps {
   readonly onViewWorldClick?: () => void;
   readonly onViewPuzzleClick?: () => void;
   readonly onCastSpellClick?: () => void;
@@ -54,8 +54,11 @@ class AdventureOptions extends React.Component<AdventureOptionsProps> {
   }
 }
 
-const AdventureOptionsWrapped = withGameWindow(322)(AdventureOptions);
+const ComponentWrapped = withGameWindow(322)(AdventureOptions);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  AdventureOptionsWrapped as AdventureOptions,
+  ComponentWrapped as AdventureOptions,
+  ComponentWrappedProps as AdventureOptionsProps,
 };

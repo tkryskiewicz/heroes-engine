@@ -228,13 +228,13 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
   }
 }
 
-const HeroTradingWindowWrapped = injectIntl(
+const ComponentWrapped = injectIntl(
   withGameWindow(448)(HeroTradingWindow),
 );
 
-type HeroTradingWindowWrappedProps = ExtractProps<typeof HeroTradingWindowWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  HeroTradingWindowWrapped as HeroTradingWindow,
-  HeroTradingWindowWrappedProps as HeroTradingWindowProps,
+  ComponentWrapped as HeroTradingWindow,
+  ComponentWrappedProps as HeroTradingWindowProps,
 };

@@ -256,13 +256,13 @@ class CombatWindow extends React.Component<CombatWindowProps, CombatWindowState>
   }
 }
 
-const CombatWindowWrapped = injectIntl(
+const ComponentWrapped = injectIntl(
   withGameWindow(640)(CombatWindow),
 );
 
-type CombatWindowWrappedProps = ExtractProps<typeof CombatWindowWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  CombatWindowWrapped as CombatWindow,
-  CombatWindowWrappedProps as CombatWindowProps,
+  ComponentWrapped as CombatWindow,
+  ComponentWrappedProps as CombatWindowProps,
 };

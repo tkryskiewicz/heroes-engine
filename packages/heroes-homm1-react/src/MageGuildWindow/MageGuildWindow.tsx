@@ -99,13 +99,13 @@ class MageGuildWindow extends React.Component<MageGuildWindowProps> {
   }
 }
 
-const MageGuildWindowWrapped = injectIntl(
+const ComponentWrapped = injectIntl(
   withTownDetailWindow()(MageGuildWindow),
 );
 
-type MageGuildWindowWrappedProps = ExtractProps<typeof MageGuildWindowWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  MageGuildWindowWrapped as MageGuildWindow,
-  MageGuildWindowWrappedProps as MageGuildWindowProps,
+  ComponentWrapped as MageGuildWindow,
+  ComponentWrappedProps as MageGuildWindowProps,
 };

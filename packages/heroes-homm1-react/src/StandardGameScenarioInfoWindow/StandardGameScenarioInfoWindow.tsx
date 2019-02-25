@@ -25,7 +25,7 @@ import {
   getScenarioSizeMessage,
 } from "../messages";
 
-export interface StandardGameScenarioInfoWindowProps {
+interface StandardGameScenarioInfoWindowProps {
   readonly scenarioName: string;
   readonly gameDifficulty: GameDifficulty;
   readonly opponentSettings: OpponentSetting[];
@@ -119,8 +119,11 @@ class StandardGameScenarioInfoWindow extends React.Component<StandardGameScenari
   }
 }
 
-const StandardGameScenarioInfoWindowWrapped = withGameWindow(322)(StandardGameScenarioInfoWindow);
+const ComponentWrapped = withGameWindow(322)(StandardGameScenarioInfoWindow);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  StandardGameScenarioInfoWindowWrapped as StandardGameScenarioInfoWindow,
+  ComponentWrapped as StandardGameScenarioInfoWindow,
+  ComponentWrappedProps as StandardGameScenarioInfoWindowProps,
 };

@@ -116,11 +116,11 @@ class TownWindow extends React.Component<TownWindowProps> {
   }
 }
 
-const TownWindowWrapped = withGameWindow(640)(TownWindow);
+const ComponentWrapped = withGameWindow(640)(TownWindow);
 
-type TownWindowWrappedProps = ExtractProps<typeof TownWindowWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  TownWindowWrapped as TownWindow,
-  TownWindowWrappedProps as TownWindowProps,
+  ComponentWrapped as TownWindow,
+  ComponentWrappedProps as TownWindowProps,
 };

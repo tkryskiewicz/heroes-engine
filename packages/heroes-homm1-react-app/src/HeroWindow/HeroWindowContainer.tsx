@@ -556,11 +556,11 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 }
 
-const HeroWindowContainerWrapped = injectIntl(HeroWindowContainer);
+const ContainerWrapped = injectIntl(HeroWindowContainer);
 
-type HeroWindowContainerWrappedProps = ExtractProps<typeof HeroWindowContainerWrapped>;
+type ContainerWrappedProps = ExtractProps<typeof ContainerWrapped>;
 
 export {
-  HeroWindowContainerWrapped as HeroWindowContainer,
-  HeroWindowContainerWrappedProps as HeroWindowContainerProps,
+  ContainerWrapped as HeroWindowContainer,
+  ContainerWrappedProps as HeroWindowContainerProps,
 };

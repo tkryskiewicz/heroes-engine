@@ -67,13 +67,13 @@ class SurrenderWindow extends React.Component<SurrenderWindowProps> {
   }
 }
 
-const SurrenderWindowWrapped = injectIntl(
+const ComponentWrapped = injectIntl(
   withGameWindow(470)(SurrenderWindow),
 );
 
-type SurrenderWindowWrappedProps = ExtractProps<typeof SurrenderWindowWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  SurrenderWindowWrapped as SurrenderWindow,
-  SurrenderWindowWrappedProps as SurrenderWindowProps,
+  ComponentWrapped as SurrenderWindow,
+  ComponentWrappedProps as SurrenderWindowProps,
 };

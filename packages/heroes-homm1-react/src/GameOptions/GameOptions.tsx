@@ -11,7 +11,7 @@ import { ImageButton, ImageSwitch } from "../base";
 import { GameText, withGameWindow } from "../core";
 import { getMovementSpeedMessage, messages } from "./messages";
 
-export interface GameOptionsProps {
+interface GameOptionsProps {
   readonly onNewGameClick: () => void;
   readonly onLoadGameClick: () => void;
   readonly onSaveGameClick: () => void;
@@ -229,8 +229,11 @@ class GameOptions extends React.Component<GameOptionsProps> {
   }
 }
 
-const GameOptionsWrapped = withGameWindow(322)(GameOptions);
+const ComponentWrapped = withGameWindow(322)(GameOptions);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  GameOptionsWrapped as GameOptions,
+  ComponentWrapped as GameOptions,
+  ComponentWrappedProps as GameOptionsProps,
 };

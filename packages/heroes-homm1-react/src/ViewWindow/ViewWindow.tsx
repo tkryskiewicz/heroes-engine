@@ -8,7 +8,7 @@ import { buttonImages, legendImages } from "./assets";
 import { ImageButton } from "../base";
 import { withGameWindow } from "../core";
 
-export interface ViewWindowProps {
+interface ViewWindowProps {
   // FIXME: inject background
   readonly type: "world" | "puzzle";
   readonly onExitClick?: () => void;
@@ -46,8 +46,11 @@ class ViewWindow extends React.Component<ViewWindowProps> {
   }
 }
 
-const ViewWindowWrapped = withGameWindow(640)(ViewWindow);
+const ComponentWrapped = withGameWindow(640)(ViewWindow);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  ViewWindowWrapped as ViewWindow,
+  ComponentWrapped as ViewWindow,
+  ComponentWrappedProps as ViewWindowProps,
 };

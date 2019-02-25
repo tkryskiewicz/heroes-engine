@@ -4,7 +4,7 @@ import * as styles from "./CreditsWindow.module.scss";
 
 import { withGameWindow } from "../core";
 
-export interface CreditsWindowProps {
+interface CreditsWindowProps {
   readonly onClick: () => void;
 }
 
@@ -23,8 +23,11 @@ class CreditsWindow extends React.Component<CreditsWindowProps> {
   }
 }
 
-const CreditsWindowWrapped = withGameWindow(640)(CreditsWindow);
+const ComponentWrapped = withGameWindow(640)(CreditsWindow);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  CreditsWindowWrapped as CreditsWindow,
+  ComponentWrapped as CreditsWindow,
+  ComponentWrappedProps as CreditsWindowProps,
 };

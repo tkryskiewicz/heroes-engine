@@ -14,7 +14,7 @@ import { GameText, withGameWindow } from "../core";
 import { getCreatureNameMessage } from "../messages";
 import { messages } from "./messages";
 
-export interface RecruitTroopWindowProps {
+interface RecruitTroopWindowProps {
   readonly resources: Resources;
   readonly creature: string;
   readonly cost: Resources;
@@ -156,8 +156,11 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
   }
 }
 
-const RecruitTroopWindowWrapped = withGameWindow(320)(RecruitTroopWindow);
+const ComponentWrapped = withGameWindow(320)(RecruitTroopWindow);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  RecruitTroopWindowWrapped as RecruitTroopWindow,
+  ComponentWrapped as RecruitTroopWindow,
+  ComponentWrappedProps as RecruitTroopWindowProps,
 };

@@ -17,7 +17,7 @@ import {
 import { ConfirmPromptProps } from "../prompt";
 import { messages } from "./messages";
 
-export interface MoraleDetailsPromptProps extends InjectedIntlProps, ConfirmPromptProps {
+interface MoraleDetailsPromptProps extends InjectedIntlProps, ConfirmPromptProps {
   readonly type: MoraleType;
   readonly modifiers: MoraleModifier[];
 }
@@ -100,8 +100,11 @@ class MoraleDetailsPrompt extends React.Component<MoraleDetailsPromptProps> {
   }
 }
 
-const MoraleDetailsPromptWrapped = injectIntl(MoraleDetailsPrompt);
+const ComponentWrapped = injectIntl(MoraleDetailsPrompt);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  MoraleDetailsPromptWrapped as MoraleDetailsPrompt,
+  ComponentWrapped as MoraleDetailsPrompt,
+  ComponentWrappedProps as MoraleDetailsPromptProps,
 };

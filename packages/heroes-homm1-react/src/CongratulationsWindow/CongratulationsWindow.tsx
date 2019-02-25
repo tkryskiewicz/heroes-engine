@@ -4,7 +4,7 @@ import * as styles from "./CongratulationsWindow.module.scss";
 
 import { GameText, withGameWindow } from "../core";
 
-export interface CongratulationsWindowProps {
+interface CongratulationsWindowProps {
   readonly onClick?: () => void;
 }
 
@@ -25,8 +25,11 @@ class CongratulationsWindow extends React.Component<CongratulationsWindowProps> 
   }
 }
 
-const CongratulationsWindowWrapped = withGameWindow(640)(CongratulationsWindow);
+const ComponentWrapped = withGameWindow(640)(CongratulationsWindow);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  CongratulationsWindowWrapped as CongratulationsWindow,
+  ComponentWrapped as CongratulationsWindow,
+  ComponentWrappedProps as CongratulationsWindowProps,
 };

@@ -401,11 +401,11 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   }
 }
 
-const TownWindowContainerWrapped = injectIntl(TownWindowContainer);
+const ContainerWrapped = injectIntl(TownWindowContainer);
 
-type TownWindowContainerWrappedProps = ExtractProps<typeof TownWindowContainerWrapped>;
+type ContainerWrappedProps = ExtractProps<typeof ContainerWrapped>;
 
 export {
-  TownWindowContainerWrapped as TownWindowContainer,
-  TownWindowContainerWrappedProps as TownWindowContainerProps,
+  ContainerWrapped as TownWindowContainer,
+  ContainerWrappedProps as TownWindowContainerProps,
 };

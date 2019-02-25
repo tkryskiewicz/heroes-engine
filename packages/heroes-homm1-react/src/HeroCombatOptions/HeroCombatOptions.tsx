@@ -169,13 +169,13 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps> {
   }
 }
 
-const HeroCombatOptionsWrapped = injectIntl(
+const ComponentWrapped = injectIntl(
   withGameWindow(250)(HeroCombatOptions),
 );
 
-type HeroCombatOptionsWrappedProps = ExtractProps<typeof HeroCombatOptionsWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  HeroCombatOptionsWrapped as HeroCombatOptions,
-  HeroCombatOptionsWrappedProps as HeroCombatOptionsProps,
+  ComponentWrapped as HeroCombatOptions,
+  ComponentWrappedProps as HeroCombatOptionsProps,
 };

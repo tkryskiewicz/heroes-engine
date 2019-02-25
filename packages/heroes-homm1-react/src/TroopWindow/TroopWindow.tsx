@@ -161,11 +161,11 @@ class TroopWindow extends React.Component<TroopWindowProps> {
   }
 }
 
-const TroopWindowWrapped = withGameWindow(402)(TroopWindow);
+const ComponentWrapped = withGameWindow(402)(TroopWindow);
 
-type TroopWindowWrappedProps = ExtractProps<typeof TroopWindowWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  TroopWindowWrapped as TroopWindow,
-  TroopWindowWrappedProps as TroopWindowProps,
+  ComponentWrapped as TroopWindow,
+  ComponentWrappedProps as TroopWindowProps,
 };

@@ -79,11 +79,11 @@ class BuildStructureWindow extends React.Component<BuildStructureWindowProps> {
   }
 }
 
-const BuildStructureWindowWrapped = injectIntl(BuildStructureWindow);
+const ComponentWrapped = injectIntl(BuildStructureWindow);
 
-type BuildStructureWindowWrappedProps = ExtractProps<typeof BuildStructureWindowWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  BuildStructureWindowWrapped as BuildStructureWindow,
-  BuildStructureWindowWrappedProps as BuildStructureWindowProps,
+  ComponentWrapped as BuildStructureWindow,
+  ComponentWrappedProps as BuildStructureWindowProps,
 };

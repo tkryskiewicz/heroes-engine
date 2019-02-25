@@ -15,7 +15,7 @@ import {
 import { ConfirmPromptProps } from "../prompt";
 import { messages } from "./messages";
 
-export interface LuckDetailsPromptProps extends InjectedIntlProps, ConfirmPromptProps {
+interface LuckDetailsPromptProps extends InjectedIntlProps, ConfirmPromptProps {
   readonly type: LuckType;
   readonly modifiers: LuckModifier[];
 }
@@ -86,8 +86,11 @@ class LuckDetailsPrompt extends React.Component<LuckDetailsPromptProps> {
   }
 }
 
-const LuckDetailsPromptWrapped = injectIntl(LuckDetailsPrompt);
+const ComponentWrapped = injectIntl(LuckDetailsPrompt);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  LuckDetailsPromptWrapped as LuckDetailsPrompt,
+  ComponentWrapped as LuckDetailsPrompt,
+  ComponentWrappedProps as LuckDetailsPromptProps,
 };

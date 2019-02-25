@@ -14,7 +14,7 @@ interface Scenario {
   readonly description: string;
 }
 
-export interface CampaignScenarioInfoWindowProps {
+interface CampaignScenarioInfoWindowProps {
   readonly scenario: Scenario;
   readonly onOkayClick?: () => void;
   readonly onRestartScenarioClick?: () => void;
@@ -76,8 +76,11 @@ class CampaignScenarioInfoWindow extends React.Component<CampaignScenarioInfoWin
   }
 }
 
-const CampaignScenarioInfoWindowWrapped = withGameWindow(480)(CampaignScenarioInfoWindow);
+const ComponentWrapped = withGameWindow(480)(CampaignScenarioInfoWindow);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  CampaignScenarioInfoWindowWrapped as CampaignScenarioInfoWindow,
+  ComponentWrapped as CampaignScenarioInfoWindow,
+  ComponentWrappedProps as CampaignScenarioInfoWindowProps,
 };

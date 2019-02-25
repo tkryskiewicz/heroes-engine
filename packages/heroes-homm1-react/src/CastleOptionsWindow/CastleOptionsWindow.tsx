@@ -131,13 +131,13 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
   }
 }
 
-const CastleOptionsWindowWrapped = injectIntl(
+const ComponentWrapped = injectIntl(
   withTownDetailWindow()(CastleOptionsWindow),
 );
 
-type CastleOptionsWindowWrappedProps = ExtractProps<typeof CastleOptionsWindowWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  CastleOptionsWindowWrapped as CastleOptionsWindow,
-  CastleOptionsWindowWrappedProps as CastleOptionsWindowProps,
+  ComponentWrapped as CastleOptionsWindow,
+  ComponentWrappedProps as CastleOptionsWindowProps,
 };

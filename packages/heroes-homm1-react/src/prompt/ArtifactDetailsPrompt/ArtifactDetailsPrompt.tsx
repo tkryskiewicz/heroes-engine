@@ -35,11 +35,11 @@ class ArtifactDetailsPrompt extends React.Component<ArtifactDetailsPromptProps> 
   }
 }
 
-const ArtifactDetailsPromptWrapped = injectIntl(ArtifactDetailsPrompt);
+const ComponentWrapped = injectIntl(ArtifactDetailsPrompt);
 
-type ArtifactDetailsPromptWrappedProps = ExtractProps<typeof ArtifactDetailsPromptWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  ArtifactDetailsPromptWrapped as ArtifactDetailsPrompt,
-  ArtifactDetailsPromptWrappedProps as ArtifactDetailsPromptProps,
+  ComponentWrapped as ArtifactDetailsPrompt,
+  ComponentWrappedProps as ArtifactDetailsPromptProps,
 };

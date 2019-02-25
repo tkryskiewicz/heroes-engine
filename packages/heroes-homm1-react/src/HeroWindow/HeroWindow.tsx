@@ -186,11 +186,11 @@ class HeroWindow extends React.Component<HeroWindowProps> {
   }
 }
 
-const HeroWindowWrapped = withGameWindow(640)(HeroWindow);
+const ComponentWrapped = withGameWindow(640)(HeroWindow);
 
-type HeroWindowWrappedProps = ExtractProps<typeof HeroWindowWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  HeroWindowWrapped as HeroWindow,
-  HeroWindowWrappedProps as HeroWindowProps,
+  ComponentWrapped as HeroWindow,
+  ComponentWrappedProps as HeroWindowProps,
 };

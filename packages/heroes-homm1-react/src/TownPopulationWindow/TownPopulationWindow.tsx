@@ -84,13 +84,13 @@ class TownPopulationWindow extends React.Component<TownPopulationWindowProps> {
   }
 }
 
-const TownPopulationWindowWrapped = injectIntl(
+const ComponentWrapped = injectIntl(
   withTownDetailWindow()(TownPopulationWindow),
 );
 
-type TownPopulationWindowWrappedProps = ExtractProps<typeof TownPopulationWindowWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  TownPopulationWindowWrapped as TownPopulationWindow,
-  TownPopulationWindowWrappedProps as TownPopulationWindowProps,
+  ComponentWrapped as TownPopulationWindow,
+  ComponentWrappedProps as TownPopulationWindowProps,
 };

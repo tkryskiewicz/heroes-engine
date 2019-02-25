@@ -14,7 +14,7 @@ type GameModalType =
   "okay" |
   "cancel";
 
-export interface GameModalProps {
+interface GameModalProps {
   readonly type: GameModalType;
   readonly size: number;
   readonly confirmDisabled: boolean;
@@ -108,8 +108,11 @@ class GameModal extends React.Component<GameModalProps> {
   }
 }
 
-const GameModalWrapped = withGameWindow(286)(GameModal);
+const ComponentWrapped = withGameWindow(286)(GameModal);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  GameModalWrapped as GameModal,
+  ComponentWrapped as GameModal,
+  ComponentWrappedProps as GameModalProps,
 };

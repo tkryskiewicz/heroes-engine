@@ -73,11 +73,11 @@ class CombatLostWindow extends React.Component<CombatLostWindowProps> {
   }
 }
 
-const CombatLostWindowWrapped = injectIntl(CombatLostWindow);
+const ComponentWrapped = injectIntl(CombatLostWindow);
 
-type CombatLostWindowWrappedProps = ExtractProps<typeof CombatLostWindowWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  CombatLostWindowWrapped as CombatLostWindow,
-  CombatLostWindowWrappedProps as CombatLostWindowProps,
+  ComponentWrapped as CombatLostWindow,
+  ComponentWrappedProps as CombatLostWindowProps,
 };

@@ -163,13 +163,13 @@ class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
   }
 }
 
-const ThievesGuildWindowWrapped = injectIntl(
+const ComponentWrapped = injectIntl(
   withTownDetailWindow()(ThievesGuildWindow),
 );
 
-type ThievesGuildWindowWrappedProps = ExtractProps<typeof ThievesGuildWindowWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  ThievesGuildWindowWrapped as ThievesGuildWindow,
-  ThievesGuildWindowWrappedProps as ThievesGuildWindowProps,
+  ComponentWrapped as ThievesGuildWindow,
+  ComponentWrappedProps as ThievesGuildWindowProps,
 };

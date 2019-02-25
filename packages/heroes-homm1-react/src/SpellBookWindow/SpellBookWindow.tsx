@@ -268,13 +268,13 @@ class SpellBookWindow extends React.Component<SpellBookWindowProps> {
   }
 }
 
-const SpellBookWindowWrapped = injectIntl(
+const ComponentWrapped = injectIntl(
   withGameWindow(324)(SpellBookWindow),
 );
 
-type SpellBookWindowWrappedProps = ExtractProps<typeof SpellBookWindowWrapped>;
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
 export {
-  SpellBookWindowWrapped as SpellBookWindow,
-  SpellBookWindowWrappedProps as SpellBookWindowProps,
+  ComponentWrapped as SpellBookWindow,
+  ComponentWrappedProps as SpellBookWindowProps,
 };
