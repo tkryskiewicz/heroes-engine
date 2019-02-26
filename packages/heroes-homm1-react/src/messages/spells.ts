@@ -4,6 +4,9 @@ import { SpellId } from "heroes-homm1";
 
 import { convertValue, unknownMessage } from "./util";
 
+const getKey = (spell: string) =>
+  convertValue(spell);
+
 const getDescriptionKey = (spell: string) =>
   `${convertValue(spell)}Description`;
 
@@ -12,7 +15,7 @@ const getLongNameKey = (spell: string) =>
 
 // TODO: fill out long names and descriptions
 const spellMessages: Messages = defineMessages({
-  antimagic: {
+  [getKey(SpellId.Antimagic)]: {
     defaultMessage: "Anti-Magic",
     id: "game.spell.antimagic",
   },
@@ -20,7 +23,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Prevents harmful magic against the selected creatures.",
     id: "game.spell.antimagic.description",
   },
-  armageddon: {
+  [getKey(SpellId.Armageddon)]: {
     defaultMessage: "Armageddon",
     id: "game.spell.armageddon",
   },
@@ -28,7 +31,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Holy terror strikes the battlefield, causing severe damage to all creatures.",
     id: "game.spell.armageddon.description",
   },
-  berserk: {
+  [getKey(SpellId.Berserk)]: {
     defaultMessage: "Berserk",
     id: "game.spell.berserk",
   },
@@ -36,7 +39,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Causes a creature to attack its nearest neighbor.",
     id: "game.spell.berserk.description",
   },
-  bless: {
+  [getKey(SpellId.Bless)]: {
     defaultMessage: "Bless",
     id: "game.spell.bless",
   },
@@ -44,7 +47,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Causes the selected creatures to inflict maximum damage.",
     id: "game.spells.bless.description",
   },
-  blind: {
+  [getKey(SpellId.Blind)]: {
     defaultMessage: "Blind",
     id: "game.spell.blind",
   },
@@ -52,7 +55,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Clouds the affected creatures' eyes, preventing them from moving.",
     id: "game.spell.blind.description",
   },
-  cure: {
+  [getKey(SpellId.Cure)]: {
     defaultMessage: "Cure",
     id: "game.spell.cure",
   },
@@ -60,7 +63,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Removes all negative spells cast upon your forces.",
     id: "game.spell.cure.description",
   },
-  curse: {
+  [getKey(SpellId.Curse)]: {
     defaultMessage: "Curse",
     id: "game.spell.curse",
   },
@@ -68,7 +71,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Causes the selected creatures to inflict minimum damage.",
     id: "game.spell.curse.description",
   },
-  dimensionDoor: {
+  [getKey(SpellId.DimensionDoor)]: {
     defaultMessage: "Dimension Door",
     id: "game.spell.dimensionDoor",
   },
@@ -76,7 +79,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Allows the caster to magically transport himself to a nearby location.",
     id: "game.spell.dimensionDoor.description",
   },
-  dispel: {
+  [getKey(SpellId.Dispel)]: {
     defaultMessage: "Dispel Magic",
     id: "game.spell.dispel",
   },
@@ -84,7 +87,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Removes all magic spells from all parties in the battle.",
     id: "game.spell.dispel.description",
   },
-  fireball: {
+  [getKey(SpellId.Fireball)]: {
     defaultMessage: "Fireball",
     id: "game.spell.fireball",
   },
@@ -92,7 +95,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Causes a giant fireball to strike the selected area, damaging all nearby creatures.",
     id: "game.spell.fireball.description",
   },
-  haste: {
+  [getKey(SpellId.Haste)]: {
     defaultMessage: "Haste",
     id: "game.spell.haste",
   },
@@ -100,7 +103,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Increases the speed of any creature to 'very fast'.",
     id: "game.spell.haste.description",
   },
-  identifyHero: {
+  [getKey(SpellId.IdentifyHero)]: {
     defaultMessage: "Identify Hero",
     id: "game.spell.identifyHero",
   },
@@ -108,7 +111,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Allows the caster to view detailed information on enemy Heroes.",
     id: "game.spell.identifyHero.description",
   },
-  lightning: {
+  [getKey(SpellId.Lightning)]: {
     defaultMessage: "Lightning Bolt",
     id: "game.spell.lightning",
   },
@@ -116,7 +119,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Causes a bolt of electrical energy to strike the selected creature.",
     id: "game.spell.lightning.description",
   },
-  meteorShower: {
+  [getKey(SpellId.MeteorShower)]: {
     defaultMessage: "Meteor Shower",
     id: "game.spell.meteorShower",
   },
@@ -124,7 +127,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "A rain of rocks strikes an area of the battlefield, damaging all nearby creatures.",
     id: "game.spell.meteorShower.description",
   },
-  paralyze: {
+  [getKey(SpellId.Paralyze)]: {
     defaultMessage: "Paralyze",
     id: "game.spell.paralyze",
   },
@@ -132,7 +135,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "The targeted creatures are paralyzed, unable to move or retaliate.",
     id: "game.spell.paralyze.description",
   },
-  protection: {
+  [getKey(SpellId.Protection)]: {
     defaultMessage: "Protection",
     id: "game.spell.protection",
   },
@@ -140,7 +143,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Magically increases the defense skill of the selected creatures.",
     id: "game.spell.protection.description",
   },
-  resurrect: {
+  [getKey(SpellId.Resurrect)]: {
     defaultMessage: "Resurrect",
     id: "game.spell.resurrect",
   },
@@ -148,7 +151,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Resurrects creatures from a damaged monster group.",
     id: "game.spell.resurrect.description",
   },
-  slow: {
+  [getKey(SpellId.Slow)]: {
     defaultMessage: "Slow",
     id: "game.spell.slow",
   },
@@ -156,7 +159,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Slows down even the fastest enemy creature.",
     id: "game.spell.slow.description",
   },
-  storm: {
+  [getKey(SpellId.Storm)]: {
     defaultMessage: "Storm",
     id: "game.spell.storm",
   },
@@ -168,7 +171,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Elemental Storm",
     id: "game.spell.storm.longName",
   },
-  summonBoat: {
+  [getKey(SpellId.SummonBoat)]: {
     defaultMessage: "Summon Boat",
     id: "game.spell.summonBoat",
   },
@@ -177,7 +180,7 @@ const spellMessages: Messages = defineMessages({
       A friendly boat is one which you just built or were the most recent player to occupy.`,
     id: "game.spell.summonBoat.description",
   },
-  teleport: {
+  [getKey(SpellId.Teleport)]: {
     defaultMessage: "Teleport",
     id: "game.spell.teleport",
   },
@@ -185,7 +188,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Teleports the creature you select to any open position on the battlefield.",
     id: "game.spell.teleport.description",
   },
-  townGate: {
+  [getKey(SpellId.TownGate)]: {
     defaultMessage: "Town Gate",
     id: "game.spell.townGate",
   },
@@ -193,7 +196,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Returns the caster to any town or castle currently owned.",
     id: "game.spell.townGate.description",
   },
-  turnUndead: {
+  [getKey(SpellId.TurnUndead)]: {
     defaultMessage: "Turn Undead",
     id: "game.spell.turnUndead",
   },
@@ -201,7 +204,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Instantly sends a group of ghosts back to the grave.",
     id: "game.spell.turnUndead.description",
   },
-  viewAll: {
+  [getKey(SpellId.ViewAll)]: {
     defaultMessage: "View All",
     id: "game.spell.viewAll",
   },
@@ -209,7 +212,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Causes all Heroes across the land to become visible.",
     id: "game.spell.viewAll.description",
   },
-  viewArtifacts: {
+  [getKey(SpellId.ViewArtifacts)]: {
     defaultMessage: "View Artifacts",
     id: "game.spell.viewArtifacts",
   },
@@ -217,7 +220,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Causes all artifacts across the land to become visible.",
     id: "game.spell.viewArtifacts.description",
   },
-  viewHeroes: {
+  [getKey(SpellId.ViewHeroes)]: {
     defaultMessage: "View Heroes",
     id: "game.spell.viewHeroes",
   },
@@ -225,7 +228,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Causes all Heroes across the land to become visible.",
     id: "game.spell.viewHeroes.description",
   },
-  viewMines: {
+  [getKey(SpellId.ViewMines)]: {
     defaultMessage: "View Mines",
     id: "game.spell.viewMines",
   },
@@ -233,7 +236,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Causes all mines across the land to become visible.",
     id: "game.spell.viewMines.description",
   },
-  viewResources: {
+  [getKey(SpellId.ViewResources)]: {
     defaultMessage: "View Resources",
     id: "game.spell.viewResources",
   },
@@ -241,7 +244,7 @@ const spellMessages: Messages = defineMessages({
     defaultMessage: "Causes all resources across the land to become visible.",
     id: "game.spell.viewResources.description",
   },
-  viewTowns: {
+  [getKey(SpellId.ViewTowns)]: {
     defaultMessage: "View Towns",
     id: "game.spell.viewTowns",
   },
@@ -252,7 +255,7 @@ const spellMessages: Messages = defineMessages({
 });
 
 export const getSpellNameMessage = (spell: string) =>
-  spellMessages[convertValue(spell)] || unknownMessage;
+  spellMessages[getKey(spell)] || unknownMessage;
 
 export const getSpellDescriptionMessage = (spell: string) =>
   spellMessages[getDescriptionKey(spell)] || unknownMessage;

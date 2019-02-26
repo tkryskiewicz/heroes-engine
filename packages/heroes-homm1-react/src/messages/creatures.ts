@@ -2,13 +2,16 @@ import { defineMessages, Messages } from "react-intl";
 
 import { CreatureId } from "heroes-homm1";
 
-import { unknownMessage } from "./util";
+import { convertValue, unknownMessage } from "./util";
+
+const getKey = (creature: string) =>
+  convertValue(creature);
 
 const getPluralKey = (creature: string) =>
-  `${creature}Plural`;
+  `${convertValue(creature)}Plural`;
 
-export const farmCreatureMessages = defineMessages({
-  [CreatureId.Archer]: {
+const farmCreatureMessages = defineMessages({
+  [getKey(CreatureId.Archer)]: {
     defaultMessage: "Archer",
     id: "game.creature.archer",
   },
@@ -16,7 +19,7 @@ export const farmCreatureMessages = defineMessages({
     defaultMessage: "Archers",
     id: "game.creature.archer.plural",
   },
-  [CreatureId.Cavalry]: {
+  [getKey(CreatureId.Cavalry)]: {
     defaultMessage: "Cavalry",
     id: "game.creature.cavalry",
   },
@@ -24,7 +27,7 @@ export const farmCreatureMessages = defineMessages({
     defaultMessage: "Cavalries",
     id: "game.creature.cavalry.plural",
   },
-  [CreatureId.Paladin]: {
+  [getKey(CreatureId.Paladin)]: {
     defaultMessage: "Paladin",
     id: "game.creature.paladin",
   },
@@ -32,7 +35,7 @@ export const farmCreatureMessages = defineMessages({
     defaultMessage: "Paladins",
     id: "game.creature.paladin.plural",
   },
-  [CreatureId.Peasant]: {
+  [getKey(CreatureId.Peasant)]: {
     defaultMessage: "Peasant",
     id: "game.creature.peasant",
   },
@@ -40,7 +43,7 @@ export const farmCreatureMessages = defineMessages({
     defaultMessage: "Peasants",
     id: "game.creature.peasant.plural",
   },
-  [CreatureId.Pikeman]: {
+  [getKey(CreatureId.Pikeman)]: {
     defaultMessage: "Pikeman",
     id: "game.creature.pikeman",
   },
@@ -48,7 +51,7 @@ export const farmCreatureMessages = defineMessages({
     defaultMessage: "Pikemen",
     id: "game.creature.archer.plural",
   },
-  [CreatureId.Swordsman]: {
+  [getKey(CreatureId.Swordsman)]: {
     defaultMessage: "Swordsman",
     id: "game.creature.swordsman",
   },
@@ -58,8 +61,8 @@ export const farmCreatureMessages = defineMessages({
   },
 });
 
-export const plainsCreatureMessages = defineMessages({
-  [CreatureId.Cyclops]: {
+const plainsCreatureMessages = defineMessages({
+  [getKey(CreatureId.Cyclops)]: {
     defaultMessage: "Cyclops",
     id: "game.creature.cyclops",
   },
@@ -67,7 +70,7 @@ export const plainsCreatureMessages = defineMessages({
     defaultMessage: "Cyclopes",
     id: "game.creature.cyclops.plural",
   },
-  [CreatureId.Goblin]: {
+  [getKey(CreatureId.Goblin)]: {
     defaultMessage: "Goblin",
     id: "game.creature.goblin",
   },
@@ -75,7 +78,7 @@ export const plainsCreatureMessages = defineMessages({
     defaultMessage: "Goblins",
     id: "game.creature.goblin.plural",
   },
-  [CreatureId.Ogre]: {
+  [getKey(CreatureId.Ogre)]: {
     defaultMessage: "Ogre",
     id: "game.creature.ogre",
   },
@@ -83,7 +86,7 @@ export const plainsCreatureMessages = defineMessages({
     defaultMessage: "Ogres",
     id: "game.creature.ogre.plural",
   },
-  [CreatureId.Orc]: {
+  [getKey(CreatureId.Orc)]: {
     defaultMessage: "Orc",
     id: "game.creature.orc",
   },
@@ -91,7 +94,7 @@ export const plainsCreatureMessages = defineMessages({
     defaultMessage: "Orcs",
     id: "game.creature.orc.plural",
   },
-  [CreatureId.Troll]: {
+  [getKey(CreatureId.Troll)]: {
     defaultMessage: "Troll",
     id: "game.creature.troll",
   },
@@ -99,7 +102,7 @@ export const plainsCreatureMessages = defineMessages({
     defaultMessage: "Trolls",
     id: "game.creature.troll.plural",
   },
-  [CreatureId.Wolf]: {
+  [getKey(CreatureId.Wolf)]: {
     defaultMessage: "Wolf",
     id: "game.creature.wolf",
   },
@@ -109,8 +112,8 @@ export const plainsCreatureMessages = defineMessages({
   },
 });
 
-export const forestCreatureMessages = defineMessages({
-  [CreatureId.Druid]: {
+const forestCreatureMessages = defineMessages({
+  [getKey(CreatureId.Druid)]: {
     defaultMessage: "Druid",
     id: "game.creautre.druid",
   },
@@ -118,7 +121,7 @@ export const forestCreatureMessages = defineMessages({
     defaultMessage: "Druids",
     id: "game.creature.druid.plural",
   },
-  [CreatureId.Dwarf]: {
+  [getKey(CreatureId.Dwarf)]: {
     defaultMessage: "Dwarf",
     id: "game.creature.dwarf",
   },
@@ -126,7 +129,7 @@ export const forestCreatureMessages = defineMessages({
     defaultMessage: "Dwarves",
     id: "game.creature.dwarf.plural",
   },
-  [CreatureId.Elf]: {
+  [getKey(CreatureId.Elf)]: {
     defaultMessage: "Elf",
     id: "game.creature.elf",
   },
@@ -134,7 +137,7 @@ export const forestCreatureMessages = defineMessages({
     defaultMessage: "Elves",
     id: "game.creature.elf.plural",
   },
-  [CreatureId.Phoenix]: {
+  [getKey(CreatureId.Phoenix)]: {
     defaultMessage: "Phoenix",
     id: "game.creature.phoenix",
   },
@@ -142,7 +145,7 @@ export const forestCreatureMessages = defineMessages({
     defaultMessage: "Phoenix",
     id: "game.creature.phoenix.plural",
   },
-  [CreatureId.Sprite]: {
+  [getKey(CreatureId.Sprite)]: {
     defaultMessage: "Sprite",
     id: "game.creature.sprite",
   },
@@ -150,7 +153,7 @@ export const forestCreatureMessages = defineMessages({
     defaultMessage: "Sprites",
     id: "game.creature.sprite.plural",
   },
-  [CreatureId.Unicorn]: {
+  [getKey(CreatureId.Unicorn)]: {
     defaultMessage: "Unicorn",
     id: "game.creature.unicorn",
   },
@@ -160,8 +163,8 @@ export const forestCreatureMessages = defineMessages({
   },
 });
 
-export const mountainsCreatureMessages = defineMessages({
-  [CreatureId.Centaur]: {
+const mountainsCreatureMessages = defineMessages({
+  [getKey(CreatureId.Centaur)]: {
     defaultMessage: "Centaur",
     id: "game.creature.centaur",
   },
@@ -169,7 +172,7 @@ export const mountainsCreatureMessages = defineMessages({
     defaultMessage: "Centaurs",
     id: "game.creature.centaur.plural",
   },
-  [CreatureId.Dragon]: {
+  [getKey(CreatureId.Dragon)]: {
     defaultMessage: "Dragon",
     id: "game.creature.dragon",
   },
@@ -177,7 +180,7 @@ export const mountainsCreatureMessages = defineMessages({
     defaultMessage: "Dragons",
     id: "game.creature.dragon.plural",
   },
-  [CreatureId.Gargoyle]: {
+  [getKey(CreatureId.Gargoyle)]: {
     defaultMessage: "Gargoyle",
     id: "game.creature.gargoyle",
   },
@@ -185,7 +188,7 @@ export const mountainsCreatureMessages = defineMessages({
     defaultMessage: "Gargoyles",
     id: "game.creature.gargoyle.plural",
   },
-  [CreatureId.Griffin]: {
+  [getKey(CreatureId.Griffin)]: {
     defaultMessage: "Griffin",
     id: "game.creature.griffin",
   },
@@ -193,7 +196,7 @@ export const mountainsCreatureMessages = defineMessages({
     defaultMessage: "Griffins",
     id: "game.creature.griffin.plural",
   },
-  [CreatureId.Hydra]: {
+  [getKey(CreatureId.Hydra)]: {
     defaultMessage: "Hydra",
     id: "game.creature.hydra",
   },
@@ -201,7 +204,7 @@ export const mountainsCreatureMessages = defineMessages({
     defaultMessage: "Hydras",
     id: "game.creature.hydra.plural",
   },
-  [CreatureId.Minotaur]: {
+  [getKey(CreatureId.Minotaur)]: {
     defaultMessage: "Minotaur",
     id: "game.creature.minotaur",
   },
@@ -211,8 +214,8 @@ export const mountainsCreatureMessages = defineMessages({
   },
 });
 
-export const neutralCreatureMessages = defineMessages({
-  [CreatureId.Genie]: {
+const neutralCreatureMessages = defineMessages({
+  [getKey(CreatureId.Genie)]: {
     defaultMessage: "Genie",
     id: "game.creature.genie",
   },
@@ -220,7 +223,7 @@ export const neutralCreatureMessages = defineMessages({
     defaultMessage: "Genies",
     id: "game.creature.genie.plural",
   },
-  [CreatureId.Ghost]: {
+  [getKey(CreatureId.Ghost)]: {
     defaultMessage: "Ghost",
     id: "game.creature.ghost",
   },
@@ -228,7 +231,7 @@ export const neutralCreatureMessages = defineMessages({
     defaultMessage: "Ghosts",
     id: "game.creature.ghost.plural",
   },
-  [CreatureId.Nomad]: {
+  [getKey(CreatureId.Nomad)]: {
     defaultMessage: "Nomad",
     id: "game.creature.nomad",
   },
@@ -236,7 +239,7 @@ export const neutralCreatureMessages = defineMessages({
     defaultMessage: "Nomads",
     id: "game.creature.nomad.plural",
   },
-  [CreatureId.Rogue]: {
+  [getKey(CreatureId.Rogue)]: {
     defaultMessage: "Rogue",
     id: "game.creature.rogue",
   },
@@ -246,7 +249,7 @@ export const neutralCreatureMessages = defineMessages({
   },
 });
 
-export const creatureMessages: Messages = {
+const creatureMessages: Messages = {
   ...farmCreatureMessages,
   ...plainsCreatureMessages,
   ...forestCreatureMessages,
@@ -255,7 +258,7 @@ export const creatureMessages: Messages = {
 };
 
 export const getCreatureNameMessage = (creature: string) =>
-  creatureMessages[creature] || unknownMessage;
+  creatureMessages[getKey(creature)] || unknownMessage;
 
 export const getCreaturePluralNameMessage = (creature: string) =>
   creatureMessages[getPluralKey(creature)] || unknownMessage;

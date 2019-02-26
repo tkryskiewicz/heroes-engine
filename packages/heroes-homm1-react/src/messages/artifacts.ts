@@ -2,17 +2,20 @@ import { defineMessages, Messages } from "react-intl";
 
 import { ArtifactId } from "heroes-homm1";
 
-import { unknownMessage } from "./util";
+import { convertValue, unknownMessage } from "./util";
+
+const getKey = (artifact: string) =>
+  convertValue(artifact);
 
 const getShortNameKey = (artifact: string) =>
-  `${artifact}ShortName`;
+  `${convertValue(artifact)}ShortName`;
 
 const getDescriptionKey = (artifact: string) =>
-  `${artifact}Description`;
+  `${convertValue(artifact)}Description`;
 
-export const artifactMessages: Messages = defineMessages({
+const artifactMessages: Messages = defineMessages({
   // Attack
-  [ArtifactId.ThunderMaceOfDominion]: {
+  [getKey(ArtifactId.ThunderMaceOfDominion)]: {
     defaultMessage: "Thunder Mace of Dominion",
     id: "game.artifact.thunderMaceOfDominion",
   },
@@ -24,7 +27,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your attack skill by 1.",
     id: "game.artifact.thunderMaceOfDominion.description",
   },
-  [ArtifactId.GiantFlailOfDominion]: {
+  [getKey(ArtifactId.GiantFlailOfDominion)]: {
     defaultMessage: "Giant Flail of Dominion",
     id: "game.artifact.giantFlailOfDominion",
   },
@@ -36,7 +39,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your attack skill by 1.",
     id: "game.artifact.giantFlailOfDominion.description",
   },
-  [ArtifactId.PowerAxeOfDominion]: {
+  [getKey(ArtifactId.PowerAxeOfDominion)]: {
     defaultMessage: "Power Axe of Dominion",
     id: "game.artifact.powerAxeOfDominion",
   },
@@ -48,7 +51,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your attack skill by 2.",
     id: "game.artifact.powerAxeOfDominion.description",
   },
-  [ArtifactId.DragonSwordOfDominion]: {
+  [getKey(ArtifactId.DragonSwordOfDominion)]: {
     defaultMessage: "Dragon Sword of Dominion",
     id: "game.artifact.dragonSwordOfDominion",
   },
@@ -61,7 +64,7 @@ export const artifactMessages: Messages = defineMessages({
     id: "game.artifact.dragonSwordOfDominion.description",
   },
   // Defense
-  [ArtifactId.ArmoredGauntletsOfProtection]: {
+  [getKey(ArtifactId.ArmoredGauntletsOfProtection)]: {
     defaultMessage: "Armored Gauntlets of Protection",
     id: "game.artifact.armoredGauntletsOfProtection",
   },
@@ -73,7 +76,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increase your defense skill by 1.",
     id: "game.artifact.armoredGauntletsOfProtection.description",
   },
-  [ArtifactId.DefenderHelmOfProtection]: {
+  [getKey(ArtifactId.DefenderHelmOfProtection)]: {
     defaultMessage: "Defender Helm of Protection",
     id: "game.artifact.defenderHelmOfProtection",
   },
@@ -85,7 +88,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your defense skill by 1.",
     id: "game.artifact.defenderHelmOfProtection.description",
   },
-  [ArtifactId.StealthShieldOfProtection]: {
+  [getKey(ArtifactId.StealthShieldOfProtection)]: {
     defaultMessage: "Stealth Shield of Protection",
     id: "game.artifact.stealthShieldOfProtection",
   },
@@ -97,7 +100,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your defense skill by 2.",
     id: "game.artifact.stealthShieldOfProtection.description",
   },
-  [ArtifactId.DivineBreastplateOfProtection]: {
+  [getKey(ArtifactId.DivineBreastplateOfProtection)]: {
     defaultMessage: "Divine Breastplate of Protection",
     id: "game.artifact.divineBreastplateOfProtection",
   },
@@ -110,7 +113,7 @@ export const artifactMessages: Messages = defineMessages({
     id: "game.artifact.divineBreastplateOfProtection.description",
   },
   // Spell Power
-  [ArtifactId.CastersBraceletOfMagic]: {
+  [getKey(ArtifactId.CastersBraceletOfMagic)]: {
     defaultMessage: "Caster's Bracelet of Magic",
     id: "game.artifact.castersBraceletOfMagic",
   },
@@ -122,7 +125,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your spell power by 2.",
     id: "game.artifact.castersBraceletOfMagic.description",
   },
-  [ArtifactId.MagesRingOfPower]: {
+  [getKey(ArtifactId.MagesRingOfPower)]: {
     defaultMessage: "Mage's Ring of Power",
     id: "game.artifact.magesRingOfPower",
   },
@@ -134,7 +137,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your spell power by 2.",
     id: "game.artifact.magesRingOfPower.description",
   },
-  [ArtifactId.WitchsBroachOfMagic]: {
+  [getKey(ArtifactId.WitchsBroachOfMagic)]: {
     defaultMessage: "Witch's Broach of Magic",
     id: "game.artifact.witchsBroachOfMagic",
   },
@@ -146,7 +149,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your spell power by 3.",
     id: "game.artifact.witchsBroachOfMagic.description",
   },
-  [ArtifactId.ArcaneNecklaceOfMagic]: {
+  [getKey(ArtifactId.ArcaneNecklaceOfMagic)]: {
     defaultMessage: "Arcane Necklace of Magic",
     id: "game.artifact.arcaneNecklaceOfMagic",
   },
@@ -159,7 +162,7 @@ export const artifactMessages: Messages = defineMessages({
     id: "game.artifact.arcaneNecklaceOfMagic.description",
   },
   // Knowledge
-  [ArtifactId.MinorScrollOfKnowledge]: {
+  [getKey(ArtifactId.MinorScrollOfKnowledge)]: {
     defaultMessage: "Minor Scroll of Knowledge",
     id: "game.artifact.minorScrollOfKnowledge",
   },
@@ -171,7 +174,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your knowledge by 2.",
     id: "game.artifact.minorScrollOfKnowledge.description",
   },
-  [ArtifactId.MajorScrollOfKnowledge]: {
+  [getKey(ArtifactId.MajorScrollOfKnowledge)]: {
     defaultMessage: "Major Scroll of Knowledge",
     id: "game.artifact.majorScrollOfKnowledge",
   },
@@ -183,7 +186,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your knowledge by 3.",
     id: "game.artifact.majorScrollOfKnowledge.description",
   },
-  [ArtifactId.SuperiorScrollOfKnowledge]: {
+  [getKey(ArtifactId.SuperiorScrollOfKnowledge)]: {
     defaultMessage: "Superior Scroll of Knowledge",
     id: "game.artifact.superiorScrollOfKnowledge",
   },
@@ -195,7 +198,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your knowledge by 4.",
     id: "game.artifact.superiorScrollOfKnowledge.description",
   },
-  [ArtifactId.ForemostScrollOfKnowledge]: {
+  [getKey(ArtifactId.ForemostScrollOfKnowledge)]: {
     defaultMessage: "Foremost Scroll of Knowledge",
     id: "game.artifact.foremostScrollOfKnowledge",
   },
@@ -208,7 +211,7 @@ export const artifactMessages: Messages = defineMessages({
     id: "game.artifact.foremostScrollOfKnowledge.description",
   },
   // Morale
-  [ArtifactId.MedalOfValor]: {
+  [getKey(ArtifactId.MedalOfValor)]: {
     defaultMessage: "Medal of Valor",
     id: "game.artifact.medalOfValor",
   },
@@ -220,7 +223,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your morale.",
     id: "game.artifact.medalOfValor.description",
   },
-  [ArtifactId.MedalOfCourage]: {
+  [getKey(ArtifactId.MedalOfCourage)]: {
     defaultMessage: "Medal of Courage",
     id: "game.artifact.medalOfCourage",
   },
@@ -232,7 +235,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your morale.",
     id: "game.artifact.medalOfCourage.description",
   },
-  [ArtifactId.MedalOfHonor]: {
+  [getKey(ArtifactId.MedalOfHonor)]: {
     defaultMessage: "Medal of Honor",
     id: "game.artifact.medalOfHonor",
   },
@@ -244,7 +247,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your morale.",
     id: "game.artifact.medalOfHonor.description",
   },
-  [ArtifactId.MedalOfDistinction]: {
+  [getKey(ArtifactId.MedalOfDistinction)]: {
     defaultMessage: "Medal of Distinction",
     id: "game.artifact.medalOfDistinction",
   },
@@ -257,7 +260,7 @@ export const artifactMessages: Messages = defineMessages({
     id: "game.artifact.medalOfDistinction.description",
   },
   // Luck
-  [ArtifactId.LuckyRabbitsFoot]: {
+  [getKey(ArtifactId.LuckyRabbitsFoot)]: {
     defaultMessage: "Lucky Rabbit's Foot",
     id: "game.artifact.luckyRabbitsFoot",
   },
@@ -269,7 +272,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your luck in combat.",
     id: "game.artifact.luckyRabbitsFoot.description",
   },
-  [ArtifactId.GoldenHoreshoe]: {
+  [getKey(ArtifactId.GoldenHoreshoe)]: {
     defaultMessage: "Golden Horeshoe",
     id: "game.artifact.goldenHoreshoe",
   },
@@ -281,7 +284,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your luck in combat.",
     id: "game.artifact.goldenHoreshoe.description",
   },
-  [ArtifactId.GamblersLuckyCoin]: {
+  [getKey(ArtifactId.GamblersLuckyCoin)]: {
     defaultMessage: "Gambler's Lucky Coin",
     id: "game.artifact.gamblersLuckyCoin",
   },
@@ -293,7 +296,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your luck in combat.",
     id: "game.artifact.gamblersLuckyCoin.description",
   },
-  [ArtifactId.FourLeafClover]: {
+  [getKey(ArtifactId.FourLeafClover)]: {
     defaultMessage: "Four-Leaf Clover",
     id: "game.artifact.fourLeafClover",
   },
@@ -306,7 +309,7 @@ export const artifactMessages: Messages = defineMessages({
     id: "game.artifact.fourLeafClover.description",
   },
   // Income
-  [ArtifactId.EndlessPurseOfGold]: {
+  [getKey(ArtifactId.EndlessPurseOfGold)]: {
     defaultMessage: "Endless Purse of Gold",
     id: "game.artifact.endlessPurseOfGold",
   },
@@ -318,7 +321,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} provides you with 500 gold per day.",
     id: "game.artifact.endlessPurseOfGold.description",
   },
-  [ArtifactId.EndlessBagOfGold]: {
+  [getKey(ArtifactId.EndlessBagOfGold)]: {
     defaultMessage: "Endless Bag of Gold",
     id: "game.artifact.endlessBagOfGold",
   },
@@ -330,7 +333,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} provides you with 750 gold per day.",
     id: "game.artifact.endlessBagOfGold.description",
   },
-  [ArtifactId.EndlessSackOfGold]: {
+  [getKey(ArtifactId.EndlessSackOfGold)]: {
     defaultMessage: "Endless Sack of Gold",
     id: "game.artifact.endlessSackOfGold",
   },
@@ -343,7 +346,7 @@ export const artifactMessages: Messages = defineMessages({
     id: "game.artifact.endlessSackOfGold.description",
   },
   // Mobility
-  [ArtifactId.TravelersBootsOfMobility]: {
+  [getKey(ArtifactId.TravelersBootsOfMobility)]: {
     defaultMessage: "Traveler's Boots of Mobility",
     id: "game.artifact.travelersBootsOfMobility",
   },
@@ -355,7 +358,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increase your movement on land.",
     id: "game.artifact.travelersBootsOfMobility.description",
   },
-  [ArtifactId.NomadBootsOfMobility]: {
+  [getKey(ArtifactId.NomadBootsOfMobility)]: {
     defaultMessage: "Nomad Boots of Mobility",
     id: "game.artifact.nomadBootsOfMobility",
   },
@@ -367,7 +370,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increase your movement on land.",
     id: "game.artifact.nomadBootsOfMobility.description",
   },
-  [ArtifactId.SailorsAstrolabeOfMobility]: {
+  [getKey(ArtifactId.SailorsAstrolabeOfMobility)]: {
     defaultMessage: "Sailor's Astrolabe of Mobility",
     id: "game.artifact.sailorsAstrolabeOfMobility",
   },
@@ -379,7 +382,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your movement on sea.",
     id: "game.artifact.sailorsAstrolabeOfMobility.description",
   },
-  [ArtifactId.TrueCompassOfMobility]: {
+  [getKey(ArtifactId.TrueCompassOfMobility)]: {
     defaultMessage: "True Compass of Mobility",
     id: "game.artifact.trueCompassOfMobility",
   },
@@ -392,7 +395,7 @@ export const artifactMessages: Messages = defineMessages({
     id: "game.artifact.trueCompassOfMobility.description",
   },
   // Siege Weapons
-  [ArtifactId.BallistaOfQuickness]: {
+  [getKey(ArtifactId.BallistaOfQuickness)]: {
     defaultMessage: "Ballista of Quickness",
     id: "game.artifact.ballistaOfQuickness",
   },
@@ -405,12 +408,12 @@ export const artifactMessages: Messages = defineMessages({
     id: "game.artifact.ballistaOfQuickness.description",
   },
   // Spellbook
-  [ArtifactId.Spellbook]: {
+  [getKey(ArtifactId.Spellbook)]: {
     defaultMessage: "Spellbook",
     id: "game.artifact.spellbook",
   },
   // Cursed Artifacts
-  [ArtifactId.FizbinOfMisfortune]: {
+  [getKey(ArtifactId.FizbinOfMisfortune)]: {
     defaultMessage: "Fizbin of Misfortune",
     id: "game.artifact.fizbinOfMisfortune",
   },
@@ -423,7 +426,7 @@ export const artifactMessages: Messages = defineMessages({
     id: "game.artifact.fizbinOfMisfortune.description",
   },
   // Ultimate Artifacts
-  [ArtifactId.UltimateSwordOfDominion]: {
+  [getKey(ArtifactId.UltimateSwordOfDominion)]: {
     defaultMessage: "Ultimate Sword of Dominion",
     id: "game.artifact.ultimateSwordOfDominion",
   },
@@ -435,7 +438,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your attack skill by 12.",
     id: "game.artifact.ultimateSwordOfDominion.description",
   },
-  [ArtifactId.UltimateCloakOfProtection]: {
+  [getKey(ArtifactId.UltimateCloakOfProtection)]: {
     defaultMessage: "Ultimate Cloak of Protection",
     id: "game.artifact.ultimateCloakOfProtection",
   },
@@ -447,7 +450,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your defense skill by 12.",
     id: "game.artifact.ultimateCloakOfProtection.description",
   },
-  [ArtifactId.UltimateWandOfMagic]: {
+  [getKey(ArtifactId.UltimateWandOfMagic)]: {
     defaultMessage: "Ultimate Wand of Magic",
     id: "game.artifact.ultimateWandOfMagic",
   },
@@ -459,7 +462,7 @@ export const artifactMessages: Messages = defineMessages({
     defaultMessage: "The {name} increases your spell power by 12.",
     id: "game.artifact.ultimateWandOfMagic.description",
   },
-  [ArtifactId.UltimateBookOfKnowledge]: {
+  [getKey(ArtifactId.UltimateBookOfKnowledge)]: {
     defaultMessage: "Ultimate Book of Knowledge",
     id: "game.artifact.ultimateBookOfKnowledge",
   },
@@ -474,7 +477,7 @@ export const artifactMessages: Messages = defineMessages({
 });
 
 export const getArtifactNameMessage = (artifact: string) =>
-  artifactMessages[artifact] || unknownMessage;
+  artifactMessages[getKey(artifact)] || unknownMessage;
 
 export const getArtifactShortNameMessage = (artifact: string) =>
   artifactMessages[getShortNameKey(artifact)] || unknownMessage;

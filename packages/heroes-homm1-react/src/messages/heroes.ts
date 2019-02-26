@@ -2,165 +2,168 @@ import { defineMessages, Messages } from "react-intl";
 
 import { HeroId } from "heroes-homm1";
 
-import { unknownMessage } from "./util";
+import { convertValue, unknownMessage } from "./util";
 
-export const knightHeroMessages = defineMessages({
-  [HeroId.Ambrose]: {
+const getKey = (hero: string) =>
+  convertValue(hero);
+
+const knightHeroMessages = defineMessages({
+  [getKey(HeroId.Ambrose)]: {
     defaultMessage: "Ambrose",
     id: "game.hero.ambrose",
   },
-  [HeroId.Arturius]: {
+  [getKey(HeroId.Arturius)]: {
     defaultMessage: "Arturius",
     id: "game.hero.arturius",
   },
-  [HeroId.Dimitri]: {
+  [getKey(HeroId.Dimitri)]: {
     defaultMessage: "Dimitri",
     id: "game.hero.dimitri",
   },
-  [HeroId.Ector]: {
+  [getKey(HeroId.Ector)]: {
     defaultMessage: "Ector",
     id: "game.hero.ector",
   },
-  [HeroId.LordHaart]: {
+  [getKey(HeroId.LordHaart)]: {
     defaultMessage: "Lord Haart",
     id: "game.hero.lordHaart",
   },
-  [HeroId.LordKilburn]: {
+  [getKey(HeroId.LordKilburn)]: {
     defaultMessage: "Lord Kilburn",
     id: "game.hero.lordKilburn",
   },
-  [HeroId.Maximus]: {
+  [getKey(HeroId.Maximus)]: {
     defaultMessage: "Maximus",
     id: "game.hero.maximus",
   },
-  [HeroId.SirGallant]: {
+  [getKey(HeroId.SirGallant)]: {
     defaultMessage: "Sir Galant",
     id: "game.hero.sirGalant",
   },
-  [HeroId.Tyro]: {
+  [getKey(HeroId.Tyro)]: {
     defaultMessage: "Tyro",
     id: "game.hero.tyro",
   },
 });
 
-export const barbarianHeroMessages = defineMessages({
-  [HeroId.Antoine]: {
+const barbarianHeroMessages = defineMessages({
+  [getKey(HeroId.Antoine)]: {
     defaultMessage: "Antoine",
     id: "game.hero.antoine",
   },
-  [HeroId.Atlas]: {
+  [getKey(HeroId.Atlas)]: {
     defaultMessage: "Atlas",
     id: "game.hero.atlas",
   },
-  [HeroId.CragHack]: {
+  [getKey(HeroId.CragHack)]: {
     defaultMessage: "Crag Hack",
     id: "game.hero.cragHack",
   },
-  [HeroId.Ergon]: {
+  [getKey(HeroId.Ergon)]: {
     defaultMessage: "Ergon",
     id: "game.hero.ergon",
   },
-  [HeroId.JoJosh]: {
+  [getKey(HeroId.JoJosh)]: {
     defaultMessage: "Jo Josh",
     id: "game.hero.joJosh",
   },
-  [HeroId.Kelzen]: {
+  [getKey(HeroId.Kelzen)]: {
     defaultMessage: "Kelzen",
     id: "game.hero.kelzen",
   },
-  [HeroId.Thundax]: {
+  [getKey(HeroId.Thundax)]: {
     defaultMessage: "Thundax",
     id: "game.hero.thundax",
   },
-  [HeroId.Tsabu]: {
+  [getKey(HeroId.Tsabu)]: {
     defaultMessage: "Tsabu",
     id: "game.hero.tsabu",
   },
-  [HeroId.Yog]: {
+  [getKey(HeroId.Yog)]: {
     defaultMessage: "Yog",
     id: "game.hero.yog",
   },
 });
 
-export const sorceressHeroMessages = defineMessages({
-  [HeroId.Ariel]: {
+const sorceressHeroMessages = defineMessages({
+  [getKey(HeroId.Ariel)]: {
     defaultMessage: "Ariel",
     id: "game.hero.ariel",
   },
-  [HeroId.Astra]: {
+  [getKey(HeroId.Astra)]: {
     defaultMessage: "Astra",
     id: "game.hero.astra",
   },
-  [HeroId.Carlawn]: {
+  [getKey(HeroId.Carlawn)]: {
     defaultMessage: "Carlawn",
     id: "game.hero.carlawn",
   },
-  [HeroId.Gem]: {
+  [getKey(HeroId.Gem)]: {
     defaultMessage: "Gem",
     id: "game.hero.gem",
   },
-  [HeroId.Luna]: {
+  [getKey(HeroId.Luna)]: {
     defaultMessage: "Luna",
     id: "game.hero.luna",
   },
-  [HeroId.Natasha]: {
+  [getKey(HeroId.Natasha)]: {
     defaultMessage: "Natasha",
     id: "game.hero.natasha",
   },
-  [HeroId.Rebecca]: {
+  [getKey(HeroId.Rebecca)]: {
     defaultMessage: "Rebecca",
     id: "game.hero.rebecca",
   },
-  [HeroId.Troyan]: {
+  [getKey(HeroId.Troyan)]: {
     defaultMessage: "Troyan",
     id: "game.hero.troyan",
   },
-  [HeroId.Vatawna]: {
+  [getKey(HeroId.Vatawna)]: {
     defaultMessage: "Vatawna",
     id: "game.hero.vatawna",
   },
 });
 
-export const warlockHeroMessages = defineMessages({
-  [HeroId.Agar]: {
+const warlockHeroMessages = defineMessages({
+  [getKey(HeroId.Agar)]: {
     defaultMessage: "Agar",
     id: "game.hero.agar",
   },
-  [HeroId.Arie]: {
+  [getKey(HeroId.Arie)]: {
     defaultMessage: "Arie",
     id: "game.hero.arie",
   },
-  [HeroId.Barok]: {
+  [getKey(HeroId.Barok)]: {
     defaultMessage: "Barok",
     id: "game.hero.barok",
   },
-  [HeroId.Crodo]: {
+  [getKey(HeroId.Crodo)]: {
     defaultMessage: "Crodo",
     id: "game.hero.crodo",
   },
-  [HeroId.Falagar]: {
+  [getKey(HeroId.Falagar)]: {
     defaultMessage: "Falagar",
     id: "game.hero.falagar",
   },
-  [HeroId.Kastore]: {
+  [getKey(HeroId.Kastore)]: {
     defaultMessage: "Kastore",
     id: "game.hero.kastore",
   },
-  [HeroId.Sandro]: {
+  [getKey(HeroId.Sandro)]: {
     defaultMessage: "Sandro",
     id: "game.hero.sandro",
   },
-  [HeroId.Vesper]: {
+  [getKey(HeroId.Vesper)]: {
     defaultMessage: "Vesper",
     id: "game.hero.vesper",
   },
-  [HeroId.Wrathmont]: {
+  [getKey(HeroId.Wrathmont)]: {
     defaultMessage: "Wrathmont",
     id: "game.hero.wrathmont",
   },
 });
 
-export const heroMessages: Messages = {
+const heroMessages: Messages = {
   ...knightHeroMessages,
   ...barbarianHeroMessages,
   ...sorceressHeroMessages,
@@ -168,4 +171,4 @@ export const heroMessages: Messages = {
 };
 
 export const getHeroNameMessage = (hero: string) =>
-  heroMessages[hero] || unknownMessage;
+  heroMessages[getKey(hero)] || unknownMessage;

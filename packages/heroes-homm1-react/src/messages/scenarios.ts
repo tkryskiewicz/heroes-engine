@@ -4,16 +4,16 @@ import { OpponentSetting, ScenarioDifficulty, ScenarioSize } from "heroes-homm1"
 
 import { unknownMessage } from "./util";
 
-export const scenarioSizeMessages = defineMessages({
-  large: {
+const scenarioSizeMessages = defineMessages({
+  [ScenarioSize.Large]: {
     defaultMessage: "Large",
     id: "game.scenario.size.large",
   },
-  medium: {
+  [ScenarioSize.Medium]: {
     defaultMessage: "Medium",
     id: "game.scenario.size.medium",
   },
-  small: {
+  [ScenarioSize.Small]: {
     defaultMessage: "Small",
     id: "game.scenario.size.small",
   },
@@ -22,20 +22,20 @@ export const scenarioSizeMessages = defineMessages({
 export const getScenarioSizeMessage = (value: ScenarioSize) =>
   scenarioSizeMessages[value] || unknownMessage;
 
-export const scenarioDifficultyMessages = defineMessages({
-  easy: {
+const scenarioDifficultyMessages = defineMessages({
+  [ScenarioDifficulty.Easy]: {
     defaultMessage: "Easy",
     id: "game.scenario.difficulty.easy",
   },
-  impossible: {
+  [ScenarioDifficulty.Impossible]: {
     defaultMessage: "Impossible",
     id: "game.scenario.difficulty.impossible",
   },
-  normal: {
+  [ScenarioDifficulty.Normal]: {
     defaultMessage: "Normal",
     id: "game.scenario.difficulty.normal",
   },
-  tough: {
+  [ScenarioDifficulty.Tough]: {
     defaultMessage: "Tough",
     id: "game.scenario.difficulty.tough",
   },
@@ -44,33 +44,34 @@ export const scenarioDifficultyMessages = defineMessages({
 export const getScenarioDifficultyMessage = (value: ScenarioDifficulty) =>
   scenarioDifficultyMessages[value] || unknownMessage;
 
-export const opponentSettingMessages = defineMessages({
-  average: {
+const opponentSettingMessages = defineMessages({
+  [OpponentSetting.Average]: {
     defaultMessage: "Average",
     id: "game.opponentSetting.average",
   },
-  dumb: {
+  [OpponentSetting.Dumb]: {
     defaultMessage: "Dumb",
     id: "game.opponentSetting.dumb",
   },
-  genius: {
+  [OpponentSetting.Genius]: {
     defaultMessage: "Genius",
     id: "game.opponentSetting.genius",
   },
-  none: {
+  [OpponentSetting.None]: {
     defaultMessage: "None",
     id: "game.opponentSetting.none",
   },
-  smart: {
+  [OpponentSetting.Smart]: {
     defaultMessage: "Smart",
     id: "game.opponentSetting.smart",
   },
 });
 
+// NOTE: extract to general messages?
 export const getOpponentSettingNameMessage = (value: OpponentSetting) =>
   opponentSettingMessages[value] || unknownMessage;
 
-export const kingOfTheHillMessages = defineMessages({
+const kingOfTheHillMessages = defineMessages({
   no: {
     defaultMessage: "No",
     id: "game.scenario.kingOfTheHill.no",
