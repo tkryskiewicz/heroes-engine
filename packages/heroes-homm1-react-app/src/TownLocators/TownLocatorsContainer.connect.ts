@@ -8,26 +8,27 @@ import { TownLocatorsContainer, TownLocatorsContainerProps } from "./TownLocator
 type StateProp =
   "towns" |
   "selectedIndex" |
-  "locatorDetailsVisible" |
-  "onCloseLocatorDetailsClick";
+  "locatorDetailsVisible";
 
 const mapStateToProps = (state: AppState): Pick<TownLocatorsContainerProps, StateProp> => {
   const { selectedLocator } = state.locators;
 
   return {
     locatorDetailsVisible: state.locators.locatorDetailsVisible,
-    selectedIndex: selectedLocator && selectedLocator.type === LocatorType.Town ? selectedLocator.index : undefined,
+    selectedIndex: selectedLocator && selectedLocator.type === LocatorType.Town ?
+      selectedLocator.index :
+      undefined,
     towns: state.game.towns,
   };
 };
 
 type DispatchProp =
-  "onSelectLocator" |
-  "onSelectedLocatorClick" |
+  "onSelectLocatorClick" |
+  "onOpenLocatorDetailsClick" |
   "onCloseLocatorDetailsClick";
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<Required<TownLocatorsContainerProps>, DispatchProp> => ({
-  onSelectLocator(index) {
+const mapDispatchToProps = (dispatch: Dispatch): Pick<TownLocatorsContainerProps, DispatchProp> => ({
+  onSelectLocatorClick(index) {
     const locator: Locator = {
       index,
       type: LocatorType.Town,
@@ -35,7 +36,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<Required<TownLocatorsConta
 
     dispatch(locatorsActions.selectLocator(locator));
   },
-  onSelectedLocatorClick() {
+  onOpenLocatorDetailsClick() {
     dispatch(locatorsActions.openLocatorDetails());
   },
   onCloseLocatorDetailsClick() {

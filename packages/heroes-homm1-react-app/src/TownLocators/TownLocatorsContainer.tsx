@@ -6,13 +6,29 @@ import { TownLocators, TownLocatorsProps } from "heroes-homm1-react";
 
 import { TownWindow } from "../TownWindow";
 
-export interface TownLocatorsContainerProps extends Pick<TownLocatorsProps, Exclude<keyof TownLocatorsProps, "towns">> {
+interface TownLocatorsContainerProps {
   readonly towns: Town[];
-  readonly locatorDetailsVisible?: boolean;
-  readonly onCloseLocatorDetailsClick?: () => void;
+  readonly selectedIndex?: number;
+  readonly onSelectLocatorClick: (index: number) => void;
+  readonly locatorDetailsVisible: boolean;
+  readonly onOpenLocatorDetailsClick: () => void;
+  readonly onCloseLocatorDetailsClick: () => void;
 }
 
+type DefaultProp =
+  "onSelectLocatorClick" |
+  "locatorDetailsVisible" |
+  "onOpenLocatorDetailsClick" |
+  "onCloseLocatorDetailsClick";
+
 export class TownLocatorsContainer extends React.Component<TownLocatorsContainerProps> {
+  public static readonly defaultProps: Pick<TownLocatorsContainerProps, DefaultProp> = {
+    locatorDetailsVisible: false,
+    onCloseLocatorDetailsClick: () => undefined,
+    onOpenLocatorDetailsClick: () => undefined,
+    onSelectLocatorClick: () => undefined,
+  };
+
   public render() {
     const { towns, selectedIndex, locatorDetailsVisible } = this.props;
 
@@ -23,20 +39,22 @@ export class TownLocatorsContainer extends React.Component<TownLocatorsContainer
     return (
       <>
         <TownLocators
-          {...this.props}
           towns={towns.map(this.mapTown)}
+          selectedIndex={selectedIndex}
+          onSelectLocator={this.props.onSelectLocatorClick}
+          onSelectedLocatorClick={this.props.onOpenLocatorDetailsClick}
         />
-        {selectedTown && locatorDetailsVisible && this.renderTownWindow(selectedTown)}
+        {selectedTown && locatorDetailsVisible && this.renderLocatorDetails(selectedTown)}
       </>
     );
   }
 
-  private readonly mapTown = (town: Town) => ({
+  private readonly mapTown = (town: Town): TownLocatorsProps["towns"][0] => ({
     id: town.id,
     isCastleBuilt: isStructureBuilt(town, StructureId.Castle),
   })
 
-  private renderTownWindow(town: Town) {
+  private renderLocatorDetails(town: Town) {
     return (
       <TownWindow
         visible={true}
@@ -46,3 +64,9 @@ export class TownLocatorsContainer extends React.Component<TownLocatorsContainer
     );
   }
 }
+
+type ContainerProps = ExtractProps<typeof TownLocatorsContainer>;
+
+export {
+  ContainerProps as TownLocatorsContainerProps,
+};
