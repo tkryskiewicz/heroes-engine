@@ -8,14 +8,14 @@ import { HeroLocatorsContainer, HeroLocatorsContainerProps } from "./HeroLocator
 type StateProp =
   "heroes" |
   "selectedIndex" |
-  "heroDetailsVisible";
+  "locatorDetailsVisible";
 
 const mapStateToProps = (state: AppState): Pick<HeroLocatorsContainerProps, StateProp> => {
   const { selectedLocator } = state.locators;
 
   return {
-    heroDetailsVisible: state.locators.heroDetailsVisible,
     heroes: state.game.heroes,
+    locatorDetailsVisible: state.locators.locatorDetailsVisible,
     selectedIndex: selectedLocator && selectedLocator.type === LocatorType.Hero ? selectedLocator.index : undefined,
   };
 };
@@ -36,14 +36,14 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroLocatorsContainerProps
     dispatch(locatorsActions.selectLocator(locator));
   },
   onOpenHeroDetailsClick() {
-    dispatch(locatorsActions.openHeroDetails());
+    dispatch(locatorsActions.openLocatorDetails());
   },
   onConfirmDismissHeroClick() {
-    dispatch(locatorsActions.closeHeroDetails());
+    dispatch(locatorsActions.closeLocatorDetails());
     dispatch(locatorsActions.deselectLocator());
   },
   onCloseHeroDetailsClick() {
-    dispatch(locatorsActions.closeHeroDetails());
+    dispatch(locatorsActions.closeLocatorDetails());
   },
 });
 

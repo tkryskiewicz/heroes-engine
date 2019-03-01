@@ -9,7 +9,7 @@ export interface HeroLocatorsContainerProps {
   readonly heroes: Hero[];
   readonly selectedIndex?: number;
   readonly onSelectLocator: (index: number) => void;
-  readonly heroDetailsVisible: boolean;
+  readonly locatorDetailsVisible: boolean;
   readonly onOpenHeroDetailsClick: () => void;
   readonly onConfirmDismissHeroClick: () => void;
   readonly onCloseHeroDetailsClick: () => void;
@@ -17,7 +17,7 @@ export interface HeroLocatorsContainerProps {
 
 export class HeroLocatorsContainer extends React.Component<HeroLocatorsContainerProps> {
   public render() {
-    const { heroes, selectedIndex, heroDetailsVisible } = this.props;
+    const { heroes, selectedIndex, locatorDetailsVisible } = this.props;
 
     const selectedHero = selectedIndex !== undefined && heroes[selectedIndex] ?
       heroes[selectedIndex] :
@@ -30,7 +30,7 @@ export class HeroLocatorsContainer extends React.Component<HeroLocatorsContainer
           selectedIndex={this.props.selectedIndex}
           onLocatorClick={this.onLocatorClick}
         />
-        {selectedHero && heroDetailsVisible && this.renderHeroDetails(selectedHero)}
+        {selectedHero && locatorDetailsVisible && this.renderLocatorDetails(selectedHero)}
       </>
     );
   }
@@ -49,7 +49,7 @@ export class HeroLocatorsContainer extends React.Component<HeroLocatorsContainer
     }
   }
 
-  private renderHeroDetails(hero: Hero) {
+  private renderLocatorDetails(hero: Hero) {
     return (
       <HeroWindow
         visible={true}

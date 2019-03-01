@@ -3,15 +3,15 @@ import { Locator } from "./state";
 export enum LocatorsActionType {
   Select = "locators/select",
   Deselect = "locators/deselect",
-  OpenHeroDetails = "locators/openHeroDetails",
-  CloseHeroDetails = "locators/closeHeroDetails",
+  OpenLocatorDetails = "locators/openLocatorDetails",
+  CloseLocatorDetails = "locators/closeLocatorDetails",
 }
 
 export type LocatorsAction =
   SelectLocatorAction |
   DeselectAction |
-  OpenHeroDetailsAction |
-  CloseHeroDetailsAction;
+  OpenLocatorDetailsAction |
+  CloseLocatorDetailsAction;
 
 export interface SelectLocatorAction {
   readonly type: LocatorsActionType.Select;
@@ -31,18 +31,18 @@ export const deselectLocator = (): DeselectAction => ({
   type: LocatorsActionType.Deselect,
 });
 
-export interface OpenHeroDetailsAction {
-  readonly type: LocatorsActionType.OpenHeroDetails;
+export interface OpenLocatorDetailsAction {
+  readonly type: LocatorsActionType.OpenLocatorDetails;
 }
 
-export const openHeroDetails = (): OpenHeroDetailsAction => ({
-  type: LocatorsActionType.OpenHeroDetails,
+export const openLocatorDetails = (): OpenLocatorDetailsAction => ({
+  type: LocatorsActionType.OpenLocatorDetails,
 });
 
-export interface CloseHeroDetailsAction {
-  readonly type: LocatorsActionType.CloseHeroDetails;
+export interface CloseLocatorDetailsAction {
+  readonly type: LocatorsActionType.CloseLocatorDetails;
 }
 
-export const closeHeroDetails = (): CloseHeroDetailsAction => ({
-  type: LocatorsActionType.CloseHeroDetails,
+export const closeLocatorDetails = (): CloseLocatorDetailsAction => ({
+  type: LocatorsActionType.CloseLocatorDetails,
 });
