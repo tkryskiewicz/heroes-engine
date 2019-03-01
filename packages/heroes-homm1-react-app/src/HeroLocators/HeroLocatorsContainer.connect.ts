@@ -21,13 +21,13 @@ const mapStateToProps = (state: AppState): Pick<HeroLocatorsContainerProps, Stat
 };
 
 type DispatchProp =
-  "onSelectLocator" |
-  "onOpenHeroDetailsClick" |
+  "onSelectLocatorClick" |
+  "onOpenLocatorDetailsClick" |
   "onConfirmDismissHeroClick" |
-  "onCloseHeroDetailsClick";
+  "onCloseLocatorDetailsClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroLocatorsContainerProps, DispatchProp> => ({
-  onSelectLocator(index) {
+  onSelectLocatorClick(index) {
     const locator: Locator = {
       index,
       type: LocatorType.Hero,
@@ -35,14 +35,14 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroLocatorsContainerProps
 
     dispatch(locatorsActions.selectLocator(locator));
   },
-  onOpenHeroDetailsClick() {
+  onOpenLocatorDetailsClick() {
     dispatch(locatorsActions.openLocatorDetails());
   },
   onConfirmDismissHeroClick() {
     dispatch(locatorsActions.closeLocatorDetails());
     dispatch(locatorsActions.deselectLocator());
   },
-  onCloseHeroDetailsClick() {
+  onCloseLocatorDetailsClick() {
     dispatch(locatorsActions.closeLocatorDetails());
   },
 });

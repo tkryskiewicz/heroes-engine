@@ -8,11 +8,11 @@ import { HeroWindow } from "../HeroWindow";
 export interface HeroLocatorsContainerProps {
   readonly heroes: Hero[];
   readonly selectedIndex?: number;
-  readonly onSelectLocator: (index: number) => void;
+  readonly onSelectLocatorClick: (index: number) => void;
   readonly locatorDetailsVisible: boolean;
-  readonly onOpenHeroDetailsClick: () => void;
+  readonly onOpenLocatorDetailsClick: () => void;
   readonly onConfirmDismissHeroClick: () => void;
-  readonly onCloseHeroDetailsClick: () => void;
+  readonly onCloseLocatorDetailsClick: () => void;
 }
 
 export class HeroLocatorsContainer extends React.Component<HeroLocatorsContainerProps> {
@@ -42,10 +42,10 @@ export class HeroLocatorsContainer extends React.Component<HeroLocatorsContainer
       return;
     }
 
-    if (index !== this.props.selectedIndex && this.props.onSelectLocator) {
-      this.props.onSelectLocator(index);
+    if (index !== this.props.selectedIndex && this.props.onSelectLocatorClick) {
+      this.props.onSelectLocatorClick(index);
     } else {
-      this.props.onOpenHeroDetailsClick();
+      this.props.onOpenLocatorDetailsClick();
     }
   }
 
@@ -56,7 +56,7 @@ export class HeroLocatorsContainer extends React.Component<HeroLocatorsContainer
         hero={hero}
         dismissible={true}
         onConfirmDismissHeroClick={this.props.onConfirmDismissHeroClick}
-        onExitClick={this.props.onCloseHeroDetailsClick}
+        onExitClick={this.props.onCloseLocatorDetailsClick}
       />
     );
   }
