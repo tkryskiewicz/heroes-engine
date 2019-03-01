@@ -50,11 +50,18 @@ interface TownWindowContainerProps extends InjectedIntlProps, WithGameWindowProp
   readonly onExitClick: () => void;
 }
 
+type DefaultProp =
+  "onExitClick";
+
 interface TownWindowContainerState {
   readonly statusText: string;
 }
 
 class TownWindowContainer extends React.Component<TownWindowContainerProps, TownWindowContainerState> {
+  public static readonly defaultProps: Pick<TownWindowContainerProps, DefaultProp> = {
+    onExitClick: () => undefined,
+  };
+
   public readonly state: TownWindowContainerState = {
     statusText: "",
   };

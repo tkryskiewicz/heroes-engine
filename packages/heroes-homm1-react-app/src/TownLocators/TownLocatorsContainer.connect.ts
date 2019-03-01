@@ -1,35 +1,32 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { isStructureBuilt } from "heroes-core";
-import { StructureId } from "heroes-homm1";
-import { AppState, Locator, locatorsActions, LocatorType, townWindowActions } from "heroes-homm1-state";
+import { AppState, Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
 
 import { TownLocatorsContainer, TownLocatorsContainerProps } from "./TownLocatorsContainer";
 
 type StateProp =
   "towns" |
   "selectedIndex" |
-  "locatorDetailsVisible";
+  "locatorDetailsVisible" |
+  "onCloseLocatorDetailsClick";
 
 const mapStateToProps = (state: AppState): Pick<TownLocatorsContainerProps, StateProp> => {
   const { selectedLocator } = state.locators;
 
   return {
-    locatorDetailsVisible: state.townWindow.townIndex !== undefined,
+    locatorDetailsVisible: state.locators.locatorDetailsVisible,
     selectedIndex: selectedLocator && selectedLocator.type === LocatorType.Town ? selectedLocator.index : undefined,
-    towns: state.game.towns.map((t) => ({
-      id: t.id,
-      isCastleBuilt: isStructureBuilt(t, StructureId.Castle),
-    })),
+    towns: state.game.towns,
   };
 };
 
 type DispatchProp =
   "onSelectLocator" |
-  "onSelectedLocatorClick";
+  "onSelectedLocatorClick" |
+  "onCloseLocatorDetailsClick";
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<TownLocatorsContainerProps, DispatchProp> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<Required<TownLocatorsContainerProps>, DispatchProp> => ({
   onSelectLocator(index) {
     const locator: Locator = {
       index,
@@ -38,10 +35,13 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownLocatorsContainerProps
 
     dispatch(locatorsActions.selectLocator(locator));
   },
-  onSelectedLocatorClick(index) {
-    dispatch(locatorsActions.deselectLocator());
+  onSelectedLocatorClick() {
+    dispatch(locatorsActions.openLocatorDetails());
+  },
+  onCloseLocatorDetailsClick() {
+    dispatch(locatorsActions.closeLocatorDetails());
 
-    dispatch(townWindowActions.open(index));
+    dispatch(locatorsActions.deselectLocator());
   },
 });
 

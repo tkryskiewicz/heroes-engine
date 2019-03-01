@@ -13,7 +13,6 @@ import { getStructureDetails } from "./config";
 import { TownWindowContainer, TownWindowContainerProps } from "./TownWindowContainer";
 
 type StateProp =
-  "town" |
   "visitingHero" |
   "resources" |
   "selectedGarrisonTroopIndex" |
@@ -22,18 +21,18 @@ type StateProp =
   "getStructureDetails" |
   "visibleStructureDetails";
 
-const mapStateToProps = (state: AppState): Pick<TownWindowContainerProps, StateProp> => {
-  const town = state.game.towns[state.townWindow.townIndex!];
-
+const mapStateToProps = (
+  state: AppState,
+  ownProps: Pick<TownWindowContainerProps, "town">,
+): Pick<TownWindowContainerProps, StateProp> => {
   return {
     getStructureDetails,
     resources: state.game.resources,
     selectedGarrisonTroopIndex: state.townWindow.selectedGarrisonTroopIndex,
     selectedHeroTroopIndex: state.townWindow.selectedHeroTroopIndex,
-    town,
     visibleStructureDetails: state.townWindow.visibleStructureDetails,
     // TODO: resolve this dynamically
-    visitingHero: town.id === TownId.Farm ? state.game.heroes[0] : undefined,
+    visitingHero: ownProps.town.id === TownId.Farm ? state.game.heroes[0] : undefined,
     visitingHeroDetailsVisible: state.townWindow.visitingHeroDetailsVisible,
   };
 };
@@ -47,10 +46,9 @@ type DispatchProp =
   "onSelectHeroTroop" |
   "onSwapHeroTroops" |
   "onOpenStructureDetailsClick" |
-  "onCloseStructureDetailsClick" |
-  "onExitClick";
+  "onCloseStructureDetailsClick";
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowContainerProps, DispatchProp> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<Required<TownWindowContainerProps>, DispatchProp> => ({
   onCrestClick() {
     dispatch(kingdomOverviewWindowActions.open());
   },
@@ -81,9 +79,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<TownWindowContainerProps, 
   },
   onCloseStructureDetailsClick() {
     dispatch(townWindowActions.closeStructureDetails());
-  },
-  onExitClick() {
-    dispatch(townWindowActions.close());
   },
 });
 

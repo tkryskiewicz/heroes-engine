@@ -13,7 +13,7 @@ export interface TownLocatorsProps {
   readonly towns: Town[];
   readonly selectedIndex?: number;
   readonly onSelectLocator?: (index: number) => void;
-  readonly onSelectedLocatorClick?: (index: number) => void;
+  readonly onSelectedLocatorClick?: () => void;
 }
 
 // TODO: unify hero and town locators?
@@ -45,7 +45,7 @@ export class TownLocators extends React.Component<TownLocatorsProps> {
     if (index !== this.props.selectedIndex && this.props.onSelectLocator) {
       this.props.onSelectLocator(index);
     } else if (this.props.onSelectedLocatorClick) {
-      this.props.onSelectedLocatorClick(index);
+      this.props.onSelectedLocatorClick();
     }
   }
 }

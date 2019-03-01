@@ -11,15 +11,6 @@ export const townWindowReducer = (
   action: TownWindowAction,
 ): TownWindowState => {
   switch (action.type) {
-    case TownWindowActionType.Open:
-      return {
-        ...state,
-        townIndex: action.townIndex,
-      };
-    case TownWindowActionType.Close:
-      return {
-        ...initialState,
-      };
     case TownWindowActionType.SelectGarrisonTroop:
       return {
         ...state,

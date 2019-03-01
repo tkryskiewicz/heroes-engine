@@ -1,6 +1,4 @@
 export enum TownWindowActionType {
-  Open = "townWindow/open",
-  Close = "townWindow/close",
   SelectGarrisonTroop = "townWindow/selectGarrisonTroop",
   DeselectGarrisonTroop = "townWindow/deselectGarrisonTroop",
   OpenVisitingHeroDetails = "townWindow/openVisitingHeroDetails",
@@ -16,8 +14,6 @@ export enum TownWindowActionType {
 }
 
 export type TownWindowAction =
-  OpenTownWindowAction |
-  CloseTownWindowAction |
   SelectGarrisonTroopAction |
   DeselectGarrisonTroopAction |
   OpenVisitingHeroDetailsAction |
@@ -29,24 +25,6 @@ export type TownWindowAction =
   OpenOptionDetailsAction |
   CloseOptionDetailsAction |
   ChangeRecruitTroopCountAction;
-
-export interface OpenTownWindowAction {
-  readonly type: TownWindowActionType.Open;
-  readonly townIndex: number;
-}
-
-export const open = (townIndex: number): OpenTownWindowAction => ({
-  townIndex,
-  type: TownWindowActionType.Open,
-});
-
-export interface CloseTownWindowAction {
-  readonly type: TownWindowActionType.Close;
-}
-
-export const close = (): CloseTownWindowAction => ({
-  type: TownWindowActionType.Close,
-});
 
 export interface SelectGarrisonTroopAction {
   readonly type: TownWindowActionType.SelectGarrisonTroop;
