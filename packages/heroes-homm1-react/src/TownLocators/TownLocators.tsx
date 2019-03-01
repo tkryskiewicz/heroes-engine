@@ -8,6 +8,7 @@ interface Town {
   readonly id: string;
   readonly isCastleBuilt: boolean;
 }
+
 export interface TownLocatorsProps {
   readonly towns: Town[];
   readonly selectedIndex?: number;

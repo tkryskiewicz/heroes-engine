@@ -10,14 +10,14 @@ import { TownLocatorsContainer, TownLocatorsContainerProps } from "./TownLocator
 type StateProp =
   "towns" |
   "selectedIndex" |
-  "townWindowVisible";
+  "locatorDetailsVisible";
 
 const mapStateToProps = (state: AppState): Pick<TownLocatorsContainerProps, StateProp> => {
   const { selectedLocator } = state.locators;
 
   return {
+    locatorDetailsVisible: state.townWindow.townIndex !== undefined,
     selectedIndex: selectedLocator && selectedLocator.type === LocatorType.Town ? selectedLocator.index : undefined,
-    townWindowVisible: state.townWindow.townIndex !== undefined,
     towns: state.game.towns.map((t) => ({
       id: t.id,
       isCastleBuilt: isStructureBuilt(t, StructureId.Castle),

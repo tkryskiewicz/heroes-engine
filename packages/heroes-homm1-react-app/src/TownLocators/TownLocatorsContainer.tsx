@@ -5,7 +5,7 @@ import { TownLocators, TownLocatorsProps } from "heroes-homm1-react";
 import { TownWindow } from "../TownWindow";
 
 export interface TownLocatorsContainerProps extends TownLocatorsProps {
-  readonly townWindowVisible?: boolean;
+  readonly locatorDetailsVisible?: boolean;
 }
 
 export class TownLocatorsContainer extends React.Component<TownLocatorsContainerProps> {
@@ -15,7 +15,7 @@ export class TownLocatorsContainer extends React.Component<TownLocatorsContainer
         <TownLocators
           {...this.props}
         />
-        {this.props.townWindowVisible && this.renderTownWindow()}
+        {this.props.locatorDetailsVisible && this.renderTownWindow()}
       </>
     );
   }
