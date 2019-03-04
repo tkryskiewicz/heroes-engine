@@ -6,8 +6,7 @@ import {
   endGameTurn,
   Hero,
   recruitGameTroop,
-  swapGameGarrisonTroops,
-  swapGameHeroTroops,
+  swapGameTroops,
   Town,
 } from "heroes-core";
 import {
@@ -157,9 +156,9 @@ const initialState: GameState = {
 
 export const gameReducer = (state: GameState = initialState, action: GameAction): GameState => {
   switch (action.type) {
-    case GameActionType.SwapHeroTroops:
+    case GameActionType.SwapTroops:
       return {
-        ...swapGameHeroTroops(state, action.hero, action.index, action.withIndex),
+        ...swapGameTroops(state, action.troop, action.withTroop),
       };
     case GameActionType.DismissHeroTroop:
       return {
@@ -168,10 +167,6 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
     case GameActionType.DismissHero:
       return {
         ...dismissGameHero(state, action.hero),
-      };
-    case GameActionType.SwapGarrisonTroops:
-      return {
-        ...swapGameGarrisonTroops(state, action.town, action.index, action.withIndex),
       };
     case GameActionType.BuildStructure:
       return {

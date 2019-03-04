@@ -15,10 +15,9 @@ export {
   Game,
   getGameTown,
   getGameHero,
-  swapGameHeroTroops,
+  swapGameTroops,
   dismissGameHeroTroop,
   dismissGameHero,
-  swapGameGarrisonTroops,
   buildGameStructure,
   recruitGameTroop,
   endGameTurn,
@@ -36,4 +35,4 @@ export { Resources, subtractResources, multiplyResources, divideResources, enoug
 export { Scenario } from "./Scenario";
 export { Structure, Dwelling, isDwellingStructure, buildStructure } from "./Structure";
 export { Town, isStructureBuilt, getTownStructure } from "./Town";
-export { Troop } from "./Troop";
+export { Troop, TroopSelectionType, TroopSelection } from "./Troop";

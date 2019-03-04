@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { TroopSelectionType } from "heroes-core";
 import {
   AppState,
   gameActions,
@@ -52,7 +53,7 @@ type DispatchProp =
 
 const mapDispatchToProps = (
   dispatch: Dispatch,
-  ownProps: Pick<HeroWindowContainerProps, "onConfirmDismissHeroClick" | "onExitClick">,
+  ownProps: Pick<HeroWindowContainerProps, "hero" | "onConfirmDismissHeroClick" | "onExitClick">,
 ): Pick<HeroWindowContainerProps, DispatchProp> => ({
   onVisibleSkillDetailsChange(skill) {
     dispatch(heroWindowActions.changeVisibleSkillDetails(skill));
@@ -85,10 +86,13 @@ const mapDispatchToProps = (
 
     dispatch(gameActions.dismissHeroTroop(hero, index));
   },
-  onSwapTroops(hero, index, withIndex) {
+  onSwapTroops(index, withIndex) {
     dispatch(heroWindowActions.deselectTroop());
 
-    dispatch(gameActions.swapHeroTroops(hero, index, withIndex));
+    dispatch(gameActions.swapTroops(
+      { type: TroopSelectionType.Hero, id: ownProps.hero.id, index },
+      { type: TroopSelectionType.Hero, id: ownProps.hero.id, index: withIndex },
+    ));
   },
   onVisibleArtifactDetailsChange(index) {
     dispatch(spellBookWindowActions.reset());

@@ -1,7 +1,8 @@
+import { TroopSelection } from "heroes-core";
+
 export interface TownWindowState {
-  readonly selectedGarrisonTroopIndex?: number;
+  readonly selectedTroop?: TroopSelection;
   readonly visitingHeroDetailsVisible: boolean;
-  readonly selectedHeroTroopIndex?: number;
   readonly visibleStructureDetails?: string;
   readonly visibleOptionDetails?: string;
   readonly recruitTroopCount: number;

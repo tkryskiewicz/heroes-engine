@@ -4,6 +4,7 @@ import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
 import { buildTownStructure, endTownTurn, recruitTownTroop, swapGarrisonTroops, Town } from "./Town";
+import { TroopSelection, TroopSelectionType } from "./Troop";
 
 export interface GameData {
   readonly creatureById: { readonly [creature: string]: Creature; };
@@ -23,10 +24,25 @@ export interface Game {
 export const getGameHero = (game: Game, hero: string): Hero | undefined =>
   game.heroes.find((h) => h.id === hero);
 
-export const swapGameHeroTroops = (game: Game, hero: string, index: number, withIndex: number): Game => ({
-  ...game,
-  heroes: game.heroes.map((h) => h.id === hero ? swapHeroTroops(h, index, withIndex) : h),
-});
+export const swapGameTroops = (game: Game, troop: TroopSelection, withTroop: TroopSelection): Game => {
+  if (troop.type === TroopSelectionType.Hero && troop.id === withTroop.id) {
+    return {
+      ...game,
+      heroes: game.heroes.map((h) => h.id === troop.id ? swapHeroTroops(h, troop.index, withTroop.index) : h),
+    };
+  }
+
+  if (troop.type === TroopSelectionType.Garrison && troop.id === withTroop.id) {
+    return {
+      ...game,
+      towns: game.towns.map((t) => t.id === troop.id ? swapGarrisonTroops(t, troop.index, withTroop.index) : t),
+    };
+  }
+
+  // TODO: implement swapping between heroes or garrison and a hero
+
+  return game;
+};
 
 export const dismissGameHero = (game: Game, hero: string): Game => ({
   ...game,
@@ -37,19 +53,6 @@ export const dismissGameHeroTroop = (game: Game, hero: string, index: number): G
   ...game,
   heroes: game.heroes.map((h) => h.id === hero ? dismissHeroTroop(h, index) : h),
 });
-
-export const swapGameGarrisonTroops = (game: Game, townId: string, index: number, withIndex: number): Game => {
-  const town = game.towns.find((t) => t.id === townId);
-
-  if (!town) {
-    return game;
-  }
-
-  return {
-    ...game,
-    towns: game.towns.map((t) => t === town ? swapGarrisonTroops(town, index, withIndex) : t),
-  };
-};
 
 export const getGameTown = (game: Game, town: string): Town | undefined =>
   game.towns.find((t) => t.id === town);

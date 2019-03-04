@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Hero, Resources, Structure, Town } from "heroes-core";
+import { Hero, Resources, Structure, Town, TroopSelection, TroopSelectionType } from "heroes-core";
 import {
   Crest,
   getArmyStripStatusTextMessage,
@@ -35,17 +35,13 @@ interface TownWindowContainerProps extends InjectedIntlProps, WithGameWindowProp
   readonly onOpenStructureDetailsClick: (structure: string) => void;
   readonly onCloseStructureDetailsClick: () => void;
 
-  readonly selectedGarrisonTroopIndex?: number;
-  readonly onSelectGarrisonTroop: (index: number) => void;
-  readonly onSwapGarrisonTroops: (town: string, index: number, withIndex: number) => void;
+  readonly selectedTroop?: TroopSelection;
+  readonly onSelectTroop: (troop: TroopSelection) => void;
+  readonly onSwapTroops: (troop: TroopSelection, withTroop: TroopSelection) => void;
 
   readonly visitingHeroDetailsVisible: boolean;
   readonly onOpenVisitingHeroDetailsClick: () => void;
   readonly onCloseVisitingHeroDetailsClick: () => void;
-
-  readonly selectedHeroTroopIndex?: number;
-  readonly onSelectHeroTroop: (index: number) => void;
-  readonly onSwapHeroTroops: (hero: string, index: number, withIndex: number) => void;
 
   readonly onExitClick: () => void;
 }
@@ -164,7 +160,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   }
 
   private readonly renderGarrisonTroop = (index: number) => {
-    const { town, selectedGarrisonTroopIndex } = this.props;
+    const { town, selectedTroop } = this.props;
 
     const troop = town.garrison[index];
 
@@ -172,7 +168,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
       <TroopSlot
         index={index}
         troop={troop}
-        selected={selectedGarrisonTroopIndex === index}
+        selected={selectedTroop && selectedTroop.type === TroopSelectionType.Garrison && selectedTroop.index === index}
         onMouseEnter={this.onGarrisonTroopMouseEnter}
         onMouseLeave={this.onGarrisonTroopMouseLeave}
         onClick={this.onGarrisonTroopClick}
@@ -181,10 +177,11 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   }
 
   private readonly onGarrisonTroopMouseEnter = (index: number) => {
+    const { selectedTroop: st } = this.props;
     const { formatMessage } = this.props.intl;
 
-    const selectedTroop = this.props.selectedHeroTroopIndex !== undefined ?
-      this.props.town.garrison[this.props.selectedHeroTroopIndex] :
+    const selectedTroop = st && st.type === TroopSelectionType.Garrison ?
+      this.props.town.garrison[st.index] :
       undefined;
     const troop = this.props.town.garrison[index];
 
@@ -204,14 +201,16 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   }
 
   private readonly onGarrisonTroopClick = (index: number) => {
-    const { selectedGarrisonTroopIndex } = this.props;
+    const { selectedTroop } = this.props;
 
-    if (selectedGarrisonTroopIndex === undefined && this.props.town.garrison[index]) {
+    if (selectedTroop === undefined && this.props.town.garrison[index]) {
       this.onSelectGarrisonTroop(index);
-      // } else if (index === selectedGarrisonTroopIndex) {
-      //   this.props.onSelectedTroopClick(index);
-    } else if (selectedGarrisonTroopIndex !== undefined && index !== selectedGarrisonTroopIndex) {
-      this.onSwapGarrisonTroops(selectedGarrisonTroopIndex, index);
+    } else if (
+      selectedTroop !== undefined &&
+      selectedTroop.type === TroopSelectionType.Garrison &&
+      index !== selectedTroop.index
+    ) {
+      this.onSwapGarrisonTroops(selectedTroop.index, index);
     }
   }
 
@@ -226,7 +225,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
 
     this.setStatusText(statusText);
 
-    this.props.onSelectGarrisonTroop(index);
+    this.props.onSelectTroop({ type: TroopSelectionType.Garrison, id: this.props.town.id, index });
   }
 
   private readonly onSwapGarrisonTroops = (index: number, withIndex: number) => {
@@ -240,7 +239,10 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
 
     this.setStatusText(statusText);
 
-    this.props.onSwapGarrisonTroops(this.props.town.id, index, withIndex);
+    this.props.onSwapTroops(
+      this.props.selectedTroop!,
+      { type: TroopSelectionType.Garrison, id: this.props.town.id, index: withIndex },
+    );
   }
 
   private readonly renderHeroPortrait = () => {
@@ -285,7 +287,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   }
 
   private readonly renderHeroTroop = (index: number) => {
-    const { visitingHero, selectedHeroTroopIndex } = this.props;
+    const { visitingHero, selectedTroop } = this.props;
 
     const troop = visitingHero ?
       visitingHero.army[index] :
@@ -295,7 +297,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
       <TroopSlot
         index={index}
         troop={troop}
-        selected={selectedHeroTroopIndex === index}
+        selected={selectedTroop && selectedTroop.type === TroopSelectionType.Hero && selectedTroop.index === index}
         onMouseEnter={this.onHeroTroopMouseEnter}
         onMouseLeave={this.onHeroTroopMouseLeave}
         onClick={this.onHeroTroopClick}
@@ -308,10 +310,11 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
       return;
     }
 
+    const { selectedTroop: st } = this.props;
     const { formatMessage } = this.props.intl;
 
-    const selectedTroop = this.props.selectedHeroTroopIndex !== undefined ?
-      this.props.visitingHero.army[this.props.selectedHeroTroopIndex] :
+    const selectedTroop = st !== undefined && st.type === TroopSelectionType.Hero ?
+      this.props.visitingHero.army[st.index] :
       undefined;
     const troop = this.props.visitingHero.army[index];
 
@@ -331,25 +334,28 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   }
 
   private readonly onHeroTroopClick = (index: number) => {
-    if (!this.props.visitingHero) {
+    const { visitingHero, selectedTroop } = this.props;
+
+    if (!visitingHero) {
       return;
     }
 
-    const { selectedHeroTroopIndex } = this.props;
-
-    if (selectedHeroTroopIndex === undefined && this.props.visitingHero.army[index]) {
+    if (selectedTroop === undefined && visitingHero.army[index]) {
       this.onSelectHeroTroop(index);
-      // } else if (index === selectedHeroTroopIndex) {
-      //   this.props.onSelectedTroopClick(index);
-    } else if (selectedHeroTroopIndex !== undefined && index !== selectedHeroTroopIndex) {
-      this.onSwapHeroTroops(selectedHeroTroopIndex, index);
+    } else if (
+      selectedTroop !== undefined &&
+      selectedTroop.type === TroopSelectionType.Hero &&
+      index !== selectedTroop.index
+    ) {
+      this.onSwapHeroTroops(selectedTroop.index, index);
     }
   }
 
   private readonly onSelectHeroTroop = (index: number) => {
+    const { visitingHero } = this.props;
     const { formatMessage } = this.props.intl;
 
-    const troop = this.props.visitingHero!.army[index]!;
+    const troop = visitingHero!.army[index]!;
 
     const troopName = formatMessage(getCreatureNameMessage(troop.creature));
 
@@ -357,13 +363,14 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
 
     this.setStatusText(statusText);
 
-    this.props.onSelectHeroTroop(index);
+    this.props.onSelectTroop({ type: TroopSelectionType.Hero, id: visitingHero!.id, index });
   }
 
   private readonly onSwapHeroTroops = (index: number, withIndex: number) => {
+    const { visitingHero } = this.props;
     const { formatMessage } = this.props.intl;
 
-    const troop = this.props.visitingHero!.army[index]!;
+    const troop = visitingHero!.army[index]!;
 
     const troopName = formatMessage(getCreatureNameMessage(troop.creature));
 
@@ -371,7 +378,10 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
 
     this.setStatusText(statusText);
 
-    this.props.onSwapHeroTroops(this.props.visitingHero!.id, index, withIndex);
+    this.props.onSwapTroops(
+      this.props.selectedTroop!,
+      { type: TroopSelectionType.Hero, id: visitingHero!.id, index: withIndex },
+    );
   }
 
   private readonly renderTreasury = () => {

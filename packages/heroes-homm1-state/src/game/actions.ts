@@ -1,10 +1,9 @@
-import { Resources } from "heroes-core";
+import { Resources, TroopSelection } from "heroes-core";
 
 export enum GameActionType {
-  SwapHeroTroops = "game/swapHeroTroops",
+  SwapTroops = "game/swapTroops",
   DismissHeroTroop = "game/dismissHeroTroop",
   DismissHero = "game/dismissHero",
-  SwapGarrisonTroops = "game/swapGarrisonTroops",
   BuildStructure = "game/buildStructure",
   RecruitTroop = "game/recruitTroop",
   BuyMageGuildSpellBook = "game/buyMageGuildSpellBook",
@@ -12,27 +11,24 @@ export enum GameActionType {
 }
 
 export type GameAction =
-  SwapHeroTroopsAction |
+  SwapTroopsAction |
   DismissHeroTroopAction |
   DismissHeroAction |
-  SwapGarrisonTroopsAction |
   BuildStructureAction |
   RecruitTroopAction |
   BuyMageGuildSpellBookAction |
   EndTurnAction;
 
-export interface SwapHeroTroopsAction {
-  readonly type: GameActionType.SwapHeroTroops;
-  readonly hero: string;
-  readonly index: number;
-  readonly withIndex: number;
+export interface SwapTroopsAction {
+  readonly type: GameActionType.SwapTroops;
+  readonly troop: TroopSelection;
+  readonly withTroop: TroopSelection;
 }
 
-export const swapHeroTroops = (hero: string, index: number, withIndex: number): SwapHeroTroopsAction => ({
-  hero,
-  index,
-  type: GameActionType.SwapHeroTroops,
-  withIndex,
+export const swapTroops = (troop: TroopSelection, withTroop: TroopSelection): SwapTroopsAction => ({
+  troop,
+  type: GameActionType.SwapTroops,
+  withTroop,
 });
 
 export interface DismissHeroTroopAction {
@@ -55,20 +51,6 @@ export interface DismissHeroAction {
 export const dismissHero = (hero: string): DismissHeroAction => ({
   hero,
   type: GameActionType.DismissHero,
-});
-
-export interface SwapGarrisonTroopsAction {
-  readonly type: GameActionType.SwapGarrisonTroops;
-  readonly town: string;
-  readonly index: number;
-  readonly withIndex: number;
-}
-
-export const swapGarrisonTroops = (town: string, index: number, withIndex: number): SwapGarrisonTroopsAction => ({
-  index,
-  town,
-  type: GameActionType.SwapGarrisonTroops,
-  withIndex,
 });
 
 export interface BuildStructureAction {

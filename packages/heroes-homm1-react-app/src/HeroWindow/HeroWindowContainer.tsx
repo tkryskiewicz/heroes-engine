@@ -46,7 +46,7 @@ interface HeroWindowContainerProps extends InjectedIntlProps, WithGameWindowProp
 
   readonly selectedTroopIndex?: number;
   readonly onSelectTroop: (index: number) => void;
-  readonly onSwapTroops: (hero: string, index: number, withIndex: number) => void;
+  readonly onSwapTroops: (index: number, withIndex: number) => void;
   readonly onSelectedTroopClick: (index: number) => void;
   readonly troopDetailsVisible: boolean;
   readonly onExitTroopDetails: () => void;
@@ -413,7 +413,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
 
     this.setStatusText(statusText);
 
-    this.props.onSwapTroops(this.props.hero.id, index, withIndex);
+    this.props.onSwapTroops(index, withIndex);
   }
 
   private readonly renderTroopDetails = (index: number) => {

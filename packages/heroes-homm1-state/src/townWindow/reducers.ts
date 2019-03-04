@@ -11,15 +11,15 @@ export const townWindowReducer = (
   action: TownWindowAction,
 ): TownWindowState => {
   switch (action.type) {
-    case TownWindowActionType.SelectGarrisonTroop:
+    case TownWindowActionType.SelectTroop:
       return {
         ...state,
-        selectedGarrisonTroopIndex: action.index,
+        selectedTroop: action.troop,
       };
-    case TownWindowActionType.DeselectGarrisonTroop:
+    case TownWindowActionType.DeselectTroop:
       return {
         ...state,
-        selectedGarrisonTroopIndex: undefined,
+        selectedTroop: undefined,
       };
     case TownWindowActionType.OpenVisitingHeroDetails:
       return {
@@ -30,16 +30,6 @@ export const townWindowReducer = (
       return {
         ...state,
         visitingHeroDetailsVisible: false,
-      };
-    case TownWindowActionType.SelectHeroTroop:
-      return {
-        ...state,
-        selectedHeroTroopIndex: action.index,
-      };
-    case TownWindowActionType.DeselectHeroTroop:
-      return {
-        ...state,
-        selectedHeroTroopIndex: undefined,
       };
     case TownWindowActionType.OpenStructureDetails:
       return {

@@ -15,9 +15,8 @@ import { TownWindowContainer, TownWindowContainerProps } from "./TownWindowConta
 type StateProp =
   "visitingHero" |
   "resources" |
-  "selectedGarrisonTroopIndex" |
+  "selectedTroop" |
   "visitingHeroDetailsVisible" |
-  "selectedHeroTroopIndex" |
   "getStructureDetails" |
   "visibleStructureDetails";
 
@@ -28,8 +27,7 @@ const mapStateToProps = (
   return {
     getStructureDetails,
     resources: state.game.resources,
-    selectedGarrisonTroopIndex: state.townWindow.selectedGarrisonTroopIndex,
-    selectedHeroTroopIndex: state.townWindow.selectedHeroTroopIndex,
+    selectedTroop: state.townWindow.selectedTroop,
     visibleStructureDetails: state.townWindow.visibleStructureDetails,
     // TODO: resolve this dynamically
     visitingHero: ownProps.town.id === TownId.Farm ? state.game.heroes[0] : undefined,
@@ -39,12 +37,10 @@ const mapStateToProps = (
 
 type DispatchProp =
   "onCrestClick" |
-  "onSelectGarrisonTroop" |
-  "onSwapGarrisonTroops" |
+  "onSelectTroop" |
+  "onSwapTroops" |
   "onOpenVisitingHeroDetailsClick" |
   "onCloseVisitingHeroDetailsClick" |
-  "onSelectHeroTroop" |
-  "onSwapHeroTroops" |
   "onOpenStructureDetailsClick" |
   "onCloseStructureDetailsClick";
 
@@ -52,27 +48,19 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<Required<TownWindowContain
   onCrestClick() {
     dispatch(kingdomOverviewWindowActions.open());
   },
-  onSelectGarrisonTroop(index) {
-    dispatch(townWindowActions.selectGarrisonTroop(index));
+  onSelectTroop(troop) {
+    dispatch(townWindowActions.selectTroop(troop));
   },
-  onSwapGarrisonTroops(town, index, withIndex) {
-    dispatch(townWindowActions.deselectGarrisonTroop());
+  onSwapTroops(troop, withTroop) {
+    dispatch(townWindowActions.deselectTroop());
 
-    dispatch(gameActions.swapGarrisonTroops(town, index, withIndex));
+    dispatch(gameActions.swapTroops(troop, withTroop));
   },
   onOpenVisitingHeroDetailsClick() {
     dispatch(townWindowActions.openVisitingHeroDetails());
   },
   onCloseVisitingHeroDetailsClick() {
     dispatch(townWindowActions.closeVisitingHeroDetails());
-  },
-  onSelectHeroTroop(index) {
-    dispatch(townWindowActions.selectHeroTroop(index));
-  },
-  onSwapHeroTroops(hero, index, withIndex) {
-    dispatch(townWindowActions.deselectHeroTroop());
-
-    dispatch(gameActions.swapHeroTroops(hero, index, withIndex));
   },
   onOpenStructureDetailsClick(structure) {
     dispatch(townWindowActions.openStructureDetails(structure));

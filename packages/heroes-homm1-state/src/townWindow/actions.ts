@@ -1,10 +1,10 @@
+import { TroopSelection } from "heroes-core";
+
 export enum TownWindowActionType {
-  SelectGarrisonTroop = "townWindow/selectGarrisonTroop",
-  DeselectGarrisonTroop = "townWindow/deselectGarrisonTroop",
+  SelectTroop = "townWindow/selectTroop",
+  DeselectTroop = "townWindow/deselectTroop",
   OpenVisitingHeroDetails = "townWindow/openVisitingHeroDetails",
   CloseVisitingHeroDetails = "townWindow/closeVisitingHeroDetails",
-  SelectHeroTroop = "townWindow/selectHeroTroop",
-  DeselectHeroTroop = "townWindow/deselectHeroTroop",
   OpenStructureDetails = "townWindow/openStructureDetails",
   CloseStructureDetails = "townWindow/closeStructureDetails",
   OpenOptionDetails = "townWindow/openOptionDetails",
@@ -14,34 +14,32 @@ export enum TownWindowActionType {
 }
 
 export type TownWindowAction =
-  SelectGarrisonTroopAction |
-  DeselectGarrisonTroopAction |
+  SelectTroopAction |
+  DeselectTroopAction |
   OpenVisitingHeroDetailsAction |
   CloseVisitingHeroDetailsAction |
-  SelectHeroTroopAction |
-  DeselectHeroTroopAction |
   OpenStructureDetailsAction |
   CloseStructureDetailsAction |
   OpenOptionDetailsAction |
   CloseOptionDetailsAction |
   ChangeRecruitTroopCountAction;
 
-export interface SelectGarrisonTroopAction {
-  readonly type: TownWindowActionType.SelectGarrisonTroop;
-  readonly index: number;
+export interface SelectTroopAction {
+  readonly type: TownWindowActionType.SelectTroop;
+  readonly troop: TroopSelection;
 }
 
-export const selectGarrisonTroop = (index: number): SelectGarrisonTroopAction => ({
-  index,
-  type: TownWindowActionType.SelectGarrisonTroop,
+export const selectTroop = (troop: TroopSelection): SelectTroopAction => ({
+  troop,
+  type: TownWindowActionType.SelectTroop,
 });
 
-export interface DeselectGarrisonTroopAction {
-  readonly type: TownWindowActionType.DeselectGarrisonTroop;
+export interface DeselectTroopAction {
+  readonly type: TownWindowActionType.DeselectTroop;
 }
 
-export const deselectGarrisonTroop = (): DeselectGarrisonTroopAction => ({
-  type: TownWindowActionType.DeselectGarrisonTroop,
+export const deselectTroop = (): DeselectTroopAction => ({
+  type: TownWindowActionType.DeselectTroop,
 });
 
 export interface OpenVisitingHeroDetailsAction {
@@ -58,24 +56,6 @@ export interface CloseVisitingHeroDetailsAction {
 
 export const closeVisitingHeroDetails = (): CloseVisitingHeroDetailsAction => ({
   type: TownWindowActionType.CloseVisitingHeroDetails,
-});
-
-export interface SelectHeroTroopAction {
-  readonly type: TownWindowActionType.SelectHeroTroop;
-  readonly index: number;
-}
-
-export const selectHeroTroop = (index: number): SelectHeroTroopAction => ({
-  index,
-  type: TownWindowActionType.SelectHeroTroop,
-});
-
-export interface DeselectHeroTroopAction {
-  readonly type: TownWindowActionType.DeselectHeroTroop;
-}
-
-export const deselectHeroTroop = (): DeselectHeroTroopAction => ({
-  type: TownWindowActionType.DeselectHeroTroop,
 });
 
 export interface OpenStructureDetailsAction {
