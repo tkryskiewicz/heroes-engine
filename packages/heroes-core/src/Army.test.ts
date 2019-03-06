@@ -1,4 +1,4 @@
-import { appendArmyTroop, Army, dismissArmyTroop, getArmySize, swapArmyTroops } from "./Army";
+import { appendArmyTroop, Army, dismissArmyTroop, getArmySize, setArmyTroop, swapArmyTroops } from "./Army";
 import { Troop } from "./Troop";
 
 describe("getArmySize", () => {
@@ -39,6 +39,151 @@ describe("getArmySize", () => {
     const result = getArmySize(army);
 
     expect(result).toBe(2);
+  });
+});
+
+describe("setArmyTroop", () => {
+  it("should set troop at given index", () => {
+    const army: Army = [];
+
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const result = setArmyTroop(army, 0, troop);
+
+    expect(result[0]).toBe(troop);
+  });
+
+  it("should clear troop at given index", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troop,
+    ];
+
+    const result = setArmyTroop(army, 0, undefined);
+
+    expect(result[0]).toBeUndefined();
+  });
+
+  it("should replace troop at given index", () => {
+    const troopA: Troop = {
+      count: 1,
+      creature: "creatureA",
+    };
+
+    const army: Army = [
+      troopA,
+    ];
+
+    const troopB: Troop = {
+      count: 1,
+      creature: "creatureB",
+    };
+
+    const result = setArmyTroop(army, 0, troopB);
+
+    expect(result[0]).toBe(troopB);
+  });
+
+  it("should not combine troops of same kind by default when setting at different index", () => {
+    const troopA: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troopA,
+    ];
+
+    const troopB: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const result = setArmyTroop(army, 1, troopB);
+
+    expect(result[1]).toBe(troopB);
+  });
+
+  it("should combine troops of same kind by default when setting at same index", () => {
+    const troopA: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troopA,
+    ];
+
+    const troopB: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const result = setArmyTroop(army, 0, troopB);
+
+    const expected: Troop = {
+      count: 2,
+      creature: "creature",
+    };
+
+    expect(result[0]).toEqual(expected);
+  });
+
+  it("should combine troops of same kind when auto-combining and setting different index", () => {
+    const troopA: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troopA,
+    ];
+
+    const troopB: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const result = setArmyTroop(army, 1, troopB, true);
+
+    const expected: Troop = {
+      count: 2,
+      creature: "creature",
+    };
+
+    expect(result[0]).toEqual(expected);
+  });
+
+  it("should combine troops of same kind when auto-combining and setting same index", () => {
+    const troopA: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troopA,
+    ];
+
+    const troopB: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const result = setArmyTroop(army, 0, troopB, true);
+
+    const expected: Troop = {
+      count: 2,
+      creature: "creature",
+    };
+
+    expect(result[0]).toEqual(expected);
   });
 });
 

@@ -1,10 +1,11 @@
+import { setArmyTroop } from "./Army";
 import { Creature } from "./Creature";
 import { dismissHeroTroop, Hero, swapHeroTroops } from "./Hero";
 import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
 import { buildTownStructure, endTownTurn, recruitTownTroop, swapGarrisonTroops, Town } from "./Town";
-import { TroopSelection, TroopSelectionType } from "./Troop";
+import { Troop, TroopSelection, TroopSelectionType } from "./Troop";
 
 export interface GameData {
   readonly creatureById: { readonly [creature: string]: Creature; };
@@ -24,7 +25,50 @@ export interface Game {
 export const getGameHero = (game: Game, hero: string): Hero | undefined =>
   game.heroes.find((h) => h.id === hero);
 
-export const swapGameTroops = (game: Game, troop: TroopSelection, withTroop: TroopSelection): Game => {
+// TODO: simplify
+const getTroop = (from: Hero | Town, index: number): Troop | undefined => {
+  if ((from as Hero).army) {
+    const hero = from as Hero;
+
+    return hero.army[index];
+  }
+
+  if ((from as Town).garrison) {
+    const town = from as Town;
+
+    return town.garrison[index];
+  }
+};
+
+const setTroop = (on: Hero | Town, index: number, troop: Troop | undefined, autoCombine: boolean): Hero | Town => {
+  if ((on as Hero).army) {
+    const hero = on as Hero;
+
+    return {
+      ...hero,
+      army: setArmyTroop(hero.army, index, troop, autoCombine),
+    };
+  }
+
+  if ((on as Town).garrison) {
+    const town = on as Town;
+
+    return {
+      ...on,
+      garrison: setArmyTroop(town.garrison, index, troop, autoCombine),
+    };
+  }
+
+  return on;
+};
+
+export const swapGameTroops = (
+  game: Game,
+  troop: TroopSelection,
+  withTroop: TroopSelection,
+  // TODO: extract to config
+  autoCombine: boolean = true,
+): Game => {
   if (troop.type === TroopSelectionType.Hero && troop.id === withTroop.id) {
     return {
       ...game,
@@ -39,7 +83,45 @@ export const swapGameTroops = (game: Game, troop: TroopSelection, withTroop: Tro
     };
   }
 
-  // TODO: implement swapping between heroes or garrison and a hero
+  // TODO: implement swapping between heroes (should work with just troop.id !== withTroop.id)
+  if (troop.type !== withTroop.type) {
+    const tr = troop.type === TroopSelectionType.Hero ?
+      getGameHero(game, troop.id) :
+      getGameTown(game, troop.id);
+
+    if (!tr) {
+      return game;
+    }
+
+    const wtr = withTroop.type === TroopSelectionType.Hero ?
+      getGameHero(game, withTroop.id) :
+      getGameTown(game, withTroop.id);
+
+    if (!wtr) {
+      return game;
+    }
+
+    // TODO: check auto-combine
+    const wtrSwapped = setTroop(wtr, withTroop.index, getTroop(tr, troop.index), autoCombine);
+
+    const trSwapped = setTroop(tr, troop.index, getTroop(wtrSwapped, withTroop.index), autoCombine);
+
+    return {
+      ...game,
+      heroes: game.heroes.map((h) => h.id === trSwapped.id ?
+        trSwapped :
+        h.id === wtrSwapped.id ?
+          wtrSwapped :
+          h,
+      ) as Hero[],
+      towns: game.towns.map((t) => t.id === trSwapped.id ?
+        trSwapped :
+        t.id === wtrSwapped.id ?
+          wtrSwapped :
+          t,
+      ) as Town[],
+    };
+  }
 
   return game;
 };
