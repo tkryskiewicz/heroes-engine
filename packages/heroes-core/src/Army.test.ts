@@ -51,7 +51,7 @@ describe("setArmyTroop", () => {
       creature: "creature",
     };
 
-    const result = setArmyTroop(army, 0, troop);
+    const [result] = setArmyTroop(army, 0, troop, false);
 
     expect(result[0]).toBe(troop);
   });
@@ -66,7 +66,7 @@ describe("setArmyTroop", () => {
       troop,
     ];
 
-    const result = setArmyTroop(army, 0, undefined);
+    const [result] = setArmyTroop(army, 0, undefined, false);
 
     expect(result[0]).toBeUndefined();
   });
@@ -86,12 +86,12 @@ describe("setArmyTroop", () => {
       creature: "creatureB",
     };
 
-    const result = setArmyTroop(army, 0, troopB);
+    const [result] = setArmyTroop(army, 0, troopB, false);
 
     expect(result[0]).toBe(troopB);
   });
 
-  it("should not combine troops of same kind by default when setting at different index", () => {
+  it("should not combine troops of same creatures when setting at different index", () => {
     const troopA: Troop = {
       count: 1,
       creature: "creature",
@@ -106,12 +106,12 @@ describe("setArmyTroop", () => {
       creature: "creature",
     };
 
-    const result = setArmyTroop(army, 1, troopB);
+    const [result] = setArmyTroop(army, 1, troopB, false);
 
     expect(result[1]).toBe(troopB);
   });
 
-  it("should combine troops of same kind by default when setting at same index", () => {
+  it("should combine troops of same creatures when setting at same index", () => {
     const troopA: Troop = {
       count: 1,
       creature: "creature",
@@ -126,7 +126,7 @@ describe("setArmyTroop", () => {
       creature: "creature",
     };
 
-    const result = setArmyTroop(army, 0, troopB);
+    const [result] = setArmyTroop(army, 0, troopB, true);
 
     const expected: Troop = {
       count: 2,
@@ -136,7 +136,7 @@ describe("setArmyTroop", () => {
     expect(result[0]).toEqual(expected);
   });
 
-  it("should combine troops of same kind when auto-combining and setting different index", () => {
+  it("should combine troops of same creatures when auto-combining and setting different index", () => {
     const troopA: Troop = {
       count: 1,
       creature: "creature",
@@ -151,7 +151,7 @@ describe("setArmyTroop", () => {
       creature: "creature",
     };
 
-    const result = setArmyTroop(army, 1, troopB, true);
+    const [result] = setArmyTroop(army, 1, troopB, true);
 
     const expected: Troop = {
       count: 2,
@@ -161,7 +161,7 @@ describe("setArmyTroop", () => {
     expect(result[0]).toEqual(expected);
   });
 
-  it("should combine troops of same kind when auto-combining and setting same index", () => {
+  it("should combine troops of same creatures when auto-combining and setting same index", () => {
     const troopA: Troop = {
       count: 1,
       creature: "creature",
@@ -176,7 +176,7 @@ describe("setArmyTroop", () => {
       creature: "creature",
     };
 
-    const result = setArmyTroop(army, 0, troopB, true);
+    const [result] = setArmyTroop(army, 0, troopB, true);
 
     const expected: Troop = {
       count: 2,

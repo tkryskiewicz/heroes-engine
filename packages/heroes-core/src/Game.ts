@@ -40,26 +40,41 @@ const getTroop = (from: Hero | Town, index: number): Troop | undefined => {
   }
 };
 
-const setTroop = (on: Hero | Town, index: number, troop: Troop | undefined, autoCombine: boolean): Hero | Town => {
+const setTroop = (
+  on: Hero | Town,
+  index: number,
+  troop: Troop | undefined,
+  autoCombine: boolean,
+): [Hero | Town, boolean] => {
   if ((on as Hero).army) {
     const hero = on as Hero;
 
-    return {
-      ...hero,
-      army: setArmyTroop(hero.army, index, troop, autoCombine),
-    };
+    const [army, combined] = setArmyTroop(hero.army, index, troop, autoCombine);
+
+    return [
+      {
+        ...hero,
+        army,
+      },
+      combined,
+    ];
   }
 
   if ((on as Town).garrison) {
     const town = on as Town;
 
-    return {
-      ...on,
-      garrison: setArmyTroop(town.garrison, index, troop, autoCombine),
-    };
+    const [army, combined] = setArmyTroop(town.garrison, index, troop, autoCombine);
+
+    return [
+      {
+        ...on,
+        garrison: army,
+      },
+      combined,
+    ];
   }
 
-  return on;
+  return [on, false];
 };
 
 export const swapGameTroops = (
@@ -101,10 +116,11 @@ export const swapGameTroops = (
       return game;
     }
 
-    // TODO: check auto-combine
-    const wtrSwapped = setTroop(wtr, withTroop.index, getTroop(tr, troop.index), autoCombine);
+    const [wtrSwapped, combined] = setTroop(wtr, withTroop.index, getTroop(tr, troop.index), autoCombine);
 
-    const trSwapped = setTroop(tr, troop.index, getTroop(wtrSwapped, withTroop.index), autoCombine);
+    const wtrTroop = !combined ? getTroop(wtr, withTroop.index) : undefined;
+
+    const [trSwapped] = setTroop(tr, troop.index, wtrTroop, false);
 
     return {
       ...game,

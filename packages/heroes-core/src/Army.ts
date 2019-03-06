@@ -5,12 +5,19 @@ export type Army = Array<Troop | undefined>;
 export const getArmySize = (army: Army): number =>
   army.filter((t) => t !== undefined).length;
 
-export const setArmyTroop = (army: Army, index: number, troop: Troop | undefined, autoCombine: boolean): Army => {
+export const setArmyTroop = (
+  army: Army,
+  index: number,
+  troop: Troop | undefined,
+  autoCombine: boolean,
+): [Army, boolean] => {
   // TODO: implement checking index
 
   const clone = [
     ...army,
   ];
+
+  let combined = false;
 
   if (troop && autoCombine) {
     const targetTroop = army.find((t) => t !== undefined && t.creature === troop.creature);
@@ -20,6 +27,10 @@ export const setArmyTroop = (army: Army, index: number, troop: Troop | undefined
         ...targetTroop,
         count: targetTroop.count + troop.count,
       };
+
+      combined = true;
+    } else {
+      clone[index] = troop;
     }
   } else {
     const targetTroop = army[index];
@@ -34,7 +45,7 @@ export const setArmyTroop = (army: Army, index: number, troop: Troop | undefined
     }
   }
 
-  return clone;
+  return [clone, combined];
 };
 
 // TODO: handle size limit
@@ -43,6 +54,7 @@ export const appendArmyTroop = (army: Army, troop: Troop): Army => {
     ...army,
   ];
 
+  // TODO: unify troop combining
   const existingTroop = army.find((t) => t !== undefined && t.creature === troop.creature);
 
   if (existingTroop) {
