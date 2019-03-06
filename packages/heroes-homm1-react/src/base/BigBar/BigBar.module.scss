@@ -4,15 +4,15 @@
   position: relative;
   width: 640px;
   height: 20px;
-  background: url("./assets/background.jpg");
   text-align: center;
+  background: url("./assets/background.jpg");
 
   @include mirror-background();
 }
 
 .text {
   position: absolute;
-  width: 100%;
   top: -1px;
+  width: 100%;
   text-align: center;
 }

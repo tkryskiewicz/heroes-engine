@@ -1,10 +1,10 @@
 .root {
-  background: url("./assets/border.png");
-  background-color: #000;
   display: inline-block;
+  width: 94px;
   height: 204px;
   padding: 6px;
-  width: 94px;
+  background: url("./assets/border.png");
+  background-color: #000;
 }
 
 .resource {

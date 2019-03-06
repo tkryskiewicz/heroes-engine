@@ -6,15 +6,17 @@
   height: 20px;
 }
 
-.auto, .status-bar, .skip {
+.auto,
+.status-bar,
+.skip {
   display: inline-block;
 }
 
 .status-bar {
   width: 2 * 272px;
   height: 20px;
-  background: url("./assets/background.jpg");
   text-align: center;
+  background: url("./assets/background.jpg");
 
   @include mirror-background();
 }

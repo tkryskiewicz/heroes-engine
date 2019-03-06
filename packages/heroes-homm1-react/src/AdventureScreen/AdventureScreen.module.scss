@@ -29,6 +29,7 @@
 
 .hero-locators {
   @extend %locators;
+
   position: absolute;
   top: 176px;
   left: 480px;
@@ -36,6 +37,7 @@
 
 .town-locators {
   @extend %locators;
+
   position: absolute;
   top: 176px;
   left: 553px;

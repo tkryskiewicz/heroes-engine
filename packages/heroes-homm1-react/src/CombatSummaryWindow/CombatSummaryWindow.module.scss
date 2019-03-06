@@ -1,15 +1,15 @@
 .root {
-  background: url("./assets/background.jpg");
+  position: relative;
+  width: 324px;
   height: 459px;
   padding: 38px 22px 20px 18px;
-  position: relative;
   text-align: center;
-  width: 324px;
+  background: url("./assets/background.jpg");
 }
 
 .summary {
-  bottom: 25px;
   position: absolute;
+  bottom: 25px;
   width: 324px - (22px + 18px);
 }
 
@@ -19,5 +19,5 @@
 
 .casualty {
   margin-right: 5px;
-  padding: 0px 5px;
+  padding: 0 5px;
 }

@@ -1,16 +1,16 @@
 .root {
-  display: inline-block;
   position: relative;
+  display: inline-block;
 }
 
 .count {
   position: absolute;
+  bottom: 0;
+  z-index: 1;
   width: 20px;
   height: 11px;
-  bottom: 0;
-  background: url("./assets/count-background.jpg");
   text-align: center;
-  z-index: 1;
+  background: url("./assets/count-background.jpg");
 }
 
 .attacker {

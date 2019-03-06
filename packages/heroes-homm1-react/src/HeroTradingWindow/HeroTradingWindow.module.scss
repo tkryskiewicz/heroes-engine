@@ -7,8 +7,8 @@
 
 .title {
   position: absolute;
-  width: 100%;
   top: 9px;
+  width: 100%;
   text-align: center;
 }
 
@@ -20,9 +20,9 @@
 
 .skills {
   position: absolute;
-  width: 40%;
   top: 44px;
   left: 30%;
+  width: 40%;
   text-align: center;
 }
 
@@ -33,17 +33,17 @@
 }
 
 .army {
-  display: flex;
   position: absolute;
   top: 147px;
   left: 23px;
+  display: flex;
 }
 
 .other-army {
   position: absolute;
-  display: flex;
   top: 147px;
   left: 251px;
+  display: flex;
 }
 
 .troop {
@@ -53,16 +53,16 @@
 
 .artifacts {
   position: absolute;
-  width: 70px;
   top: 193px;
   left: 75px;
+  width: 70px;
 }
 
 .other-artifacts {
   position: absolute;
-  width: 70px;
   top: 193px;
   left: 304px;
+  width: 70px;
 }
 
 .artifact {

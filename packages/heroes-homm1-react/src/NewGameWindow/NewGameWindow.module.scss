@@ -2,14 +2,14 @@
   position: relative;
   width: 322px;
   height: 459px;
-  background: url("./assets/background.jpg");
   text-align: center;
+  background: url("./assets/background.jpg");
 }
 
 .game-difficulties-title {
   position: absolute;
-  width: 100%;
   top: 15px;
+  width: 100%;
 }
 
 .game-difficulties {
@@ -25,8 +25,8 @@
 
 .opponent-settings-title {
   position: absolute;
-  width: 100%;
   top: 128px;
+  width: 100%;
 }
 
 .opponent-settings {
@@ -54,14 +54,14 @@
 
 .scenario {
   position: absolute;
-  width: 100%;
   top: 331px;
+  width: 100%;
 }
 
 .difficulty-rating {
   position: absolute;
-  width: 100%;
   top: 382px;
+  width: 100%;
 }
 
 .okay {

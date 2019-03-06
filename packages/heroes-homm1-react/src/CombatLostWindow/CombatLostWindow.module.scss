@@ -1,13 +1,13 @@
 .animation-background {
-  background: url("./assets/animation-background.jpg");
-  display: inline-block;
-  height: 125px;
   position: relative;
+  display: inline-block;
   width: 223px;
+  height: 125px;
+  background: url("./assets/animation-background.jpg");
 }
 
 .animation {
-  left: 50px;
   position: absolute;
   top: 60px;
+  left: 50px;
 }

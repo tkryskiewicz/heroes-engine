@@ -1,21 +1,21 @@
 .root {
-  background: url("./assets/background.jpg");
-  height: 480px;
   position: relative;
   width: 640px;
+  height: 480px;
+  background: url("./assets/background.jpg");
 }
 
 .scores {
-  left: 80px;
   position: absolute;
   top: 29px;
+  left: 80px;
   width: 505px;
 }
 
 .category {
-  left: 8px;
   position: absolute;
   top: 314px;
+  left: 8px;
 }
 
 .header {
@@ -27,7 +27,7 @@
 }
 
 .exit {
-  left: 603px;
   position: absolute;
   top: 314px;
+  left: 603px;
 }

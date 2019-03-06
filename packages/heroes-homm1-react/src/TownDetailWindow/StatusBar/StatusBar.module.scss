@@ -4,8 +4,8 @@
   display: inline-block;
   width: 2 * 269px;
   height: 19px;
-  background: url("./assets/background.jpg");
   text-align: center;
+  background: url("./assets/background.jpg");
 
   @include mirror-background();
 }

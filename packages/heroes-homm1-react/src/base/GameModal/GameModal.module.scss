@@ -6,18 +6,18 @@
 }
 
 .content {
-  left: 0px;
-  padding: 45px 20px 30px 20px;
   position: absolute;
-  top: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
+  padding: 45px 20px 30px 20px;
   text-align: center;
 }
 
 .actions {
   position: absolute;
-  width: 100%;
   bottom: 0;
+  width: 100%;
   padding: 0 20px 20px 20px;
   text-align: center;
 
@@ -31,22 +31,22 @@
 }
 
 .header {
-  background: url("./assets/header.png");
   height: 77px;
+  background: url("./assets/header.png");
 
   @include mirror-background();
 }
 
 .body {
-  background: url("./assets/body.png");
   height: 45px;
+  background: url("./assets/body.png");
 
   @include mirror-background();
 }
 
 .footer {
-  background: url("./assets/footer.png");
   height: 48px;
+  background: url("./assets/footer.png");
 
   @include mirror-background();
 }
