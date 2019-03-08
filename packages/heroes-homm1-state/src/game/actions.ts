@@ -2,7 +2,7 @@ import { Resources, TroopSelection } from "heroes-core";
 
 export enum GameActionType {
   SwapTroops = "game/swapTroops",
-  DismissHeroTroop = "game/dismissHeroTroop",
+  DismissTroop = "game/dismissTroop",
   DismissHero = "game/dismissHero",
   BuildStructure = "game/buildStructure",
   RecruitTroop = "game/recruitTroop",
@@ -12,7 +12,7 @@ export enum GameActionType {
 
 export type GameAction =
   SwapTroopsAction |
-  DismissHeroTroopAction |
+  DismissTroopAction |
   DismissHeroAction |
   BuildStructureAction |
   RecruitTroopAction |
@@ -31,16 +31,14 @@ export const swapTroops = (troop: TroopSelection, withTroop: TroopSelection): Sw
   withTroop,
 });
 
-export interface DismissHeroTroopAction {
-  readonly type: GameActionType.DismissHeroTroop;
-  readonly hero: string;
-  readonly index: number;
+export interface DismissTroopAction {
+  readonly type: GameActionType.DismissTroop;
+  readonly troop: TroopSelection;
 }
 
-export const dismissHeroTroop = (hero: string, index: number): DismissHeroTroopAction => ({
-  hero,
-  index,
-  type: GameActionType.DismissHeroTroop,
+export const dismissTroop = (troop: TroopSelection): DismissTroopAction => ({
+  troop,
+  type: GameActionType.DismissTroop,
 });
 
 export interface DismissHeroAction {

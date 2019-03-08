@@ -13,3 +13,4 @@ export { AppState } from "./state";
 export { scenarioInforWindowActions } from "./scenarioInfoWindow";
 export { spellBookWindowActions } from "./spellBookWindow";
 export { townWindowActions } from "./townWindow";
+export { troopWindowActions } from "./troopWindow";

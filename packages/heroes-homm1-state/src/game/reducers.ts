@@ -2,7 +2,7 @@ import {
   buildGameStructure,
   buildStructure,
   dismissGameHero,
-  dismissGameHeroTroop,
+  dismissGameTroop,
   endGameTurn,
   Hero,
   recruitGameTroop,
@@ -160,9 +160,9 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
       return {
         ...swapGameTroops(state, action.troop, action.withTroop),
       };
-    case GameActionType.DismissHeroTroop:
+    case GameActionType.DismissTroop:
       return {
-        ...dismissGameHeroTroop(state, action.hero, action.index),
+        ...dismissGameTroop(state, action.troop),
       };
     case GameActionType.DismissHero:
       return {

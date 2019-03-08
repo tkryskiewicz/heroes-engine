@@ -3,6 +3,8 @@ import { TroopSelection } from "heroes-core";
 export enum TownWindowActionType {
   SelectTroop = "townWindow/selectTroop",
   DeselectTroop = "townWindow/deselectTroop",
+  OpenTroopDetails = "townWindow/openTroopDetails",
+  CloseTroopDetails = "townWindow/closeTroopDetails",
   OpenVisitingHeroDetails = "townWindow/openVisitingHeroDetails",
   CloseVisitingHeroDetails = "townWindow/closeVisitingHeroDetails",
   OpenStructureDetails = "townWindow/openStructureDetails",
@@ -16,6 +18,8 @@ export enum TownWindowActionType {
 export type TownWindowAction =
   SelectTroopAction |
   DeselectTroopAction |
+  OpenTroopDetailsAction |
+  CloseTroopDetailsAction |
   OpenVisitingHeroDetailsAction |
   CloseVisitingHeroDetailsAction |
   OpenStructureDetailsAction |
@@ -40,6 +44,22 @@ export interface DeselectTroopAction {
 
 export const deselectTroop = (): DeselectTroopAction => ({
   type: TownWindowActionType.DeselectTroop,
+});
+
+export interface OpenTroopDetailsAction {
+  readonly type: TownWindowActionType.OpenTroopDetails;
+}
+
+export const openTroopDetails = (): OpenTroopDetailsAction => ({
+  type: TownWindowActionType.OpenTroopDetails,
+});
+
+export interface CloseTroopDetailsAction {
+  readonly type: TownWindowActionType.CloseTroopDetails;
+}
+
+export const closeTroopDetails = (): CloseTroopDetailsAction => ({
+  type: TownWindowActionType.CloseTroopDetails,
 });
 
 export interface OpenVisitingHeroDetailsAction {

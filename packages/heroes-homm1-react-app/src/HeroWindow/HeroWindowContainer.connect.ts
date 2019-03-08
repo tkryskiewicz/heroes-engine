@@ -8,6 +8,7 @@ import {
   heroWindowActions,
   kingdomOverviewWindowActions,
   spellBookWindowActions,
+  troopWindowActions,
 } from "heroes-homm1-state";
 
 import { getArtifactDetails } from "./config";
@@ -18,14 +19,12 @@ type StateProp =
   "visibleAdditionalStatDetails" |
   "selectedTroopIndex" |
   "troopDetailsVisible" |
-  "dismissTroopPromptVisible" |
   "getArtifactDetails" |
   "visibleArtifactDetails" |
   "dismissHeroPromptVisible";
 
 const mapStateToProps = (state: AppState): Pick<HeroWindowContainerProps, StateProp> => ({
   dismissHeroPromptVisible: state.heroWindow.dismissHeroPromptVisible,
-  dismissTroopPromptVisible: state.heroWindow.dismissTroopPromptVisisble,
   getArtifactDetails,
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,
   troopDetailsVisible: state.heroWindow.visibleTroopDetails,
@@ -41,8 +40,6 @@ type DispatchProp =
   "onSelectTroop" |
   "onSelectedTroopClick" |
   "onExitTroopDetails" |
-  "onDismissTroopClick" |
-  "onCancelDismissTroopClick" |
   "onConfirmDismissTroopClick" |
   "onSwapTroops" |
   "onVisibleArtifactDetailsChange" |
@@ -73,18 +70,12 @@ const mapDispatchToProps = (
   onExitTroopDetails() {
     dispatch(heroWindowActions.closeTroopDetails());
   },
-  onDismissTroopClick(index) {
-    dispatch(heroWindowActions.openDismissTroopPrompt(index));
-  },
-  onCancelDismissTroopClick() {
-    dispatch(heroWindowActions.closeDismissTroopPrompt());
-  },
-  onConfirmDismissTroopClick(hero, index) {
-    dispatch(heroWindowActions.closeDismissTroopPrompt());
+  onConfirmDismissTroopClick(index) {
+    dispatch(troopWindowActions.closeDismissPrompt());
     dispatch(heroWindowActions.closeTroopDetails());
     dispatch(heroWindowActions.deselectTroop());
 
-    dispatch(gameActions.dismissHeroTroop(hero, index));
+    dispatch(gameActions.dismissTroop({ type: TroopSelectionType.Hero, id: ownProps.hero.id, index }));
   },
   onSwapTroops(index, withIndex) {
     dispatch(heroWindowActions.deselectTroop());
@@ -105,13 +96,13 @@ const mapDispatchToProps = (
   onCancelDismissHeroClick() {
     dispatch(heroWindowActions.closeDismissHeroPrompt());
   },
-  onConfirmDismissHeroClick(hero) {
-    dispatch(gameActions.dismissHero(hero));
+  onConfirmDismissHeroClick() {
+    dispatch(gameActions.dismissHero(ownProps.hero.id));
 
     dispatch(heroWindowActions.reset());
 
     if (ownProps.onConfirmDismissHeroClick) {
-      ownProps.onConfirmDismissHeroClick(hero);
+      ownProps.onConfirmDismissHeroClick();
     }
   },
   onExitClick() {

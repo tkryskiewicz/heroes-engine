@@ -16,7 +16,7 @@ export {
   getGameTown,
   getGameHero,
   swapGameTroops,
-  dismissGameHeroTroop,
+  dismissGameTroop,
   dismissGameHero,
   buildGameStructure,
   recruitGameTroop,

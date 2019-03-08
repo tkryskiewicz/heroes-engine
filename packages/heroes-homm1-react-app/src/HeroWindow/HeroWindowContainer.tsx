@@ -50,10 +50,7 @@ interface HeroWindowContainerProps extends InjectedIntlProps, WithGameWindowProp
   readonly onSelectedTroopClick: (index: number) => void;
   readonly troopDetailsVisible: boolean;
   readonly onExitTroopDetails: () => void;
-  readonly dismissTroopPromptVisible: boolean;
-  readonly onDismissTroopClick: (index: number) => void;
-  readonly onConfirmDismissTroopClick: (hero: string, index: number) => void;
-  readonly onCancelDismissTroopClick: () => void;
+  readonly onConfirmDismissTroopClick: (index: number) => void;
 
   readonly getArtifactDetails: (artifact: Artifact, props: {
     readonly onCloseClick: () => void;
@@ -65,7 +62,7 @@ interface HeroWindowContainerProps extends InjectedIntlProps, WithGameWindowProp
   readonly dismissible: boolean;
   readonly onDismissHeroClick: () => void;
   readonly dismissHeroPromptVisible: boolean;
-  readonly onConfirmDismissHeroClick: (hero: string) => void;
+  readonly onConfirmDismissHeroClick: () => void;
   readonly onCancelDismissHeroClick: () => void;
 
   readonly onExitClick: () => void;
@@ -421,10 +418,6 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
 
     const troop = hero.army[index]!;
 
-    // TODO: resolve
-    const morale = MoraleType.Neutral;
-    const luck = LuckType.Neutral;
-
     const dismissible = getArmySize(hero.army) > 1;
 
     return (
@@ -433,21 +426,12 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
         index={index}
         creature={troop.creature}
         skillEnhancements={hero.skills}
-        morale={morale}
-        luck={luck}
         count={troop.count}
         dismissible={dismissible}
-        dismissPromptVisible={this.props.dismissTroopPromptVisible}
-        onDismissClick={this.props.onDismissTroopClick}
-        onConfirmDismissClick={this.onConfirmDismissTroopClick}
-        onCancelDismissClick={this.props.onCancelDismissTroopClick}
+        onConfirmDismissClick={this.props.onConfirmDismissTroopClick}
         onExitClick={this.props.onExitTroopDetails}
       />
     );
-  }
-
-  private readonly onConfirmDismissTroopClick = (index: number) => {
-    this.props.onConfirmDismissTroopClick(this.props.hero.id, index);
   }
 
   private readonly renderArtifact = (index: number) => {
@@ -523,14 +507,10 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     return (
       <DismissHeroPrompt
         visible={visible}
-        onConfirmClick={this.onConfirmDismissHeroClick}
+        onConfirmClick={this.props.onConfirmDismissHeroClick}
         onCancelClick={this.props.onCancelDismissHeroClick}
       />
     );
-  }
-
-  private readonly onConfirmDismissHeroClick = () => {
-    this.props.onConfirmDismissHeroClick(this.props.hero.id);
   }
 
   private readonly onExitMouseEnter = () => {

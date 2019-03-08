@@ -1,6 +1,6 @@
-import { setArmyTroop } from "./Army";
+import { dismissArmyTroop, setArmyTroop } from "./Army";
 import { Creature } from "./Creature";
-import { dismissHeroTroop, Hero, swapHeroTroops } from "./Hero";
+import { Hero, swapHeroTroops } from "./Hero";
 import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
@@ -147,9 +147,22 @@ export const dismissGameHero = (game: Game, hero: string): Game => ({
   heroes: game.heroes.filter((h) => h.id !== hero),
 });
 
-export const dismissGameHeroTroop = (game: Game, hero: string, index: number): Game => ({
+export const dismissGameTroop = (game: Game, troop: TroopSelection): Game => ({
   ...game,
-  heroes: game.heroes.map((h) => h.id === hero ? dismissHeroTroop(h, index) : h),
+  heroes: game.heroes.map((h) => troop.type === TroopSelectionType.Hero && h.id === troop.id ?
+    {
+      ...h,
+      army: dismissArmyTroop(h.army, troop.index),
+    } :
+    h,
+  ),
+  towns: game.towns.map((t) => troop.type === TroopSelectionType.Garrison && t.id === troop.id ?
+    {
+      ...t,
+      garrison: dismissArmyTroop(t.garrison, troop.index),
+    } :
+    t,
+  ),
 });
 
 export const getGameTown = (game: Game, town: string): Town | undefined =>

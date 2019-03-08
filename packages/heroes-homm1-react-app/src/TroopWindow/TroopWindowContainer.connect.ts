@@ -1,14 +1,38 @@
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
 
-import { AppState } from "heroes-homm1-state";
+import { LuckType, MoraleType } from "heroes-homm1";
+import { AppState, troopWindowActions } from "heroes-homm1-state";
 
 import { TroopWindowContainer, TroopWindowContainerProps } from "./TroopWindowContainer";
 
-const mapStateToProps = (state: AppState): Pick<TroopWindowContainerProps, "creatureById"> => ({
+type StateProp =
+  "creatureById" |
+  "morale" |
+  "luck" |
+  "dismissPromptVisible";
+
+const mapStateToProps = (state: AppState): Pick<TroopWindowContainerProps, StateProp> => ({
   creatureById: state.game.data.creatureById,
+  dismissPromptVisible: state.troopWindow.dismissPromptVisible,
+  luck: LuckType.Neutral,
+  morale: MoraleType.Neutral,
 });
 
-const ContainerConnected = connect(mapStateToProps)(TroopWindowContainer);
+type DispatchProp =
+  "onDismissClick" |
+  "onCancelDismissClick";
+
+const mapDispatchToProps = (dispatch: Dispatch): Pick<TroopWindowContainerProps, DispatchProp> => ({
+  onDismissClick() {
+    dispatch(troopWindowActions.openDismissPrompt());
+  },
+  onCancelDismissClick() {
+    dispatch(troopWindowActions.closeDismissPrompt());
+  },
+});
+
+const ContainerConnected = connect(mapStateToProps, mapDispatchToProps)(TroopWindowContainer);
 
 type ContainerConnectedProps = ExtractProps<typeof ContainerConnected>;
 

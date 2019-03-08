@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Hero, Resources, Structure, Town, TroopSelection, TroopSelectionType } from "heroes-core";
+import { getArmySize, Hero, Resources, Structure, Town, TroopSelection, TroopSelectionType } from "heroes-core";
 import {
   Crest,
   getArmyStripStatusTextMessage,
@@ -19,6 +19,7 @@ import {
 
 import { HeroWindow } from "../HeroWindow";
 import { TroopSlot } from "../TroopSlot";
+import { TroopWindow } from "../TroopWindow";
 
 interface TownWindowContainerProps extends InjectedIntlProps, WithGameWindowProps {
   readonly town: Town;
@@ -38,6 +39,11 @@ interface TownWindowContainerProps extends InjectedIntlProps, WithGameWindowProp
   readonly selectedTroop?: TroopSelection;
   readonly onSelectTroop: (troop: TroopSelection) => void;
   readonly onSwapTroops: (troop: TroopSelection, withTroop: TroopSelection) => void;
+
+  readonly troopDetailsVisible: boolean;
+  readonly onOpenTroopDetailsClick: () => void;
+  readonly onCloseTroopDetailsClick: () => void;
+  readonly onConfirmDismissTroopClick: (troop: TroopSelection) => void;
 
   readonly visitingHeroDetailsVisible: boolean;
   readonly onOpenVisitingHeroDetailsClick: () => void;
@@ -63,7 +69,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   };
 
   public render() {
-    const { town, visibleStructureDetails } = this.props;
+    const { town, selectedTroop, troopDetailsVisible, visibleStructureDetails } = this.props;
 
     return (
       <>
@@ -78,6 +84,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
           renderTreasury={this.renderTreasury}
           statusText={this.state.statusText}
         />
+        {selectedTroop && troopDetailsVisible && this.renderTroopDetails(selectedTroop)}
         {visibleStructureDetails && this.renderStructureDetails(town, visibleStructureDetails)}
       </>
     );
@@ -299,6 +306,8 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
 
     if (selectedTroop === undefined && this.getTroop(troop)) {
       this.onSelectTroop(troop);
+    } else if (selectedTroop && troop.type === selectedTroop.type && troop.index === selectedTroop.index) {
+      this.props.onOpenTroopDetailsClick();
     } else if (selectedTroop && (troop.index !== selectedTroop.index || troop.type !== selectedTroop.type)) {
       this.onSwapTroops(troop);
     }
@@ -331,6 +340,35 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
     this.setStatusText(statusText);
 
     this.props.onSwapTroops(selectedTroop!, t);
+  }
+
+  private renderTroopDetails(troop: TroopSelection) {
+    const { visitingHero } = this.props;
+
+    const t = this.getTroop(troop)!;
+
+    const dismissible = troop.type === TroopSelectionType.Garrison ||
+      (visitingHero !== undefined && getArmySize(visitingHero.army) > 1);
+
+    return (
+      <TroopWindow
+        visible={true}
+        index={troop.index}
+        creature={t.creature}
+        count={t.count}
+        dismissible={dismissible}
+        onConfirmDismissClick={this.onConfirmDismissTroopClick}
+        onExitClick={this.props.onCloseTroopDetailsClick}
+      />
+    );
+  }
+
+  private readonly onConfirmDismissTroopClick = () => {
+    if (!this.props.selectedTroop) {
+      return;
+    }
+
+    this.props.onConfirmDismissTroopClick(this.props.selectedTroop);
   }
 
   private readonly renderTreasury = () => {

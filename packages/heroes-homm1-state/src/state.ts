@@ -11,6 +11,7 @@ import { PuzzleWindowState } from "./puzzleWindow";
 import { ScenarioInfoWindowState } from "./scenarioInfoWindow";
 import { SpellBookWindowState } from "./spellBookWindow";
 import { TownWindowState } from "./townWindow";
+import { TroopWindowState } from "./troopWindow";
 
 export interface AppState {
   readonly game: GameState;
@@ -26,4 +27,5 @@ export interface AppState {
   readonly scenarioInfoWindow: ScenarioInfoWindowState;
   readonly mageGuildWindow: MageGuildWindowState;
   readonly spellBookWindow: SpellBookWindowState;
+  readonly troopWindow: TroopWindowState;
 }

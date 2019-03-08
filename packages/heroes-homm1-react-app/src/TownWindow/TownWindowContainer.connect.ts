@@ -7,6 +7,7 @@ import {
   gameActions,
   kingdomOverviewWindowActions,
   townWindowActions,
+  troopWindowActions,
 } from "heroes-homm1-state";
 
 import { getStructureDetails } from "./config";
@@ -16,6 +17,7 @@ type StateProp =
   "visitingHero" |
   "resources" |
   "selectedTroop" |
+  "troopDetailsVisible" |
   "visitingHeroDetailsVisible" |
   "getStructureDetails" |
   "visibleStructureDetails";
@@ -28,6 +30,7 @@ const mapStateToProps = (
     getStructureDetails,
     resources: state.game.resources,
     selectedTroop: state.townWindow.selectedTroop,
+    troopDetailsVisible: state.townWindow.troopDetailsVisible,
     visibleStructureDetails: state.townWindow.visibleStructureDetails,
     // TODO: resolve this dynamically
     visitingHero: ownProps.town.id === TownId.Farm ? state.game.heroes[0] : undefined,
@@ -39,6 +42,9 @@ type DispatchProp =
   "onCrestClick" |
   "onSelectTroop" |
   "onSwapTroops" |
+  "onOpenTroopDetailsClick" |
+  "onCloseTroopDetailsClick" |
+  "onConfirmDismissTroopClick" |
   "onOpenVisitingHeroDetailsClick" |
   "onCloseVisitingHeroDetailsClick" |
   "onOpenStructureDetailsClick" |
@@ -55,6 +61,21 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<Required<TownWindowContain
     dispatch(townWindowActions.deselectTroop());
 
     dispatch(gameActions.swapTroops(troop, withTroop));
+  },
+  onOpenTroopDetailsClick() {
+    dispatch(townWindowActions.openTroopDetails());
+  },
+  onCloseTroopDetailsClick() {
+    dispatch(townWindowActions.closeTroopDetails());
+
+    dispatch(townWindowActions.deselectTroop());
+  },
+  onConfirmDismissTroopClick(troop) {
+    dispatch(troopWindowActions.closeDismissPrompt());
+    dispatch(townWindowActions.closeTroopDetails());
+    dispatch(townWindowActions.deselectTroop());
+
+    dispatch(gameActions.dismissTroop(troop));
   },
   onOpenVisitingHeroDetailsClick() {
     dispatch(townWindowActions.openVisitingHeroDetails());

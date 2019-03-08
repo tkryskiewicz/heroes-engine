@@ -23,6 +23,7 @@ export class TroopWindowContainer extends React.Component<TroopWindowContainerPr
           {...rest}
           creature={creatureById[creature]}
           renderCreature={this.renderCreature}
+          dismissVisible={dismissible}
         />
         {dismissPromptVisible && this.renderDismissPrompt()}
       </>
