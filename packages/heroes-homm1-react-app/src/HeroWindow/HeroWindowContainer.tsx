@@ -361,7 +361,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     const selectedTroopName = selectedTroop && formatMessage(getCreatureNameMessage(selectedTroop.creature));
     const troopName = troop && formatMessage(getCreatureNameMessage(troop.creature));
 
-    const statusText = formatMessage(getArmyStripStatusTextMessage(selectedTroop, troop), {
+    const statusText = formatMessage(getArmyStripStatusTextMessage(selectedTroop, troop, false), {
       selectedTroopName,
       troopName,
     });
@@ -392,7 +392,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
 
     const troopName = formatMessage(getCreatureNameMessage(troop.creature));
 
-    const statusText = formatMessage(getArmyStripStatusTextMessage(troop, troop), { troopName });
+    const statusText = formatMessage(getArmyStripStatusTextMessage(troop, troop, false), { troopName });
 
     this.setStatusText(statusText);
 
@@ -406,7 +406,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
 
     const troopName = formatMessage(getCreatureNameMessage(troop.creature));
 
-    const statusText = formatMessage(getArmyStripStatusTextMessage(undefined, troop), { troopName });
+    const statusText = formatMessage(getArmyStripStatusTextMessage(undefined, troop, false), { troopName });
 
     this.setStatusText(statusText);
 

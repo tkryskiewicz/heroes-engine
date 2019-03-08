@@ -277,6 +277,20 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
       this.props.town.garrison[troop.index];
   }
 
+  private isLastTroop(selection: TroopSelection) {
+    const { town, visitingHero, selectedTroop } = this.props;
+
+    // FIXME: possible to move last troop when supposed to exchange, but a combine happens
+    return visitingHero !== undefined &&
+      selectedTroop !== undefined &&
+      selectedTroop.type === TroopSelectionType.Hero &&
+      selection.type === TroopSelectionType.Garrison &&
+      // FIXME: find better way to detect last troop
+      (town.garrison[selection.index] === undefined ||
+        town.garrison[selection.index]!.creature === visitingHero.army[selectedTroop.index]!.creature) &&
+      getArmySize(visitingHero.army) === 1;
+  }
+
   private readonly onTroopMouseEnter = (selection: TroopSelection) => {
     const { selectedTroop: st } = this.props;
     const { formatMessage } = this.props.intl;
@@ -289,7 +303,9 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
     const selectedTroopName = selectedTroop && formatMessage(getCreatureNameMessage(selectedTroop.creature));
     const troopName = troop && formatMessage(getCreatureNameMessage(troop.creature));
 
-    const statusText = formatMessage(getArmyStripStatusTextMessage(selectedTroop, troop), {
+    const lastTroop = this.isLastTroop(selection);
+
+    const statusText = formatMessage(getArmyStripStatusTextMessage(selectedTroop, troop, lastTroop), {
       selectedTroopName,
       troopName,
     });
@@ -303,6 +319,10 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
 
   private readonly onTroopClick = (troop: TroopSelection) => {
     const { selectedTroop } = this.props;
+
+    if (this.isLastTroop(troop)) {
+      return;
+    }
 
     if (selectedTroop === undefined && this.getTroop(troop)) {
       this.onSelectTroop(troop);
@@ -320,7 +340,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
 
     const troopName = formatMessage(getCreatureNameMessage(troop.creature));
 
-    const statusText = formatMessage(getArmyStripStatusTextMessage(troop, troop), { troopName });
+    const statusText = formatMessage(getArmyStripStatusTextMessage(troop, troop, false), { troopName });
 
     this.setStatusText(statusText);
 
@@ -335,7 +355,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
 
     const troopName = formatMessage(getCreatureNameMessage(troop.creature));
 
-    const statusText = formatMessage(getArmyStripStatusTextMessage(undefined, troop), { troopName });
+    const statusText = formatMessage(getArmyStripStatusTextMessage(undefined, troop, false), { troopName });
 
     this.setStatusText(statusText);
 
