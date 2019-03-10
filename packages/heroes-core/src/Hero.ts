@@ -1,4 +1,4 @@
-import { Army, swapArmyTroops } from "./Army";
+import { Army } from "./Army";
 import { Artifact } from "./Artifact";
 
 export interface HeroSkills {
@@ -17,11 +17,6 @@ export interface Hero {
   readonly experience: number;
   readonly artifacts: Array<Artifact | undefined>;
 }
-
-export const swapHeroTroops = (hero: Hero, index: number, withIndex: number): Hero => ({
-  ...hero,
-  army: swapArmyTroops(hero.army, index, withIndex),
-});
 
 // TODO: does this belong to core???
 export const canSelectNextHero = (heroes: Hero[]): boolean =>

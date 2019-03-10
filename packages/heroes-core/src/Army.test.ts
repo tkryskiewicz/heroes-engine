@@ -289,67 +289,6 @@ describe("appendArmyTroop", () => {
   });
 });
 
-describe("swapArmyTroops", () => {
-  it("should swap empty slots", () => {
-    const army: Army = [];
-
-    const result = swapArmyTroops(army, 0, 1);
-
-    const expected: Army = [
-      undefined,
-      undefined,
-    ];
-
-    expect(result).toEqual(expected);
-  });
-
-  it("should swap troop with empty slot", () => {
-    const troop: Troop = {
-      count: 1,
-      creature: "creature",
-    };
-
-    const army: Army = [
-      troop,
-    ];
-
-    const result = swapArmyTroops(army, 0, 1);
-
-    const expected: Army = [
-      undefined,
-      troop,
-    ];
-
-    expect(result).toEqual(expected);
-  });
-
-  it("should swap troops", () => {
-    const troopA: Troop = {
-      count: 1,
-      creature: "creatureA",
-    };
-
-    const troopB: Troop = {
-      count: 1,
-      creature: "creatureB",
-    };
-
-    const army: Army = [
-      troopA,
-      troopB,
-    ];
-
-    const result = swapArmyTroops(army, 0, 1);
-
-    const expected: Army = [
-      troopB,
-      troopA,
-    ];
-
-    expect(result).toEqual(expected);
-  });
-});
-
 describe("dismissArmyTroop", () => {
   it("should dismiss troop", () => {
     const army: Army = [
@@ -366,5 +305,271 @@ describe("dismissArmyTroop", () => {
     ];
 
     expect(result).toEqual(expected);
+  });
+});
+
+describe("swapArmyTroops", () => {
+  it("should throw when moving non-troop", () => {
+    const army: Army = [];
+
+    expect(() => {
+      swapArmyTroops(army, 0, army, 1);
+    }).toThrow();
+  });
+
+  it("should move troop inside an army", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troop,
+    ];
+
+    const [armyResult, withArmyResult] = swapArmyTroops(army, 0, army, 1);
+
+    expect(armyResult).toBe(withArmyResult);
+    expect(armyResult[0]).toBeUndefined();
+    expect(armyResult[1]).toEqual(troop);
+  });
+
+  it("should swap troops inside an army", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const withTroop: Troop = {
+      count: 1,
+      creature: "withCreature",
+    };
+
+    const army: Army = [
+      troop,
+      withTroop,
+    ];
+
+    const [armyResult, withArmyResult] = swapArmyTroops(army, 0, army, 1);
+
+    expect(armyResult).toBe(withArmyResult);
+    expect(armyResult[0]).toEqual(withTroop);
+    expect(armyResult[1]).toEqual(troop);
+  });
+
+  it("should move troop between armies", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troop,
+    ];
+
+    const withArmy: Army = [];
+
+    const [armyResult, withArmyResult] = swapArmyTroops(army, 0, withArmy, 0);
+
+    expect(armyResult[0]).toBeUndefined();
+    expect(withArmyResult[0]).toEqual(troop);
+  });
+
+  it("should swap troops between armies", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troop,
+    ];
+
+    const withTroop: Troop = {
+      count: 1,
+      creature: "withCreature",
+    };
+
+    const withArmy: Army = [
+      withTroop,
+    ];
+
+    const [armyResult, withArmyResult] = swapArmyTroops(army, 0, withArmy, 0);
+
+    expect(armyResult[0]).toEqual(withTroop);
+    expect(withArmyResult[0]).toEqual(troop);
+  });
+
+  it("should prevent moving last troop between armies", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troop,
+    ];
+
+    const withArmy: Army = [];
+
+    expect(() => {
+      swapArmyTroops(army, 0, withArmy, 0, true);
+    }).toThrow();
+  });
+
+  it("should move last troop inside an army", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troop,
+    ];
+
+    const [armyResult] = swapArmyTroops(army, 0, army, 1, true);
+
+    expect(armyResult[0]).toBeUndefined();
+    expect(armyResult[1]).toEqual(troop);
+  });
+
+  it("should allow swapping last troop between armies", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troop,
+    ];
+
+    const withTroop: Troop = {
+      count: 1,
+      creature: "withCreature",
+    };
+
+    const withArmy: Army = [
+      withTroop,
+    ];
+
+    const [armyResult, withArmyResult] = swapArmyTroops(army, 0, withArmy, 0, true);
+
+    expect(armyResult[0]).toEqual(withTroop);
+    expect(withArmyResult[0]).toEqual(troop);
+  });
+
+  it("should combine troops inside an army when moving to same index", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const withTroop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troop,
+      withTroop,
+    ];
+
+    const [armyResult] = swapArmyTroops(army, 0, army, 1);
+
+    const expected: Troop = {
+      count: 2,
+      creature: "creature",
+    };
+
+    expect(armyResult[0]).toBeUndefined();
+    expect(armyResult[1]).toEqual(expected);
+  });
+
+  it("should combine troops inside an army when moving to a different index", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const withTroop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troop,
+      withTroop,
+    ];
+
+    const [armyResult] = swapArmyTroops(army, 0, army, 2, undefined, true);
+
+    const expected: Troop = {
+      count: 2,
+      creature: "creature",
+    };
+
+    expect(armyResult[0]).toBeUndefined();
+    expect(armyResult[1]).toEqual(expected);
+  });
+
+  it("should combine troops between armies when moving to same index", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troop,
+    ];
+
+    const withTroop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const withArmy: Army = [
+      withTroop,
+    ];
+
+    const [armyResult, withArmyResult] = swapArmyTroops(army, 0, withArmy, 0, false, true);
+
+    const expected: Troop = {
+      count: 2,
+      creature: "creature",
+    };
+
+    expect(armyResult[0]).toBeUndefined();
+    expect(withArmyResult[0]).toEqual(expected);
+  });
+
+  it("should combine troops between armies when moving to a different index", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troop,
+    ];
+
+    const withTroop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const withArmy: Army = [
+      withTroop,
+    ];
+
+    const [armyResult, withArmyResult] = swapArmyTroops(army, 0, withArmy, 1, false, true);
+
+    const expected: Troop = {
+      count: 2,
+      creature: "creature",
+    };
+
+    expect(armyResult[0]).toBeUndefined();
+    expect(withArmyResult[1]).toBeUndefined();
+    expect(withArmyResult[0]).toEqual(expected);
   });
 });

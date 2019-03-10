@@ -25,7 +25,6 @@ export {
 export {
   Hero,
   HeroSkills,
-  swapHeroTroops,
   canSelectNextHero,
   getNextHeroIndex,
   heroHasArtifact,

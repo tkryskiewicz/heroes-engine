@@ -75,16 +75,49 @@ export const appendArmyTroop = (army: Army, troop: Troop): Army => {
   return clone;
 };
 
-export const swapArmyTroops = (army: Army, index: number, withIndex: number): Army => {
+export const dismissArmyTroop = (army: Army, index: number): Army =>
+  army.map((t, i) => i === index ? undefined : t);
+
+export const swapArmyTroops = (
+  army: Army,
+  index: number,
+  withArmy: Army,
+  withIndex: number,
+  preventMovingLastTroop: boolean = false,
+  combineTroops: boolean = false,
+): [Army, Army] => {
+  const troop = army[index];
+
+  if (troop === undefined) {
+    throw new Error("Only a troop can be moved/swapped");
+  }
+
+  const withTroop = withArmy[withIndex];
+
   const clone = [
     ...army,
   ];
 
-  clone[index] = army[withIndex];
-  clone[withIndex] = army[index];
+  const withClone = army === withArmy ? clone : [...withArmy];
 
-  return clone;
+  if (army !== withArmy && withTroop === undefined && getArmySize(army) === 1 && preventMovingLastTroop) {
+    throw new Error("Can't move last troop");
+  }
+
+  const existingTroop = withTroop && withTroop.creature === troop.creature ?
+    withTroop :
+    withArmy.find((t) => t !== undefined && t.creature === troop.creature && t !== troop);
+
+  if (existingTroop !== undefined && (existingTroop === withTroop || combineTroops)) {
+    withClone[withArmy.indexOf(existingTroop)] = {
+      ...existingTroop,
+      count: existingTroop.count + troop.count,
+    };
+    clone[index] = undefined;
+  } else {
+    withClone[withIndex] = troop;
+    clone[index] = withTroop;
+  }
+
+  return [clone, withClone];
 };
-
-export const dismissArmyTroop = (army: Army, index: number): Army =>
-  army.map((t, i) => i === index ? undefined : t);

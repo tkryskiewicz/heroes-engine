@@ -1,4 +1,4 @@
-import { appendArmyTroop, Army, swapArmyTroops } from "./Army";
+import { appendArmyTroop, Army } from "./Army";
 import { buildStructure, getTroop, recruitTroop, Structure } from "./Structure";
 
 export interface Town {
@@ -14,11 +14,6 @@ export interface Town {
 
 export const getTownStructure = (town: Town, structure: string): Structure | undefined =>
   town.structures.find((s) => s.id === structure);
-
-export const swapGarrisonTroops = (town: Town, index: number, withIndex: number): Town => ({
-  ...town,
-  garrison: swapArmyTroops(town.garrison, index, withIndex),
-});
 
 export const isStructureBuilt = (town: Town, structure: string): boolean => {
   const s = getTownStructure(town, structure);

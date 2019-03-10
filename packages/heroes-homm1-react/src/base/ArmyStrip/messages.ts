@@ -3,7 +3,11 @@ import { defineMessages } from "react-intl";
 import { Troop } from "heroes-core";
 
 export const messages = defineMessages({
-  lastArmy: {
+  lastTroopCombine: {
+    defaultMessage: "Cannot combine Hero's last army",
+    id: "game.ui.army.lastTroopCombine",
+  },
+  lastTroopMove: {
     defaultMessage: "Cannot move last army to garrison.",
     id: "game.ui.army.lastArmy",
   },
@@ -35,7 +39,7 @@ export const getArmyStripStatusTextMessage = (
   lastTroop: boolean,
 ) => {
   if (lastTroop) {
-    return messages.lastArmy;
+    return messages.lastTroopMove;
   }
 
   if (selectedTroop) {

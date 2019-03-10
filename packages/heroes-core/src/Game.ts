@@ -1,11 +1,11 @@
-import { dismissArmyTroop, setArmyTroop } from "./Army";
+import { dismissArmyTroop, swapArmyTroops } from "./Army";
 import { Creature } from "./Creature";
-import { Hero, swapHeroTroops } from "./Hero";
+import { Hero } from "./Hero";
 import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
-import { buildTownStructure, endTownTurn, recruitTownTroop, swapGarrisonTroops, Town } from "./Town";
-import { Troop, TroopSelection, TroopSelectionType } from "./Troop";
+import { buildTownStructure, endTownTurn, recruitTownTroop, Town } from "./Town";
+import { TroopSelection, TroopSelectionType } from "./Troop";
 
 export interface GameData {
   readonly creatureById: { readonly [creature: string]: Creature; };
@@ -25,58 +25,6 @@ export interface Game {
 export const getGameHero = (game: Game, hero: string): Hero | undefined =>
   game.heroes.find((h) => h.id === hero);
 
-// TODO: simplify
-const getTroop = (from: Hero | Town, index: number): Troop | undefined => {
-  if ((from as Hero).army) {
-    const hero = from as Hero;
-
-    return hero.army[index];
-  }
-
-  if ((from as Town).garrison) {
-    const town = from as Town;
-
-    return town.garrison[index];
-  }
-};
-
-const setTroop = (
-  on: Hero | Town,
-  index: number,
-  troop: Troop | undefined,
-  autoCombine: boolean,
-): [Hero | Town, boolean] => {
-  if ((on as Hero).army) {
-    const hero = on as Hero;
-
-    const [army, combined] = setArmyTroop(hero.army, index, troop, autoCombine);
-
-    return [
-      {
-        ...hero,
-        army,
-      },
-      combined,
-    ];
-  }
-
-  if ((on as Town).garrison) {
-    const town = on as Town;
-
-    const [army, combined] = setArmyTroop(town.garrison, index, troop, autoCombine);
-
-    return [
-      {
-        ...on,
-        garrison: army,
-      },
-      combined,
-    ];
-  }
-
-  return [on, false];
-};
-
 export const swapGameTroops = (
   game: Game,
   troop: TroopSelection,
@@ -84,62 +32,34 @@ export const swapGameTroops = (
   // TODO: extract to config
   autoCombine: boolean = true,
 ): Game => {
-  if (troop.type === TroopSelectionType.Hero && troop.id === withTroop.id) {
-    return {
-      ...game,
-      heroes: game.heroes.map((h) => h.id === troop.id ? swapHeroTroops(h, troop.index, withTroop.index) : h),
-    };
-  }
+  const army = troop.type === TroopSelectionType.Hero ?
+    game.heroes.find((h) => h.id === troop.id)!.army :
+    game.towns.find((t) => t.id === troop.id)!.garrison;
 
-  if (troop.type === TroopSelectionType.Garrison && troop.id === withTroop.id) {
-    return {
-      ...game,
-      towns: game.towns.map((t) => t.id === troop.id ? swapGarrisonTroops(t, troop.index, withTroop.index) : t),
-    };
-  }
+  const withArmy = withTroop.type === TroopSelectionType.Hero ?
+    game.heroes.find((h) => h.id === withTroop.id)!.army :
+    game.towns.find((t) => t.id === withTroop.id)!.garrison;
 
-  // TODO: implement swapping between heroes (should work with just troop.id !== withTroop.id)
-  if (troop.type !== withTroop.type) {
-    const tr = troop.type === TroopSelectionType.Hero ?
-      getGameHero(game, troop.id) :
-      getGameTown(game, troop.id);
+  const [armyResult, withArmyResult] = swapArmyTroops(army, troop.index, withArmy, withTroop.index,
+    troop.type === TroopSelectionType.Hero, autoCombine);
 
-    if (!tr) {
-      return game;
-    }
-
-    const wtr = withTroop.type === TroopSelectionType.Hero ?
-      getGameHero(game, withTroop.id) :
-      getGameTown(game, withTroop.id);
-
-    if (!wtr) {
-      return game;
-    }
-
-    const [wtrSwapped, combined] = setTroop(wtr, withTroop.index, getTroop(tr, troop.index), autoCombine);
-
-    const wtrTroop = !combined ? getTroop(wtr, withTroop.index) : undefined;
-
-    const [trSwapped] = setTroop(tr, troop.index, wtrTroop, false);
-
-    return {
-      ...game,
-      heroes: game.heroes.map((h) => h.id === trSwapped.id ?
-        trSwapped :
-        h.id === wtrSwapped.id ?
-          wtrSwapped :
-          h,
-      ) as Hero[],
-      towns: game.towns.map((t) => t.id === trSwapped.id ?
-        trSwapped :
-        t.id === wtrSwapped.id ?
-          wtrSwapped :
-          t,
-      ) as Town[],
-    };
-  }
-
-  return game;
+  return {
+    ...game,
+    heroes: game.heroes.map((h) => h.id === troop.id || h.id === withTroop.id ?
+      {
+        ...h,
+        army: h.id === troop.id ? armyResult : withArmyResult,
+      } :
+      h,
+    ),
+    towns: game.towns.map((t) => t.id === troop.id || t.id === withTroop.id ?
+      {
+        ...t,
+        garrison: t.id === troop.id ? armyResult : withArmyResult,
+      } :
+      t,
+    ),
+  };
 };
 
 export const dismissGameHero = (game: Game, hero: string): Game => ({
