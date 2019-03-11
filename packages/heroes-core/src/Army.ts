@@ -111,7 +111,7 @@ export const swapArmyTroops = (
     withTroop :
     withArmy.find((t) => t !== undefined && t.creature === troop.creature && t !== troop);
 
-  if (army !== withArmy && getArmySize(army) === 1 && options.preventMovingLastTroop) {
+  if (options.preventMovingLastTroop && army !== withArmy && getArmySize(army) === 1) {
     if (withTroop === undefined) {
       throw new Error("Can't move last troop");
     } else if (options.autoCombineTroops && existingTroop) {
