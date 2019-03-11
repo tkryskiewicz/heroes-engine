@@ -100,13 +100,17 @@ export const swapArmyTroops = (
 
   const withClone = army === withArmy ? clone : [...withArmy];
 
-  if (army !== withArmy && withTroop === undefined && getArmySize(army) === 1 && preventMovingLastTroop) {
-    throw new Error("Can't move last troop");
-  }
-
   const existingTroop = withTroop && withTroop.creature === troop.creature ?
     withTroop :
     withArmy.find((t) => t !== undefined && t.creature === troop.creature && t !== troop);
+
+  if (army !== withArmy && getArmySize(army) === 1 && preventMovingLastTroop) {
+    if (withTroop === undefined) {
+      throw new Error("Can't move last troop");
+    } else if (combineTroops && existingTroop) {
+      throw new Error("Can't combine last troop");
+    }
+  }
 
   if (existingTroop !== undefined && (existingTroop === withTroop || combineTroops)) {
     withClone[withArmy.indexOf(existingTroop)] = {

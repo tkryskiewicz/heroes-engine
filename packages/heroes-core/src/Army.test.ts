@@ -458,6 +458,36 @@ describe("swapArmyTroops", () => {
     expect(withArmyResult[0]).toEqual(troop);
   });
 
+  it("should prevent swapping last troop between armies when combining", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const army: Army = [
+      troop,
+    ];
+
+    const withTroop: Troop = {
+      count: 1,
+      creature: "withCreature",
+    };
+
+    const combineTroop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const withArmy: Army = [
+      withTroop,
+      combineTroop,
+    ];
+
+    expect(() => {
+      swapArmyTroops(army, 0, withArmy, 0, true, true);
+    }).toThrow();
+  });
+
   it("should combine troops inside an army when moving to same index", () => {
     const troop: Troop = {
       count: 1,
