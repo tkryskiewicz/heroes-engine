@@ -78,13 +78,20 @@ export const appendArmyTroop = (army: Army, troop: Troop): Army => {
 export const dismissArmyTroop = (army: Army, index: number): Army =>
   army.map((t, i) => i === index ? undefined : t);
 
+interface SwapArmyTroopsOptions {
+  readonly preventMovingLastTroop?: boolean;
+  readonly autoCombineTroops?: boolean;
+}
+
 export const swapArmyTroops = (
   army: Army,
   index: number,
   withArmy: Army,
   withIndex: number,
-  preventMovingLastTroop: boolean = false,
-  combineTroops: boolean = false,
+  options: SwapArmyTroopsOptions = {
+    autoCombineTroops: false,
+    preventMovingLastTroop: false,
+  },
 ): [Army, Army] => {
   const troop = army[index];
 
@@ -104,15 +111,15 @@ export const swapArmyTroops = (
     withTroop :
     withArmy.find((t) => t !== undefined && t.creature === troop.creature && t !== troop);
 
-  if (army !== withArmy && getArmySize(army) === 1 && preventMovingLastTroop) {
+  if (army !== withArmy && getArmySize(army) === 1 && options.preventMovingLastTroop) {
     if (withTroop === undefined) {
       throw new Error("Can't move last troop");
-    } else if (combineTroops && existingTroop) {
+    } else if (options.autoCombineTroops && existingTroop) {
       throw new Error("Can't combine last troop");
     }
   }
 
-  if (existingTroop !== undefined && (existingTroop === withTroop || combineTroops)) {
+  if (existingTroop !== undefined && (existingTroop === withTroop || options.autoCombineTroops)) {
     withClone[withArmy.indexOf(existingTroop)] = {
       ...existingTroop,
       count: existingTroop.count + troop.count,
