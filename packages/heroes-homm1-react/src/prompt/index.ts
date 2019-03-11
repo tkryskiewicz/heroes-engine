@@ -9,6 +9,7 @@ export * from "./HeroLevelUpPrompt";
 export * from "./LuckDetailsPrompt";
 export * from "./MoraleDetailsPrompt";
 export * from "./NoSpellsPrompt";
+export * from "./RedistributeArmyPrompt";
 export * from "./SkillDetailsPrompt";
 export * from "./SpellDetailsPrompt";
 export * from "./TreasureChestPrompt";
