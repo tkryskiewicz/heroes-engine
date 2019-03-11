@@ -40,8 +40,10 @@ export const swapGameTroops = (
     game.heroes.find((h) => h.id === withTroop.id)!.army :
     game.towns.find((t) => t.id === withTroop.id)!.garrison;
 
-  const [armyResult, withArmyResult] = swapArmyTroops(army, troop.index, withArmy, withTroop.index,
-    troop.type === TroopSelectionType.Hero, autoCombine);
+  const [armyResult, withArmyResult] = swapArmyTroops(army, troop.index, withArmy, withTroop.index, {
+    autoCombineTroops: autoCombine,
+    preventMovingLastTroop: troop.type === TroopSelectionType.Hero,
+  });
 
   return {
     ...game,
