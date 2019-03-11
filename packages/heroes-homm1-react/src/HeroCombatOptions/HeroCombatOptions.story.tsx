@@ -8,8 +8,11 @@ import { LuckType, MoraleType } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
+import { Placeholder } from "../Placeholder";
 import { alignment, hero, heroClass } from "../stories";
 import { HeroCombatOptions, HeroCombatOptionsProps } from "./HeroCombatOptions";
+
+const renderHeroPortrait = () => <Placeholder name="Hero Portrait" />;
 
 storiesOf("HeroCombatOptions", module)
   .addDecorator(withReadme(Readme))
@@ -27,6 +30,7 @@ storiesOf("HeroCombatOptions", module)
       <HeroCombatOptions
         visible={boolean("Visible", true)}
         hero={h}
+        renderHeroPortrait={renderHeroPortrait}
         canCastSpell={boolean("Can Cast Spell", true)}
         onCastSpellMouseEnter={action("Cast Spell Mouse Enter")}
         onCastSpellMouseLeave={action("Cast Spell Mouse Leave")}

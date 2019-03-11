@@ -8,7 +8,7 @@ import * as styles from "./HeroCombatOptions.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { HeroPortrait, ImageButton } from "../base";
+import { ImageButton } from "../base";
 import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "../core";
 import {
   getHeroClassTitleMessage,
@@ -31,6 +31,7 @@ interface Hero {
 
 interface HeroCombatOptionsProps extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
+  readonly renderHeroPortrait: () => React.ReactNode;
   readonly canCastSpell: boolean;
   readonly onCastSpellMouseEnter: () => void;
   readonly onCastSpellMouseLeave: () => void;
@@ -49,6 +50,7 @@ interface HeroCombatOptionsProps extends InjectedIntlProps, WithGameWindowProps 
 }
 
 type DefaultProp =
+  "renderHeroPortrait" |
   "onCastSpellMouseEnter" |
   "onCastSpellMouseLeave" |
   "onCastSpellClick" |
@@ -76,6 +78,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps> {
     onSurrenderClick: () => undefined,
     onSurrenderMouseEnter: () => undefined,
     onSurrenderMouseLeave: () => undefined,
+    renderHeroPortrait: () => undefined,
   };
 
   public render() {
@@ -89,9 +92,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps> {
           </GameText>
         </div>
         <div className={styles.portrait}>
-          <HeroPortrait
-            hero={hero.id}
-          />
+          {this.props.renderHeroPortrait()}
         </div>
         {this.renderCharacteristics(hero.alignment, hero.skills, hero.morale, hero.luck)}
         <div className={styles.castSpell}>
