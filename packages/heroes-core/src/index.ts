@@ -30,6 +30,7 @@ export {
   heroHasArtifact,
   addHeroArtifact,
 } from "./Hero";
+export * from "./map";
 export { Resources, subtractResources, multiplyResources, divideResources, enoughResources } from "./Resource";
 export { Scenario } from "./Scenario";
 export { Structure, Dwelling, isDwellingStructure, buildStructure } from "./Structure";
