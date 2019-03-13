@@ -1,4 +1,5 @@
 import { MapObject } from "./MapObject";
+import { MapPoint } from "./MapPoint";
 import { MapTile } from "./MapTile";
 
 export interface Map {
@@ -29,16 +30,18 @@ export const createMap = (width: number, height: number, initialTerrain: string)
   };
 };
 
-export const placeObject = (map: Map, x: number, y: number, object: MapObject): Map => {
-  if (x < 0 || x >= map.width) {
-    throw new Error("x must be non-negative and less than map width");
+export const isPointValid = (map: Map, point: MapPoint): boolean =>
+  point.x >= 0 && point.x < map.width && point.y >= 0 && point.y < map.height;
+
+const getTileIndex = (map: Map, point: MapPoint): number =>
+  point.y * map.width + point.x;
+
+export const placeObject = (map: Map, point: MapPoint, object: MapObject): Map => {
+  if (!isPointValid(map, point)) {
+    throw new Error("point must be a valid map point");
   }
 
-  if (y < 0 || y >= map.height) {
-    throw new Error("y must be non-negative and less than map height");
-  }
-
-  const index = y * map.width + x;
+  const index = getTileIndex(map, point);
 
   if (map.tiles[index].object !== undefined) {
     throw new Error("an object is already placed");
@@ -51,6 +54,49 @@ export const placeObject = (map: Map, x: number, y: number, object: MapObject): 
   tiles[index] = {
     ...tile,
     object,
+  };
+
+  return {
+    ...map,
+    tiles,
+  };
+};
+
+export const moveObject = (map: Map, from: MapPoint, to: MapPoint): Map => {
+  if (!isPointValid(map, from)) {
+    throw new Error("from must be a valid map point");
+  }
+
+  if (!isPointValid(map, to)) {
+    throw new Error("to must be a valid map point");
+  }
+
+  const fromIndex = getTileIndex(map, from);
+
+  const fromTile = map.tiles[fromIndex];
+
+  if (fromTile.object === undefined) {
+    throw new Error("an object to move is required");
+  }
+
+  const toIndex = getTileIndex(map, to);
+
+  const toTile = map.tiles[toIndex];
+
+  if (toTile.object !== undefined) {
+    throw new Error("target tile already contains an object");
+  }
+
+  const tiles = [...map.tiles];
+
+  tiles[fromIndex] = {
+    ...fromTile,
+    object: undefined,
+  };
+
+  tiles[toIndex] = {
+    ...toTile,
+    object: fromTile.object,
   };
 
   return {

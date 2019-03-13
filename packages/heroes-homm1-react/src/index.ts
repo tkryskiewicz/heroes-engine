@@ -25,6 +25,7 @@ export * from "./HighScoresWindow";
 export * from "./KingdomOverviewWindow";
 export * from "./Locator";
 export * from "./MageGuildWindow";
+export * from "./map";
 export * from "./menu";
 export * from "./messages";
 export * from "./NewGameWindow";

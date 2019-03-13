@@ -1,0 +1,15 @@
+.root {
+  position: relative;
+  width: 46px;
+  height: 46px;
+}
+
+.flag {
+  position: absolute;
+  top: 4px;
+  left: 2px;
+}
+
+.invert {
+  transform: scaleX(-1);
+}
