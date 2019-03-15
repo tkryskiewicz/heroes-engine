@@ -23,14 +23,26 @@ interface Props extends DispatchProp {
   readonly selectedLocator?: Locator;
 }
 
-class AdventureWindowContainer extends React.Component<Props> {
+interface State {
+  readonly cursor: string;
+}
+
+class AdventureWindowContainer extends React.Component<Props, State> {
+  public readonly state: State = {
+    cursor: "",
+  };
+
   public render() {
+    const { cursor } = this.state;
+
     return (
-      <AdventureWindow
-        map={this.props.map}
-        renderTile={this.renderTile}
-        onTileClick={this.onTileClick}
-      />
+      <div className={cursor ? `cursor-${cursor}` : undefined}>
+        <AdventureWindow
+          map={this.props.map}
+          renderTile={this.renderTile}
+          onTileClick={this.onTileClick}
+        />
+      </div>
     );
   }
 
@@ -45,6 +57,8 @@ class AdventureWindowContainer extends React.Component<Props> {
       <MapTile
         key={index}
         index={index}
+        onMouseEnter={this.onTileMouseEnter}
+        onMouseLeave={this.onTileMouseLeave}
         onClick={this.onTileClick}
       >
         {object}
@@ -80,6 +94,46 @@ class AdventureWindowContainer extends React.Component<Props> {
         />
       );
     }
+  }
+
+  private readonly onTileMouseEnter = (index: number) => {
+    const tile = this.props.map.tiles[index];
+
+    const object = tile.object;
+
+    if (object) {
+      const { selectedLocator } = this.props;
+
+      if (object.type === HeroMapObjectType) {
+        const heroObject = object as HeroObject;
+
+        const heroIndex = this.props.heroes.indexOf(heroObject.hero);
+
+        if (selectedLocator && selectedLocator.type === LocatorType.Hero && selectedLocator.index !== heroIndex) {
+          this.setState({
+            cursor: "trade",
+          });
+        } else {
+          this.setState({
+            cursor: "hero",
+          });
+        }
+      } else if (object.type === TownMapObjectType) {
+        this.setState({
+          cursor: "town",
+        });
+      }
+    } else {
+      this.setState({
+        cursor: "move",
+      });
+    }
+  }
+
+  private readonly onTileMouseLeave = () => {
+    this.setState({
+      cursor: "",
+    });
   }
 
   private readonly onTileClick = (index: number) => {

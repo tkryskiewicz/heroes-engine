@@ -28,7 +28,7 @@ export interface AdventureScreenContainerProps {
 export class AdventureScreenContainer extends React.Component<AdventureScreenContainerProps> {
   public render() {
     return (
-      <>
+      <div className="cursor-pointer">
         <AdventureScreen
           renderAdventureWindow={this.renderAdventureWindow}
           renderWorldMap={this.renderWorldMap}
@@ -42,7 +42,7 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
         {this.props.gameOptionsVisible && this.renderGameOptions()}
         {this.props.puzzleWindowVisible && this.renderPuzzleWindow()}
         {this.props.scenarioInfoWindowVisible && this.renderScenarioInfoWindow()}
-      </>
+      </div>
     );
   }
 

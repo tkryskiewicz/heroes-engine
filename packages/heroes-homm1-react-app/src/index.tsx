@@ -7,6 +7,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import "antd/dist/antd.css";
 
+import "./style/_index.scss";
+
 import { rootReducer } from "heroes-homm1-state";
 
 const store = createStore(rootReducer, composeWithDevTools());
