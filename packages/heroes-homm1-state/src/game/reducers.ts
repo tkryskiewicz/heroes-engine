@@ -1,10 +1,15 @@
 import {
   buildGameStructure,
   buildStructure,
+  createHeroMapObject,
+  createMap,
+  createTownMapObject,
   dismissGameHero,
   dismissGameTroop,
   endGameTurn,
   Hero,
+  Map,
+  placeObject,
   recruitGameTroop,
   swapGameTroops,
   Town,
@@ -25,6 +30,7 @@ import {
   SpellId,
   spells,
   StructureId,
+  TerrainType,
   TownId,
 } from "heroes-homm1";
 
@@ -130,6 +136,12 @@ const towns: Town[] = [
   ),
 ];
 
+let map: Map = createMap(14, 14, TerrainType.Grass);
+
+heroes.forEach((h, i) => map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h)));
+
+towns.forEach((t, i) => map = placeObject(map, { x: 8, y: 1 + 3 * i }, createTownMapObject(t)));
+
 const initialState: GameState = {
   alignment: Alignment.Red,
   data: {
@@ -141,6 +153,7 @@ const initialState: GameState = {
   },
   discoveredPuzzlePieces: 0,
   heroes,
+  map,
   resources: {
     [Resource.Gold]: 20000,
     [Resource.Wood]: 20,

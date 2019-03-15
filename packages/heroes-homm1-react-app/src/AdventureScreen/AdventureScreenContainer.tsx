@@ -4,6 +4,7 @@ import { AdventureScreen, GameText } from "heroes-homm1-react";
 
 import { AdventureButtons } from "../AdventureButtons";
 import { AdventureOptions } from "../AdventureOptions";
+import { AdventureWindow } from "../AdventureWindow";
 import { CampaignScenarioInfoWindow } from "../CampaignScenarioInfoWindow";
 import { GameOptions } from "../GameOptions";
 import { HeroLocators } from "../HeroLocators";
@@ -47,9 +48,7 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
 
   private readonly renderAdventureWindow = () => {
     return (
-      <GameText size="normal">
-        Adventure Window
-      </GameText>
+      <AdventureWindow />
     );
   }
 

@@ -1,0 +1,10 @@
+@import "../../style/index";
+
+.root {
+  width: $MAP_TILE_SIZE;
+  height: $MAP_TILE_SIZE;
+  // FIXME: render terrain
+  background: green;
+  border: solid grey;
+  border-width: 0 1px 1px 0;
+}

@@ -1,6 +1,7 @@
 import { dismissArmyTroop, swapArmyTroops } from "./Army";
 import { Creature } from "./Creature";
 import { Hero } from "./Hero";
+import { Map } from "./map";
 import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
@@ -15,6 +16,7 @@ export interface GameData {
 export interface Game {
   readonly data: GameData;
   readonly scenario: Scenario;
+  readonly map: Map;
   readonly alignment: string;
   readonly resources: Resources;
   readonly heroes: Hero[];
