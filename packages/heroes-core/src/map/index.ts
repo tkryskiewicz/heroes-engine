@@ -4,3 +4,4 @@ export { MapObject } from "./MapObject";
 export { MapObjectOrientation, MapObjectOrientations } from "./MapObjectOrientation";
 export { MapPoint } from "./MapPoint";
 export { MapTile } from "./MapTile";
+export { TownMapObject } from "./TownMapObject";

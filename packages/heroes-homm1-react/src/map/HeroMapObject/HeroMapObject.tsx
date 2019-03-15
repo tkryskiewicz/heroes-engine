@@ -9,6 +9,7 @@ interface Props {
   readonly heroClass: string;
   readonly alignment: string;
   readonly orientation: MapObjectOrientation;
+  readonly onClick?: () => void;
 }
 
 const orientationMap = {
@@ -27,7 +28,10 @@ export class HeroMapObject extends React.Component<Props> {
     const { heroClass, alignment, orientation } = this.props;
 
     return (
-      <div className={Classnames(styles.root, orientationMap[orientation] !== orientation && styles.invert)}>
+      <div
+        className={Classnames(styles.root, orientationMap[orientation] !== orientation && styles.invert)}
+        onClick={this.props.onClick}
+      >
         <img src={`/assets/heroClasses/${heroClass}/mapObject/${orientationMap[orientation]}.png`} />
         <img
           className={styles.flag}
