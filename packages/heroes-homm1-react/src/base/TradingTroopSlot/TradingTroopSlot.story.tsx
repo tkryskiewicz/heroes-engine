@@ -6,9 +6,9 @@ import * as React from "react";
 import { Troop } from "heroes-core";
 
 import { creature, troopIndex } from "../../stories";
-import { TroopSlot } from "./TroopSlot";
+import { TradingTroopSlot } from "./TradingTroopSlot";
 
-storiesOf("HeroTradingWindow/TroopSlot", module)
+storiesOf("base/TradingTroopSlot", module)
   .add("default", () => {
     const troop: Troop = {
       count: number("Count", 0, { range: true, min: 0, max: 9999, step: 1 }),
@@ -16,7 +16,7 @@ storiesOf("HeroTradingWindow/TroopSlot", module)
     };
 
     return (
-      <TroopSlot
+      <TradingTroopSlot
         index={troopIndex("Index")}
         troop={troop}
         selected={boolean("Selected", false)}
@@ -25,7 +25,7 @@ storiesOf("HeroTradingWindow/TroopSlot", module)
     );
   })
   .add("empty", () => (
-    <TroopSlot
+    <TradingTroopSlot
       index={troopIndex("Index")}
       selected={boolean("Selected", false)}
       onClick={action("Click")}

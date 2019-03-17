@@ -2,92 +2,81 @@ import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Army, Hero, HeroSkills } from "heroes-core";
-import { ArmySize, ArtifactLimit, SkillIds } from "heroes-homm1";
+import { HeroSkills } from "heroes-core";
+import { SkillIds } from "heroes-homm1";
 
 import * as styles from "./HeroTradingWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { HeroPortrait, ImageButton } from "../base";
+import { ImageButton } from "../base";
 import { GameText, withGameWindow, WithGameWindowProps } from "../core";
-import { getHeroNameMessage, getSkillNameMessage } from "../messages";
-import { ArtifactNotTradablePrompt } from "../prompt";
-import { ArtifactSlot } from "./ArtifactSlot";
-import { messages } from "./messages";
-import { TroopSlot } from "./TroopSlot";
+import { getSkillNameMessage } from "../messages";
 
-interface ArtifactSelection {
-  readonly hero: string;
-  readonly index: number;
+const TroopSlotCount = 5;
+const ArtifactSlotCount = 14;
+
+interface Hero {
+  readonly id: string;
+  readonly skills: HeroSkills;
 }
 
 interface HeroTradingWindowProps extends InjectedIntlProps, WithGameWindowProps {
+  readonly title: string;
   readonly hero: Hero;
   readonly otherHero: Hero;
-  readonly onHeroPortraitClick: (hero: string) => void;
-  readonly selectedArtifact?: ArtifactSelection;
-  readonly onSelectedArtifactChange: (value: ArtifactSelection) => void;
-  readonly onTradeArtifacts: (artifact: ArtifactSelection, withArtifact: ArtifactSelection) => void;
-  readonly artifactNotTradablePromptVisible: boolean;
-  readonly onArtifactNotTradablePromptVisibleChange: (visible: boolean) => void;
+  readonly renderHeroPortrait: (hero: string) => React.ReactNode;
+  readonly renderTroop: (hero: string, index: number) => React.ReactNode;
+  readonly renderArtifact: (hero: string, index: number) => React.ReactNode;
   readonly onExitClick: () => void;
 }
 
 type DefaultProp =
-  "onHeroPortraitClick" |
-  "onSelectedArtifactChange" |
-  "onTradeArtifacts" |
-  "artifactNotTradablePromptVisible" |
-  "onArtifactNotTradablePromptVisibleChange" |
+  "title" |
+  "renderHeroPortrait" |
+  "renderTroop" |
+  "renderArtifact" |
   "onExitClick";
 
 class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
   public static readonly defaultProps: Pick<HeroTradingWindowProps, DefaultProp> = {
-    artifactNotTradablePromptVisible: false,
-    onArtifactNotTradablePromptVisibleChange: () => undefined,
     onExitClick: () => undefined,
-    onHeroPortraitClick: () => undefined,
-    onSelectedArtifactChange: () => undefined,
-    onTradeArtifacts: () => undefined,
+    renderArtifact: () => undefined,
+    renderHeroPortrait: () => undefined,
+    renderTroop: () => undefined,
+    title: "",
   };
 
   public render() {
-    const { hero, otherHero, selectedArtifact } = this.props;
+    const { hero, otherHero } = this.props;
 
     return (
       <div className={styles.root}>
         <div className={styles.title}>
           <GameText size="large">
-            {this.getTitle(hero.id, otherHero.id)}
+            {this.props.title}
           </GameText>
         </div>
         <div className={styles.portrait}>
-          <HeroPortrait
-            hero={hero.id}
-            onClick={this.onHeroPortraitClick}
-          />
+          {this.props.renderHeroPortrait(hero.id)}
         </div>
         <div className={styles.otherPortrait}>
-          <HeroPortrait
-            hero={otherHero.id}
-            onClick={this.onHeroPortraitClick}
-          />
+          {this.props.renderHeroPortrait(otherHero.id)}
         </div>
         <div className={styles.army}>
-          {this.renderHeroArmy(hero.army)}
+          {this.renderHeroArmy(hero.id)}
         </div>
         <div className={styles.otherArmy}>
-          {this.renderHeroArmy(otherHero.army)}
+          {this.renderHeroArmy(otherHero.id)}
         </div>
         <div className={styles.skills}>
           {this.renderSkills(hero, otherHero)}
         </div>
         <div className={styles.artifacts}>
-          {this.renderArtifacts(hero, selectedArtifact)}
+          {this.renderArtifacts(hero.id)}
         </div>
         <div className={styles.otherArtifacts}>
-          {this.renderArtifacts(otherHero, selectedArtifact)}
+          {this.renderArtifacts(otherHero.id)}
         </div>
         <div className={styles.exit}>
           <ImageButton
@@ -95,20 +84,8 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
             onClick={this.props.onExitClick}
           />
         </div>
-        {this.props.artifactNotTradablePromptVisible && this.renderArtifactNotTradablePrompt()}
       </div>
     );
-  }
-
-  private getTitle(hero: string, otherHero: string) {
-    const { formatMessage } = this.props.intl;
-
-    const heroName = formatMessage(getHeroNameMessage(hero));
-    const otherHeroName = formatMessage(getHeroNameMessage(otherHero));
-
-    const title = formatMessage(messages.title, { heroName, otherHeroName });
-
-    return title;
   }
 
   private renderSkills(hero: Hero, otherHero: Hero) {
@@ -147,84 +124,28 @@ class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
     ));
   }
 
-  private readonly onHeroPortraitClick = (hero?: string) => {
-    this.props.onHeroPortraitClick(hero!);
-  }
-
-  private renderHeroArmy(army: Army) {
-    return [...new Array(ArmySize).keys()].map((i) => (
+  private renderHeroArmy(hero: string) {
+    return [...new Array(TroopSlotCount).keys()].map((i) => (
       <div
         key={i}
         className={styles.troop}
       >
-        <TroopSlot
-          index={i}
-          troop={army[i]}
-        />
+        {this.props.renderTroop(hero, i)}
       </div>
     ));
   }
 
-  private renderArtifacts(hero: Hero, selectedArtifact?: ArtifactSelection) {
-    return [...new Array(ArtifactLimit).keys()].map((i) => {
-      const artifact = hero.artifacts[i];
-
+  private renderArtifacts(hero: string) {
+    return [...new Array(ArtifactSlotCount).keys()].map((i) => {
       return (
         <div
           key={i}
           className={styles.artifact}
         >
-          <ArtifactSlot
-            index={i}
-            hero={hero.id}
-            artifact={artifact ? artifact.id : undefined}
-            selected={selectedArtifact && selectedArtifact.hero === hero.id && selectedArtifact.index === i}
-            onClick={this.onArtifactClick}
-          />
+          {this.props.renderArtifact(hero, i)}
         </div>
       );
     });
-  }
-
-  private readonly onArtifactClick = (hero: string, index: number) => {
-    const h = this.props.hero.id === hero ?
-      this.props.hero :
-      this.props.otherHero;
-
-    const artifact = h.artifacts[index];
-
-    if (!artifact) {
-      return;
-    }
-
-    // TODO: simplify?
-    // TODO: handle clicking on same artifact
-    if (this.props.selectedArtifact) {
-      if (!artifact.tradable) {
-        this.props.onArtifactNotTradablePromptVisibleChange(true);
-      } else {
-        this.props.onTradeArtifacts(this.props.selectedArtifact, { hero, index });
-      }
-    } else {
-      if (!artifact.tradable) {
-        this.props.onArtifactNotTradablePromptVisibleChange(true);
-      } else {
-        this.props.onSelectedArtifactChange({ hero, index });
-      }
-    }
-  }
-
-  private renderArtifactNotTradablePrompt() {
-    return (
-      <ArtifactNotTradablePrompt
-        visible={true}
-        onConfirmClick={this.onCloseArtifactNotTradablePrompt}
-      />
-    );
-  }
-
-  private readonly onCloseArtifactNotTradablePrompt = () => {
-    this.props.onArtifactNotTradablePromptVisibleChange(false);
   }
 }
 

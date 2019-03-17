@@ -1,3 +1,5 @@
+@import "../style/index";
+
 .root {
   position: relative;
   width: 640px;
@@ -16,8 +18,8 @@
   position: absolute;
   top: 101px;
   left: 49px;
-  width: 101px;
-  height: 93px;
+
+  @include hero-portrait();
 }
 
 .skills {
@@ -45,8 +47,8 @@
   position: absolute;
   top: 200px;
   left: 49px;
-  width: 101px;
-  height: 93px;
+
+  @include crest();
 }
 
 .army {

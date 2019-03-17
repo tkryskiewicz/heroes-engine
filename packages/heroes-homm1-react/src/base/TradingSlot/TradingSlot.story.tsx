@@ -3,11 +3,11 @@ import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { Slot } from "./Slot";
+import { TradingSlot } from "./TradingSlot";
 
-storiesOf("HeroTradingWindow/Slot", module)
+storiesOf("base/TradingSlot", module)
   .add("default", () => (
-    <Slot
+    <TradingSlot
       index={number("Index", 0, { range: true, min: 0, max: 20, step: 1 })}
       selected={boolean("Selected", false)}
       onClick={action("Click")}

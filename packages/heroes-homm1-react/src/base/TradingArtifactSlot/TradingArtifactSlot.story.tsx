@@ -6,11 +6,11 @@ import * as React from "react";
 import { ArtifactLimit, HeroId } from "heroes-homm1";
 
 import { artifact } from "../../stories";
-import { ArtifactSlot } from "./ArtifactSlot";
+import { TradingArtifactSlot } from "./TradingArtifactSlot";
 
-storiesOf("HeroTradingWindow/ArtifactSlot", module)
+storiesOf("base/TradingArtifactSlot", module)
   .add("default", () => (
-    <ArtifactSlot
+    <TradingArtifactSlot
       hero={HeroId.LordKilburn}
       index={number("Index", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 })}
       artifact={artifact("Artifact")}
@@ -19,7 +19,7 @@ storiesOf("HeroTradingWindow/ArtifactSlot", module)
     />
   ))
   .add("empty", () => (
-    <ArtifactSlot
+    <TradingArtifactSlot
       hero={HeroId.LordKilburn}
       index={number("Index", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 })}
       selected={boolean("Selected", false)}

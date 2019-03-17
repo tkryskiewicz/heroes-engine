@@ -2,30 +2,30 @@ import * as React from "react";
 
 import { Troop } from "heroes-core";
 
-import * as styles from "./TroopSlot.module.scss";
+import * as styles from "./TradingTroopSlot.module.scss";
 
 import { BackgroundImage } from "./assets";
 
 import { CreatureIcon } from "../../base";
 import { GameText } from "../../core";
-import { Slot } from "../Slot";
+import { TradingSlot } from "../TradingSlot";
 
-export interface TroopSlotProps {
+export interface TradingTroopSlotProps {
   readonly index: number;
   readonly troop?: Troop;
   readonly selected: boolean;
   readonly onClick: (index: number) => void;
 }
 
-export class TroopSlot extends React.Component<TroopSlotProps> {
-  public static readonly defaultProps: Pick<TroopSlotProps, "selected" | "onClick"> = {
+export class TradingTroopSlot extends React.Component<TradingTroopSlotProps> {
+  public static readonly defaultProps: Pick<TradingTroopSlotProps, "selected" | "onClick"> = {
     onClick: () => undefined,
     selected: false,
   };
 
   public render() {
     return (
-      <Slot
+      <TradingSlot
         index={this.props.index}
         selected={this.props.selected}
         onClick={this.props.onClick}
@@ -35,7 +35,7 @@ export class TroopSlot extends React.Component<TroopSlotProps> {
           {this.props.troop && this.renderTroop(this.props.troop)}
           {this.props.troop && this.renderCount(this.props.troop.count)}
         </div>
-      </Slot>
+      </TradingSlot>
     );
   }
 

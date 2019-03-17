@@ -1,3 +1,5 @@
+@import "../style/index";
+
 .root {
   position: relative;
   width: 448px;
@@ -16,6 +18,8 @@
   position: absolute;
   top: 44px;
   left: 28px;
+
+  @include hero-portrait();
 }
 
 .skills {
@@ -30,6 +34,8 @@
   position: absolute;
   top: 44px;
   left: 319px;
+
+  @include hero-portrait();
 }
 
 .army {
@@ -47,7 +53,8 @@
 }
 
 .troop {
-  display: inline-block;
+  width: 34px;
+  height: 34px;
   margin-right: 1px;
 }
 
@@ -55,6 +62,8 @@
   position: absolute;
   top: 193px;
   left: 75px;
+  display: flex;
+  flex-wrap: wrap;
   width: 70px;
 }
 
@@ -62,11 +71,14 @@
   position: absolute;
   top: 193px;
   left: 304px;
+  display: flex;
+  flex-wrap: wrap;
   width: 70px;
 }
 
 .artifact {
-  display: inline-block;
+  width: 34px;
+  height: 34px;
   margin-right: 1px;
   margin-bottom: 1px;
 }

@@ -1,3 +1,5 @@
+@import "../style/index";
+
 .root {
   position: relative;
   width: 250px;
@@ -16,8 +18,8 @@
   position: absolute;
   top: 42px;
   left: 11px;
-  width: 101px;
-  height: 93px;
+
+  @include hero-portrait();
 }
 
 .characteristics {

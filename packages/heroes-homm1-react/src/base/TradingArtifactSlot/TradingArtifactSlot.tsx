@@ -1,13 +1,13 @@
 import * as React from "react";
 
-import * as styles from "./ArtifactSlot.module.scss";
+import * as styles from "./TradingArtifactSlot.module.scss";
 
 import { BackgroundImage } from "./assets";
 
 import { ArtifactIcon } from "../../base";
-import { Slot } from "../Slot";
+import { TradingSlot } from "../TradingSlot";
 
-export interface ArtifactSlotProps {
+export interface TradingArtifactSlotProps {
   readonly hero: string;
   readonly index: number;
   readonly artifact?: string;
@@ -15,15 +15,15 @@ export interface ArtifactSlotProps {
   readonly onClick: (hero: string, index: number) => void;
 }
 
-export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
-  public static readonly defaultProps: Pick<ArtifactSlotProps, "selected" | "onClick"> = {
+export class TradingArtifactSlot extends React.Component<TradingArtifactSlotProps> {
+  public static readonly defaultProps: Pick<TradingArtifactSlotProps, "selected" | "onClick"> = {
     onClick: () => undefined,
     selected: false,
   };
 
   public render() {
     return (
-      <Slot
+      <TradingSlot
         index={this.props.index}
         selected={this.props.selected}
         onClick={this.onClick}
@@ -32,7 +32,7 @@ export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
           {this.renderBackground()}
           {this.props.artifact && this.renderArtifact(this.props.artifact)}
         </div>
-      </Slot>
+      </TradingSlot>
     );
   }
 

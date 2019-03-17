@@ -1,0 +1,1 @@
+export { TradingTroopSlot } from "./TradingTroopSlot";

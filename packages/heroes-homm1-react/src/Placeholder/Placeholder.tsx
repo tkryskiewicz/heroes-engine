@@ -47,7 +47,7 @@ export class Placeholder extends React.Component<PlaceholderProps, PlaceholderSt
           {this.props.name}
         </span>
         <span className={styles.measures}>
-          {Math.floor(width)} x {Math.floor(height)}
+          {Math.floor(width)}x{Math.floor(height)}
         </span>
       </div>
     );

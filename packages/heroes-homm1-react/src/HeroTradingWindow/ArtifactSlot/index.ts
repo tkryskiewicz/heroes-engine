@@ -1,1 +1,0 @@
-export { ArtifactSlot } from "./ArtifactSlot";

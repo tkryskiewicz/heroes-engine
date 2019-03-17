@@ -1,1 +1,0 @@
-export { TroopSlot } from "./TroopSlot";

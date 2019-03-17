@@ -1,0 +1,1 @@
+export { TradingArtifactSlot } from "./TradingArtifactSlot";

@@ -23,5 +23,8 @@ export * from "./ResourceIcon";
 export * from "./SkillInfo";
 export * from "./SpellIcon";
 export * from "./TownOverview";
+export * from "./TradingArtifactSlot";
+export * from "./TradingSlot";
+export * from "./TradingTroopSlot";
 export * from "./Treasury";
 export * from "./TroopSlot";

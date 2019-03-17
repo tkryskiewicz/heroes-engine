@@ -1,17 +1,17 @@
 import * as React from "react";
 
-import * as styles from "./Slot.module.scss";
+import * as styles from "./TradingSlot.module.scss";
 
 import { SelectionImage } from "./assets";
 
-export interface SlotProps {
+export interface TradingSlotProps {
   readonly index: number;
   readonly selected: boolean;
   readonly onClick: (index: number) => void;
 }
 
-export class Slot extends React.Component<SlotProps> {
-  public static readonly defaultProps: Pick<SlotProps, "selected" | "onClick"> = {
+export class TradingSlot extends React.Component<TradingSlotProps> {
+  public static readonly defaultProps: Pick<TradingSlotProps, "selected" | "onClick"> = {
     onClick: () => undefined,
     selected: false,
   };
