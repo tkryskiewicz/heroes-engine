@@ -14,13 +14,16 @@ import {
 } from "heroes-core";
 import { StructureId } from "heroes-homm1";
 import { AdventureWindow, HeroMapObject, MapTile, TownMapObject } from "heroes-homm1-react";
-import { Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
+import { adventureScreenActions, Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
+
+import { HeroTradingWindow } from "../HeroTradingWindow";
 
 interface Props extends DispatchProp {
   readonly map: Map;
   readonly heroes: Hero[];
   readonly towns: Town[];
   readonly selectedLocator?: Locator;
+  readonly heroTradingScreenVisible: boolean;
 }
 
 interface State {
@@ -42,6 +45,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
           renderTile={this.renderTile}
           onTileClick={this.onTileClick}
         />
+        {this.props.heroTradingScreenVisible && this.rendeHeroTradingWindow()}
       </div>
     );
   }
@@ -150,8 +154,12 @@ class AdventureWindowContainer extends React.Component<Props, State> {
 
         const heroIndex = this.props.heroes.indexOf(heroObject.hero);
 
-        if (!selectedLocator || selectedLocator.type === LocatorType.Town || selectedLocator.index !== heroIndex) {
+        if (!selectedLocator) {
           this.props.dispatch(locatorsActions.selectLocator({ type: LocatorType.Hero, index: heroIndex }));
+        } else if (selectedLocator.type === LocatorType.Hero && heroIndex !== selectedLocator.index) {
+          const otherHero = this.props.heroes[selectedLocator.index];
+
+          this.props.dispatch(adventureScreenActions.openHeroTradingWindow(heroObject.hero.id, otherHero.id));
         } else {
           this.props.dispatch(locatorsActions.openLocatorDetails());
         }
@@ -167,6 +175,19 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         }
       }
     }
+  }
+
+  private rendeHeroTradingWindow() {
+    return (
+      <HeroTradingWindow
+        visible={true}
+        onExitClick={this.onExitHeroTradingWindowClick}
+      />
+    );
+  }
+
+  private readonly onExitHeroTradingWindowClick = () => {
+    this.props.dispatch(adventureScreenActions.closeHeroTradingWindow());
   }
 }
 

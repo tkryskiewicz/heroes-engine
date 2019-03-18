@@ -5,6 +5,7 @@ import { adventureScreenReducer } from "./adventureScreen";
 import { gameReducer } from "./game";
 import { gameOptionsReducer } from "./gameOptions";
 import { gameSettingsReducer } from "./gameSettings";
+import { heroTradingWindowReducer } from "./heroTradingWindow";
 import { heroWindowReducer } from "./heroWindow";
 import { kingdomOverviewWindowReducer } from "./kingdomOverviewWindow";
 import { locatorsReducer } from "./locators";
@@ -22,6 +23,7 @@ export const rootReducer = combineReducers<AppState>({
   game: gameReducer,
   gameOptions: gameOptionsReducer,
   gameSettings: gameSettingsReducer,
+  heroTradingWindow: heroTradingWindowReducer,
   heroWindow: heroWindowReducer,
   kingdomOverviewWindow: kingdomOverviewWindowReducer,
   locators: locatorsReducer,

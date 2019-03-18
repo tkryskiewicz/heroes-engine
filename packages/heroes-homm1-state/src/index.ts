@@ -3,6 +3,7 @@ export { adventureScreenActions } from "./adventureScreen";
 export { gameActions } from "./game";
 export { gameOptionsActions } from "./gameOptions";
 export { gameSettingsActions } from "./gameSettings";
+export { heroTradingWindowActions } from "./heroTradingWindow";
 export { heroWindowActions } from "./heroWindow";
 export { kingdomOverviewWindowActions } from "./kingdomOverviewWindow";
 export { locatorsActions, Locator, LocatorType } from "./locators";

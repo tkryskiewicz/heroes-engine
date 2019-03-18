@@ -1,1 +1,1 @@
-export { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindowContainer";
+export { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindowContainer.connect";

@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { Troop } from "heroes-core";
 
-import { creature, troopIndex } from "../../stories";
+import { creature, hero, troopIndex } from "../../stories";
 import { TradingTroopSlot } from "./TradingTroopSlot";
 
 storiesOf("base/TradingTroopSlot", module)
@@ -18,6 +18,7 @@ storiesOf("base/TradingTroopSlot", module)
     return (
       <TradingTroopSlot
         index={troopIndex("Index")}
+        hero={hero("Hero")}
         troop={troop}
         selected={boolean("Selected", false)}
         onClick={action("Click")}
@@ -27,6 +28,7 @@ storiesOf("base/TradingTroopSlot", module)
   .add("empty", () => (
     <TradingTroopSlot
       index={troopIndex("Index")}
+      hero={hero("Hero")}
       selected={boolean("Selected", false)}
       onClick={action("Click")}
     />

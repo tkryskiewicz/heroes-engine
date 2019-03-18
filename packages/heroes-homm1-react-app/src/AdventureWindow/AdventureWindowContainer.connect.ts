@@ -8,9 +8,11 @@ type StateProp =
   "map" |
   "heroes" |
   "towns" |
-  "selectedLocator";
+  "selectedLocator" |
+  "heroTradingScreenVisible";
 
 const mapStateToProps = (state: AppState): Pick<AdventureWindowProps, StateProp> => ({
+  heroTradingScreenVisible: state.adventureScreen.heroTradingWindowVisible,
   heroes: state.game.heroes,
   map: state.game.map,
   selectedLocator: state.locators.selectedLocator,

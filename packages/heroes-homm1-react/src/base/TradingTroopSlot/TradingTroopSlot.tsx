@@ -12,9 +12,10 @@ import { TradingSlot } from "../TradingSlot";
 
 export interface TradingTroopSlotProps {
   readonly index: number;
+  readonly hero: string;
   readonly troop?: Troop;
   readonly selected: boolean;
-  readonly onClick: (index: number) => void;
+  readonly onClick: (hero: string, index: number) => void;
 }
 
 export class TradingTroopSlot extends React.Component<TradingTroopSlotProps> {
@@ -28,7 +29,7 @@ export class TradingTroopSlot extends React.Component<TradingTroopSlotProps> {
       <TradingSlot
         index={this.props.index}
         selected={this.props.selected}
-        onClick={this.props.onClick}
+        onClick={this.onClick}
       >
         <div className={styles.root}>
           {this.renderBackground()}
@@ -64,5 +65,9 @@ export class TradingTroopSlot extends React.Component<TradingTroopSlotProps> {
         </GameText>
       </div>
     );
+  }
+
+  private readonly onClick = () => {
+    this.props.onClick(this.props.hero, this.props.index);
   }
 }

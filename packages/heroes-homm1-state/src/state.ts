@@ -3,6 +3,7 @@ import { AdventureScreenState } from "./adventureScreen";
 import { GameState } from "./game";
 import { GameOptionsState } from "./gameOptions";
 import { GameSettingsState } from "./gameSettings";
+import { HeroTradingWindowState } from "./heroTradingWindow";
 import { HeroWindowState } from "./heroWindow";
 import { KingdomOverviewWindowState } from "./kingdomOverviewWindow";
 import { LocatorsState } from "./locators";
@@ -18,6 +19,7 @@ export interface AppState {
   readonly adventureScreen: AdventureScreenState;
   readonly gameSettings: GameSettingsState;
   readonly locators: LocatorsState;
+  readonly heroTradingWindow: HeroTradingWindowState;
   readonly heroWindow: HeroWindowState;
   readonly kingdomOverviewWindow: KingdomOverviewWindowState;
   readonly townWindow: TownWindowState;

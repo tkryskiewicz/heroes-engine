@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Hero } from "heroes-core";
+import { Hero, TroopSelection, TroopSelectionType } from "heroes-core";
 import {
   ArtifactNotTradablePrompt,
   getHeroNameMessage,
@@ -22,6 +22,11 @@ interface Props extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
   readonly otherHero: Hero;
   readonly onHeroPortraitClick: (hero: string) => void;
+
+  readonly selectedTroop?: TroopSelection;
+  readonly onSelectTroop: (troop: TroopSelection) => void;
+  readonly onSwapTroops: (troop: TroopSelection, withTroop: TroopSelection) => void;
+
   readonly selectedArtifact?: ArtifactSelection;
   readonly onSelectedArtifactChange: (value: ArtifactSelection) => void;
   readonly onTradeArtifacts: (artifact: ArtifactSelection, withArtifact: ArtifactSelection) => void;
@@ -32,6 +37,8 @@ interface Props extends InjectedIntlProps, WithGameWindowProps {
 
 type DefaultProp =
   "onHeroPortraitClick" |
+  "onSelectTroop" |
+  "onSwapTroops" |
   "onSelectedArtifactChange" |
   "onTradeArtifacts" |
   "artifactNotTradablePromptVisible" |
@@ -44,7 +51,9 @@ class HeroTradingWindowContainer extends React.Component<Props> {
     onArtifactNotTradablePromptVisibleChange: () => undefined,
     onExitClick: () => undefined,
     onHeroPortraitClick: () => undefined,
+    onSelectTroop: () => undefined,
     onSelectedArtifactChange: () => undefined,
+    onSwapTroops: () => undefined,
     onTradeArtifacts: () => undefined,
   };
 
@@ -54,11 +63,14 @@ class HeroTradingWindowContainer extends React.Component<Props> {
     return (
       <div>
         <HeroTradingWindow
-          {...this.props}
+          visible={this.props.visible}
+          hero={hero}
+          otherHero={otherHero}
           title={this.getTitle(hero.id, otherHero.id)}
           renderHeroPortrait={this.renderHeroPortrait}
           renderTroop={this.renderTroop}
           renderArtifact={this.renderArtifact}
+          onExitClick={this.props.onExitClick}
         />
         {this.props.artifactNotTradablePromptVisible && this.renderArtifactNotTradablePrompt()}
       </div>
@@ -90,6 +102,8 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   }
 
   private readonly renderTroop = (hero: string, index: number) => {
+    const { selectedTroop } = this.props;
+
     const h = this.props.hero.id === hero ?
       this.props.hero :
       this.props.otherHero;
@@ -97,9 +111,32 @@ class HeroTradingWindowContainer extends React.Component<Props> {
     return (
       <TradingTroopSlot
         index={index}
+        hero={hero}
         troop={h.army[index]}
+        selected={selectedTroop && selectedTroop.id === hero && selectedTroop.index === index}
+        onClick={this.onHeroTroopClick}
       />
     );
+  }
+
+  private readonly onHeroTroopClick = (hero: string, index: number) => {
+    this.onTroopClick({ type: TroopSelectionType.Hero, id: hero, index });
+  }
+
+  private readonly onTroopClick = (troop: TroopSelection) => {
+    const { selectedTroop } = this.props;
+
+    if (selectedTroop === undefined && this.getTroop(troop)) {
+      this.props.onSelectTroop(troop);
+    } else if (selectedTroop && (selectedTroop.id !== troop.id || selectedTroop.index !== troop.index)) {
+      this.props.onSwapTroops(selectedTroop, troop);
+    }
+  }
+
+  private getTroop(troop: TroopSelection) {
+    return troop.id === this.props.hero.id ?
+      this.props.hero.army[troop.index] :
+      this.props.otherHero.army[troop.index];
   }
 
   private readonly renderArtifact = (hero: string, index: number) => {
