@@ -15,8 +15,7 @@ import {
   getArmyStripStatusTextMessage,
   getArtifactNameMessage,
   getCreatureNameMessage,
-  getHeroClassTitleMessage,
-  getHeroNameMessage,
+  getHeroWindowTitle,
   getLuckNameMessage,
   getMoraleTypeNameMessage,
   getSkillNameMessage,
@@ -91,13 +90,13 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 
   public render() {
-    const { visibleSkillDetails, selectedTroopIndex, troopDetailsVisible, visibleArtifactDetails } = this.props;
+    const { hero, visibleSkillDetails, selectedTroopIndex, troopDetailsVisible, visibleArtifactDetails } = this.props;
 
     return (
       <>
         <HeroWindow
           visible={this.props.visible}
-          title={this.getHeroTitle()}
+          title={getHeroWindowTitle(this.props.intl, hero.id, hero.heroClass)}
           renderHeroPortrait={this.renderHeroPortrait}
           renderSkill={this.renderSkill}
           renderAdditionalStats={this.renderAdditionalStats}
@@ -119,17 +118,6 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
         {this.props.dismissible && this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
       </>
     );
-  }
-
-  private getHeroTitle() {
-    const { hero } = this.props;
-    const { formatMessage } = this.props.intl;
-
-    const heroName = formatMessage(getHeroNameMessage(hero.id));
-
-    const heroTitle = formatMessage(getHeroClassTitleMessage(hero.heroClass), { heroName });
-
-    return heroTitle;
   }
 
   private readonly renderHeroPortrait = () => {
@@ -492,9 +480,11 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 
   private readonly onDismissHeroMouseEnter = () => {
-    const heroTitle = this.getHeroTitle();
+    const { intl, hero } = this.props;
 
-    const statusText = this.props.intl.formatMessage(heroWindowMessages.dismiss, { heroName: heroTitle });
+    const title = getHeroWindowTitle(intl, hero.id, hero.heroClass);
+
+    const statusText = this.props.intl.formatMessage(heroWindowMessages.dismiss, { heroName: title });
 
     this.setStatusText(statusText);
   }

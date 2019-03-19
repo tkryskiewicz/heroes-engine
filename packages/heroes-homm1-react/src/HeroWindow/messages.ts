@@ -1,4 +1,6 @@
-import { defineMessages } from "react-intl";
+import { defineMessages, InjectedIntl } from "react-intl";
+
+import { getHeroClassTitleMessage, getHeroNameMessage } from "../messages";
 
 export const messages = defineMessages({
   additionalStats: {
@@ -22,3 +24,11 @@ export const messages = defineMessages({
     id: "ui.heroWindow.statInfo",
   },
 });
+
+export const getTitle = (intl: InjectedIntl, hero: string, heroClass: string) => {
+  const heroName = intl.formatMessage(getHeroNameMessage(hero));
+
+  const heroTitle = intl.formatMessage(getHeroClassTitleMessage(heroClass), { heroName });
+
+  return heroTitle;
+};

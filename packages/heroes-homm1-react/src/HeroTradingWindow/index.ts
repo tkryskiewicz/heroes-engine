@@ -1,2 +1,2 @@
 export { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindow";
-export { messages as heroTradingWindowMessages } from "./messages";
+export { messages as heroTradingWindowMessages, getTitle as getHeroTradingWindowTitle } from "./messages";

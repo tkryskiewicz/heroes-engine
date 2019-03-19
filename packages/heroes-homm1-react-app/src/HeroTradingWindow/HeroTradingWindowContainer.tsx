@@ -1,13 +1,12 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Hero, TroopSelection, TroopSelectionType, getArmySize } from "heroes-core";
+import { getArmySize, Hero, TroopSelection, TroopSelectionType } from "heroes-core";
 import {
   ArtifactNotTradablePrompt,
-  getHeroNameMessage,
+  getHeroTradingWindowTitle,
   HeroPortrait,
   HeroTradingWindow,
-  heroTradingWindowMessages,
   TradingArtifactSlot,
   TradingTroopSlot,
   WithGameWindowProps,
@@ -65,7 +64,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   };
 
   public render() {
-    const { hero, otherHero, visibleHeroDetails } = this.props;
+    const { intl, hero, otherHero, visibleHeroDetails } = this.props;
 
     return (
       <div>
@@ -73,7 +72,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
           visible={this.props.visible}
           hero={hero}
           otherHero={otherHero}
-          title={this.getTitle(hero.id, otherHero.id)}
+          title={getHeroTradingWindowTitle(intl, hero.id, otherHero.id)}
           renderHeroPortrait={this.renderHeroPortrait}
           renderTroop={this.renderTroop}
           renderArtifact={this.renderArtifact}
@@ -83,17 +82,6 @@ class HeroTradingWindowContainer extends React.Component<Props> {
         {visibleHeroDetails && this.renderHeroDetails(visibleHeroDetails === hero.id ? hero : otherHero)}
       </div>
     );
-  }
-
-  private getTitle(hero: string, otherHero: string) {
-    const { formatMessage } = this.props.intl;
-
-    const heroName = formatMessage(getHeroNameMessage(hero));
-    const otherHeroName = formatMessage(getHeroNameMessage(otherHero));
-
-    const title = formatMessage(heroTradingWindowMessages.title, { heroName, otherHeroName });
-
-    return title;
   }
 
   private readonly renderHeroPortrait = (hero: string) => {
