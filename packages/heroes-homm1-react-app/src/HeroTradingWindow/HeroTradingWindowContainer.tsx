@@ -13,6 +13,8 @@ import {
   WithGameWindowProps,
 } from "heroes-homm1-react";
 
+import { HeroWindow } from "../HeroWindow";
+
 interface ArtifactSelection {
   readonly hero: string;
   readonly index: number;
@@ -21,7 +23,10 @@ interface ArtifactSelection {
 interface Props extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
   readonly otherHero: Hero;
-  readonly onHeroPortraitClick: (hero: string) => void;
+
+  readonly visibleHeroDetails?: string;
+  readonly onOpenHeroDetailsClick: (hero: string) => void;
+  readonly onCloseHeroDetailsClick: () => void;
 
   readonly selectedTroop?: TroopSelection;
   readonly onSelectTroop: (troop: TroopSelection) => void;
@@ -36,7 +41,8 @@ interface Props extends InjectedIntlProps, WithGameWindowProps {
 }
 
 type DefaultProp =
-  "onHeroPortraitClick" |
+  "onOpenHeroDetailsClick" |
+  "onCloseHeroDetailsClick" |
   "onSelectTroop" |
   "onSwapTroops" |
   "onSelectedArtifactChange" |
@@ -49,8 +55,9 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
     artifactNotTradablePromptVisible: false,
     onArtifactNotTradablePromptVisibleChange: () => undefined,
+    onCloseHeroDetailsClick: () => undefined,
     onExitClick: () => undefined,
-    onHeroPortraitClick: () => undefined,
+    onOpenHeroDetailsClick: () => undefined,
     onSelectTroop: () => undefined,
     onSelectedArtifactChange: () => undefined,
     onSwapTroops: () => undefined,
@@ -58,7 +65,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   };
 
   public render() {
-    const { hero, otherHero } = this.props;
+    const { hero, otherHero, visibleHeroDetails } = this.props;
 
     return (
       <div>
@@ -73,6 +80,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
           onExitClick={this.props.onExitClick}
         />
         {this.props.artifactNotTradablePromptVisible && this.renderArtifactNotTradablePrompt()}
+        {visibleHeroDetails && this.renderHeroDetails(visibleHeroDetails === hero.id ? hero : otherHero)}
       </div>
     );
   }
@@ -98,7 +106,22 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   }
 
   private readonly onHeroPortraitClick = (hero?: string) => {
-    this.props.onHeroPortraitClick(hero!);
+    this.props.onOpenHeroDetailsClick(hero!);
+  }
+
+  private renderHeroDetails(hero: Hero) {
+    return (
+      <HeroWindow
+        visible={true}
+        hero={hero}
+        dismissible={false}
+        onExitClick={this.onCloseHeroDetailsClick}
+      />
+    );
+  }
+
+  private readonly onCloseHeroDetailsClick = () => {
+    this.props.onCloseHeroDetailsClick();
   }
 
   private readonly renderTroop = (hero: string, index: number) => {

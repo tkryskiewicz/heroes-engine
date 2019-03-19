@@ -9,19 +9,29 @@ import { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindowCo
 type StateProp =
   "hero" |
   "otherHero" |
+  "visibleHeroDetails" |
   "selectedTroop";
 
 const mapStateToProps = (state: AppState): Pick<HeroTradingWindowProps, StateProp> => ({
   hero: getGameHero(state.game, state.adventureScreen.hero!)!,
   otherHero: getGameHero(state.game, state.adventureScreen.otherHero!)!,
   selectedTroop: state.heroTradingWindow.selectedTroop,
+  visibleHeroDetails: state.heroTradingWindow.visibleHeroDetails,
 });
 
 type DispatchProp =
+  "onOpenHeroDetailsClick" |
+  "onCloseHeroDetailsClick" |
   "onSelectTroop" |
   "onSwapTroops";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroTradingWindowProps, DispatchProp> => ({
+  onOpenHeroDetailsClick(hero) {
+    dispatch(heroTradingWindowActions.openHeroDetails(hero));
+  },
+  onCloseHeroDetailsClick() {
+    dispatch(heroTradingWindowActions.closeHeroDetails());
+  },
   onSelectTroop(troop) {
     dispatch(heroTradingWindowActions.selectTroop(troop));
   },

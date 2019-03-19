@@ -8,6 +8,16 @@ export const heroTradingWindowReducer = (
   action: HeroTradingWindowAction,
 ): HeroTradingWindowState => {
   switch (action.type) {
+    case HeroTradingWindowActionType.OpenHeroDetails:
+      return {
+        ...state,
+        visibleHeroDetails: action.hero,
+      };
+    case HeroTradingWindowActionType.CloseHeroDetails:
+      return {
+        ...state,
+        visibleHeroDetails: undefined,
+      };
     case HeroTradingWindowActionType.SelectTroop:
       return {
         ...state,
