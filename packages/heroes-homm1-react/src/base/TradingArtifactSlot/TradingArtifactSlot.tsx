@@ -4,7 +4,7 @@ import * as styles from "./TradingArtifactSlot.module.scss";
 
 import { BackgroundImage } from "./assets";
 
-import { ArtifactIcon } from "../../base";
+import { ArtifactIcon } from "../ArtifactIcon";
 import { TradingSlot } from "../TradingSlot";
 
 export interface TradingArtifactSlotProps {

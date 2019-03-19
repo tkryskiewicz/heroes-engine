@@ -6,8 +6,8 @@ import * as styles from "./TradingTroopSlot.module.scss";
 
 import { BackgroundImage } from "./assets";
 
-import { CreatureIcon } from "../../base";
 import { GameText } from "../../core";
+import { CreatureIcon } from "../CreatureIcon";
 import { TradingSlot } from "../TradingSlot";
 
 export interface TradingTroopSlotProps {
