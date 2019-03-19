@@ -1,8 +1,9 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { getArmySize, Hero, TroopSelection, TroopSelectionType } from "heroes-core";
+import { ArtifactSelection, getArmySize, Hero, TroopSelection, TroopSelectionType } from "heroes-core";
 import {
+  ArtifactDetailsPrompt,
   ArtifactNotTradablePrompt,
   getHeroTradingWindowTitle,
   HeroPortrait,
@@ -13,11 +14,6 @@ import {
 } from "heroes-homm1-react";
 
 import { HeroWindow } from "../HeroWindow";
-
-interface ArtifactSelection {
-  readonly hero: string;
-  readonly index: number;
-}
 
 interface Props extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
@@ -32,10 +28,17 @@ interface Props extends InjectedIntlProps, WithGameWindowProps {
   readonly onSwapTroops: (troop: TroopSelection, withTroop: TroopSelection) => void;
 
   readonly selectedArtifact?: ArtifactSelection;
-  readonly onSelectedArtifactChange: (value: ArtifactSelection) => void;
-  readonly onTradeArtifacts: (artifact: ArtifactSelection, withArtifact: ArtifactSelection) => void;
+  readonly onSelectArtifactClick: (artifact: ArtifactSelection) => void;
+  readonly onTradeArtifactsClick: (artifact: ArtifactSelection, withArtifact: ArtifactSelection) => void;
+
+  readonly artifactDetailsVisible: boolean;
+  readonly onOpenArtifactDetailsClick: () => void;
+  readonly onCloseArtifactDetailsClick: () => void;
+
   readonly artifactNotTradablePromptVisible: boolean;
-  readonly onArtifactNotTradablePromptVisibleChange: (visible: boolean) => void;
+  readonly onOpenArtifactNotTradablePrompt: () => void;
+  readonly onCloseArtifactNotTradablePrompt: () => void;
+
   readonly onExitClick: () => void;
 }
 
@@ -44,27 +47,35 @@ type DefaultProp =
   "onCloseHeroDetailsClick" |
   "onSelectTroop" |
   "onSwapTroops" |
-  "onSelectedArtifactChange" |
-  "onTradeArtifacts" |
+  "onSelectArtifactClick" |
+  "onTradeArtifactsClick" |
+  "artifactDetailsVisible" |
+  "onOpenArtifactDetailsClick" |
+  "onCloseArtifactDetailsClick" |
   "artifactNotTradablePromptVisible" |
-  "onArtifactNotTradablePromptVisibleChange" |
+  "onOpenArtifactNotTradablePrompt" |
+  "onCloseArtifactNotTradablePrompt" |
   "onExitClick";
 
 class HeroTradingWindowContainer extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
+    artifactDetailsVisible: false,
     artifactNotTradablePromptVisible: false,
-    onArtifactNotTradablePromptVisibleChange: () => undefined,
+    onCloseArtifactDetailsClick: () => undefined,
+    onCloseArtifactNotTradablePrompt: () => undefined,
     onCloseHeroDetailsClick: () => undefined,
     onExitClick: () => undefined,
+    onOpenArtifactDetailsClick: () => undefined,
+    onOpenArtifactNotTradablePrompt: () => undefined,
     onOpenHeroDetailsClick: () => undefined,
+    onSelectArtifactClick: () => undefined,
     onSelectTroop: () => undefined,
-    onSelectedArtifactChange: () => undefined,
     onSwapTroops: () => undefined,
-    onTradeArtifacts: () => undefined,
+    onTradeArtifactsClick: () => undefined,
   };
 
   public render() {
-    const { intl, hero, otherHero, visibleHeroDetails } = this.props;
+    const { intl, hero, otherHero, visibleHeroDetails, selectedArtifact } = this.props;
 
     return (
       <div>
@@ -78,8 +89,9 @@ class HeroTradingWindowContainer extends React.Component<Props> {
           renderArtifact={this.renderArtifact}
           onExitClick={this.props.onExitClick}
         />
-        {this.props.artifactNotTradablePromptVisible && this.renderArtifactNotTradablePrompt()}
         {visibleHeroDetails && this.renderHeroDetails(visibleHeroDetails === hero.id ? hero : otherHero)}
+        {selectedArtifact && this.props.artifactDetailsVisible && this.renderArtifactDetails(selectedArtifact)}
+        {this.props.artifactNotTradablePromptVisible && this.renderArtifactNotTradablePrompt()}
       </div>
     );
   }
@@ -173,44 +185,55 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   }
 
   private readonly onArtifactClick = (hero: string, index: number) => {
+    const { selectedArtifact } = this.props;
+
     const h = this.props.hero.id === hero ?
       this.props.hero :
       this.props.otherHero;
 
     const artifact = h.artifacts[index];
 
-    if (!artifact) {
-      return;
-    }
-
     // TODO: simplify?
-    // TODO: handle clicking on same artifact
-    if (this.props.selectedArtifact) {
-      if (!artifact.tradable) {
-        this.props.onArtifactNotTradablePromptVisibleChange(true);
+    if (selectedArtifact) {
+      if (artifact && !artifact.tradable) {
+        this.props.onOpenArtifactNotTradablePrompt();
+      } else if (hero === selectedArtifact.hero && index === selectedArtifact.index) {
+        this.props.onOpenArtifactDetailsClick();
       } else {
-        this.props.onTradeArtifacts(this.props.selectedArtifact, { hero, index });
+        this.props.onTradeArtifactsClick(selectedArtifact, { hero, index });
       }
-    } else {
+    } else if (artifact) {
       if (!artifact.tradable) {
-        this.props.onArtifactNotTradablePromptVisibleChange(true);
+        this.props.onOpenArtifactNotTradablePrompt();
       } else {
-        this.props.onSelectedArtifactChange({ hero, index });
+        this.props.onSelectArtifactClick({ hero, index });
       }
     }
+  }
+
+  private renderArtifactDetails(artifact: ArtifactSelection) {
+    const hero = this.props.hero.id === artifact.hero ?
+      this.props.hero :
+      this.props.otherHero;
+
+    const a = hero.artifacts[artifact.index]!;
+
+    return (
+      <ArtifactDetailsPrompt
+        visible={true}
+        artifact={a.id}
+        onConfirmClick={this.props.onCloseArtifactDetailsClick}
+      />
+    );
   }
 
   private renderArtifactNotTradablePrompt() {
     return (
       <ArtifactNotTradablePrompt
         visible={true}
-        onConfirmClick={this.onCloseArtifactNotTradablePrompt}
+        onConfirmClick={this.props.onCloseArtifactNotTradablePrompt}
       />
     );
-  }
-
-  private readonly onCloseArtifactNotTradablePrompt = () => {
-    this.props.onArtifactNotTradablePromptVisibleChange(false);
   }
 }
 

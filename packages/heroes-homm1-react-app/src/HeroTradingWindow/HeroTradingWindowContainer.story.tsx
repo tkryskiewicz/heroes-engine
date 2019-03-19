@@ -73,8 +73,8 @@ storiesOf("HeroTradingWindowContainer", module)
         hero={h}
         otherHero={oh}
         selectedArtifact={artifactSelection}
-        onSelectedArtifactChange={action("Selected Artifact Change")}
-        onTradeArtifacts={action("Trade Artifacts")}
+        onSelectArtifactClick={action("Select Artifact Click")}
+        onTradeArtifactsClick={action("Trade Artifacts Click")}
       />
     );
   })
@@ -92,7 +92,8 @@ storiesOf("HeroTradingWindowContainer", module)
         hero={h}
         otherHero={otherHero}
         artifactNotTradablePromptVisible={boolean("Artifact Not Tradable Prompt Visible", true)}
-        onArtifactNotTradablePromptVisibleChange={action("Artifact Not Tradable Prompt Visible Change")}
+        onOpenArtifactNotTradablePrompt={action("Open Artifact Not Tradable Prompt")}
+        onCloseArtifactNotTradablePrompt={action("Close Artifact Not Tradable Prompt")}
       />
     );
   });

@@ -1,8 +1,9 @@
-import { Resources, TroopSelection } from "heroes-core";
+import { ArtifactSelection, Resources, TroopSelection } from "heroes-core";
 
 export enum GameActionType {
   SwapTroops = "game/swapTroops",
   DismissTroop = "game/dismissTroop",
+  TradeArtifacts = "game/tradeArtifacts",
   DismissHero = "game/dismissHero",
   BuildStructure = "game/buildStructure",
   RecruitTroop = "game/recruitTroop",
@@ -13,6 +14,7 @@ export enum GameActionType {
 export type GameAction =
   SwapTroopsAction |
   DismissTroopAction |
+  TradeArtifactsAction |
   DismissHeroAction |
   BuildStructureAction |
   RecruitTroopAction |
@@ -39,6 +41,18 @@ export interface DismissTroopAction {
 export const dismissTroop = (troop: TroopSelection): DismissTroopAction => ({
   troop,
   type: GameActionType.DismissTroop,
+});
+
+export interface TradeArtifactsAction {
+  readonly type: GameActionType.TradeArtifacts;
+  readonly artifact: ArtifactSelection;
+  readonly withArtifact: ArtifactSelection;
+}
+
+export const tradeArtifacts = (artifact: ArtifactSelection, withArtifact: ArtifactSelection): TradeArtifactsAction => ({
+  artifact,
+  type: GameActionType.TradeArtifacts,
+  withArtifact,
 });
 
 export interface DismissHeroAction {

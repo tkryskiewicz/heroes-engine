@@ -1,4 +1,5 @@
 import { dismissArmyTroop, swapArmyTroops } from "./Army";
+import { ArtifactSelection } from "./Artifact";
 import { Creature } from "./Creature";
 import { Hero } from "./Hero";
 import { Map } from "./map";
@@ -62,6 +63,40 @@ export const swapGameTroops = (
         garrison: t.id === troop.id ? armyResult : withArmyResult,
       } :
       t,
+    ),
+  };
+};
+
+export const tradeGameArtifacts = (game: Game, artifact: ArtifactSelection, withArtifact: ArtifactSelection): Game => {
+  const hero = getGameHero(game, artifact.hero);
+
+  if (!hero) {
+    return game;
+  }
+
+  const withHero = getGameHero(game, withArtifact.hero);
+
+  if (!withHero) {
+    return game;
+  }
+
+  const artifacts = [...hero.artifacts];
+
+  const withArtifacts = artifact.hero === withArtifact.hero ?
+    artifacts :
+    [...withHero.artifacts];
+
+  artifacts[artifact.index] = withHero.artifacts[withArtifact.index];
+  withArtifacts[withArtifact.index] = hero.artifacts[artifact.index];
+
+  return {
+    ...game,
+    heroes: game.heroes.map((h) => h.id === hero.id || h.id === withHero.id ?
+      {
+        ...h,
+        artifacts: h.id === hero.id ? artifacts : withArtifacts,
+      } :
+      h,
     ),
   };
 };

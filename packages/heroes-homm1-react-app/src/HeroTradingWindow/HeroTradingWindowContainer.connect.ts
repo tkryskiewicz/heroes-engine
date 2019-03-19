@@ -10,11 +10,17 @@ type StateProp =
   "hero" |
   "otherHero" |
   "visibleHeroDetails" |
-  "selectedTroop";
+  "selectedTroop" |
+  "selectedArtifact" |
+  "artifactDetailsVisible" |
+  "artifactNotTradablePromptVisible";
 
 const mapStateToProps = (state: AppState): Pick<HeroTradingWindowProps, StateProp> => ({
+  artifactDetailsVisible: state.heroTradingWindow.artifactDetailsVisible,
+  artifactNotTradablePromptVisible: state.heroTradingWindow.artifactNotTradablePromptVisible,
   hero: getGameHero(state.game, state.adventureScreen.hero!)!,
   otherHero: getGameHero(state.game, state.adventureScreen.otherHero!)!,
+  selectedArtifact: state.heroTradingWindow.selectedArtifact,
   selectedTroop: state.heroTradingWindow.selectedTroop,
   visibleHeroDetails: state.heroTradingWindow.visibleHeroDetails,
 });
@@ -23,7 +29,13 @@ type DispatchProp =
   "onOpenHeroDetailsClick" |
   "onCloseHeroDetailsClick" |
   "onSelectTroop" |
-  "onSwapTroops";
+  "onSwapTroops" |
+  "onSelectArtifactClick" |
+  "onTradeArtifactsClick" |
+  "onOpenArtifactDetailsClick" |
+  "onCloseArtifactDetailsClick" |
+  "onOpenArtifactNotTradablePrompt" |
+  "onCloseArtifactNotTradablePrompt";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroTradingWindowProps, DispatchProp> => ({
   onOpenHeroDetailsClick(hero) {
@@ -39,6 +51,28 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroTradingWindowProps, Di
     dispatch(heroTradingWindowActions.deselectTroop());
 
     dispatch(gameActions.swapTroops(troop, withTroop));
+  },
+  onSelectArtifactClick(artifact) {
+    dispatch(heroTradingWindowActions.selectArtifact(artifact));
+  },
+  onTradeArtifactsClick(artifact, withArtifact) {
+    dispatch(heroTradingWindowActions.deselectArtifact());
+
+    dispatch(gameActions.tradeArtifacts(artifact, withArtifact));
+  },
+  onOpenArtifactDetailsClick() {
+    dispatch(heroTradingWindowActions.openArtifactDetails());
+  },
+  onCloseArtifactDetailsClick() {
+    dispatch(heroTradingWindowActions.closeArtifactDetails());
+
+    dispatch(heroTradingWindowActions.deselectArtifact());
+  },
+  onOpenArtifactNotTradablePrompt() {
+    dispatch(heroTradingWindowActions.openArtifactNotTradablePrompt());
+  },
+  onCloseArtifactNotTradablePrompt() {
+    dispatch(heroTradingWindowActions.closeArtifactNotTradablePrompt());
   },
 });
 

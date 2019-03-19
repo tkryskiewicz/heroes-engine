@@ -13,6 +13,7 @@ import {
   recruitGameTroop,
   swapGameTroops,
   Town,
+  tradeGameArtifacts,
 } from "heroes-core";
 import {
   Alignment,
@@ -176,6 +177,10 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
     case GameActionType.DismissTroop:
       return {
         ...dismissGameTroop(state, action.troop),
+      };
+    case GameActionType.TradeArtifacts:
+      return {
+        ...tradeGameArtifacts(state, action.artifact, action.withArtifact),
       };
     case GameActionType.DismissHero:
       return {

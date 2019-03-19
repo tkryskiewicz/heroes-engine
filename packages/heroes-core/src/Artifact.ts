@@ -3,3 +3,8 @@ export interface Artifact<T = {}> {
   readonly data: T;
   readonly tradable: boolean;
 }
+
+export interface ArtifactSelection {
+  readonly hero: string;
+  readonly index: number;
+}

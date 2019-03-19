@@ -1,17 +1,29 @@
-import { TroopSelection } from "heroes-core";
+import { ArtifactSelection, TroopSelection } from "heroes-core";
 
 export enum HeroTradingWindowActionType {
   OpenHeroDetails = "heroTradingWindow/openHeroDetails",
   CloseHeroDetails = "heroTradingWindow/closeHeroDetails",
   SelectTroop = "heroTradingWindow/selectTroop",
   DeselectTroop = "heroTradingWindow/deselectTroop",
+  SelectArtifact = "heroTradingWindow/selectArtifact",
+  DeselectArtifact = "heroTradingWindow/deselectArtifact",
+  OpenArtifactDetails = "heroTradingWindow/openArtifactDetails",
+  CloseArtifactDetails = "heroTradingWindow/closeArtifactDetails",
+  OpenArtifactNotTradablePrompt = "heroTradingWindow/openArtifactNotTradablePrompt",
+  CloseArtifactNotTradablePrompt = "heroTradingWindow/closeArtifactNotTradablePrompt",
 }
 
 export type HeroTradingWindowAction =
   OpenHeroDetailsAction |
   CloseHeroDetailsAction |
   SelectTroopAction |
-  DeselectTroopAction;
+  DeselectTroopAction |
+  SelectArtifactAction |
+  DeselectArtifactAction |
+  OpenArtifactDetailsAction |
+  CloseArtifactDetailsAction |
+  OpenArtifactNotTradablePromptAction |
+  CloseArtifactNotTradablePrompt;
 
 export interface OpenHeroDetailsAction {
   readonly type: HeroTradingWindowActionType.OpenHeroDetails;
@@ -47,4 +59,54 @@ export interface DeselectTroopAction {
 
 export const deselectTroop = (): DeselectTroopAction => ({
   type: HeroTradingWindowActionType.DeselectTroop,
+});
+
+export interface SelectArtifactAction {
+  readonly type: HeroTradingWindowActionType.SelectArtifact;
+  readonly artifact: ArtifactSelection;
+}
+
+export const selectArtifact = (artifact: ArtifactSelection): SelectArtifactAction => ({
+  artifact,
+  type: HeroTradingWindowActionType.SelectArtifact,
+});
+
+export interface DeselectArtifactAction {
+  readonly type: HeroTradingWindowActionType.DeselectArtifact;
+}
+
+export const deselectArtifact = (): DeselectArtifactAction => ({
+  type: HeroTradingWindowActionType.DeselectArtifact,
+});
+
+export interface OpenArtifactDetailsAction {
+  readonly type: HeroTradingWindowActionType.OpenArtifactDetails;
+}
+
+export const openArtifactDetails = (): OpenArtifactDetailsAction => ({
+  type: HeroTradingWindowActionType.OpenArtifactDetails,
+});
+
+export interface CloseArtifactDetailsAction {
+  readonly type: HeroTradingWindowActionType.CloseArtifactDetails;
+}
+
+export const closeArtifactDetails = (): CloseArtifactDetailsAction => ({
+  type: HeroTradingWindowActionType.CloseArtifactDetails,
+});
+
+export interface OpenArtifactNotTradablePromptAction {
+  readonly type: HeroTradingWindowActionType.OpenArtifactNotTradablePrompt;
+}
+
+export const openArtifactNotTradablePrompt = (): OpenArtifactNotTradablePromptAction => ({
+  type: HeroTradingWindowActionType.OpenArtifactNotTradablePrompt,
+});
+
+export interface CloseArtifactNotTradablePrompt {
+  readonly type: HeroTradingWindowActionType.CloseArtifactNotTradablePrompt;
+}
+
+export const closeArtifactNotTradablePrompt = (): CloseArtifactNotTradablePrompt => ({
+  type: HeroTradingWindowActionType.CloseArtifactNotTradablePrompt,
 });

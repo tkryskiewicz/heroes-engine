@@ -1,7 +1,10 @@
 import { HeroTradingWindowAction, HeroTradingWindowActionType } from "./actions";
 import { HeroTradingWindowState } from "./state";
 
-const initialState: HeroTradingWindowState = {};
+const initialState: HeroTradingWindowState = {
+  artifactDetailsVisible: false,
+  artifactNotTradablePromptVisible: false,
+};
 
 export const heroTradingWindowReducer = (
   state: HeroTradingWindowState = initialState,
@@ -27,6 +30,36 @@ export const heroTradingWindowReducer = (
       return {
         ...state,
         selectedTroop: undefined,
+      };
+    case HeroTradingWindowActionType.SelectArtifact:
+      return {
+        ...state,
+        selectedArtifact: action.artifact,
+      };
+    case HeroTradingWindowActionType.DeselectArtifact:
+      return {
+        ...state,
+        selectedArtifact: undefined,
+      };
+    case HeroTradingWindowActionType.OpenArtifactDetails:
+      return {
+        ...state,
+        artifactDetailsVisible: true,
+      };
+    case HeroTradingWindowActionType.CloseArtifactDetails:
+      return {
+        ...state,
+        artifactDetailsVisible: false,
+      };
+    case HeroTradingWindowActionType.OpenArtifactNotTradablePrompt:
+      return {
+        ...state,
+        artifactNotTradablePromptVisible: true,
+      };
+    case HeroTradingWindowActionType.CloseArtifactNotTradablePrompt:
+      return {
+        ...state,
+        artifactNotTradablePromptVisible: false,
       };
     default:
       return state;
