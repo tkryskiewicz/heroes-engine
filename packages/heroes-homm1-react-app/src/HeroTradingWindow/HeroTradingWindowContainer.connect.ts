@@ -73,6 +73,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroTradingWindowProps, Di
   },
   onCloseArtifactNotTradablePrompt() {
     dispatch(heroTradingWindowActions.closeArtifactNotTradablePrompt());
+
+    dispatch(heroTradingWindowActions.deselectArtifact());
   },
 });
 
