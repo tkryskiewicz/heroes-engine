@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Hero, TroopSelection, TroopSelectionType } from "heroes-core";
+import { Hero, TroopSelection, TroopSelectionType, getArmySize } from "heroes-core";
 import {
   ArtifactNotTradablePrompt,
   getHeroNameMessage,
@@ -115,13 +115,9 @@ class HeroTradingWindowContainer extends React.Component<Props> {
         visible={true}
         hero={hero}
         dismissible={false}
-        onExitClick={this.onCloseHeroDetailsClick}
+        onExitClick={this.props.onCloseHeroDetailsClick}
       />
     );
-  }
-
-  private readonly onCloseHeroDetailsClick = () => {
-    this.props.onCloseHeroDetailsClick();
   }
 
   private readonly renderTroop = (hero: string, index: number) => {
@@ -147,7 +143,13 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   }
 
   private readonly onTroopClick = (troop: TroopSelection) => {
-    const { selectedTroop } = this.props;
+    const { hero, otherHero, selectedTroop } = this.props;
+
+    // TODO: simplify
+    if (selectedTroop && getArmySize((selectedTroop.id === hero.id ? hero : otherHero).army) === 1 &&
+      selectedTroop.id !== troop.id && !this.getTroop(troop)) {
+      return;
+    }
 
     if (selectedTroop === undefined && this.getTroop(troop)) {
       this.props.onSelectTroop(troop);
