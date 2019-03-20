@@ -4,21 +4,21 @@ export enum KingdomOverviewWindowActionType {
 }
 
 export type KingdomOverviewWindowAction =
-  OpenKingdomOverviewWindowAction |
-  CloseKingdomOverviewWindowAction;
+  OpenAction |
+  CloseAction;
 
-export interface OpenKingdomOverviewWindowAction {
+export interface OpenAction {
   readonly type: KingdomOverviewWindowActionType.Open;
 }
 
-export const open = (): OpenKingdomOverviewWindowAction => ({
+export const open = (): OpenAction => ({
   type: KingdomOverviewWindowActionType.Open,
 });
 
-export interface CloseKingdomOverviewWindowAction {
+export interface CloseAction {
   readonly type: KingdomOverviewWindowActionType.Close;
 }
 
-export const close = (): CloseKingdomOverviewWindowAction => ({
+export const close = (): CloseAction => ({
   type: KingdomOverviewWindowActionType.Close,
 });

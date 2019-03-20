@@ -14,10 +14,10 @@ export enum HeroWindowActionType {
 export type HeroWindowAction =
   ChangeVisibleSkillDetailsAction |
   ChangeVisibleAdditionalStatDetailsAction |
-  SelectHeroWindowTroopAction |
+  SelectTroopAction |
   DeselectTroopAction |
-  OpenTroopDetails |
-  CloseTroopDetails |
+  OpenTroopDetailsAction |
+  CloseTroopDetailsAction |
   ChangeVisibleArtifactDetailsAction |
   OpenDismissHeroPromptAction |
   CloseDismissHeroPromptAction |
@@ -43,12 +43,12 @@ export const changeVisibleAdditionalStatDetails = (stat?: string): ChangeVisible
   type: HeroWindowActionType.ChangeVisibleAdditionalStatDetails,
 });
 
-export interface SelectHeroWindowTroopAction {
+export interface SelectTroopAction {
   readonly type: HeroWindowActionType.SelectTroop;
   readonly index: number;
 }
 
-export const selectTroop = (index: number): SelectHeroWindowTroopAction => ({
+export const selectTroop = (index: number): SelectTroopAction => ({
   index,
   type: HeroWindowActionType.SelectTroop,
 });
@@ -61,21 +61,19 @@ export const deselectTroop = (): DeselectTroopAction => ({
   type: HeroWindowActionType.DeselectTroop,
 });
 
-export interface OpenTroopDetails {
+export interface OpenTroopDetailsAction {
   readonly type: HeroWindowActionType.OpenTroopDetails;
-  readonly index: number;
 }
 
-export const openTroopDetails = (index: number): OpenTroopDetails => ({
-  index,
+export const openTroopDetails = (): OpenTroopDetailsAction => ({
   type: HeroWindowActionType.OpenTroopDetails,
 });
 
-export interface CloseTroopDetails {
+export interface CloseTroopDetailsAction {
   readonly type: HeroWindowActionType.CloseTroopDetails;
 }
 
-export const closeTroopDetails = (): CloseTroopDetails => ({
+export const closeTroopDetails = (): CloseTroopDetailsAction => ({
   type: HeroWindowActionType.CloseTroopDetails,
 });
 

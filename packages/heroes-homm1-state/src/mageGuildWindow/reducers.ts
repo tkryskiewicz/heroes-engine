@@ -8,7 +8,7 @@ export const mageGuildWindowReducer = (
   action: MageGuildWindowAction,
 ): MageGuildWindowState => {
   switch (action.type) {
-    case MageGuildWindowActionType.ChangeVisibleSpellDetail:
+    case MageGuildWindowActionType.ChangeVisibleSpellDetails:
       return {
         ...state,
         visibleSpellDetail: action.spell,

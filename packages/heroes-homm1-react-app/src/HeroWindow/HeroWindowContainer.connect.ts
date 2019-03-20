@@ -27,7 +27,7 @@ const mapStateToProps = (state: AppState): Pick<HeroWindowContainerProps, StateP
   dismissHeroPromptVisible: state.heroWindow.dismissHeroPromptVisible,
   getArtifactDetails,
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,
-  troopDetailsVisible: state.heroWindow.visibleTroopDetails,
+  troopDetailsVisible: state.heroWindow.troopDetailsVisible,
   visibleAdditionalStatDetails: state.heroWindow.visibleAdditionalStatDetails,
   visibleArtifactDetails: state.heroWindow.visibleArtifactDetails,
   visibleSkillDetails: state.heroWindow.visibleSkillDetails,
@@ -38,8 +38,8 @@ type DispatchProp =
   "onVisibleAdditionalStatDetailsChange" |
   "onCrestClick" |
   "onSelectTroop" |
-  "onSelectedTroopClick" |
-  "onExitTroopDetails" |
+  "onOpenTroopDetailsClick" |
+  "onCloseTroopDetailsClick" |
   "onConfirmDismissTroopClick" |
   "onSwapTroops" |
   "onVisibleArtifactDetailsChange" |
@@ -64,10 +64,10 @@ const mapDispatchToProps = (
   onSelectTroop(index) {
     dispatch(heroWindowActions.selectTroop(index));
   },
-  onSelectedTroopClick(index) {
-    dispatch(heroWindowActions.openTroopDetails(index));
+  onOpenTroopDetailsClick() {
+    dispatch(heroWindowActions.openTroopDetails());
   },
-  onExitTroopDetails() {
+  onCloseTroopDetailsClick() {
     dispatch(heroWindowActions.closeTroopDetails());
   },
   onConfirmDismissTroopClick(index) {

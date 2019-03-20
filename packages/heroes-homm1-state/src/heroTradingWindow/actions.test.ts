@@ -1,5 +1,28 @@
-import { HeroTradingWindowActionType, openHeroDetails, OpenHeroDetailsAction, closeHeroDetails, CloseHeroDetailsAction, selectTroop, SelectTroopAction, deselectTroop, DeselectTroopAction, selectArtifact, SelectArtifactAction, deselectArtifact, DeselectArtifactAction, openArtifactDetails, OpenArtifactDetailsAction, closeArtifactDetails, CloseArtifactDetailsAction, openArtifactNotTradablePrompt, OpenArtifactNotTradablePromptAction, closeArtifactNotTradablePrompt, CloseArtifactNotTradablePrompt } from "./actions";
-import { TroopSelection, TroopSelectionType, ArtifactSelection } from "heroes-core";
+import { ArtifactSelection, TroopSelection, TroopSelectionType } from "heroes-core";
+
+import {
+  closeArtifactDetails,
+  CloseArtifactDetailsAction,
+  CloseArtifactNotTradablePrompt,
+  closeArtifactNotTradablePrompt,
+  closeHeroDetails,
+  CloseHeroDetailsAction,
+  deselectArtifact,
+  DeselectArtifactAction,
+  deselectTroop,
+  DeselectTroopAction,
+  HeroTradingWindowActionType,
+  openArtifactDetails,
+  OpenArtifactDetailsAction,
+  openArtifactNotTradablePrompt,
+  OpenArtifactNotTradablePromptAction,
+  openHeroDetails,
+  OpenHeroDetailsAction,
+  selectArtifact,
+  SelectArtifactAction,
+  selectTroop,
+  SelectTroopAction,
+} from "./actions";
 
 describe("heroTradingWindowActions", () => {
   it("should create an action to open hero details", () => {

@@ -4,21 +4,21 @@ export enum PuzzleWindowActionType {
 }
 
 export type PuzzleWindowAction =
-  OpenPuzzleWindowAction |
-  ClosePuzzleWindowAction;
+  OpenAction |
+  CloseAction;
 
-export interface OpenPuzzleWindowAction {
+export interface OpenAction {
   readonly type: PuzzleWindowActionType.Open;
 }
 
-export const open = (): OpenPuzzleWindowAction => ({
+export const open = (): OpenAction => ({
   type: PuzzleWindowActionType.Open,
 });
 
-export interface ClosePuzzleWindowAction {
+export interface CloseAction {
   readonly type: PuzzleWindowActionType.Close;
 }
 
-export const close = (): ClosePuzzleWindowAction => ({
+export const close = (): CloseAction => ({
   type: PuzzleWindowActionType.Close,
 });

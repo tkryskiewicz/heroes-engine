@@ -46,9 +46,10 @@ interface HeroWindowContainerProps extends InjectedIntlProps, WithGameWindowProp
   readonly selectedTroopIndex?: number;
   readonly onSelectTroop: (index: number) => void;
   readonly onSwapTroops: (index: number, withIndex: number) => void;
-  readonly onSelectedTroopClick: (index: number) => void;
+
   readonly troopDetailsVisible: boolean;
-  readonly onExitTroopDetails: () => void;
+  readonly onOpenTroopDetailsClick: () => void;
+  readonly onCloseTroopDetailsClick: () => void;
   readonly onConfirmDismissTroopClick: (index: number) => void;
 
   readonly getArtifactDetails: (artifact: Artifact, props: {
@@ -367,7 +368,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     if (selectedTroopIndex === undefined && this.props.hero.army[index]) {
       this.onSelectTroop(index);
     } else if (index === selectedTroopIndex) {
-      this.props.onSelectedTroopClick(index);
+      this.props.onOpenTroopDetailsClick();
     } else if (selectedTroopIndex !== undefined && index !== selectedTroopIndex) {
       this.onSwapTroops(selectedTroopIndex, index);
     }
@@ -417,7 +418,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
         count={troop.count}
         dismissible={dismissible}
         onConfirmDismissClick={this.props.onConfirmDismissTroopClick}
-        onExitClick={this.props.onExitTroopDetails}
+        onExitClick={this.props.onCloseTroopDetailsClick}
       />
     );
   }

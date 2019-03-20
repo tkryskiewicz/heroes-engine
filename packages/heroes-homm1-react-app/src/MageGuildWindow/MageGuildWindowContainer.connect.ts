@@ -19,7 +19,7 @@ type DispatchProp =
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<MageGuildWindowContainerProps, DispatchProp> => ({
   onVisibleSpellDetailChange(spell) {
-    dispatch(mageGuildWindowActions.changeVisibleSpellDetail(spell));
+    dispatch(mageGuildWindowActions.changeVisibleSpellDetails(spell));
   },
 });
 

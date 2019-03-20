@@ -4,21 +4,21 @@ export enum ScenarioInfoWindowActionType {
 }
 
 export type ScenarioInfoWindowAction =
-  OpenScenarioInfoWindowAction |
-  CloseScenarioInfoWindowAction;
+  OpenAction |
+  CloseAction;
 
-export interface OpenScenarioInfoWindowAction {
+export interface OpenAction {
   readonly type: ScenarioInfoWindowActionType.Open;
 }
 
-export const open = (): OpenScenarioInfoWindowAction => ({
+export const open = (): OpenAction => ({
   type: ScenarioInfoWindowActionType.Open,
 });
 
-export interface CloseScenarioInfoWindowAction {
+export interface CloseAction {
   readonly type: ScenarioInfoWindowActionType.Close;
 }
 
-export const close = (): CloseScenarioInfoWindowAction => ({
+export const close = (): CloseAction => ({
   type: ScenarioInfoWindowActionType.Close,
 });

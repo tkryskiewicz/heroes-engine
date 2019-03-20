@@ -9,8 +9,8 @@ export enum SpellBookWindowActionType {
 }
 
 export type SpellBookWindowAction =
-  ChangePageAction |
   ChangeSpellTypeAction |
+  ChangePageAction |
   ChangeVisibleSpellDetailsAction |
   ResetAction;
 

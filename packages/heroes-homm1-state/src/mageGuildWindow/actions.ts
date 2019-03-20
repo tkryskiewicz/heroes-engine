@@ -1,16 +1,16 @@
 export enum MageGuildWindowActionType {
-  ChangeVisibleSpellDetail = "mageGuildWindow/changeVisibleSpellDetail",
+  ChangeVisibleSpellDetails = "mageGuildWindow/changeVisibleSpellDetails",
 }
 
 export type MageGuildWindowAction =
-  ChangeVisibleSpellDetailAction;
+  ChangeVisibleSpellDetailsAction;
 
-export interface ChangeVisibleSpellDetailAction {
-  readonly type: MageGuildWindowActionType.ChangeVisibleSpellDetail;
+export interface ChangeVisibleSpellDetailsAction {
+  readonly type: MageGuildWindowActionType.ChangeVisibleSpellDetails;
   readonly spell?: string;
 }
 
-export const changeVisibleSpellDetail = (spell?: string): ChangeVisibleSpellDetailAction => ({
+export const changeVisibleSpellDetails = (spell?: string): ChangeVisibleSpellDetailsAction => ({
   spell,
-  type: MageGuildWindowActionType.ChangeVisibleSpellDetail,
+  type: MageGuildWindowActionType.ChangeVisibleSpellDetails,
 });
