@@ -10,12 +10,12 @@ export const locatorsReducer = (
   action: LocatorsAction,
 ): LocatorsState => {
   switch (action.type) {
-    case LocatorsActionType.Select:
+    case LocatorsActionType.SelectLocator:
       return {
         ...state,
         selectedLocator: action.locator,
       };
-    case LocatorsActionType.Deselect:
+    case LocatorsActionType.DeselectLocator:
       return {
         ...state,
         selectedLocator: undefined,

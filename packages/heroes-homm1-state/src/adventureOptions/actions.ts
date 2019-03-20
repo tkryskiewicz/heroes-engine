@@ -4,21 +4,21 @@ export enum AdventureOptionsActionType {
 }
 
 export type AdventureOptionsAction =
-  OpenAdventureOptionsAction |
-  CloseAdventureOptionsAction;
+  OpenAction |
+  CloseAction;
 
-export interface OpenAdventureOptionsAction {
+export interface OpenAction {
   readonly type: AdventureOptionsActionType.Open;
 }
 
-export const open = (): OpenAdventureOptionsAction => ({
+export const open = (): OpenAction => ({
   type: AdventureOptionsActionType.Open,
 });
 
-export interface CloseAdventureOptionsAction {
+export interface CloseAction {
   readonly type: AdventureOptionsActionType.Close;
 }
 
-export const close = (): CloseAdventureOptionsAction => ({
+export const close = (): CloseAction => ({
   type: AdventureOptionsActionType.Close,
 });

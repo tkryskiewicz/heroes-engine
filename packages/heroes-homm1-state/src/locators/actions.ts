@@ -1,34 +1,34 @@
 import { Locator } from "./state";
 
 export enum LocatorsActionType {
-  Select = "locators/select",
-  Deselect = "locators/deselect",
+  SelectLocator = "locators/selectLocator",
+  DeselectLocator = "locators/deselectLocator",
   OpenLocatorDetails = "locators/openLocatorDetails",
   CloseLocatorDetails = "locators/closeLocatorDetails",
 }
 
 export type LocatorsAction =
   SelectLocatorAction |
-  DeselectAction |
+  DeselectLocatorAction |
   OpenLocatorDetailsAction |
   CloseLocatorDetailsAction;
 
 export interface SelectLocatorAction {
-  readonly type: LocatorsActionType.Select;
+  readonly type: LocatorsActionType.SelectLocator;
   readonly locator: Locator;
 }
 
 export const selectLocator = (locator: Locator): SelectLocatorAction => ({
   locator,
-  type: LocatorsActionType.Select,
+  type: LocatorsActionType.SelectLocator,
 });
 
-export interface DeselectAction {
-  readonly type: LocatorsActionType.Deselect;
+export interface DeselectLocatorAction {
+  readonly type: LocatorsActionType.DeselectLocator;
 }
 
-export const deselectLocator = (): DeselectAction => ({
-  type: LocatorsActionType.Deselect,
+export const deselectLocator = (): DeselectLocatorAction => ({
+  type: LocatorsActionType.DeselectLocator,
 });
 
 export interface OpenLocatorDetailsAction {
