@@ -8,7 +8,8 @@ export interface TownMapObject extends MapObject {
   readonly town: Town;
 }
 
-export const createTownMapObject = (town: Town): TownMapObject => ({
+export const createTownMapObject = (id: string, town: Town): TownMapObject => ({
+  id,
   town,
   type: TownMapObjectType,
 });

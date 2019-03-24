@@ -11,6 +11,16 @@ export const adventureScreenReducer = (
   action: AdventureScreenAction,
 ): AdventureScreenState => {
   switch (action.type) {
+    case AdventureScreenActionType.OpenMapObjectDetails:
+      return {
+        ...state,
+        visibleMapObjectDetails: action.id,
+      };
+    case AdventureScreenActionType.CloseMapObjectDetails:
+      return {
+        ...state,
+        visibleMapObjectDetails: undefined,
+      };
     case AdventureScreenActionType.ChangeEndTurnPromptVisible:
       return {
         ...state,

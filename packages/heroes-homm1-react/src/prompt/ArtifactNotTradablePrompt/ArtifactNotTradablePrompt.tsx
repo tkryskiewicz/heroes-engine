@@ -11,7 +11,7 @@ export class ArtifactNotTradablePrompt extends React.Component<PromptProps> {
     return (
       <GameModal
         type="okay"
-        visible={true}
+        visible={this.props.visible}
         onConfirmClick={this.props.onConfirmClick}
       >
         <GameText size="large">

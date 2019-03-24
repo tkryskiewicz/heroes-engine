@@ -1,5 +1,6 @@
+export { DwellingMapObject, DwellingMapObjectType, createDwellingMapObject } from "./DwellingMapObject";
 export { HeroMapObject, HeroMapObjectType, createHeroMapObject } from "./HeroMapObject";
-export { Map, createMap, isPointValid, placeObject, moveObject } from "./Map";
+export { Map, createMap, isPointValid, getObject, placeObject, moveObject } from "./Map";
 export { MapObject } from "./MapObject";
 export { MapObjectOrientation, MapObjectOrientations } from "./MapObjectOrientation";
 export { MapPoint } from "./MapPoint";

@@ -9,6 +9,7 @@ type StateProp =
   "heroes" |
   "towns" |
   "selectedLocator" |
+  "visibleMapObjectDetails" |
   "heroTradingScreenVisible";
 
 const mapStateToProps = (state: AppState): Pick<AdventureWindowProps, StateProp> => ({
@@ -17,6 +18,7 @@ const mapStateToProps = (state: AppState): Pick<AdventureWindowProps, StateProp>
   map: state.game.map,
   selectedLocator: state.locators.selectedLocator,
   towns: state.game.towns,
+  visibleMapObjectDetails: state.adventureScreen.visibleMapObjectDetails,
 });
 
 const ContainerConnected = connect(mapStateToProps)(AdventureWindow);

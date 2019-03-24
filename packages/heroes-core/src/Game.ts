@@ -2,7 +2,7 @@ import { dismissArmyTroop, swapArmyTroops } from "./Army";
 import { ArtifactSelection } from "./Artifact";
 import { Creature } from "./Creature";
 import { Hero } from "./Hero";
-import { Map } from "./map";
+import { DwellingMapObjectType, getObject, Map } from "./map";
 import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
@@ -173,3 +173,25 @@ export const endGameTurn = (game: Game): Game => ({
   ...game,
   towns: game.towns.map((t) => endTownTurn(t)),
 });
+
+export const visitGameMapObject = (game: Game, id: string, hero: string): Game => {
+  const object = getObject(game.map, id);
+
+  if (!object) {
+    throw new Error("Invalid object");
+  }
+
+  const h = getGameHero(game, hero);
+
+  if (!h) {
+    throw new Error("Invalid hero");
+  }
+
+  if (object.type === DwellingMapObjectType) {
+    // TODO: implement
+  }
+
+  return {
+    ...game,
+  };
+};

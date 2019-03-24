@@ -10,8 +10,9 @@ export interface HeroMapObject extends MapObject {
   readonly orientation: MapObjectOrientation;
 }
 
-export const createHeroMapObject = (hero: Hero): HeroMapObject => ({
+export const createHeroMapObject = (id: string, hero: Hero): HeroMapObject => ({
   hero,
+  id,
   orientation: MapObjectOrientation.North,
   type: HeroMapObjectType,
 });

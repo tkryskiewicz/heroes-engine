@@ -9,6 +9,7 @@ export enum GameActionType {
   RecruitTroop = "game/recruitTroop",
   BuyMageGuildSpellBook = "game/buyMageGuildSpellBook",
   EndTurn = "game/endTurn",
+  VisitMapObject = "game/visitMapObject",
 }
 
 export type GameAction =
@@ -19,7 +20,8 @@ export type GameAction =
   BuildStructureAction |
   RecruitTroopAction |
   BuyMageGuildSpellBookAction |
-  EndTurnAction;
+  EndTurnAction |
+  VisitMapObjectAction;
 
 export interface SwapTroopsAction {
   readonly type: GameActionType.SwapTroops;
@@ -111,4 +113,16 @@ export interface EndTurnAction {
 
 export const endTurn = (): EndTurnAction => ({
   type: GameActionType.EndTurn,
+});
+
+export interface VisitMapObjectAction {
+  readonly type: GameActionType.VisitMapObject;
+  readonly id: string;
+  readonly hero: string;
+}
+
+export const visitMapObject = (id: string, hero: string): VisitMapObjectAction => ({
+  hero,
+  id,
+  type: GameActionType.VisitMapObject,
 });

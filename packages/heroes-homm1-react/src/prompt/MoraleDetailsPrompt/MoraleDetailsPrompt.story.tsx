@@ -3,7 +3,15 @@ import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { ArtifactId, HeroClass, MoraleModifier, MoraleModifierType, MoraleType, TownId } from "heroes-homm1";
+import {
+  ArtifactId,
+  HeroClass,
+  MapObjectId,
+  MoraleModifier,
+  MoraleModifierType,
+  MoraleType,
+  TownId,
+} from "heroes-homm1";
 
 import { moraleType } from "../../stories";
 import { MoraleDetailsPrompt } from "./MoraleDetailsPrompt";
@@ -39,13 +47,12 @@ storiesOf("prompt/MoraleDetailsPrompt", module)
         value: 1,
       },
       {
-        // FIXME: use map object ids
-        structure: "oasis",
+        structure: MapObjectId.Oasis,
         type: MoraleModifierType.StructureVisited,
         value: 1,
       },
       {
-        structure: "graveyard",
+        structure: MapObjectId.Graveyard,
         type: MoraleModifierType.StructureRobber,
         value: -1,
       },

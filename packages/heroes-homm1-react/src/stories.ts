@@ -17,6 +17,7 @@ import {
   heroes,
   HeroId,
   LuckType,
+  MapObjectId,
   MoraleType,
   MountainsStructureId,
   MovementSpeed,
@@ -258,3 +259,21 @@ const spellOptions = Object.keys(SpellId).reduce<SelectOptions>((p, c: any) => {
 }, {});
 
 export const spell = (name: string) => select(name, spellOptions, SpellId.Bless);
+
+const mapObjectOptions = Object.keys(MapObjectId).reduce<SelectOptions>((p, c: any) => ({
+  ...p,
+  [c]: MapObjectId[c],
+}), {});
+
+export const mapObject = (name: string) => select(name, mapObjectOptions, MapObjectId.Bouy);
+
+const dwellingObjectOptions = [
+  MapObjectId.Cottage,
+  MapObjectId.Hut,
+  MapObjectId.ThatchedHut,
+].reduce<SelectOptions>((p, c) => ({
+  ...p,
+  [c]: c,
+}), {});
+
+export const dwellingObject = (name: string) => select(name, dwellingObjectOptions, MapObjectId.Cottage);

@@ -104,3 +104,7 @@ export const moveObject = (map: Map, from: MapPoint, to: MapPoint): Map => {
     tiles,
   };
 };
+
+export const getObject = (map: Map, id: string): MapObject | undefined =>
+  map.tiles
+    .reduce<MapObject | undefined>((p, c) => p || (c.object && c.object.id === id ? c.object : undefined), undefined);

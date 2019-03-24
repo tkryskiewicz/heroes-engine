@@ -2,6 +2,8 @@ import * as React from "react";
 import { DispatchProp } from "react-redux";
 
 import {
+  DwellingMapObject,
+  DwellingMapObjectType,
   Hero,
   HeroMapObject as HeroObject,
   HeroMapObjectType,
@@ -13,8 +15,16 @@ import {
   TownMapObjectType,
 } from "heroes-core";
 import { StructureId } from "heroes-homm1";
-import { AdventureWindow, HeroMapObject, MapTile, TownMapObject } from "heroes-homm1-react";
-import { adventureScreenActions, Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
+import {
+  AdventureWindow,
+  CreatureJoinPrompt,
+  DwellingEmptyPrompt,
+  HeroMapObject,
+  MapObject as MapObj,
+  MapTile,
+  TownMapObject,
+} from "heroes-homm1-react";
+import { adventureScreenActions, gameActions, Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
 
 import { HeroTradingWindow } from "../HeroTradingWindow";
 
@@ -23,6 +33,7 @@ interface Props extends DispatchProp {
   readonly heroes: Hero[];
   readonly towns: Town[];
   readonly selectedLocator?: Locator;
+  readonly visibleMapObjectDetails?: string;
   readonly heroTradingScreenVisible: boolean;
 }
 
@@ -45,6 +56,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
           renderTile={this.renderTile}
           onTileClick={this.onTileClick}
         />
+        {this.props.visibleMapObjectDetails && this.renderMapObjectDetails(this.props.visibleMapObjectDetails)}
         {this.props.heroTradingScreenVisible && this.rendeHeroTradingWindow()}
       </div>
     );
@@ -95,6 +107,16 @@ class AdventureWindowContainer extends React.Component<Props, State> {
           town={town.id}
           isCastleBuilt={isStructureBuilt(town, StructureId.Castle)}
           alignment={town.alignment}
+        />
+      );
+    }
+
+    if (object.type === DwellingMapObjectType) {
+      const dwellingObject = object as DwellingMapObject;
+
+      return (
+        <MapObj
+          type={dwellingObject.id}
         />
       );
     }
@@ -173,8 +195,59 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         } else {
           this.props.dispatch(locatorsActions.openLocatorDetails());
         }
+      } else if (object.type === DwellingMapObjectType) {
+        const dwellingObject = object as DwellingMapObject;
+
+        if (selectedLocator === undefined || selectedLocator.type !== LocatorType.Hero) {
+          return;
+        }
+
+        this.props.dispatch(adventureScreenActions.openMapObjectDetails(dwellingObject.id));
       }
     }
+  }
+
+  private renderMapObjectDetails(id: string) {
+    const mapObject: MapObject =
+      this.props.map.tiles.find((t) => t.object !== undefined && (t.object as any).id === id)!.object!;
+
+    if (mapObject.type === DwellingMapObjectType) {
+      const dwellingObject = mapObject as DwellingMapObject;
+
+      const onConfirmClick = () => this.onConfirmCreatureJoinPrompt(dwellingObject.id);
+
+      if (dwellingObject.availableCount === 0) {
+        return (
+          <DwellingEmptyPrompt
+            visible={true}
+            dwelling={dwellingObject.id}
+            creature={dwellingObject.creature}
+            onConfirmClick={this.onCloseMapObjectDetailsClick}
+          />
+        );
+      } else {
+        return (
+          <CreatureJoinPrompt
+            visible={true}
+            creature={dwellingObject.creature}
+            onConfirmClick={onConfirmClick}
+            onCancelClick={this.onCloseMapObjectDetailsClick}
+          />
+        );
+      }
+    }
+  }
+
+  private readonly onCloseMapObjectDetailsClick = () => {
+    this.props.dispatch(adventureScreenActions.closeMapObjectDetails());
+  }
+
+  private readonly onConfirmCreatureJoinPrompt = (id: string) => {
+    const { selectedLocator } = this.props;
+
+    const hero = this.props.heroes[selectedLocator!.index];
+
+    this.props.dispatch(gameActions.visitMapObject(id, hero.id));
   }
 
   private rendeHeroTradingWindow() {

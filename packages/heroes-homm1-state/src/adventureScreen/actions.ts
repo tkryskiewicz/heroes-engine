@@ -1,13 +1,35 @@
 export enum AdventureScreenActionType {
+  OpenMapObjectDetails = "adventureScreen/openMapObjectDetails",
+  CloseMapObjectDetails = "adventureScreen/closeMapObjectDetails",
   ChangeEndTurnPromptVisible = "adventureScreen/changeEndTurnPromptVisible",
   OpenHeroTradingScreen = "adventureScreen/openHeroTradingWindow",
   CloseHeroTradingScreen = "adventureScreen/closeHeroTradingWindow",
 }
 
 export type AdventureScreenAction =
+  OpenMapObjectDetailsAction |
+  CloseMapObjectDetailsAction |
   ChangeEndTurnPromptVisibleAction |
   OpenHeroTradingWindowAction |
   CloseHeroTradingWindowAction;
+
+export interface OpenMapObjectDetailsAction {
+  readonly type: AdventureScreenActionType.OpenMapObjectDetails;
+  readonly id: string;
+}
+
+export const openMapObjectDetails = (id: string): OpenMapObjectDetailsAction => ({
+  id,
+  type: AdventureScreenActionType.OpenMapObjectDetails,
+});
+
+export interface CloseMapObjectDetailsAction {
+  readonly type: AdventureScreenActionType.CloseMapObjectDetails;
+}
+
+export const closeMapObjectDetails = (): CloseMapObjectDetailsAction => ({
+  type: AdventureScreenActionType.CloseMapObjectDetails,
+});
 
 export interface ChangeEndTurnPromptVisibleAction {
   readonly type: AdventureScreenActionType.ChangeEndTurnPromptVisible;

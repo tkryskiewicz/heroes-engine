@@ -1,6 +1,7 @@
 import {
   buildGameStructure,
   buildStructure,
+  createDwellingMapObject,
   createHeroMapObject,
   createMap,
   createTownMapObject,
@@ -14,6 +15,7 @@ import {
   swapGameTroops,
   Town,
   tradeGameArtifacts,
+  visitGameMapObject,
 } from "heroes-core";
 import {
   Alignment,
@@ -26,6 +28,7 @@ import {
   creatureById,
   CreatureId,
   HeroId,
+  MapObjectId,
   MaxMobility,
   Resource,
   SpellId,
@@ -139,9 +142,11 @@ const towns: Town[] = [
 
 let map: Map = createMap(14, 14, TerrainType.Grass);
 
-heroes.forEach((h, i) => map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h)));
+heroes.forEach((h, i) => map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h.id, h)));
 
-towns.forEach((t, i) => map = placeObject(map, { x: 8, y: 1 + 3 * i }, createTownMapObject(t)));
+towns.forEach((t, i) => map = placeObject(map, { x: 8, y: 1 + 3 * i }, createTownMapObject(t.id, t)));
+
+map = placeObject(map, { x: 2, y: 2 }, createDwellingMapObject(MapObjectId.ThatchedHut, CreatureId.Peasant, 5));
 
 const initialState: GameState = {
   alignment: Alignment.Red,
@@ -201,6 +206,10 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
     case GameActionType.EndTurn:
       return {
         ...endGameTurn(state),
+      };
+    case GameActionType.VisitMapObject:
+      return {
+        ...visitGameMapObject(state, action.id, action.hero),
       };
     default:
       return state;
