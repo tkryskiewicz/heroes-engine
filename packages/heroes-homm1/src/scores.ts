@@ -78,7 +78,7 @@ export const getCampaignGameRating = (days: number) => {
     .map(Number)
     .filter((s) => days <= s).sort((a, b) => a - b);
 
-  return campaignGameRatings[scores[0]];
+  return campaignGameRatings[scores[0]] || CreatureId.Peasant;
 };
 
 export interface StandardGameScore {
@@ -158,5 +158,5 @@ export const getStandardGameRating = (score: number) => {
     .map(Number)
     .filter((s) => score >= Number(s)).sort((a, b) => b - a);
 
-  return standardGameRatings[scores[0]];
+  return standardGameRatings[scores[0]] || CreatureId.Goblin;
 };

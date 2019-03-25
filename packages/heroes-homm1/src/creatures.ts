@@ -3,14 +3,44 @@ import { Creature } from "heroes-core";
 import { CreatureSpeed } from "./CreatureSpeed";
 import { TownId } from "./TownId";
 
-// Farm
 export enum CreatureId {
+  // Farm
   Peasant = "peasant",
   Archer = "archer",
   Pikeman = "pikeman",
   Swordsman = "swordsman",
   Cavalry = "cavalry",
   Paladin = "paladin",
+
+  // Plains
+  Goblin = "goblin",
+  Orc = "orc",
+  Wolf = "wolf",
+  Ogre = "ogre",
+  Troll = "troll",
+  Cyclops = "cyclops",
+
+  // Forest
+  Sprite = "sprite",
+  Dwarf = "dwarf",
+  Elf = "elf",
+  Druid = "druid",
+  Unicorn = "unicorn",
+  Phoenix = "phoenix",
+
+  // Mountains
+  Centaur = "centaur",
+  Gargoyle = "gargoyle",
+  Griffin = "griffin",
+  Minotaur = "minotaur",
+  Hydra = "hydra",
+  Dragon = "dragon",
+
+  // Neutral
+  Rogue = "rogue",
+  Nomad = "nomad",
+  Genie = "genie",
+  Ghost = "ghost",
 }
 
 const farmCreatures: Creature[] = [
@@ -89,16 +119,6 @@ const farmCreatures: Creature[] = [
   },
 ];
 
-// Plains
-export enum CreatureId {
-  Goblin = "goblin",
-  Orc = "orc",
-  Wolf = "wolf",
-  Ogre = "ogre",
-  Troll = "troll",
-  Cyclops = "cyclops",
-}
-
 const plainsCreatures: Creature[] = [
   {
     attack: 3,
@@ -175,16 +195,6 @@ const plainsCreatures: Creature[] = [
     town: TownId.Plains,
   },
 ];
-
-// Forest
-export enum CreatureId {
-  Sprite = "sprite",
-  Dwarf = "dwarf",
-  Elf = "elf",
-  Druid = "druid",
-  Unicorn = "unicorn",
-  Phoenix = "phoenix",
-}
 
 const forestCreatures: Creature[] = [
   {
@@ -263,16 +273,6 @@ const forestCreatures: Creature[] = [
   },
 ];
 
-// Mountains
-export enum CreatureId {
-  Centaur = "centaur",
-  Gargoyle = "gargoyle",
-  Griffin = "griffin",
-  Minotaur = "minotaur",
-  Hydra = "hydra",
-  Dragon = "dragon",
-}
-
 const mountainsCreatures: Creature[] = [
   {
     attack: 3,
@@ -348,14 +348,6 @@ const mountainsCreatures: Creature[] = [
     town: TownId.Mountains,
   },
 ];
-
-// Neutral
-export enum CreatureId {
-  Rogue = "rogue",
-  Nomad = "nomad",
-  Genie = "genie",
-  Ghost = "ghost",
-}
 
 const neutralCreatures: Creature[] = [
   {

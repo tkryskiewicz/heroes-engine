@@ -60,12 +60,8 @@ export enum StructureId {
   ThievesGuild = "thieves-guild",
   Tavern = "tavern",
   Well = "well",
-}
-
-// Mage Guild
-
-export enum StructureId {
   MageGuild = "mage-guild",
+  Shipyard = "shipyard",
 }
 
 interface MageGuildData {
@@ -75,12 +71,6 @@ interface MageGuildData {
 
 export interface MageGuild extends Structure<MageGuildData> {
   readonly id: StructureId.MageGuild;
-}
-
-// Shipyard
-
-export enum StructureId {
-  Shipyard = "shipyard",
 }
 
 interface ShipyardData {

@@ -1,10 +1,50 @@
-import { changeEndTurnPromptVisible, closeHeroTradingWindow, openHeroTradingWindow } from "./actions";
+import {
+  changeEndTurnPromptVisible,
+  closeHeroTradingWindow,
+  closeMapObjectDetails,
+  openHeroTradingWindow,
+  openMapObjectDetails,
+} from "./actions";
 import { adventureScreenReducer } from "./reducers";
 import { AdventureScreenState } from "./state";
 
 describe("adventureScreenReducer", () => {
   it("should return initial state", () => {
     const result = adventureScreenReducer(undefined, {} as any);
+
+    const expected: AdventureScreenState = {
+      endTurnPromptVisible: false,
+      heroTradingWindowVisible: false,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle opening map object details", () => {
+    const state: AdventureScreenState = {
+      endTurnPromptVisible: false,
+      heroTradingWindowVisible: false,
+    };
+
+    const result = adventureScreenReducer(state, openMapObjectDetails("id"));
+
+    const expected: AdventureScreenState = {
+      endTurnPromptVisible: false,
+      heroTradingWindowVisible: false,
+      visibleMapObjectDetails: "id",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle closing map object details", () => {
+    const state: AdventureScreenState = {
+      endTurnPromptVisible: false,
+      heroTradingWindowVisible: false,
+      visibleMapObjectDetails: "id",
+    };
+
+    const result = adventureScreenReducer(state, closeMapObjectDetails());
 
     const expected: AdventureScreenState = {
       endTurnPromptVisible: false,

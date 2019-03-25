@@ -16,9 +16,10 @@ import { MageGuild, StructureId } from "./structures";
 export const buyMageGuildSpellBook = (game: Game, heroId: string, townId: string, cost: Resources): Game => {
   const hero = getGameHero(game, heroId)!;
 
-  const t = getGameTown(game, townId)!;
+  const town = getGameTown(game, townId)!;
 
-  const mageGuild = getTownStructure(t, StructureId.MageGuild) as MageGuild;
+  // TODO: check if mage guild is built?
+  const mageGuild = getTownStructure(town, StructureId.MageGuild) as MageGuild;
 
   const spellBook = constructArtifact(ArtifactId.Spellbook, {
     spells: [

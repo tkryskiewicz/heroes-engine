@@ -23,6 +23,12 @@ export interface MoraleModifierBase {
 
 export enum MoraleModifierType {
   HeroClass = "hero-class",
+  SameOriginTroops = "same-origin-troops",
+  DifferentOriginTroops = "different-origin-troops",
+  Artifact = "artifact",
+  StructureVisited = "structure-visited",
+  StructureRobber = "structure-robber",
+  BattleCowardice = "battle-cowardice",
 }
 
 export interface HeroClassMoraleModifier extends MoraleModifierBase {
@@ -30,17 +36,9 @@ export interface HeroClassMoraleModifier extends MoraleModifierBase {
   readonly heroClass: string;
 }
 
-export enum MoraleModifierType {
-  SameOriginTroops = "same-origin-troops",
-}
-
 export interface SameOriginTroopsMoraleModifier extends MoraleModifierBase {
   readonly type: MoraleModifierType.SameOriginTroops;
   readonly town?: string;
-}
-
-export enum MoraleModifierType {
-  DifferentOriginTroops = "different-origin-troops",
 }
 
 export interface DifferentOriginTroopsMoraleModifier extends MoraleModifierBase {
@@ -48,17 +46,9 @@ export interface DifferentOriginTroopsMoraleModifier extends MoraleModifierBase 
   readonly count: number;
 }
 
-export enum MoraleModifierType {
-  Artifact = "artifact",
-}
-
 export interface ArtifactMoraleModifier extends MoraleModifierBase {
   readonly type: MoraleModifierType.Artifact;
   readonly artifact: string;
-}
-
-export enum MoraleModifierType {
-  StructureVisited = "structure-visited",
 }
 
 export interface StructureVisitedMoraleModifier extends MoraleModifierBase {
@@ -66,17 +56,9 @@ export interface StructureVisitedMoraleModifier extends MoraleModifierBase {
   readonly structure: string;
 }
 
-export enum MoraleModifierType {
-  StructureRobber = "structure-robber",
-}
-
 export interface StructureRobberMoraleModifier extends MoraleModifierBase {
   readonly type: MoraleModifierType.StructureRobber;
   readonly structure: string;
-}
-
-export enum MoraleModifierType {
-  BattleCowardice = "battle-cowardice",
 }
 
 export interface BattleCowardiceMoraleModifier extends MoraleModifierBase {

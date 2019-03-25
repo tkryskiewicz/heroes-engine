@@ -18,6 +18,8 @@ import {
   SwapTroopsAction,
   tradeArtifacts,
   TradeArtifactsAction,
+  visitMapObject,
+  VisitMapObjectAction,
 } from "./actions";
 
 describe("gameActions", () => {
@@ -138,6 +140,18 @@ describe("gameActions", () => {
 
     const expected: EndTurnAction = {
       type: GameActionType.EndTurn,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to visit map object", () => {
+    const result = visitMapObject("id", "hero");
+
+    const expected: VisitMapObjectAction = {
+      hero: "hero",
+      id: "id",
+      type: GameActionType.VisitMapObject,
     };
 
     expect(result).toEqual(expected);

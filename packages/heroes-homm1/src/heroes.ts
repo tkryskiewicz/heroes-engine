@@ -8,8 +8,8 @@ export interface HeroInfo {
   readonly heroClass: string;
 }
 
-// Knights
 export enum HeroId {
+  // Knights
   LordKilburn = "lord-kilburn",
   LordHaart = "lord-haart",
   SirGallant = "sir-gallant",
@@ -19,6 +19,39 @@ export enum HeroId {
   Ector = "ector",
   Dimitri = "dimitri",
   Ambrose = "ambrose",
+
+  // Barbarians
+  Thundax = "thundax",
+  Ergon = "ergon",
+  Kelzen = "kelzen",
+  Tsabu = "tsabu",
+  CragHack = "crag-hack",
+  JoJosh = "jojosh",
+  Atlas = "atlas",
+  Yog = "yog",
+  Antoine = "antoine",
+
+  // Sorceresses
+  Ariel = "ariel",
+  Vatawna = "vatawna",
+  Carlawn = "carlawn",
+  Rebecca = "rebecca",
+  Luna = "luna",
+  Astra = "astra",
+  Natasha = "natasha",
+  Gem = "gem",
+  Troyan = "troyan",
+
+  // Warlocks
+  Agar = "agar",
+  Crodo = "crodo",
+  Falagar = "falagar",
+  Barok = "barok",
+  Arie = "arie",
+  Kastore = "kastore",
+  Sandro = "sandro",
+  Wrathmont = "wrathmont",
+  Vesper = "vesper",
 }
 
 const knightHeroes: HeroInfo[] = [
@@ -60,19 +93,6 @@ const knightHeroes: HeroInfo[] = [
   },
 ];
 
-// Barbarians
-export enum HeroId {
-  Thundax = "thundax",
-  Ergon = "ergon",
-  Kelzen = "kelzen",
-  Tsabu = "tsabu",
-  CragHack = "crag-hack",
-  JoJosh = "jojosh",
-  Atlas = "atlas",
-  Yog = "yog",
-  Antoine = "antoine",
-}
-
 const barbarianHeroes: HeroInfo[] = [
   {
     heroClass: HeroClass.Barbarian,
@@ -112,19 +132,6 @@ const barbarianHeroes: HeroInfo[] = [
   },
 ];
 
-// Sorceresses
-export enum HeroId {
-  Ariel = "ariel",
-  Vatawna = "vatawna",
-  Carlawn = "carlawn",
-  Rebecca = "rebecca",
-  Luna = "luna",
-  Astra = "astra",
-  Natasha = "natasha",
-  Gem = "gem",
-  Troyan = "troyan",
-}
-
 const sorceressHeroes: HeroInfo[] = [
   {
     heroClass: HeroClass.Sorceress,
@@ -163,19 +170,6 @@ const sorceressHeroes: HeroInfo[] = [
     id: HeroId.Troyan,
   },
 ];
-
-// Warlocks
-export enum HeroId {
-  Agar = "agar",
-  Crodo = "crodo",
-  Falagar = "falagar",
-  Barok = "barok",
-  Arie = "arie",
-  Kastore = "kastore",
-  Sandro = "sandro",
-  Wrathmont = "wrathmont",
-  Vesper = "vesper",
-}
 
 const warlockHeroes: HeroInfo[] = [
   {
@@ -223,11 +217,17 @@ export const heroes: HeroInfo[] = [
   ...warlockHeroes,
 ];
 
+// TODO: move to game and inject heroes and hero classes
 export const constructHero = (id: string, alignment: string): Hero => {
-  const hero = heroes.find((h) => h.id === id)!;
+  const hero = heroes.find((h) => h.id === id);
+
+  if (!hero) {
+    throw new Error("Invalid hero");
+  }
 
   const heroClass = heroClasses.find((c) => c.id === hero.heroClass)!;
 
+  // TODO: test this
   const army: Army = heroClass.army
     .map((t): Troop => ({
       count: Math.floor(t.min + Math.random() * (t.max - t.min + 1)),

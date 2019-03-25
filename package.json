@@ -19,6 +19,7 @@
     "clean": "yarn workspaces run clean",
     "lint": "yarn workspaces run lint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   }
 }

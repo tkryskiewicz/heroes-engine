@@ -24,15 +24,12 @@ export interface LuckModifierBase {
 
 export enum LuckModifierType {
   Artifact = "artifact",
+  StructureVisited = "structure-visited",
 }
 
 export interface ArtifactLuckModifier extends LuckModifierBase {
   readonly type: LuckModifierType.Artifact;
   readonly artifact: string;
-}
-
-export enum LuckModifierType {
-  StructureVisited = "structure-visited",
 }
 
 export interface StructureVisitedLuckModifier extends LuckModifierBase {

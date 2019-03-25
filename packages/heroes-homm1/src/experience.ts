@@ -78,14 +78,17 @@ const experienceLevels: { readonly [level: number]: number } = {
 };
 
 export const getCurrentLevel = (experience: number): number => {
+  if (experience < 0) {
+    throw new Error("Experience must be a non-negative value");
+  }
+
   const levels = Object.keys(experienceLevels).map(Number);
 
   const maxLevel = levels[levels.length - 1];
 
-  return levels.find((l) =>
-    experience >= experienceLevels[l] &&
-    (!experienceLevels[l + 1] || experience < experienceLevels[l + 1]),
-  ) || maxLevel;
+  const level = levels.find((l) => experience >= experienceLevels[l] && experience < experienceLevels[l + 1]);
+
+  return level || maxLevel;
 };
 
 export const getNextLevelExperience = (experience: number): number | undefined =>
