@@ -14,3 +14,11 @@ export interface SpellBookData {
 export interface SpellBook extends Artifact<SpellBookData> {
   readonly id: ArtifactId.Spellbook;
 }
+
+export const constructSpellBook = (spells: SpellBookSpell[]): SpellBook => ({
+  data: {
+    spells,
+  },
+  id: ArtifactId.Spellbook,
+  tradable: false,
+});

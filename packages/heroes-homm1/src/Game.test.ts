@@ -1,8 +1,8 @@
 import { Game, Hero, Town } from "heroes-core";
 
-import { ArtifactId } from "./artifacts";
 import { buyMageGuildSpellBook } from "./Game";
 import { Resource } from "./Resource";
+import { constructSpellBook } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";
 
 describe("buyMageGuildSpellBook", () => {
@@ -83,18 +83,12 @@ describe("buyMageGuildSpellBook", () => {
     const expectedHero: Hero = {
       ...hero,
       artifacts: [
-        {
-          data: {
-            spells: [
-              {
-                charges: undefined,
-                id: "spell",
-              },
-            ],
+        constructSpellBook([
+          {
+            charges: 0,
+            id: "spell",
           },
-          id: ArtifactId.Spellbook,
-          tradable: false,
-        },
+        ]),
       ],
     };
 

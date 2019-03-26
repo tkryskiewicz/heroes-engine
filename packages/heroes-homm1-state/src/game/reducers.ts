@@ -24,6 +24,7 @@ import {
   campaignScenarios,
   constructArtifact,
   constructHero,
+  constructSpellBook,
   constructTown,
   creatureById,
   CreatureId,
@@ -67,9 +68,7 @@ const heroes: Hero[] = [
       Alignment.Red,
     ),
     artifacts: [
-      constructArtifact(ArtifactId.Spellbook, {
-        spells: [],
-      }),
+      constructSpellBook([]),
     ],
     luck: -1,
     mobility: 0,
@@ -82,14 +81,12 @@ const heroes: Hero[] = [
     ),
     artifacts: [
       {
-        ...constructArtifact(ArtifactId.Spellbook, {
-          spells: [
-            {
-              charges: 2,
-              id: SpellId.Bless,
-            },
-          ],
-        }),
+        ...constructSpellBook([
+          {
+            charges: 2,
+            id: SpellId.Bless,
+          },
+        ]),
       },
     ],
     luck: 3,

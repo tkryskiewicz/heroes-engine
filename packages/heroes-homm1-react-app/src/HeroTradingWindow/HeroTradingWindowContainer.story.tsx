@@ -82,7 +82,7 @@ storiesOf("HeroTradingWindowContainer", module)
     const h: Hero = {
       ...hero,
       artifacts: [
-        constructArtifact(ArtifactId.Spellbook),
+        constructArtifact(ArtifactId.Spellbook, {}, false),
       ],
     };
 
