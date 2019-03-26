@@ -16,3 +16,7 @@ export const createHeroMapObject = (id: string, hero: Hero): HeroMapObject => ({
   orientation: MapObjectOrientation.North,
   type: HeroMapObjectType,
 });
+
+export const isHeroMapObject = (object: MapObject): object is HeroMapObject =>
+  object.type === HeroMapObjectType &&
+  (object as HeroMapObject).hero !== undefined;

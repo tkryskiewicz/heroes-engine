@@ -5,14 +5,12 @@ import {
   DwellingMapObject,
   DwellingMapObjectType,
   Hero,
-  HeroMapObject as HeroObject,
-  HeroMapObjectType,
+  isHeroMapObject,
   isStructureBuilt,
+  isTownMapObject,
   Map,
   MapObject,
   Town,
-  TownMapObject as TownObject,
-  TownMapObjectType,
 } from "heroes-core";
 import { StructureId } from "heroes-homm1";
 import {
@@ -83,30 +81,22 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private renderMapObject(object: MapObject) {
-    if (object.type === HeroMapObjectType) {
-      const heroObject = object as HeroObject;
-
-      const hero = heroObject.hero;
-
+    if (isHeroMapObject(object)) {
       return (
         <HeroMapObject
-          heroClass={hero.heroClass}
-          alignment={hero.alignment}
-          orientation={heroObject.orientation}
+          heroClass={object.hero.heroClass}
+          alignment={object.hero.alignment}
+          orientation={object.orientation}
         />
       );
     }
 
-    if (object.type === TownMapObjectType) {
-      const townObject = object as TownObject;
-
-      const town = townObject.town;
-
+    if (isTownMapObject(object)) {
       return (
         <TownMapObject
-          town={town.id}
-          isCastleBuilt={isStructureBuilt(town, StructureId.Castle)}
-          alignment={town.alignment}
+          town={object.town.id}
+          isCastleBuilt={isStructureBuilt(object.town, StructureId.Castle)}
+          alignment={object.town.alignment}
         />
       );
     }
@@ -130,10 +120,8 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     if (object) {
       const { selectedLocator } = this.props;
 
-      if (object.type === HeroMapObjectType) {
-        const heroObject = object as HeroObject;
-
-        const heroIndex = this.props.heroes.indexOf(heroObject.hero);
+      if (isHeroMapObject(object)) {
+        const heroIndex = this.props.heroes.indexOf(object.hero);
 
         if (selectedLocator && selectedLocator.type === LocatorType.Hero && selectedLocator.index !== heroIndex) {
           this.setState({
@@ -144,7 +132,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
             cursor: "hero",
           });
         }
-      } else if (object.type === TownMapObjectType) {
+      } else if (isTownMapObject(object)) {
         this.setState({
           cursor: "town",
         });
@@ -171,24 +159,20 @@ class AdventureWindowContainer extends React.Component<Props, State> {
       const { selectedLocator } = this.props;
 
       // FIXME: extract
-      if (object.type === HeroMapObjectType) {
-        const heroObject = object as HeroObject;
-
-        const heroIndex = this.props.heroes.indexOf(heroObject.hero);
+      if (isHeroMapObject(object)) {
+        const heroIndex = this.props.heroes.indexOf(object.hero);
 
         if (!selectedLocator) {
           this.props.dispatch(locatorsActions.selectLocator({ type: LocatorType.Hero, index: heroIndex }));
         } else if (selectedLocator.type === LocatorType.Hero && heroIndex !== selectedLocator.index) {
           const otherHero = this.props.heroes[selectedLocator.index];
 
-          this.props.dispatch(adventureScreenActions.openHeroTradingWindow(heroObject.hero.id, otherHero.id));
+          this.props.dispatch(adventureScreenActions.openHeroTradingWindow(object.hero.id, otherHero.id));
         } else {
           this.props.dispatch(locatorsActions.openLocatorDetails());
         }
-      } else if (object.type === TownMapObjectType) {
-        const townObject = object as TownObject;
-
-        const townIndex = this.props.towns.indexOf(townObject.town);
+      } else if (isTownMapObject(object)) {
+        const townIndex = this.props.towns.indexOf(object.town);
 
         if (!selectedLocator || selectedLocator.type === LocatorType.Hero || selectedLocator.index !== townIndex) {
           this.props.dispatch(locatorsActions.selectLocator({ type: LocatorType.Town, index: townIndex }));

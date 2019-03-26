@@ -2,7 +2,7 @@ import { dismissArmyTroop, swapArmyTroops } from "./Army";
 import { ArtifactSelection } from "./Artifact";
 import { Creature } from "./Creature";
 import { Hero } from "./Hero";
-import { DwellingMapObjectType, getObject, Map } from "./map";
+import { getObject, isDwellingMapObject, Map, visitDwelling } from "./map";
 import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
@@ -181,14 +181,26 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
     throw new Error("Invalid object");
   }
 
-  const h = getGameHero(game, hero);
+  const visitingHero = getGameHero(game, hero);
 
-  if (!h) {
+  if (!visitingHero) {
     throw new Error("Invalid hero");
   }
 
-  if (object.type === DwellingMapObjectType) {
-    // TODO: implement
+  if (isDwellingMapObject(object)) {
+    const [dd, hh] = visitDwelling(object, visitingHero);
+
+    return {
+      ...game,
+      heroes: game.heroes.map((h) => h.id === h.id ? hh : h),
+      map: {
+        ...game.map,
+        tiles: game.map.tiles.map((t) => t.object && t.object.id === object.id ? {
+          ...t,
+          object: dd,
+        } : t),
+      },
+    };
   }
 
   return {

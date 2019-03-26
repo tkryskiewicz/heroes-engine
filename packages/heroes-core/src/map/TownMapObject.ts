@@ -13,3 +13,7 @@ export const createTownMapObject = (id: string, town: Town): TownMapObject => ({
   town,
   type: TownMapObjectType,
 });
+
+export const isTownMapObject = (object: MapObject): object is TownMapObject =>
+  object.type === TownMapObjectType &&
+  (object as TownMapObject).town !== undefined;
