@@ -2,9 +2,8 @@ import * as React from "react";
 import { DispatchProp } from "react-redux";
 
 import {
-  DwellingMapObject,
-  DwellingMapObjectType,
   Hero,
+  isDwellingMapObject,
   isHeroMapObject,
   isStructureBuilt,
   isTownMapObject,
@@ -101,12 +100,10 @@ class AdventureWindowContainer extends React.Component<Props, State> {
       );
     }
 
-    if (object.type === DwellingMapObjectType) {
-      const dwellingObject = object as DwellingMapObject;
-
+    if (isDwellingMapObject(object)) {
       return (
         <MapObj
-          type={dwellingObject.id}
+          type={object.id}
         />
       );
     }
@@ -179,14 +176,12 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         } else {
           this.props.dispatch(locatorsActions.openLocatorDetails());
         }
-      } else if (object.type === DwellingMapObjectType) {
-        const dwellingObject = object as DwellingMapObject;
-
+      } else if (isDwellingMapObject(object)) {
         if (selectedLocator === undefined || selectedLocator.type !== LocatorType.Hero) {
           return;
         }
 
-        this.props.dispatch(adventureScreenActions.openMapObjectDetails(dwellingObject.id));
+        this.props.dispatch(adventureScreenActions.openMapObjectDetails(object.id));
       }
     }
   }
@@ -195,17 +190,15 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     const mapObject: MapObject =
       this.props.map.tiles.find((t) => t.object !== undefined && (t.object as any).id === id)!.object!;
 
-    if (mapObject.type === DwellingMapObjectType) {
-      const dwellingObject = mapObject as DwellingMapObject;
+    if (isDwellingMapObject(mapObject)) {
+      const onConfirmClick = () => this.onConfirmCreatureJoinPrompt(mapObject.id);
 
-      const onConfirmClick = () => this.onConfirmCreatureJoinPrompt(dwellingObject.id);
-
-      if (dwellingObject.availableCount === 0) {
+      if (mapObject.availableCount === 0) {
         return (
           <DwellingEmptyPrompt
             visible={true}
-            dwelling={dwellingObject.id}
-            creature={dwellingObject.creature}
+            dwelling={mapObject.id}
+            creature={mapObject.creature}
             onConfirmClick={this.onCloseMapObjectDetailsClick}
           />
         );
@@ -213,7 +206,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         return (
           <CreatureJoinPrompt
             visible={true}
-            creature={dwellingObject.creature}
+            creature={mapObject.creature}
             onConfirmClick={onConfirmClick}
             onCancelClick={this.onCloseMapObjectDetailsClick}
           />
@@ -228,6 +221,8 @@ class AdventureWindowContainer extends React.Component<Props, State> {
 
   private readonly onConfirmCreatureJoinPrompt = (id: string) => {
     const { selectedLocator } = this.props;
+
+    this.props.dispatch(adventureScreenActions.closeMapObjectDetails());
 
     const hero = this.props.heroes[selectedLocator!.index];
 

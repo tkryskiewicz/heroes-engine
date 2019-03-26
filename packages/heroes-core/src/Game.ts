@@ -192,7 +192,7 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
 
     return {
       ...game,
-      heroes: game.heroes.map((h) => h.id === h.id ? hh : h),
+      heroes: game.heroes.map((h) => h.id === hh.id ? hh : h),
       map: {
         ...game.map,
         tiles: game.map.tiles.map((t) => t.object && t.object.id === object.id ? {
