@@ -15,7 +15,7 @@ export class ArtifactNotTradablePrompt extends React.Component<PromptProps> {
         onConfirmClick={this.props.onConfirmClick}
       >
         <GameText size="large">
-          <FormattedMessage {...messages.artifactNotTradable} />
+          <FormattedMessage {...messages.content} />
         </GameText>
       </GameModal>
     );
