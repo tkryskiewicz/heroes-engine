@@ -101,7 +101,6 @@ describe("heroHasArtifact", () => {
         {
           data: {},
           id: "artifact",
-          tradable: true,
         },
       ],
       experience: 0,
@@ -126,7 +125,6 @@ describe("heroHasArtifact", () => {
         {
           data: {},
           id: "id",
-          tradable: true,
         },
       ],
       experience: 0,

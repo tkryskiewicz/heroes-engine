@@ -1,4 +1,4 @@
-import { Artifact } from "heroes-core";
+import { Artifact, ArtifactData } from "heroes-core";
 
 export enum ArtifactId {
   // Attack
@@ -64,8 +64,210 @@ export enum ArtifactId {
   UltimateBookOfKnowledge = "ultimate-book-of-knowledge",
 }
 
-export const constructArtifact = (artifact: string, data: {} = {}, tradable = true): Artifact => ({
+const attackArtifacts: ArtifactData[] = [
+  {
+    id: ArtifactId.ThunderMaceOfDominion,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.GiantFlailOfDominion,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.PowerAxeOfDominion,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.DragonSwordOfDominion,
+    tradable: true,
+  },
+];
+
+const defenseArtifacts: ArtifactData[] = [
+  {
+    id: ArtifactId.ArmoredGauntletsOfProtection,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.DefenderHelmOfProtection,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.StealthShieldOfProtection,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.DivineBreastplateOfProtection,
+    tradable: true,
+  },
+];
+
+const spellPowerArtifacts: ArtifactData[] = [
+  {
+    id: ArtifactId.CastersBraceletOfMagic,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.MagesRingOfPower,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.WitchsBroachOfMagic,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.ArcaneNecklaceOfMagic,
+    tradable: true,
+  },
+];
+
+const knowledgeArtifacts: ArtifactData[] = [
+  {
+    id: ArtifactId.MinorScrollOfKnowledge,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.MajorScrollOfKnowledge,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.SuperiorScrollOfKnowledge,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.ForemostScrollOfKnowledge,
+    tradable: true,
+  },
+];
+
+const moraleArtifacts: ArtifactData[] = [
+  {
+    id: ArtifactId.MedalOfValor,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.MedalOfCourage,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.MedalOfHonor,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.MedalOfDistinction,
+    tradable: true,
+  },
+];
+
+const luckArtifacts: ArtifactData[] = [
+  {
+    id: ArtifactId.LuckyRabbitsFoot,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.GoldenHoreshoe,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.GamblersLuckyCoin,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.FourLeafClover,
+    tradable: true,
+  },
+];
+
+const incomeArtifacts: ArtifactData[] = [
+  {
+    id: ArtifactId.EndlessPurseOfGold,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.EndlessBagOfGold,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.EndlessSackOfGold,
+    tradable: true,
+  },
+];
+
+const mobilityArtifacts: ArtifactData[] = [
+  {
+    id: ArtifactId.TravelersBootsOfMobility,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.NomadBootsOfMobility,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.SailorsAstrolabeOfMobility,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.TrueCompassOfMobility,
+    tradable: true,
+  },
+];
+
+const siegeWeaponsArtifacts: ArtifactData[] = [
+  {
+    id: ArtifactId.BallistaOfQuickness,
+    tradable: true,
+  },
+];
+
+const spellBookArtifacts: ArtifactData[] = [
+  {
+    id: ArtifactId.Spellbook,
+    tradable: false,
+  },
+];
+
+const cursedArtifacts: ArtifactData[] = [
+  {
+    id: ArtifactId.FizbinOfMisfortune,
+    tradable: true,
+  },
+];
+
+const ultimateArtifacts: ArtifactData[] = [
+  {
+    id: ArtifactId.UltimateSwordOfDominion,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.UltimateCloakOfProtection,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.UltimateWandOfMagic,
+    tradable: true,
+  },
+  {
+    id: ArtifactId.UltimateBookOfKnowledge,
+    tradable: true,
+  },
+];
+
+export const artifacts: ArtifactData[] = [
+  ...attackArtifacts,
+  ...defenseArtifacts,
+  ...spellPowerArtifacts,
+  ...knowledgeArtifacts,
+  ...moraleArtifacts,
+  ...luckArtifacts,
+  ...incomeArtifacts,
+  ...mobilityArtifacts,
+  ...siegeWeaponsArtifacts,
+  ...spellBookArtifacts,
+  ...cursedArtifacts,
+  ...ultimateArtifacts,
+];
+
+export const constructArtifact = (artifact: string, data: {} = {}): Artifact => ({
   data,
   id: artifact,
-  tradable,
 });

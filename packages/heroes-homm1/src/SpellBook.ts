@@ -20,5 +20,4 @@ export const constructSpellBook = (spells: SpellBookSpell[]): SpellBook => ({
     spells,
   },
   id: ArtifactId.Spellbook,
-  tradable: false,
 });

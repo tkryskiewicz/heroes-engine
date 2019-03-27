@@ -20,7 +20,6 @@ describe("constructSpellBook", () => {
         ],
       },
       id: ArtifactId.Spellbook,
-      tradable: false,
     };
 
     expect(result).toEqual(expected);

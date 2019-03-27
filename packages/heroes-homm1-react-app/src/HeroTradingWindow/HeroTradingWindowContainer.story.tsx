@@ -6,7 +6,7 @@ import * as React from "react";
 import { Hero } from "heroes-core";
 import { Alignment, ArtifactId, ArtifactLimit, constructArtifact, CreatureId, HeroClass, HeroId } from "heroes-homm1";
 
-import { HeroTradingWindow } from "./HeroTradingWindowContainer";
+import { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindowContainer";
 
 const hero: Hero = {
   alignment: Alignment.Red,
@@ -43,6 +43,7 @@ storiesOf("HeroTradingWindowContainer", module)
   .add("default", () => (
     <HeroTradingWindow
       visible={true}
+      artifacts={{}}
       hero={hero}
       otherHero={otherHero}
     />
@@ -70,6 +71,7 @@ storiesOf("HeroTradingWindowContainer", module)
     return (
       <HeroTradingWindow
         visible={true}
+        artifacts={{}}
         hero={h}
         otherHero={oh}
         selectedArtifact={artifactSelection}
@@ -79,16 +81,24 @@ storiesOf("HeroTradingWindowContainer", module)
     );
   })
   .add("non-tradable artifacts", () => {
+    const artifacts: HeroTradingWindowProps["artifacts"] = {
+      [ArtifactId.Spellbook]: {
+        id: ArtifactId.Spellbook,
+        tradable: false,
+      },
+    };
+
     const h: Hero = {
       ...hero,
       artifacts: [
-        constructArtifact(ArtifactId.Spellbook, {}, false),
+        constructArtifact(ArtifactId.Spellbook, {}),
       ],
     };
 
     return (
       <HeroTradingWindow
         visible={true}
+        artifacts={artifacts}
         hero={h}
         otherHero={otherHero}
         artifactNotTradablePromptVisible={boolean("Artifact Not Tradable Prompt Visible", true)}

@@ -1,7 +1,11 @@
+export interface ArtifactData {
+  readonly id: string;
+  readonly tradable: boolean;
+}
+
 export interface Artifact<T = {}> {
   readonly id: string;
   readonly data: T;
-  readonly tradable: boolean;
 }
 
 export interface ArtifactSelection {

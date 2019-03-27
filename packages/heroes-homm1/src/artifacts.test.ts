@@ -9,7 +9,6 @@ describe("constructArtifact", () => {
     const expected: Artifact = {
       data: {},
       id: "artifact",
-      tradable: true,
     };
 
     expect(result).toEqual(expected);
@@ -23,21 +22,8 @@ describe("constructArtifact", () => {
         property: "value",
       },
       id: "artifact",
-      tradable: true,
     };
 
     expect(result).toEqual(expected);
-  });
-
-  it("should construct tradable artifacts by default", () => {
-    const result = constructArtifact("artifact");
-
-    expect(result.tradable).toBe(true);
-  });
-
-  it("should construct non-tradable artifact", () => {
-    const result = constructArtifact("artifact", [], false);
-
-    expect(result.tradable).toBe(false);
   });
 });

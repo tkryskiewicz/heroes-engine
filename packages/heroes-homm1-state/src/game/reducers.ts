@@ -20,6 +20,7 @@ import {
 import {
   Alignment,
   ArtifactId,
+  artifacts,
   buyMageGuildSpellBook,
   campaignScenarios,
   constructArtifact,
@@ -148,6 +149,10 @@ map = placeObject(map, { x: 2, y: 2 }, createDwellingMapObject(MapObjectId.Thatc
 const initialState: GameState = {
   alignment: Alignment.Red,
   data: {
+    artifactById: artifacts.reduce((p, c) => ({
+      ...p,
+      [c.id]: c,
+    }), {}),
     creatureById,
     spellById: spells.reduce((p, c) => ({
       ...p,

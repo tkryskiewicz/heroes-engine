@@ -7,6 +7,7 @@ import { AppState, gameActions, heroTradingWindowActions } from "heroes-homm1-st
 import { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindowContainer";
 
 type StateProp =
+  "artifacts" |
   "hero" |
   "otherHero" |
   "visibleHeroDetails" |
@@ -18,6 +19,7 @@ type StateProp =
 const mapStateToProps = (state: AppState): Pick<HeroTradingWindowProps, StateProp> => ({
   artifactDetailsVisible: state.heroTradingWindow.artifactDetailsVisible,
   artifactNotTradablePromptVisible: state.heroTradingWindow.artifactNotTradablePromptVisible,
+  artifacts: state.game.data.artifactById,
   hero: getGameHero(state.game, state.adventureScreen.hero!)!,
   otherHero: getGameHero(state.game, state.adventureScreen.otherHero!)!,
   selectedArtifact: state.heroTradingWindow.selectedArtifact,

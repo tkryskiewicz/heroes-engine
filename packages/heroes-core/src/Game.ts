@@ -1,5 +1,5 @@
 import { dismissArmyTroop, swapArmyTroops } from "./Army";
-import { ArtifactSelection } from "./Artifact";
+import { ArtifactData, ArtifactSelection } from "./Artifact";
 import { Creature } from "./Creature";
 import { Hero } from "./Hero";
 import { getObject, isDwellingMapObject, Map, visitDwelling } from "./map";
@@ -10,7 +10,8 @@ import { buildTownStructure, endTownTurn, recruitTownTroop, Town } from "./Town"
 import { TroopSelection, TroopSelectionType } from "./Troop";
 
 export interface GameData {
-  readonly creatureById: { readonly [creature: string]: Creature; };
+  readonly artifactById: { readonly [id: string]: ArtifactData; };
+  readonly creatureById: { readonly [id: string]: Creature; };
   readonly spellById: { readonly [id: string]: Spell; };
 }
 

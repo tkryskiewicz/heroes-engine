@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { ArtifactSelection, getArmySize, Hero, TroopSelection, TroopSelectionType } from "heroes-core";
+import { ArtifactData, ArtifactSelection, getArmySize, Hero, TroopSelection, TroopSelectionType } from "heroes-core";
 import {
   ArtifactDetailsPrompt,
   ArtifactNotTradablePrompt,
@@ -16,6 +16,8 @@ import {
 import { HeroWindow } from "../HeroWindow";
 
 interface Props extends InjectedIntlProps, WithGameWindowProps {
+  readonly artifacts: { readonly [id: string]: ArtifactData };
+
   readonly hero: Hero;
   readonly otherHero: Hero;
 
@@ -185,7 +187,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   }
 
   private readonly onArtifactClick = (hero: string, index: number) => {
-    const { selectedArtifact } = this.props;
+    const { artifacts, selectedArtifact } = this.props;
 
     const h = this.props.hero.id === hero ?
       this.props.hero :
@@ -193,9 +195,14 @@ class HeroTradingWindowContainer extends React.Component<Props> {
 
     const artifact = h.artifacts[index];
 
+    const artifactData = artifact && artifacts[artifact.id] ?
+      artifacts[artifact.id] :
+      undefined;
+
     // TODO: simplify?
+    // FIXME: is trading check handled correctly ?
     if (selectedArtifact) {
-      if (artifact && !artifact.tradable) {
+      if (artifact && artifactData && !artifactData.tradable) {
         this.props.onOpenArtifactNotTradablePrompt();
       } else if (hero === selectedArtifact.hero && index === selectedArtifact.index) {
         this.props.onOpenArtifactDetailsClick();
@@ -203,7 +210,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
         this.props.onTradeArtifactsClick(selectedArtifact, { hero, index });
       }
     } else if (artifact) {
-      if (!artifact.tradable) {
+      if (artifactData && !artifactData.tradable) {
         this.props.onOpenArtifactNotTradablePrompt();
       } else {
         this.props.onSelectArtifactClick({ hero, index });

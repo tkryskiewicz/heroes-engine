@@ -1,5 +1,5 @@
 export { Army, getArmySize, swapArmyTroops } from "./Army";
-export { Artifact, ArtifactSelection } from "./Artifact";
+export { Artifact, ArtifactData, ArtifactSelection } from "./Artifact";
 export {
   Battlefield,
   BattlefieldCell,

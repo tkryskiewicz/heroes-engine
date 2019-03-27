@@ -53,6 +53,7 @@ describe("buyMageGuildSpellBook", () => {
     const game: Game = {
       alignment: "alignment",
       data: {
+        artifactById: {},
         creatureById: {},
         spellById: {},
       },
@@ -95,6 +96,7 @@ describe("buyMageGuildSpellBook", () => {
     const expected: Game = {
       alignment: "alignment",
       data: {
+        artifactById: {},
         creatureById: {},
         spellById: {},
       },
