@@ -32,7 +32,7 @@ export const buildStructure = (structure: Structure): Structure => ({
   isBuilt: true,
 });
 
-export const getTroop = (structure: Structure, count: number): Troop | undefined => {
+export const getTroop = (structure: Structure, count: number): Troop => {
   if (!structure.dwelling) {
     throw new Error("Structure is not a dwelling");
   }
@@ -40,6 +40,8 @@ export const getTroop = (structure: Structure, count: number): Troop | undefined
   if (count < 0 || count > structure.dwelling.availableCount) {
     throw new Error("Count must be non-negative and less or equal to available count");
   }
+
+  // TODO: handle structure not built??
 
   return {
     count,

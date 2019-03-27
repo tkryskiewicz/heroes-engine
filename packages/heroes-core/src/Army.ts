@@ -75,8 +75,13 @@ export const appendArmyTroop = (army: Army, troop: Troop): Army => {
   return clone;
 };
 
-export const dismissArmyTroop = (army: Army, index: number): Army =>
-  army.map((t, i) => i === index ? undefined : t);
+export const dismissArmyTroop = (army: Army, index: number): Army => {
+  const clone = [...army];
+
+  clone[index] = undefined;
+
+  return clone;
+};
 
 interface SwapArmyTroopsOptions {
   readonly preventMovingLastTroop?: boolean;

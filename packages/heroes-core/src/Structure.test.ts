@@ -1,4 +1,4 @@
-import { buildStructure, getTroop, recruitTroop, Structure } from "./Structure";
+import { buildStructure, getTroop, isDwellingStructure, recruitTroop, Structure } from "./Structure";
 import { Troop } from "./Troop";
 
 describe("buildStructure", () => {
@@ -103,6 +103,40 @@ describe("getTroop", () => {
     };
 
     expect(() => getTroop(structure, 1)).toThrowError();
+  });
+});
+
+describe("isDwellingStructure", () => {
+  it("should return true when dwelling structure", () => {
+    const structure: Structure = {
+      cost: {},
+      data: {},
+      dwelling: {
+        availableCount: 0,
+        cost: {},
+        creature: "creature",
+        growth: 1,
+      },
+      id: "id",
+      isBuilt: false,
+    };
+
+    const result = isDwellingStructure(structure);
+
+    expect(result).toBe(true);
+  });
+
+  it("should return false when not a dwelling structure", () => {
+    const structure: Structure = {
+      cost: {},
+      data: {},
+      id: "id",
+      isBuilt: false,
+    };
+
+    const result = isDwellingStructure(structure);
+
+    expect(result).toBe(false);
   });
 });
 

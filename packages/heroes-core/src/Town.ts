@@ -23,13 +23,19 @@ export const isStructureBuilt = (town: Town, structure: string): boolean => {
 
 export const buildTownStructure = (town: Town, structure: string): Town => {
   if (!town.canConstructStructures) {
-    return town;
+    throw new Error("Cannot build structures");
+  }
+
+  const struc = getTownStructure(town, structure);
+
+  if (!struc) {
+    throw new Error("Invalid structure");
   }
 
   return {
     ...town,
     canConstructStructures: false,
-    structures: town.structures.map((s) => s.id === structure ? buildStructure(s) : s),
+    structures: town.structures.map((s) => s.id === structure ? buildStructure(struc) : s),
   };
 };
 
@@ -37,14 +43,10 @@ export const recruitTownTroop = (town: Town, structureId: string, count: number)
   const structure = town.structures.find((s) => s.id === structureId);
 
   if (!structure) {
-    return town;
+    throw new Error("Invalid structure");
   }
 
   const troop = getTroop(structure, count);
-
-  if (!troop) {
-    return town;
-  }
 
   return {
     ...town,

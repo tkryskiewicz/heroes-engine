@@ -1,4 +1,4 @@
-import { canSelectNextHero, getNextHeroIndex, Hero } from "./Hero";
+import { canSelectNextHero, getNextHeroIndex, Hero, heroHasArtifact } from "./Hero";
 
 const getHero = (mobility: number = 1): Hero => ({
   alignment: "alignment",
@@ -89,5 +89,57 @@ describe("getNextHeroIndex", () => {
     const result = getNextHeroIndex(heroes);
 
     expect(result).toBe(1);
+  });
+});
+
+describe("heroHasArtifact", () => {
+  it("should return true when hero has artifact", () => {
+    const hero: Hero = {
+      alignment: "alignment",
+      army: [],
+      artifacts: [
+        {
+          data: {},
+          id: "artifact",
+          tradable: true,
+        },
+      ],
+      experience: 0,
+      heroClass: "heroClass",
+      id: "id",
+      luck: 0,
+      mobility: 0,
+      morale: 0,
+      skills: {},
+    };
+
+    const result = heroHasArtifact(hero, "artifact");
+
+    expect(result).toBe(true);
+  });
+
+  it("should return false when hero doesn't have artifact", () => {
+    const hero: Hero = {
+      alignment: "alignment",
+      army: [],
+      artifacts: [
+        {
+          data: {},
+          id: "id",
+          tradable: true,
+        },
+      ],
+      experience: 0,
+      heroClass: "heroClass",
+      id: "id",
+      luck: 0,
+      mobility: 0,
+      morale: 0,
+      skills: {},
+    };
+
+    const result = heroHasArtifact(hero, "artifact");
+
+    expect(result).toBe(false);
   });
 });

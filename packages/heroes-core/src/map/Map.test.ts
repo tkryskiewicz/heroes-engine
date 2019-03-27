@@ -1,4 +1,4 @@
-import { createMap, isPointValid, moveObject, placeObject } from "./Map";
+import { createMap, getObject, isPointValid, moveObject, placeObject } from "./Map";
 import { MapObject } from "./MapObject";
 import { MapPoint } from "./MapPoint";
 
@@ -95,7 +95,10 @@ describe("isPointValid", () => {
 
 describe("placeObject", () => {
   it("should place object", () => {
-    const object: MapObject = { type: "type" };
+    const object: MapObject = {
+      id: "id",
+      type: "type",
+    };
 
     const map = createMap(1, 1, "terrain");
 
@@ -105,7 +108,10 @@ describe("placeObject", () => {
   });
 
   it("should throw when point is invalid", () => {
-    const object: MapObject = { type: "type" };
+    const object: MapObject = {
+      id: "id",
+      type: "type",
+    };
 
     const map = createMap(1, 1, "terrain");
 
@@ -115,13 +121,19 @@ describe("placeObject", () => {
   });
 
   it("should throw when object is already placed", () => {
-    const objectA: MapObject = { type: "type" };
+    const objectA: MapObject = {
+      id: "idB",
+      type: "type",
+    };
 
     let map = createMap(1, 1, "terrain");
 
     map = placeObject(map, { x: 0, y: 0 }, objectA);
 
-    const objectB: MapObject = { type: "type" };
+    const objectB: MapObject = {
+      id: "idB",
+      type: "type",
+    };
 
     expect(() => {
       placeObject(map, { x: 0, y: 0 }, objectB);
@@ -129,9 +141,37 @@ describe("placeObject", () => {
   });
 });
 
+describe("getObject", () => {
+  it("should return object", () => {
+    let map = createMap(1, 1, "terrain");
+
+    const object: MapObject = {
+      id: "id",
+      type: "type",
+    };
+
+    map = placeObject(map, { x: 0, y: 0 }, object);
+
+    const result = getObject(map, "id");
+
+    expect(result).toEqual(object);
+  });
+
+  it("should return undefined when no object", () => {
+    const map = createMap(1, 1, "terrain");
+
+    const result = getObject(map, "id");
+
+    expect(result).toBeUndefined();
+  });
+});
+
 describe("moveObject", () => {
   it("should move object", () => {
-    const object: MapObject = { type: "type" };
+    const object: MapObject = {
+      id: "id",
+      type: "type",
+    };
 
     let map = createMap(2, 1, "terrain");
 
@@ -143,7 +183,10 @@ describe("moveObject", () => {
   });
 
   it("should throw when from is not a valid map point", () => {
-    const object: MapObject = { type: "type" };
+    const object: MapObject = {
+      id: "id",
+      type: "type",
+    };
 
     let map = createMap(2, 1, "terrain");
 
@@ -151,11 +194,14 @@ describe("moveObject", () => {
 
     expect(() => {
       moveObject(map, { x: 2, y: 0 }, { x: 1, y: 0 });
-    });
+    }).toThrow();
   });
 
   it("should throw when to is not a valid map point", () => {
-    const object: MapObject = { type: "type" };
+    const object: MapObject = {
+      id: "id",
+      type: "type",
+    };
 
     let map = createMap(2, 1, "terrain");
 
@@ -163,7 +209,7 @@ describe("moveObject", () => {
 
     expect(() => {
       moveObject(map, { x: 0, y: 0 }, { x: 2, y: 0 });
-    });
+    }).toThrow();
   });
 
   it("should throw when tile doesn't contain an object", () => {
@@ -175,13 +221,19 @@ describe("moveObject", () => {
   });
 
   it("should throw when target tile already contains an object", () => {
-    const objectA: MapObject = { type: "type" };
+    const objectA: MapObject = {
+      id: "idA",
+      type: "type",
+    };
 
     let map = createMap(2, 1, "terrain");
 
     map = placeObject(map, { x: 0, y: 0 }, objectA);
 
-    const objectB: MapObject = { type: "type" };
+    const objectB: MapObject = {
+      id: "idB",
+      type: "type",
+    };
 
     map = placeObject(map, { x: 1, y: 0 }, objectB);
 
