@@ -13,6 +13,7 @@ export { CombatSide } from "./CombatSide";
 export { Creature, Damage } from "./Creature";
 export {
   Game,
+  GameData,
   getGameTown,
   getGameHero,
   swapGameTroops,

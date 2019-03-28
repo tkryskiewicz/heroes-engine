@@ -7,6 +7,7 @@ import {
   createTownMapObject,
   dismissGameHero,
   dismissGameTroop,
+  DwellingMapObjectData,
   endGameTurn,
   Hero,
   Map,
@@ -31,6 +32,7 @@ import {
   CreatureId,
   HeroId,
   MapObjectId,
+  mapObjects,
   MaxMobility,
   Resource,
   SpellId,
@@ -144,7 +146,9 @@ heroes.forEach((h, i) => map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHe
 
 towns.forEach((t, i) => map = placeObject(map, { x: 8, y: 1 + 3 * i }, createTownMapObject(t.id, t)));
 
-map = placeObject(map, { x: 2, y: 2 }, createDwellingMapObject(MapObjectId.ThatchedHut, CreatureId.Peasant, 5));
+const thatchedHutData = mapObjects.find((o) => o.id === MapObjectId.ThatchedHut)! as DwellingMapObjectData;
+
+map = placeObject(map, { x: 2, y: 2 }, createDwellingMapObject(thatchedHutData));
 
 const initialState: GameState = {
   alignment: Alignment.Red,
@@ -154,6 +158,10 @@ const initialState: GameState = {
       [c.id]: c,
     }), {}),
     creatureById,
+    mapObjects: mapObjects.reduce((p, c) => ({
+      ...p,
+      [c.id]: c,
+    }), {}),
     spellById: spells.reduce((p, c) => ({
       ...p,
       [c.id]: c,

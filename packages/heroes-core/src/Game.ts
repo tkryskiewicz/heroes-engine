@@ -2,7 +2,7 @@ import { dismissArmyTroop, swapArmyTroops } from "./Army";
 import { ArtifactData, ArtifactSelection } from "./Artifact";
 import { Creature } from "./Creature";
 import { Hero } from "./Hero";
-import { getObject, isDwellingMapObject, Map, visitDwelling } from "./map";
+import { getObject, isDwellingMapObject, isDwellingMapObjectData, Map, MapObjectData, visitDwelling } from "./map";
 import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
@@ -13,6 +13,7 @@ export interface GameData {
   readonly artifactById: { readonly [id: string]: ArtifactData; };
   readonly creatureById: { readonly [id: string]: Creature; };
   readonly spellById: { readonly [id: string]: Spell; };
+  readonly mapObjects: { readonly [id: string]: MapObjectData; };
 }
 
 export interface Game {
@@ -182,14 +183,16 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
     throw new Error("Invalid object");
   }
 
+  const objectData = game.data.mapObjects[object.id];
+
   const visitingHero = getGameHero(game, hero);
 
   if (!visitingHero) {
     throw new Error("Invalid hero");
   }
 
-  if (isDwellingMapObject(object)) {
-    const [dd, hh] = visitDwelling(object, visitingHero);
+  if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {
+    const [dd, hh] = visitDwelling(object, objectData, visitingHero);
 
     return {
       ...game,

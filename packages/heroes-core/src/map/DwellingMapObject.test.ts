@@ -3,19 +3,54 @@ import { Hero } from "../Hero";
 import {
   createDwellingMapObject,
   DwellingMapObject,
+  DwellingMapObjectData,
   DwellingMapObjectType,
   isDwellingMapObject,
+  isDwellingMapObjectData,
   visitDwelling,
 } from "./DwellingMapObject";
-import { MapObject } from "./MapObject";
+import { MapObject, MapObjectData } from "./MapObject";
+
+describe("isDwellingMapObjectData", () => {
+  it("should return true when object data is dwelling object data", () => {
+    const objectData: DwellingMapObjectData = {
+      dwelling: {
+        creature: "creature",
+        initialCount: 1,
+      },
+      id: "id",
+    };
+
+    const result = isDwellingMapObjectData(objectData);
+
+    expect(result).toBe(true);
+  });
+
+  it("should return false when object data is not dwelling object data", () => {
+    const objectData: MapObjectData = {
+      id: "id",
+    };
+
+    const result = isDwellingMapObjectData(objectData);
+
+    expect(result).toBe(false);
+  });
+});
 
 describe("createDwellingMapObject", () => {
   it("should create object", () => {
-    const result = createDwellingMapObject("id", "creature", 1);
+    const objectData: DwellingMapObjectData = {
+      dwelling: {
+        creature: "creature",
+        initialCount: 1,
+      },
+      id: "id",
+    };
+
+    const result = createDwellingMapObject(objectData);
 
     const expected: DwellingMapObject = {
       availableCount: 1,
-      creature: "creature",
       id: "id",
       type: DwellingMapObjectType,
     };
@@ -26,7 +61,15 @@ describe("createDwellingMapObject", () => {
 
 describe("isDwellingMapObject", () => {
   it("should return true when dwelling map object", () => {
-    const object = createDwellingMapObject("id", "creature", 0);
+    const objectData: DwellingMapObjectData = {
+      dwelling: {
+        creature: "creature",
+        initialCount: 1,
+      },
+      id: "id",
+    };
+
+    const object = createDwellingMapObject(objectData);
 
     const result = isDwellingMapObject(object);
 
@@ -47,7 +90,15 @@ describe("isDwellingMapObject", () => {
 
 describe("visitDwelling", () => {
   it("should clear dwellings available count", () => {
-    const dwelling = createDwellingMapObject("id", "creature", 1);
+    const objectData: DwellingMapObjectData = {
+      dwelling: {
+        creature: "creature",
+        initialCount: 1,
+      },
+      id: "id",
+    };
+
+    const object = createDwellingMapObject(objectData);
 
     const hero: Hero = {
       alignment: "alignment",
@@ -62,11 +113,10 @@ describe("visitDwelling", () => {
       skills: {},
     };
 
-    const [result] = visitDwelling(dwelling, hero);
+    const [result] = visitDwelling(object, objectData, hero);
 
     const expected: DwellingMapObject = {
       availableCount: 0,
-      creature: "creature",
       id: "id",
       type: DwellingMapObjectType,
     };
@@ -75,7 +125,15 @@ describe("visitDwelling", () => {
   });
 
   it("should add troop to hero army", () => {
-    const dwelling = createDwellingMapObject("id", "creature", 1);
+    const objectData: DwellingMapObjectData = {
+      dwelling: {
+        creature: "creature",
+        initialCount: 1,
+      },
+      id: "id",
+    };
+
+    const object = createDwellingMapObject(objectData);
 
     const hero: Hero = {
       alignment: "alignment",
@@ -90,7 +148,7 @@ describe("visitDwelling", () => {
       skills: {},
     };
 
-    const [, result] = visitDwelling(dwelling, hero);
+    const [, result] = visitDwelling(object, objectData, hero);
 
     const expected: Army = [
       {

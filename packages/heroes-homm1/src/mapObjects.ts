@@ -1,3 +1,7 @@
+import { DwellingMapObjectData, MapObjectData } from "heroes-core";
+
+import { CreatureId } from "./creatures";
+
 export enum MapObjectId {
   Bouy = "bouy",
   Cottage = "cottage",
@@ -22,3 +26,31 @@ export enum MapObjectId {
   Whirlpool = "whirlpool",
   Windmill = "windmill",
 }
+
+const dwellingObjects: DwellingMapObjectData[] = [
+  {
+    dwelling: {
+      creature: CreatureId.Archer,
+      initialCount: 3,
+    },
+    id: MapObjectId.Cottage,
+  },
+  {
+    dwelling: {
+      creature: CreatureId.Goblin,
+      initialCount: 27,
+    },
+    id: MapObjectId.Hut,
+  },
+  {
+    dwelling: {
+      creature: CreatureId.Peasant,
+      initialCount: 50,
+    },
+    id: MapObjectId.ThatchedHut,
+  },
+];
+
+export const mapObjects: MapObjectData[] = [
+  ...dwellingObjects,
+];

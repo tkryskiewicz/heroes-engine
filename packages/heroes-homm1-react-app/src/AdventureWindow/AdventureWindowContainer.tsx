@@ -2,8 +2,10 @@ import * as React from "react";
 import { DispatchProp } from "react-redux";
 
 import {
+  GameData,
   Hero,
   isDwellingMapObject,
+  isDwellingMapObjectData,
   isHeroMapObject,
   isStructureBuilt,
   isTownMapObject,
@@ -26,6 +28,7 @@ import { adventureScreenActions, gameActions, Locator, locatorsActions, LocatorT
 import { HeroTradingWindow } from "../HeroTradingWindow";
 
 interface Props extends DispatchProp {
+  readonly mapObjects: GameData["mapObjects"];
   readonly map: Map;
   readonly heroes: Hero[];
   readonly towns: Town[];
@@ -190,7 +193,9 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     const mapObject: MapObject =
       this.props.map.tiles.find((t) => t.object !== undefined && (t.object as any).id === id)!.object!;
 
-    if (isDwellingMapObject(mapObject)) {
+    const objectData = this.props.mapObjects[mapObject.id];
+
+    if (isDwellingMapObjectData(objectData) && isDwellingMapObject(mapObject)) {
       const onConfirmClick = () => this.onConfirmCreatureJoinPrompt(mapObject.id);
 
       if (mapObject.availableCount === 0) {
@@ -198,7 +203,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
           <DwellingEmptyPrompt
             visible={true}
             dwelling={mapObject.id}
-            creature={mapObject.creature}
+            creature={objectData.dwelling.creature}
             onConfirmClick={this.onCloseMapObjectDetailsClick}
           />
         );
@@ -206,7 +211,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         return (
           <CreatureJoinPrompt
             visible={true}
-            creature={mapObject.creature}
+            creature={objectData.dwelling.creature}
             onConfirmClick={onConfirmClick}
             onCancelClick={this.onCloseMapObjectDetailsClick}
           />

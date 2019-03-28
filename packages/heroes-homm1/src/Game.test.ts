@@ -55,6 +55,7 @@ describe("buyMageGuildSpellBook", () => {
       data: {
         artifactById: {},
         creatureById: {},
+        mapObjects: {},
         spellById: {},
       },
       discoveredPuzzlePieces: 0,
@@ -98,6 +99,7 @@ describe("buyMageGuildSpellBook", () => {
       data: {
         artifactById: {},
         creatureById: {},
+        mapObjects: {},
         spellById: {},
       },
       discoveredPuzzlePieces: 0,
