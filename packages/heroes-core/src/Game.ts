@@ -5,11 +5,14 @@ import { Hero } from "./Hero";
 import {
   getObject,
   handleDwellingMapObject,
+  handleLimitedInteractionMapObject,
   handlePickableMapObject,
   handlePuzzleMapObject,
   handleTreasureMapObject,
   isDwellingMapObject,
   isDwellingMapObjectData,
+  isLimitedInteractionMapObject,
+  isLimitedInteractionMapObjectData,
   isPickableMapObjectData,
   isPuzzleMapObjectData,
   isTreasureMapObject,
@@ -207,6 +210,10 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
 
   if (!activeHero) {
     throw new Error("Invalid hero");
+  }
+
+  if (isLimitedInteractionMapObjectData(objectData) && isLimitedInteractionMapObject(object)) {
+    game = handleLimitedInteractionMapObject(game, object, objectData, activeHero);
   }
 
   if (isTreasureMapObject(object)) {

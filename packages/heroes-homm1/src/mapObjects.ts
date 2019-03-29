@@ -1,5 +1,7 @@
 import {
   DwellingMapObjectData,
+  InteractionLimitType,
+  LimitedInteractionMapObjectData,
   MapObjectData,
   PickableMapObjectData,
   PuzzleMapObjectData,
@@ -162,9 +164,10 @@ const dwellingObjects: DwellingMapObjectData[] = [
   },
 ];
 
-const puzzleObjects: PuzzleMapObjectData[] = [
+const puzzleObjects: Array<PuzzleMapObjectData & LimitedInteractionMapObjectData> = [
   {
     id: MapObjectId.Obelisk,
+    interactionLimit: InteractionLimitType.OncePerAlignment,
     uncoversPuzzlePiece: true,
   },
 ];

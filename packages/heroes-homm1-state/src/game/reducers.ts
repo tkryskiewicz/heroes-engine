@@ -3,6 +3,7 @@ import {
   buildStructure,
   createDwellingMapObject,
   createHeroMapObject,
+  createLimitedInteractionMapObject,
   createMap,
   createTownMapObject,
   createTreasureMapObject,
@@ -11,6 +12,7 @@ import {
   DwellingMapObjectData,
   endGameTurn,
   Hero,
+  LimitedInteractionMapObjectData,
   Map,
   placeObject,
   recruitGameTroop,
@@ -157,7 +159,9 @@ const woodData = mapObjects.find((o) => o.id === MapObjectId.Wood)! as TreasureM
 
 map = placeObject(map, { x: 4, y: 2 }, createTreasureMapObject(woodData));
 
-map = placeObject(map, { x: 6, y: 2 }, { id: MapObjectId.Obelisk, type: "type" });
+const obeliskData = mapObjects.find((o) => o.id === MapObjectId.Obelisk)! as LimitedInteractionMapObjectData;
+
+map = placeObject(map, { x: 6, y: 2 }, createLimitedInteractionMapObject(obeliskData));
 
 const initialState: GameState = {
   alignment: Alignment.Red,

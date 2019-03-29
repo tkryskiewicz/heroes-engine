@@ -3,16 +3,20 @@ import { DispatchProp } from "react-redux";
 
 import {
   GameData,
+  getVisitor,
   Hero,
   isDwellingMapObject,
   isDwellingMapObjectData,
   isHeroMapObject,
+  isLimitedInteractionMapObject,
+  isLimitedInteractionMapObjectData,
   isStructureBuilt,
   isTownMapObject,
   isTreasureMapObject,
   Map,
   MapObject,
   Town,
+  wasVisitedBy,
 } from "heroes-core";
 import { MapObjectId, StructureId } from "heroes-homm1";
 import {
@@ -22,6 +26,7 @@ import {
   HeroMapObject,
   MapObject as MapObj,
   MapTile,
+  ObeliskAlreadyVisitedPrompt,
   ResourceMapObject,
   TownMapObject,
   VisitObeliskPrompt,
@@ -228,10 +233,38 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private renderMapObjectDetails(id: string) {
+    const { selectedLocator, heroes } = this.props;
+
+    const activeHero = selectedLocator !== undefined && selectedLocator.type === LocatorType.Hero ?
+      heroes[selectedLocator.index] :
+      undefined;
+
     const mapObject: MapObject =
       this.props.map.tiles.find((t) => t.object !== undefined && (t.object as any).id === id)!.object!;
 
     const objectData = this.props.mapObjects[mapObject.id];
+
+    if (activeHero && isLimitedInteractionMapObjectData(objectData) && isLimitedInteractionMapObject(mapObject)) {
+      const visitor = getVisitor(objectData, activeHero);
+
+      if (mapObject.id === MapObjectId.Obelisk) {
+        if (wasVisitedBy(mapObject, visitor)) {
+          return (
+            <ObeliskAlreadyVisitedPrompt
+              visible={true}
+              onConfirmClick={this.onCloseMapObjectDetailsClick}
+            />
+          );
+        }
+
+        return (
+          <VisitObeliskPrompt
+            visible={true}
+            onConfirmClick={this.onConfirmMapObjectDetailsClick}
+          />
+        );
+      }
+    }
 
     if (isDwellingMapObjectData(objectData) && isDwellingMapObject(mapObject)) {
       if (mapObject.availableCount === 0) {
@@ -253,15 +286,6 @@ class AdventureWindowContainer extends React.Component<Props, State> {
           />
         );
       }
-    }
-
-    if (mapObject.id === MapObjectId.Obelisk) {
-      return (
-        <VisitObeliskPrompt
-          visible={true}
-          onConfirmClick={this.onConfirmMapObjectDetailsClick}
-        />
-      );
     }
   }
 

@@ -8,6 +8,17 @@ export {
   handleDwellingMapObject,
 } from "./DwellingMapObject";
 export { HeroMapObject, HeroMapObjectType, createHeroMapObject, isHeroMapObject } from "./HeroMapObject";
+export {
+  InteractionLimitType,
+  LimitedInteractionMapObject,
+  isLimitedInteractionMapObject,
+  LimitedInteractionMapObjectData,
+  isLimitedInteractionMapObjectData,
+  createLimitedInteractionMapObject,
+  getVisitor,
+  wasVisitedBy,
+  handleLimitedInteractionMapObject,
+} from "./LimitedInteractionMapObject";
 export { Map, createMap, isPointValid, getObject, placeObject, moveObject, removeObject } from "./Map";
 export { MapObject, MapObjectData } from "./MapObject";
 export { MapObjectOrientation, MapObjectOrientations } from "./MapObjectOrientation";
