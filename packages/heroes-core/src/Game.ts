@@ -4,6 +4,7 @@ import { Creature } from "./Creature";
 import { Hero } from "./Hero";
 import {
   getObject,
+  handlePickableMapObject,
   isDwellingMapObject,
   isDwellingMapObjectData,
   isTreasureMapObject,
@@ -195,25 +196,25 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
 
   const objectData = game.data.mapObjects[object.id];
 
-  const visitingHero = getGameHero(game, hero);
+  const activeHero = getGameHero(game, hero);
 
-  if (!visitingHero) {
+  if (!activeHero) {
     throw new Error("Invalid hero");
   }
 
   if (isTreasureMapObjectData(objectData) && isTreasureMapObject(object)) {
     const resources = pickUpTreasure(object, game.resources);
 
-    return {
+    game = {
       ...game,
       resources,
     };
   }
 
   if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {
-    const [dd, hh] = visitDwelling(object, objectData, visitingHero);
+    const [dd, hh] = visitDwelling(object, objectData, activeHero);
 
-    return {
+    game = {
       ...game,
       heroes: game.heroes.map((h) => h.id === hh.id ? hh : h),
       map: {
@@ -225,6 +226,8 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
       },
     };
   }
+
+  game = handlePickableMapObject(game, object, objectData, activeHero);
 
   return {
     ...game,

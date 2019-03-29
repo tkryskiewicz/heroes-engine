@@ -1,4 +1,4 @@
-import { createMap, getObject, isPointValid, moveObject, placeObject } from "./Map";
+import { createMap, getObject, isPointValid, Map, moveObject, placeObject, removeObject } from "./Map";
 import { MapObject } from "./MapObject";
 import { MapPoint } from "./MapPoint";
 
@@ -240,5 +240,43 @@ describe("moveObject", () => {
     expect(() => {
       moveObject(map, { x: 0, y: 0 }, { x: 1, y: 0 });
     }).toThrow();
+  });
+});
+
+describe("removeObject", () => {
+  it("should remove object", () => {
+    const object: MapObject = {
+      id: "id",
+      type: "type",
+    };
+
+    const map = placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object);
+
+    const result = removeObject(map, "id");
+
+    const expected: Map = {
+      height: 1,
+      tiles: [
+        {
+          terrain: "terrain",
+        },
+      ],
+      width: 1,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should change nothing when no object", () => {
+    const object: MapObject = {
+      id: "someId",
+      type: "type",
+    };
+
+    const map = placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object);
+
+    const result = removeObject(map, "id");
+
+    expect(result).toEqual(map);
   });
 });

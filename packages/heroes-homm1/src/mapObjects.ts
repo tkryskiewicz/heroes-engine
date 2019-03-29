@@ -1,4 +1,4 @@
-import { DwellingMapObjectData, MapObjectData, TreasureMapObjectData } from "heroes-core";
+import { DwellingMapObjectData, MapObjectData, PickableMapObjectData, TreasureMapObjectData } from "heroes-core";
 
 import { CreatureId } from "./creatures";
 import { Resource } from "./Resource";
@@ -41,9 +41,10 @@ export enum MapObjectId {
   Windmill = "windmill",
 }
 
-const treasureObjects: TreasureMapObjectData[] = [
+const treasureObjects: Array<TreasureMapObjectData & PickableMapObjectData> = [
   {
     id: MapObjectId.Gold,
+    pickable: true,
     treasure: {
       [Resource.Gold]: {
         // TODO: multiplies of 100
@@ -54,6 +55,7 @@ const treasureObjects: TreasureMapObjectData[] = [
   },
   {
     id: MapObjectId.Wood,
+    pickable: true,
     treasure: {
       [Resource.Wood]: {
         max: 15,
@@ -63,6 +65,7 @@ const treasureObjects: TreasureMapObjectData[] = [
   },
   {
     id: MapObjectId.Ore,
+    pickable: true,
     treasure: {
       [Resource.Ore]: {
         max: 16,
@@ -72,6 +75,7 @@ const treasureObjects: TreasureMapObjectData[] = [
   },
   {
     id: MapObjectId.Crystal,
+    pickable: true,
     treasure: {
       [Resource.Crystal]: {
         max: 7,
@@ -81,6 +85,7 @@ const treasureObjects: TreasureMapObjectData[] = [
   },
   {
     id: MapObjectId.Sulfur,
+    pickable: true,
     treasure: {
       [Resource.Sulfur]: {
         max: 7,
@@ -90,6 +95,7 @@ const treasureObjects: TreasureMapObjectData[] = [
   },
   {
     id: MapObjectId.Gems,
+    pickable: true,
     treasure: {
       [Resource.Gems]: {
         max: 7,
@@ -99,6 +105,7 @@ const treasureObjects: TreasureMapObjectData[] = [
   },
   {
     id: MapObjectId.Mercury,
+    pickable: true,
     treasure: {
       [Resource.Mercury]: {
         max: 7,
@@ -108,6 +115,7 @@ const treasureObjects: TreasureMapObjectData[] = [
   },
   {
     id: MapObjectId.Fireplace,
+    pickable: true,
     treasure: {
       [Resource.Gold]: {
         max: 7,
