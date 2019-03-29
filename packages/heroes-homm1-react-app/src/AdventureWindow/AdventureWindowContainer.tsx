@@ -9,6 +9,7 @@ import {
   isHeroMapObject,
   isStructureBuilt,
   isTownMapObject,
+  isTreasureMapObject,
   Map,
   MapObject,
   Town,
@@ -21,6 +22,7 @@ import {
   HeroMapObject,
   MapObject as MapObj,
   MapTile,
+  ResourceMapObject,
   TownMapObject,
 } from "heroes-homm1-react";
 import { adventureScreenActions, gameActions, Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
@@ -110,6 +112,17 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         />
       );
     }
+
+    if (isTreasureMapObject(object)) {
+      // TODO: handle multiple resources
+      const resource = Object.keys(object.treasure)[0];
+
+      return (
+        <ResourceMapObject
+          resource={resource}
+        />
+      );
+    }
   }
 
   private readonly onTileMouseEnter = (index: number) => {
@@ -151,40 +164,52 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private readonly onTileClick = (index: number) => {
+    const { selectedLocator } = this.props;
+
+    const activeHero = selectedLocator !== undefined && selectedLocator.type === LocatorType.Hero ?
+      this.props.heroes[selectedLocator.index] :
+      undefined;
+
+    const activeTown = selectedLocator !== undefined && selectedLocator.type === LocatorType.Town ?
+      this.props.towns[selectedLocator.index] :
+      undefined;
+
     const tile = this.props.map.tiles[index];
 
     const object = tile.object;
 
     if (object) {
-      const { selectedLocator } = this.props;
-
       // FIXME: extract
       if (isHeroMapObject(object)) {
         const heroIndex = this.props.heroes.indexOf(object.hero);
 
-        if (!selectedLocator) {
+        if (!activeHero) {
           this.props.dispatch(locatorsActions.selectLocator({ type: LocatorType.Hero, index: heroIndex }));
-        } else if (selectedLocator.type === LocatorType.Hero && heroIndex !== selectedLocator.index) {
-          const otherHero = this.props.heroes[selectedLocator.index];
-
-          this.props.dispatch(adventureScreenActions.openHeroTradingWindow(object.hero.id, otherHero.id));
+        } else if (activeHero && object.hero !== activeHero) {
+          this.props.dispatch(adventureScreenActions.openHeroTradingWindow(activeHero.id, object.hero.id));
         } else {
           this.props.dispatch(locatorsActions.openLocatorDetails());
         }
       } else if (isTownMapObject(object)) {
         const townIndex = this.props.towns.indexOf(object.town);
 
-        if (!selectedLocator || selectedLocator.type === LocatorType.Hero || selectedLocator.index !== townIndex) {
+        if (activeHero || object.town !== activeTown) {
           this.props.dispatch(locatorsActions.selectLocator({ type: LocatorType.Town, index: townIndex }));
         } else {
           this.props.dispatch(locatorsActions.openLocatorDetails());
         }
       } else if (isDwellingMapObject(object)) {
-        if (selectedLocator === undefined || selectedLocator.type !== LocatorType.Hero) {
+        if (!activeHero) {
           return;
         }
 
         this.props.dispatch(adventureScreenActions.openMapObjectDetails(object.id));
+      } else if (isTreasureMapObject(object)) {
+        if (!activeHero) {
+          return;
+        }
+
+        this.props.dispatch(gameActions.visitMapObject(object.id, activeHero.id));
       }
     }
   }

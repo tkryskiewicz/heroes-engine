@@ -14,3 +14,12 @@ export { MapObjectOrientation, MapObjectOrientations } from "./MapObjectOrientat
 export { MapPoint } from "./MapPoint";
 export { MapTile } from "./MapTile";
 export { TownMapObject, TownMapObjectType, createTownMapObject, isTownMapObject } from "./TownMapObject";
+export {
+  TreasureMapObject,
+  TreasureMapObjectData,
+  TreasureMapObjectType,
+  isTreasureMapObjectData,
+  isTreasureMapObject,
+  createTreasureMapObject,
+  pickUpTreasure,
+} from "./TreasureMapObject";

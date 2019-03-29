@@ -42,6 +42,26 @@ export const enoughResources = (resources: Resources, amount: Resources): boolea
     .every((r) => amount[r] <= resources[r]);
 };
 
+export const addResources = (resources: Resources, amount: Resources): Resources => {
+  if (!areResourcesValid(resources)) {
+    throw new Error("Resources are not valid");
+  }
+
+  if (!areResourcesValid(amount)) {
+    throw new Error("Amount resources are not valid");
+  }
+
+  return {
+    ...resources,
+    ...Object.keys(amount).reduce<Resources>((p, c) => {
+      return {
+        ...p,
+        [c]: (resources[c] || 0) + amount[c],
+      };
+    }, {}),
+  };
+};
+
 export const subtractResources = (resources: Resources, amount: Resources): Resources => {
   if (!areResourcesValid(resources)) {
     throw new Error("Resources are not valid");

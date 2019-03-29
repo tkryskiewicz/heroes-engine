@@ -34,8 +34,16 @@ export {
   addHeroArtifact,
 } from "./Hero";
 export * from "./map";
-export { Resources, subtractResources, multiplyResources, divideResources, enoughResources } from "./Resource";
+export {
+  Resources,
+  addResources,
+  subtractResources,
+  multiplyResources,
+  divideResources,
+  enoughResources,
+} from "./Resource";
 export { Scenario } from "./Scenario";
 export { Structure, Dwelling, isDwellingStructure, buildStructure } from "./Structure";
 export { Town, isStructureBuilt, getTownStructure } from "./Town";
 export { Troop, TroopSelectionType, TroopSelection } from "./Troop";
+export { random } from "./util";

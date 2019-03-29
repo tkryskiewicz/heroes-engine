@@ -5,6 +5,7 @@ import {
   createHeroMapObject,
   createMap,
   createTownMapObject,
+  createTreasureMapObject,
   dismissGameHero,
   dismissGameTroop,
   DwellingMapObjectData,
@@ -16,6 +17,7 @@ import {
   swapGameTroops,
   Town,
   tradeGameArtifacts,
+  TreasureMapObjectData,
   visitGameMapObject,
 } from "heroes-core";
 import {
@@ -149,6 +151,10 @@ towns.forEach((t, i) => map = placeObject(map, { x: 8, y: 1 + 3 * i }, createTow
 const thatchedHutData = mapObjects.find((o) => o.id === MapObjectId.ThatchedHut)! as DwellingMapObjectData;
 
 map = placeObject(map, { x: 2, y: 2 }, createDwellingMapObject(thatchedHutData));
+
+const woodData = mapObjects.find((o) => o.id === MapObjectId.Wood)! as TreasureMapObjectData;
+
+map = placeObject(map, { x: 4, y: 2 }, createTreasureMapObject(woodData));
 
 const initialState: GameState = {
   alignment: Alignment.Red,

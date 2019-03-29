@@ -1,4 +1,4 @@
-import { Army, Hero, Troop } from "heroes-core";
+import { Army, Hero, random, Troop } from "heroes-core";
 
 import { HeroClass } from "./HeroClass";
 import { heroClasses } from "./heroClasses";
@@ -230,7 +230,7 @@ export const constructHero = (id: string, alignment: string): Hero => {
   // TODO: test this
   const army: Army = heroClass.army
     .map((t): Troop => ({
-      count: Math.floor(t.min + Math.random() * (t.max - t.min + 1)),
+      count: random(t.min, t.max),
       creature: t.creature,
     }))
     .filter((t) => t.count);

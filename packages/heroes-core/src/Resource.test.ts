@@ -1,4 +1,5 @@
 import {
+  addResources,
   areResourcesValid,
   divideResources,
   enoughResources,
@@ -290,6 +291,82 @@ describe("enoughResources", () => {
     };
 
     expect(() => enoughResources(resources, amount)).toThrowError();
+  });
+});
+
+describe("addResources", () => {
+  it("should currectly calculate amount", () => {
+    const resources: Resources = {
+      resource: 0,
+    };
+
+    const amount: Resources = {
+      resource: 1,
+    };
+
+    const result = addResources(resources, amount);
+
+    const expected: Resources = {
+      resource: 1,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle missing resources", () => {
+    const resources: Resources = {};
+
+    const amount: Resources = {
+      resource: 1,
+    };
+
+    const result = addResources(resources, amount);
+
+    const expected: Resources = {
+      resource: 1,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should not change resources when empty", () => {
+    const resources: Resources = {
+      resource: 1,
+    };
+
+    const amount: Resources = {};
+
+    const result = addResources(resources, amount);
+
+    const expected: Resources = {
+      resource: 1,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should throw when resources are invalid", () => {
+    const resources: Resources = {
+      resource: -1,
+    };
+
+    const amount: Resources = {
+      resource: 1,
+    };
+
+    expect(() => addResources(resources, amount)).toThrow();
+  });
+
+  it("should throw when amount resources are invalid", () => {
+    const resources: Resources = {
+      resource: 0,
+    };
+
+    const amount: Resources = {
+      resource: -1,
+    };
+
+    expect(() => addResources(resources, amount)).toThrowError();
   });
 });
 

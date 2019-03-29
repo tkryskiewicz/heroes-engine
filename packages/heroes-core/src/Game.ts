@@ -2,7 +2,17 @@ import { dismissArmyTroop, swapArmyTroops } from "./Army";
 import { ArtifactData, ArtifactSelection } from "./Artifact";
 import { Creature } from "./Creature";
 import { Hero } from "./Hero";
-import { getObject, isDwellingMapObject, isDwellingMapObjectData, Map, MapObjectData, visitDwelling } from "./map";
+import {
+  getObject,
+  isDwellingMapObject,
+  isDwellingMapObjectData,
+  isTreasureMapObject,
+  isTreasureMapObjectData,
+  Map,
+  MapObjectData,
+  pickUpTreasure,
+  visitDwelling,
+} from "./map";
 import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
@@ -189,6 +199,15 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
 
   if (!visitingHero) {
     throw new Error("Invalid hero");
+  }
+
+  if (isTreasureMapObjectData(objectData) && isTreasureMapObject(object)) {
+    const resources = pickUpTreasure(object, game.resources);
+
+    return {
+      ...game,
+      resources,
+    };
   }
 
   if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {
