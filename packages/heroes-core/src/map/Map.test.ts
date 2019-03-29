@@ -97,7 +97,6 @@ describe("placeObject", () => {
   it("should place object", () => {
     const object: MapObject = {
       id: "id",
-      type: "type",
     };
 
     const map = createMap(1, 1, "terrain");
@@ -110,7 +109,6 @@ describe("placeObject", () => {
   it("should throw when point is invalid", () => {
     const object: MapObject = {
       id: "id",
-      type: "type",
     };
 
     const map = createMap(1, 1, "terrain");
@@ -123,7 +121,6 @@ describe("placeObject", () => {
   it("should throw when object is already placed", () => {
     const objectA: MapObject = {
       id: "idB",
-      type: "type",
     };
 
     let map = createMap(1, 1, "terrain");
@@ -132,7 +129,6 @@ describe("placeObject", () => {
 
     const objectB: MapObject = {
       id: "idB",
-      type: "type",
     };
 
     expect(() => {
@@ -147,7 +143,6 @@ describe("getObject", () => {
 
     const object: MapObject = {
       id: "id",
-      type: "type",
     };
 
     map = placeObject(map, { x: 0, y: 0 }, object);
@@ -170,7 +165,6 @@ describe("moveObject", () => {
   it("should move object", () => {
     const object: MapObject = {
       id: "id",
-      type: "type",
     };
 
     let map = createMap(2, 1, "terrain");
@@ -185,7 +179,6 @@ describe("moveObject", () => {
   it("should throw when from is not a valid map point", () => {
     const object: MapObject = {
       id: "id",
-      type: "type",
     };
 
     let map = createMap(2, 1, "terrain");
@@ -200,7 +193,6 @@ describe("moveObject", () => {
   it("should throw when to is not a valid map point", () => {
     const object: MapObject = {
       id: "id",
-      type: "type",
     };
 
     let map = createMap(2, 1, "terrain");
@@ -223,7 +215,6 @@ describe("moveObject", () => {
   it("should throw when target tile already contains an object", () => {
     const objectA: MapObject = {
       id: "idA",
-      type: "type",
     };
 
     let map = createMap(2, 1, "terrain");
@@ -232,7 +223,6 @@ describe("moveObject", () => {
 
     const objectB: MapObject = {
       id: "idB",
-      type: "type",
     };
 
     map = placeObject(map, { x: 1, y: 0 }, objectB);
@@ -247,7 +237,6 @@ describe("removeObject", () => {
   it("should remove object", () => {
     const object: MapObject = {
       id: "id",
-      type: "type",
     };
 
     const map = placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object);
@@ -270,7 +259,6 @@ describe("removeObject", () => {
   it("should change nothing when no object", () => {
     const object: MapObject = {
       id: "someId",
-      type: "type",
     };
 
     const map = placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object);

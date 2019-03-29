@@ -1,6 +1,6 @@
 import { Town } from "../Town";
 import { MapObject } from "./MapObject";
-import { createTownMapObject, isTownMapObject, TownMapObject, TownMapObjectType } from "./TownMapObject";
+import { createTownMapObject, isTownMapObject, TownMapObject } from "./TownMapObject";
 
 describe("createTownMapObject", () => {
   it("should create object", () => {
@@ -19,7 +19,6 @@ describe("createTownMapObject", () => {
     const expected: TownMapObject = {
       id: "id",
       town,
-      type: TownMapObjectType,
     };
 
     expect(result).toEqual(expected);
@@ -48,7 +47,6 @@ describe("isTownMapObject", () => {
   it("should return false when not town map object", () => {
     const object: MapObject = {
       id: "id",
-      type: "type",
     };
 
     const result = isTownMapObject(object);

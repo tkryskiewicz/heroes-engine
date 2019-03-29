@@ -9,7 +9,6 @@ import {
   isTreasureMapObjectData,
   TreasureMapObject,
   TreasureMapObjectData,
-  TreasureMapObjectType,
 } from "./TreasureMapObject";
 
 describe("isTreasureMapObjectData", () => {
@@ -47,7 +46,6 @@ describe("createTreasureMapObject", () => {
     const expected: TreasureMapObject = {
       id: "id",
       treasure: {},
-      type: TreasureMapObjectType,
     };
 
     expect(result).toEqual(expected);
@@ -88,7 +86,6 @@ describe("isTreasureMapObject", () => {
   it("should return false when not treasure map object", () => {
     const object: MapObject = {
       id: "id",
-      type: "type",
     };
 
     const result = isTreasureMapObject(object);
@@ -104,7 +101,6 @@ describe("handleTreasureMapObject", () => {
       treasure: {
         resource: 1,
       },
-      type: TreasureMapObjectType,
     };
 
     const game: Game = {

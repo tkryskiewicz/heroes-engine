@@ -15,21 +15,16 @@ export interface DwellingMapObjectData extends MapObjectData {
 export const isDwellingMapObjectData = (object: MapObjectData): object is DwellingMapObjectData =>
   (object as DwellingMapObjectData).dwelling !== undefined;
 
-export const DwellingMapObjectType = "dwelling";
-
 export interface DwellingMapObject extends MapObject {
-  readonly type: typeof DwellingMapObjectType;
   readonly availableCount: number;
 }
 
 export const createDwellingMapObject = (objectData: DwellingMapObjectData): DwellingMapObject => ({
   availableCount: objectData.dwelling.initialCount,
   id: objectData.id,
-  type: DwellingMapObjectType,
 });
 
 export const isDwellingMapObject = (object: MapObject): object is DwellingMapObject =>
-  object.type === DwellingMapObjectType &&
   (object as DwellingMapObject).availableCount !== undefined;
 
 export const handleDwellingMapObject = (

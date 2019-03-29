@@ -35,7 +35,6 @@ describe("handlePickableMapObject", () => {
 
     const object: MapObject = {
       id: "id",
-      type: "type",
     };
 
     const game: Game = {

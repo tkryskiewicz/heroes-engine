@@ -1,5 +1,5 @@
 import { Hero } from "../Hero";
-import { createHeroMapObject, HeroMapObject, HeroMapObjectType, isHeroMapObject } from "./HeroMapObject";
+import { createHeroMapObject, HeroMapObject, isHeroMapObject } from "./HeroMapObject";
 import { MapObject } from "./MapObject";
 import { MapObjectOrientation } from "./MapObjectOrientation";
 
@@ -24,7 +24,6 @@ describe("createHeroMapObject", () => {
       hero,
       id: "id",
       orientation: MapObjectOrientation.North,
-      type: HeroMapObjectType,
     };
 
     expect(result).toEqual(expected);
@@ -56,7 +55,6 @@ describe("isHeroMapObject", () => {
   it("should return false when not hero map object", () => {
     const object: MapObject = {
       id: "id",
-      type: "type",
     };
 
     const result = isHeroMapObject(object);

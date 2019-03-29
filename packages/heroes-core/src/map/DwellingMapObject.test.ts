@@ -5,7 +5,6 @@ import {
   createDwellingMapObject,
   DwellingMapObject,
   DwellingMapObjectData,
-  DwellingMapObjectType,
   handleDwellingMapObject,
   isDwellingMapObject,
   isDwellingMapObjectData,
@@ -55,7 +54,6 @@ describe("createDwellingMapObject", () => {
     const expected: DwellingMapObject = {
       availableCount: 1,
       id: "id",
-      type: DwellingMapObjectType,
     };
 
     expect(result).toEqual(expected);
@@ -82,7 +80,6 @@ describe("isDwellingMapObject", () => {
   it("should return false when not dwelling map object", () => {
     const object: MapObject = {
       id: "id",
-      type: "type",
     };
 
     const result = isDwellingMapObject(object);
@@ -145,7 +142,6 @@ describe("handleDwellingMapObject", () => {
     const expected: DwellingMapObject = {
       availableCount: 0,
       id: "id",
-      type: DwellingMapObjectType,
     };
 
     expect(getObject(result.map, "id")).toEqual(expected);

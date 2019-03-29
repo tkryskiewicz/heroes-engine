@@ -25,7 +25,6 @@ export const isLimitedInteractionMapObject = (object: MapObject): object is Limi
 export const createLimitedInteractionMapObject =
   (objectData: LimitedInteractionMapObjectData): LimitedInteractionMapObject => ({
     id: objectData.id,
-    type: "type",
     visitedBy: [],
   });
 

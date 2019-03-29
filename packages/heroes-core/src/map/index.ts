@@ -1,13 +1,12 @@
 export {
   DwellingMapObject,
   DwellingMapObjectData,
-  DwellingMapObjectType,
   createDwellingMapObject,
   isDwellingMapObject,
   isDwellingMapObjectData,
   handleDwellingMapObject,
 } from "./DwellingMapObject";
-export { HeroMapObject, HeroMapObjectType, createHeroMapObject, isHeroMapObject } from "./HeroMapObject";
+export { HeroMapObject, createHeroMapObject, isHeroMapObject } from "./HeroMapObject";
 export {
   InteractionLimitType,
   LimitedInteractionMapObject,
@@ -26,11 +25,10 @@ export { MapPoint } from "./MapPoint";
 export { MapTile } from "./MapTile";
 export { PickableMapObjectData, isPickableMapObjectData, handlePickableMapObject } from "./PickableMapObject";
 export { PuzzleMapObjectData, isPuzzleMapObjectData, handlePuzzleMapObject } from "./PuzzleMapObject";
-export { TownMapObject, TownMapObjectType, createTownMapObject, isTownMapObject } from "./TownMapObject";
+export { TownMapObject, createTownMapObject, isTownMapObject } from "./TownMapObject";
 export {
   TreasureMapObject,
   TreasureMapObjectData,
-  TreasureMapObjectType,
   isTreasureMapObjectData,
   isTreasureMapObject,
   createTreasureMapObject,
