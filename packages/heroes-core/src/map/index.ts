@@ -5,7 +5,7 @@ export {
   createDwellingMapObject,
   isDwellingMapObject,
   isDwellingMapObjectData,
-  visitDwelling,
+  handleDwellingMapObject,
 } from "./DwellingMapObject";
 export { HeroMapObject, HeroMapObjectType, createHeroMapObject, isHeroMapObject } from "./HeroMapObject";
 export { Map, createMap, isPointValid, getObject, placeObject, moveObject, removeObject } from "./Map";
@@ -22,5 +22,5 @@ export {
   isTreasureMapObjectData,
   isTreasureMapObject,
   createTreasureMapObject,
-  pickUpTreasure,
+  handleTreasureMapObject,
 } from "./TreasureMapObject";

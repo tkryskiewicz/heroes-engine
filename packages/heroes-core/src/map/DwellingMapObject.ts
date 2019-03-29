@@ -1,4 +1,5 @@
 import { appendArmyTroop } from "../Army";
+import { Game } from "../Game";
 import { Hero } from "../Hero";
 import { Troop } from "../Troop";
 import { MapObject, MapObjectData } from "./MapObject";
@@ -31,11 +32,11 @@ export const isDwellingMapObject = (object: MapObject): object is DwellingMapObj
   object.type === DwellingMapObjectType &&
   (object as DwellingMapObject).availableCount !== undefined;
 
-export const visitDwelling = (
-  object: DwellingMapObject,
-  objectData: DwellingMapObjectData,
-  hero: Hero,
-): [DwellingMapObject, Hero] => {
+export const handleDwellingMapObject = (game: Game, object: MapObject, objectData: MapObjectData, hero: Hero) => {
+  if (!isDwellingMapObjectData(objectData) || !isDwellingMapObject(object)) {
+    return game;
+  }
+
   const troop: Troop = {
     count: object.availableCount,
     creature: objectData.dwelling.creature,
@@ -44,14 +45,25 @@ export const visitDwelling = (
   // TODO: what happens if hero army is full?
   const army = appendArmyTroop(hero.army, troop);
 
-  return [
-    {
-      ...object,
-      availableCount: 0,
+  const dd = {
+    ...object,
+    availableCount: 0,
+  };
+
+  const hh = {
+    ...hero,
+    army,
+  };
+
+  return {
+    ...game,
+    heroes: game.heroes.map((h) => h.id === hh.id ? hh : h),
+    map: {
+      ...game.map,
+      tiles: game.map.tiles.map((t) => t.object && t.object.id === object.id ? {
+        ...t,
+        object: dd,
+      } : t),
     },
-    {
-      ...hero,
-      army,
-    },
-  ];
+  };
 };

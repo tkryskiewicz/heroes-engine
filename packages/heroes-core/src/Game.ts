@@ -4,15 +4,11 @@ import { Creature } from "./Creature";
 import { Hero } from "./Hero";
 import {
   getObject,
+  handleDwellingMapObject,
   handlePickableMapObject,
-  isDwellingMapObject,
-  isDwellingMapObjectData,
-  isTreasureMapObject,
-  isTreasureMapObjectData,
+  handleTreasureMapObject,
   Map,
   MapObjectData,
-  pickUpTreasure,
-  visitDwelling,
 } from "./map";
 import { multiplyResources, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
@@ -202,32 +198,9 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
     throw new Error("Invalid hero");
   }
 
-  if (isTreasureMapObjectData(objectData) && isTreasureMapObject(object)) {
-    const resources = pickUpTreasure(object, game.resources);
-
-    game = {
-      ...game,
-      resources,
-    };
-  }
-
-  if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {
-    const [dd, hh] = visitDwelling(object, objectData, activeHero);
-
-    game = {
-      ...game,
-      heroes: game.heroes.map((h) => h.id === hh.id ? hh : h),
-      map: {
-        ...game.map,
-        tiles: game.map.tiles.map((t) => t.object && t.object.id === object.id ? {
-          ...t,
-          object: dd,
-        } : t),
-      },
-    };
-  }
-
-  game = handlePickableMapObject(game, object, objectData, activeHero);
+  game = handleTreasureMapObject(game, object);
+  game = handleDwellingMapObject(game, object, objectData, activeHero);
+  game = handlePickableMapObject(game, object, objectData);
 
   return {
     ...game,

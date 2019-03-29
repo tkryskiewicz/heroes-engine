@@ -1,14 +1,17 @@
 import { Army } from "../Army";
+import { Game, getGameHero } from "../Game";
 import { Hero } from "../Hero";
 import {
   createDwellingMapObject,
   DwellingMapObject,
   DwellingMapObjectData,
   DwellingMapObjectType,
+  handleDwellingMapObject,
   isDwellingMapObject,
   isDwellingMapObjectData,
-  visitDwelling,
 } from "./DwellingMapObject";
+import { createHeroMapObject } from "./HeroMapObject";
+import { createMap, getObject, placeObject } from "./Map";
 import { MapObject, MapObjectData } from "./MapObject";
 
 describe("isDwellingMapObjectData", () => {
@@ -88,7 +91,7 @@ describe("isDwellingMapObject", () => {
   });
 });
 
-describe("visitDwelling", () => {
+describe("handleDwellingMapObject", () => {
   it("should clear dwellings available count", () => {
     const objectData: DwellingMapObjectData = {
       dwelling: {
@@ -113,7 +116,28 @@ describe("visitDwelling", () => {
       skills: {},
     };
 
-    const [result] = visitDwelling(object, objectData, hero);
+    const game: Game = {
+      alignment: "alignment",
+      data: {
+        artifactById: {},
+        creatureById: {},
+        mapObjects: {
+          id: objectData,
+        },
+        spellById: {},
+      },
+      discoveredPuzzlePieces: 0,
+      heroes: [],
+      map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
+      resources: {},
+      scenario: {
+        description: "Description",
+        name: "Name",
+      },
+      towns: [],
+    };
+
+    const result = handleDwellingMapObject(game, object, objectData, hero);
 
     const expected: DwellingMapObject = {
       availableCount: 0,
@@ -121,7 +145,7 @@ describe("visitDwelling", () => {
       type: DwellingMapObjectType,
     };
 
-    expect(result).toEqual(expected);
+    expect(getObject(result.map, "id")).toEqual(expected);
   });
 
   it("should add troop to hero army", () => {
@@ -141,14 +165,45 @@ describe("visitDwelling", () => {
       artifacts: [],
       experience: 0,
       heroClass: "heroClass",
-      id: "id",
+      id: "hero",
       luck: 0,
       mobility: 0,
       morale: 0,
       skills: {},
     };
 
-    const [, result] = visitDwelling(object, objectData, hero);
+    const game: Game = {
+      alignment: "alignment",
+      data: {
+        artifactById: {},
+        creatureById: {},
+        mapObjects: {
+          id: objectData,
+        },
+        spellById: {},
+      },
+      discoveredPuzzlePieces: 0,
+      heroes: [
+        hero,
+      ],
+      map: placeObject(
+        placeObject(
+          createMap(2, 2, "terrain"),
+          { x: 0, y: 0 },
+          object,
+        ),
+        { x: 1, y: 0 },
+        createHeroMapObject("hero", hero),
+      ),
+      resources: {},
+      scenario: {
+        description: "Description",
+        name: "Name",
+      },
+      towns: [],
+    };
+
+    const result = handleDwellingMapObject(game, object, objectData, hero);
 
     const expected: Army = [
       {
@@ -157,6 +212,6 @@ describe("visitDwelling", () => {
       },
     ];
 
-    expect(result.army).toEqual(expected);
+    expect(getGameHero(result, "hero")!.army).toEqual(expected);
   });
 });

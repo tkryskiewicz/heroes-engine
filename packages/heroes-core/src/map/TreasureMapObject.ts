@@ -1,4 +1,5 @@
-import { addResources, Resources } from "../Resource";
+import { Game } from "../Game";
+import { addResources } from "../Resource";
 import { random } from "../util";
 import { MapObject, MapObjectData } from "./MapObject";
 
@@ -35,8 +36,16 @@ export const createTreasureMapObject = (objectData: TreasureMapObjectData): Trea
 export const isTreasureMapObject = (object: MapObject): object is TreasureMapObject =>
   object.type === TreasureMapObjectType;
 
-export const pickUpTreasure = (
-  object: TreasureMapObject,
-  resources: Resources,
-): Resources =>
-  addResources(resources, object.treasure);
+export const handleTreasureMapObject = (
+  game: Game,
+  object: MapObject,
+): Game => {
+  if (!isTreasureMapObject(object)) {
+    return game;
+  }
+
+  return {
+    ...game,
+    resources: addResources(game.resources, object.treasure),
+  };
+};

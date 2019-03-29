@@ -1,10 +1,12 @@
+import { Game } from "../Game";
 import { Resources } from "../Resource";
+import { createMap, placeObject } from "./Map";
 import { MapObject, MapObjectData } from "./MapObject";
 import {
   createTreasureMapObject,
+  handleTreasureMapObject,
   isTreasureMapObject,
   isTreasureMapObjectData,
-  pickUpTreasure,
   TreasureMapObject,
   TreasureMapObjectData,
   TreasureMapObjectType,
@@ -95,7 +97,7 @@ describe("isTreasureMapObject", () => {
   });
 });
 
-describe("pickUpTreasure", () => {
+describe("handleTreasureMapObject", () => {
   it("should add resources", () => {
     const object: TreasureMapObject = {
       id: "id",
@@ -105,16 +107,31 @@ describe("pickUpTreasure", () => {
       type: TreasureMapObjectType,
     };
 
-    const resources: Resources = {
-      resource: 0,
+    const game: Game = {
+      alignment: "alignment",
+      data: {
+        artifactById: {},
+        creatureById: {},
+        mapObjects: {},
+        spellById: {},
+      },
+      discoveredPuzzlePieces: 0,
+      heroes: [],
+      map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
+      resources: {},
+      scenario: {
+        description: "Description",
+        name: "Name",
+      },
+      towns: [],
     };
 
-    const result = pickUpTreasure(object, resources);
+    const result = handleTreasureMapObject(game, object);
 
     const expected: Resources = {
       resource: 1,
     };
 
-    expect(result).toEqual(expected);
+    expect(result.resources).toEqual(expected);
   });
 });
