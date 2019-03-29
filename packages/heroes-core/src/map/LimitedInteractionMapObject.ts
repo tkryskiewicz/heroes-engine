@@ -28,10 +28,10 @@ export const createLimitedInteractionMapObject =
     visitedBy: [],
   });
 
-export const getVisitor = (objectData: LimitedInteractionMapObjectData, hero: Hero): string =>
+export const getVisitor = (objectData: LimitedInteractionMapObjectData, alignment: string, hero: string): string =>
   objectData.interactionLimit === InteractionLimitType.OncePerAlignment ?
-    hero.alignment :
-    hero.id;
+    alignment :
+    hero;
 
 export const wasVisitedBy = (
   object: LimitedInteractionMapObject,
@@ -45,7 +45,7 @@ export const handleLimitedInteractionMapObject = (
   objectData: LimitedInteractionMapObjectData,
   hero: Hero,
 ): Game => {
-  const visitor = getVisitor(objectData, hero);
+  const visitor = getVisitor(objectData, hero.alignment, hero.id);
 
   if (wasVisitedBy(object, visitor)) {
     throw new Error("Object was already visited");

@@ -245,7 +245,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     const objectData = this.props.mapObjects[mapObject.id];
 
     if (activeHero && isLimitedInteractionMapObjectData(objectData) && isLimitedInteractionMapObject(mapObject)) {
-      const visitor = getVisitor(objectData, activeHero);
+      const visitor = getVisitor(objectData, activeHero.alignment, activeHero.id);
 
       if (mapObject.id === MapObjectId.Obelisk) {
         if (wasVisitedBy(mapObject, visitor)) {
