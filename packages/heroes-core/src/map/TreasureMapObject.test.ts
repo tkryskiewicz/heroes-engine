@@ -110,10 +110,10 @@ describe("handleTreasureMapObject", () => {
     const game: Game = {
       alignment: "alignment",
       data: {
-        artifactById: {},
-        creatureById: {},
+        artifacts: {},
+        creatures: {},
         mapObjects: {},
-        spellById: {},
+        spells: {},
       },
       discoveredPuzzlePieces: 0,
       heroes: [],

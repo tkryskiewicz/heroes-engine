@@ -21,9 +21,9 @@ import { buildTownStructure, endTownTurn, recruitTownTroop, Town } from "./Town"
 import { TroopSelection, TroopSelectionType } from "./Troop";
 
 export interface GameData {
-  readonly artifactById: { readonly [id: string]: ArtifactData; };
-  readonly creatureById: { readonly [id: string]: Creature; };
-  readonly spellById: { readonly [id: string]: Spell; };
+  readonly artifacts: { readonly [id: string]: ArtifactData; };
+  readonly creatures: { readonly [id: string]: Creature; };
+  readonly spells: { readonly [id: string]: Spell; };
   readonly mapObjects: { readonly [id: string]: MapObjectData; };
 }
 

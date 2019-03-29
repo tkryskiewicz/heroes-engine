@@ -13,7 +13,7 @@ type StateProp =
   "dismissPromptVisible";
 
 const mapStateToProps = (state: AppState): Pick<TroopWindowContainerProps, StateProp> => ({
-  creatureById: state.game.data.creatureById,
+  creatureById: state.game.data.creatures,
   dismissPromptVisible: state.troopWindow.dismissPromptVisible,
   luck: LuckType.Neutral,
   morale: MoraleType.Neutral,

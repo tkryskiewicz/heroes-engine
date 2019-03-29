@@ -159,16 +159,16 @@ map = placeObject(map, { x: 4, y: 2 }, createTreasureMapObject(woodData));
 const initialState: GameState = {
   alignment: Alignment.Red,
   data: {
-    artifactById: artifacts.reduce((p, c) => ({
+    artifacts: artifacts.reduce((p, c) => ({
       ...p,
       [c.id]: c,
     }), {}),
-    creatureById,
+    creatures: creatureById,
     mapObjects: mapObjects.reduce((p, c) => ({
       ...p,
       [c.id]: c,
     }), {}),
-    spellById: spells.reduce((p, c) => ({
+    spells: spells.reduce((p, c) => ({
       ...p,
       [c.id]: c,
     }), {}),

@@ -1,7 +1,30 @@
 import { Game } from "../Game";
 import { createMap, placeObject } from "./Map";
-import { MapObject } from "./MapObject";
-import { handlePickableMapObject, PickableMapObjectData } from "./PickableMapObject";
+import { MapObject, MapObjectData } from "./MapObject";
+import { handlePickableMapObject, isPickableMapObjectData, PickableMapObjectData } from "./PickableMapObject";
+
+describe("isPickableMapObjectData", () => {
+  it("should return true when pickable map object data", () => {
+    const objectData: PickableMapObjectData = {
+      id: "id",
+      pickable: true,
+    };
+
+    const result = isPickableMapObjectData(objectData);
+
+    expect(result).toBe(true);
+  });
+
+  it("should return false when not pickable map object data", () => {
+    const objectData: MapObjectData = {
+      id: "id",
+    };
+
+    const result = isPickableMapObjectData(objectData);
+
+    expect(result).toBe(false);
+  });
+});
 
 describe("handlePickableMapObject", () => {
   it("should remove object", () => {
@@ -18,12 +41,12 @@ describe("handlePickableMapObject", () => {
     const game: Game = {
       alignment: "alignment",
       data: {
-        artifactById: {},
-        creatureById: {},
+        artifacts: {},
+        creatures: {},
         mapObjects: {
           id: objectData,
         },
-        spellById: {},
+        spells: {},
       },
       discoveredPuzzlePieces: 0,
       heroes: [],

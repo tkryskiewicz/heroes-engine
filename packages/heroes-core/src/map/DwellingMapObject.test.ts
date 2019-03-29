@@ -119,12 +119,12 @@ describe("handleDwellingMapObject", () => {
     const game: Game = {
       alignment: "alignment",
       data: {
-        artifactById: {},
-        creatureById: {},
+        artifacts: {},
+        creatures: {},
         mapObjects: {
           id: objectData,
         },
-        spellById: {},
+        spells: {},
       },
       discoveredPuzzlePieces: 0,
       heroes: [],
@@ -175,12 +175,12 @@ describe("handleDwellingMapObject", () => {
     const game: Game = {
       alignment: "alignment",
       data: {
-        artifactById: {},
-        creatureById: {},
+        artifacts: {},
+        creatures: {},
         mapObjects: {
           id: objectData,
         },
-        spellById: {},
+        spells: {},
       },
       discoveredPuzzlePieces: 0,
       heroes: [

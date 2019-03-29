@@ -10,7 +10,7 @@ type StateProp =
   "visibleSpellDetail";
 
 const mapStateToProps = (state: AppState): Pick<MageGuildWindowContainerProps, StateProp> => ({
-  spellById: state.game.data.spellById as MageGuildWindowContainerProps["spellById"],
+  spellById: state.game.data.spells as MageGuildWindowContainerProps["spellById"],
   visibleSpellDetail: state.mageGuildWindow.visibleSpellDetail,
 });
 

@@ -16,7 +16,7 @@ type StateProp =
 
 const mapStateToProps = (state: AppState): Pick<SpellBookWindowContainerProps, StateProp> => ({
   page: state.spellBookWindow.page,
-  spellById: state.game.data.spellById as SpellBookWindowContainerProps["spellById"],
+  spellById: state.game.data.spells as SpellBookWindowContainerProps["spellById"],
   spellType: state.spellBookWindow.spellType,
   visibleSpellDetails: state.spellBookWindow.visibleSpellDetails,
 });
