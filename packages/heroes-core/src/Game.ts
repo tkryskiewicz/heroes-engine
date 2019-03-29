@@ -7,6 +7,10 @@ import {
   handleDwellingMapObject,
   handlePickableMapObject,
   handleTreasureMapObject,
+  isDwellingMapObject,
+  isDwellingMapObjectData,
+  isPickableMapObjectData,
+  isTreasureMapObject,
   Map,
   MapObjectData,
 } from "./map";
@@ -198,9 +202,17 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
     throw new Error("Invalid hero");
   }
 
-  game = handleTreasureMapObject(game, object);
-  game = handleDwellingMapObject(game, object, objectData, activeHero);
-  game = handlePickableMapObject(game, object, objectData);
+  if (isTreasureMapObject(object)) {
+    game = handleTreasureMapObject(game, object);
+  }
+
+  if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {
+    game = handleDwellingMapObject(game, object, objectData, activeHero);
+  }
+
+  if (isPickableMapObjectData(objectData)) {
+    game = handlePickableMapObject(game, object);
+  }
 
   return {
     ...game,

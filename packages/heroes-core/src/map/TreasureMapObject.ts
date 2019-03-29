@@ -38,14 +38,8 @@ export const isTreasureMapObject = (object: MapObject): object is TreasureMapObj
 
 export const handleTreasureMapObject = (
   game: Game,
-  object: MapObject,
-): Game => {
-  if (!isTreasureMapObject(object)) {
-    return game;
-  }
-
-  return {
-    ...game,
-    resources: addResources(game.resources, object.treasure),
-  };
-};
+  object: TreasureMapObject,
+): Game => ({
+  ...game,
+  resources: addResources(game.resources, object.treasure),
+});

@@ -32,11 +32,12 @@ export const isDwellingMapObject = (object: MapObject): object is DwellingMapObj
   object.type === DwellingMapObjectType &&
   (object as DwellingMapObject).availableCount !== undefined;
 
-export const handleDwellingMapObject = (game: Game, object: MapObject, objectData: MapObjectData, hero: Hero) => {
-  if (!isDwellingMapObjectData(objectData) || !isDwellingMapObject(object)) {
-    return game;
-  }
-
+export const handleDwellingMapObject = (
+  game: Game,
+  object: DwellingMapObject,
+  objectData: DwellingMapObjectData,
+  hero: Hero,
+): Game => {
   const troop: Troop = {
     count: object.availableCount,
     creature: objectData.dwelling.creature,
