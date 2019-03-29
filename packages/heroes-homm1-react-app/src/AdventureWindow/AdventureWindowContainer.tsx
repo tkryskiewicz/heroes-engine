@@ -14,7 +14,7 @@ import {
   MapObject,
   Town,
 } from "heroes-core";
-import { StructureId } from "heroes-homm1";
+import { MapObjectId, StructureId } from "heroes-homm1";
 import {
   AdventureWindow,
   CreatureJoinPrompt,
@@ -24,6 +24,7 @@ import {
   MapTile,
   ResourceMapObject,
   TownMapObject,
+  VisitObeliskPrompt,
 } from "heroes-homm1-react";
 import { adventureScreenActions, gameActions, Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
 
@@ -221,7 +222,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
           return;
         }
 
-        this.props.dispatch(gameActions.visitMapObject(object.id, activeHero.id));
+        this.props.dispatch(adventureScreenActions.openMapObjectDetails(object.id));
       }
     }
   }
@@ -233,8 +234,6 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     const objectData = this.props.mapObjects[mapObject.id];
 
     if (isDwellingMapObjectData(objectData) && isDwellingMapObject(mapObject)) {
-      const onConfirmClick = () => this.onConfirmCreatureJoinPrompt(mapObject.id);
-
       if (mapObject.availableCount === 0) {
         return (
           <DwellingEmptyPrompt
@@ -249,11 +248,20 @@ class AdventureWindowContainer extends React.Component<Props, State> {
           <CreatureJoinPrompt
             visible={true}
             creature={objectData.dwelling.creature}
-            onConfirmClick={onConfirmClick}
+            onConfirmClick={this.onConfirmMapObjectDetailsClick}
             onCancelClick={this.onCloseMapObjectDetailsClick}
           />
         );
       }
+    }
+
+    if (mapObject.id === MapObjectId.Obelisk) {
+      return (
+        <VisitObeliskPrompt
+          visible={true}
+          onConfirmClick={this.onConfirmMapObjectDetailsClick}
+        />
+      );
     }
   }
 
@@ -261,14 +269,14 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     this.props.dispatch(adventureScreenActions.closeMapObjectDetails());
   }
 
-  private readonly onConfirmCreatureJoinPrompt = (id: string) => {
-    const { selectedLocator } = this.props;
+  private readonly onConfirmMapObjectDetailsClick = () => {
+    const { selectedLocator, visibleMapObjectDetails } = this.props;
 
     this.props.dispatch(adventureScreenActions.closeMapObjectDetails());
 
     const hero = this.props.heroes[selectedLocator!.index];
 
-    this.props.dispatch(gameActions.visitMapObject(id, hero.id));
+    this.props.dispatch(gameActions.visitMapObject(visibleMapObjectDetails!, hero.id));
   }
 
   private rendeHeroTradingWindow() {

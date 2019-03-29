@@ -36,6 +36,10 @@ const mapObjectMessages: Messages = defineMessages({
     defaultMessage: "Oasis",
     id: "game.mapObject.oasis",
   },
+  [getKey(MapObjectId.Obelisk)]: {
+    defaultMessage: "Obelisk",
+    id: "game.mapObject.obelisk",
+  },
   [getKey(MapObjectId.Shipwreck)]: {
     defaultMessage: "Shipwreck",
     id: "game.mapObject.shipwreck",
