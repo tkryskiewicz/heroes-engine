@@ -6,10 +6,12 @@ import {
   getObject,
   handleDwellingMapObject,
   handlePickableMapObject,
+  handlePuzzleMapObject,
   handleTreasureMapObject,
   isDwellingMapObject,
   isDwellingMapObjectData,
   isPickableMapObjectData,
+  isPuzzleMapObjectData,
   isTreasureMapObject,
   Map,
   MapObjectData,
@@ -27,6 +29,11 @@ export interface GameData {
   readonly mapObjects: { readonly [id: string]: MapObjectData; };
 }
 
+export interface Puzzle {
+  readonly totalPieces: number;
+  readonly uncoveredPieces: number;
+}
+
 export interface Game {
   readonly data: GameData;
   readonly scenario: Scenario;
@@ -35,7 +42,7 @@ export interface Game {
   readonly resources: Resources;
   readonly heroes: Hero[];
   readonly towns: Town[];
-  readonly discoveredPuzzlePieces: number;
+  readonly puzzle: Puzzle;
 }
 
 export const getGameHero = (game: Game, hero: string): Hero | undefined =>
@@ -208,6 +215,10 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
 
   if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {
     game = handleDwellingMapObject(game, object, objectData, activeHero);
+  }
+
+  if (isPuzzleMapObjectData(objectData)) {
+    game = handlePuzzleMapObject(game);
   }
 
   if (isPickableMapObjectData(objectData)) {

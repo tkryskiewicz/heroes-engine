@@ -1,4 +1,10 @@
-import { DwellingMapObjectData, MapObjectData, PickableMapObjectData, TreasureMapObjectData } from "heroes-core";
+import {
+  DwellingMapObjectData,
+  MapObjectData,
+  PickableMapObjectData,
+  PuzzleMapObjectData,
+  TreasureMapObjectData,
+} from "heroes-core";
 
 import { CreatureId } from "./creatures";
 import { Resource } from "./Resource";
@@ -20,6 +26,9 @@ export enum MapObjectId {
   Hut = "hut",
   ThatchedHut = "thatched-hut",
 
+  // puzzle
+  Obelisk = "obelisk",
+
   // other
   Bouy = "bouy",
   FaerieRing = "faerie-ring",
@@ -27,7 +36,6 @@ export enum MapObjectId {
   Gazebo = "gazebo",
   Graveyard = "graveyard",
   Oasis = "oasis",
-  Obelisk = "obelisk",
   Rosebush = "rosebush",
   Shipwreck = "shipwreck",
   Shrine = "shrine",
@@ -154,7 +162,15 @@ const dwellingObjects: DwellingMapObjectData[] = [
   },
 ];
 
+const puzzleObjects: PuzzleMapObjectData[] = [
+  {
+    id: MapObjectId.Obelisk,
+    uncoversPuzzlePiece: true,
+  },
+];
+
 export const mapObjects: MapObjectData[] = [
   ...treasureObjects,
   ...dwellingObjects,
+  ...puzzleObjects,
 ];

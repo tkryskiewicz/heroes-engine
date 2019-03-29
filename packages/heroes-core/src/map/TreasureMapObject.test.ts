@@ -115,9 +115,12 @@ describe("handleTreasureMapObject", () => {
         mapObjects: {},
         spells: {},
       },
-      discoveredPuzzlePieces: 0,
       heroes: [],
       map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
+      puzzle: {
+        totalPieces: 0,
+        uncoveredPieces: 0,
+      },
       resources: {},
       scenario: {
         description: "Description",

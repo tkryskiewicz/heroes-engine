@@ -8,7 +8,7 @@ type StateProp =
   "discoveredPieces";
 
 const mapStateToProps = (state: AppState): Pick<PuzzleWindowProps, StateProp> => ({
-  discoveredPieces: state.game.discoveredPuzzlePieces,
+  discoveredPieces: state.game.puzzle.uncoveredPieces,
 });
 
 type DispatchProp =

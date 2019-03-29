@@ -123,6 +123,12 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         />
       );
     }
+
+    return (
+      <MapObj
+        type={object.id}
+      />
+    );
   }
 
   private readonly onTileMouseEnter = (index: number) => {
@@ -205,6 +211,12 @@ class AdventureWindowContainer extends React.Component<Props, State> {
 
         this.props.dispatch(adventureScreenActions.openMapObjectDetails(object.id));
       } else if (isTreasureMapObject(object)) {
+        if (!activeHero) {
+          return;
+        }
+
+        this.props.dispatch(gameActions.visitMapObject(object.id, activeHero.id));
+      } else {
         if (!activeHero) {
           return;
         }

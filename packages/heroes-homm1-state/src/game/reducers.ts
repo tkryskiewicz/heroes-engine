@@ -36,6 +36,7 @@ import {
   MapObjectId,
   mapObjects,
   MaxMobility,
+  PuzzlePieceCount,
   Resource,
   SpellId,
   spells,
@@ -156,6 +157,8 @@ const woodData = mapObjects.find((o) => o.id === MapObjectId.Wood)! as TreasureM
 
 map = placeObject(map, { x: 4, y: 2 }, createTreasureMapObject(woodData));
 
+map = placeObject(map, { x: 6, y: 2 }, { id: MapObjectId.Obelisk, type: "type" });
+
 const initialState: GameState = {
   alignment: Alignment.Red,
   data: {
@@ -173,9 +176,12 @@ const initialState: GameState = {
       [c.id]: c,
     }), {}),
   },
-  discoveredPuzzlePieces: 0,
   heroes,
   map,
+  puzzle: {
+    totalPieces: PuzzlePieceCount,
+    uncoveredPieces: 0,
+  },
   resources: {
     [Resource.Gold]: 20000,
     [Resource.Wood]: 20,

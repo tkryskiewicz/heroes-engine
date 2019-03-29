@@ -126,9 +126,12 @@ describe("handleDwellingMapObject", () => {
         },
         spells: {},
       },
-      discoveredPuzzlePieces: 0,
       heroes: [],
       map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
+      puzzle: {
+        totalPieces: 0,
+        uncoveredPieces: 0,
+      },
       resources: {},
       scenario: {
         description: "Description",
@@ -182,7 +185,6 @@ describe("handleDwellingMapObject", () => {
         },
         spells: {},
       },
-      discoveredPuzzlePieces: 0,
       heroes: [
         hero,
       ],
@@ -195,6 +197,10 @@ describe("handleDwellingMapObject", () => {
         { x: 1, y: 0 },
         createHeroMapObject("hero", hero),
       ),
+      puzzle: {
+        totalPieces: 0,
+        uncoveredPieces: 0,
+      },
       resources: {},
       scenario: {
         description: "Description",

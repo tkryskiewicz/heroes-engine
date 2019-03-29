@@ -14,6 +14,7 @@ export { MapObjectOrientation, MapObjectOrientations } from "./MapObjectOrientat
 export { MapPoint } from "./MapPoint";
 export { MapTile } from "./MapTile";
 export { PickableMapObjectData, isPickableMapObjectData, handlePickableMapObject } from "./PickableMapObject";
+export { PuzzleMapObjectData, isPuzzleMapObjectData, handlePuzzleMapObject } from "./PuzzleMapObject";
 export { TownMapObject, TownMapObjectType, createTownMapObject, isTownMapObject } from "./TownMapObject";
 export {
   TreasureMapObject,

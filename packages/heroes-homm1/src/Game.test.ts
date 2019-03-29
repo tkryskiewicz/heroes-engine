@@ -58,7 +58,6 @@ describe("buyMageGuildSpellBook", () => {
         mapObjects: {},
         spells: {},
       },
-      discoveredPuzzlePieces: 0,
       heroes: [
         hero,
         otherHero,
@@ -67,6 +66,10 @@ describe("buyMageGuildSpellBook", () => {
         height: 1,
         tiles: [],
         width: 1,
+      },
+      puzzle: {
+        totalPieces: 0,
+        uncoveredPieces: 0,
       },
       resources: {
         [Resource.Gold]: 1000,
@@ -102,7 +105,6 @@ describe("buyMageGuildSpellBook", () => {
         mapObjects: {},
         spells: {},
       },
-      discoveredPuzzlePieces: 0,
       heroes: [
         expectedHero,
         otherHero,
@@ -111,6 +113,10 @@ describe("buyMageGuildSpellBook", () => {
         height: 1,
         tiles: [],
         width: 1,
+      },
+      puzzle: {
+        totalPieces: 0,
+        uncoveredPieces: 0,
       },
       resources: {
         [Resource.Gold]: 500,
