@@ -23,6 +23,16 @@ export enum MapObjectId {
 
   Fireplace = "fireplace",
 
+  // mines
+  CrystalMine = "crystal-mine",
+  // Gem Mine or Gems Mine??
+  GemsMine = "gems-mine",
+  GoldMine = "gold-mine",
+  Alchemist = "alchemist",
+  OreMine = "ore-mine",
+  SulfurMine = "sulfur-mine",
+  Sawmill = "sawmill",
+
   // dwellings
   Cottage = "cottage",
   Hut = "hut",

@@ -1,6 +1,6 @@
 import { defineMessages, Messages } from "react-intl";
 
-import { MapObjectId } from "heroes-homm1";
+import { MapObjectId, Resource } from "heroes-homm1";
 
 import { convertValue, unknownMessage } from "./util";
 
@@ -8,6 +8,36 @@ const getKey = (mapObject: string) =>
   convertValue(mapObject);
 
 const mapObjectMessages: Messages = defineMessages({
+  // mines
+  [getKey(MapObjectId.CrystalMine)]: {
+    defaultMessage: "Crystal Mine",
+    id: "game.mapObject.crystalMine",
+  },
+  [getKey(MapObjectId.GemsMine)]: {
+    defaultMessage: "Gem Mine",
+    id: "game.mapObject.gemsMine",
+  },
+  [getKey(MapObjectId.GoldMine)]: {
+    defaultMessage: "Gold Mine",
+    id: "game.mapObject.goldMine",
+  },
+  [getKey(MapObjectId.Alchemist)]: {
+    defaultMessage: "Alchemist",
+    id: "game.mapObject.alchemist",
+  },
+  [getKey(MapObjectId.OreMine)]: {
+    defaultMessage: "Ore Mine",
+    id: "game.mapObject.oreMine",
+  },
+  [getKey(MapObjectId.SulfurMine)]: {
+    defaultMessage: "Sulfur Mine",
+    id: "game.mapObject.sulfurMine",
+  },
+  [getKey(MapObjectId.Sawmill)]: {
+    defaultMessage: "Sawmill",
+    id: "game.mapObject.sawmill",
+  },
+  // other
   [getKey(MapObjectId.Bouy)]: {
     defaultMessage: "Buoy",
     id: "game.mapObject.buoy",
@@ -56,3 +86,17 @@ const mapObjectMessages: Messages = defineMessages({
 
 export const getMapObjectNameMessage = (mapObject: string) =>
   mapObjectMessages[getKey(mapObject)] || unknownMessage;
+
+// TODO: move to homm1 package?
+const mineObjectMap: { readonly [resource: string]: string } = {
+  [Resource.Crystal]: MapObjectId.CrystalMine,
+  [Resource.Gems]: MapObjectId.GemsMine,
+  [Resource.Gold]: MapObjectId.GoldMine,
+  [Resource.Mercury]: MapObjectId.Alchemist,
+  [Resource.Ore]: MapObjectId.OreMine,
+  [Resource.Sulfur]: MapObjectId.SulfurMine,
+  [Resource.Wood]: MapObjectId.Sawmill,
+};
+
+export const getMineObjectNameMessage = (resource: string) =>
+  getMapObjectNameMessage(mineObjectMap[resource]) || unknownMessage;

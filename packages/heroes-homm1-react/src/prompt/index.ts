@@ -16,4 +16,5 @@ export * from "./RedistributeArmyPrompt";
 export * from "./SkillDetailsPrompt";
 export * from "./SpellDetailsPrompt";
 export * from "./TreasureChestPrompt";
+export * from "./VisitMinePrompt";
 export * from "./VisitObeliskPrompt";
