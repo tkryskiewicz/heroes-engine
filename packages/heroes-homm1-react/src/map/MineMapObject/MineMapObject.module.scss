@@ -1,0 +1,22 @@
+@import "../../style/index";
+
+.root {
+  position: relative;
+  display: inline-block;
+}
+
+.mercury {
+  padding-top: $MAP_TILE_SIZE;
+}
+
+.wagon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.flag {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
