@@ -6,6 +6,7 @@ import {
   getObject,
   handleDwellingMapObject,
   handleLimitedInteractionMapObject,
+  handleOwnableMapObject,
   handlePickableMapObject,
   handlePuzzleMapObject,
   handleTreasureMapObject,
@@ -13,6 +14,8 @@ import {
   isDwellingMapObjectData,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
+  isOwnableMapObject,
+  isOwnableMapObjectData,
   isPickableMapObjectData,
   isPuzzleMapObjectData,
   isTreasureMapObject,
@@ -230,6 +233,10 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
 
   if (isPickableMapObjectData(objectData)) {
     game = handlePickableMapObject(game, object);
+  }
+
+  if (isOwnableMapObjectData(objectData) && isOwnableMapObject(object)) {
+    game = handleOwnableMapObject(game, object, objectData, activeHero);
   }
 
   return {

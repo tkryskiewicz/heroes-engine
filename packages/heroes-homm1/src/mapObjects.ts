@@ -3,6 +3,7 @@ import {
   InteractionLimitType,
   LimitedInteractionMapObjectData,
   MapObjectData,
+  MineMapObjectData,
   PickableMapObjectData,
   PuzzleMapObjectData,
   TreasureMapObjectData,
@@ -150,6 +151,65 @@ const treasureObjects: Array<TreasureMapObjectData & PickableMapObjectData> = [
   },
 ];
 
+const mineObjects: MineMapObjectData[] = [
+  {
+    id: MapObjectId.CrystalMine,
+    mine: {
+      amount: 1,
+      resource: Resource.Crystal,
+    },
+    ownable: true,
+  },
+  {
+    id: MapObjectId.GemsMine,
+    mine: {
+      amount: 1,
+      resource: Resource.Crystal,
+    },
+    ownable: true,
+  },
+  {
+    id: MapObjectId.GoldMine,
+    mine: {
+      amount: 1000,
+      resource: Resource.Gold,
+    },
+    ownable: true,
+  },
+  {
+    id: MapObjectId.Alchemist,
+    mine: {
+      amount: 2,
+      resource: Resource.Mercury,
+    },
+    ownable: true,
+  },
+  {
+    id: MapObjectId.OreMine,
+    mine: {
+      amount: 2,
+      resource: Resource.Ore,
+    },
+    ownable: true,
+  },
+  {
+    id: MapObjectId.SulfurMine,
+    mine: {
+      amount: 1,
+      resource: Resource.Sulfur,
+    },
+    ownable: true,
+  },
+  {
+    id: MapObjectId.Sawmill,
+    mine: {
+      amount: 2,
+      resource: Resource.Wood,
+    },
+    ownable: true,
+  },
+];
+
 const dwellingObjects: DwellingMapObjectData[] = [
   {
     dwelling: {
@@ -184,6 +244,7 @@ const puzzleObjects: Array<PuzzleMapObjectData & LimitedInteractionMapObjectData
 
 export const mapObjects: MapObjectData[] = [
   ...treasureObjects,
+  ...mineObjects,
   ...dwellingObjects,
   ...puzzleObjects,
 ];

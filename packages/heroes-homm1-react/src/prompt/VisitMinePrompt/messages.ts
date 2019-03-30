@@ -13,6 +13,7 @@ export const messages = defineMessages({
     defaultMessage: "{amount, plural, =1 {one unit} =2 {two units} other {# units}} of {resource}",
     id: "ui.visitMinePrompt.amountUnits",
   },
+  // FIXME: should be 'of an ore mine'
   content: {
     defaultMessage: "You gain control of a {mine}. It will provide you with {amount} per day.",
     id: "ui.visitMinePrompt.content",

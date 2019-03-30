@@ -10,6 +10,9 @@ import {
   isHeroMapObject,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
+  isMineMapObjectData,
+  isObjectOwnedBy,
+  isOwnableMapObject,
   isStructureBuilt,
   isTownMapObject,
   isTreasureMapObject,
@@ -26,9 +29,11 @@ import {
   HeroMapObject,
   MapObject as MapObj,
   MapTile,
+  MineMapObject,
   ObeliskAlreadyVisitedPrompt,
   ResourceMapObject,
   TownMapObject,
+  VisitMinePrompt,
   VisitObeliskPrompt,
 } from "heroes-homm1-react";
 import { adventureScreenActions, gameActions, Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
@@ -91,6 +96,10 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private renderMapObject(object: MapObject) {
+    const { mapObjects } = this.props;
+
+    const objectData = mapObjects[object.id];
+
     if (isHeroMapObject(object)) {
       return (
         <HeroMapObject
@@ -126,6 +135,15 @@ class AdventureWindowContainer extends React.Component<Props, State> {
       return (
         <ResourceMapObject
           resource={resource}
+        />
+      );
+    }
+
+    if (isMineMapObjectData(objectData) && isOwnableMapObject(object)) {
+      return (
+        <MineMapObject
+          resource={objectData.mine.resource}
+          alignment={object.owner}
         />
       );
     }
@@ -191,6 +209,8 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     const object = tile.object;
 
     if (object) {
+      const objectData = this.props.mapObjects[object.id];
+
       // FIXME: extract
       if (isHeroMapObject(object)) {
         const heroIndex = this.props.heroes.indexOf(object.hero);
@@ -222,6 +242,12 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         }
 
         this.props.dispatch(gameActions.visitMapObject(object.id, activeHero.id));
+      } else if (isMineMapObjectData(objectData) && isOwnableMapObject(object)) {
+        if (!activeHero || isObjectOwnedBy(object, activeHero.alignment)) {
+          return;
+        }
+
+        this.props.dispatch(adventureScreenActions.openMapObjectDetails(object.id));
       } else {
         if (!activeHero) {
           return;
@@ -264,6 +290,17 @@ class AdventureWindowContainer extends React.Component<Props, State> {
           />
         );
       }
+    }
+
+    if (isMineMapObjectData(objectData)) {
+      return (
+        <VisitMinePrompt
+          visible={true}
+          resource={objectData.mine.resource}
+          amount={objectData.mine.amount}
+          onConfirmClick={this.onConfirmMapObjectDetailsClick}
+        />
+      );
     }
 
     if (isDwellingMapObjectData(objectData) && isDwellingMapObject(mapObject)) {
