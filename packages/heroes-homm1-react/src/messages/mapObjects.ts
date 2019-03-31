@@ -1,6 +1,6 @@
 import { defineMessages, Messages } from "react-intl";
 
-import { MapObjectId, Resource } from "heroes-homm1";
+import { getResourceMineMapObjectId, MapObjectId } from "heroes-homm1";
 
 import { convertValue, unknownMessage } from "./util";
 
@@ -87,16 +87,5 @@ const mapObjectMessages: Messages = defineMessages({
 export const getMapObjectNameMessage = (mapObject: string) =>
   mapObjectMessages[getKey(mapObject)] || unknownMessage;
 
-// TODO: move to homm1 package?
-const mineObjectMap: { readonly [resource: string]: string } = {
-  [Resource.Crystal]: MapObjectId.CrystalMine,
-  [Resource.Gems]: MapObjectId.GemsMine,
-  [Resource.Gold]: MapObjectId.GoldMine,
-  [Resource.Mercury]: MapObjectId.Alchemist,
-  [Resource.Ore]: MapObjectId.OreMine,
-  [Resource.Sulfur]: MapObjectId.SulfurMine,
-  [Resource.Wood]: MapObjectId.Sawmill,
-};
-
 export const getMineObjectNameMessage = (resource: string) =>
-  getMapObjectNameMessage(mineObjectMap[resource]) || unknownMessage;
+  getMapObjectNameMessage(getResourceMineMapObjectId(resource)) || unknownMessage;

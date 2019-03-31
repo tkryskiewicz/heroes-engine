@@ -1,5 +1,5 @@
 import { Game } from "../Game";
-import { MapObject, MapObjectData } from "./MapObject";
+import { isMapObject, MapObject, MapObjectData } from "./MapObject";
 
 export interface OwnableMapObjectData extends MapObjectData {
   readonly ownable: true;
@@ -12,8 +12,8 @@ export interface OwnableMapObject extends MapObject {
   readonly owner?: string;
 }
 
-export const isOwnableMapObject = (object: MapObject): object is OwnableMapObject =>
-  "owner" in object;
+export const isOwnableMapObject = (object: MapObject | undefined): object is OwnableMapObject =>
+  isMapObject(object) && "owner" in object;
 
 export const createOwnableMapObject = (objectData: MapObjectData, owner?: string): OwnableMapObject => ({
   id: objectData.id,
