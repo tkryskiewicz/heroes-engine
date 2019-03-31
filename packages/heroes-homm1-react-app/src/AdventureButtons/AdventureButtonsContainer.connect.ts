@@ -59,6 +59,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsContainerP
     dispatch(adventureScreenActions.changeEndTurnPromptVisible(false));
 
     dispatch(gameActions.endTurn());
+    dispatch(gameActions.startTurn());
   },
   onAdventureOptionsClick() {
     dispatch(adventureOptionsActions.open());

@@ -1,5 +1,7 @@
+import { Game } from "../Game";
+import { addResources } from "../Resource";
 import { MapObjectData } from "./MapObject";
-import { OwnableMapObject, OwnableMapObjectData } from "./OwnableMapObject";
+import { isObjectOwnedBy, OwnableMapObject, OwnableMapObjectData } from "./OwnableMapObject";
 
 // TODO: should be like resource generator object?
 export interface MineMapObjectData extends MapObjectData, OwnableMapObjectData {
@@ -18,3 +20,18 @@ export const createMineMapObject = (objectData: MineMapObjectData, owner?: strin
   id: objectData.id,
   owner,
 });
+
+export const handleMineMapObject = (
+  game: Game,
+  object: MineMapObject,
+  objectData: MineMapObjectData,
+): Game => {
+  if (!isObjectOwnedBy(object, game.alignment)) {
+    throw new Error(`${objectData.id} (${object.id}) is not owned by ${game.alignment}`);
+  }
+
+  return {
+    ...game,
+    resources: addResources(game.resources, { [objectData.mine.resource]: objectData.mine.amount }),
+  };
+};

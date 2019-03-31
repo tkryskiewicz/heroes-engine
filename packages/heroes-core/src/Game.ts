@@ -6,6 +6,7 @@ import {
   getObject,
   handleDwellingMapObject,
   handleLimitedInteractionMapObject,
+  handleMineMapObject,
   handleOwnableMapObject,
   handlePickableMapObject,
   handlePuzzleMapObject,
@@ -14,12 +15,15 @@ import {
   isDwellingMapObjectData,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
+  isMineMapObjectData,
+  isObjectOwnedBy,
   isOwnableMapObject,
   isOwnableMapObjectData,
   isPickableMapObjectData,
   isPuzzleMapObjectData,
   isTreasureMapObject,
   Map,
+  MapObject,
   MapObjectData,
 } from "./map";
 import { multiplyResources, Resources, subtractResources } from "./Resource";
@@ -192,6 +196,27 @@ export const recruitGameTroop = (game: Game, townId: string, structureId: string
     ...game,
     resources: subtractResources(game.resources, cost),
     towns: game.towns.map((t) => t === town ? recruitTownTroop(town, structureId, count) : t),
+  };
+};
+
+export const startGameTurn = (game: Game): Game => {
+  const objects = game.map.tiles
+    .map((t) => t.object)
+    .filter((o): o is MapObject => o !== undefined)
+    .filter((o) => isOwnableMapObject(o) && isObjectOwnedBy(o, game.alignment));
+
+  objects
+    .forEach((o) => {
+      const objectData = game.data.mapObjects[o.id];
+
+      // FIXME: crashes because towns don't have object data
+      if (objectData && isMineMapObjectData(objectData)) {
+        game = handleMineMapObject(game, o, objectData);
+      }
+    });
+
+  return {
+    ...game,
   };
 };
 

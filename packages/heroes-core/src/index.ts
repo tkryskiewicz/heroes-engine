@@ -22,6 +22,7 @@ export {
   dismissGameHero,
   buildGameStructure,
   recruitGameTroop,
+  startGameTurn,
   endGameTurn,
   visitGameMapObject,
 } from "./Game";

@@ -18,6 +18,7 @@ import {
   MineMapObjectData,
   placeObject,
   recruitGameTroop,
+  startGameTurn,
   swapGameTroops,
   Town,
   tradeGameArtifacts,
@@ -234,6 +235,10 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
     case GameActionType.BuyMageGuildSpellBook:
       return {
         ...buyMageGuildSpellBook(state, action.hero, action.town, action.cost),
+      };
+    case GameActionType.StartTurn:
+      return {
+        ...startGameTurn(state),
       };
     case GameActionType.EndTurn:
       return {

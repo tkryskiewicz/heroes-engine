@@ -14,6 +14,8 @@ import {
   GameActionType,
   recruitTroop,
   RecruitTroopAction,
+  startTurn,
+  StartTurnAction,
   swapTroops,
   SwapTroopsAction,
   tradeArtifacts,
@@ -130,6 +132,16 @@ describe("gameActions", () => {
       hero: "hero",
       town: "town",
       type: GameActionType.BuyMageGuildSpellBook,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to start turn", () => {
+    const result = startTurn();
+
+    const expected: StartTurnAction = {
+      type: GameActionType.StartTurn,
     };
 
     expect(result).toEqual(expected);

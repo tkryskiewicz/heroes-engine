@@ -23,7 +23,13 @@ export { MapObject, MapObjectData } from "./MapObject";
 export { MapObjectOrientation, MapObjectOrientations } from "./MapObjectOrientation";
 export { MapPoint } from "./MapPoint";
 export { MapTile } from "./MapTile";
-export { MineMapObject, MineMapObjectData, isMineMapObjectData, createMineMapObject } from "./MineMapObject";
+export {
+  MineMapObject,
+  MineMapObjectData,
+  isMineMapObjectData,
+  createMineMapObject,
+  handleMineMapObject,
+} from "./MineMapObject";
 export {
   OwnableMapObject,
   OwnableMapObjectData,

@@ -8,6 +8,7 @@ export enum GameActionType {
   BuildStructure = "game/buildStructure",
   RecruitTroop = "game/recruitTroop",
   BuyMageGuildSpellBook = "game/buyMageGuildSpellBook",
+  StartTurn = "game/startTurn",
   EndTurn = "game/endTurn",
   VisitMapObject = "game/visitMapObject",
 }
@@ -20,6 +21,7 @@ export type GameAction =
   BuildStructureAction |
   RecruitTroopAction |
   BuyMageGuildSpellBookAction |
+  StartTurnAction |
   EndTurnAction |
   VisitMapObjectAction;
 
@@ -105,6 +107,14 @@ export const buyMageGuildSpellBook = (hero: string, town: string, cost: Resource
   hero,
   town,
   type: GameActionType.BuyMageGuildSpellBook,
+});
+
+export interface StartTurnAction {
+  readonly type: GameActionType.StartTurn;
+}
+
+export const startTurn = (): StartTurnAction => ({
+  type: GameActionType.StartTurn,
 });
 
 export interface EndTurnAction {
