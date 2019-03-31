@@ -29,7 +29,9 @@ export class MapTile extends React.Component<Props> {
         onMouseLeave={this.props.onMouseLeave}
         onClick={this.onClick}
       >
-        {this.props.children}
+        <div className={styles.content}>
+          {this.props.children}
+        </div>
       </div>
     );
   }
