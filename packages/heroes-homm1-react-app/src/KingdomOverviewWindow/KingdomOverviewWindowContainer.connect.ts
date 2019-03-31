@@ -9,7 +9,7 @@ import {
   isStructureBuilt,
   isTownMapObject,
 } from "heroes-core";
-import { getResourceMineMapObjectId, HeroClassIds, Resource, StructureId, TownIds } from "heroes-homm1";
+import { HeroClassIds, Resource, StructureId, TownIds } from "heroes-homm1";
 import { AppState, kingdomOverviewWindowActions } from "heroes-homm1-state";
 
 import { KingdomOverviewWindowContainer, KingdomOverviewWindowContainerProps } from "./KingdomOverviewWindowContainer";
@@ -57,7 +57,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
     }), {}),
     mines: Object.values(Resource).reduce((p, c) => ({
       ...p,
-      [c]: mines.filter((m) => m.id === getResourceMineMapObjectId(c)).length,
+      [c]: mines.filter((m) => m.id === state.game.data.resources[c].mine).length,
     }), {}),
     resources: state.game.resources,
     towns: TownIds.reduce((p, c) => ({

@@ -1,6 +1,6 @@
 import { defineMessages, Messages } from "react-intl";
 
-import { getResourceMineMapObjectId, MapObjectId } from "heroes-homm1";
+import { MapObjectId } from "heroes-homm1";
 
 import { convertValue, unknownMessage } from "./util";
 
@@ -86,6 +86,3 @@ const mapObjectMessages: Messages = defineMessages({
 
 export const getMapObjectNameMessage = (mapObject: string) =>
   mapObjectMessages[getKey(mapObject)] || unknownMessage;
-
-export const getMineObjectNameMessage = (resource: string) =>
-  getMapObjectNameMessage(getResourceMineMapObjectId(resource)) || unknownMessage;

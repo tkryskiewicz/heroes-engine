@@ -109,6 +109,7 @@ describe("handleTreasureMapObject", () => {
         artifacts: {},
         creatures: {},
         mapObjects: {},
+        resources: {},
         spells: {},
       },
       heroes: [],

@@ -120,6 +120,7 @@ describe("handleDwellingMapObject", () => {
         mapObjects: {
           id: objectData,
         },
+        resources: {},
         spells: {},
       },
       heroes: [],
@@ -177,6 +178,7 @@ describe("handleDwellingMapObject", () => {
         mapObjects: {
           id: objectData,
         },
+        resources: {},
         spells: {},
       },
       heroes: [

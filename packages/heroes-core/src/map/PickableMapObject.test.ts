@@ -45,6 +45,7 @@ describe("handlePickableMapObject", () => {
         mapObjects: {
           id: objectData,
         },
+        resources: {},
         spells: {},
       },
       heroes: [],

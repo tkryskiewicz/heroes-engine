@@ -13,7 +13,7 @@ export {
   getLuckNameMessage,
   getLuckValueMessage,
 } from "./luck";
-export { getMapObjectNameMessage, getMineObjectNameMessage } from "./mapObjects";
+export { getMapObjectNameMessage } from "./mapObjects";
 export {
   moraleMessages,
   getMoraleTypeDescriptionMessage,

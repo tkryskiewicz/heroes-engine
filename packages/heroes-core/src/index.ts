@@ -36,7 +36,9 @@ export {
 } from "./Hero";
 export * from "./map";
 export {
+  ResourceData,
   Resources,
+  areResourcesValid,
   addResources,
   subtractResources,
   multiplyResources,

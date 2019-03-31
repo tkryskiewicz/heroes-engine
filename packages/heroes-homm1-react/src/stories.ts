@@ -24,6 +24,7 @@ import {
   OpponentSetting,
   PlainsStructureId,
   Resource,
+  resources,
   ScenarioDifficulty,
   ScenarioSize,
   Skill,
@@ -81,6 +82,14 @@ const resourceOptions = Object.keys(Resource).reduce<SelectOptions>((p, c: any) 
 }, {});
 
 export const resource = (name: string) => select(name, resourceOptions, Resource.Gold);
+
+// TODO: keys are also values, doesn't look nice
+const mineOptions = Object.values(resources).reduce((p, c) => ({
+  ...p,
+  [c.mine]: c.mine,
+}), {});
+
+export const mine = (name: string) => select(name, mineOptions, MapObjectId.OreMine);
 
 const heroClassOptions = Object.keys(HeroClass).reduce<SelectOptions>((p, c: any) => {
   return {

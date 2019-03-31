@@ -1,16 +1,35 @@
+import { ResourceData } from "heroes-core";
+
 import { MapObjectId } from "./mapObjects";
 import { Resource } from "./Resource";
 
-// TODO: move to game data
-const resourceMineMap: { readonly [resource: string]: string } = {
-  [Resource.Crystal]: MapObjectId.CrystalMine,
-  [Resource.Gems]: MapObjectId.GemsMine,
-  [Resource.Gold]: MapObjectId.GoldMine,
-  [Resource.Mercury]: MapObjectId.Alchemist,
-  [Resource.Ore]: MapObjectId.OreMine,
-  [Resource.Sulfur]: MapObjectId.SulfurMine,
-  [Resource.Wood]: MapObjectId.Sawmill,
-};
-
-export const getResourceMineMapObjectId = (resource: string): string =>
-  resourceMineMap[resource];
+export const resources: ResourceData[] = [
+  {
+    id: Resource.Crystal,
+    mine: MapObjectId.CrystalMine,
+  },
+  {
+    id: Resource.Gems,
+    mine: MapObjectId.GemsMine,
+  },
+  {
+    id: Resource.Gold,
+    mine: MapObjectId.GoldMine,
+  },
+  {
+    id: Resource.Mercury,
+    mine: MapObjectId.Alchemist,
+  },
+  {
+    id: Resource.Ore,
+    mine: MapObjectId.OreMine,
+  },
+  {
+    id: Resource.Sulfur,
+    mine: MapObjectId.SulfurMine,
+  },
+  {
+    id: Resource.Wood,
+    mine: MapObjectId.Sawmill,
+  },
+];

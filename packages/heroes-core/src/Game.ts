@@ -26,13 +26,14 @@ import {
   MapObject,
   MapObjectData,
 } from "./map";
-import { multiplyResources, Resources, subtractResources } from "./Resource";
+import { multiplyResources, ResourceData, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
 import { buildTownStructure, endTownTurn, recruitTownTroop, Town } from "./Town";
 import { TroopSelection, TroopSelectionType } from "./Troop";
 
 export interface GameData {
+  readonly resources: { readonly [id: string]: ResourceData; };
   readonly artifacts: { readonly [id: string]: ArtifactData; };
   readonly creatures: { readonly [id: string]: Creature; };
   readonly spells: { readonly [id: string]: Spell; };

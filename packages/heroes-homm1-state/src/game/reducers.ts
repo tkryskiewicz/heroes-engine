@@ -43,6 +43,7 @@ import {
   MaxMobility,
   PuzzlePieceCount,
   Resource,
+  resources,
   SpellId,
   spells,
   StructureId,
@@ -163,6 +164,10 @@ const initialState: GameState = {
     }), {}),
     creatures: creatureById,
     mapObjects: mapObjects.reduce((p, c) => ({
+      ...p,
+      [c.id]: c,
+    }), {}),
+    resources: resources.reduce((p, c) => ({
       ...p,
       [c.id]: c,
     }), {}),

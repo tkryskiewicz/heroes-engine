@@ -298,6 +298,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         <VisitMinePrompt
           visible={true}
           resource={objectData.mine.resource}
+          mine={objectData.id}
           amount={objectData.mine.amount}
           onConfirmClick={this.onConfirmMapObjectDetailsClick}
         />

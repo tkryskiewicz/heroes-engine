@@ -1,3 +1,8 @@
+export interface ResourceData {
+  readonly id: string;
+  readonly mine: string;
+}
+
 export interface Resources {
   readonly [resource: string]: number;
 }

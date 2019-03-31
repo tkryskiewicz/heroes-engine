@@ -54,6 +54,7 @@ describe("buyMageGuildSpellBook", () => {
         artifacts: {},
         creatures: {},
         mapObjects: {},
+        resources: {},
         spells: {},
       },
       heroes: [
@@ -101,6 +102,7 @@ describe("buyMageGuildSpellBook", () => {
         artifacts: {},
         creatures: {},
         mapObjects: {},
+        resources: {},
         spells: {},
       },
       heroes: [

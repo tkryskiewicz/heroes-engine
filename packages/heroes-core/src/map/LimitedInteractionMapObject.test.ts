@@ -160,6 +160,7 @@ describe("handleLimitedInteractionMapObject", () => {
         mapObjects: {
           id: objectData,
         },
+        resources: {},
         spells: {},
       },
       heroes: [],
@@ -221,6 +222,7 @@ describe("handleLimitedInteractionMapObject", () => {
         mapObjects: {
           id: objectData,
         },
+        resources: {},
         spells: {},
       },
       heroes: [],
