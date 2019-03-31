@@ -7,7 +7,6 @@ export interface HeroSkills {
 
 export interface Hero {
   readonly id: string;
-  readonly alignment: string;
   readonly heroClass: string;
   readonly skills: HeroSkills;
   readonly mobility: number;

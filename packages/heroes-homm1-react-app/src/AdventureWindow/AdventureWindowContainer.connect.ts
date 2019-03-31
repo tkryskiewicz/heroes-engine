@@ -6,6 +6,7 @@ import { AdventureWindow, AdventureWindowProps } from "./AdventureWindowContaine
 
 type StateProp =
   "mapObjects" |
+  "alignment" |
   "map" |
   "heroes" |
   "towns" |
@@ -14,6 +15,7 @@ type StateProp =
   "heroTradingScreenVisible";
 
 const mapStateToProps = (state: AppState): Pick<AdventureWindowProps, StateProp> => ({
+  alignment: state.game.alignment,
   heroTradingScreenVisible: state.adventureScreen.heroTradingWindowVisible,
   heroes: state.game.heroes,
   map: state.game.map,

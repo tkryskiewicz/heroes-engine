@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { select } from "@storybook/addon-knobs";
+import { boolean, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -12,7 +12,7 @@ storiesOf("map/HeroMapObject", module)
   .add("default", () => (
     <HeroMapObject
       heroClass={heroClass("Hero Class")}
-      alignment={alignment("Alignment")}
+      alignment={boolean("Aligned?", true) ? alignment("Alignment") : undefined}
       orientation={select("Orientation", MapObjectOrientations, MapObjectOrientation.North)}
       onClick={action("Click")}
     />

@@ -35,6 +35,7 @@ import { TroopWindow } from "../TroopWindow";
 
 interface HeroWindowContainerProps extends InjectedIntlProps, WithGameWindowProps {
   readonly hero: Hero;
+  readonly alignment: string;
 
   readonly visibleSkillDetails?: string;
   readonly onVisibleSkillDetailsChange: (skill?: string) => void;
@@ -176,11 +177,11 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 
   private readonly renderCrest = () => {
-    const { hero } = this.props;
+    const { hero, alignment } = this.props;
 
     return (
       <Crest
-        alignment={hero.alignment}
+        alignment={alignment}
         heroClass={hero.heroClass}
         onMouseEnter={this.onCrestMouseEnter}
         onMouseLeave={this.onCrestMouseLeave}

@@ -101,7 +101,6 @@ describe("handleDwellingMapObject", () => {
     const object = createDwellingMapObject(objectData);
 
     const hero: Hero = {
-      alignment: "alignment",
       army: [],
       artifacts: [],
       experience: 0,
@@ -159,7 +158,6 @@ describe("handleDwellingMapObject", () => {
     const object = createDwellingMapObject(objectData);
 
     const hero: Hero = {
-      alignment: "alignment",
       army: [],
       artifacts: [],
       experience: 0,

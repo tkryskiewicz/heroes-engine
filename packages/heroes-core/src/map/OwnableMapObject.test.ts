@@ -1,4 +1,3 @@
-import { Hero } from "../Hero";
 import { createMap, getObject, placeObject } from "./Map";
 import { MapObject, MapObjectData } from "./MapObject";
 import {
@@ -130,19 +129,6 @@ describe("handleOwnableMapObject", () => {
 
     const object = createOwnableMapObject(objectData);
 
-    const hero: Hero = {
-      alignment: "owner",
-      army: [],
-      artifacts: [],
-      experience: 0,
-      heroClass: "heroClass",
-      id: "hero",
-      luck: 0,
-      mobility: 0,
-      morale: 0,
-      skills: {},
-    };
-
     const game = {
       alignment: "alignment",
       data: {
@@ -165,11 +151,11 @@ describe("handleOwnableMapObject", () => {
       towns: [],
     };
 
-    const result = handleOwnableMapObject(game, object, objectData, hero);
+    const result = handleOwnableMapObject(game, object, objectData);
 
     const expectedObject: OwnableMapObject = {
       id: "id",
-      owner: "owner",
+      owner: "alignment",
     };
 
     expect(getObject(result.map, "id")).toEqual(expectedObject);
@@ -181,20 +167,7 @@ describe("handleOwnableMapObject", () => {
       ownable: true,
     };
 
-    const object = createOwnableMapObject(objectData, "owner");
-
-    const hero: Hero = {
-      alignment: "owner",
-      army: [],
-      artifacts: [],
-      experience: 0,
-      heroClass: "heroClass",
-      id: "hero",
-      luck: 0,
-      mobility: 0,
-      morale: 0,
-      skills: {},
-    };
+    const object = createOwnableMapObject(objectData, "alignment");
 
     const game = {
       alignment: "alignment",
@@ -219,7 +192,7 @@ describe("handleOwnableMapObject", () => {
     };
 
     expect(() => {
-      handleOwnableMapObject(game, object, objectData, hero);
+      handleOwnableMapObject(game, object, objectData);
     }).toThrow();
   });
 });

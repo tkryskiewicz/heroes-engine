@@ -55,29 +55,20 @@ import { GameState } from "./state";
 
 const heroes: Hero[] = [
   {
-    ...constructHero(
-      HeroId.LordKilburn,
-      Alignment.Red,
-    ),
+    ...constructHero(HeroId.LordKilburn),
     artifacts: [
       constructArtifact(ArtifactId.ThunderMaceOfDominion),
     ],
     mobility: MaxMobility,
   },
   {
-    ...constructHero(
-      HeroId.Antoine,
-      Alignment.Red,
-    ),
+    ...constructHero(HeroId.Antoine),
     luck: 3,
     mobility: MaxMobility,
     morale: 1,
   },
   {
-    ...constructHero(
-      HeroId.Ariel,
-      Alignment.Red,
-    ),
+    ...constructHero(HeroId.Ariel),
     artifacts: [
       constructSpellBook([]),
     ],
@@ -86,10 +77,7 @@ const heroes: Hero[] = [
     morale: -1,
   },
   {
-    ...constructHero(
-      HeroId.Agar,
-      Alignment.Red,
-    ),
+    ...constructHero(HeroId.Agar),
     artifacts: [
       {
         ...constructSpellBook([
@@ -146,7 +134,7 @@ const towns: Town[] = [
 
 let map: Map = createMap(14, 14, TerrainType.Grass);
 
-heroes.forEach((h, i) => map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h.id, h)));
+heroes.forEach((h, i) => map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h.id, h, Alignment.Red)));
 
 towns.forEach((t, i) => map = placeObject(map, { x: 8, y: 1 + 3 * i }, createTownMapObject(t.id, t, Alignment.Red)));
 

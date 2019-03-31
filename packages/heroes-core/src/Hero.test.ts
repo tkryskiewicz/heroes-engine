@@ -1,7 +1,6 @@
 import { canSelectNextHero, getNextHeroIndex, Hero, heroHasArtifact } from "./Hero";
 
 const getHero = (mobility: number = 1): Hero => ({
-  alignment: "alignment",
   army: [],
   artifacts: [],
   experience: 0,
@@ -95,7 +94,6 @@ describe("getNextHeroIndex", () => {
 describe("heroHasArtifact", () => {
   it("should return true when hero has artifact", () => {
     const hero: Hero = {
-      alignment: "alignment",
       army: [],
       artifacts: [
         {
@@ -119,7 +117,6 @@ describe("heroHasArtifact", () => {
 
   it("should return false when hero doesn't have artifact", () => {
     const hero: Hero = {
-      alignment: "alignment",
       army: [],
       artifacts: [
         {

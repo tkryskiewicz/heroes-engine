@@ -45,7 +45,7 @@ export const handleLimitedInteractionMapObject = (
   objectData: LimitedInteractionMapObjectData,
   hero: Hero,
 ): Game => {
-  const visitor = getVisitor(objectData, hero.alignment, hero.id);
+  const visitor = getVisitor(objectData, game.alignment, hero.id);
 
   if (wasVisitedBy(object, visitor)) {
     throw new Error("Object was already visited");

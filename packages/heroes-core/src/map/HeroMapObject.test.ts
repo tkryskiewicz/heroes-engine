@@ -6,7 +6,6 @@ import { MapObjectOrientation } from "./MapObjectOrientation";
 describe("createHeroMapObject", () => {
   it("should create object", () => {
     const hero: Hero = {
-      alignment: "alignment",
       army: [],
       artifacts: [],
       experience: 0,
@@ -28,12 +27,36 @@ describe("createHeroMapObject", () => {
 
     expect(result).toEqual(expected);
   });
+
+  it("should create object with initial owner", () => {
+    const hero: Hero = {
+      army: [],
+      artifacts: [],
+      experience: 0,
+      heroClass: "heroClass",
+      id: "heroId",
+      luck: 0,
+      mobility: 0,
+      morale: 0,
+      skills: {},
+    };
+
+    const result = createHeroMapObject("id", hero, "owner");
+
+    const expected: HeroMapObject = {
+      hero,
+      id: "id",
+      orientation: MapObjectOrientation.North,
+      owner: "owner",
+    };
+
+    expect(result).toEqual(expected);
+  });
 });
 
 describe("isHeroMapObject", () => {
   it("should return true when hero map object", () => {
     const hero: Hero = {
-      alignment: "alignment",
       army: [],
       artifacts: [],
       experience: 0,

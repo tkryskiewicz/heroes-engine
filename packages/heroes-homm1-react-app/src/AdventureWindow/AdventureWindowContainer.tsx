@@ -42,6 +42,7 @@ import { HeroTradingWindow } from "../HeroTradingWindow";
 
 interface Props extends DispatchProp {
   readonly mapObjects: GameData["mapObjects"];
+  readonly alignment: string;
   readonly map: Map;
   readonly heroes: Hero[];
   readonly towns: Town[];
@@ -104,7 +105,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
       return (
         <HeroMapObject
           heroClass={object.hero.heroClass}
-          alignment={object.hero.alignment}
+          alignment={object.owner}
           orientation={object.orientation}
         />
       );
@@ -194,7 +195,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private readonly onTileClick = (index: number) => {
-    const { selectedLocator } = this.props;
+    const { alignment, selectedLocator } = this.props;
 
     const activeHero = selectedLocator !== undefined && selectedLocator.type === LocatorType.Hero ?
       this.props.heroes[selectedLocator.index] :
@@ -243,7 +244,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
 
         this.props.dispatch(gameActions.visitMapObject(object.id, activeHero.id));
       } else if (isMineMapObjectData(objectData) && isOwnableMapObject(object)) {
-        if (!activeHero || isObjectOwnedBy(object, activeHero.alignment)) {
+        if (!activeHero || isObjectOwnedBy(object, alignment)) {
           return;
         }
 
@@ -259,7 +260,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private renderMapObjectDetails(id: string) {
-    const { selectedLocator, heroes } = this.props;
+    const { alignment, selectedLocator, heroes } = this.props;
 
     const activeHero = selectedLocator !== undefined && selectedLocator.type === LocatorType.Hero ?
       heroes[selectedLocator.index] :
@@ -271,7 +272,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     const objectData = this.props.mapObjects[mapObject.id];
 
     if (activeHero && isLimitedInteractionMapObjectData(objectData) && isLimitedInteractionMapObject(mapObject)) {
-      const visitor = getVisitor(objectData, activeHero.alignment, activeHero.id);
+      const visitor = getVisitor(objectData, alignment, activeHero.id);
 
       if (mapObject.id === MapObjectId.Obelisk) {
         if (wasVisitedBy(mapObject, visitor)) {

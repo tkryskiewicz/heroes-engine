@@ -218,7 +218,7 @@ export const heroes: HeroInfo[] = [
 ];
 
 // TODO: move to game and inject heroes and hero classes
-export const constructHero = (id: string, alignment: string): Hero => {
+export const constructHero = (id: string): Hero => {
   const hero = heroes.find((h) => h.id === id);
 
   if (!hero) {
@@ -236,7 +236,6 @@ export const constructHero = (id: string, alignment: string): Hero => {
     .filter((t) => t.count);
 
   return {
-    alignment,
     army,
     artifacts: [],
     experience: 0,

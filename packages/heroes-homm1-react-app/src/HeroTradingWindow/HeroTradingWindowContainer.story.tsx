@@ -4,12 +4,11 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Hero } from "heroes-core";
-import { Alignment, ArtifactId, ArtifactLimit, constructArtifact, CreatureId, HeroClass, HeroId } from "heroes-homm1";
+import { ArtifactId, ArtifactLimit, constructArtifact, CreatureId, HeroClass, HeroId } from "heroes-homm1";
 
 import { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindowContainer";
 
 const hero: Hero = {
-  alignment: Alignment.Red,
   army: [
     {
       count: 1,
@@ -27,7 +26,6 @@ const hero: Hero = {
 };
 
 const otherHero: Hero = {
-  alignment: Alignment.Red,
   army: [],
   artifacts: [],
   experience: 0,

@@ -141,7 +141,6 @@ describe("handleLimitedInteractionMapObject", () => {
     };
 
     const hero: Hero = {
-      alignment: "alignment",
       army: [],
       artifacts: [],
       experience: 0,
@@ -203,7 +202,6 @@ describe("handleLimitedInteractionMapObject", () => {
     };
 
     const hero: Hero = {
-      alignment: "alignment",
       army: [],
       artifacts: [],
       experience: 0,

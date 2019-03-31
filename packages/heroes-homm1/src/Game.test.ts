@@ -9,7 +9,6 @@ describe("buyMageGuildSpellBook", () => {
   // TODO: split into multiple tests
   it("should buy spell book from mage guild", () => {
     const hero: Hero = {
-      alignment: "alignment",
       army: [],
       artifacts: [],
       experience: 0,

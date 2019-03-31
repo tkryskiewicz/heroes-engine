@@ -1,5 +1,4 @@
 import { Game } from "../Game";
-import { Hero } from "../Hero";
 import { MapObject, MapObjectData } from "./MapObject";
 
 export interface OwnableMapObjectData extends MapObjectData {
@@ -28,15 +27,14 @@ export const handleOwnableMapObject = (
   game: Game,
   object: OwnableMapObject,
   objectData: OwnableMapObjectData,
-  hero: Hero,
 ): Game => {
-  if (isObjectOwnedBy(object, hero.alignment)) {
-    throw new Error(`${objectData.id} (${object.id}) is already owned by ${hero.alignment}`);
+  if (isObjectOwnedBy(object, game.alignment)) {
+    throw new Error(`${objectData.id} (${object.id}) is already owned by ${game.alignment}`);
   }
 
   const ownedObject: OwnableMapObject = {
     ...object,
-    owner: hero.alignment,
+    owner: game.alignment,
   };
 
   return {

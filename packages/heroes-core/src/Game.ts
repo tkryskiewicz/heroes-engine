@@ -261,7 +261,7 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
   }
 
   if (isOwnableMapObjectData(objectData) && isOwnableMapObject(object)) {
-    game = handleOwnableMapObject(game, object, objectData, activeHero);
+    game = handleOwnableMapObject(game, object, objectData);
   }
 
   return {
