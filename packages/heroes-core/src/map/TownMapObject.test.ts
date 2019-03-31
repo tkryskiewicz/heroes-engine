@@ -5,7 +5,6 @@ import { createTownMapObject, isTownMapObject, TownMapObject } from "./TownMapOb
 describe("createTownMapObject", () => {
   it("should create object", () => {
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: false,
       garrison: [],
       heroClass: "heroClass",
@@ -23,12 +22,32 @@ describe("createTownMapObject", () => {
 
     expect(result).toEqual(expected);
   });
+
+  it("should create object with initial owner", () => {
+    const town: Town = {
+      canConstructStructures: false,
+      garrison: [],
+      heroClass: "heroClass",
+      id: "townId",
+      name: "name",
+      structures: [],
+    };
+
+    const result = createTownMapObject("id", town, "owner");
+
+    const expected: TownMapObject = {
+      id: "id",
+      owner: "owner",
+      town,
+    };
+
+    expect(result).toEqual(expected);
+  });
 });
 
 describe("isTownMapObject", () => {
   it("should return true when town map object", () => {
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: true,
       garrison: [],
       heroClass: "heroClass",

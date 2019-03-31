@@ -14,6 +14,7 @@ import { getStructureDetails } from "./config";
 import { TownWindowContainer, TownWindowContainerProps } from "./TownWindowContainer";
 
 type StateProp =
+  "alignment" |
   "visitingHero" |
   "resources" |
   "selectedTroop" |
@@ -25,18 +26,17 @@ type StateProp =
 const mapStateToProps = (
   state: AppState,
   ownProps: Pick<TownWindowContainerProps, "town">,
-): Pick<TownWindowContainerProps, StateProp> => {
-  return {
-    getStructureDetails,
-    resources: state.game.resources,
-    selectedTroop: state.townWindow.selectedTroop,
-    troopDetailsVisible: state.townWindow.troopDetailsVisible,
-    visibleStructureDetails: state.townWindow.visibleStructureDetails,
-    // TODO: resolve this dynamically
-    visitingHero: ownProps.town.id === TownId.Farm ? state.game.heroes[0] : undefined,
-    visitingHeroDetailsVisible: state.townWindow.visitingHeroDetailsVisible,
-  };
-};
+): Pick<TownWindowContainerProps, StateProp> => ({
+  alignment: state.game.alignment,
+  getStructureDetails,
+  resources: state.game.resources,
+  selectedTroop: state.townWindow.selectedTroop,
+  troopDetailsVisible: state.townWindow.troopDetailsVisible,
+  visibleStructureDetails: state.townWindow.visibleStructureDetails,
+  // TODO: resolve this dynamically
+  visitingHero: ownProps.town.id === TownId.Farm ? state.game.heroes[0] : undefined,
+  visitingHeroDetailsVisible: state.townWindow.visitingHeroDetailsVisible,
+});
 
 type DispatchProp =
   "onCrestClick" |

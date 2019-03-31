@@ -1,6 +1,5 @@
 import { Army, Town } from "heroes-core";
 
-import { Alignment } from "./Alignment";
 import { HeroClass } from "./HeroClass";
 import { commonStructures, constructStructure, coreStructures, farmStructures } from "./structures";
 import { TownId } from "./TownId";
@@ -15,10 +14,9 @@ describe("constructTown", () => {
       },
     ];
 
-    const result = constructTown(TownId.Farm, "Name", Alignment.Red, garrison);
+    const result = constructTown(TownId.Farm, "Name", garrison);
 
     const expected: Town = {
-      alignment: Alignment.Red,
       canConstructStructures: true,
       garrison,
       heroClass: HeroClass.Knight,

@@ -23,6 +23,7 @@ import { TroopWindow } from "../TroopWindow";
 
 interface TownWindowContainerProps extends InjectedIntlProps, WithGameWindowProps {
   readonly town: Town;
+  readonly alignment: string;
   readonly visitingHero?: Hero;
   readonly resources: Resources;
 
@@ -147,7 +148,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   private readonly renderCrest = () => {
     return (
       <Crest
-        alignment={this.props.town.alignment}
+        alignment={this.props.alignment}
         heroClass={this.props.visitingHero ? this.props.visitingHero.heroClass : undefined}
         onMouseEnter={this.onCrestMouseEnter}
         onMouseLeave={this.onCrestMouseLeave}

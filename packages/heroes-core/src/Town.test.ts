@@ -11,7 +11,6 @@ describe("getTownStructure", () => {
     };
 
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: false,
       garrison: [],
       heroClass: "heroClass",
@@ -29,7 +28,6 @@ describe("getTownStructure", () => {
 
   it("should return undefined when no structure", () => {
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: false,
       garrison: [],
       heroClass: "heroClass",
@@ -54,7 +52,6 @@ describe("isStructureBuilt", () => {
     };
 
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: false,
       garrison: [],
       heroClass: "heroClass",
@@ -79,7 +76,6 @@ describe("isStructureBuilt", () => {
     };
 
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: false,
       garrison: [],
       heroClass: "heroClass",
@@ -97,7 +93,6 @@ describe("isStructureBuilt", () => {
 
   it("should return false when no structure", () => {
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: false,
       garrison: [],
       heroClass: "heroClass",
@@ -129,7 +124,6 @@ describe("buildTownStructure", () => {
     };
 
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: true,
       garrison: [],
       heroClass: "heroClass",
@@ -155,7 +149,6 @@ describe("buildTownStructure", () => {
     };
 
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: false,
       garrison: [],
       heroClass: "heroClass",
@@ -173,7 +166,6 @@ describe("buildTownStructure", () => {
 
   it("should throw when no structure", () => {
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: true,
       garrison: [],
       heroClass: "heroClass",
@@ -211,7 +203,6 @@ describe("recruitTownTroop", () => {
     };
 
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: false,
       garrison: [],
       heroClass: "heroClass",
@@ -255,7 +246,6 @@ describe("recruitTownTroop", () => {
 
   it("should throw when no structure", () => {
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: false,
       garrison: [],
       heroClass: "heroClass",
@@ -273,7 +263,6 @@ describe("recruitTownTroop", () => {
 describe("endTownTurn", () => {
   it("should allow building structures", () => {
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: false,
       garrison: [],
       heroClass: "heroClass",
@@ -285,7 +274,6 @@ describe("endTownTurn", () => {
     const result = endTownTurn(town);
 
     const expected: Town = {
-      alignment: "alignment",
       canConstructStructures: true,
       garrison: [],
       heroClass: "heroClass",

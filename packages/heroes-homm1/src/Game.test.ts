@@ -39,7 +39,6 @@ describe("buyMageGuildSpellBook", () => {
     };
 
     const town: Town = {
-      alignment: "alignment",
       canConstructStructures: true,
       garrison: [],
       heroClass: "heroClass",

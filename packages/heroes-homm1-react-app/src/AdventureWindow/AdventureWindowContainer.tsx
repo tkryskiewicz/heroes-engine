@@ -115,7 +115,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         <TownMapObject
           town={object.town.id}
           isCastleBuilt={isStructureBuilt(object.town, StructureId.Castle)}
-          alignment={object.town.alignment}
+          alignment={object.owner}
         />
       );
     }

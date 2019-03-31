@@ -11,7 +11,7 @@ storiesOf("map/TownMapObject", module)
     <TownMapObject
       town={town("Town")}
       isCastleBuilt={boolean("Is Castle Built?", false)}
-      alignment={alignment("Alignment")}
+      alignment={boolean("Aligned?", true) ? alignment("Alignment") : undefined}
       onClick={action("Click")}
     />
   ));

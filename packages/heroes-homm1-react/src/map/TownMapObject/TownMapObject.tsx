@@ -5,7 +5,7 @@ import * as styles from "./TownMapObject.module.scss";
 interface Props {
   readonly town: string;
   readonly isCastleBuilt: boolean;
-  readonly alignment: string;
+  readonly alignment?: string;
   readonly onClick?: () => void;
 }
 
@@ -19,6 +19,14 @@ export class TownMapObject extends React.Component<Props> {
         onClick={this.props.onClick}
       >
         <img src={`/assets/towns/${town}/mapObject/${isCastleBuilt ? "castle" : "town"}.png`} />
+        {alignment && this.renderFlags(alignment)}
+      </div>
+    );
+  }
+
+  private renderFlags(alignment: string) {
+    return (
+      <>
         <img
           className={styles.flagWest}
           src={`/assets/alignments/${alignment}/town-flag/west.png`}
@@ -27,7 +35,7 @@ export class TownMapObject extends React.Component<Props> {
           className={styles.flagEast}
           src={`/assets/alignments/${alignment}/town-flag/east.png`}
         />
-      </div>
+      </>
     );
   }
 }

@@ -109,7 +109,6 @@ const heroes: Hero[] = [
 const farmTown = constructTown(
   TownId.Farm,
   "Farm Town",
-  Alignment.Red,
   [
     {
       count: 1,
@@ -121,7 +120,6 @@ const farmTown = constructTown(
 const plainsTown = constructTown(
   TownId.Plains,
   "Plains Town",
-  Alignment.Red,
   [],
 );
 
@@ -137,13 +135,11 @@ const towns: Town[] = [
   constructTown(
     TownId.Forest,
     "Forest Town",
-    Alignment.Red,
     [],
   ),
   constructTown(
     TownId.Mountains,
     "Mountains Town",
-    Alignment.Red,
     [],
   ),
 ];
@@ -152,7 +148,7 @@ let map: Map = createMap(14, 14, TerrainType.Grass);
 
 heroes.forEach((h, i) => map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h.id, h)));
 
-towns.forEach((t, i) => map = placeObject(map, { x: 8, y: 1 + 3 * i }, createTownMapObject(t.id, t)));
+towns.forEach((t, i) => map = placeObject(map, { x: 8, y: 1 + 3 * i }, createTownMapObject(t.id, t, Alignment.Red)));
 
 const thatchedHutData = mapObjects.find((o) => o.id === MapObjectId.ThatchedHut)! as DwellingMapObjectData;
 

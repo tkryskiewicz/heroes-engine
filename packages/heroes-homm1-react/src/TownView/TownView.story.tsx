@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { buildStructure } from "heroes-core";
-import { Alignment, constructTown } from "heroes-homm1";
+import { constructTown } from "heroes-homm1";
 
 import { town } from "../stories";
 import { TownView } from "./TownView";
@@ -12,7 +12,7 @@ storiesOf("TownView", module)
   .add("default", () => {
     const townId = town("Town");
 
-    const t = constructTown(townId, "Name", Alignment.Red, []);
+    const t = constructTown(townId, "Name", []);
 
     return (
       <TownView
