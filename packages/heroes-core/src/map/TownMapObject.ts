@@ -1,13 +1,20 @@
 import { Town } from "../Town";
-import { MapObject } from "./MapObject";
-import { isOwnableMapObject, OwnableMapObject } from "./OwnableMapObject";
+import { createMapObject, MapObject } from "./MapObject";
+import { isOwnableMapObject, OwnableMapObject, OwnableMapObjectData } from "./OwnableMapObject";
+
+export type TownMapObjectData = OwnableMapObjectData;
 
 export interface TownMapObject extends OwnableMapObject {
   readonly town: Town;
 }
 
-export const createTownMapObject = (id: string, town: Town, owner?: string): TownMapObject => ({
-  id,
+export const createTownMapObject = (
+  id: string,
+  objectData: TownMapObjectData,
+  town: Town,
+  owner?: string,
+): TownMapObject => ({
+  ...createMapObject(id, objectData),
   owner,
   town,
 });

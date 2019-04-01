@@ -1,11 +1,13 @@
 import {
   DwellingMapObjectData,
+  HeroMapObjectData,
   InteractionLimitType,
   LimitedInteractionMapObjectData,
   MapObjectData,
   PickableMapObjectData,
   PuzzleMapObjectData,
   ResourceGeneratorMapObjectData,
+  TownMapObjectData,
   TreasureMapObjectData,
 } from "heroes-core";
 
@@ -13,6 +15,9 @@ import { CreatureId } from "./creatures";
 import { Resource } from "./Resource";
 
 export enum MapObjectId {
+  Hero = "hero",
+  Town = "town",
+
   // treasures
   Crystal = "crystal",
   Gems = "gems",
@@ -61,6 +66,20 @@ export enum MapObjectId {
   Whirlpool = "whirlpool",
   Windmill = "windmill",
 }
+
+const heroObjects: HeroMapObjectData[] = [
+  {
+    id: MapObjectId.Hero,
+    ownable: true,
+  },
+];
+
+const townObjects: TownMapObjectData[] = [
+  {
+    id: MapObjectId.Town,
+    ownable: true,
+  },
+];
 
 const treasureObjects: Array<TreasureMapObjectData & PickableMapObjectData> = [
   {
@@ -243,6 +262,8 @@ const puzzleObjects: Array<PuzzleMapObjectData & LimitedInteractionMapObjectData
 ];
 
 export const mapObjects: MapObjectData[] = [
+  ...heroObjects,
+  ...townObjects,
   ...treasureObjects,
   ...mineObjects,
   ...dwellingObjects,

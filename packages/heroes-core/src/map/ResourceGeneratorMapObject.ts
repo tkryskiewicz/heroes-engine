@@ -1,6 +1,6 @@
 import { Game } from "../Game";
 import { addResources, Resources } from "../Resource";
-import { MapObjectData } from "./MapObject";
+import { createMapObject, MapObjectData } from "./MapObject";
 import { isObjectOwnedBy, OwnableMapObject, OwnableMapObjectData } from "./OwnableMapObject";
 
 // TODO: should be like resource generator object?
@@ -19,10 +19,11 @@ export const isResourceGeneratorMapObjectData = (
 export type ResourceGeneratorMapObject = OwnableMapObject;
 
 export const createResourceGeneratorMapObject = (
+  id: string,
   objectData: ResourceGeneratorMapObjectData,
   owner?: string,
 ): ResourceGeneratorMapObject => ({
-  id: objectData.id,
+  ...createMapObject(id, objectData),
   owner,
 });
 

@@ -13,7 +13,7 @@ import {
 describe("isResourceGeneratorMapObjectData", () => {
   it("should return true when resource generator map object data", () => {
     const objectData: ResourceGeneratorMapObjectData = {
-      id: "id",
+      id: "dataId",
       ownable: true,
       resourceGenerator: {
         amount: 1,
@@ -28,7 +28,7 @@ describe("isResourceGeneratorMapObjectData", () => {
 
   it("should return false when not resource generator map object data", () => {
     const objectData: MapObjectData = {
-      id: "id",
+      id: "dataId",
     };
 
     const result = isResourceGeneratorMapObjectData(objectData);
@@ -40,7 +40,7 @@ describe("isResourceGeneratorMapObjectData", () => {
 describe("createResourceGeneratorMapObject", () => {
   it("should create object", () => {
     const objectData: ResourceGeneratorMapObjectData = {
-      id: "id",
+      id: "dataId",
       ownable: true,
       resourceGenerator: {
         amount: 1,
@@ -48,9 +48,10 @@ describe("createResourceGeneratorMapObject", () => {
       },
     };
 
-    const result = createResourceGeneratorMapObject(objectData);
+    const result = createResourceGeneratorMapObject("id", objectData);
 
     const expected: ResourceGeneratorMapObject = {
+      dataId: "dataId",
       id: "id",
     };
 
@@ -59,7 +60,7 @@ describe("createResourceGeneratorMapObject", () => {
 
   it("should create object with initial owner", () => {
     const objectData: ResourceGeneratorMapObjectData = {
-      id: "id",
+      id: "dataId",
       ownable: true,
       resourceGenerator: {
         amount: 1,
@@ -67,9 +68,10 @@ describe("createResourceGeneratorMapObject", () => {
       },
     };
 
-    const result = createResourceGeneratorMapObject(objectData, "owner");
+    const result = createResourceGeneratorMapObject("id", objectData, "owner");
 
     const expected: ResourceGeneratorMapObject = {
+      dataId: "dataId",
       id: "id",
       owner: "owner",
     };
@@ -81,7 +83,7 @@ describe("createResourceGeneratorMapObject", () => {
 describe("handleResourceGeneratorMapObject", () => {
   it("should add resources", () => {
     const objectData: ResourceGeneratorMapObjectData = {
-      id: "id",
+      id: "dataId",
       ownable: true,
       resourceGenerator: {
         amount: 1,
@@ -89,7 +91,7 @@ describe("handleResourceGeneratorMapObject", () => {
       },
     };
 
-    const object = createResourceGeneratorMapObject(objectData, "owner");
+    const object = createResourceGeneratorMapObject("id", objectData, "owner");
 
     const game: Game = {
       alignment: "owner",
@@ -125,7 +127,7 @@ describe("handleResourceGeneratorMapObject", () => {
 
   it("should throw when object is not owned by player", () => {
     const objectData: ResourceGeneratorMapObjectData = {
-      id: "id",
+      id: "dataId",
       ownable: true,
       resourceGenerator: {
         amount: 1,
@@ -133,7 +135,7 @@ describe("handleResourceGeneratorMapObject", () => {
       },
     };
 
-    const object = createResourceGeneratorMapObject(objectData, "owner");
+    const object = createResourceGeneratorMapObject("id", objectData, "owner");
 
     const game: Game = {
       alignment: "otherOwner",

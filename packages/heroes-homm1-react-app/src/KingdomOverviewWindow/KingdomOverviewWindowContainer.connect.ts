@@ -41,7 +41,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
     .filter((o) => {
       const objectData = state.game.data.mapObjects[o.id];
 
-      return objectData && isResourceGeneratorMapObjectData(objectData);
+      return isResourceGeneratorMapObjectData(objectData);
     });
 
   return {

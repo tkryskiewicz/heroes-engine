@@ -3,6 +3,7 @@ import { isMapObject, MapObject } from "./MapObject";
 describe("isMapObject", () => {
   it("should return true when map object", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 

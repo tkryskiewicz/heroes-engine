@@ -13,6 +13,7 @@ import {
   DwellingMapObjectData,
   endGameTurn,
   Hero,
+  HeroMapObjectData,
   LimitedInteractionMapObjectData,
   Map,
   placeObject,
@@ -21,6 +22,7 @@ import {
   startGameTurn,
   swapGameTroops,
   Town,
+  TownMapObjectData,
   tradeGameArtifacts,
   TreasureMapObjectData,
   visitGameMapObject,
@@ -135,25 +137,37 @@ const towns: Town[] = [
 
 let map: Map = createMap(14, 14, TerrainType.Grass);
 
-heroes.forEach((h, i) => map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h.id, h, Alignment.Red)));
+const heroData = mapObjects.find((o) => o.id === MapObjectId.Hero)! as HeroMapObjectData;
 
-towns.forEach((t, i) => map = placeObject(map, { x: 8, y: 1 + 3 * i }, createTownMapObject(t.id, t, Alignment.Red)));
+heroes.forEach((h, i) => {
+  map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h.id, heroData, h, Alignment.Red));
+});
+
+const townData = mapObjects.find((o) => o.id === MapObjectId.Town)! as TownMapObjectData;
+
+towns.forEach((t, i) => {
+  map = placeObject(map, { x: 8, y: 1 + 3 * i }, createTownMapObject(t.id, townData, t, Alignment.Red));
+});
 
 const thatchedHutData = mapObjects.find((o) => o.id === MapObjectId.ThatchedHut)! as DwellingMapObjectData;
 
-map = placeObject(map, { x: 2, y: 1 }, createDwellingMapObject(thatchedHutData));
+map = placeObject(map, { x: 2, y: 1 }, createDwellingMapObject("thatchedHut/1", thatchedHutData));
+map = placeObject(map, { x: 3, y: 1 }, createDwellingMapObject("thatchedHut/2", thatchedHutData));
 
 const woodData = mapObjects.find((o) => o.id === MapObjectId.Wood)! as TreasureMapObjectData;
 
-map = placeObject(map, { x: 4, y: 1 }, createTreasureMapObject(woodData));
+map = placeObject(map, { x: 4, y: 1 }, createTreasureMapObject("wood/1", woodData));
+map = placeObject(map, { x: 5, y: 1 }, createTreasureMapObject("wood/2", woodData));
 
 const obeliskData = mapObjects.find((o) => o.id === MapObjectId.Obelisk)! as LimitedInteractionMapObjectData;
 
-map = placeObject(map, { x: 6, y: 1 }, createLimitedInteractionMapObject(obeliskData));
+map = placeObject(map, { x: 6, y: 1 }, createLimitedInteractionMapObject("obelisk/1", obeliskData));
+map = placeObject(map, { x: 7, y: 1 }, createLimitedInteractionMapObject("obelisk/2", obeliskData));
 
 const mineData = mapObjects.find((o) => o.id === MapObjectId.OreMine)! as ResourceGeneratorMapObjectData;
 
-map = placeObject(map, { x: 2, y: 3 }, createResourceGeneratorMapObject(mineData));
+map = placeObject(map, { x: 2, y: 3 }, createResourceGeneratorMapObject("ore-mine/1", mineData));
+map = placeObject(map, { x: 4, y: 3 }, createResourceGeneratorMapObject("ore-mine/2", mineData));
 
 const initialState: GameState = {
   alignment: Alignment.Red,

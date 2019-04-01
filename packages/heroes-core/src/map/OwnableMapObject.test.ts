@@ -13,7 +13,7 @@ import {
 describe("isOwnableMapObjectData", () => {
   it("should return true when ownable map object data", () => {
     const objectData: OwnableMapObjectData = {
-      id: "id",
+      id: "dataId",
       ownable: true,
     };
 
@@ -24,7 +24,7 @@ describe("isOwnableMapObjectData", () => {
 
   it("should return false when not ownable map object data", () => {
     const objectData: MapObjectData = {
-      id: "id",
+      id: "dataId",
     };
 
     const result = isOwnableMapObjectData(objectData);
@@ -36,13 +36,14 @@ describe("isOwnableMapObjectData", () => {
 describe("createOwnableMapObject", () => {
   it("should create ownable map object", () => {
     const objectData: OwnableMapObjectData = {
-      id: "id",
+      id: "dataId",
       ownable: true,
     };
 
-    const result = createOwnableMapObject(objectData);
+    const result = createOwnableMapObject("id", objectData);
 
     const expected: OwnableMapObject = {
+      dataId: "dataId",
       id: "id",
       owner: undefined,
     };
@@ -52,13 +53,14 @@ describe("createOwnableMapObject", () => {
 
   it("should create with initial owner", () => {
     const objectData: OwnableMapObjectData = {
-      id: "id",
+      id: "dataId",
       ownable: true,
     };
 
-    const result = createOwnableMapObject(objectData, "owner");
+    const result = createOwnableMapObject("id", objectData, "owner");
 
     const expected: OwnableMapObject = {
+      dataId: "dataId",
       id: "id",
       owner: "owner",
     };
@@ -70,11 +72,11 @@ describe("createOwnableMapObject", () => {
 describe("isOwnableMapObject", () => {
   it("should return true when ownable map object", () => {
     const objectData: OwnableMapObjectData = {
-      id: "id",
+      id: "dataId",
       ownable: true,
     };
 
-    const object = createOwnableMapObject(objectData);
+    const object = createOwnableMapObject("id", objectData);
 
     const result = isOwnableMapObject(object);
 
@@ -83,6 +85,7 @@ describe("isOwnableMapObject", () => {
 
   it("should return false when not ownable map object", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 
@@ -95,11 +98,11 @@ describe("isOwnableMapObject", () => {
 describe("isObjectOwnedBy", () => {
   it("should return true when owner", () => {
     const objectData: OwnableMapObjectData = {
-      id: "id",
+      id: "dataId",
       ownable: true,
     };
 
-    const object = createOwnableMapObject(objectData, "owner");
+    const object = createOwnableMapObject("id", objectData, "owner");
 
     const result = isObjectOwnedBy(object, "owner");
 
@@ -108,11 +111,11 @@ describe("isObjectOwnedBy", () => {
 
   it("should return false when not owner", () => {
     const objectData: OwnableMapObjectData = {
-      id: "id",
+      id: "dataId",
       ownable: true,
     };
 
-    const object = createOwnableMapObject(objectData, "otherOwner");
+    const object = createOwnableMapObject("id", objectData, "otherOwner");
 
     const result = isObjectOwnedBy(object, "owner");
 
@@ -123,11 +126,11 @@ describe("isObjectOwnedBy", () => {
 describe("handleOwnableMapObject", () => {
   it("should set owner", () => {
     const objectData: OwnableMapObjectData = {
-      id: "id",
+      id: "dataId",
       ownable: true,
     };
 
-    const object = createOwnableMapObject(objectData);
+    const object = createOwnableMapObject("id", objectData);
 
     const game = {
       alignment: "alignment",
@@ -155,6 +158,7 @@ describe("handleOwnableMapObject", () => {
     const result = handleOwnableMapObject(game, object, objectData);
 
     const expectedObject: OwnableMapObject = {
+      dataId: "dataId",
       id: "id",
       owner: "alignment",
     };
@@ -164,11 +168,11 @@ describe("handleOwnableMapObject", () => {
 
   it("should throw when already an owner", () => {
     const objectData: OwnableMapObjectData = {
-      id: "id",
+      id: "dataId",
       ownable: true,
     };
 
-    const object = createOwnableMapObject(objectData, "alignment");
+    const object = createOwnableMapObject("id", objectData, "alignment");
 
     const game = {
       alignment: "alignment",

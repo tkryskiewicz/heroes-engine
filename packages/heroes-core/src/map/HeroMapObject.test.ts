@@ -1,10 +1,15 @@
 import { Hero } from "../Hero";
-import { createHeroMapObject, HeroMapObject, isHeroMapObject } from "./HeroMapObject";
+import { createHeroMapObject, HeroMapObject, HeroMapObjectData, isHeroMapObject } from "./HeroMapObject";
 import { MapObject } from "./MapObject";
 import { MapObjectOrientation } from "./MapObjectOrientation";
 
 describe("createHeroMapObject", () => {
   it("should create object", () => {
+    const objectData: HeroMapObjectData = {
+      id: "dataId",
+      ownable: true,
+    };
+
     const hero: Hero = {
       army: [],
       artifacts: [],
@@ -17,9 +22,10 @@ describe("createHeroMapObject", () => {
       skills: {},
     };
 
-    const result = createHeroMapObject("id", hero);
+    const result = createHeroMapObject("id", objectData, hero);
 
     const expected: HeroMapObject = {
+      dataId: "dataId",
       hero,
       id: "id",
       orientation: MapObjectOrientation.North,
@@ -29,6 +35,11 @@ describe("createHeroMapObject", () => {
   });
 
   it("should create object with initial owner", () => {
+    const objectData: HeroMapObjectData = {
+      id: "dataId",
+      ownable: true,
+    };
+
     const hero: Hero = {
       army: [],
       artifacts: [],
@@ -41,9 +52,10 @@ describe("createHeroMapObject", () => {
       skills: {},
     };
 
-    const result = createHeroMapObject("id", hero, "owner");
+    const result = createHeroMapObject("id", objectData, hero, "owner");
 
     const expected: HeroMapObject = {
+      dataId: "dataId",
       hero,
       id: "id",
       orientation: MapObjectOrientation.North,
@@ -56,6 +68,11 @@ describe("createHeroMapObject", () => {
 
 describe("isHeroMapObject", () => {
   it("should return true when hero map object", () => {
+    const objectData: HeroMapObjectData = {
+      id: "dataId",
+      ownable: true,
+    };
+
     const hero: Hero = {
       army: [],
       artifacts: [],
@@ -68,7 +85,7 @@ describe("isHeroMapObject", () => {
       skills: {},
     };
 
-    const object: HeroMapObject = createHeroMapObject("id", hero);
+    const object: HeroMapObject = createHeroMapObject("id", objectData, hero);
 
     const result = isHeroMapObject(object);
 
@@ -77,6 +94,7 @@ describe("isHeroMapObject", () => {
 
   it("should return false when not hero map object", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 

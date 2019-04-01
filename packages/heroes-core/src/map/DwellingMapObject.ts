@@ -2,7 +2,7 @@ import { appendArmyTroop } from "../Army";
 import { Game } from "../Game";
 import { Hero } from "../Hero";
 import { Troop } from "../Troop";
-import { MapObject, MapObjectData } from "./MapObject";
+import { createMapObject, isMapObject, MapObject, MapObjectData } from "./MapObject";
 
 export interface DwellingMapObjectData extends MapObjectData {
   readonly dwelling: {
@@ -19,13 +19,13 @@ export interface DwellingMapObject extends MapObject {
   readonly availableCount: number;
 }
 
-export const createDwellingMapObject = (objectData: DwellingMapObjectData): DwellingMapObject => ({
+export const createDwellingMapObject = (id: string, objectData: DwellingMapObjectData): DwellingMapObject => ({
+  ...createMapObject(id, objectData),
   availableCount: objectData.dwelling.initialCount,
-  id: objectData.id,
 });
 
-export const isDwellingMapObject = (object: MapObject): object is DwellingMapObject =>
-  (object as DwellingMapObject).availableCount !== undefined;
+export const isDwellingMapObject = (object: MapObject | undefined): object is DwellingMapObject =>
+  isMapObject(object) && (object as DwellingMapObject).availableCount !== undefined;
 
 export const handleDwellingMapObject = (
   game: Game,

@@ -14,7 +14,7 @@ import {
 describe("isTreasureMapObjectData", () => {
   it("should return true when treasure map object data", () => {
     const objectData: TreasureMapObjectData = {
-      id: "id",
+      id: "dataId",
       treasure: {},
     };
 
@@ -25,7 +25,7 @@ describe("isTreasureMapObjectData", () => {
 
   it("should return false when not treasure map object data", () => {
     const objectData: MapObjectData = {
-      id: "id",
+      id: "dataId",
     };
 
     const result = isTreasureMapObjectData(objectData);
@@ -37,13 +37,14 @@ describe("isTreasureMapObjectData", () => {
 describe("createTreasureMapObject", () => {
   it("should create treasure map object", () => {
     const objectData: TreasureMapObjectData = {
-      id: "id",
+      id: "dataId",
       treasure: {},
     };
 
-    const result = createTreasureMapObject(objectData);
+    const result = createTreasureMapObject("id", objectData);
 
     const expected: TreasureMapObject = {
+      dataId: "dataId",
       id: "id",
       treasure: {},
     };
@@ -53,7 +54,7 @@ describe("createTreasureMapObject", () => {
 
   it("should randomize resource amount", () => {
     const objectData: TreasureMapObjectData = {
-      id: "id",
+      id: "dataId",
       treasure: {
         resource: {
           max: 1,
@@ -62,7 +63,7 @@ describe("createTreasureMapObject", () => {
       },
     };
 
-    const result = createTreasureMapObject(objectData);
+    const result = createTreasureMapObject("id", objectData);
 
     expect(result.treasure.resource).toBeGreaterThanOrEqual(0);
     expect(result.treasure.resource).toBeLessThanOrEqual(1);
@@ -72,11 +73,11 @@ describe("createTreasureMapObject", () => {
 describe("isTreasureMapObject", () => {
   it("should return true when treasure map object", () => {
     const objectData: TreasureMapObjectData = {
-      id: "id",
+      id: "dataId",
       treasure: {},
     };
 
-    const object = createTreasureMapObject(objectData);
+    const object = createTreasureMapObject("id", objectData);
 
     const result = isTreasureMapObject(object);
 
@@ -85,6 +86,7 @@ describe("isTreasureMapObject", () => {
 
   it("should return false when not treasure map object", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 
@@ -97,6 +99,7 @@ describe("isTreasureMapObject", () => {
 describe("handleTreasureMapObject", () => {
   it("should add resources", () => {
     const object: TreasureMapObject = {
+      dataId: "dataId",
       id: "id",
       treasure: {
         resource: 1,

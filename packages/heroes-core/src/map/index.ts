@@ -6,7 +6,12 @@ export {
   isDwellingMapObjectData,
   handleDwellingMapObject,
 } from "./DwellingMapObject";
-export { HeroMapObject, createHeroMapObject, isHeroMapObject } from "./HeroMapObject";
+export {
+  HeroMapObject,
+  HeroMapObjectData,
+  createHeroMapObject,
+  isHeroMapObject,
+} from "./HeroMapObject";
 export {
   InteractionLimitType,
   LimitedInteractionMapObject,
@@ -41,7 +46,12 @@ export {
   createResourceGeneratorMapObject,
   handleResourceGeneratorMapObject,
 } from "./ResourceGeneratorMapObject";
-export { TownMapObject, createTownMapObject, isTownMapObject } from "./TownMapObject";
+export {
+  TownMapObject,
+  TownMapObjectData,
+  createTownMapObject,
+  isTownMapObject,
+} from "./TownMapObject";
 export {
   TreasureMapObject,
   TreasureMapObjectData,

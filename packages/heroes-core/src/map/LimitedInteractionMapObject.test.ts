@@ -17,7 +17,7 @@ import { MapObject, MapObjectData } from "./MapObject";
 describe("isLimitedInteractionMapObjectData", () => {
   it("should return true when limited interaction object data", () => {
     const objectData: LimitedInteractionMapObjectData = {
-      id: "id",
+      id: "dataId",
       interactionLimit: InteractionLimitType.OncePerAlignment,
     };
 
@@ -28,7 +28,7 @@ describe("isLimitedInteractionMapObjectData", () => {
 
   it("should return false when not limited interaction object data", () => {
     const objectData: MapObjectData = {
-      id: "id",
+      id: "dataId",
     };
 
     const result = isLimitedInteractionMapObjectData(objectData);
@@ -40,6 +40,7 @@ describe("isLimitedInteractionMapObjectData", () => {
 describe("isLimitedInteractionMapObject", () => {
   it("should return true when limited interaction object", () => {
     const object: LimitedInteractionMapObject = {
+      dataId: "dataId",
       id: "id",
       visitedBy: [],
     };
@@ -51,6 +52,7 @@ describe("isLimitedInteractionMapObject", () => {
 
   it("should return false when not limited interaction object", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 
@@ -63,13 +65,14 @@ describe("isLimitedInteractionMapObject", () => {
 describe("createLimitedInteractionMapObject", () => {
   it("should create object", () => {
     const objectData: LimitedInteractionMapObjectData = {
-      id: "id",
+      id: "dataId",
       interactionLimit: InteractionLimitType.OncePerAlignment,
     };
 
-    const result = createLimitedInteractionMapObject(objectData);
+    const result = createLimitedInteractionMapObject("id", objectData);
 
     const expected: LimitedInteractionMapObject = {
+      dataId: "dataId",
       id: "id",
       visitedBy: [],
     };
@@ -81,7 +84,7 @@ describe("createLimitedInteractionMapObject", () => {
 describe("getVisitor", () => {
   it("should return alignment when once per alignment", () => {
     const objectData: LimitedInteractionMapObjectData = {
-      id: "id",
+      id: "dataId",
       interactionLimit: InteractionLimitType.OncePerAlignment,
     };
 
@@ -92,7 +95,7 @@ describe("getVisitor", () => {
 
   it("should return hero when once per hero", () => {
     const objectData: LimitedInteractionMapObjectData = {
-      id: "id",
+      id: "dataId",
       interactionLimit: InteractionLimitType.OncePerHero,
     };
 
@@ -103,8 +106,9 @@ describe("getVisitor", () => {
 });
 
 describe("wasVisitedBy", () => {
-  it("should ???", () => {
+  it("should return true when object was visited", () => {
     const object: LimitedInteractionMapObject = {
+      dataId: "dataId",
       id: "id",
       visitedBy: [
         "visitor",
@@ -118,6 +122,7 @@ describe("wasVisitedBy", () => {
 
   it("should return false when object was not visited", () => {
     const object: LimitedInteractionMapObject = {
+      dataId: "dataId",
       id: "id",
       visitedBy: [],
     };
@@ -131,11 +136,12 @@ describe("wasVisitedBy", () => {
 describe("handleLimitedInteractionMapObject", () => {
   it("should add visitor", () => {
     const objectData: LimitedInteractionMapObjectData = {
-      id: "id",
+      id: "dataId",
       interactionLimit: InteractionLimitType.OncePerAlignment,
     };
 
     const object: LimitedInteractionMapObject = {
+      dataId: "dataId",
       id: "id",
       visitedBy: [],
     };
@@ -180,6 +186,7 @@ describe("handleLimitedInteractionMapObject", () => {
     const result = handleLimitedInteractionMapObject(game, object, objectData, hero);
 
     const expected: LimitedInteractionMapObject = {
+      dataId: "dataId",
       id: "id",
       visitedBy: [
         "alignment",
@@ -191,11 +198,12 @@ describe("handleLimitedInteractionMapObject", () => {
 
   it("should throw when object was already visited", () => {
     const objectData: LimitedInteractionMapObjectData = {
-      id: "id",
+      id: "dataId",
       interactionLimit: InteractionLimitType.OncePerAlignment,
     };
 
     const object: LimitedInteractionMapObject = {
+      dataId: "dataId",
       id: "id",
       visitedBy: [
         "alignment",

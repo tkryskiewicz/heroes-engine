@@ -99,7 +99,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   private renderMapObject(object: MapObject) {
     const { mapObjects } = this.props;
 
-    const objectData = mapObjects[object.id];
+    const objectData = mapObjects[object.dataId];
 
     if (isHeroMapObject(object)) {
       return (
@@ -124,7 +124,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     if (isDwellingMapObject(object)) {
       return (
         <MapObj
-          type={object.id}
+          type={object.dataId}
         />
       );
     }
@@ -151,7 +151,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
 
     return (
       <MapObj
-        type={object.id}
+        type={object.dataId}
       />
     );
   }
@@ -195,7 +195,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private readonly onTileClick = (index: number) => {
-    const { alignment, selectedLocator } = this.props;
+    const { mapObjects, alignment, selectedLocator } = this.props;
 
     const activeHero = selectedLocator !== undefined && selectedLocator.type === LocatorType.Hero ?
       this.props.heroes[selectedLocator.index] :
@@ -210,7 +210,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     const object = tile.object;
 
     if (object) {
-      const objectData = this.props.mapObjects[object.id];
+      const objectData = mapObjects[object.dataId];
 
       // FIXME: extract
       if (isHeroMapObject(object)) {
@@ -260,7 +260,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private renderMapObjectDetails(id: string) {
-    const { alignment, selectedLocator, heroes } = this.props;
+    const { mapObjects, alignment, selectedLocator, heroes } = this.props;
 
     const activeHero = selectedLocator !== undefined && selectedLocator.type === LocatorType.Hero ?
       heroes[selectedLocator.index] :
@@ -269,12 +269,12 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     const mapObject: MapObject =
       this.props.map.tiles.find((t) => t.object !== undefined && (t.object as any).id === id)!.object!;
 
-    const objectData = this.props.mapObjects[mapObject.id];
+    const objectData = mapObjects[mapObject.dataId];
 
     if (activeHero && isLimitedInteractionMapObjectData(objectData) && isLimitedInteractionMapObject(mapObject)) {
       const visitor = getVisitor(objectData, alignment, activeHero.id);
 
-      if (mapObject.id === MapObjectId.Obelisk) {
+      if (mapObject.dataId === MapObjectId.Obelisk) {
         if (wasVisitedBy(mapObject, visitor)) {
           return (
             <ObeliskAlreadyVisitedPrompt

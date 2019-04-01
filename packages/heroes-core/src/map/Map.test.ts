@@ -96,6 +96,7 @@ describe("isPointValid", () => {
 describe("placeObject", () => {
   it("should place object", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 
@@ -108,6 +109,7 @@ describe("placeObject", () => {
 
   it("should throw when point is invalid", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 
@@ -120,6 +122,7 @@ describe("placeObject", () => {
 
   it("should throw when object is already placed", () => {
     const objectA: MapObject = {
+      dataId: "dataId",
       id: "idB",
     };
 
@@ -128,6 +131,7 @@ describe("placeObject", () => {
     map = placeObject(map, { x: 0, y: 0 }, objectA);
 
     const objectB: MapObject = {
+      dataId: "dataId",
       id: "idB",
     };
 
@@ -142,6 +146,7 @@ describe("getObject", () => {
     let map = createMap(1, 1, "terrain");
 
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 
@@ -164,6 +169,7 @@ describe("getObject", () => {
 describe("moveObject", () => {
   it("should move object", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 
@@ -178,6 +184,7 @@ describe("moveObject", () => {
 
   it("should throw when from is not a valid map point", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 
@@ -192,6 +199,7 @@ describe("moveObject", () => {
 
   it("should throw when to is not a valid map point", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 
@@ -214,6 +222,7 @@ describe("moveObject", () => {
 
   it("should throw when target tile already contains an object", () => {
     const objectA: MapObject = {
+      dataId: "dataId",
       id: "idA",
     };
 
@@ -222,6 +231,7 @@ describe("moveObject", () => {
     map = placeObject(map, { x: 0, y: 0 }, objectA);
 
     const objectB: MapObject = {
+      dataId: "dataId",
       id: "idB",
     };
 
@@ -236,6 +246,7 @@ describe("moveObject", () => {
 describe("removeObject", () => {
   it("should remove object", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 
@@ -258,6 +269,7 @@ describe("removeObject", () => {
 
   it("should change nothing when no object", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "someId",
     };
 

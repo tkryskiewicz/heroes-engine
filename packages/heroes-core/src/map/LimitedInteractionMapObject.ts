@@ -1,6 +1,6 @@
 import { Game } from "../Game";
 import { Hero } from "../Hero";
-import { MapObject, MapObjectData } from "./MapObject";
+import { createMapObject, isMapObject, MapObject, MapObjectData } from "./MapObject";
 
 export enum InteractionLimitType {
   OncePerHero = "oncePerHero",
@@ -19,14 +19,16 @@ export interface LimitedInteractionMapObject extends MapObject {
   readonly visitedBy: string[];
 }
 
-export const isLimitedInteractionMapObject = (object: MapObject): object is LimitedInteractionMapObject =>
-  (object as LimitedInteractionMapObject).visitedBy !== undefined;
+export const isLimitedInteractionMapObject = (object: MapObject | undefined): object is LimitedInteractionMapObject =>
+  isMapObject(object) && (object as LimitedInteractionMapObject).visitedBy !== undefined;
 
-export const createLimitedInteractionMapObject =
-  (objectData: LimitedInteractionMapObjectData): LimitedInteractionMapObject => ({
-    id: objectData.id,
-    visitedBy: [],
-  });
+export const createLimitedInteractionMapObject = (
+  id: string,
+  objectData: LimitedInteractionMapObjectData,
+): LimitedInteractionMapObject => ({
+  ...createMapObject(id, objectData),
+  visitedBy: [],
+});
 
 export const getVisitor = (objectData: LimitedInteractionMapObjectData, alignment: string, hero: string): string =>
   objectData.interactionLimit === InteractionLimitType.OncePerAlignment ?

@@ -1,9 +1,14 @@
 import { Town } from "../Town";
 import { MapObject } from "./MapObject";
-import { createTownMapObject, isTownMapObject, TownMapObject } from "./TownMapObject";
+import { createTownMapObject, isTownMapObject, TownMapObject, TownMapObjectData } from "./TownMapObject";
 
 describe("createTownMapObject", () => {
   it("should create object", () => {
+    const objectData: TownMapObjectData = {
+      id: "dataId",
+      ownable: true,
+    };
+
     const town: Town = {
       canConstructStructures: false,
       garrison: [],
@@ -13,9 +18,10 @@ describe("createTownMapObject", () => {
       structures: [],
     };
 
-    const result = createTownMapObject("id", town);
+    const result = createTownMapObject("id", objectData, town);
 
     const expected: TownMapObject = {
+      dataId: "dataId",
       id: "id",
       town,
     };
@@ -24,6 +30,11 @@ describe("createTownMapObject", () => {
   });
 
   it("should create object with initial owner", () => {
+    const objectData: TownMapObjectData = {
+      id: "dataId",
+      ownable: true,
+    };
+
     const town: Town = {
       canConstructStructures: false,
       garrison: [],
@@ -33,9 +44,10 @@ describe("createTownMapObject", () => {
       structures: [],
     };
 
-    const result = createTownMapObject("id", town, "owner");
+    const result = createTownMapObject("id", objectData, town, "owner");
 
     const expected: TownMapObject = {
+      dataId: "dataId",
       id: "id",
       owner: "owner",
       town,
@@ -47,6 +59,11 @@ describe("createTownMapObject", () => {
 
 describe("isTownMapObject", () => {
   it("should return true when town map object", () => {
+    const objectData: TownMapObjectData = {
+      id: "dataId",
+      ownable: true,
+    };
+
     const town: Town = {
       canConstructStructures: true,
       garrison: [],
@@ -56,7 +73,7 @@ describe("isTownMapObject", () => {
       structures: [],
     };
 
-    const object = createTownMapObject("id", town);
+    const object = createTownMapObject("id", objectData, town);
 
     const result = isTownMapObject(object);
 
@@ -65,6 +82,7 @@ describe("isTownMapObject", () => {
 
   it("should return false when not town map object", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 

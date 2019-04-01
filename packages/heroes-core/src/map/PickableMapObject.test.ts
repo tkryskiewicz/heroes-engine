@@ -34,6 +34,7 @@ describe("handlePickableMapObject", () => {
     };
 
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 

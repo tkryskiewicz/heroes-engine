@@ -208,10 +208,9 @@ export const startGameTurn = (game: Game): Game => {
 
   objects
     .forEach((o) => {
-      const objectData = game.data.mapObjects[o.id];
+      const objectData = game.data.mapObjects[o.dataId];
 
-      // FIXME: crashes because towns don't have object data
-      if (objectData && isResourceGeneratorMapObjectData(objectData)) {
+      if (isResourceGeneratorMapObjectData(objectData)) {
         game = handleResourceGeneratorMapObject(game, o, objectData);
       }
     });
@@ -233,7 +232,7 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
     throw new Error("Invalid object");
   }
 
-  const objectData = game.data.mapObjects[object.id];
+  const objectData = game.data.mapObjects[object.dataId];
 
   const activeHero = getGameHero(game, hero);
 

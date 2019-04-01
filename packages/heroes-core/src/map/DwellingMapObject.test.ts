@@ -20,7 +20,7 @@ describe("isDwellingMapObjectData", () => {
         creature: "creature",
         initialCount: 1,
       },
-      id: "id",
+      id: "dataId",
     };
 
     const result = isDwellingMapObjectData(objectData);
@@ -30,7 +30,7 @@ describe("isDwellingMapObjectData", () => {
 
   it("should return false when object data is not dwelling object data", () => {
     const objectData: MapObjectData = {
-      id: "id",
+      id: "dataId",
     };
 
     const result = isDwellingMapObjectData(objectData);
@@ -46,13 +46,14 @@ describe("createDwellingMapObject", () => {
         creature: "creature",
         initialCount: 1,
       },
-      id: "id",
+      id: "dataId",
     };
 
-    const result = createDwellingMapObject(objectData);
+    const result = createDwellingMapObject("id", objectData);
 
     const expected: DwellingMapObject = {
       availableCount: 1,
+      dataId: "dataId",
       id: "id",
     };
 
@@ -67,10 +68,10 @@ describe("isDwellingMapObject", () => {
         creature: "creature",
         initialCount: 1,
       },
-      id: "id",
+      id: "dataId",
     };
 
-    const object = createDwellingMapObject(objectData);
+    const object = createDwellingMapObject("id", objectData);
 
     const result = isDwellingMapObject(object);
 
@@ -79,6 +80,7 @@ describe("isDwellingMapObject", () => {
 
   it("should return false when not dwelling map object", () => {
     const object: MapObject = {
+      dataId: "dataId",
       id: "id",
     };
 
@@ -95,10 +97,10 @@ describe("handleDwellingMapObject", () => {
         creature: "creature",
         initialCount: 1,
       },
-      id: "id",
+      id: "dataId",
     };
 
-    const object = createDwellingMapObject(objectData);
+    const object = createDwellingMapObject("id", objectData);
 
     const hero: Hero = {
       army: [],
@@ -141,6 +143,7 @@ describe("handleDwellingMapObject", () => {
 
     const expected: DwellingMapObject = {
       availableCount: 0,
+      dataId: "dataId",
       id: "id",
     };
 
@@ -153,10 +156,10 @@ describe("handleDwellingMapObject", () => {
         creature: "creature",
         initialCount: 1,
       },
-      id: "id",
+      id: "dataId",
     };
 
-    const object = createDwellingMapObject(objectData);
+    const object = createDwellingMapObject("id", objectData);
 
     const hero: Hero = {
       army: [],
@@ -191,7 +194,7 @@ describe("handleDwellingMapObject", () => {
           object,
         ),
         { x: 1, y: 0 },
-        createHeroMapObject("hero", hero),
+        createHeroMapObject("hero", { id: "hero", ownable: true }, hero),
       ),
       puzzle: {
         totalPieces: 0,
