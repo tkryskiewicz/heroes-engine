@@ -9,7 +9,7 @@ import {
   isStructureBuilt,
   isTownMapObject,
 } from "heroes-core";
-import { HeroClassIds, Resource, StructureId, TownIds } from "heroes-homm1";
+import { HeroClassIds, StructureId, TownIds } from "heroes-homm1";
 import { AppState, kingdomOverviewWindowActions } from "heroes-homm1-state";
 
 import { KingdomOverviewWindowContainer, KingdomOverviewWindowContainerProps } from "./KingdomOverviewWindowContainer";
@@ -39,7 +39,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
 
   const mines = ownedObjects
     .filter((o) => {
-      const objectData = state.game.data.mapObjects[o.id];
+      const objectData = state.game.data.mapObjects[o.dataId];
 
       return isResourceGeneratorMapObjectData(objectData);
     });
@@ -55,9 +55,9 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
       ...p,
       [c]: heroes.filter((h) => h.heroClass === c).length,
     }), {}),
-    mines: Object.values(Resource).reduce((p, c) => ({
+    mines: Object.keys(state.game.data.resources).reduce((p, c) => ({
       ...p,
-      [c]: mines.filter((m) => m.id === state.game.data.resources[c].mine).length,
+      [c]: mines.filter((m) => m.dataId === state.game.data.resources[c].mine).length,
     }), {}),
     resources: state.game.resources,
     towns: TownIds.reduce((p, c) => ({
