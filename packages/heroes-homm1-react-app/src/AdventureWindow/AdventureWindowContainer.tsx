@@ -143,7 +143,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     if (isResourceGeneratorMapObjectData(objectData) && isOwnableMapObject(object)) {
       return (
         <MineMapObject
-          resource={objectData.mine.resource}
+          resource={objectData.resourceGenerator.resource}
           alignment={object.owner}
         />
       );
@@ -297,9 +297,9 @@ class AdventureWindowContainer extends React.Component<Props, State> {
       return (
         <VisitMinePrompt
           visible={true}
-          resource={objectData.mine.resource}
+          resource={objectData.resourceGenerator.resource}
           mine={objectData.id}
-          amount={objectData.mine.amount}
+          amount={objectData.resourceGenerator.amount}
           onConfirmClick={this.onConfirmMapObjectDetailsClick}
         />
       );
