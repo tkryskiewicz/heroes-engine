@@ -24,13 +24,6 @@ export { MapObjectOrientation, MapObjectOrientations } from "./MapObjectOrientat
 export { MapPoint } from "./MapPoint";
 export { MapTile } from "./MapTile";
 export {
-  MineMapObject,
-  MineMapObjectData,
-  isMineMapObjectData,
-  createMineMapObject,
-  handleMineMapObject,
-} from "./MineMapObject";
-export {
   OwnableMapObject,
   OwnableMapObjectData,
   createOwnableMapObject,
@@ -41,6 +34,13 @@ export {
 } from "./OwnableMapObject";
 export { PickableMapObjectData, isPickableMapObjectData, handlePickableMapObject } from "./PickableMapObject";
 export { PuzzleMapObjectData, isPuzzleMapObjectData, handlePuzzleMapObject } from "./PuzzleMapObject";
+export {
+  ResourceGeneratorMapObject,
+  ResourceGeneratorMapObjectData,
+  isResourceGeneratorMapObjectData,
+  createResourceGeneratorMapObject,
+  handleResourceGeneratorMapObject,
+} from "./ResourceGeneratorMapObject";
 export { TownMapObject, createTownMapObject, isTownMapObject } from "./TownMapObject";
 export {
   TreasureMapObject,

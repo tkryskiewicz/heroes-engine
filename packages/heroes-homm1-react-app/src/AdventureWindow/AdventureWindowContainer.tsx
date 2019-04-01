@@ -10,9 +10,9 @@ import {
   isHeroMapObject,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
-  isMineMapObjectData,
   isObjectOwnedBy,
   isOwnableMapObject,
+  isResourceGeneratorMapObjectData,
   isStructureBuilt,
   isTownMapObject,
   isTreasureMapObject,
@@ -140,7 +140,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
       );
     }
 
-    if (isMineMapObjectData(objectData) && isOwnableMapObject(object)) {
+    if (isResourceGeneratorMapObjectData(objectData) && isOwnableMapObject(object)) {
       return (
         <MineMapObject
           resource={objectData.mine.resource}
@@ -243,7 +243,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         }
 
         this.props.dispatch(gameActions.visitMapObject(object.id, activeHero.id));
-      } else if (isMineMapObjectData(objectData) && isOwnableMapObject(object)) {
+      } else if (isResourceGeneratorMapObjectData(objectData) && isOwnableMapObject(object)) {
         if (!activeHero || isObjectOwnedBy(object, alignment)) {
           return;
         }
@@ -293,7 +293,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
       }
     }
 
-    if (isMineMapObjectData(objectData)) {
+    if (isResourceGeneratorMapObjectData(objectData)) {
       return (
         <VisitMinePrompt
           visible={true}

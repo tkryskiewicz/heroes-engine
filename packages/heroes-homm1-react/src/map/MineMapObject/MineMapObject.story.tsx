@@ -11,7 +11,7 @@ storiesOf("map/MineMapObject", module)
       resource={resource("Resource")}
     />
   ))
-  .add("owned", () => (
+  .add("aligned", () => (
     <MineMapObject
       resource={resource("Resource")}
       alignment={alignment("Alignment")}

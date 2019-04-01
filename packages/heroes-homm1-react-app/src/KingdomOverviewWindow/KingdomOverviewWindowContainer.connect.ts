@@ -3,9 +3,9 @@ import { Dispatch } from "redux";
 
 import {
   isHeroMapObject,
-  isMineMapObjectData,
   isObjectOwnedBy,
   isOwnableMapObject,
+  isResourceGeneratorMapObjectData,
   isStructureBuilt,
   isTownMapObject,
 } from "heroes-core";
@@ -41,7 +41,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
     .filter((o) => {
       const objectData = state.game.data.mapObjects[o.id];
 
-      return objectData && isMineMapObjectData(objectData);
+      return objectData && isResourceGeneratorMapObjectData(objectData);
     });
 
   return {

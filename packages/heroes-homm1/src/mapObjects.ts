@@ -3,9 +3,9 @@ import {
   InteractionLimitType,
   LimitedInteractionMapObjectData,
   MapObjectData,
-  MineMapObjectData,
   PickableMapObjectData,
   PuzzleMapObjectData,
+  ResourceGeneratorMapObjectData,
   TreasureMapObjectData,
 } from "heroes-core";
 
@@ -151,62 +151,62 @@ const treasureObjects: Array<TreasureMapObjectData & PickableMapObjectData> = [
   },
 ];
 
-const mineObjects: MineMapObjectData[] = [
+const mineObjects: ResourceGeneratorMapObjectData[] = [
   {
     id: MapObjectId.CrystalMine,
-    mine: {
+    ownable: true,
+    resourceGenerator: {
       amount: 1,
       resource: Resource.Crystal,
     },
-    ownable: true,
   },
   {
     id: MapObjectId.GemsMine,
-    mine: {
+    ownable: true,
+    resourceGenerator: {
       amount: 1,
       resource: Resource.Crystal,
     },
-    ownable: true,
   },
   {
     id: MapObjectId.GoldMine,
-    mine: {
+    ownable: true,
+    resourceGenerator: {
       amount: 1000,
       resource: Resource.Gold,
     },
-    ownable: true,
   },
   {
     id: MapObjectId.Alchemist,
-    mine: {
+    ownable: true,
+    resourceGenerator: {
       amount: 2,
       resource: Resource.Mercury,
     },
-    ownable: true,
   },
   {
     id: MapObjectId.OreMine,
-    mine: {
+    ownable: true,
+    resourceGenerator: {
       amount: 2,
       resource: Resource.Ore,
     },
-    ownable: true,
   },
   {
     id: MapObjectId.SulfurMine,
-    mine: {
+    ownable: true,
+    resourceGenerator: {
       amount: 1,
       resource: Resource.Sulfur,
     },
-    ownable: true,
   },
   {
     id: MapObjectId.Sawmill,
-    mine: {
+    ownable: true,
+    resourceGenerator: {
       amount: 2,
       resource: Resource.Wood,
     },
-    ownable: true,
   },
 ];
 

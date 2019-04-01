@@ -5,7 +5,7 @@ import {
   createHeroMapObject,
   createLimitedInteractionMapObject,
   createMap,
-  createMineMapObject,
+  createResourceGeneratorMapObject,
   createTownMapObject,
   createTreasureMapObject,
   dismissGameHero,
@@ -15,9 +15,9 @@ import {
   Hero,
   LimitedInteractionMapObjectData,
   Map,
-  MineMapObjectData,
   placeObject,
   recruitGameTroop,
+  ResourceGeneratorMapObjectData,
   startGameTurn,
   swapGameTroops,
   Town,
@@ -151,9 +151,9 @@ const obeliskData = mapObjects.find((o) => o.id === MapObjectId.Obelisk)! as Lim
 
 map = placeObject(map, { x: 6, y: 1 }, createLimitedInteractionMapObject(obeliskData));
 
-const mineData = mapObjects.find((o) => o.id === MapObjectId.OreMine)! as MineMapObjectData;
+const mineData = mapObjects.find((o) => o.id === MapObjectId.OreMine)! as ResourceGeneratorMapObjectData;
 
-map = placeObject(map, { x: 2, y: 3 }, createMineMapObject(mineData));
+map = placeObject(map, { x: 2, y: 3 }, createResourceGeneratorMapObject(mineData));
 
 const initialState: GameState = {
   alignment: Alignment.Red,

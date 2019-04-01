@@ -6,21 +6,21 @@ import {
   getObject,
   handleDwellingMapObject,
   handleLimitedInteractionMapObject,
-  handleMineMapObject,
   handleOwnableMapObject,
   handlePickableMapObject,
   handlePuzzleMapObject,
+  handleResourceGeneratorMapObject,
   handleTreasureMapObject,
   isDwellingMapObject,
   isDwellingMapObjectData,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
-  isMineMapObjectData,
   isObjectOwnedBy,
   isOwnableMapObject,
   isOwnableMapObjectData,
   isPickableMapObjectData,
   isPuzzleMapObjectData,
+  isResourceGeneratorMapObjectData,
   isTreasureMapObject,
   Map,
   MapObject,
@@ -211,8 +211,8 @@ export const startGameTurn = (game: Game): Game => {
       const objectData = game.data.mapObjects[o.id];
 
       // FIXME: crashes because towns don't have object data
-      if (objectData && isMineMapObjectData(objectData)) {
-        game = handleMineMapObject(game, o, objectData);
+      if (objectData && isResourceGeneratorMapObjectData(objectData)) {
+        game = handleResourceGeneratorMapObject(game, o, objectData);
       }
     });
 

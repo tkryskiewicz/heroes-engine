@@ -3,73 +3,73 @@ import { Resources } from "../Resource";
 import { createMap, placeObject } from "./Map";
 import { MapObjectData } from "./MapObject";
 import {
-  createMineMapObject,
-  handleMineMapObject,
-  isMineMapObjectData,
-  MineMapObject,
-  MineMapObjectData,
-} from "./MineMapObject";
+  createResourceGeneratorMapObject,
+  handleResourceGeneratorMapObject,
+  isResourceGeneratorMapObjectData,
+  ResourceGeneratorMapObject,
+  ResourceGeneratorMapObjectData,
+} from "./ResourceGeneratorMapObject";
 
-describe("isMineMapObjectData", () => {
-  it("should return true when mine map object data", () => {
-    const objectData: MineMapObjectData = {
+describe("isResourceGeneratorMapObjectData", () => {
+  it("should return true when resource generator map object data", () => {
+    const objectData: ResourceGeneratorMapObjectData = {
       id: "id",
-      mine: {
+      ownable: true,
+      resourceGenerator: {
         amount: 1,
         resource: "resource",
       },
-      ownable: true,
     };
 
-    const result = isMineMapObjectData(objectData);
+    const result = isResourceGeneratorMapObjectData(objectData);
 
     expect(result).toBe(true);
   });
 
-  it("should return false when not mine map object data", () => {
+  it("should return false when not resource generator map object data", () => {
     const objectData: MapObjectData = {
       id: "id",
     };
 
-    const result = isMineMapObjectData(objectData);
+    const result = isResourceGeneratorMapObjectData(objectData);
 
     expect(result).toEqual(false);
   });
 });
 
-describe("createMineMapObject", () => {
-  it("should create mine map object", () => {
-    const objectData: MineMapObjectData = {
+describe("createResourceGeneratorMapObject", () => {
+  it("should create object", () => {
+    const objectData: ResourceGeneratorMapObjectData = {
       id: "id",
-      mine: {
+      ownable: true,
+      resourceGenerator: {
         amount: 1,
         resource: "resource",
       },
-      ownable: true,
     };
 
-    const result = createMineMapObject(objectData);
+    const result = createResourceGeneratorMapObject(objectData);
 
-    const expected: MineMapObject = {
+    const expected: ResourceGeneratorMapObject = {
       id: "id",
     };
 
     expect(result).toEqual(expected);
   });
 
-  it("should create mine map object with initial owner", () => {
-    const objectData: MineMapObjectData = {
+  it("should create object with initial owner", () => {
+    const objectData: ResourceGeneratorMapObjectData = {
       id: "id",
-      mine: {
+      ownable: true,
+      resourceGenerator: {
         amount: 1,
         resource: "resource",
       },
-      ownable: true,
     };
 
-    const result = createMineMapObject(objectData, "owner");
+    const result = createResourceGeneratorMapObject(objectData, "owner");
 
-    const expected: MineMapObject = {
+    const expected: ResourceGeneratorMapObject = {
       id: "id",
       owner: "owner",
     };
@@ -78,18 +78,18 @@ describe("createMineMapObject", () => {
   });
 });
 
-describe("handleMineMapObject", () => {
+describe("handleResourceGeneratorMapObject", () => {
   it("should add resources", () => {
-    const objectData: MineMapObjectData = {
+    const objectData: ResourceGeneratorMapObjectData = {
       id: "id",
-      mine: {
+      ownable: true,
+      resourceGenerator: {
         amount: 1,
         resource: "resource",
       },
-      ownable: true,
     };
 
-    const object = createMineMapObject(objectData, "owner");
+    const object = createResourceGeneratorMapObject(objectData, "owner");
 
     const game: Game = {
       alignment: "owner",
@@ -114,7 +114,7 @@ describe("handleMineMapObject", () => {
       towns: [],
     };
 
-    const result = handleMineMapObject(game, object, objectData);
+    const result = handleResourceGeneratorMapObject(game, object, objectData);
 
     const expectedResources: Resources = {
       resource: 1,
@@ -124,16 +124,16 @@ describe("handleMineMapObject", () => {
   });
 
   it("should throw when object is not owned by player", () => {
-    const objectData: MineMapObjectData = {
+    const objectData: ResourceGeneratorMapObjectData = {
       id: "id",
-      mine: {
+      ownable: true,
+      resourceGenerator: {
         amount: 1,
         resource: "resource",
       },
-      ownable: true,
     };
 
-    const object = createMineMapObject(objectData, "owner");
+    const object = createResourceGeneratorMapObject(objectData, "owner");
 
     const game: Game = {
       alignment: "otherOwner",
@@ -159,7 +159,7 @@ describe("handleMineMapObject", () => {
     };
 
     expect(() => {
-      handleMineMapObject(game, object, objectData);
+      handleResourceGeneratorMapObject(game, object, objectData);
     }).toThrow();
   });
 });
