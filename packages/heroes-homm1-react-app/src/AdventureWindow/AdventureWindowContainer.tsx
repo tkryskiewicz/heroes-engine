@@ -3,44 +3,21 @@ import { DispatchProp } from "react-redux";
 
 import {
   GameData,
-  getVisitor,
   Hero,
-  isArtifactMapObjectData,
-  isDwellingMapObject,
-  isDwellingMapObjectData,
   isHeroMapObject,
-  isLimitedInteractionMapObject,
-  isLimitedInteractionMapObjectData,
-  isObjectOwnedBy,
-  isOwnableMapObject,
-  isResourceGeneratorMapObjectData,
-  isStructureBuilt,
   isTownMapObject,
-  isTreasureMapObject,
   Map,
   MapObject,
   Town,
-  wasVisitedBy,
 } from "heroes-core";
-import { MapObjectId, StructureId } from "heroes-homm1";
 import {
   AdventureWindow,
-  ArtifactMapObject,
-  CreatureJoinPrompt,
-  DwellingEmptyPrompt,
-  HeroMapObject,
-  MapObject as MapObj,
   MapTile,
-  MineMapObject,
-  ObeliskAlreadyVisitedPrompt,
-  ResourceMapObject,
-  TownMapObject,
-  VisitMinePrompt,
-  VisitObeliskPrompt,
 } from "heroes-homm1-react";
-import { adventureScreenActions, gameActions, Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
+import { adventureScreenActions, gameActions, Locator, LocatorType } from "heroes-homm1-state";
 
 import { HeroTradingWindow } from "../HeroTradingWindow";
+import { onTileClick, renderMapObject, renderMapObjectDetails } from "./config";
 
 interface Props extends DispatchProp {
   readonly mapObjects: GameData["mapObjects"];
@@ -103,67 +80,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
 
     const objectData = mapObjects[object.dataId];
 
-    if (isHeroMapObject(object)) {
-      return (
-        <HeroMapObject
-          heroClass={object.hero.heroClass}
-          alignment={object.owner}
-          orientation={object.orientation}
-        />
-      );
-    }
-
-    if (isTownMapObject(object)) {
-      return (
-        <TownMapObject
-          town={object.town.id}
-          isCastleBuilt={isStructureBuilt(object.town, StructureId.Castle)}
-          alignment={object.owner}
-        />
-      );
-    }
-
-    if (isDwellingMapObject(object)) {
-      return (
-        <MapObj
-          type={object.dataId}
-        />
-      );
-    }
-
-    if (isTreasureMapObject(object)) {
-      // TODO: handle multiple resources
-      const resource = Object.keys(object.treasure)[0];
-
-      return (
-        <ResourceMapObject
-          resource={resource}
-        />
-      );
-    }
-
-    if (isResourceGeneratorMapObjectData(objectData) && isOwnableMapObject(object)) {
-      return (
-        <MineMapObject
-          resource={objectData.resourceGenerator.resource}
-          alignment={object.owner}
-        />
-      );
-    }
-
-    if (isArtifactMapObjectData(objectData)) {
-      return (
-        <ArtifactMapObject
-          artifact={objectData.artifact}
-        />
-      );
-    }
-
-    return (
-      <MapObj
-        type={object.dataId}
-      />
-    );
+    return renderMapObject(object, objectData);
   }
 
   private readonly onTileMouseEnter = (index: number) => {
@@ -205,7 +122,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private readonly onTileClick = (index: number) => {
-    const { mapObjects, alignment, selectedLocator } = this.props;
+    const { mapObjects, heroes, towns, alignment, selectedLocator } = this.props;
 
     const activeHero = selectedLocator !== undefined && selectedLocator.type === LocatorType.Hero ?
       this.props.heroes[selectedLocator.index] :
@@ -222,56 +139,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     if (object) {
       const objectData = mapObjects[object.dataId];
 
-      // FIXME: extract
-      if (isHeroMapObject(object)) {
-        const heroIndex = this.props.heroes.indexOf(object.hero);
-
-        if (!activeHero) {
-          this.props.dispatch(locatorsActions.selectLocator({ type: LocatorType.Hero, index: heroIndex }));
-        } else if (activeHero && object.hero !== activeHero) {
-          this.props.dispatch(adventureScreenActions.openHeroTradingWindow(activeHero.id, object.hero.id));
-        } else {
-          this.props.dispatch(locatorsActions.openLocatorDetails());
-        }
-      } else if (isTownMapObject(object)) {
-        const townIndex = this.props.towns.indexOf(object.town);
-
-        if (activeHero || object.town !== activeTown) {
-          this.props.dispatch(locatorsActions.selectLocator({ type: LocatorType.Town, index: townIndex }));
-        } else {
-          this.props.dispatch(locatorsActions.openLocatorDetails());
-        }
-      } else if (isDwellingMapObject(object)) {
-        if (!activeHero) {
-          return;
-        }
-
-        this.props.dispatch(adventureScreenActions.openMapObjectDetails(object.id));
-      } else if (isTreasureMapObject(object)) {
-        if (!activeHero) {
-          return;
-        }
-
-        this.props.dispatch(gameActions.visitMapObject(object.id, activeHero.id));
-      } else if (isResourceGeneratorMapObjectData(objectData) && isOwnableMapObject(object)) {
-        if (!activeHero || isObjectOwnedBy(object, alignment)) {
-          return;
-        }
-
-        this.props.dispatch(adventureScreenActions.openMapObjectDetails(object.id));
-      } else if (isArtifactMapObjectData(objectData)) {
-        if (!activeHero) {
-          return;
-        }
-
-        this.props.dispatch(gameActions.visitMapObject(object.id, activeHero.id));
-      } else {
-        if (!activeHero) {
-          return;
-        }
-
-        this.props.dispatch(adventureScreenActions.openMapObjectDetails(object.id));
-      }
+      onTileClick(alignment, object, objectData, heroes, activeHero, towns, activeTown, this.props.dispatch);
     }
   }
 
@@ -287,61 +155,10 @@ class AdventureWindowContainer extends React.Component<Props, State> {
 
     const objectData = mapObjects[mapObject.dataId];
 
-    if (activeHero && isLimitedInteractionMapObjectData(objectData) && isLimitedInteractionMapObject(mapObject)) {
-      const visitor = getVisitor(objectData, alignment, activeHero.id);
-
-      if (mapObject.dataId === MapObjectId.Obelisk) {
-        if (wasVisitedBy(mapObject, visitor)) {
-          return (
-            <ObeliskAlreadyVisitedPrompt
-              visible={true}
-              onConfirmClick={this.onCloseMapObjectDetailsClick}
-            />
-          );
-        }
-
-        return (
-          <VisitObeliskPrompt
-            visible={true}
-            onConfirmClick={this.onConfirmMapObjectDetailsClick}
-          />
-        );
-      }
-    }
-
-    if (isResourceGeneratorMapObjectData(objectData)) {
-      return (
-        <VisitMinePrompt
-          visible={true}
-          resource={objectData.resourceGenerator.resource}
-          mine={objectData.id}
-          amount={objectData.resourceGenerator.amount}
-          onConfirmClick={this.onConfirmMapObjectDetailsClick}
-        />
-      );
-    }
-
-    if (isDwellingMapObjectData(objectData) && isDwellingMapObject(mapObject)) {
-      if (mapObject.availableCount === 0) {
-        return (
-          <DwellingEmptyPrompt
-            visible={true}
-            dwelling={mapObject.id}
-            creature={objectData.dwelling.creature}
-            onConfirmClick={this.onCloseMapObjectDetailsClick}
-          />
-        );
-      } else {
-        return (
-          <CreatureJoinPrompt
-            visible={true}
-            creature={objectData.dwelling.creature}
-            onConfirmClick={this.onConfirmMapObjectDetailsClick}
-            onCancelClick={this.onCloseMapObjectDetailsClick}
-          />
-        );
-      }
-    }
+    return renderMapObjectDetails(alignment, mapObject, objectData, activeHero, {
+      onCloseClick: this.onCloseMapObjectDetailsClick,
+      onConfirmClick: this.onConfirmMapObjectDetailsClick,
+    });
   }
 
   private readonly onCloseMapObjectDetailsClick = () => {
