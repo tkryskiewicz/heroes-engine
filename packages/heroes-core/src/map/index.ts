@@ -1,4 +1,9 @@
 export {
+  ArtifactMapObjectData,
+  handleArtifactMapObject,
+  isArtifactMapObjectData,
+} from "./ArtifactMapObject";
+export {
   DwellingMapObject,
   DwellingMapObjectData,
   createDwellingMapObject,
@@ -24,7 +29,7 @@ export {
   handleLimitedInteractionMapObject,
 } from "./LimitedInteractionMapObject";
 export { Map, createMap, isPointValid, getObject, placeObject, moveObject, removeObject } from "./Map";
-export { MapObject, MapObjectData, isMapObject } from "./MapObject";
+export { MapObject, MapObjectData, isMapObject, createMapObject } from "./MapObject";
 export { MapObjectOrientation, MapObjectOrientations } from "./MapObjectOrientation";
 export { MapPoint } from "./MapPoint";
 export { MapTile } from "./MapTile";

@@ -1,4 +1,5 @@
 import {
+  ArtifactMapObjectData,
   DwellingMapObjectData,
   HeroMapObjectData,
   InteractionLimitType,
@@ -11,6 +12,7 @@ import {
   TreasureMapObjectData,
 } from "heroes-core";
 
+import { artifacts } from "./artifacts";
 import { CreatureId } from "./creatures";
 import { Resource } from "./Resource";
 
@@ -80,6 +82,16 @@ const townObjects: TownMapObjectData[] = [
     ownable: true,
   },
 ];
+
+type ArtifactObjectData = ArtifactMapObjectData & PickableMapObjectData;
+
+// TODO: remove spell book and ultimate artifacts
+const artifactObjects: ArtifactObjectData[] =
+  artifacts.map<ArtifactObjectData>((a) => ({
+    artifact: a.id,
+    id: a.id,
+    pickable: true,
+  }));
 
 const treasureObjects: Array<TreasureMapObjectData & PickableMapObjectData> = [
   {
@@ -265,6 +277,7 @@ export const mapObjects: MapObjectData[] = [
   ...heroObjects,
   ...townObjects,
   ...treasureObjects,
+  ...artifactObjects,
   ...mineObjects,
   ...dwellingObjects,
   ...puzzleObjects,

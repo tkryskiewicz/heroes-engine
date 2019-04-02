@@ -5,6 +5,7 @@ import {
   GameData,
   getVisitor,
   Hero,
+  isArtifactMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
   isHeroMapObject,
@@ -24,6 +25,7 @@ import {
 import { MapObjectId, StructureId } from "heroes-homm1";
 import {
   AdventureWindow,
+  ArtifactMapObject,
   CreatureJoinPrompt,
   DwellingEmptyPrompt,
   HeroMapObject,
@@ -149,6 +151,14 @@ class AdventureWindowContainer extends React.Component<Props, State> {
       );
     }
 
+    if (isArtifactMapObjectData(objectData)) {
+      return (
+        <ArtifactMapObject
+          artifact={objectData.artifact}
+        />
+      );
+    }
+
     return (
       <MapObj
         type={object.dataId}
@@ -249,6 +259,12 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         }
 
         this.props.dispatch(adventureScreenActions.openMapObjectDetails(object.id));
+      } else if (isArtifactMapObjectData(objectData)) {
+        if (!activeHero) {
+          return;
+        }
+
+        this.props.dispatch(gameActions.visitMapObject(object.id, activeHero.id));
       } else {
         if (!activeHero) {
           return;

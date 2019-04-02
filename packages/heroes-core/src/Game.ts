@@ -4,6 +4,7 @@ import { Creature } from "./Creature";
 import { Hero } from "./Hero";
 import {
   getObject,
+  handleArtifactMapObject,
   handleDwellingMapObject,
   handleLimitedInteractionMapObject,
   handleOwnableMapObject,
@@ -11,6 +12,7 @@ import {
   handlePuzzleMapObject,
   handleResourceGeneratorMapObject,
   handleTreasureMapObject,
+  isArtifactMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
   isLimitedInteractionMapObject,
@@ -246,6 +248,10 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
 
   if (isTreasureMapObject(object)) {
     game = handleTreasureMapObject(game, object);
+  }
+
+  if (isArtifactMapObjectData(objectData)) {
+    game = handleArtifactMapObject(game, objectData, activeHero);
   }
 
   if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {

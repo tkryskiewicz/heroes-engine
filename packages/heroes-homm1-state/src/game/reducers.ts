@@ -1,10 +1,12 @@
 import {
+  ArtifactMapObjectData,
   buildGameStructure,
   buildStructure,
   createDwellingMapObject,
   createHeroMapObject,
   createLimitedInteractionMapObject,
   createMap,
+  createMapObject,
   createResourceGeneratorMapObject,
   createTownMapObject,
   createTreasureMapObject,
@@ -168,6 +170,10 @@ const mineData = mapObjects.find((o) => o.id === MapObjectId.OreMine)! as Resour
 
 map = placeObject(map, { x: 2, y: 3 }, createResourceGeneratorMapObject("ore-mine/1", mineData));
 map = placeObject(map, { x: 4, y: 3 }, createResourceGeneratorMapObject("ore-mine/2", mineData));
+
+const fourLeafCloverData = mapObjects.find((o) => o.id === ArtifactId.FourLeafClover)! as ArtifactMapObjectData;
+
+map = placeObject(map, { x: 0, y: 0 }, createMapObject("artifact/1", fourLeafCloverData));
 
 const initialState: GameState = {
   alignment: Alignment.Red,
