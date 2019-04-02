@@ -64,21 +64,31 @@ export enum ArtifactId {
   UltimateBookOfKnowledge = "ultimate-book-of-knowledge",
 }
 
+declare module "heroes-core/src/Artifact" {
+  interface ArtifactData {
+    readonly isUltimate: boolean;
+  }
+}
+
 const attackArtifacts: ArtifactData[] = [
   {
     id: ArtifactId.ThunderMaceOfDominion,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.GiantFlailOfDominion,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.PowerAxeOfDominion,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.DragonSwordOfDominion,
+    isUltimate: false,
     tradable: true,
   },
 ];
@@ -86,18 +96,22 @@ const attackArtifacts: ArtifactData[] = [
 const defenseArtifacts: ArtifactData[] = [
   {
     id: ArtifactId.ArmoredGauntletsOfProtection,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.DefenderHelmOfProtection,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.StealthShieldOfProtection,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.DivineBreastplateOfProtection,
+    isUltimate: false,
     tradable: true,
   },
 ];
@@ -105,18 +119,22 @@ const defenseArtifacts: ArtifactData[] = [
 const spellPowerArtifacts: ArtifactData[] = [
   {
     id: ArtifactId.CastersBraceletOfMagic,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.MagesRingOfPower,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.WitchsBroachOfMagic,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.ArcaneNecklaceOfMagic,
+    isUltimate: false,
     tradable: true,
   },
 ];
@@ -124,18 +142,22 @@ const spellPowerArtifacts: ArtifactData[] = [
 const knowledgeArtifacts: ArtifactData[] = [
   {
     id: ArtifactId.MinorScrollOfKnowledge,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.MajorScrollOfKnowledge,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.SuperiorScrollOfKnowledge,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.ForemostScrollOfKnowledge,
+    isUltimate: false,
     tradable: true,
   },
 ];
@@ -143,18 +165,22 @@ const knowledgeArtifacts: ArtifactData[] = [
 const moraleArtifacts: ArtifactData[] = [
   {
     id: ArtifactId.MedalOfValor,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.MedalOfCourage,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.MedalOfHonor,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.MedalOfDistinction,
+    isUltimate: false,
     tradable: true,
   },
 ];
@@ -162,18 +188,22 @@ const moraleArtifacts: ArtifactData[] = [
 const luckArtifacts: ArtifactData[] = [
   {
     id: ArtifactId.LuckyRabbitsFoot,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.GoldenHoreshoe,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.GamblersLuckyCoin,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.FourLeafClover,
+    isUltimate: false,
     tradable: true,
   },
 ];
@@ -181,14 +211,17 @@ const luckArtifacts: ArtifactData[] = [
 const incomeArtifacts: ArtifactData[] = [
   {
     id: ArtifactId.EndlessPurseOfGold,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.EndlessBagOfGold,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.EndlessSackOfGold,
+    isUltimate: false,
     tradable: true,
   },
 ];
@@ -196,18 +229,22 @@ const incomeArtifacts: ArtifactData[] = [
 const mobilityArtifacts: ArtifactData[] = [
   {
     id: ArtifactId.TravelersBootsOfMobility,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.NomadBootsOfMobility,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.SailorsAstrolabeOfMobility,
+    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.TrueCompassOfMobility,
+    isUltimate: false,
     tradable: true,
   },
 ];
@@ -215,6 +252,7 @@ const mobilityArtifacts: ArtifactData[] = [
 const siegeWeaponsArtifacts: ArtifactData[] = [
   {
     id: ArtifactId.BallistaOfQuickness,
+    isUltimate: false,
     tradable: true,
   },
 ];
@@ -222,6 +260,7 @@ const siegeWeaponsArtifacts: ArtifactData[] = [
 const spellBookArtifacts: ArtifactData[] = [
   {
     id: ArtifactId.Spellbook,
+    isUltimate: false,
     tradable: false,
   },
 ];
@@ -229,6 +268,7 @@ const spellBookArtifacts: ArtifactData[] = [
 const cursedArtifacts: ArtifactData[] = [
   {
     id: ArtifactId.FizbinOfMisfortune,
+    isUltimate: false,
     tradable: true,
   },
 ];
@@ -236,18 +276,22 @@ const cursedArtifacts: ArtifactData[] = [
 const ultimateArtifacts: ArtifactData[] = [
   {
     id: ArtifactId.UltimateSwordOfDominion,
+    isUltimate: true,
     tradable: true,
   },
   {
     id: ArtifactId.UltimateCloakOfProtection,
+    isUltimate: true,
     tradable: true,
   },
   {
     id: ArtifactId.UltimateWandOfMagic,
+    isUltimate: true,
     tradable: true,
   },
   {
     id: ArtifactId.UltimateBookOfKnowledge,
+    isUltimate: true,
     tradable: true,
   },
 ];

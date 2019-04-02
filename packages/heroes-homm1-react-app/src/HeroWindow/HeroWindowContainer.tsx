@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Artifact, getArmySize, Hero } from "heroes-core";
+import { Artifact, GameData, getArmySize, Hero } from "heroes-core";
 import { getLuckType, getMoraleType, LuckType, MoraleType } from "heroes-homm1";
 import {
   AdditionalStatsInfo,
@@ -34,6 +34,7 @@ import { TroopSlot } from "../TroopSlot";
 import { TroopWindow } from "../TroopWindow";
 
 interface HeroWindowContainerProps extends InjectedIntlProps, WithGameWindowProps {
+  readonly artifacts: GameData["artifacts"];
   readonly hero: Hero;
   readonly alignment: string;
 
@@ -427,10 +428,15 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   private readonly renderArtifact = (index: number) => {
     const artifact = this.props.hero.artifacts[index];
 
+    const artifactData = artifact ?
+      this.props.artifacts[artifact.id] :
+      undefined;
+
     return (
       <ArtifactSlot
         index={index}
         artifact={artifact ? artifact.id : undefined}
+        isUltimate={artifactData ? artifactData.isUltimate : false}
         onMouseEnter={this.onArtifactMouseEnter}
         onMouseLeave={this.onArtifactMouseLeave}
         onClick={this.onArtifactClick}

@@ -63,6 +63,7 @@ const heroes: Hero[] = [
     ...constructHero(HeroId.LordKilburn),
     artifacts: [
       constructArtifact(ArtifactId.ThunderMaceOfDominion),
+      constructArtifact(ArtifactId.UltimateSwordOfDominion),
     ],
     mobility: MaxMobility,
   },

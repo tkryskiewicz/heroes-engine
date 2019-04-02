@@ -12,7 +12,7 @@ import {
   TreasureMapObjectData,
 } from "heroes-core";
 
-import { artifacts } from "./artifacts";
+import { ArtifactId, artifacts } from "./artifacts";
 import { CreatureId } from "./creatures";
 import { Resource } from "./Resource";
 
@@ -85,9 +85,9 @@ const townObjects: TownMapObjectData[] = [
 
 type ArtifactObjectData = ArtifactMapObjectData & PickableMapObjectData;
 
-// TODO: remove spell book and ultimate artifacts
-const artifactObjects: ArtifactObjectData[] =
-  artifacts.map<ArtifactObjectData>((a) => ({
+const artifactObjects: ArtifactObjectData[] = artifacts
+  .filter((a) => a.id !== ArtifactId.Spellbook && !a.isUltimate)
+  .map<ArtifactObjectData>((a) => ({
     artifact: a.id,
     id: a.id,
     pickable: true,

@@ -82,6 +82,7 @@ storiesOf("HeroTradingWindowContainer", module)
     const artifacts: HeroTradingWindowProps["artifacts"] = {
       [ArtifactId.Spellbook]: {
         id: ArtifactId.Spellbook,
+        isUltimate: false,
         tradable: false,
       },
     };
