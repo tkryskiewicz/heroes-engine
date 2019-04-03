@@ -7,9 +7,6 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@types/jest": "^23.3.2",
-    "jest": "^23.6.0",
-    "ts-jest": "^23.10.3",
     "tslint-immutable": "^5.1.2",
     "tslint-no-circular-imports": "^0.6.1",
     "typescript": "^3.0.3"
@@ -18,9 +15,7 @@
     "build": "yarn workspaces run build",
     "clean": "yarn workspaces run clean",
     "lint": "yarn workspaces run lint",
-    "pretest": "tsc -p tsconfig.test.json",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test": "yarn workspaces run test",
+    "test:coverage": "yarn workspaces run test:coverage"
   }
 }

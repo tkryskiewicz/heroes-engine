@@ -6,7 +6,7 @@ module.exports = {
     "ts",
   ],
   moduleNameMapper: {
-    "heroes-(.*)": "<rootDir>/packages/heroes-$1/src",
+    "heroes-(.*)": "<rootDir>../heroes-$1/src",
   },
   testEnvironment: "node",
   testMatch: [
