@@ -15,6 +15,9 @@
     "@storybook/addon-knobs": "^4.0.0",
     "@storybook/react": "^4.0.0",
     "@types/classnames": "^2.2.7",
+    "@types/enzyme": "^3.9.1",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "^23.3.2",
     "@types/react": "^16.4.14",
     "@types/react-dom": "^16.0.7",
     "@types/react-intl": "^2.3.11",
@@ -29,7 +32,10 @@
     "babel-loader": "^8.0.2",
     "classnames": "^2.2.6",
     "css-loader": "^1.0.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
     "file-loader": "^2.0.0",
+    "jest": "^23.6.0",
     "node-sass": "^4.10.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -45,6 +51,7 @@
     "stylelint-declaration-block-no-ignored-properties": "^1.1.0",
     "stylelint-order": "^2.1.0",
     "stylelint-scss": "^3.5.4",
+    "ts-jest": "^23.10.3",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "tslint-react": "^3.6.0",
@@ -55,6 +62,9 @@
     "lint": "yarn lint:code && yarn lint:styles",
     "lint:code": "tslint -p .",
     "lint:styles": "stylelint 'src/**/*.scss'",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "storybook": "start-storybook -c storybook -p 9001 -s ."
   }
 }

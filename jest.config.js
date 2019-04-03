@@ -4,15 +4,21 @@ module.exports = {
   moduleFileExtensions: [
     ...defaults.moduleFileExtensions,
     "ts",
+    "tsx",
   ],
   moduleNameMapper: {
-    "heroes-(.*)": "<rootDir>../heroes-$1/src",
+    "\\.(scss)$": "<rootDir>/../../tests/styleMock",
+    "\\.(jpg|png)$": "<rootDir>/../../tests/fileMock",
+    "heroes-(.*)": "<rootDir>/../heroes-$1/src",
   },
+  setupFiles: [
+    "<rootDir>/../../tests/setup.ts",
+  ],
   testEnvironment: "node",
   testMatch: [
-    "**/*.test.ts",
+    "**/*.test.(ts|tsx)",
   ],
   transform: {
-    "^.+\\.(ts)$": "ts-jest",
+    "^.+\\.(ts|tsx)$": "ts-jest",
   },
 };
