@@ -176,6 +176,10 @@ const fourLeafCloverData = mapObjects.find((o) => o.id === ArtifactId.FourLeafCl
 
 map = placeObject(map, { x: 0, y: 0 }, createMapObject("artifact/1", fourLeafCloverData));
 
+const peasantData = mapObjects.find((o) => o.id === CreatureId.Peasant)!;
+
+map = placeObject(map, { x: 2, y: 0 }, createMapObject("creature/1", peasantData));
+
 const initialState: GameState = {
   alignment: Alignment.Red,
   data: {

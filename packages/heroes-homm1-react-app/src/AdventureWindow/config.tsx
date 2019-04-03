@@ -4,6 +4,7 @@ import {
   getVisitor,
   Hero,
   isArtifactMapObjectData,
+  isCreatureMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
   isHeroMapObject,
@@ -24,6 +25,7 @@ import { MapObjectId, StructureId } from "heroes-homm1";
 import {
   ArtifactMapObject,
   CreatureJoinPrompt,
+  CreatureMapObject,
   DwellingEmptyPrompt,
   HeroMapObject,
   MapObject as MapObj,
@@ -54,6 +56,14 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData) =>
         town={object.town.id}
         isCastleBuilt={isStructureBuilt(object.town, StructureId.Castle)}
         alignment={object.owner}
+      />
+    );
+  }
+
+  if (isCreatureMapObjectData(objectData)) {
+    return (
+      <CreatureMapObject
+        creature={objectData.creature}
       />
     );
   }

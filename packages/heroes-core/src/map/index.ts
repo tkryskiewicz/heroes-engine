@@ -4,6 +4,10 @@ export {
   isArtifactMapObjectData,
 } from "./ArtifactMapObject";
 export {
+  CreatureMapObjectData,
+  isCreatureMapObjectData,
+} from "./CreatureMapObject";
+export {
   DwellingMapObject,
   DwellingMapObjectData,
   createDwellingMapObject,

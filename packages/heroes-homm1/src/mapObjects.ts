@@ -1,5 +1,6 @@
 import {
   ArtifactMapObjectData,
+  CreatureMapObjectData,
   DwellingMapObjectData,
   HeroMapObjectData,
   InteractionLimitType,
@@ -13,7 +14,7 @@ import {
 } from "heroes-core";
 
 import { ArtifactId, artifacts } from "./artifacts";
-import { CreatureId } from "./creatures";
+import { CreatureId, creatures } from "./creatures";
 import { Resource } from "./Resource";
 
 export enum MapObjectId {
@@ -82,6 +83,14 @@ const townObjects: TownMapObjectData[] = [
     ownable: true,
   },
 ];
+
+type CreatureObjectData = CreatureMapObjectData;
+
+const creatureObjects: CreatureObjectData[] = creatures
+  .map<CreatureObjectData>((c) => ({
+    creature: c.id,
+    id: c.id,
+  }));
 
 type ArtifactObjectData = ArtifactMapObjectData & PickableMapObjectData;
 
@@ -276,6 +285,7 @@ const puzzleObjects: Array<PuzzleMapObjectData & LimitedInteractionMapObjectData
 export const mapObjects: MapObjectData[] = [
   ...heroObjects,
   ...townObjects,
+  ...creatureObjects,
   ...treasureObjects,
   ...artifactObjects,
   ...mineObjects,
