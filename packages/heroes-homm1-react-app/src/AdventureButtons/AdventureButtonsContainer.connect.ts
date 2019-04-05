@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { getGameHeroes } from "heroes-core";
 import {
   adventureOptionsActions,
   adventureScreenActions,
@@ -25,7 +26,7 @@ const mapStateToProps = (state: AppState): Pick<AdventureButtonsContainerProps, 
 
   return {
     endTurnPromptVisible: state.adventureScreen.endTurnPromptVisible,
-    heroes: state.game.heroes,
+    heroes: getGameHeroes(state.game),
     selectedIndex: selectedLocator && selectedLocator.type === LocatorType.Hero ?
       selectedLocator.index :
       undefined,

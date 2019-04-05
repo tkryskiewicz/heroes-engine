@@ -1,4 +1,14 @@
-import { Game, Hero, Town } from "heroes-core";
+import {
+  createHeroMapObject,
+  createMap,
+  createTownMapObject,
+  Game,
+  Hero,
+  HeroMapObject,
+  placeObject,
+  replaceObject,
+  Town,
+} from "heroes-core";
 
 import { buyMageGuildSpellBook } from "./Game";
 import { Resource } from "./Resource";
@@ -20,10 +30,7 @@ describe("buyMageGuildSpellBook", () => {
       skills: {},
     };
 
-    const otherHero = {
-      ...hero,
-      id: "otherHero",
-    };
+    const heroObject = createHeroMapObject("hero", { id: "hero", ownable: true }, hero, "alignment");
 
     const mageGuild: MageGuild = {
       cost: {},
@@ -39,7 +46,6 @@ describe("buyMageGuildSpellBook", () => {
 
     const town: Town = {
       canConstructStructures: true,
-      garrison: [],
       heroClass: "heroClass",
       id: "town",
       name: "Name",
@@ -47,6 +53,8 @@ describe("buyMageGuildSpellBook", () => {
         mageGuild,
       ],
     };
+
+    const townObject = createTownMapObject("town", { id: "town", ownable: true }, town, "alignment");
 
     const game: Game = {
       alignment: "alignment",
@@ -57,15 +65,11 @@ describe("buyMageGuildSpellBook", () => {
         resources: {},
         spells: {},
       },
-      heroes: [
-        hero,
-        otherHero,
-      ],
-      map: {
-        height: 1,
-        tiles: [],
-        width: 1,
-      },
+      map: placeObject(
+        placeObject(createMap(2, 1, "terrain"), { x: 0, y: 0 }, heroObject),
+        { x: 1, y: 0 },
+        townObject,
+      ),
       puzzle: {
         totalPieces: 0,
         uncoveredPieces: 0,
@@ -77,57 +81,31 @@ describe("buyMageGuildSpellBook", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [
-        town,
-      ],
     };
 
     const result = buyMageGuildSpellBook(game, "hero", "town", mageGuild.data.spellBookCost);
 
-    const expectedHero: Hero = {
-      ...hero,
-      artifacts: [
-        constructSpellBook([
-          {
-            charges: 0,
-            id: "spell",
-          },
-        ]),
-      ],
+    const expectedHero: HeroMapObject = {
+      ...heroObject,
+      hero: {
+        ...heroObject.hero,
+        artifacts: [
+          constructSpellBook([
+            {
+              charges: 0,
+              id: "spell",
+            },
+          ]),
+        ],
+      },
     };
 
     const expected: Game = {
-      alignment: "alignment",
-      data: {
-        artifacts: {},
-        creatures: {},
-        mapObjects: {},
-        resources: {},
-        spells: {},
-      },
-      heroes: [
-        expectedHero,
-        otherHero,
-      ],
-      map: {
-        height: 1,
-        tiles: [],
-        width: 1,
-      },
-      puzzle: {
-        totalPieces: 0,
-        uncoveredPieces: 0,
-      },
+      ...game,
+      map: replaceObject(game.map, expectedHero),
       resources: {
         [Resource.Gold]: 500,
       },
-      scenario: {
-        description: "Description",
-        name: "Name",
-      },
-      towns: [
-        town,
-      ],
     };
 
     expect(result).toEqual(expected);

@@ -115,7 +115,6 @@ describe("handleTreasureMapObject", () => {
         resources: {},
         spells: {},
       },
-      heroes: [],
       map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
       puzzle: {
         totalPieces: 0,
@@ -126,7 +125,6 @@ describe("handleTreasureMapObject", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [],
     };
 
     const result = handleTreasureMapObject(game, object);

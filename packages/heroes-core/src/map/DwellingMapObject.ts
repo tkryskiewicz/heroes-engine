@@ -2,6 +2,8 @@ import { appendArmyTroop } from "../Army";
 import { Game } from "../Game";
 import { Hero } from "../Hero";
 import { Troop } from "../Troop";
+import { HeroMapObject, isHeroMapObject } from "./HeroMapObject";
+import { getObject, replaceObject } from "./Map";
 import { createMapObject, isMapObject, MapObject, MapObjectData } from "./MapObject";
 
 export interface DwellingMapObjectData extends MapObjectData {
@@ -33,6 +35,12 @@ export const handleDwellingMapObject = (
   objectData: DwellingMapObjectData,
   hero: Hero,
 ): Game => {
+  const heroObject = getObject(game.map, hero.id);
+
+  if (!isHeroMapObject(heroObject)) {
+    throw new Error(`${hero.id} is not a hero object`);
+  }
+
   const troop: Troop = {
     count: object.availableCount,
     creature: objectData.dwelling.creature,
@@ -41,7 +49,7 @@ export const handleDwellingMapObject = (
   // TODO: what happens if hero army is full?
   const army = appendArmyTroop(hero.army, troop);
 
-  const dd = {
+  const objectResult = {
     ...object,
     availableCount: 0,
   };
@@ -51,15 +59,13 @@ export const handleDwellingMapObject = (
     army,
   };
 
+  const heroObjectResult: HeroMapObject = {
+    ...heroObject,
+    hero: hh,
+  };
+
   return {
     ...game,
-    heroes: game.heroes.map((h) => h.id === hh.id ? hh : h),
-    map: {
-      ...game.map,
-      tiles: game.map.tiles.map((t) => t.object && t.object.id === object.id ? {
-        ...t,
-        object: dd,
-      } : t),
-    },
+    map: replaceObject(replaceObject(game.map, objectResult), heroObjectResult),
   };
 };

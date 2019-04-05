@@ -1,4 +1,4 @@
-import { Army, Town } from "heroes-core";
+import { Town } from "heroes-core";
 
 import { HeroClass } from "./HeroClass";
 import {
@@ -42,12 +42,11 @@ const towns: TownType[] = [
   },
 ];
 
-export const constructTown = (id: TownId, name: string, garrison: Army): Town => {
+export const constructTown = (id: TownId, name: string): Town => {
   const town = towns.find((t) => t.id === id)!;
 
   return {
     canConstructStructures: true,
-    garrison,
     heroClass: town.heroClass,
     id: town.id,
     name,

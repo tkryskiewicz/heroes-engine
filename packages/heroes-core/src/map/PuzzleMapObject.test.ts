@@ -37,7 +37,6 @@ describe("handlePuzzleMapObject", () => {
         resources: {},
         spells: {},
       },
-      heroes: [],
       map: createMap(1, 1, "terrain"),
       puzzle: {
         totalPieces: 1,
@@ -48,7 +47,6 @@ describe("handlePuzzleMapObject", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [],
     };
 
     const result = handlePuzzleMapObject(game);
@@ -66,7 +64,6 @@ describe("handlePuzzleMapObject", () => {
         resources: {},
         spells: {},
       },
-      heroes: [],
       map: createMap(1, 1, "terrain"),
       puzzle: {
         totalPieces: 1,
@@ -77,7 +74,6 @@ describe("handlePuzzleMapObject", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [],
     };
 
     const result = handlePuzzleMapObject(game);

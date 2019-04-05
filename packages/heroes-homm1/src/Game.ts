@@ -1,9 +1,12 @@
 import {
   addHeroArtifact,
   Game,
-  getGameHero,
   getGameTown,
+  getObject,
   getTownStructure,
+  HeroMapObject,
+  isHeroMapObject,
+  replaceObject,
   Resources,
   subtractResources,
 } from "heroes-core";
@@ -13,7 +16,11 @@ import { constructSpellBook, SpellBookSpell } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";
 
 export const buyMageGuildSpellBook = (game: Game, heroId: string, townId: string, cost: Resources): Game => {
-  const hero = getGameHero(game, heroId)!;
+  const object = getObject(game.map, heroId);
+
+  if (!isHeroMapObject(object)) {
+    throw new Error(`${heroId} is not a hero object`);
+  }
 
   const town = getGameTown(game, townId)!;
 
@@ -22,14 +29,19 @@ export const buyMageGuildSpellBook = (game: Game, heroId: string, townId: string
 
   const spellBook = constructSpellBook([
     ...mageGuild.data.spells.map((s): SpellBookSpell => ({
-      charges: hero.skills[Skill.Knowledge] || 0,
+      charges: object.hero.skills[Skill.Knowledge] || 0,
       id: s,
     })),
   ]);
 
+  const objectResult: HeroMapObject = {
+    ...object,
+    hero: addHeroArtifact(object.hero, spellBook),
+  };
+
   return {
     ...game,
-    heroes: game.heroes.map((h) => h.id === heroId ? addHeroArtifact(h, spellBook) : h),
+    map: replaceObject(game.map, objectResult),
     resources: subtractResources(game.resources, cost),
   };
 };

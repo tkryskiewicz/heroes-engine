@@ -102,7 +102,6 @@ describe("handleResourceGeneratorMapObject", () => {
         resources: {},
         spells: {},
       },
-      heroes: [],
       map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
       puzzle: {
         totalPieces: 0,
@@ -113,7 +112,6 @@ describe("handleResourceGeneratorMapObject", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [],
     };
 
     const result = handleResourceGeneratorMapObject(game, object, objectData);
@@ -146,7 +144,6 @@ describe("handleResourceGeneratorMapObject", () => {
         resources: {},
         spells: {},
       },
-      heroes: [],
       map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
       puzzle: {
         totalPieces: 0,
@@ -157,7 +154,6 @@ describe("handleResourceGeneratorMapObject", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [],
     };
 
     expect(() => {

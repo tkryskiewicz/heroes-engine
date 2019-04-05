@@ -58,13 +58,10 @@ describe("handleArtifactMapObject", () => {
         resources: {},
         spells: {},
       },
-      heroes: [
-        hero,
-      ],
       map: placeObject(
-        createMap(2, 2, "terrain"),
-        { x: 0, y: 0 },
-        createHeroMapObject("hero", { id: "hero", ownable: true }, hero),
+        createMap(2, 1, "terrain"),
+        { x: 1, y: 0 },
+        createHeroMapObject("hero", { id: "hero", ownable: true }, hero, "alignment"),
       ),
       puzzle: {
         totalPieces: 0,
@@ -75,7 +72,6 @@ describe("handleArtifactMapObject", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [],
     };
 
     const result = handleArtifactMapObject(game, objectData, hero);

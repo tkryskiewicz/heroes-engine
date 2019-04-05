@@ -1,11 +1,12 @@
 import { Hero } from "../Hero";
+import { ArmedMapObject } from "./ArmedMapObject";
 import { createMapObject, isMapObject, MapObject } from "./MapObject";
 import { MapObjectOrientation } from "./MapObjectOrientation";
 import { OwnableMapObject, OwnableMapObjectData } from "./OwnableMapObject";
 
 export type HeroMapObjectData = OwnableMapObjectData;
 
-export interface HeroMapObject extends OwnableMapObject {
+export interface HeroMapObject extends ArmedMapObject, OwnableMapObject {
   readonly hero: Hero;
   readonly orientation: MapObjectOrientation;
 }
@@ -17,6 +18,7 @@ export const createHeroMapObject = (
   owner?: string,
 ): HeroMapObject => ({
   ...createMapObject(id, objectData),
+  army: [],
   hero,
   orientation: MapObjectOrientation.North,
   owner,

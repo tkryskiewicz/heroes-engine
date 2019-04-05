@@ -169,7 +169,6 @@ describe("handleLimitedInteractionMapObject", () => {
         resources: {},
         spells: {},
       },
-      heroes: [],
       map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
       puzzle: {
         totalPieces: 0,
@@ -180,7 +179,6 @@ describe("handleLimitedInteractionMapObject", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [],
     };
 
     const result = handleLimitedInteractionMapObject(game, object, objectData, hero);
@@ -233,7 +231,6 @@ describe("handleLimitedInteractionMapObject", () => {
         resources: {},
         spells: {},
       },
-      heroes: [],
       map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
       puzzle: {
         totalPieces: 0,
@@ -244,7 +241,6 @@ describe("handleLimitedInteractionMapObject", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [],
     };
 
     expect(() => {

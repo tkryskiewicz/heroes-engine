@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { getGameTowns } from "heroes-core";
 import { AppState, Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
 
 import { TownLocatorsContainer, TownLocatorsContainerProps } from "./TownLocatorsContainer";
@@ -18,7 +19,7 @@ const mapStateToProps = (state: AppState): Pick<TownLocatorsContainerProps, Stat
     selectedIndex: selectedLocator && selectedLocator.type === LocatorType.Town ?
       selectedLocator.index :
       undefined,
-    towns: state.game.towns,
+    towns: getGameTowns(state.game),
   };
 };
 

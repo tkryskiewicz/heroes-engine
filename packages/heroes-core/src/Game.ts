@@ -1,8 +1,8 @@
-import { dismissArmyTroop, swapArmyTroops } from "./Army";
 import { ArtifactData, ArtifactSelection } from "./Artifact";
 import { Creature } from "./Creature";
 import { Hero } from "./Hero";
 import {
+  dismissArmedMapObjectTroop,
   getObject,
   handleArtifactMapObject,
   handleDwellingMapObject,
@@ -12,9 +12,11 @@ import {
   handlePuzzleMapObject,
   handleResourceGeneratorMapObject,
   handleTreasureMapObject,
+  HeroMapObject,
   isArtifactMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
+  isHeroMapObject,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
   isObjectOwnedBy,
@@ -23,15 +25,22 @@ import {
   isPickableMapObjectData,
   isPuzzleMapObjectData,
   isResourceGeneratorMapObjectData,
+  isTownMapObject,
   isTreasureMapObject,
   Map,
   MapObject,
   MapObjectData,
+  recruitTownMapObjectTroop,
+  removeObject,
+  replaceObject,
+  swapArmedMapObjectTroops,
+  TownMapObject,
 } from "./map";
 import { multiplyResources, ResourceData, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
-import { buildTownStructure, endTownTurn, recruitTownTroop, Town } from "./Town";
+import { isDwellingStructure } from "./Structure";
+import { buildTownStructure, endTownTurn, getTownStructure, Town } from "./Town";
 import { TroopSelection, TroopSelectionType } from "./Troop";
 
 export interface GameData {
@@ -53,13 +62,18 @@ export interface Game {
   readonly map: Map;
   readonly alignment: string;
   readonly resources: Resources;
-  readonly heroes: Hero[];
-  readonly towns: Town[];
   readonly puzzle: Puzzle;
 }
 
+export const getGameHeroes = (game: Game): Hero[] =>
+  game.map.tiles
+    .map((t) => t.object)
+    .filter(isHeroMapObject)
+    .filter((o) => isObjectOwnedBy(o, game.alignment))
+    .map((o) => o.hero);
+
 export const getGameHero = (game: Game, hero: string): Hero | undefined =>
-  game.heroes.find((h) => h.id === hero);
+  getGameHeroes(game).find((h) => h.id === hero);
 
 export const swapGameTroops = (
   game: Game,
@@ -67,138 +81,118 @@ export const swapGameTroops = (
   withTroop: TroopSelection,
   // TODO: extract to config
   autoCombine: boolean = true,
-): Game => {
-  const army = troop.type === TroopSelectionType.Hero ?
-    game.heroes.find((h) => h.id === troop.id)!.army :
-    game.towns.find((t) => t.id === troop.id)!.garrison;
-
-  const withArmy = withTroop.type === TroopSelectionType.Hero ?
-    game.heroes.find((h) => h.id === withTroop.id)!.army :
-    game.towns.find((t) => t.id === withTroop.id)!.garrison;
-
-  const [armyResult, withArmyResult] = swapArmyTroops(army, troop.index, withArmy, withTroop.index, {
-    autoCombineTroops: autoCombine,
-    preventMovingLastTroop: troop.type === TroopSelectionType.Hero,
-  });
-
-  return {
-    ...game,
-    heroes: game.heroes.map((h) => h.id === troop.id || h.id === withTroop.id ?
-      {
-        ...h,
-        army: h.id === troop.id ? armyResult : withArmyResult,
-      } :
-      h,
-    ),
-    towns: game.towns.map((t) => t.id === troop.id || t.id === withTroop.id ?
-      {
-        ...t,
-        garrison: t.id === troop.id ? armyResult : withArmyResult,
-      } :
-      t,
-    ),
-  };
-};
+): Game =>
+  swapArmedMapObjectTroops(game, troop, withTroop, autoCombine, troop.type === TroopSelectionType.Hero);
 
 export const tradeGameArtifacts = (game: Game, artifact: ArtifactSelection, withArtifact: ArtifactSelection): Game => {
-  const hero = getGameHero(game, artifact.hero);
+  const object = getObject(game.map, artifact.hero);
 
-  if (!hero) {
-    return game;
+  if (!isHeroMapObject(object)) {
+    throw new Error(`${artifact.hero} is not a hero object`);
   }
 
-  const withHero = getGameHero(game, withArtifact.hero);
+  const withObject = getObject(game.map, withArtifact.hero);
 
-  if (!withHero) {
-    return game;
+  if (!isHeroMapObject(withObject)) {
+    throw new Error(`${withArtifact.hero} is not a hero object`);
   }
 
-  const artifacts = [...hero.artifacts];
+  const artifacts = [...object.hero.artifacts];
 
   const withArtifacts = artifact.hero === withArtifact.hero ?
     artifacts :
-    [...withHero.artifacts];
+    [...withObject.hero.artifacts];
 
-  artifacts[artifact.index] = withHero.artifacts[withArtifact.index];
-  withArtifacts[withArtifact.index] = hero.artifacts[artifact.index];
+  artifacts[artifact.index] = withObject.hero.artifacts[withArtifact.index];
+  withArtifacts[withArtifact.index] = object.hero.artifacts[artifact.index];
+
+  const objectResult: HeroMapObject = {
+    ...object,
+    hero: {
+      ...object.hero,
+      artifacts,
+    },
+  };
+
+  const withObjectResult: HeroMapObject = {
+    ...withObject,
+    hero: {
+      ...withObject.hero,
+      artifacts: withArtifacts,
+    },
+  };
 
   return {
     ...game,
-    heroes: game.heroes.map((h) => h.id === hero.id || h.id === withHero.id ?
-      {
-        ...h,
-        artifacts: h.id === hero.id ? artifacts : withArtifacts,
-      } :
-      h,
-    ),
+    map: replaceObject(replaceObject(game.map, objectResult), withObjectResult),
   };
 };
 
 export const dismissGameHero = (game: Game, hero: string): Game => ({
   ...game,
-  heroes: game.heroes.filter((h) => h.id !== hero),
+  map: removeObject(game.map, hero),
 });
 
-export const dismissGameTroop = (game: Game, troop: TroopSelection): Game => ({
-  ...game,
-  heroes: game.heroes.map((h) => troop.type === TroopSelectionType.Hero && h.id === troop.id ?
-    {
-      ...h,
-      army: dismissArmyTroop(h.army, troop.index),
-    } :
-    h,
-  ),
-  towns: game.towns.map((t) => troop.type === TroopSelectionType.Garrison && t.id === troop.id ?
-    {
-      ...t,
-      garrison: dismissArmyTroop(t.garrison, troop.index),
-    } :
-    t,
-  ),
-});
+export const dismissGameTroop = (game: Game, troop: TroopSelection): Game =>
+  dismissArmedMapObjectTroop(game, troop);
+
+export const getGameTowns = (game: Game): Town[] =>
+  game.map.tiles
+    .map((o) => o.object)
+    .filter(isTownMapObject)
+    .filter((o) => isObjectOwnedBy(o, game.alignment))
+    .map((o) => o.town);
 
 export const getGameTown = (game: Game, town: string): Town | undefined =>
-  game.towns.find((t) => t.id === town);
+  getGameTowns(game).find((t) => t.id === town);
 
 export const buildGameStructure = (game: Game, town: string, structure: string): Game => {
-  const twn = game.towns.find((t) => t.id === town);
+  const object = getObject(game.map, town);
 
-  if (!twn) {
-    return game;
+  if (!isTownMapObject(object)) {
+    throw new Error(`${town} is not a town object`);
   }
 
-  const struct = twn.structures.find((s) => s.id === structure);
+  const struct = getTownStructure(object.town, structure);
 
   if (!struct) {
-    return game;
+    throw new Error(`${structure} is not a valid structure`);
   }
+
+  const objectResult: TownMapObject = {
+    ...object,
+    town: buildTownStructure(object.town, structure),
+  };
 
   return {
     ...game,
+    map: replaceObject(game.map, objectResult),
     resources: subtractResources(game.resources, struct.cost),
-    towns: game.towns.map((t) => t.id === town ? buildTownStructure(twn, structure) : t),
   };
 };
 
 export const recruitGameTroop = (game: Game, townId: string, structureId: string, count: number): Game => {
-  const town = game.towns.find((t) => t.id === townId);
+  const object = getObject(game.map, townId);
 
-  if (!town) {
-    return game;
+  if (!isTownMapObject(object)) {
+    throw new Error(`${townId} is not a town object`);
   }
 
-  const structure = town.structures.find((s) => s.id === structureId);
+  const structure = getTownStructure(object.town, structureId);
 
-  if (!structure || !structure.dwelling) {
-    return game;
+  if (!structure) {
+    throw new Error(`${structureId} is not a valid structure`);
+  }
+
+  if (!isDwellingStructure(structure)) {
+    throw new Error(`${structureId} is not a dwelling`);
   }
 
   const cost = multiplyResources(structure.dwelling.cost, count);
 
   return {
-    ...game,
+    ...recruitTownMapObjectTroop(game, townId, structureId, count),
     resources: subtractResources(game.resources, cost),
-    towns: game.towns.map((t) => t === town ? recruitTownTroop(town, structureId, count) : t),
   };
 };
 
@@ -224,7 +218,20 @@ export const startGameTurn = (game: Game): Game => {
 
 export const endGameTurn = (game: Game): Game => ({
   ...game,
-  towns: game.towns.map((t) => endTownTurn(t)),
+  map: getGameTowns(game).reduce<Map>((p, c) => {
+    const object = getObject(p, c.id);
+
+    if (!isTownMapObject(object)) {
+      throw new Error(`${c.id} is not a town`);
+    }
+
+    const objectResult: TownMapObject = {
+      ...object,
+      town: endTownTurn(c),
+    };
+
+    return replaceObject(p, objectResult);
+  }, game.map),
 });
 
 export const visitGameMapObject = (game: Game, id: string, hero: string): Game => {

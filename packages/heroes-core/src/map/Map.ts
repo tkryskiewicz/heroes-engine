@@ -119,3 +119,14 @@ export const removeObject = (map: Map, id: string): Map => ({
     t,
   ),
 });
+
+export const replaceObject = (map: Map, object: MapObject): Map => ({
+  ...map,
+  tiles: map.tiles.map((t) => t.object && t.object.id === object.id ?
+    {
+      ...t,
+      object,
+    } :
+    t,
+  ),
+});

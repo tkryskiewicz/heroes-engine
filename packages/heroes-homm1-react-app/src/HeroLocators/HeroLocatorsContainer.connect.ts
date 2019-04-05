@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { getGameHeroes } from "heroes-core";
 import { AppState, Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
 
 import { HeroLocatorsContainer, HeroLocatorsContainerProps } from "./HeroLocatorsContainer";
@@ -14,7 +15,7 @@ const mapStateToProps = (state: AppState): Pick<HeroLocatorsContainerProps, Stat
   const { selectedLocator } = state.locators;
 
   return {
-    heroes: state.game.heroes,
+    heroes: getGameHeroes(state.game),
     locatorDetailsVisible: state.locators.locatorDetailsVisible,
     selectedIndex: selectedLocator && selectedLocator.type === LocatorType.Hero ? selectedLocator.index : undefined,
   };

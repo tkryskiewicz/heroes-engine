@@ -25,6 +25,7 @@ describe("createHeroMapObject", () => {
     const result = createHeroMapObject("id", objectData, hero);
 
     const expected: HeroMapObject = {
+      army: [],
       dataId: "dataId",
       hero,
       id: "id",
@@ -55,6 +56,7 @@ describe("createHeroMapObject", () => {
     const result = createHeroMapObject("id", objectData, hero, "owner");
 
     const expected: HeroMapObject = {
+      army: [],
       dataId: "dataId",
       hero,
       id: "id",

@@ -1,3 +1,4 @@
+import { Game } from "../Game";
 import { createMap, getObject, placeObject } from "./Map";
 import { MapObject, MapObjectData } from "./MapObject";
 import {
@@ -132,7 +133,7 @@ describe("handleOwnableMapObject", () => {
 
     const object = createOwnableMapObject("id", objectData);
 
-    const game = {
+    const game: Game = {
       alignment: "alignment",
       data: {
         artifacts: {},
@@ -141,7 +142,6 @@ describe("handleOwnableMapObject", () => {
         resources: {},
         spells: {},
       },
-      heroes: [],
       map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
       puzzle: {
         totalPieces: 0,
@@ -152,7 +152,6 @@ describe("handleOwnableMapObject", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [],
     };
 
     const result = handleOwnableMapObject(game, object, objectData);
@@ -174,7 +173,7 @@ describe("handleOwnableMapObject", () => {
 
     const object = createOwnableMapObject("id", objectData, "alignment");
 
-    const game = {
+    const game: Game = {
       alignment: "alignment",
       data: {
         artifacts: {},
@@ -183,7 +182,6 @@ describe("handleOwnableMapObject", () => {
         resources: {},
         spells: {},
       },
-      heroes: [],
       map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
       puzzle: {
         totalPieces: 0,
@@ -194,7 +192,6 @@ describe("handleOwnableMapObject", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [],
     };
 
     expect(() => {

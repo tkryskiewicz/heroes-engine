@@ -1,4 +1,10 @@
 export {
+  ArmedMapObject,
+  isArmedMapObject,
+  dismissArmedMapObjectTroop,
+  swapArmedMapObjectTroops,
+} from "./ArmedMapObject";
+export {
   ArtifactMapObjectData,
   handleArtifactMapObject,
   isArtifactMapObjectData,
@@ -32,7 +38,16 @@ export {
   wasVisitedBy,
   handleLimitedInteractionMapObject,
 } from "./LimitedInteractionMapObject";
-export { Map, createMap, isPointValid, getObject, placeObject, moveObject, removeObject } from "./Map";
+export {
+  Map,
+  createMap,
+  isPointValid,
+  getObject,
+  placeObject,
+  moveObject,
+  removeObject,
+  replaceObject,
+} from "./Map";
 export { MapObject, MapObjectData, isMapObject, createMapObject } from "./MapObject";
 export { MapObjectOrientation, MapObjectOrientations } from "./MapObjectOrientation";
 export { MapPoint } from "./MapPoint";
@@ -60,6 +75,7 @@ export {
   TownMapObjectData,
   createTownMapObject,
   isTownMapObject,
+  recruitTownMapObjectTroop,
 } from "./TownMapObject";
 export {
   TreasureMapObject,

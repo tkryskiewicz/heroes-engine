@@ -11,7 +11,6 @@ describe("createTownMapObject", () => {
 
     const town: Town = {
       canConstructStructures: false,
-      garrison: [],
       heroClass: "heroClass",
       id: "townId",
       name: "name",
@@ -21,6 +20,7 @@ describe("createTownMapObject", () => {
     const result = createTownMapObject("id", objectData, town);
 
     const expected: TownMapObject = {
+      army: [],
       dataId: "dataId",
       id: "id",
       town,
@@ -37,7 +37,6 @@ describe("createTownMapObject", () => {
 
     const town: Town = {
       canConstructStructures: false,
-      garrison: [],
       heroClass: "heroClass",
       id: "townId",
       name: "name",
@@ -47,6 +46,7 @@ describe("createTownMapObject", () => {
     const result = createTownMapObject("id", objectData, town, "owner");
 
     const expected: TownMapObject = {
+      army: [],
       dataId: "dataId",
       id: "id",
       owner: "owner",
@@ -66,7 +66,6 @@ describe("isTownMapObject", () => {
 
     const town: Town = {
       canConstructStructures: true,
-      garrison: [],
       heroClass: "heroClass",
       id: "id",
       name: "Name",

@@ -107,12 +107,14 @@ describe("handleDwellingMapObject", () => {
       artifacts: [],
       experience: 0,
       heroClass: "heroClass",
-      id: "id",
+      id: "hero",
       luck: 0,
       mobility: 0,
       morale: 0,
       skills: {},
     };
+
+    const heroObject = createHeroMapObject(hero.id, { id: "hero", ownable: true }, hero, "alignment");
 
     const game: Game = {
       alignment: "alignment",
@@ -125,8 +127,11 @@ describe("handleDwellingMapObject", () => {
         resources: {},
         spells: {},
       },
-      heroes: [],
-      map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
+      map: placeObject(
+        placeObject(createMap(2, 1, "terrain"), { x: 0, y: 0 }, object),
+        { x: 1, y: 0 },
+        heroObject,
+      ),
       puzzle: {
         totalPieces: 0,
         uncoveredPieces: 0,
@@ -136,7 +141,6 @@ describe("handleDwellingMapObject", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [],
     };
 
     const result = handleDwellingMapObject(game, object, objectData, hero);
@@ -184,9 +188,6 @@ describe("handleDwellingMapObject", () => {
         resources: {},
         spells: {},
       },
-      heroes: [
-        hero,
-      ],
       map: placeObject(
         placeObject(
           createMap(2, 2, "terrain"),
@@ -194,7 +195,7 @@ describe("handleDwellingMapObject", () => {
           object,
         ),
         { x: 1, y: 0 },
-        createHeroMapObject("hero", { id: "hero", ownable: true }, hero),
+        createHeroMapObject("hero", { id: "hero", ownable: true }, hero, "alignment"),
       ),
       puzzle: {
         totalPieces: 0,
@@ -205,7 +206,6 @@ describe("handleDwellingMapObject", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [],
     };
 
     const result = handleDwellingMapObject(game, object, objectData, hero);

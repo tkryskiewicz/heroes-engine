@@ -21,7 +21,11 @@ export interface Structure<TData = {}> {
   readonly data: TData;
 }
 
-export const isDwellingStructure = (structure: Structure): boolean =>
+export interface DwellingStructure<TData = {}> extends Structure<TData> {
+  readonly dwelling: Dwelling;
+}
+
+export const isDwellingStructure = (structure: Structure): structure is DwellingStructure =>
   structure.dwelling !== undefined;
 
 export const buildStructure = (structure: Structure): Structure => ({

@@ -1,4 +1,4 @@
-import { Army, Town } from "heroes-core";
+import { Town } from "heroes-core";
 
 import { HeroClass } from "./HeroClass";
 import { commonStructures, constructStructure, coreStructures, farmStructures } from "./structures";
@@ -7,18 +7,10 @@ import { constructTown } from "./towns";
 
 describe("constructTown", () => {
   it("should construct town", () => {
-    const garrison: Army = [
-      {
-        count: 1,
-        creature: "creature",
-      },
-    ];
-
-    const result = constructTown(TownId.Farm, "Name", garrison);
+    const result = constructTown(TownId.Farm, "Name");
 
     const expected: Town = {
       canConstructStructures: true,
-      garrison,
       heroClass: HeroClass.Knight,
       id: TownId.Farm,
       name: "Name",

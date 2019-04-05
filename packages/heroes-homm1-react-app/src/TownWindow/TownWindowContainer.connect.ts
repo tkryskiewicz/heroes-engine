@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import { getGameHeroes, getObject, TownMapObject } from "heroes-core";
 import { TownId } from "heroes-homm1";
 import {
   AppState,
@@ -14,6 +15,7 @@ import { getStructureDetails } from "./config";
 import { TownWindowContainer, TownWindowContainerProps } from "./TownWindowContainer";
 
 type StateProp =
+  "garrison" |
   "alignment" |
   "visitingHero" |
   "resources" |
@@ -28,13 +30,14 @@ const mapStateToProps = (
   ownProps: Pick<TownWindowContainerProps, "town">,
 ): Pick<TownWindowContainerProps, StateProp> => ({
   alignment: state.game.alignment,
+  garrison: (getObject(state.game.map, ownProps.town.id)! as TownMapObject).army,
   getStructureDetails,
   resources: state.game.resources,
   selectedTroop: state.townWindow.selectedTroop,
   troopDetailsVisible: state.townWindow.troopDetailsVisible,
   visibleStructureDetails: state.townWindow.visibleStructureDetails,
   // TODO: resolve this dynamically
-  visitingHero: ownProps.town.id === TownId.Farm ? state.game.heroes[0] : undefined,
+  visitingHero: ownProps.town.id === TownId.Farm ? getGameHeroes(state.game)[0] : undefined,
   visitingHeroDetailsVisible: state.townWindow.visitingHeroDetailsVisible,
 });
 

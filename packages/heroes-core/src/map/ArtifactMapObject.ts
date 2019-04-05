@@ -1,7 +1,8 @@
 import { Artifact } from "../Artifact";
 import { Game } from "../Game";
 import { addHeroArtifact, Hero } from "../Hero";
-import { isHeroMapObject } from "./HeroMapObject";
+import { HeroMapObject, isHeroMapObject } from "./HeroMapObject";
+import { getObject, replaceObject } from "./Map";
 import { MapObjectData } from "./MapObject";
 
 export interface ArtifactMapObjectData extends MapObjectData {
@@ -16,26 +17,25 @@ export const handleArtifactMapObject = (
   objectData: ArtifactMapObjectData,
   hero: Hero,
 ): Game => {
+  const object = getObject(game.map, hero.id);
+
+  if (!isHeroMapObject(object)) {
+    throw new Error(`${hero.id} is not a hero object`);
+  }
+
   const artifact: Artifact = {
     data: {},
     id: objectData.artifact,
   };
 
   // TODO: handle no free artifact slot
-  const hh = addHeroArtifact(hero, artifact);
+  const objectResult: HeroMapObject = {
+    ...object,
+    hero: addHeroArtifact(hero, artifact),
+  };
 
   return {
     ...game,
-    heroes: game.heroes.map((h) => h.id === hh.id ? hh : h),
-    map: {
-      ...game.map,
-      tiles: game.map.tiles.map((t) => t.object && isHeroMapObject(t.object) && t.object.id === hero.id ? {
-        ...t,
-        object: {
-          ...t.object,
-          hero: hh,
-        },
-      } : t),
-    },
+    map: replaceObject(game.map, objectResult),
   };
 };

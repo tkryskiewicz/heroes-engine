@@ -1,5 +1,5 @@
 import { buildStructure, Structure } from "./Structure";
-import { buildTownStructure, endTownTurn, getTownStructure, isStructureBuilt, recruitTownTroop, Town } from "./Town";
+import { buildTownStructure, endTownTurn, getTownStructure, isStructureBuilt, Town } from "./Town";
 
 describe("getTownStructure", () => {
   it("should return structure", () => {
@@ -12,7 +12,6 @@ describe("getTownStructure", () => {
 
     const town: Town = {
       canConstructStructures: false,
-      garrison: [],
       heroClass: "heroClass",
       id: "id",
       name: "Name",
@@ -29,7 +28,6 @@ describe("getTownStructure", () => {
   it("should return undefined when no structure", () => {
     const town: Town = {
       canConstructStructures: false,
-      garrison: [],
       heroClass: "heroClass",
       id: "id",
       name: "Name",
@@ -53,7 +51,6 @@ describe("isStructureBuilt", () => {
 
     const town: Town = {
       canConstructStructures: false,
-      garrison: [],
       heroClass: "heroClass",
       id: "id",
       name: "Name",
@@ -77,7 +74,6 @@ describe("isStructureBuilt", () => {
 
     const town: Town = {
       canConstructStructures: false,
-      garrison: [],
       heroClass: "heroClass",
       id: "id",
       name: "Name",
@@ -94,7 +90,6 @@ describe("isStructureBuilt", () => {
   it("should return false when no structure", () => {
     const town: Town = {
       canConstructStructures: false,
-      garrison: [],
       heroClass: "heroClass",
       id: "id",
       name: "Name",
@@ -125,7 +120,6 @@ describe("buildTownStructure", () => {
 
     const town: Town = {
       canConstructStructures: true,
-      garrison: [],
       heroClass: "heroClass",
       id: "id",
       name: "Name",
@@ -150,7 +144,6 @@ describe("buildTownStructure", () => {
 
     const town: Town = {
       canConstructStructures: false,
-      garrison: [],
       heroClass: "heroClass",
       id: "id",
       name: "Name",
@@ -167,7 +160,6 @@ describe("buildTownStructure", () => {
   it("should throw when no structure", () => {
     const town: Town = {
       canConstructStructures: true,
-      garrison: [],
       heroClass: "heroClass",
       id: "id",
       name: "Name",
@@ -180,91 +172,10 @@ describe("buildTownStructure", () => {
   });
 });
 
-describe("recruitTownTroop", () => {
-  it("should recruit troop", () => {
-    const structure: Structure = {
-      cost: {},
-      data: {},
-      dwelling: {
-        availableCount: 1,
-        cost: {},
-        creature: "creature",
-        growth: 0,
-      },
-      id: "structure",
-      isBuilt: true,
-    };
-
-    const otherStructure: Structure = {
-      cost: {},
-      data: {},
-      id: "otherStructure",
-      isBuilt: false,
-    };
-
-    const town: Town = {
-      canConstructStructures: false,
-      garrison: [],
-      heroClass: "heroClass",
-      id: "id",
-      name: "Name",
-      structures: [
-        structure,
-        otherStructure,
-      ],
-    };
-
-    const result = recruitTownTroop(town, "structure", 1);
-
-    const expected: Town = {
-      ...town,
-      garrison: [
-        {
-          count: 1,
-          creature: "creature",
-        },
-      ],
-      structures: [
-        {
-          cost: {},
-          data: {},
-          dwelling: {
-            availableCount: 0,
-            cost: {},
-            creature: "creature",
-            growth: 0,
-          },
-          id: "structure",
-          isBuilt: true,
-        },
-        otherStructure,
-      ],
-    };
-
-    expect(result).toEqual(expected);
-  });
-
-  it("should throw when no structure", () => {
-    const town: Town = {
-      canConstructStructures: false,
-      garrison: [],
-      heroClass: "heroClass",
-      id: "id",
-      name: "Name",
-      structures: [],
-    };
-
-    expect(() => {
-      recruitTownTroop(town, "structure", 1);
-    }).toThrow();
-  });
-});
-
 describe("endTownTurn", () => {
   it("should allow building structures", () => {
     const town: Town = {
       canConstructStructures: false,
-      garrison: [],
       heroClass: "heroClass",
       id: "id",
       name: "Name",
@@ -275,7 +186,6 @@ describe("endTownTurn", () => {
 
     const expected: Town = {
       canConstructStructures: true,
-      garrison: [],
       heroClass: "heroClass",
       id: "id",
       name: "Name",

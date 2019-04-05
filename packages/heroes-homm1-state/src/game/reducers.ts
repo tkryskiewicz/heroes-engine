@@ -23,7 +23,7 @@ import {
   ResourceGeneratorMapObjectData,
   startGameTurn,
   swapGameTroops,
-  Town,
+  TownMapObject,
   TownMapObjectData,
   tradeGameArtifacts,
   TreasureMapObjectData,
@@ -103,38 +103,59 @@ const heroes: Hero[] = [
 const farmTown = constructTown(
   TownId.Farm,
   "Farm Town",
-  [
-    {
-      count: 1,
-      creature: CreatureId.Peasant,
-    },
-  ],
 );
 
 const plainsTown = constructTown(
   TownId.Plains,
   "Plains Town",
-  [],
 );
 
-const towns: Town[] = [
+const townData = mapObjects.find((o) => o.id === MapObjectId.Town)! as TownMapObjectData;
+
+const towns: TownMapObject[] = [
   {
-    ...farmTown,
-    structures: farmTown.structures.map(buildStructure),
+    ...createTownMapObject(
+      TownId.Farm,
+      townData,
+      {
+        ...farmTown,
+        structures: farmTown.structures.map(buildStructure),
+      },
+      Alignment.Red,
+    ),
+    army: [
+      {
+        count: 1,
+        creature: CreatureId.Peasant,
+      },
+    ],
   },
-  {
-    ...plainsTown,
-    structures: plainsTown.structures.map((s) => s.id === StructureId.Castle ? buildStructure(s) : s),
-  },
-  constructTown(
-    TownId.Forest,
-    "Forest Town",
-    [],
+  createTownMapObject(
+    TownId.Plains,
+    townData,
+    {
+      ...plainsTown,
+      structures: plainsTown.structures.map((s) => s.id === StructureId.Castle ? buildStructure(s) : s),
+    },
+    Alignment.Red,
   ),
-  constructTown(
+  createTownMapObject(
+    TownId.Forest,
+    townData,
+    constructTown(
+      TownId.Forest,
+      "Forest Town",
+    ),
+    Alignment.Red,
+  ),
+  createTownMapObject(
     TownId.Mountains,
-    "Mountains Town",
-    [],
+    townData,
+    constructTown(
+      TownId.Mountains,
+      "Mountains Town",
+    ),
+    Alignment.Red,
   ),
 ];
 
@@ -146,10 +167,8 @@ heroes.forEach((h, i) => {
   map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h.id, heroData, h, Alignment.Red));
 });
 
-const townData = mapObjects.find((o) => o.id === MapObjectId.Town)! as TownMapObjectData;
-
 towns.forEach((t, i) => {
-  map = placeObject(map, { x: 8, y: 1 + 3 * i }, createTownMapObject(t.id, townData, t, Alignment.Red));
+  map = placeObject(map, { x: 8, y: 1 + 3 * i }, t);
 });
 
 const thatchedHutData = mapObjects.find((o) => o.id === MapObjectId.ThatchedHut)! as DwellingMapObjectData;
@@ -201,7 +220,6 @@ const initialState: GameState = {
       [c.id]: c,
     }), {}),
   },
-  heroes,
   map,
   puzzle: {
     totalPieces: PuzzlePieceCount,
@@ -217,7 +235,6 @@ const initialState: GameState = {
     [Resource.Mercury]: 10,
   },
   scenario: campaignScenarios[0],
-  towns,
 };
 
 export const gameReducer = (state: GameState = initialState, action: GameAction): GameState => {

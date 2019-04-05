@@ -49,7 +49,6 @@ describe("handlePickableMapObject", () => {
         resources: {},
         spells: {},
       },
-      heroes: [],
       map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
       puzzle: {
         totalPieces: 0,
@@ -60,7 +59,6 @@ describe("handlePickableMapObject", () => {
         description: "Description",
         name: "Name",
       },
-      towns: [],
     };
 
     const result = handlePickableMapObject(game, object);
