@@ -60,6 +60,9 @@ export { MapObjectOrientation, MapObjectOrientations } from "./MapObjectOrientat
 export { MapPoint } from "./MapPoint";
 export { MapTile } from "./MapTile";
 export {
+  MobileMapObject,
+} from "./MobileMapObject";
+export {
   OwnableMapObject,
   OwnableMapObjectData,
   createOwnableMapObject,

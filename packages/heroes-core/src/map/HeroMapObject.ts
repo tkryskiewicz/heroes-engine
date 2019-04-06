@@ -3,12 +3,12 @@ import { ArmedMapObject } from "./ArmedMapObject";
 import { EquipableMapObject } from "./EquipableMapObject";
 import { createMapObject, isMapObject, MapObject } from "./MapObject";
 import { MapObjectOrientation } from "./MapObjectOrientation";
+import { MobileMapObject } from "./MobileMapObject";
 import { OwnableMapObject, OwnableMapObjectData } from "./OwnableMapObject";
 
 export type HeroMapObjectData = OwnableMapObjectData;
 
-export interface HeroMapObject extends Hero, ArmedMapObject, EquipableMapObject, OwnableMapObject {
-  readonly orientation: MapObjectOrientation;
+export interface HeroMapObject extends Hero, ArmedMapObject, EquipableMapObject, OwnableMapObject, MobileMapObject {
 }
 
 export const createHeroMapObject = (
