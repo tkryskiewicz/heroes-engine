@@ -13,6 +13,7 @@ describe("createHeroMapObject", () => {
     const hero: Hero = {
       army: [],
       artifacts: [],
+      dataId: "hero",
       experience: 0,
       heroClass: "heroClass",
       id: "heroId",
@@ -25,11 +26,11 @@ describe("createHeroMapObject", () => {
     const result = createHeroMapObject("id", objectData, hero);
 
     const expected: HeroMapObject = {
-      army: [],
-      dataId: "dataId",
-      hero,
-      id: "id",
+      ...hero,
+      dataId: "hero",
+      id: "heroId",
       orientation: MapObjectOrientation.North,
+      owner: undefined,
     };
 
     expect(result).toEqual(expected);
@@ -44,6 +45,7 @@ describe("createHeroMapObject", () => {
     const hero: Hero = {
       army: [],
       artifacts: [],
+      dataId: "hero",
       experience: 0,
       heroClass: "heroClass",
       id: "heroId",
@@ -56,10 +58,9 @@ describe("createHeroMapObject", () => {
     const result = createHeroMapObject("id", objectData, hero, "owner");
 
     const expected: HeroMapObject = {
-      army: [],
-      dataId: "dataId",
-      hero,
-      id: "id",
+      ...hero,
+      dataId: "hero",
+      id: "heroId",
       orientation: MapObjectOrientation.North,
       owner: "owner",
     };
@@ -78,6 +79,7 @@ describe("isHeroMapObject", () => {
     const hero: Hero = {
       army: [],
       artifacts: [],
+      dataId: "hero",
       experience: 0,
       heroClass: "heroClass",
       id: "id",

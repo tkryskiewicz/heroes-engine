@@ -43,7 +43,7 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData) =>
   if (isHeroMapObject(object)) {
     return (
       <HeroMapObject
-        heroClass={object.hero.heroClass}
+        heroClass={object.heroClass}
         alignment={object.owner}
         orientation={object.orientation}
       />
@@ -182,12 +182,12 @@ export const onTileClick = (
 ) => {
   // FIXME: extract
   if (isHeroMapObject(object)) {
-    const heroIndex = heroes.indexOf(object.hero);
+    const heroIndex = heroes.indexOf(object);
 
     if (!activeHero) {
       dispatch(locatorsActions.selectLocator({ type: LocatorType.Hero, index: heroIndex }));
-    } else if (activeHero && object.hero !== activeHero) {
-      dispatch(adventureScreenActions.openHeroTradingWindow(activeHero.id, object.hero.id));
+    } else if (activeHero && object.id !== activeHero.id) {
+      dispatch(adventureScreenActions.openHeroTradingWindow(activeHero.id, object.id));
     } else {
       dispatch(locatorsActions.openLocatorDetails());
     }

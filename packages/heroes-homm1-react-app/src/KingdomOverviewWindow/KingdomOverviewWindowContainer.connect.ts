@@ -30,8 +30,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
     .filter((o) => isObjectOwnedBy(o, state.game.alignment));
 
   const heroes = ownedObjects
-    .filter(isHeroMapObject)
-    .map((o) => o.hero);
+    .filter(isHeroMapObject);
 
   const towns = ownedObjects
     .filter(isTownMapObject)

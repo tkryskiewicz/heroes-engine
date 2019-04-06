@@ -92,7 +92,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
       const { selectedLocator } = this.props;
 
       if (isHeroMapObject(object)) {
-        const heroIndex = this.props.heroes.indexOf(object.hero);
+        const heroIndex = this.props.heroes.indexOf(object);
 
         if (selectedLocator && selectedLocator.type === LocatorType.Hero && selectedLocator.index !== heroIndex) {
           this.setState({

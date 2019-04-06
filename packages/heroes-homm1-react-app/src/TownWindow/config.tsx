@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { enoughResources, heroHasArtifact } from "heroes-core";
+import { enoughResources, hasEquipableMapObjectItem } from "heroes-core";
 import { ArtifactId, MageGuild, Shipyard, StructureId } from "heroes-homm1";
 import {
   BuildShipWindow,
@@ -52,7 +52,7 @@ export const getStructureDetails: TownWindowContainerProps["getStructureDetails"
     case StructureId.MageGuild:
       const mageGuild = structure as MageGuild;
 
-      if (visitingHero && !heroHasArtifact(visitingHero, ArtifactId.Spellbook)) {
+      if (visitingHero && !hasEquipableMapObjectItem(visitingHero, ArtifactId.Spellbook)) {
         const canBuySpellBook = enoughResources(resources, mageGuild.data.spellBookCost);
 
         return (

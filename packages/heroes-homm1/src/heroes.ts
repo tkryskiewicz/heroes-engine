@@ -238,6 +238,7 @@ export const constructHero = (id: string): Hero => {
   return {
     army,
     artifacts: [],
+    dataId: "hero",
     experience: 0,
     heroClass: hero.heroClass,
     id,

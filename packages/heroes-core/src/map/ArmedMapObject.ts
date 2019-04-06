@@ -1,7 +1,7 @@
-import { Army, dismissArmyTroop, swapArmyTroops } from "../Army";
+import { appendArmyTroop, Army, dismissArmyTroop, swapArmyTroops } from "../Army";
 import { Game } from "../Game";
-import { TroopSelection } from "../Troop";
-import { getObject, replaceObject } from "./Map";
+import { Troop, TroopSelection } from "../Troop";
+import { getObject, Map, replaceObject } from "./Map";
 import { isMapObject, MapObject } from "./MapObject";
 
 export interface ArmedMapObject extends MapObject {
@@ -10,6 +10,22 @@ export interface ArmedMapObject extends MapObject {
 
 export const isArmedMapObject = (object: MapObject | undefined): object is ArmedMapObject =>
   isMapObject(object) && (object as ArmedMapObject).army !== undefined;
+
+export const appendArmedMapObjectTroop = (map: Map, objectId: string, troop: Troop): Map => {
+  const object = getObject(map, objectId);
+
+  if (!isArmedMapObject(object)) {
+    throw new Error(`${objectId} is not an armed object`);
+  }
+
+  // TODO: what happens if hero army is full?
+  const objectResult: ArmedMapObject = {
+    ...object,
+    army: appendArmyTroop(object.army, troop),
+  };
+
+  return replaceObject(map, objectResult);
+};
 
 export const dismissArmedMapObjectTroop = (
   game: Game,

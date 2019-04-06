@@ -16,6 +16,7 @@ const hero: Hero = {
     },
   ],
   artifacts: [],
+  dataId: "",
   experience: 0,
   heroClass: HeroClass.Knight,
   id: HeroId.LordKilburn,
@@ -28,6 +29,7 @@ const hero: Hero = {
 const otherHero: Hero = {
   army: [],
   artifacts: [],
+  dataId: "",
   experience: 0,
   heroClass: HeroClass.Knight,
   id: HeroId.Antoine,

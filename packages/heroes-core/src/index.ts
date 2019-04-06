@@ -33,8 +33,6 @@ export {
   HeroSkills,
   canSelectNextHero,
   getNextHeroIndex,
-  heroHasArtifact,
-  addHeroArtifact,
 } from "./Hero";
 export * from "./map";
 export {

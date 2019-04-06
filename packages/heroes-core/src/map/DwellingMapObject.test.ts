@@ -105,6 +105,7 @@ describe("handleDwellingMapObject", () => {
     const hero: Hero = {
       army: [],
       artifacts: [],
+      dataId: "hero",
       experience: 0,
       heroClass: "heroClass",
       id: "hero",
@@ -168,6 +169,7 @@ describe("handleDwellingMapObject", () => {
     const hero: Hero = {
       army: [],
       artifacts: [],
+      dataId: "hero",
       experience: 0,
       heroClass: "heroClass",
       id: "hero",

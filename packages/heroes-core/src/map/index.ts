@@ -22,6 +22,13 @@ export {
   handleDwellingMapObject,
 } from "./DwellingMapObject";
 export {
+  EquipableMapObject,
+  isEquipableMapObject,
+  addEquipableMapObjectItem,
+  hasEquipableMapObjectItem,
+  tradeEquipableMapObjectItems,
+} from "./EquipableMapObject";
+export {
   HeroMapObject,
   HeroMapObjectData,
   createHeroMapObject,

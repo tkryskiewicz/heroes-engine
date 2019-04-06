@@ -21,6 +21,7 @@ describe("buyMageGuildSpellBook", () => {
     const hero: Hero = {
       army: [],
       artifacts: [],
+      dataId: "hero",
       experience: 0,
       heroClass: "heroClass",
       id: "hero",
@@ -87,17 +88,14 @@ describe("buyMageGuildSpellBook", () => {
 
     const expectedHero: HeroMapObject = {
       ...heroObject,
-      hero: {
-        ...heroObject.hero,
-        artifacts: [
-          constructSpellBook([
-            {
-              charges: 0,
-              id: "spell",
-            },
-          ]),
-        ],
-      },
+      artifacts: [
+        constructSpellBook([
+          {
+            charges: 0,
+            id: "spell",
+          },
+        ]),
+      ],
     };
 
     const expected: Game = {

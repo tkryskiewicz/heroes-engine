@@ -7,6 +7,8 @@ export interface HeroSkills {
 
 export interface Hero {
   readonly id: string;
+  // FIXME: remove
+  readonly dataId: string;
   readonly heroClass: string;
   readonly skills: HeroSkills;
   readonly mobility: number;
@@ -30,14 +32,3 @@ export const getNextHeroIndex = (heroes: Hero[], selectedIndex?: number): number
 
   return index;
 };
-
-export const heroHasArtifact = (hero: Hero, artifact: string): boolean =>
-  hero.artifacts.some((a) => a && a.id === artifact ? true : false);
-
-export const addHeroArtifact = (hero: Hero, artifact: Artifact): Hero => ({
-  ...hero,
-  artifacts: [
-    ...hero.artifacts,
-    artifact,
-  ],
-});

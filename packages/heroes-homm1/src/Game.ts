@@ -1,12 +1,10 @@
 import {
-  addHeroArtifact,
+  addEquipableMapObjectItem,
   Game,
   getGameTown,
   getObject,
   getTownStructure,
-  HeroMapObject,
   isHeroMapObject,
-  replaceObject,
   Resources,
   subtractResources,
 } from "heroes-core";
@@ -29,19 +27,14 @@ export const buyMageGuildSpellBook = (game: Game, heroId: string, townId: string
 
   const spellBook = constructSpellBook([
     ...mageGuild.data.spells.map((s): SpellBookSpell => ({
-      charges: object.hero.skills[Skill.Knowledge] || 0,
+      charges: object.skills[Skill.Knowledge] || 0,
       id: s,
     })),
   ]);
 
-  const objectResult: HeroMapObject = {
-    ...object,
-    hero: addHeroArtifact(object.hero, spellBook),
-  };
-
   return {
     ...game,
-    map: replaceObject(game.map, objectResult),
+    map: addEquipableMapObjectItem(game.map, heroId, spellBook),
     resources: subtractResources(game.resources, cost),
   };
 };

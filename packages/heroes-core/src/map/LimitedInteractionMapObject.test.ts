@@ -149,6 +149,7 @@ describe("handleLimitedInteractionMapObject", () => {
     const hero: Hero = {
       army: [],
       artifacts: [],
+      dataId: "hero",
       experience: 0,
       heroClass: "heroClass",
       id: "hero",
@@ -211,6 +212,7 @@ describe("handleLimitedInteractionMapObject", () => {
     const hero: Hero = {
       army: [],
       artifacts: [],
+      dataId: "hero",
       experience: 0,
       heroClass: "heroClass",
       id: "hero",

@@ -1,9 +1,10 @@
 import { Game, getGameHero } from "../Game";
 import { Hero } from "../Hero";
 import { ArtifactMapObjectData, handleArtifactMapObject, isArtifactMapObjectData } from "./ArtifactMapObject";
-import { createHeroMapObject } from "./HeroMapObject";
+import { createHeroMapObject, HeroMapObject } from "./HeroMapObject";
 import { createMap, placeObject } from "./Map";
 import { MapObjectData } from "./MapObject";
+import { MapObjectOrientation } from "./MapObjectOrientation";
 
 describe("isArtifactMapObjectData", () => {
   it("should return true when artifact object data", () => {
@@ -38,6 +39,7 @@ describe("handleArtifactMapObject", () => {
     const hero: Hero = {
       army: [],
       artifacts: [],
+      dataId: "hero",
       experience: 0,
       heroClass: "heroClass",
       id: "hero",
@@ -76,7 +78,7 @@ describe("handleArtifactMapObject", () => {
 
     const result = handleArtifactMapObject(game, objectData, hero);
 
-    const expected: Hero = {
+    const expected: HeroMapObject = {
       ...hero,
       artifacts: [
         {
@@ -84,6 +86,8 @@ describe("handleArtifactMapObject", () => {
           id: "artifact",
         },
       ],
+      orientation: MapObjectOrientation.North,
+      owner: "alignment",
     };
 
     expect(getGameHero(result, "hero")).toEqual(expected);

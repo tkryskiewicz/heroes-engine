@@ -1,8 +1,8 @@
-import { appendArmyTroop } from "../Army";
 import { Game } from "../Game";
 import { Hero } from "../Hero";
 import { Troop } from "../Troop";
-import { HeroMapObject, isHeroMapObject } from "./HeroMapObject";
+import { appendArmedMapObjectTroop } from "./ArmedMapObject";
+import { isHeroMapObject } from "./HeroMapObject";
 import { getObject, replaceObject } from "./Map";
 import { createMapObject, isMapObject, MapObject, MapObjectData } from "./MapObject";
 
@@ -46,26 +46,13 @@ export const handleDwellingMapObject = (
     creature: objectData.dwelling.creature,
   };
 
-  // TODO: what happens if hero army is full?
-  const army = appendArmyTroop(hero.army, troop);
-
   const objectResult = {
     ...object,
     availableCount: 0,
   };
 
-  const hh = {
-    ...hero,
-    army,
-  };
-
-  const heroObjectResult: HeroMapObject = {
-    ...heroObject,
-    hero: hh,
-  };
-
   return {
     ...game,
-    map: replaceObject(replaceObject(game.map, objectResult), heroObjectResult),
+    map: appendArmedMapObjectTroop(replaceObject(game.map, objectResult), hero.id, troop),
   };
 };

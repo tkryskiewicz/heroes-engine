@@ -12,7 +12,6 @@ import {
   handlePuzzleMapObject,
   handleResourceGeneratorMapObject,
   handleTreasureMapObject,
-  HeroMapObject,
   isArtifactMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
@@ -35,6 +34,7 @@ import {
   replaceObject,
   swapArmedMapObjectTroops,
   TownMapObject,
+  tradeEquipableMapObjectItems,
 } from "./map";
 import { multiplyResources, ResourceData, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
@@ -69,8 +69,7 @@ export const getGameHeroes = (game: Game): Hero[] =>
   game.map.tiles
     .map((t) => t.object)
     .filter(isHeroMapObject)
-    .filter((o) => isObjectOwnedBy(o, game.alignment))
-    .map((o) => o.hero);
+    .filter((o) => isObjectOwnedBy(o, game.alignment));
 
 export const getGameHero = (game: Game, hero: string): Hero | undefined =>
   getGameHeroes(game).find((h) => h.id === hero);
@@ -84,49 +83,10 @@ export const swapGameTroops = (
 ): Game =>
   swapArmedMapObjectTroops(game, troop, withTroop, autoCombine, troop.type === TroopSelectionType.Hero);
 
-export const tradeGameArtifacts = (game: Game, artifact: ArtifactSelection, withArtifact: ArtifactSelection): Game => {
-  const object = getObject(game.map, artifact.hero);
-
-  if (!isHeroMapObject(object)) {
-    throw new Error(`${artifact.hero} is not a hero object`);
-  }
-
-  const withObject = getObject(game.map, withArtifact.hero);
-
-  if (!isHeroMapObject(withObject)) {
-    throw new Error(`${withArtifact.hero} is not a hero object`);
-  }
-
-  const artifacts = [...object.hero.artifacts];
-
-  const withArtifacts = artifact.hero === withArtifact.hero ?
-    artifacts :
-    [...withObject.hero.artifacts];
-
-  artifacts[artifact.index] = withObject.hero.artifacts[withArtifact.index];
-  withArtifacts[withArtifact.index] = object.hero.artifacts[artifact.index];
-
-  const objectResult: HeroMapObject = {
-    ...object,
-    hero: {
-      ...object.hero,
-      artifacts,
-    },
-  };
-
-  const withObjectResult: HeroMapObject = {
-    ...withObject,
-    hero: {
-      ...withObject.hero,
-      artifacts: withArtifacts,
-    },
-  };
-
-  return {
-    ...game,
-    map: replaceObject(replaceObject(game.map, objectResult), withObjectResult),
-  };
-};
+export const tradeGameArtifacts = (game: Game, artifact: ArtifactSelection, withArtifact: ArtifactSelection): Game => ({
+  ...game,
+  map: tradeEquipableMapObjectItems(game.map, artifact, withArtifact),
+});
 
 export const dismissGameHero = (game: Game, hero: string): Game => ({
   ...game,
