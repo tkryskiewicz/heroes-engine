@@ -2,10 +2,10 @@ import { ArtifactData, ArtifactSelection } from "./Artifact";
 import { Creature } from "./Creature";
 import { Hero } from "./Hero";
 import {
+  appendArmedMapObjectTroop,
   dismissArmedMapObjectTroop,
   getObject,
   handleArtifactMapObject,
-  handleDwellingMapObject,
   handleLimitedInteractionMapObject,
   handleOwnableMapObject,
   handlePickableMapObject,
@@ -29,6 +29,7 @@ import {
   Map,
   MapObject,
   MapObjectData,
+  recruitDwellingMapObjectCreatures,
   recruitTownMapObjectTroop,
   removeObject,
   replaceObject,
@@ -221,7 +222,12 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
   }
 
   if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {
-    game = handleDwellingMapObject(game, object, objectData, activeHero);
+    const [objectResult, troop] = recruitDwellingMapObjectCreatures(object, objectData);
+
+    game = {
+      ...game,
+      map: appendArmedMapObjectTroop(replaceObject(game.map, objectResult), activeHero.id, troop),
+    };
   }
 
   if (isPuzzleMapObjectData(objectData)) {

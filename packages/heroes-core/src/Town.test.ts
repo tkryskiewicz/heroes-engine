@@ -11,6 +11,7 @@ describe("getTownStructure", () => {
     };
 
     const town: Town = {
+      army: [],
       canConstructStructures: false,
       heroClass: "heroClass",
       id: "id",
@@ -27,6 +28,7 @@ describe("getTownStructure", () => {
 
   it("should return undefined when no structure", () => {
     const town: Town = {
+      army: [],
       canConstructStructures: false,
       heroClass: "heroClass",
       id: "id",
@@ -50,6 +52,7 @@ describe("isStructureBuilt", () => {
     };
 
     const town: Town = {
+      army: [],
       canConstructStructures: false,
       heroClass: "heroClass",
       id: "id",
@@ -73,6 +76,7 @@ describe("isStructureBuilt", () => {
     };
 
     const town: Town = {
+      army: [],
       canConstructStructures: false,
       heroClass: "heroClass",
       id: "id",
@@ -89,6 +93,7 @@ describe("isStructureBuilt", () => {
 
   it("should return false when no structure", () => {
     const town: Town = {
+      army: [],
       canConstructStructures: false,
       heroClass: "heroClass",
       id: "id",
@@ -119,6 +124,7 @@ describe("buildTownStructure", () => {
     };
 
     const town: Town = {
+      army: [],
       canConstructStructures: true,
       heroClass: "heroClass",
       id: "id",
@@ -143,6 +149,7 @@ describe("buildTownStructure", () => {
     };
 
     const town: Town = {
+      army: [],
       canConstructStructures: false,
       heroClass: "heroClass",
       id: "id",
@@ -159,6 +166,7 @@ describe("buildTownStructure", () => {
 
   it("should throw when no structure", () => {
     const town: Town = {
+      army: [],
       canConstructStructures: true,
       heroClass: "heroClass",
       id: "id",
@@ -175,6 +183,7 @@ describe("buildTownStructure", () => {
 describe("endTownTurn", () => {
   it("should allow building structures", () => {
     const town: Town = {
+      army: [],
       canConstructStructures: false,
       heroClass: "heroClass",
       id: "id",
@@ -185,6 +194,7 @@ describe("endTownTurn", () => {
     const result = endTownTurn(town);
 
     const expected: Town = {
+      army: [],
       canConstructStructures: true,
       heroClass: "heroClass",
       id: "id",

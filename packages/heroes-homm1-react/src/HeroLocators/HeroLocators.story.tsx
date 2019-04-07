@@ -12,6 +12,7 @@ const heroes: Hero[] = [
   {
     army: [],
     artifacts: [],
+    dataId: "hero",
     experience: 0,
     heroClass: HeroClass.Knight,
     id: HeroId.LordKilburn,

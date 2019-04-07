@@ -13,7 +13,7 @@ storiesOf("CastleOptionsWindow", module)
   .add("default", () => {
     const townId = town("Town");
 
-    const t = constructTown(townId, "Name", []);
+    const t = constructTown(townId, "Name");
 
     return (
       <CastleOptionsWindow

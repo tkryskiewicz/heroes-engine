@@ -1,16 +1,12 @@
-import { Army } from "../Army";
-import { Game, getGameHero } from "../Game";
-import { Hero } from "../Hero";
+import { Troop } from "../Troop";
 import {
   createDwellingMapObject,
   DwellingMapObject,
   DwellingMapObjectData,
-  handleDwellingMapObject,
   isDwellingMapObject,
   isDwellingMapObjectData,
+  recruitDwellingMapObjectCreatures,
 } from "./DwellingMapObject";
-import { createHeroMapObject } from "./HeroMapObject";
-import { createMap, getObject, placeObject } from "./Map";
 import { MapObject, MapObjectData } from "./MapObject";
 
 describe("isDwellingMapObjectData", () => {
@@ -90,8 +86,8 @@ describe("isDwellingMapObject", () => {
   });
 });
 
-describe("handleDwellingMapObject", () => {
-  it("should clear dwellings available count", () => {
+describe("recruitDwellingMapObjectCreatures", () => {
+  it("should set available count to zero", () => {
     const objectData: DwellingMapObjectData = {
       dwelling: {
         creature: "creature",
@@ -102,60 +98,17 @@ describe("handleDwellingMapObject", () => {
 
     const object = createDwellingMapObject("id", objectData);
 
-    const hero: Hero = {
-      army: [],
-      artifacts: [],
-      dataId: "hero",
-      experience: 0,
-      heroClass: "heroClass",
-      id: "hero",
-      luck: 0,
-      mobility: 0,
-      morale: 0,
-      skills: {},
-    };
-
-    const heroObject = createHeroMapObject(hero.id, { id: "hero", ownable: true }, hero, "alignment");
-
-    const game: Game = {
-      alignment: "alignment",
-      data: {
-        artifacts: {},
-        creatures: {},
-        mapObjects: {
-          id: objectData,
-        },
-        resources: {},
-        spells: {},
-      },
-      map: placeObject(
-        placeObject(createMap(2, 1, "terrain"), { x: 0, y: 0 }, object),
-        { x: 1, y: 0 },
-        heroObject,
-      ),
-      puzzle: {
-        totalPieces: 0,
-        uncoveredPieces: 0,
-      },
-      resources: {},
-      scenario: {
-        description: "Description",
-        name: "Name",
-      },
-    };
-
-    const result = handleDwellingMapObject(game, object, objectData, hero);
+    const [result] = recruitDwellingMapObjectCreatures(object, objectData);
 
     const expected: DwellingMapObject = {
+      ...object,
       availableCount: 0,
-      dataId: "dataId",
-      id: "id",
     };
 
-    expect(getObject(result.map, "id")).toEqual(expected);
+    expect(result).toEqual(expected);
   });
 
-  it("should add troop to hero army", () => {
+  it("should return troop with count equal to available count", () => {
     const objectData: DwellingMapObjectData = {
       dwelling: {
         creature: "creature",
@@ -166,59 +119,13 @@ describe("handleDwellingMapObject", () => {
 
     const object = createDwellingMapObject("id", objectData);
 
-    const hero: Hero = {
-      army: [],
-      artifacts: [],
-      dataId: "hero",
-      experience: 0,
-      heroClass: "heroClass",
-      id: "hero",
-      luck: 0,
-      mobility: 0,
-      morale: 0,
-      skills: {},
+    const [, result] = recruitDwellingMapObjectCreatures(object, objectData);
+
+    const expected: Troop = {
+      count: 1,
+      creature: "creature",
     };
 
-    const game: Game = {
-      alignment: "alignment",
-      data: {
-        artifacts: {},
-        creatures: {},
-        mapObjects: {
-          id: objectData,
-        },
-        resources: {},
-        spells: {},
-      },
-      map: placeObject(
-        placeObject(
-          createMap(2, 2, "terrain"),
-          { x: 0, y: 0 },
-          object,
-        ),
-        { x: 1, y: 0 },
-        createHeroMapObject("hero", { id: "hero", ownable: true }, hero, "alignment"),
-      ),
-      puzzle: {
-        totalPieces: 0,
-        uncoveredPieces: 0,
-      },
-      resources: {},
-      scenario: {
-        description: "Description",
-        name: "Name",
-      },
-    };
-
-    const result = handleDwellingMapObject(game, object, objectData, hero);
-
-    const expected: Army = [
-      {
-        count: 1,
-        creature: "creature",
-      },
-    ];
-
-    expect(getGameHero(result, "hero")!.army).toEqual(expected);
+    expect(result).toEqual(expected);
   });
 });

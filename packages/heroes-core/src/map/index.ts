@@ -1,6 +1,7 @@
 export {
   ArmedMapObject,
   isArmedMapObject,
+  appendArmedMapObjectTroop,
   dismissArmedMapObjectTroop,
   swapArmedMapObjectTroops,
 } from "./ArmedMapObject";
@@ -19,7 +20,7 @@ export {
   createDwellingMapObject,
   isDwellingMapObject,
   isDwellingMapObjectData,
-  handleDwellingMapObject,
+  recruitDwellingMapObjectCreatures,
 } from "./DwellingMapObject";
 export {
   EquipableMapObject,

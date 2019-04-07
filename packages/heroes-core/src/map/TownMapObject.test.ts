@@ -10,6 +10,7 @@ describe("createTownMapObject", () => {
     };
 
     const town: Town = {
+      army: [],
       canConstructStructures: false,
       heroClass: "heroClass",
       id: "townId",
@@ -20,10 +21,10 @@ describe("createTownMapObject", () => {
     const result = createTownMapObject("id", objectData, town);
 
     const expected: TownMapObject = {
-      army: [],
+      ...town,
       dataId: "dataId",
-      id: "id",
-      town,
+      id: "townId",
+      owner: undefined,
     };
 
     expect(result).toEqual(expected);
@@ -36,6 +37,7 @@ describe("createTownMapObject", () => {
     };
 
     const town: Town = {
+      army: [],
       canConstructStructures: false,
       heroClass: "heroClass",
       id: "townId",
@@ -46,11 +48,10 @@ describe("createTownMapObject", () => {
     const result = createTownMapObject("id", objectData, town, "owner");
 
     const expected: TownMapObject = {
-      army: [],
+      ...town,
       dataId: "dataId",
-      id: "id",
+      id: "townId",
       owner: "owner",
-      town,
     };
 
     expect(result).toEqual(expected);
@@ -60,11 +61,12 @@ describe("createTownMapObject", () => {
 describe("isTownMapObject", () => {
   it("should return true when town map object", () => {
     const objectData: TownMapObjectData = {
-      id: "dataId",
+      id: "town",
       ownable: true,
     };
 
     const town: Town = {
+      army: [],
       canConstructStructures: true,
       heroClass: "heroClass",
       id: "id",
