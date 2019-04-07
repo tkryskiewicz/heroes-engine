@@ -1,7 +1,5 @@
 import { appendArmyTroop, Army, dismissArmyTroop, swapArmyTroops } from "../Army";
-import { Game } from "../Game";
-import { Troop, TroopSelection } from "../Troop";
-import { getObject, Map, replaceObject } from "./Map";
+import { Troop } from "../Troop";
 import { isMapObject, MapObject } from "./MapObject";
 
 export interface ArmedMapObject extends MapObject {
@@ -11,79 +9,36 @@ export interface ArmedMapObject extends MapObject {
 export const isArmedMapObject = (object: MapObject | undefined): object is ArmedMapObject =>
   isMapObject(object) && (object as ArmedMapObject).army !== undefined;
 
-export const appendArmedMapObjectTroop = (map: Map, objectId: string, troop: Troop): Map => {
-  const object = getObject(map, objectId);
+export const appendArmedMapObjectTroop = (object: ArmedMapObject, troop: Troop): ArmedMapObject => ({
+  ...object,
+  army: appendArmyTroop(object.army, troop),
+});
 
-  if (!isArmedMapObject(object)) {
-    throw new Error(`${objectId} is not an armed object`);
-  }
-
-  // TODO: what happens if hero army is full?
-  const objectResult: ArmedMapObject = {
-    ...object,
-    army: appendArmyTroop(object.army, troop),
-  };
-
-  return replaceObject(map, objectResult);
-};
-
-export const dismissArmedMapObjectTroop = (
-  game: Game,
-  troop: TroopSelection,
-): Game => {
-  const object = getObject(game.map, troop.id);
-
-  if (!isArmedMapObject(object)) {
-    throw new Error(`${troop.id} is not an armed object`);
-  }
-
-  const objectResult: ArmedMapObject = {
-    ...object,
-    army: dismissArmyTroop(object.army, troop.index),
-  };
-
-  return {
-    ...game,
-    map: replaceObject(game.map, objectResult),
-  };
-};
+export const dismissArmedMapObjectTroop = (object: ArmedMapObject, index: number): ArmedMapObject => ({
+  ...object,
+  army: dismissArmyTroop(object.army, index),
+});
 
 export const swapArmedMapObjectTroops = (
-  game: Game,
-  troop: TroopSelection,
-  withTroop: TroopSelection,
-  autoCombineTroops: boolean,
-  preventMovingLastTroop: boolean,
-): Game => {
-  const object = getObject(game.map, troop.id);
+  object: ArmedMapObject,
+  index: number,
+  withObject: ArmedMapObject,
+  withIndex: number,
+  options: {
+    readonly autoCombineTroops: boolean;
+    readonly preventMovingLastTroop: boolean;
+  },
+): [ArmedMapObject, ArmedMapObject] => {
+  const [armyResult, withArmyResult] = swapArmyTroops(object.army, index, withObject.army, withIndex, options);
 
-  if (!isArmedMapObject(object)) {
-    throw new Error(`${troop.id} is not an armed object`);
-  }
-
-  const withObject = getObject(game.map, withTroop.id);
-
-  if (!isArmedMapObject(withObject)) {
-    throw new Error(`${withTroop.id} is not an armed object`);
-  }
-
-  const [armyResult, withArmyResult] = swapArmyTroops(object.army, troop.index, withObject.army, withTroop.index, {
-    autoCombineTroops,
-    preventMovingLastTroop,
-  });
-
-  const objectResult: ArmedMapObject = {
-    ...object,
-    army: armyResult,
-  };
-
-  const withObjectResult: ArmedMapObject = {
-    ...withObject,
-    army: withArmyResult,
-  };
-
-  return {
-    ...game,
-    map: replaceObject(replaceObject(game.map, objectResult), withObjectResult),
-  };
+  return [
+    {
+      ...object,
+      army: armyResult,
+    },
+    {
+      ...withObject,
+      army: withArmyResult,
+    },
+  ];
 };

@@ -12,6 +12,7 @@ import {
   handlePuzzleMapObject,
   handleResourceGeneratorMapObject,
   handleTreasureMapObject,
+  isArmedMapObject,
   isArtifactMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
@@ -42,7 +43,7 @@ import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
 import { isDwellingStructure } from "./Structure";
 import { buildTownStructure, endTownTurn, getTownStructure, Town } from "./Town";
-import { TroopSelection, TroopSelectionType } from "./Troop";
+import { TroopSelection } from "./Troop";
 
 export interface GameData {
   readonly resources: { readonly [id: string]: ResourceData; };
@@ -81,8 +82,29 @@ export const swapGameTroops = (
   withTroop: TroopSelection,
   // TODO: extract to config
   autoCombine: boolean = true,
-): Game =>
-  swapArmedMapObjectTroops(game, troop, withTroop, autoCombine, troop.type === TroopSelectionType.Hero);
+): Game => {
+  const object = getObject(game.map, troop.id);
+
+  if (!isArmedMapObject(object)) {
+    throw new Error(`${troop.id} is not an armed object`);
+  }
+
+  const withObject = getObject(game.map, withTroop.id);
+
+  if (!isArmedMapObject(withObject)) {
+    throw new Error(`${withTroop.id} is not an armed object`);
+  }
+
+  const [objectResult, withObjectResult] = swapArmedMapObjectTroops(object, troop.index, withObject, withTroop.index, {
+    autoCombineTroops: autoCombine,
+    preventMovingLastTroop: isHeroMapObject(object),
+  });
+
+  return {
+    ...game,
+    map: replaceObject(replaceObject(game.map, objectResult), withObjectResult),
+  };
+};
 
 export const tradeGameArtifacts = (game: Game, artifact: ArtifactSelection, withArtifact: ArtifactSelection): Game => ({
   ...game,
@@ -94,8 +116,20 @@ export const dismissGameHero = (game: Game, hero: string): Game => ({
   map: removeObject(game.map, hero),
 });
 
-export const dismissGameTroop = (game: Game, troop: TroopSelection): Game =>
-  dismissArmedMapObjectTroop(game, troop);
+export const dismissGameTroop = (game: Game, troop: TroopSelection): Game => {
+  const object = getObject(game.map, troop.id);
+
+  if (!isArmedMapObject(object)) {
+    throw new Error(`${troop.id} is not an armed object`);
+  }
+
+  const objectResult = dismissArmedMapObjectTroop(object, troop.index);
+
+  return {
+    ...game,
+    map: replaceObject(game.map, objectResult),
+  };
+};
 
 export const getGameTowns = (game: Game): Town[] =>
   game.map.tiles
@@ -204,6 +238,7 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
   const objectData = game.data.mapObjects[object.dataId];
 
   const activeHero = getGameHero(game, hero);
+  const activeObject = getObject(game.map, hero);
 
   if (!activeHero) {
     throw new Error("Invalid hero");
@@ -222,11 +257,17 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
   }
 
   if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {
+    if (!isArmedMapObject(activeObject)) {
+      throw new Error(`${hero} is not an armed object`);
+    }
+
     const [objectResult, troop] = recruitDwellingMapObjectCreatures(object, objectData);
+
+    const activeObjectResult = appendArmedMapObjectTroop(activeObject, troop);
 
     game = {
       ...game,
-      map: appendArmedMapObjectTroop(replaceObject(game.map, objectResult), activeHero.id, troop),
+      map: replaceObject(replaceObject(game.map, objectResult), activeObjectResult),
     };
   }
 

@@ -10,6 +10,7 @@ describe("constructTown", () => {
     const result = constructTown(TownId.Farm, "Name");
 
     const expected: Town = {
+      army: [],
       canConstructStructures: true,
       heroClass: HeroClass.Knight,
       id: TownId.Farm,

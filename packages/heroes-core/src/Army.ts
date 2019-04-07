@@ -49,6 +49,7 @@ export const setArmyTroop = (
 };
 
 // TODO: handle size limit
+// TODO: what happens if hero army is full?
 export const appendArmyTroop = (army: Army, troop: Troop): Army => {
   const clone = [
     ...army,

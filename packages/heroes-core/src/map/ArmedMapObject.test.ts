@@ -1,12 +1,11 @@
-import { Game } from "../Game";
-import { TroopSelectionType, Troop } from "../Troop";
+import { Troop } from "../Troop";
 import {
+  appendArmedMapObjectTroop,
   ArmedMapObject,
   dismissArmedMapObjectTroop,
   isArmedMapObject,
   swapArmedMapObjectTroops,
 } from "./ArmedMapObject";
-import { createMap, getObject, placeObject } from "./Map";
 import { MapObject } from "./MapObject";
 
 describe("isArmedMapObject", () => {
@@ -34,45 +33,48 @@ describe("isArmedMapObject", () => {
   });
 });
 
+describe("appendArmedMapObjectTroop", () => {
+  it("should append troop to army", () => {
+    const object: ArmedMapObject = {
+      army: [],
+      dataId: "dataId",
+      id: "id",
+    };
+
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
+    const result = appendArmedMapObjectTroop(object, troop);
+
+    const expected: ArmedMapObject = {
+      ...object,
+      army: [
+        troop,
+      ],
+    };
+
+    expect(result).toEqual(expected);
+  });
+});
+
 describe("dismissArmedMapObjectTroop", () => {
   it("should dismiss troop", () => {
+    const troop: Troop = {
+      count: 1,
+      creature: "creature",
+    };
+
     const object: ArmedMapObject = {
       army: [
-        {
-          count: 1,
-          creature: "creature",
-        },
+        troop,
       ],
       dataId: "dataId",
       id: "id",
     };
 
-    const game: Game = {
-      alignment: "alignment",
-      data: {
-        artifacts: {},
-        creatures: {},
-        mapObjects: {},
-        resources: {},
-        spells: {},
-      },
-      map: placeObject(
-        createMap(1, 1, "terrain"),
-        { x: 0, y: 0 },
-        object,
-      ),
-      puzzle: {
-        totalPieces: 0,
-        uncoveredPieces: 0,
-      },
-      resources: {},
-      scenario: {
-        description: "Description",
-        name: "Name",
-      },
-    };
-
-    const result = dismissArmedMapObjectTroop(game, { id: "id", type: TroopSelectionType.Garrison, index: 0 });
+    const result = dismissArmedMapObjectTroop(object, 0);
 
     const expected: ArmedMapObject = {
       ...object,
@@ -81,7 +83,7 @@ describe("dismissArmedMapObjectTroop", () => {
       ],
     };
 
-    expect(getObject(result.map, "id")!).toEqual(expected);
+    expect(result).toEqual(expected);
   });
 });
 
@@ -113,35 +115,10 @@ describe("swapArmedMapObjectTroops", () => {
       id: "withId",
     };
 
-    const game: Game = {
-      alignment: "alignment",
-      data: {
-        artifacts: {},
-        creatures: {},
-        mapObjects: {},
-        resources: {},
-        spells: {},
-      },
-      map: placeObject(
-        placeObject(createMap(2, 1, "terrain"), { x: 0, y: 0 }, object),
-        { x: 1, y: 0 },
-        withObject,
-      ),
-      puzzle: {
-        totalPieces: 0,
-        uncoveredPieces: 0,
-      },
-      resources: {},
-      scenario: {
-        description: "Description",
-        name: "Name",
-      },
-    };
-
-    const result = swapArmedMapObjectTroops(game,
-      { id: "id", type: TroopSelectionType.Garrison, index: 0 },
-      { id: "withId", type: TroopSelectionType.Garrison, index: 0 },
-      true, false);
+    const [objectResult, withObjectResult] = swapArmedMapObjectTroops(object, 0, withObject, 0, {
+      autoCombineTroops: true,
+      preventMovingLastTroop: false,
+    });
 
     const expectedObject: ArmedMapObject = {
       ...object,
@@ -157,7 +134,7 @@ describe("swapArmedMapObjectTroops", () => {
       ],
     };
 
-    expect(getObject(result.map, "id")).toEqual(expectedObject);
-    expect(getObject(result.map, "withId")).toEqual(expectedWithObject);
+    expect(objectResult).toEqual(expectedObject);
+    expect(withObjectResult).toEqual(expectedWithObject);
   });
 });
