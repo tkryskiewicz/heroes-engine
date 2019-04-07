@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { getGameHeroes, getObject, TownMapObject } from "heroes-core";
+import { getGameHeroes } from "heroes-core";
 import { TownId } from "heroes-homm1";
 import {
   AppState,
@@ -15,7 +15,6 @@ import { getStructureDetails } from "./config";
 import { TownWindowContainer, TownWindowContainerProps } from "./TownWindowContainer";
 
 type StateProp =
-  "garrison" |
   "alignment" |
   "visitingHero" |
   "resources" |
@@ -30,7 +29,6 @@ const mapStateToProps = (
   ownProps: Pick<TownWindowContainerProps, "town">,
 ): Pick<TownWindowContainerProps, StateProp> => ({
   alignment: state.game.alignment,
-  garrison: (getObject(state.game.map, ownProps.town.id)! as TownMapObject).army,
   getStructureDetails,
   resources: state.game.resources,
   selectedTroop: state.townWindow.selectedTroop,

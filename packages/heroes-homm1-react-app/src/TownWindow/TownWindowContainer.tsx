@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Army, getArmySize, Hero, Resources, Structure, Town, TroopSelection, TroopSelectionType } from "heroes-core";
+import { getArmySize, Hero, Resources, Structure, Town, TroopSelection, TroopSelectionType } from "heroes-core";
 import {
   Crest,
   getArmyStripStatusTextMessage,
@@ -23,8 +23,6 @@ import { TroopWindow } from "../TroopWindow";
 
 interface TownWindowContainerProps extends InjectedIntlProps, WithGameWindowProps {
   readonly town: Town;
-  // FIXME: find a better way to get this
-  readonly garrison: Army;
   readonly alignment: string;
   readonly visitingHero?: Hero;
   readonly resources: Resources;
@@ -170,9 +168,9 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   }
 
   private readonly renderGarrisonTroop = (index: number) => {
-    const { garrison, selectedTroop } = this.props;
+    const { town, selectedTroop } = this.props;
 
-    const troop = garrison[index];
+    const troop = town.army[index];
 
     return (
       <TroopSlot
@@ -277,11 +275,11 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   private getTroop(troop: TroopSelection) {
     return troop.type === TroopSelectionType.Hero && this.props.visitingHero ?
       this.props.visitingHero.army[troop.index] :
-      this.props.garrison[troop.index];
+      this.props.town.army[troop.index];
   }
 
   private isLastTroop(selection: TroopSelection) {
-    const { garrison, visitingHero, selectedTroop } = this.props;
+    const { town, visitingHero, selectedTroop } = this.props;
 
     // FIXME: possible to move last troop when supposed to exchange, but a combine happens
     return visitingHero !== undefined &&
@@ -289,8 +287,8 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
       selectedTroop.type === TroopSelectionType.Hero &&
       selection.type === TroopSelectionType.Garrison &&
       // FIXME: find better way to detect last troop
-      (garrison[selection.index] === undefined ||
-        garrison[selection.index]!.creature === visitingHero.army[selectedTroop.index]!.creature) &&
+      (town.army[selection.index] === undefined ||
+        town.army[selection.index]!.creature === visitingHero.army[selectedTroop.index]!.creature) &&
       getArmySize(visitingHero.army) === 1;
   }
 

@@ -53,8 +53,8 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData) =>
   if (isTownMapObject(object)) {
     return (
       <TownMapObject
-        town={object.town.id}
-        isCastleBuilt={isStructureBuilt(object.town, StructureId.Castle)}
+        town={object.id}
+        isCastleBuilt={isStructureBuilt(object, StructureId.Castle)}
         alignment={object.owner}
       />
     );
@@ -192,9 +192,9 @@ export const onTileClick = (
       dispatch(locatorsActions.openLocatorDetails());
     }
   } else if (isTownMapObject(object)) {
-    const townIndex = towns.indexOf(object.town);
+    const townIndex = towns.indexOf(object);
 
-    if (activeHero || object.town !== activeTown) {
+    if (activeHero || object !== activeTown) {
       dispatch(locatorsActions.selectLocator({ type: LocatorType.Town, index: townIndex }));
     } else {
       dispatch(locatorsActions.openLocatorDetails());

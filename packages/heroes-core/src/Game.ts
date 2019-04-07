@@ -100,8 +100,7 @@ export const getGameTowns = (game: Game): Town[] =>
   game.map.tiles
     .map((o) => o.object)
     .filter(isTownMapObject)
-    .filter((o) => isObjectOwnedBy(o, game.alignment))
-    .map((o) => o.town);
+    .filter((o) => isObjectOwnedBy(o, game.alignment));
 
 export const getGameTown = (game: Game, town: string): Town | undefined =>
   getGameTowns(game).find((t) => t.id === town);
@@ -113,7 +112,7 @@ export const buildGameStructure = (game: Game, town: string, structure: string):
     throw new Error(`${town} is not a town object`);
   }
 
-  const struct = getTownStructure(object.town, structure);
+  const struct = getTownStructure(object, structure);
 
   if (!struct) {
     throw new Error(`${structure} is not a valid structure`);
@@ -121,7 +120,7 @@ export const buildGameStructure = (game: Game, town: string, structure: string):
 
   const objectResult: TownMapObject = {
     ...object,
-    town: buildTownStructure(object.town, structure),
+    ...buildTownStructure(object, structure),
   };
 
   return {
@@ -138,7 +137,7 @@ export const recruitGameTroop = (game: Game, townId: string, structureId: string
     throw new Error(`${townId} is not a town object`);
   }
 
-  const structure = getTownStructure(object.town, structureId);
+  const structure = getTownStructure(object, structureId);
 
   if (!structure) {
     throw new Error(`${structureId} is not a valid structure`);
@@ -187,7 +186,7 @@ export const endGameTurn = (game: Game): Game => ({
 
     const objectResult: TownMapObject = {
       ...object,
-      town: endTownTurn(c),
+      ...endTownTurn(c),
     };
 
     return replaceObject(p, objectResult);

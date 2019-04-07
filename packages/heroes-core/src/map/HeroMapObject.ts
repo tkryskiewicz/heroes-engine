@@ -24,4 +24,4 @@ export const createHeroMapObject = (
 });
 
 export const isHeroMapObject = (object: MapObject | undefined): object is HeroMapObject =>
-  isMapObject(object) && object.dataId === "hero"; // FIXME: is this true?
+  isMapObject(object) && object.dataId === "hero"; // FIXME

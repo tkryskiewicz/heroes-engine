@@ -46,6 +46,7 @@ export const constructTown = (id: TownId, name: string): Town => {
   const town = towns.find((t) => t.id === id)!;
 
   return {
+    army: [],
     canConstructStructures: true,
     heroClass: town.heroClass,
     id: town.id,

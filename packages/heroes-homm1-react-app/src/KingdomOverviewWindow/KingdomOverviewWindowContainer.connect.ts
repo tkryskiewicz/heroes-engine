@@ -33,8 +33,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
     .filter(isHeroMapObject);
 
   const towns = ownedObjects
-    .filter(isTownMapObject)
-    .map((o) => o.town);
+    .filter(isTownMapObject);
 
   const mines = ownedObjects
     .filter((o) => {

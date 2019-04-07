@@ -1,3 +1,4 @@
+import { Army } from "./Army";
 import { buildStructure, Structure } from "./Structure";
 
 export interface Town {
@@ -7,6 +8,7 @@ export interface Town {
   readonly heroClass: string;
   readonly structures: Structure[];
   readonly canConstructStructures: boolean;
+  readonly army: Army;
 }
 
 export const getTownStructure = (town: Town, structure: string): Structure | undefined =>

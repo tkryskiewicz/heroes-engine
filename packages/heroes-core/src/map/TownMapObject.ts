@@ -4,13 +4,12 @@ import { getTroop, recruitTroop } from "../Structure";
 import { Town } from "../Town";
 import { ArmedMapObject } from "./ArmedMapObject";
 import { getObject, replaceObject } from "./Map";
-import { createMapObject, MapObject } from "./MapObject";
-import { isOwnableMapObject, OwnableMapObject, OwnableMapObjectData } from "./OwnableMapObject";
+import { createMapObject, isMapObject, MapObject } from "./MapObject";
+import { OwnableMapObject, OwnableMapObjectData } from "./OwnableMapObject";
 
 export type TownMapObjectData = OwnableMapObjectData;
 
-export interface TownMapObject extends ArmedMapObject, OwnableMapObject {
-  readonly town: Town;
+export interface TownMapObject extends Town, ArmedMapObject, OwnableMapObject {
 }
 
 export const createTownMapObject = (
@@ -20,13 +19,12 @@ export const createTownMapObject = (
   owner?: string,
 ): TownMapObject => ({
   ...createMapObject(id, objectData),
-  army: [],
+  ...town,
   owner,
-  town,
 });
 
 export const isTownMapObject = (object: MapObject | undefined): object is TownMapObject =>
-  isOwnableMapObject(object) && (object as TownMapObject).town !== undefined;
+  isMapObject(object) && (object as TownMapObject).dataId === "town"; // FIXME
 
 export const recruitTownMapObjectTroop = (game: Game, town: string, structure: string, count: number): Game => {
   const object = getObject(game.map, town);
@@ -35,7 +33,7 @@ export const recruitTownMapObjectTroop = (game: Game, town: string, structure: s
     throw new Error(`${town} is not a town object`);
   }
 
-  const struct = object.town.structures.find((s) => s.id === structure);
+  const struct = object.structures.find((s) => s.id === structure);
 
   if (!struct) {
     throw new Error("Invalid structure");
@@ -46,10 +44,7 @@ export const recruitTownMapObjectTroop = (game: Game, town: string, structure: s
   const objectResult: TownMapObject = {
     ...object,
     army: appendArmyTroop(object.army, troop),
-    town: {
-      ...object.town,
-      structures: object.town.structures.map((s) => s.id === structure ? recruitTroop(struct, count) : s),
-    },
+    structures: object.structures.map((s) => s.id === structure ? recruitTroop(struct, count) : s),
   };
 
   return {
