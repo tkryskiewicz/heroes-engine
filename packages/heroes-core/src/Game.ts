@@ -2,10 +2,11 @@ import { ArtifactData, ArtifactSelection } from "./Artifact";
 import { Creature } from "./Creature";
 import { Hero } from "./Hero";
 import {
+  addEquipableMapObjectItem,
   appendArmedMapObjectTroop,
+  constructArtifactMapObjectArtifact,
   dismissArmedMapObjectTroop,
   getObject,
-  handleArtifactMapObject,
   handleLimitedInteractionMapObject,
   handleOwnableMapObject,
   handlePickableMapObject,
@@ -16,6 +17,7 @@ import {
   isArtifactMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
+  isEquipableMapObject,
   isHeroMapObject,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
@@ -253,7 +255,16 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
   }
 
   if (isArtifactMapObjectData(objectData)) {
-    game = handleArtifactMapObject(game, objectData, activeHero);
+    if (!isEquipableMapObject(activeObject)) {
+      throw new Error(`${hero} is not an equipable object`);
+    }
+
+    const artifact = constructArtifactMapObjectArtifact(objectData);
+
+    game = {
+      ...game,
+      map: addEquipableMapObjectItem(game.map, activeObject.id, artifact),
+    };
   }
 
   if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {

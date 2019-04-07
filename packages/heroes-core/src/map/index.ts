@@ -7,8 +7,8 @@ export {
 } from "./ArmedMapObject";
 export {
   ArtifactMapObjectData,
-  handleArtifactMapObject,
   isArtifactMapObjectData,
+  constructArtifactMapObjectArtifact,
 } from "./ArtifactMapObject";
 export {
   CreatureMapObjectData,
