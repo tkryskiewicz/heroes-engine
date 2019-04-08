@@ -1,10 +1,8 @@
-import { Game } from "../Game";
 import { Resources } from "../Resource";
-import { createMap, placeObject } from "./Map";
 import { MapObjectData } from "./MapObject";
 import {
   createResourceGeneratorMapObject,
-  handleResourceGeneratorMapObject,
+  generateResourceGeneratorMapObjectResources,
   isResourceGeneratorMapObjectData,
   ResourceGeneratorMapObject,
   ResourceGeneratorMapObjectData,
@@ -80,8 +78,8 @@ describe("createResourceGeneratorMapObject", () => {
   });
 });
 
-describe("handleResourceGeneratorMapObject", () => {
-  it("should add resources", () => {
+describe("generateResourceGeneratorMapObjectResources", () => {
+  it("should generate resources", () => {
     const objectData: ResourceGeneratorMapObjectData = {
       id: "dataId",
       ownable: true,
@@ -91,73 +89,12 @@ describe("handleResourceGeneratorMapObject", () => {
       },
     };
 
-    const object = createResourceGeneratorMapObject("id", objectData, "owner");
+    const result = generateResourceGeneratorMapObjectResources(objectData);
 
-    const game: Game = {
-      alignment: "owner",
-      data: {
-        artifacts: {},
-        creatures: {},
-        mapObjects: {},
-        resources: {},
-        spells: {},
-      },
-      map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
-      puzzle: {
-        totalPieces: 0,
-        uncoveredPieces: 0,
-      },
-      resources: {},
-      scenario: {
-        description: "Description",
-        name: "Name",
-      },
-    };
-
-    const result = handleResourceGeneratorMapObject(game, object, objectData);
-
-    const expectedResources: Resources = {
+    const expected: Resources = {
       resource: 1,
     };
 
-    expect(result.resources).toEqual(expectedResources);
-  });
-
-  it("should throw when object is not owned by player", () => {
-    const objectData: ResourceGeneratorMapObjectData = {
-      id: "dataId",
-      ownable: true,
-      resourceGenerator: {
-        amount: 1,
-        resource: "resource",
-      },
-    };
-
-    const object = createResourceGeneratorMapObject("id", objectData, "owner");
-
-    const game: Game = {
-      alignment: "otherOwner",
-      data: {
-        artifacts: {},
-        creatures: {},
-        mapObjects: {},
-        resources: {},
-        spells: {},
-      },
-      map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
-      puzzle: {
-        totalPieces: 0,
-        uncoveredPieces: 0,
-      },
-      resources: {},
-      scenario: {
-        description: "Description",
-        name: "Name",
-      },
-    };
-
-    expect(() => {
-      handleResourceGeneratorMapObject(game, object, objectData);
-    }).toThrow();
+    expect(result).toEqual(expected);
   });
 });

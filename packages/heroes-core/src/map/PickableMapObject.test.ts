@@ -1,7 +1,5 @@
-import { Game } from "../Game";
-import { createMap, placeObject } from "./Map";
-import { MapObject, MapObjectData } from "./MapObject";
-import { handlePickableMapObject, isPickableMapObjectData, PickableMapObjectData } from "./PickableMapObject";
+import { MapObjectData } from "./MapObject";
+import { isPickableMapObjectData, PickableMapObjectData } from "./PickableMapObject";
 
 describe("isPickableMapObjectData", () => {
   it("should return true when pickable map object data", () => {
@@ -23,58 +21,5 @@ describe("isPickableMapObjectData", () => {
     const result = isPickableMapObjectData(objectData);
 
     expect(result).toBe(false);
-  });
-});
-
-describe("handlePickableMapObject", () => {
-  it("should remove object", () => {
-    const objectData: PickableMapObjectData = {
-      id: "id",
-      pickable: true,
-    };
-
-    const object: MapObject = {
-      dataId: "dataId",
-      id: "id",
-    };
-
-    const game: Game = {
-      alignment: "alignment",
-      data: {
-        artifacts: {},
-        creatures: {},
-        mapObjects: {
-          id: objectData,
-        },
-        resources: {},
-        spells: {},
-      },
-      map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
-      puzzle: {
-        totalPieces: 0,
-        uncoveredPieces: 0,
-      },
-      resources: {},
-      scenario: {
-        description: "Description",
-        name: "Name",
-      },
-    };
-
-    const result = handlePickableMapObject(game, object);
-
-    const expected: Game = {
-      ...game,
-      map: {
-        ...game.map,
-        tiles: [
-          {
-            terrain: "terrain",
-          },
-        ],
-      },
-    };
-
-    expect(result).toEqual(expected);
   });
 });

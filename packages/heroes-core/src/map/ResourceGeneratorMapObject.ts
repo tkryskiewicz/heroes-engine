@@ -1,9 +1,7 @@
-import { Game } from "../Game";
-import { addResources, Resources } from "../Resource";
+import { Resources } from "../Resource";
 import { createMapObject, MapObjectData } from "./MapObject";
-import { isObjectOwnedBy, OwnableMapObject, OwnableMapObjectData } from "./OwnableMapObject";
+import { OwnableMapObject, OwnableMapObjectData } from "./OwnableMapObject";
 
-// TODO: should be like resource generator object?
 export interface ResourceGeneratorMapObjectData extends MapObjectData, OwnableMapObjectData {
   readonly resourceGenerator: {
     readonly resource: string;
@@ -27,21 +25,6 @@ export const createResourceGeneratorMapObject = (
   owner,
 });
 
-export const handleResourceGeneratorMapObject = (
-  game: Game,
-  object: ResourceGeneratorMapObject,
-  objectData: ResourceGeneratorMapObjectData,
-): Game => {
-  if (!isObjectOwnedBy(object, game.alignment)) {
-    throw new Error(`${objectData.id} (${object.id}) is not owned by ${game.alignment}`);
-  }
-
-  const generatedResources: Resources = {
-    [objectData.resourceGenerator.resource]: objectData.resourceGenerator.amount,
-  };
-
-  return {
-    ...game,
-    resources: addResources(game.resources, generatedResources),
-  };
-};
+export const generateResourceGeneratorMapObjectResources = (objectData: ResourceGeneratorMapObjectData): Resources => ({
+  [objectData.resourceGenerator.resource]: objectData.resourceGenerator.amount,
+});

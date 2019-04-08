@@ -1,4 +1,4 @@
-import { createMap, getObject, isPointValid, Map, moveObject, placeObject, removeObject } from "./Map";
+import { createMap, getObject, isPointValid, Map, moveObject, placeObject, removeObject, replaceObject } from "./Map";
 import { MapObject } from "./MapObject";
 import { MapPoint } from "./MapPoint";
 
@@ -278,5 +278,48 @@ describe("removeObject", () => {
     const result = removeObject(map, "id");
 
     expect(result).toEqual(map);
+  });
+});
+
+describe("replaceObject", () => {
+  it("should replace object", () => {
+    const object: MapObject = {
+      dataId: "dataId",
+      id: "id",
+    };
+
+    // TODO: remove, coverage dummy
+    const otherObject: MapObject = {
+      dataId: "otherDataId",
+      id: "otherId",
+    };
+
+    const map = placeObject(
+      placeObject(createMap(2, 1, "terrain"), { x: 0, y: 0 }, object),
+      { x: 1, y: 0 },
+      otherObject);
+
+    const updatedObject: MapObject = {
+      dataId: "otherDataId",
+      id: "id",
+    };
+
+    const result = replaceObject(map, updatedObject);
+
+    const expected: Map = {
+      ...map,
+      tiles: [
+        {
+          object: updatedObject,
+          terrain: "terrain",
+        },
+        {
+          object: otherObject,
+          terrain: "terrain",
+        },
+      ],
+    };
+
+    expect(result).toEqual(expected);
   });
 });

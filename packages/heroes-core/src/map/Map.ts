@@ -38,7 +38,7 @@ const getTileIndex = (map: Map, point: MapPoint): number =>
 
 export const placeObject = (map: Map, point: MapPoint, object: MapObject): Map => {
   if (!isPointValid(map, point)) {
-    throw new Error("point must be a valid map point");
+    throw new Error(`Point {${point.x},${point.y}} is outside a ${map.width}x${map.height} map`);
   }
 
   const index = getTileIndex(map, point);

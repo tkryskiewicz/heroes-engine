@@ -7,12 +7,10 @@ import {
   changeOwnableMapObjectOwner,
   constructArtifactMapObjectArtifact,
   dismissArmedMapObjectTroop,
+  generateResourceGeneratorMapObjectResources,
+  generateTreasureMapObjectResources,
   getObject,
   getVisitor,
-  handlePickableMapObject,
-  handlePuzzleMapObject,
-  handleResourceGeneratorMapObject,
-  handleTreasureMapObject,
   isArmedMapObject,
   isArtifactMapObjectData,
   isDwellingMapObject,
@@ -41,7 +39,7 @@ import {
   tradeEquipableMapObjectItems,
   visitLimitedInteractionMapObject,
 } from "./map";
-import { multiplyResources, ResourceData, Resources, subtractResources } from "./Resource";
+import { addResources, multiplyResources, ResourceData, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
 import { isDwellingStructure } from "./Structure";
@@ -205,7 +203,8 @@ export const recruitGameTroop = (game: Game, townId: string, structureId: string
   const cost = multiplyResources(structure.dwelling.cost, count);
 
   return {
-    ...recruitTownMapObjectTroop(game, townId, structureId, count),
+    ...game,
+    map: replaceObject(game.map, recruitTownMapObjectTroop(object, structureId, count)),
     resources: subtractResources(game.resources, cost),
   };
 };
@@ -221,7 +220,12 @@ export const startGameTurn = (game: Game): Game => {
       const objectData = game.data.mapObjects[o.dataId];
 
       if (isResourceGeneratorMapObjectData(objectData)) {
-        game = handleResourceGeneratorMapObject(game, o, objectData);
+        const resources = generateResourceGeneratorMapObjectResources(objectData);
+
+        game = {
+          ...game,
+          resources: addResources(game.resources, resources),
+        };
       }
     });
 
@@ -278,7 +282,12 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
   }
 
   if (isTreasureMapObject(object)) {
-    game = handleTreasureMapObject(game, object);
+    const resources = generateTreasureMapObjectResources(object);
+
+    game = {
+      ...game,
+      resources: addResources(game.resources, resources),
+    };
   }
 
   if (isArtifactMapObjectData(objectData)) {
@@ -312,11 +321,21 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
   }
 
   if (isPuzzleMapObjectData(objectData)) {
-    game = handlePuzzleMapObject(game);
+    game = {
+      ...game,
+      puzzle: {
+        ...game.puzzle,
+        // TODO: take into account total puzzle objects?
+        uncoveredPieces: Math.min(game.puzzle.uncoveredPieces + 1, game.puzzle.totalPieces),
+      },
+    };
   }
 
   if (isPickableMapObjectData(objectData)) {
-    game = handlePickableMapObject(game, object);
+    game = {
+      ...game,
+      map: removeObject(game.map, object.id),
+    };
   }
 
   if (isOwnableMapObjectData(objectData) && isOwnableMapObject(object)) {

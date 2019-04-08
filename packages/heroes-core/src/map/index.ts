@@ -72,14 +72,14 @@ export {
   isObjectOwnedBy,
   changeOwnableMapObjectOwner,
 } from "./OwnableMapObject";
-export { PickableMapObjectData, isPickableMapObjectData, handlePickableMapObject } from "./PickableMapObject";
-export { PuzzleMapObjectData, isPuzzleMapObjectData, handlePuzzleMapObject } from "./PuzzleMapObject";
+export { PickableMapObjectData, isPickableMapObjectData } from "./PickableMapObject";
+export { PuzzleMapObjectData, isPuzzleMapObjectData } from "./PuzzleMapObject";
 export {
   ResourceGeneratorMapObject,
   ResourceGeneratorMapObjectData,
   isResourceGeneratorMapObjectData,
   createResourceGeneratorMapObject,
-  handleResourceGeneratorMapObject,
+  generateResourceGeneratorMapObjectResources,
 } from "./ResourceGeneratorMapObject";
 export {
   TownMapObject,
@@ -94,5 +94,5 @@ export {
   isTreasureMapObjectData,
   isTreasureMapObject,
   createTreasureMapObject,
-  handleTreasureMapObject,
+  generateTreasureMapObjectResources,
 } from "./TreasureMapObject";
