@@ -1,9 +1,8 @@
-import { Game } from "../Game";
-import { Hero } from "../Hero";
 import { createMapObject, isMapObject, MapObject, MapObjectData } from "./MapObject";
+import { OwnableMapObject } from "./OwnableMapObject";
 
 export enum InteractionLimitType {
-  OncePerHero = "oncePerHero",
+  OncePerObject = "oncePerObject",
   OncePerAlignment = "oncePerAlignment",
 }
 
@@ -30,10 +29,15 @@ export const createLimitedInteractionMapObject = (
   visitedBy: [],
 });
 
-export const getVisitor = (objectData: LimitedInteractionMapObjectData, alignment: string, hero: string): string =>
-  objectData.interactionLimit === InteractionLimitType.OncePerAlignment ?
-    alignment :
-    hero;
+export const getVisitor = (objectData: LimitedInteractionMapObjectData, object: OwnableMapObject): string => {
+  if (!object.owner) {
+    throw new Error(`${object.id} is not owned by anyone`);
+  }
+
+  return objectData.interactionLimit === InteractionLimitType.OncePerAlignment ?
+    object.owner :
+    object.id;
+};
 
 export const wasVisitedBy = (
   object: LimitedInteractionMapObject,
@@ -41,37 +45,19 @@ export const wasVisitedBy = (
 ): boolean =>
   object.visitedBy.includes(visitor);
 
-export const handleLimitedInteractionMapObject = (
-  game: Game,
+export const visitLimitedInteractionMapObject = (
   object: LimitedInteractionMapObject,
-  objectData: LimitedInteractionMapObjectData,
-  hero: Hero,
-): Game => {
-  const visitor = getVisitor(objectData, game.alignment, hero.id);
-
+  visitor: string,
+): LimitedInteractionMapObject => {
   if (wasVisitedBy(object, visitor)) {
-    throw new Error("Object was already visited");
+    throw new Error(`${object.id} was already visited by ${visitor}`);
   }
 
-  const visitedObject: LimitedInteractionMapObject = {
+  return {
     ...object,
     visitedBy: [
       ...object.visitedBy,
       visitor,
     ],
-  };
-
-  return {
-    ...game,
-    map: {
-      ...game.map,
-      tiles: game.map.tiles.map((t) => t.object && t.object.id === object.id ?
-        {
-          ...t,
-          object: visitedObject,
-        } :
-        t,
-      ),
-    },
   };
 };

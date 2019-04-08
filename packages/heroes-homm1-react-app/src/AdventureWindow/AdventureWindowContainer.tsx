@@ -144,7 +144,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private renderMapObjectDetails(id: string) {
-    const { mapObjects, alignment, selectedLocator, heroes } = this.props;
+    const { mapObjects, selectedLocator, heroes } = this.props;
 
     const activeHero = selectedLocator !== undefined && selectedLocator.type === LocatorType.Hero ?
       heroes[selectedLocator.index] :
@@ -155,7 +155,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
 
     const objectData = mapObjects[mapObject.dataId];
 
-    return renderMapObjectDetails(alignment, mapObject, objectData, activeHero, {
+    return renderMapObjectDetails(mapObject, objectData, activeHero, {
       onCloseClick: this.onCloseMapObjectDetailsClick,
       onConfirmClick: this.onConfirmMapObjectDetailsClick,
     });

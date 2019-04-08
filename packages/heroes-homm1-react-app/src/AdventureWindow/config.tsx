@@ -104,17 +104,16 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData) =>
 };
 
 export const renderMapObjectDetails = (
-  alignment: string,
   object: MapObject,
   objectData: MapObjectData,
-  hero: Hero | undefined,
+  activeObject: Hero | undefined,
   props: {
     readonly onConfirmClick: () => void;
     readonly onCloseClick: () => void;
   },
 ) => {
-  if (hero && isLimitedInteractionMapObjectData(objectData) && isLimitedInteractionMapObject(object)) {
-    const visitor = getVisitor(objectData, alignment, hero.id);
+  if (activeObject && isLimitedInteractionMapObjectData(objectData) && isLimitedInteractionMapObject(object)) {
+    const visitor = getVisitor(objectData, activeObject);
 
     if (object.dataId === MapObjectId.Obelisk) {
       if (wasVisitedBy(object, visitor)) {

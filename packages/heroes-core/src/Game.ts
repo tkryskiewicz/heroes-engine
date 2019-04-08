@@ -8,7 +8,7 @@ import {
   constructArtifactMapObjectArtifact,
   dismissArmedMapObjectTroop,
   getObject,
-  handleLimitedInteractionMapObject,
+  getVisitor,
   handlePickableMapObject,
   handlePuzzleMapObject,
   handleResourceGeneratorMapObject,
@@ -39,6 +39,7 @@ import {
   swapArmedMapObjectTroops,
   TownMapObject,
   tradeEquipableMapObjectItems,
+  visitLimitedInteractionMapObject,
 } from "./map";
 import { multiplyResources, ResourceData, Resources, subtractResources } from "./Resource";
 import { Scenario } from "./Scenario";
@@ -264,7 +265,16 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
   }
 
   if (isLimitedInteractionMapObjectData(objectData) && isLimitedInteractionMapObject(object)) {
-    game = handleLimitedInteractionMapObject(game, object, objectData, activeHero);
+    if (!isOwnableMapObject(activeObject)) {
+      throw new Error(`${hero} is not an ownable object`);
+    }
+
+    const visitor = getVisitor(objectData, activeObject);
+
+    game = {
+      ...game,
+      map: replaceObject(game.map, visitLimitedInteractionMapObject(object, visitor)),
+    };
   }
 
   if (isTreasureMapObject(object)) {

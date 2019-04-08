@@ -44,7 +44,7 @@ export {
   createLimitedInteractionMapObject,
   getVisitor,
   wasVisitedBy,
-  handleLimitedInteractionMapObject,
+  visitLimitedInteractionMapObject,
 } from "./LimitedInteractionMapObject";
 export {
   Map,

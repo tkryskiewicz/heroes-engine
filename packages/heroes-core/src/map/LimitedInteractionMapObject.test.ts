@@ -1,18 +1,16 @@
-import { Game } from "../Game";
-import { Hero } from "../Hero";
 import {
   createLimitedInteractionMapObject,
   getVisitor,
-  handleLimitedInteractionMapObject,
   InteractionLimitType,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
   LimitedInteractionMapObject,
   LimitedInteractionMapObjectData,
+  visitLimitedInteractionMapObject,
   wasVisitedBy,
 } from "./LimitedInteractionMapObject";
-import { createMap, getObject, placeObject } from "./Map";
 import { MapObject, MapObjectData } from "./MapObject";
+import { OwnableMapObject } from "./OwnableMapObject";
 
 describe("isLimitedInteractionMapObjectData", () => {
   it("should return true when limited interaction object data", () => {
@@ -88,20 +86,48 @@ describe("getVisitor", () => {
       interactionLimit: InteractionLimitType.OncePerAlignment,
     };
 
-    const result = getVisitor(objectData, "alignment", "hero");
+    const object: OwnableMapObject = {
+      dataId: "otherDataId",
+      id: "id",
+      owner: "alignment",
+    };
+
+    const result = getVisitor(objectData, object);
 
     expect(result).toBe("alignment");
   });
 
-  it("should return hero when once per hero", () => {
+  it("should return object id when once per hero", () => {
     const objectData: LimitedInteractionMapObjectData = {
       id: "dataId",
-      interactionLimit: InteractionLimitType.OncePerHero,
+      interactionLimit: InteractionLimitType.OncePerObject,
     };
 
-    const result = getVisitor(objectData, "alignment", "hero");
+    const object: OwnableMapObject = {
+      dataId: "otherDataId",
+      id: "id",
+      owner: "alignment",
+    };
 
-    expect(result).toBe("hero");
+    const result = getVisitor(objectData, object);
+
+    expect(result).toBe("id");
+  });
+
+  it("should throw when object is not owned", () => {
+    const objectData: LimitedInteractionMapObjectData = {
+      id: "dataId",
+      interactionLimit: InteractionLimitType.OncePerAlignment,
+    };
+
+    const object: OwnableMapObject = {
+      dataId: "otherDataId",
+      id: "id",
+    };
+
+    expect(() => {
+      getVisitor(objectData, object);
+    }).toThrow();
   });
 });
 
@@ -133,120 +159,37 @@ describe("wasVisitedBy", () => {
   });
 });
 
-describe("handleLimitedInteractionMapObject", () => {
+describe("visitLimitedInteractionMapObject", () => {
   it("should add visitor", () => {
-    const objectData: LimitedInteractionMapObjectData = {
-      id: "dataId",
-      interactionLimit: InteractionLimitType.OncePerAlignment,
-    };
-
     const object: LimitedInteractionMapObject = {
       dataId: "dataId",
       id: "id",
       visitedBy: [],
     };
 
-    const hero: Hero = {
-      army: [],
-      artifacts: [],
-      dataId: "hero",
-      experience: 0,
-      heroClass: "heroClass",
-      id: "hero",
-      luck: 0,
-      mobility: 0,
-      morale: 0,
-      skills: {},
-    };
-
-    const game: Game = {
-      alignment: "alignment",
-      data: {
-        artifacts: {},
-        creatures: {},
-        mapObjects: {
-          id: objectData,
-        },
-        resources: {},
-        spells: {},
-      },
-      map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
-      puzzle: {
-        totalPieces: 0,
-        uncoveredPieces: 0,
-      },
-      resources: {},
-      scenario: {
-        description: "Description",
-        name: "Name",
-      },
-    };
-
-    const result = handleLimitedInteractionMapObject(game, object, objectData, hero);
+    const result = visitLimitedInteractionMapObject(object, "visitor");
 
     const expected: LimitedInteractionMapObject = {
-      dataId: "dataId",
-      id: "id",
+      ...object,
       visitedBy: [
-        "alignment",
+        "visitor",
       ],
     };
 
-    expect(getObject(result.map, "id")).toEqual(expected);
+    expect(result).toEqual(expected);
   });
 
-  it("should throw when object was already visited", () => {
-    const objectData: LimitedInteractionMapObjectData = {
-      id: "dataId",
-      interactionLimit: InteractionLimitType.OncePerAlignment,
-    };
-
+  it("should throw when already visited", () => {
     const object: LimitedInteractionMapObject = {
       dataId: "dataId",
       id: "id",
       visitedBy: [
-        "alignment",
+        "visitor",
       ],
     };
 
-    const hero: Hero = {
-      army: [],
-      artifacts: [],
-      dataId: "hero",
-      experience: 0,
-      heroClass: "heroClass",
-      id: "hero",
-      luck: 0,
-      mobility: 0,
-      morale: 0,
-      skills: {},
-    };
-
-    const game: Game = {
-      alignment: "alignment",
-      data: {
-        artifacts: {},
-        creatures: {},
-        mapObjects: {
-          id: objectData,
-        },
-        resources: {},
-        spells: {},
-      },
-      map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
-      puzzle: {
-        totalPieces: 0,
-        uncoveredPieces: 0,
-      },
-      resources: {},
-      scenario: {
-        description: "Description",
-        name: "Name",
-      },
-    };
-
     expect(() => {
-      handleLimitedInteractionMapObject(game, object, objectData, hero);
+      visitLimitedInteractionMapObject(object, "visitor");
     }).toThrow();
   });
 });
