@@ -4,11 +4,11 @@ import { Hero } from "./Hero";
 import {
   addEquipableMapObjectItem,
   appendArmedMapObjectTroop,
+  changeOwnableMapObjectOwner,
   constructArtifactMapObjectArtifact,
   dismissArmedMapObjectTroop,
   getObject,
   handleLimitedInteractionMapObject,
-  handleOwnableMapObject,
   handlePickableMapObject,
   handlePuzzleMapObject,
   handleResourceGeneratorMapObject,
@@ -310,7 +310,14 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
   }
 
   if (isOwnableMapObjectData(objectData) && isOwnableMapObject(object)) {
-    game = handleOwnableMapObject(game, object, objectData);
+    if (!isOwnableMapObject(activeObject)) {
+      throw new Error(`${hero} is not an ownable object`);
+    }
+
+    game = {
+      ...game,
+      map: replaceObject(game.map, changeOwnableMapObjectOwner(object, activeObject.owner)),
+    };
   }
 
   return {

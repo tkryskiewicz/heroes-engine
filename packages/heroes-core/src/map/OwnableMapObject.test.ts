@@ -1,9 +1,7 @@
-import { Game } from "../Game";
-import { createMap, getObject, placeObject } from "./Map";
 import { MapObject, MapObjectData } from "./MapObject";
 import {
+  changeOwnableMapObjectOwner,
   createOwnableMapObject,
-  handleOwnableMapObject,
   isObjectOwnedBy,
   isOwnableMapObject,
   isOwnableMapObjectData,
@@ -124,78 +122,37 @@ describe("isObjectOwnedBy", () => {
   });
 });
 
-describe("handleOwnableMapObject", () => {
+describe("changeOwnableMapObjectOwner", () => {
   it("should set owner", () => {
-    const objectData: OwnableMapObjectData = {
-      id: "dataId",
-      ownable: true,
+    const object: OwnableMapObject = {
+      dataId: "dataId",
+      id: "id",
     };
 
-    const object = createOwnableMapObject("id", objectData);
+    const result = changeOwnableMapObjectOwner(object, "alignment");
 
-    const game: Game = {
-      alignment: "alignment",
-      data: {
-        artifacts: {},
-        creatures: {},
-        mapObjects: {},
-        resources: {},
-        spells: {},
-      },
-      map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
-      puzzle: {
-        totalPieces: 0,
-        uncoveredPieces: 0,
-      },
-      resources: {},
-      scenario: {
-        description: "Description",
-        name: "Name",
-      },
+    const expected: OwnableMapObject = {
+      ...object,
+      owner: "alignment",
     };
 
-    const result = handleOwnableMapObject(game, object, objectData);
+    expect(result).toEqual(expected);
+  });
 
-    const expectedObject: OwnableMapObject = {
+  it("should clear owner", () => {
+    const object: OwnableMapObject = {
       dataId: "dataId",
       id: "id",
       owner: "alignment",
     };
 
-    expect(getObject(result.map, "id")).toEqual(expectedObject);
-  });
+    const result = changeOwnableMapObjectOwner(object, undefined);
 
-  it("should throw when already an owner", () => {
-    const objectData: OwnableMapObjectData = {
-      id: "dataId",
-      ownable: true,
+    const expected: OwnableMapObject = {
+      ...object,
+      owner: undefined,
     };
 
-    const object = createOwnableMapObject("id", objectData, "alignment");
-
-    const game: Game = {
-      alignment: "alignment",
-      data: {
-        artifacts: {},
-        creatures: {},
-        mapObjects: {},
-        resources: {},
-        spells: {},
-      },
-      map: placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object),
-      puzzle: {
-        totalPieces: 0,
-        uncoveredPieces: 0,
-      },
-      resources: {},
-      scenario: {
-        description: "Description",
-        name: "Name",
-      },
-    };
-
-    expect(() => {
-      handleOwnableMapObject(game, object, objectData);
-    }).toThrow();
+    expect(result).toEqual(expected);
   });
 });

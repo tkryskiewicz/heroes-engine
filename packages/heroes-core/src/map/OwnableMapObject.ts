@@ -1,4 +1,3 @@
-import { Game } from "../Game";
 import { createMapObject, isMapObject, MapObject, MapObjectData } from "./MapObject";
 
 export interface OwnableMapObjectData extends MapObjectData {
@@ -27,31 +26,7 @@ export const createOwnableMapObject = (
 export const isObjectOwnedBy = (object: OwnableMapObject, owner: string): boolean =>
   object.owner === owner;
 
-export const handleOwnableMapObject = (
-  game: Game,
-  object: OwnableMapObject,
-  objectData: OwnableMapObjectData,
-): Game => {
-  if (isObjectOwnedBy(object, game.alignment)) {
-    throw new Error(`${objectData.id} (${object.id}) is already owned by ${game.alignment}`);
-  }
-
-  const ownedObject: OwnableMapObject = {
-    ...object,
-    owner: game.alignment,
-  };
-
-  return {
-    ...game,
-    map: {
-      ...game.map,
-      tiles: game.map.tiles.map((t) => t.object && t.object.id === object.id ?
-        {
-          ...t,
-          object: ownedObject,
-        } :
-        t,
-      ),
-    },
-  };
-};
+export const changeOwnableMapObjectOwner = (object: OwnableMapObject, owner: string | undefined): OwnableMapObject => ({
+  ...object,
+  owner,
+});

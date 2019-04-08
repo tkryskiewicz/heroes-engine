@@ -67,10 +67,10 @@ export {
   OwnableMapObject,
   OwnableMapObjectData,
   createOwnableMapObject,
-  handleOwnableMapObject,
   isOwnableMapObject,
   isOwnableMapObjectData,
   isObjectOwnedBy,
+  changeOwnableMapObjectOwner,
 } from "./OwnableMapObject";
 export { PickableMapObjectData, isPickableMapObjectData, handlePickableMapObject } from "./PickableMapObject";
 export { PuzzleMapObjectData, isPuzzleMapObjectData, handlePuzzleMapObject } from "./PuzzleMapObject";
