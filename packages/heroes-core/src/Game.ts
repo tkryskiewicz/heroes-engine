@@ -108,10 +108,27 @@ export const swapGameTroops = (
   };
 };
 
-export const tradeGameArtifacts = (game: Game, artifact: ArtifactSelection, withArtifact: ArtifactSelection): Game => ({
-  ...game,
-  map: tradeEquipableMapObjectItems(game.map, artifact, withArtifact),
-});
+export const tradeGameArtifacts = (game: Game, artifact: ArtifactSelection, withArtifact: ArtifactSelection): Game => {
+  const object = getObject(game.map, artifact.hero);
+
+  if (!isEquipableMapObject(object)) {
+    throw new Error(`${artifact.hero} is not an equipable object`);
+  }
+
+  const withObject = getObject(game.map, withArtifact.hero);
+
+  if (!isEquipableMapObject(withObject)) {
+    throw new Error(`${withArtifact.hero} is not an equipable object`);
+  }
+
+  const [objectResult, withObjectResult] =
+    tradeEquipableMapObjectItems(object, artifact.index, withObject, withArtifact.index);
+
+  return {
+    ...game,
+    map: replaceObject(replaceObject(game.map, objectResult), withObjectResult),
+  };
+};
 
 export const dismissGameHero = (game: Game, hero: string): Game => ({
   ...game,
@@ -261,9 +278,11 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
 
     const artifact = constructArtifactMapObjectArtifact(objectData);
 
+    const activeObjectResult = addEquipableMapObjectItem(activeObject, artifact);
+
     game = {
       ...game,
-      map: addEquipableMapObjectItem(game.map, activeObject.id, artifact),
+      map: replaceObject(game.map, activeObjectResult),
     };
   }
 

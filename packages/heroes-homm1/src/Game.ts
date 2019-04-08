@@ -5,6 +5,7 @@ import {
   getObject,
   getTownStructure,
   isHeroMapObject,
+  replaceObject,
   Resources,
   subtractResources,
 } from "heroes-core";
@@ -34,7 +35,7 @@ export const buyMageGuildSpellBook = (game: Game, heroId: string, townId: string
 
   return {
     ...game,
-    map: addEquipableMapObjectItem(game.map, heroId, spellBook),
+    map: replaceObject(game.map, addEquipableMapObjectItem(object, spellBook)),
     resources: subtractResources(game.resources, cost),
   };
 };

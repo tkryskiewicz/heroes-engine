@@ -1,5 +1,4 @@
-import { Artifact, ArtifactSelection } from "../Artifact";
-import { getObject, Map, replaceObject } from "./Map";
+import { Artifact } from "../Artifact";
 import { isMapObject, MapObject } from "./MapObject";
 
 export interface EquipableMapObject extends MapObject {
@@ -9,53 +8,32 @@ export interface EquipableMapObject extends MapObject {
 export const isEquipableMapObject = (object: MapObject | undefined): object is EquipableMapObject =>
   isMapObject(object) && (object as EquipableMapObject).artifacts !== undefined;
 
-export const addEquipableMapObjectItem = (map: Map, objectId: string, artifact: Artifact): Map => {
-  const object = getObject(map, objectId);
+// TODO: handle no free slot
+export const addEquipableMapObjectItem = (object: EquipableMapObject, item: Artifact): EquipableMapObject => ({
+  ...object,
+  artifacts: [
+    ...object.artifacts,
+    item,
+  ],
+});
 
-  if (!isEquipableMapObject(object)) {
-    throw new Error(`${objectId} is not an equipable object`);
-  }
-
-  // TODO: handle no free slot
-  const objectResult: EquipableMapObject = {
-    ...object,
-    artifacts: [
-      ...object.artifacts,
-      artifact,
-    ],
-  };
-
-  return replaceObject(map, objectResult);
-};
-
-export const hasEquipableMapObjectItem = (object: EquipableMapObject, artifact: string): boolean =>
-  object.artifacts.some((a) => a !== undefined && a.id === artifact);
+export const hasEquipableMapObjectItem = (object: EquipableMapObject, item: string): boolean =>
+  object.artifacts.some((a) => a !== undefined && a.id === item);
 
 export const tradeEquipableMapObjectItems = (
-  map: Map,
-  artifact: ArtifactSelection,
-  withArtifact: ArtifactSelection,
-): Map => {
-  const object = getObject(map, artifact.hero);
-
-  if (!isEquipableMapObject(object)) {
-    throw new Error(`${artifact.hero} is not an equipable object`);
-  }
-
-  const withObject = getObject(map, withArtifact.hero);
-
-  if (!isEquipableMapObject(withObject)) {
-    throw new Error(`${withArtifact.hero} is not an equipable object`);
-  }
-
+  object: EquipableMapObject,
+  index: number,
+  withObject: EquipableMapObject,
+  withIndex: number,
+): [EquipableMapObject, EquipableMapObject] => {
   const artifacts = [...object.artifacts];
 
-  const withArtifacts = artifact.hero === withArtifact.hero ?
+  const withArtifacts = object.id === withObject.id ?
     artifacts :
     [...withObject.artifacts];
 
-  artifacts[artifact.index] = withObject.artifacts[withArtifact.index];
-  withArtifacts[withArtifact.index] = object.artifacts[artifact.index];
+  artifacts[index] = withObject.artifacts[withIndex];
+  withArtifacts[withIndex] = object.artifacts[index];
 
   const objectResult: EquipableMapObject = {
     ...object,
@@ -67,5 +45,8 @@ export const tradeEquipableMapObjectItems = (
     artifacts: withArtifacts,
   };
 
-  return replaceObject(replaceObject(map, objectResult), withObjectResult);
+  return [
+    objectResult,
+    withObjectResult,
+  ];
 };
