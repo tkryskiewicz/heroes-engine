@@ -10,8 +10,6 @@ import {
   isDwellingMapObject,
   isDwellingMapObjectData,
   isHeroMapObject,
-  isLimitedInteractionMapObject,
-  isLimitedInteractionMapObjectData,
   isObjectOwnedBy,
   isStructureBuilt,
   isTownMapObject,
@@ -21,7 +19,14 @@ import {
   Town,
   wasVisitedBy,
 } from "heroes-core";
-import { isMineMapObject, isMineMapObjectData, isResourceMapObject, MapObjectId, StructureId } from "heroes-homm1";
+import {
+  isMineMapObject,
+  isMineMapObjectData,
+  isObeliskMapObject,
+  isObeliskMapObjectData,
+  isResourceMapObject,
+  StructureId,
+} from "heroes-homm1";
 import {
   ArtifactMapObject,
   CreatureJoinPrompt,
@@ -112,26 +117,24 @@ export const renderMapObjectDetails = (
     readonly onCloseClick: () => void;
   },
 ) => {
-  if (activeObject && isLimitedInteractionMapObjectData(objectData) && isLimitedInteractionMapObject(object)) {
+  if (activeObject && isObeliskMapObject(object) && isObeliskMapObjectData(objectData)) {
     const visitor = getVisitor(objectData, activeObject);
 
-    if (object.dataId === MapObjectId.Obelisk) {
-      if (wasVisitedBy(object, visitor)) {
-        return (
-          <ObeliskAlreadyVisitedPrompt
-            visible={true}
-            onConfirmClick={props.onCloseClick}
-          />
-        );
-      }
-
+    if (wasVisitedBy(object, visitor)) {
       return (
-        <VisitObeliskPrompt
+        <ObeliskAlreadyVisitedPrompt
           visible={true}
-          onConfirmClick={props.onConfirmClick}
+          onConfirmClick={props.onCloseClick}
         />
       );
     }
+
+    return (
+      <VisitObeliskPrompt
+        visible={true}
+        onConfirmClick={props.onConfirmClick}
+      />
+    );
   }
 
   if (isMineMapObjectData(objectData, data)) {

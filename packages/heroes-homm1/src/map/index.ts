@@ -6,6 +6,12 @@ export {
   isMineMapObjectData,
 } from "./MineMapObject";
 export {
+  ObeliskMapObject,
+  ObeliskMapObjectData,
+  isObeliskMapObject,
+  isObeliskMapObjectData,
+} from "./ObeliskMapObject";
+export {
   ResourceMapObject,
   ResourceMapObjectData,
   isResourceMapObject,

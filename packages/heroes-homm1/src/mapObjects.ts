@@ -4,17 +4,15 @@ import {
   DwellingMapObjectData,
   HeroMapObjectData,
   InteractionLimitType,
-  LimitedInteractionMapObjectData,
   MapObjectData,
   PickableMapObjectData,
-  PuzzleMapObjectData,
   TownMapObjectData,
   TreasureMapObjectData,
 } from "heroes-core";
 
 import { ArtifactId, artifacts } from "./artifacts";
 import { CreatureId, creatures } from "./creatures";
-import { MapObjectId, MineMapObjectData, ResourceMapObjectData } from "./map";
+import { MapObjectId, MineMapObjectData, ObeliskMapObjectData, ResourceMapObjectData } from "./map";
 import { Resource } from "./Resource";
 
 const heroObjects: HeroMapObjectData[] = [
@@ -224,7 +222,7 @@ const dwellingObjects: DwellingMapObjectData[] = [
   },
 ];
 
-const puzzleObjects: Array<PuzzleMapObjectData & LimitedInteractionMapObjectData> = [
+const puzzleObjects: ObeliskMapObjectData[] = [
   {
     id: MapObjectId.Obelisk,
     interactionLimit: InteractionLimitType.OncePerAlignment,
