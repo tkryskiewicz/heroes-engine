@@ -1,6 +1,8 @@
 import * as React from "react";
+import { Dispatch } from "redux";
 
 import {
+  GameData,
   getVisitor,
   Hero,
   isArtifactMapObjectData,
@@ -21,7 +23,7 @@ import {
   Town,
   wasVisitedBy,
 } from "heroes-core";
-import { MapObjectId, StructureId } from "heroes-homm1";
+import { isResourceMapObject, MapObjectId, StructureId } from "heroes-homm1";
 import {
   ArtifactMapObject,
   CreatureJoinPrompt,
@@ -37,9 +39,8 @@ import {
   VisitObeliskPrompt,
 } from "heroes-homm1-react";
 import { adventureScreenActions, gameActions, locatorsActions, LocatorType } from "heroes-homm1-state";
-import { Dispatch } from "redux";
 
-export const renderMapObject = (object: MapObject, objectData: MapObjectData) => {
+export const renderMapObject = (object: MapObject, objectData: MapObjectData, data: GameData) => {
   if (isHeroMapObject(object)) {
     return (
       <HeroMapObject
@@ -68,7 +69,7 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData) =>
     );
   }
 
-  if (isTreasureMapObject(object)) {
+  if (isResourceMapObject(object, data)) {
     // TODO: handle multiple resources
     const resource = Object.keys(object.treasure)[0];
 

@@ -1,6 +1,6 @@
 import { ResourceData } from "heroes-core";
 
-import { MapObjectId } from "./mapObjects";
+import { MapObjectId } from "./map";
 import { Resource } from "./Resource";
 
 export const resources: ResourceData[] = [

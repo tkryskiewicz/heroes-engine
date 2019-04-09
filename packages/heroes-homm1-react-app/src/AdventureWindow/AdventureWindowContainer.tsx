@@ -20,7 +20,7 @@ import { HeroTradingWindow } from "../HeroTradingWindow";
 import { onTileClick, renderMapObject, renderMapObjectDetails } from "./config";
 
 interface Props extends DispatchProp {
-  readonly mapObjects: GameData["mapObjects"];
+  readonly data: GameData;
   readonly alignment: string;
   readonly map: Map;
   readonly heroes: Hero[];
@@ -76,11 +76,11 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private renderMapObject(object: MapObject) {
-    const { mapObjects } = this.props;
+    const { data } = this.props;
 
-    const objectData = mapObjects[object.dataId];
+    const objectData = data.mapObjects[object.dataId];
 
-    return renderMapObject(object, objectData);
+    return renderMapObject(object, objectData, data);
   }
 
   private readonly onTileMouseEnter = (index: number) => {
@@ -122,7 +122,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private readonly onTileClick = (index: number) => {
-    const { mapObjects, heroes, towns, alignment, selectedLocator } = this.props;
+    const { data, heroes, towns, alignment, selectedLocator } = this.props;
 
     const activeHero = selectedLocator !== undefined && selectedLocator.type === LocatorType.Hero ?
       this.props.heroes[selectedLocator.index] :
@@ -137,14 +137,14 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     const object = tile.object;
 
     if (object) {
-      const objectData = mapObjects[object.dataId];
+      const objectData = data.mapObjects[object.dataId];
 
       onTileClick(alignment, object, objectData, heroes, activeHero, towns, activeTown, this.props.dispatch);
     }
   }
 
   private renderMapObjectDetails(id: string) {
-    const { mapObjects, selectedLocator, heroes } = this.props;
+    const { data, selectedLocator, heroes } = this.props;
 
     const activeHero = selectedLocator !== undefined && selectedLocator.type === LocatorType.Hero ?
       heroes[selectedLocator.index] :
@@ -153,7 +153,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     const mapObject: MapObject =
       this.props.map.tiles.find((t) => t.object !== undefined && (t.object as any).id === id)!.object!;
 
-    const objectData = mapObjects[mapObject.dataId];
+    const objectData = data.mapObjects[mapObject.dataId];
 
     return renderMapObjectDetails(mapObject, objectData, activeHero, {
       onCloseClick: this.onCloseMapObjectDetailsClick,

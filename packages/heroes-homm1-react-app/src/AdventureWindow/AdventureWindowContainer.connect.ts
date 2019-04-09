@@ -6,7 +6,7 @@ import { AppState } from "heroes-homm1-state";
 import { AdventureWindow, AdventureWindowProps } from "./AdventureWindowContainer";
 
 type StateProp =
-  "mapObjects" |
+  "data" |
   "alignment" |
   "map" |
   "heroes" |
@@ -17,10 +17,10 @@ type StateProp =
 
 const mapStateToProps = (state: AppState): Pick<AdventureWindowProps, StateProp> => ({
   alignment: state.game.alignment,
+  data: state.game.data,
   heroTradingScreenVisible: state.adventureScreen.heroTradingWindowVisible,
   heroes: getGameHeroes(state.game),
   map: state.game.map,
-  mapObjects: state.game.data.mapObjects,
   selectedLocator: state.locators.selectedLocator,
   towns: getGameTowns(state.game),
   visibleMapObjectDetails: state.adventureScreen.visibleMapObjectDetails,

@@ -21,7 +21,8 @@ export {
   ArtifactLuckModifier,
   StructureVisitedLuckModifier,
 } from "./luck";
-export { MapObjectId, mapObjects } from "./mapObjects";
+export * from "./map";
+export { mapObjects } from "./mapObjects";
 export {
   MoraleType,
   getMoraleType,
