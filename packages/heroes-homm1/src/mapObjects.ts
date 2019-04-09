@@ -8,14 +8,13 @@ import {
   MapObjectData,
   PickableMapObjectData,
   PuzzleMapObjectData,
-  ResourceGeneratorMapObjectData,
   TownMapObjectData,
   TreasureMapObjectData,
 } from "heroes-core";
 
 import { ArtifactId, artifacts } from "./artifacts";
 import { CreatureId, creatures } from "./creatures";
-import { MapObjectId, ResourceMapObjectData } from "./map";
+import { MapObjectId, MineMapObjectData, ResourceMapObjectData } from "./map";
 import { Resource } from "./Resource";
 
 const heroObjects: HeroMapObjectData[] = [
@@ -142,7 +141,7 @@ const treasureObjects: Array<TreasureMapObjectData & PickableMapObjectData> = [
   },
 ];
 
-const mineObjects: ResourceGeneratorMapObjectData[] = [
+const mineObjects: MineMapObjectData[] = [
   {
     id: MapObjectId.CrystalMine,
     ownable: true,

@@ -139,7 +139,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     if (object) {
       const objectData = data.mapObjects[object.dataId];
 
-      onTileClick(alignment, object, objectData, heroes, activeHero, towns, activeTown, this.props.dispatch);
+      onTileClick(alignment, object, objectData, heroes, activeHero, towns, activeTown, data, this.props.dispatch);
     }
   }
 
@@ -155,7 +155,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
 
     const objectData = data.mapObjects[mapObject.dataId];
 
-    return renderMapObjectDetails(mapObject, objectData, activeHero, {
+    return renderMapObjectDetails(mapObject, objectData, activeHero, data, {
       onCloseClick: this.onCloseMapObjectDetailsClick,
       onConfirmClick: this.onConfirmMapObjectDetailsClick,
     });

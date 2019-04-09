@@ -13,8 +13,6 @@ import {
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
   isObjectOwnedBy,
-  isOwnableMapObject,
-  isResourceGeneratorMapObjectData,
   isStructureBuilt,
   isTownMapObject,
   isTreasureMapObject,
@@ -23,7 +21,7 @@ import {
   Town,
   wasVisitedBy,
 } from "heroes-core";
-import { isResourceMapObject, MapObjectId, StructureId } from "heroes-homm1";
+import { isMineMapObject, isMineMapObjectData, isResourceMapObject, MapObjectId, StructureId } from "heroes-homm1";
 import {
   ArtifactMapObject,
   CreatureJoinPrompt,
@@ -70,7 +68,7 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData, da
   }
 
   if (isResourceMapObject(object, data)) {
-    // TODO: handle multiple resources
+    // TODO: handle multiple resources or refactor data to be only one resource
     const resource = Object.keys(object.treasure)[0];
 
     return (
@@ -80,7 +78,7 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData, da
     );
   }
 
-  if (isResourceGeneratorMapObjectData(objectData) && isOwnableMapObject(object)) {
+  if (isMineMapObject(object, data) && isMineMapObjectData(objectData, data)) {
     return (
       <MineMapObject
         resource={objectData.resourceGenerator.resource}
@@ -108,6 +106,7 @@ export const renderMapObjectDetails = (
   object: MapObject,
   objectData: MapObjectData,
   activeObject: Hero | undefined,
+  data: GameData,
   props: {
     readonly onConfirmClick: () => void;
     readonly onCloseClick: () => void;
@@ -135,7 +134,7 @@ export const renderMapObjectDetails = (
     }
   }
 
-  if (isResourceGeneratorMapObjectData(objectData)) {
+  if (isMineMapObjectData(objectData, data)) {
     return (
       <VisitMinePrompt
         visible={true}
@@ -178,6 +177,7 @@ export const onTileClick = (
   activeHero: Hero | undefined,
   towns: Town[],
   activeTown: Town | undefined,
+  data: GameData,
   dispatch: Dispatch,
 ) => {
   // FIXME: extract
@@ -211,7 +211,7 @@ export const onTileClick = (
     }
 
     dispatch(gameActions.visitMapObject(object.id, activeHero.id));
-  } else if (isResourceGeneratorMapObjectData(objectData) && isOwnableMapObject(object)) {
+  } else if (isMineMapObject(object, data)) {
     if (!activeHero || isObjectOwnedBy(object, alignment)) {
       return;
     }
