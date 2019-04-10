@@ -1,4 +1,4 @@
-import { Artifact } from "../Artifact";
+import { Item } from "../Item";
 import { MapObjectData } from "./MapObject";
 
 export interface ArtifactMapObjectData extends MapObjectData {
@@ -8,7 +8,7 @@ export interface ArtifactMapObjectData extends MapObjectData {
 export const isArtifactMapObjectData = (objectData: MapObjectData): objectData is ArtifactMapObjectData =>
   (objectData as ArtifactMapObjectData).artifact !== undefined;
 
-export const constructArtifactMapObjectArtifact = (objectData: ArtifactMapObjectData): Artifact => ({
+export const constructArtifactMapObjectArtifact = (objectData: ArtifactMapObjectData): Item => ({
   data: {},
   id: objectData.artifact,
 });

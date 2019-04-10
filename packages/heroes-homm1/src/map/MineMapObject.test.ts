@@ -14,8 +14,8 @@ describe("isMineMapObjectData", () => {
     };
 
     const data: GameData = {
-      artifacts: {},
       creatures: {},
+      items: {},
       mapObjects: {},
       resources: {
         resource: {
@@ -40,8 +40,8 @@ describe("isMineMapObject", () => {
     };
 
     const data: GameData = {
-      artifacts: {},
       creatures: {},
+      items: {},
       mapObjects: {},
       resources: {
         resource: {

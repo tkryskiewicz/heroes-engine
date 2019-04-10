@@ -1,8 +1,8 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { Artifact, GameData, getArmySize, Hero } from "heroes-core";
-import { getLuckType, getMoraleType, LuckType, MoraleType } from "heroes-homm1";
+import { GameData, getArmySize, Hero } from "heroes-core";
+import { Artifact, getLuckType, getMoraleType, LuckType, MoraleType } from "heroes-homm1";
 import {
   AdditionalStatsInfo,
   AdditionalStatType,
@@ -34,7 +34,7 @@ import { TroopSlot } from "../TroopSlot";
 import { TroopWindow } from "../TroopWindow";
 
 interface HeroWindowContainerProps extends InjectedIntlProps, WithGameWindowProps {
-  readonly artifacts: GameData["artifacts"];
+  readonly artifacts: GameData["items"];
   readonly hero: Hero;
   readonly alignment: string;
 

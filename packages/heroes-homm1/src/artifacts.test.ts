@@ -1,5 +1,4 @@
-import { Artifact } from "heroes-core";
-
+import { Artifact } from "./Artifact";
 import { constructArtifact } from "./artifacts";
 
 describe("constructArtifact", () => {

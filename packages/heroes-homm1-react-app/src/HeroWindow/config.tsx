@@ -1,7 +1,6 @@
 import * as React from "react";
 
-import { Artifact } from "heroes-core";
-import { ArtifactId, SpellBook } from "heroes-homm1";
+import { Artifact, ArtifactId, SpellBook } from "heroes-homm1";
 import { ArtifactDetailsPrompt, NoSpellsPrompt } from "heroes-homm1-react";
 
 import { SpellBookWindow } from "../SpellBookWindow";

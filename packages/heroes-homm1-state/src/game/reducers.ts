@@ -11,6 +11,7 @@ import {
   dismissGameTroop,
   DwellingMapObjectData,
   Hero,
+  ItemSelection,
   LimitedInteractionMapObjectData,
   Map,
   placeObject,
@@ -202,11 +203,11 @@ map = placeObject(map, { x: 2, y: 0 }, createMapObject("creature/1", peasantData
 const initialState: GameState = {
   alignment: Alignment.Red,
   data: {
-    artifacts: artifacts.reduce((p, c) => ({
+    creatures: creatureById,
+    items: artifacts.reduce((p, c) => ({
       ...p,
       [c.id]: c,
     }), {}),
-    creatures: creatureById,
     mapObjects: mapObjects.reduce((p, c) => ({
       ...p,
       [c.id]: c,
@@ -248,8 +249,20 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
         ...dismissGameTroop(state, action.troop),
       };
     case GameActionType.TradeArtifacts:
+      const { artifact, withArtifact } = action;
+
+      const item: ItemSelection = {
+        index: artifact.index,
+        objectId: artifact.hero,
+      };
+
+      const withItem: ItemSelection = {
+        index: withArtifact.index,
+        objectId: withArtifact.hero,
+      };
+
       return {
-        ...tradeGameArtifacts(state, action.artifact, action.withArtifact),
+        ...tradeGameArtifacts(state, item, withItem),
       };
     case GameActionType.DismissHero:
       return {

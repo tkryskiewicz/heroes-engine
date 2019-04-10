@@ -27,7 +27,7 @@ type StateProp =
 
 const mapStateToProps = (state: AppState): Pick<HeroWindowContainerProps, StateProp> => ({
   alignment: state.game.alignment,
-  artifacts: state.game.data.artifacts,
+  artifacts: state.game.data.items,
   dismissHeroPromptVisible: state.heroWindow.dismissHeroPromptVisible,
   getArtifactDetails,
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,

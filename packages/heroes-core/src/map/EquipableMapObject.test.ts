@@ -1,4 +1,4 @@
-import { Artifact } from "../Artifact";
+import { Item } from "../Item";
 import {
   addEquipableMapObjectItem,
   EquipableMapObject,
@@ -35,7 +35,7 @@ describe("isEquipableMapObject", () => {
 
 describe("addEquipableMapObjectItem", () => {
   it("should add item to inventory", () => {
-    const item: Artifact = {
+    const item: Item = {
       data: "dataId",
       id: "id",
     };
@@ -61,7 +61,7 @@ describe("addEquipableMapObjectItem", () => {
 
 describe("hasEquipableMapObjectItem", () => {
   it("should return true when item is in inventory", () => {
-    const item: Artifact = {
+    const item: Item = {
       data: {},
       id: "item",
     };
@@ -94,7 +94,7 @@ describe("hasEquipableMapObjectItem", () => {
 
 describe("tradeEquipableMapObjectItems", () => {
   it("should trade items between objects", () => {
-    const item: Artifact = {
+    const item: Item = {
       data: {},
       id: "item",
     };
@@ -134,12 +134,12 @@ describe("tradeEquipableMapObjectItems", () => {
   });
 
   it("should trade items within object", () => {
-    const item: Artifact = {
+    const item: Item = {
       data: {},
       id: "item",
     };
 
-    const withItem: Artifact = {
+    const withItem: Item = {
       data: {},
       id: "otherItem",
     };

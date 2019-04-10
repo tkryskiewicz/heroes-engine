@@ -1,4 +1,4 @@
-import { Artifact, ArtifactData } from "heroes-core";
+import { Artifact, ArtifactData } from "./Artifact";
 
 export enum ArtifactId {
   // Attack
@@ -62,12 +62,6 @@ export enum ArtifactId {
   UltimateCloakOfProtection = "ultimate-cloak-of-protection",
   UltimateWandOfMagic = "ultimate-wand-of-magic",
   UltimateBookOfKnowledge = "ultimate-book-of-knowledge",
-}
-
-declare module "heroes-core/src/Artifact" {
-  interface ArtifactData {
-    readonly isUltimate: boolean;
-  }
 }
 
 const attackArtifacts: ArtifactData[] = [

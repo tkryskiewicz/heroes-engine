@@ -1,15 +1,15 @@
-import { Artifact } from "../Artifact";
+import { Item } from "../Item";
 import { isMapObject, MapObject } from "./MapObject";
 
 export interface EquipableMapObject extends MapObject {
-  readonly artifacts: Array<Artifact | undefined>;
+  readonly artifacts: Array<Item | undefined>;
 }
 
 export const isEquipableMapObject = (object: MapObject | undefined): object is EquipableMapObject =>
   isMapObject(object) && (object as EquipableMapObject).artifacts !== undefined;
 
 // TODO: handle no free slot
-export const addEquipableMapObjectItem = (object: EquipableMapObject, item: Artifact): EquipableMapObject => ({
+export const addEquipableMapObjectItem = (object: EquipableMapObject, item: Item): EquipableMapObject => ({
   ...object,
   artifacts: [
     ...object.artifacts,

@@ -1,7 +1,8 @@
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { ArtifactData, ArtifactSelection, getArmySize, Hero, TroopSelection, TroopSelectionType } from "heroes-core";
+import { getArmySize, Hero, TroopSelection, TroopSelectionType } from "heroes-core";
+import { ArtifactData, ArtifactSelection } from "heroes-homm1";
 import {
   ArtifactDetailsPrompt,
   ArtifactNotTradablePrompt,

@@ -1,4 +1,5 @@
-import { ArtifactSelection, TroopSelection, TroopSelectionType } from "heroes-core";
+import { TroopSelection, TroopSelectionType } from "heroes-core";
+import { ArtifactSelection } from "heroes-homm1";
 
 import {
   closeArtifactDetails,

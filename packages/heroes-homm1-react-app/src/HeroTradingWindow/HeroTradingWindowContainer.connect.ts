@@ -19,7 +19,7 @@ type StateProp =
 const mapStateToProps = (state: AppState): Pick<HeroTradingWindowProps, StateProp> => ({
   artifactDetailsVisible: state.heroTradingWindow.artifactDetailsVisible,
   artifactNotTradablePromptVisible: state.heroTradingWindow.artifactNotTradablePromptVisible,
-  artifacts: state.game.data.artifacts,
+  artifacts: state.game.data.items,
   hero: getGameHero(state.game, state.adventureScreen.hero!)!,
   otherHero: getGameHero(state.game, state.adventureScreen.otherHero!)!,
   selectedArtifact: state.heroTradingWindow.selectedArtifact,

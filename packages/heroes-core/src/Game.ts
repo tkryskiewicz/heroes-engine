@@ -1,5 +1,5 @@
-import { ArtifactData, ArtifactSelection } from "./Artifact";
 import { Creature } from "./Creature";
+import { ItemData, ItemSelection } from "./Item";
 import {
   addEquipableMapObjectItem,
   appendArmedMapObjectTroop,
@@ -42,7 +42,7 @@ import { TroopSelection } from "./Troop";
 
 export interface GameData {
   readonly resources: { readonly [id: string]: ResourceData; };
-  readonly artifacts: { readonly [id: string]: ArtifactData; };
+  readonly items: { readonly [id: string]: ItemData; };
   readonly creatures: { readonly [id: string]: Creature; };
   readonly spells: { readonly [id: string]: Spell; };
   readonly mapObjects: { readonly [id: string]: MapObjectData; };
@@ -98,21 +98,21 @@ export const swapGameTroops = (
   };
 };
 
-export const tradeGameArtifacts = (game: Game, artifact: ArtifactSelection, withArtifact: ArtifactSelection): Game => {
-  const object = getObject(game.map, artifact.hero);
+export const tradeGameArtifacts = (game: Game, item: ItemSelection, withItem: ItemSelection): Game => {
+  const object = getObject(game.map, item.objectId);
 
   if (!isEquipableMapObject(object)) {
-    throw new Error(`${artifact.hero} is not an equipable object`);
+    throw new Error(`${item.objectId} is not an equipable object`);
   }
 
-  const withObject = getObject(game.map, withArtifact.hero);
+  const withObject = getObject(game.map, withItem.objectId);
 
   if (!isEquipableMapObject(withObject)) {
-    throw new Error(`${withArtifact.hero} is not an equipable object`);
+    throw new Error(`${withItem.objectId} is not an equipable object`);
   }
 
   const [objectResult, withObjectResult] =
-    tradeEquipableMapObjectItems(object, artifact.index, withObject, withArtifact.index);
+    tradeEquipableMapObjectItems(object, item.index, withObject, withItem.index);
 
   return {
     ...game,

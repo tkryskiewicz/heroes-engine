@@ -1,4 +1,4 @@
-import { Artifact } from "../Artifact";
+import { Item } from "../Item";
 import {
   ArtifactMapObjectData,
   constructArtifactMapObjectArtifact,
@@ -38,7 +38,7 @@ describe("constructArtifactMapObjectArtifact", () => {
 
     const result = constructArtifactMapObjectArtifact(objectData);
 
-    const expected: Artifact = {
+    const expected: Item = {
       data: {},
       id: "artifact",
     };

@@ -1,14 +1,14 @@
-export interface ArtifactData {
+export interface ItemData {
   readonly id: string;
   readonly tradable: boolean;
 }
 
-export interface Artifact<T = {}> {
+export interface Item<T = {}> {
   readonly id: string;
   readonly data: T;
 }
 
-export interface ArtifactSelection {
-  readonly hero: string;
+export interface ItemSelection {
+  readonly objectId: string;
   readonly index: number;
 }

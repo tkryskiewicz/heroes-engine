@@ -1,5 +1,4 @@
 export { Army, getArmySize, setArmyTroop, appendArmyTroop, dismissArmyTroop, swapArmyTroops } from "./Army";
-export { Artifact, ArtifactData, ArtifactSelection } from "./Artifact";
 export {
   Battlefield,
   BattlefieldCell,
@@ -27,6 +26,7 @@ export {
   canSelectNextHero,
   getNextHeroIndex,
 } from "./Hero";
+export { Item, ItemData, ItemSelection } from "./Item";
 export * from "./map";
 export {
   ResourceData,

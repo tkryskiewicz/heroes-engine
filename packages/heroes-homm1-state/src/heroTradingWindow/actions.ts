@@ -1,4 +1,5 @@
-import { ArtifactSelection, TroopSelection } from "heroes-core";
+import { TroopSelection } from "heroes-core";
+import { ArtifactSelection } from "heroes-homm1";
 
 export enum HeroTradingWindowActionType {
   OpenHeroDetails = "heroTradingWindow/openHeroDetails",

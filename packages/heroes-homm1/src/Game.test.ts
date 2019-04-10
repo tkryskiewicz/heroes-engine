@@ -75,8 +75,8 @@ describe("buyMageGuildSpellBook", () => {
     const game: Game = {
       alignment: "alignment",
       data: {
-        artifacts: {},
         creatures: {},
+        items: {},
         mapObjects: {},
         resources: {},
         spells: {},

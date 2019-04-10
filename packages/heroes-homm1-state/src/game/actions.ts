@@ -1,4 +1,5 @@
-import { ArtifactSelection, Resources, TroopSelection } from "heroes-core";
+import { Resources, TroopSelection } from "heroes-core";
+import { ArtifactSelection } from "heroes-homm1";
 
 export enum GameActionType {
   SwapTroops = "game/swapTroops",
