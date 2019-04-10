@@ -59,6 +59,7 @@
     "webpack": "^4.20.2"
   },
   "scripts": {
+    "clean": "rimraf coverage",
     "lint": "yarn lint:code && yarn lint:styles",
     "lint:code": "tslint -p .",
     "lint:styles": "stylelint 'src/**/*.scss'",

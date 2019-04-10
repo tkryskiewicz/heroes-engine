@@ -55,7 +55,7 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server",
-    "clean": "rimraf dist",
+    "clean": "rimraf coverage dist",
     "lint": "tslint -p .",
     "test": "jest",
     "test:watch": "jest --watch",
