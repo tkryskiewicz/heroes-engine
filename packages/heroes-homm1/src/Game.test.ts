@@ -1,16 +1,14 @@
 import {
   createMap,
-  createTownMapObject,
   Game,
   Hero,
   placeObject,
   replaceObject,
   Town,
-  TownMapObjectData,
 } from "heroes-core";
 
 import { buyMageGuildSpellBook } from "./Game";
-import { createHeroMapObject, HeroMapObject, HeroMapObjectData } from "./map";
+import { createHeroMapObject, createTownMapObject, HeroMapObject, HeroMapObjectData, TownMapObjectData } from "./map";
 import { Resource } from "./Resource";
 import { constructSpellBook } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";

@@ -6,7 +6,16 @@ export { ComPort } from "./ComPort";
 export { CreatureId, creatures, creatureById } from "./creatures";
 export { CreatureSpeed } from "./CreatureSpeed";
 export { getCurrentLevel, getNextLevelExperience } from "./experience";
-export { getGameHero, getGameHeroes, buyMageGuildSpellBook } from "./Game";
+export {
+  getGameHero,
+  getGameHeroes,
+  getGameTown,
+  getGameTowns,
+  buildGameStructure,
+  recruitGameTroop,
+  buyMageGuildSpellBook,
+  endGameTurn,
+} from "./Game";
 export { GameDifficulty, getGameDifficultyRating } from "./GameDifficulty";
 export { GameOption } from "./GameOption";
 export { GameSettings } from "./GameSettings";

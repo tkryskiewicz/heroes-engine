@@ -2,11 +2,38 @@ import { Troop } from "../Troop";
 import {
   appendArmedMapObjectTroop,
   ArmedMapObject,
+  ArmedMapObjectData,
   dismissArmedMapObjectTroop,
   isArmedMapObject,
+  isArmedMapObjectData,
   swapArmedMapObjectTroops,
 } from "./ArmedMapObject";
-import { MapObject } from "./MapObject";
+import { MapObject, MapObjectData } from "./MapObject";
+
+describe("isArmedMapObjectData", () => {
+  it("should return true when armed object data", () => {
+    const objectData: ArmedMapObjectData = {
+      army: {
+        preventMovingLastTroop: false,
+      },
+      id: "dataId",
+    };
+
+    const result = isArmedMapObjectData(objectData);
+
+    expect(result).toBe(true);
+  });
+
+  it("should return false when not armed object data", () => {
+    const objectData: MapObjectData = {
+      id: "dataId",
+    };
+
+    const result = isArmedMapObjectData(objectData);
+
+    expect(result).toBe(false);
+  });
+});
 
 describe("isArmedMapObject", () => {
   it("should return when armed object", () => {

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { getGameTowns } from "heroes-core";
+import { getGameTowns } from "heroes-homm1";
 import { AppState, Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
 
 import { TownLocatorsContainer, TownLocatorsContainerProps } from "./TownLocatorsContainer";

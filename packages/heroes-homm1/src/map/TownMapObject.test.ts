@@ -1,6 +1,5 @@
-import { DwellingStructure, Structure } from "../Structure";
-import { Town } from "../Town";
-import { MapObject } from "./MapObject";
+import { DwellingStructure, MapObject, Structure, Town } from "heroes-core";
+
 import {
   createTownMapObject,
   isTownMapObject,

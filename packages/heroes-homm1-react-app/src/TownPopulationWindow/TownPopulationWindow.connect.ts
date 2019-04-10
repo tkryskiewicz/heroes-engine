@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 
-import { getGameTown, isDwellingStructure } from "heroes-core";
+import { isDwellingStructure } from "heroes-core";
+import { getGameTown } from "heroes-homm1";
 import { TownPopulationWindow, TownPopulationWindowProps } from "heroes-homm1-react";
 import { AppState } from "heroes-homm1-state";
 

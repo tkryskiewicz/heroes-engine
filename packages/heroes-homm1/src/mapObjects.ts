@@ -5,13 +5,19 @@ import {
   InteractionLimitType,
   MapObjectData,
   PickableMapObjectData,
-  TownMapObjectData,
   TreasureMapObjectData,
 } from "heroes-core";
 
 import { ArtifactId, artifacts } from "./artifacts";
 import { CreatureId, creatures } from "./creatures";
-import { HeroMapObjectData, MapObjectId, MineMapObjectData, ObeliskMapObjectData, ResourceMapObjectData } from "./map";
+import {
+  HeroMapObjectData,
+  MapObjectId,
+  MineMapObjectData,
+  ObeliskMapObjectData,
+  ResourceMapObjectData,
+  TownMapObjectData,
+} from "./map";
 import { Resource } from "./Resource";
 
 const heroObjects: HeroMapObjectData[] = [

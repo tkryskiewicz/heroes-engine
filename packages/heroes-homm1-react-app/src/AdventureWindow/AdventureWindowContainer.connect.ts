@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 
-import { getGameTowns } from "heroes-core";
-import { getGameHeroes } from "heroes-homm1";
+import { getGameHeroes, getGameTowns } from "heroes-homm1";
 import { AppState } from "heroes-homm1-state";
 
 import { AdventureWindow, AdventureWindowProps } from "./AdventureWindowContainer";

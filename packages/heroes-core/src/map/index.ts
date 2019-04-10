@@ -78,13 +78,6 @@ export {
   generateResourceGeneratorMapObjectResources,
 } from "./ResourceGeneratorMapObject";
 export {
-  TownMapObject,
-  TownMapObjectData,
-  createTownMapObject,
-  isTownMapObject,
-  recruitTownMapObjectTroop,
-} from "./TownMapObject";
-export {
   TreasureMapObject,
   TreasureMapObjectData,
   isTreasureMapObjectData,

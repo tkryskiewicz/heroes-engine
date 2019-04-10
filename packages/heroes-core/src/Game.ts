@@ -24,25 +24,20 @@ import {
   isPickableMapObjectData,
   isPuzzleMapObjectData,
   isResourceGeneratorMapObjectData,
-  isTownMapObject,
   isTreasureMapObject,
   Map,
   MapObject,
   MapObjectData,
   recruitDwellingMapObjectCreatures,
-  recruitTownMapObjectTroop,
   removeObject,
   replaceObject,
   swapArmedMapObjectTroops,
-  TownMapObject,
   tradeEquipableMapObjectItems,
   visitLimitedInteractionMapObject,
 } from "./map";
-import { addResources, multiplyResources, ResourceData, Resources, subtractResources } from "./Resource";
+import { addResources, ResourceData, Resources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
-import { isDwellingStructure } from "./Structure";
-import { buildTownStructure, endTownTurn, getTownStructure, Town } from "./Town";
 import { TroopSelection } from "./Troop";
 
 export interface GameData {
@@ -145,66 +140,6 @@ export const dismissGameTroop = (game: Game, troop: TroopSelection): Game => {
   };
 };
 
-export const getGameTowns = (game: Game): Town[] =>
-  game.map.tiles
-    .map((o) => o.object)
-    .filter(isTownMapObject)
-    .filter((o) => isObjectOwnedBy(o, game.alignment));
-
-export const getGameTown = (game: Game, town: string): Town | undefined =>
-  getGameTowns(game).find((t) => t.id === town);
-
-export const buildGameStructure = (game: Game, town: string, structure: string): Game => {
-  const object = getObject(game.map, town);
-
-  if (!isTownMapObject(object)) {
-    throw new Error(`${town} is not a town object`);
-  }
-
-  const struct = getTownStructure(object, structure);
-
-  if (!struct) {
-    throw new Error(`${structure} is not a valid structure`);
-  }
-
-  const objectResult: TownMapObject = {
-    ...object,
-    ...buildTownStructure(object, structure),
-  };
-
-  return {
-    ...game,
-    map: replaceObject(game.map, objectResult),
-    resources: subtractResources(game.resources, struct.cost),
-  };
-};
-
-export const recruitGameTroop = (game: Game, townId: string, structureId: string, count: number): Game => {
-  const object = getObject(game.map, townId);
-
-  if (!isTownMapObject(object)) {
-    throw new Error(`${townId} is not a town object`);
-  }
-
-  const structure = getTownStructure(object, structureId);
-
-  if (!structure) {
-    throw new Error(`${structureId} is not a valid structure`);
-  }
-
-  if (!isDwellingStructure(structure)) {
-    throw new Error(`${structureId} is not a dwelling`);
-  }
-
-  const cost = multiplyResources(structure.dwelling.cost, count);
-
-  return {
-    ...game,
-    map: replaceObject(game.map, recruitTownMapObjectTroop(object, structureId, count)),
-    resources: subtractResources(game.resources, cost),
-  };
-};
-
 export const startGameTurn = (game: Game): Game => {
   const objects = game.map.tiles
     .map((t) => t.object)
@@ -229,24 +164,6 @@ export const startGameTurn = (game: Game): Game => {
     ...game,
   };
 };
-
-export const endGameTurn = (game: Game): Game => ({
-  ...game,
-  map: getGameTowns(game).reduce<Map>((p, c) => {
-    const object = getObject(p, c.id);
-
-    if (!isTownMapObject(object)) {
-      throw new Error(`${c.id} is not a town`);
-    }
-
-    const objectResult: TownMapObject = {
-      ...object,
-      ...endTownTurn(c),
-    };
-
-    return replaceObject(p, objectResult);
-  }, game.map),
-});
 
 export const visitGameMapObject = (game: Game, id: string, activeObjectId: string): Game => {
   const object = getObject(game.map, id);

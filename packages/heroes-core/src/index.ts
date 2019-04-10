@@ -1,4 +1,4 @@
-export { Army, getArmySize, swapArmyTroops } from "./Army";
+export { Army, getArmySize, setArmyTroop, appendArmyTroop, dismissArmyTroop, swapArmyTroops } from "./Army";
 export { Artifact, ArtifactData, ArtifactSelection } from "./Artifact";
 export {
   Battlefield,
@@ -14,16 +14,11 @@ export { Creature, Damage } from "./Creature";
 export {
   Game,
   GameData,
-  getGameTown,
-  getGameTowns,
   swapGameTroops,
   tradeGameArtifacts,
   dismissGameTroop,
   dismissGameHero,
-  buildGameStructure,
-  recruitGameTroop,
   startGameTurn,
-  endGameTurn,
   visitGameMapObject,
 } from "./Game";
 export {
@@ -44,7 +39,15 @@ export {
   enoughResources,
 } from "./Resource";
 export { Scenario } from "./Scenario";
-export { Structure, Dwelling, isDwellingStructure, buildStructure } from "./Structure";
-export { Town, isStructureBuilt, getTownStructure } from "./Town";
+export {
+  Structure,
+  Dwelling,
+  isDwellingStructure,
+  buildStructure,
+  getTroop,
+  recruitTroop,
+  DwellingStructure,
+} from "./Structure";
+export { Town, isStructureBuilt, getTownStructure, buildTownStructure, endTownTurn } from "./Town";
 export { Troop, TroopSelectionType, TroopSelection } from "./Troop";
 export { random } from "./util";

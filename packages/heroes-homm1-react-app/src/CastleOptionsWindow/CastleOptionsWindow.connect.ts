@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { getGameTown } from "heroes-core";
+import { getGameTown } from "heroes-homm1";
 import { CastleOptionsWindow, CastleOptionsWindowProps } from "heroes-homm1-react";
 import { AppState, townWindowActions } from "heroes-homm1-state";
 import { getOptionDetails } from "./config";

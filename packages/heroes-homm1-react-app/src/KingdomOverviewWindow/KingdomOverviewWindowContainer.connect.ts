@@ -6,9 +6,8 @@ import {
   isOwnableMapObject,
   isResourceGeneratorMapObjectData,
   isStructureBuilt,
-  isTownMapObject,
 } from "heroes-core";
-import { HeroClassIds, isHeroMapObject, StructureId, TownIds } from "heroes-homm1";
+import { HeroClassIds, isHeroMapObject, isTownMapObject, StructureId, TownIds } from "heroes-homm1";
 import { AppState, kingdomOverviewWindowActions } from "heroes-homm1-state";
 
 import { KingdomOverviewWindowContainer, KingdomOverviewWindowContainerProps } from "./KingdomOverviewWindowContainer";

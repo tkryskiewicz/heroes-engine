@@ -22,3 +22,10 @@ export {
   ResourceMapObjectData,
   isResourceMapObject,
 } from "./ResourceMapObject";
+export {
+  TownMapObject,
+  TownMapObjectData,
+  createTownMapObject,
+  isTownMapObject,
+  recruitTownMapObjectTroop,
+} from "./TownMapObject";

@@ -1,9 +1,18 @@
-import { appendArmyTroop } from "../Army";
-import { getTroop, recruitTroop } from "../Structure";
-import { Town } from "../Town";
-import { ArmedMapObject, ArmedMapObjectData } from "./ArmedMapObject";
-import { createMapObject, isMapObject, MapObject } from "./MapObject";
-import { OwnableMapObject, OwnableMapObjectData } from "./OwnableMapObject";
+import {
+  appendArmyTroop,
+  ArmedMapObject,
+  ArmedMapObjectData,
+  createMapObject,
+  getTroop,
+  isMapObject,
+  MapObject,
+  OwnableMapObject,
+  OwnableMapObjectData,
+  recruitTroop,
+  Town,
+} from "heroes-core";
+
+import { MapObjectId } from "./MapObjectId";
 
 export interface TownMapObjectData extends ArmedMapObjectData, OwnableMapObjectData {
 }
@@ -23,7 +32,7 @@ export const createTownMapObject = (
 });
 
 export const isTownMapObject = (object: MapObject | undefined): object is TownMapObject =>
-  isMapObject(object) && (object as TownMapObject).dataId === "town"; // FIXME
+  isMapObject(object) && (object as TownMapObject).dataId === MapObjectId.Town;
 
 export const recruitTownMapObjectTroop = (
   object: TownMapObject,

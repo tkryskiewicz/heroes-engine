@@ -11,7 +11,6 @@ import {
   isDwellingMapObjectData,
   isObjectOwnedBy,
   isStructureBuilt,
-  isTownMapObject,
   isTreasureMapObject,
   MapObject,
   MapObjectData,
@@ -25,6 +24,7 @@ import {
   isObeliskMapObject,
   isObeliskMapObjectData,
   isResourceMapObject,
+  isTownMapObject,
   StructureId,
 } from "heroes-homm1";
 import {
