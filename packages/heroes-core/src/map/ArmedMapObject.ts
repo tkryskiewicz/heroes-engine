@@ -1,6 +1,15 @@
 import { appendArmyTroop, Army, dismissArmyTroop, swapArmyTroops } from "../Army";
 import { Troop } from "../Troop";
-import { isMapObject, MapObject } from "./MapObject";
+import { isMapObject, MapObject, MapObjectData } from "./MapObject";
+
+export interface ArmedMapObjectData extends MapObjectData {
+  readonly army: {
+    readonly preventMovingLastTroop: boolean;
+  };
+}
+
+export const isArmedMapObjectData = (objectData: MapObjectData): objectData is ArmedMapObjectData =>
+  (objectData as ArmedMapObjectData).army !== undefined;
 
 export interface ArmedMapObject extends MapObject {
   readonly army: Army;

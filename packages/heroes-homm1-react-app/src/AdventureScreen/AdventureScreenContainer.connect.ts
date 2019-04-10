@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { getGameHeroes } from "heroes-core";
+import { getGameHeroes } from "heroes-homm1";
 import { AppState } from "heroes-homm1-state";
 
 import { AdventureScreenContainer, AdventureScreenContainerProps } from "./AdventureScreenContainer";

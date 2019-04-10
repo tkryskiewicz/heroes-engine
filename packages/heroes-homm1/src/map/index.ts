@@ -1,3 +1,9 @@
+export {
+  HeroMapObject,
+  HeroMapObjectData,
+  createHeroMapObject,
+  isHeroMapObject,
+} from "./HeroMapObject";
 export { MapObjectId } from "./MapObjectId";
 export {
   MineMapObject,

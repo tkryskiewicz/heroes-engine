@@ -1,16 +1,16 @@
 import {
-  createHeroMapObject,
   createMap,
   createTownMapObject,
   Game,
   Hero,
-  HeroMapObject,
   placeObject,
   replaceObject,
   Town,
+  TownMapObjectData,
 } from "heroes-core";
 
 import { buyMageGuildSpellBook } from "./Game";
+import { createHeroMapObject, HeroMapObject, HeroMapObjectData } from "./map";
 import { Resource } from "./Resource";
 import { constructSpellBook } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";
@@ -31,7 +31,15 @@ describe("buyMageGuildSpellBook", () => {
       skills: {},
     };
 
-    const heroObject = createHeroMapObject("hero", { id: "hero", ownable: true }, hero, "alignment");
+    const heroObjectData: HeroMapObjectData = {
+      army: {
+        preventMovingLastTroop: true,
+      },
+      id: "hero",
+      ownable: true,
+    };
+
+    const heroObject = createHeroMapObject("hero", heroObjectData, hero, "alignment");
 
     const mageGuild: MageGuild = {
       cost: {},
@@ -56,7 +64,15 @@ describe("buyMageGuildSpellBook", () => {
       ],
     };
 
-    const townObject = createTownMapObject("town", { id: "town", ownable: true }, town, "alignment");
+    const townObjectData: TownMapObjectData = {
+      army: {
+        preventMovingLastTroop: false,
+      },
+      id: "town",
+      ownable: true,
+    };
+
+    const townObject = createTownMapObject("town", townObjectData, town, "alignment");
 
     const game: Game = {
       alignment: "alignment",

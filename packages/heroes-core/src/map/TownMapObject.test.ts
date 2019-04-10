@@ -12,6 +12,9 @@ import {
 describe("createTownMapObject", () => {
   it("should create object", () => {
     const objectData: TownMapObjectData = {
+      army: {
+        preventMovingLastTroop: true,
+      },
       id: "dataId",
       ownable: true,
     };
@@ -39,6 +42,9 @@ describe("createTownMapObject", () => {
 
   it("should create object with initial owner", () => {
     const objectData: TownMapObjectData = {
+      army: {
+        preventMovingLastTroop: true,
+      },
       id: "dataId",
       ownable: true,
     };
@@ -68,6 +74,9 @@ describe("createTownMapObject", () => {
 describe("isTownMapObject", () => {
   it("should return true when town map object", () => {
     const objectData: TownMapObjectData = {
+      army: {
+        preventMovingLastTroop: true,
+      },
       id: "town",
       ownable: true,
     };

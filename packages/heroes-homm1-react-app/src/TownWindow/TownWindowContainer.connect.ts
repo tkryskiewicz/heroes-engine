@@ -1,8 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { getGameHeroes } from "heroes-core";
-import { TownId } from "heroes-homm1";
+import { getGameHeroes, TownId } from "heroes-homm1";
 import {
   AppState,
   gameActions,

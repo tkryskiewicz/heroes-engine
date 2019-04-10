@@ -1,11 +1,12 @@
 import { appendArmyTroop } from "../Army";
 import { getTroop, recruitTroop } from "../Structure";
 import { Town } from "../Town";
-import { ArmedMapObject } from "./ArmedMapObject";
+import { ArmedMapObject, ArmedMapObjectData } from "./ArmedMapObject";
 import { createMapObject, isMapObject, MapObject } from "./MapObject";
 import { OwnableMapObject, OwnableMapObjectData } from "./OwnableMapObject";
 
-export type TownMapObjectData = OwnableMapObjectData;
+export interface TownMapObjectData extends ArmedMapObjectData, OwnableMapObjectData {
+}
 
 export interface TownMapObject extends Town, ArmedMapObject, OwnableMapObject {
 }

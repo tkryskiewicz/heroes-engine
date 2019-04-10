@@ -4,16 +4,13 @@ import { DispatchProp } from "react-redux";
 import {
   GameData,
   Hero,
-  isHeroMapObject,
   isTownMapObject,
   Map,
   MapObject,
   Town,
 } from "heroes-core";
-import {
-  AdventureWindow,
-  MapTile,
-} from "heroes-homm1-react";
+import { isHeroMapObject } from "heroes-homm1";
+import { AdventureWindow, MapTile } from "heroes-homm1-react";
 import { adventureScreenActions, gameActions, Locator, LocatorType } from "heroes-homm1-state";
 
 import { HeroTradingWindow } from "../HeroTradingWindow";

@@ -2,14 +2,13 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
 import {
-  isHeroMapObject,
   isObjectOwnedBy,
   isOwnableMapObject,
   isResourceGeneratorMapObjectData,
   isStructureBuilt,
   isTownMapObject,
 } from "heroes-core";
-import { HeroClassIds, StructureId, TownIds } from "heroes-homm1";
+import { HeroClassIds, isHeroMapObject, StructureId, TownIds } from "heroes-homm1";
 import { AppState, kingdomOverviewWindowActions } from "heroes-homm1-state";
 
 import { KingdomOverviewWindowContainer, KingdomOverviewWindowContainerProps } from "./KingdomOverviewWindowContainer";

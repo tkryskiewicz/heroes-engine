@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { getGameHero } from "heroes-core";
+import { getGameHero } from "heroes-homm1";
 import { AppState, gameActions, heroTradingWindowActions } from "heroes-homm1-state";
 
 import { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindowContainer";

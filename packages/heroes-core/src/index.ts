@@ -16,8 +16,6 @@ export {
   GameData,
   getGameTown,
   getGameTowns,
-  getGameHero,
-  getGameHeroes,
   swapGameTroops,
   tradeGameArtifacts,
   dismissGameTroop,

@@ -1,11 +1,13 @@
-import { Hero } from "../Hero";
+import { Hero, MapObject, MapObjectOrientation } from "heroes-core";
+
 import { createHeroMapObject, HeroMapObject, HeroMapObjectData, isHeroMapObject } from "./HeroMapObject";
-import { MapObject } from "./MapObject";
-import { MapObjectOrientation } from "./MapObjectOrientation";
 
 describe("createHeroMapObject", () => {
   it("should create object", () => {
     const objectData: HeroMapObjectData = {
+      army: {
+        preventMovingLastTroop: true,
+      },
       id: "dataId",
       ownable: true,
     };
@@ -38,6 +40,9 @@ describe("createHeroMapObject", () => {
 
   it("should create object with initial owner", () => {
     const objectData: HeroMapObjectData = {
+      army: {
+        preventMovingLastTroop: true,
+      },
       id: "dataId",
       ownable: true,
     };
@@ -72,6 +77,9 @@ describe("createHeroMapObject", () => {
 describe("isHeroMapObject", () => {
   it("should return true when hero map object", () => {
     const objectData: HeroMapObjectData = {
+      army: {
+        preventMovingLastTroop: true,
+      },
       id: "dataId",
       ownable: true,
     };

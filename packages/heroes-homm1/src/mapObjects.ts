@@ -2,7 +2,6 @@ import {
   ArtifactMapObjectData,
   CreatureMapObjectData,
   DwellingMapObjectData,
-  HeroMapObjectData,
   InteractionLimitType,
   MapObjectData,
   PickableMapObjectData,
@@ -12,11 +11,14 @@ import {
 
 import { ArtifactId, artifacts } from "./artifacts";
 import { CreatureId, creatures } from "./creatures";
-import { MapObjectId, MineMapObjectData, ObeliskMapObjectData, ResourceMapObjectData } from "./map";
+import { HeroMapObjectData, MapObjectId, MineMapObjectData, ObeliskMapObjectData, ResourceMapObjectData } from "./map";
 import { Resource } from "./Resource";
 
 const heroObjects: HeroMapObjectData[] = [
   {
+    army: {
+      preventMovingLastTroop: true,
+    },
     id: MapObjectId.Hero,
     ownable: true,
   },
@@ -24,6 +26,9 @@ const heroObjects: HeroMapObjectData[] = [
 
 const townObjects: TownMapObjectData[] = [
   {
+    army: {
+      preventMovingLastTroop: false,
+    },
     id: MapObjectId.Town,
     ownable: true,
   },

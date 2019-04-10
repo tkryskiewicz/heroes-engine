@@ -1,6 +1,5 @@
 import { ArtifactData, ArtifactSelection } from "./Artifact";
 import { Creature } from "./Creature";
-import { Hero } from "./Hero";
 import {
   addEquipableMapObjectItem,
   appendArmedMapObjectTroop,
@@ -12,11 +11,11 @@ import {
   getObject,
   getVisitor,
   isArmedMapObject,
+  isArmedMapObjectData,
   isArtifactMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
   isEquipableMapObject,
-  isHeroMapObject,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
   isObjectOwnedBy,
@@ -68,15 +67,6 @@ export interface Game {
   readonly puzzle: Puzzle;
 }
 
-export const getGameHeroes = (game: Game): Hero[] =>
-  game.map.tiles
-    .map((t) => t.object)
-    .filter(isHeroMapObject)
-    .filter((o) => isObjectOwnedBy(o, game.alignment));
-
-export const getGameHero = (game: Game, hero: string): Hero | undefined =>
-  getGameHeroes(game).find((h) => h.id === hero);
-
 export const swapGameTroops = (
   game: Game,
   troop: TroopSelection,
@@ -90,6 +80,12 @@ export const swapGameTroops = (
     throw new Error(`${troop.id} is not an armed object`);
   }
 
+  const objectData = game.data.mapObjects[object.dataId];
+
+  if (!isArmedMapObjectData(objectData)) {
+    throw new Error(`no armed object data for ${object.id}`);
+  }
+
   const withObject = getObject(game.map, withTroop.id);
 
   if (!isArmedMapObject(withObject)) {
@@ -98,7 +94,7 @@ export const swapGameTroops = (
 
   const [objectResult, withObjectResult] = swapArmedMapObjectTroops(object, troop.index, withObject, withTroop.index, {
     autoCombineTroops: autoCombine,
-    preventMovingLastTroop: isHeroMapObject(object),
+    preventMovingLastTroop: objectData.army.preventMovingLastTroop,
   });
 
   return {
@@ -252,7 +248,7 @@ export const endGameTurn = (game: Game): Game => ({
   }, game.map),
 });
 
-export const visitGameMapObject = (game: Game, id: string, hero: string): Game => {
+export const visitGameMapObject = (game: Game, id: string, activeObjectId: string): Game => {
   const object = getObject(game.map, id);
 
   if (!object) {
@@ -261,16 +257,15 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
 
   const objectData = game.data.mapObjects[object.dataId];
 
-  const activeHero = getGameHero(game, hero);
-  const activeObject = getObject(game.map, hero);
+  const activeObject = getObject(game.map, activeObjectId);
 
-  if (!activeHero) {
-    throw new Error("Invalid hero");
+  if (!activeObject) {
+    throw new Error("Invalid active object");
   }
 
   if (isLimitedInteractionMapObjectData(objectData) && isLimitedInteractionMapObject(object)) {
     if (!isOwnableMapObject(activeObject)) {
-      throw new Error(`${hero} is not an ownable object`);
+      throw new Error(`${activeObjectId} is not an ownable object`);
     }
 
     const visitor = getVisitor(objectData, activeObject);
@@ -292,7 +287,7 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
 
   if (isArtifactMapObjectData(objectData)) {
     if (!isEquipableMapObject(activeObject)) {
-      throw new Error(`${hero} is not an equipable object`);
+      throw new Error(`${activeObjectId} is not an equipable object`);
     }
 
     const artifact = constructArtifactMapObjectArtifact(objectData);
@@ -307,7 +302,7 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
 
   if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {
     if (!isArmedMapObject(activeObject)) {
-      throw new Error(`${hero} is not an armed object`);
+      throw new Error(`${activeObjectId} is not an armed object`);
     }
 
     const [objectResult, troop] = recruitDwellingMapObjectCreatures(object, objectData);
@@ -340,7 +335,7 @@ export const visitGameMapObject = (game: Game, id: string, hero: string): Game =
 
   if (isOwnableMapObjectData(objectData) && isOwnableMapObject(object)) {
     if (!isOwnableMapObject(activeObject)) {
-      throw new Error(`${hero} is not an ownable object`);
+      throw new Error(`${activeObjectId} is not an ownable object`);
     }
 
     game = {

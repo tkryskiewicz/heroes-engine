@@ -9,7 +9,6 @@ import {
   isCreatureMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
-  isHeroMapObject,
   isObjectOwnedBy,
   isStructureBuilt,
   isTownMapObject,
@@ -20,6 +19,7 @@ import {
   wasVisitedBy,
 } from "heroes-core";
 import {
+  isHeroMapObject,
   isMineMapObject,
   isMineMapObjectData,
   isObeliskMapObject,

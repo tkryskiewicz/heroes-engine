@@ -1,6 +1,8 @@
 export {
   ArmedMapObject,
+  ArmedMapObjectData,
   isArmedMapObject,
+  isArmedMapObjectData,
   appendArmedMapObjectTroop,
   dismissArmedMapObjectTroop,
   swapArmedMapObjectTroops,
@@ -29,12 +31,6 @@ export {
   hasEquipableMapObjectItem,
   tradeEquipableMapObjectItems,
 } from "./EquipableMapObject";
-export {
-  HeroMapObject,
-  HeroMapObjectData,
-  createHeroMapObject,
-  isHeroMapObject,
-} from "./HeroMapObject";
 export {
   InteractionLimitType,
   LimitedInteractionMapObject,
