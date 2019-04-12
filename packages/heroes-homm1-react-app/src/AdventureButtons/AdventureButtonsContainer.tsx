@@ -1,12 +1,12 @@
 import * as React from "react";
 
-import { canSelectNextHero, getNextHeroIndex, Hero } from "heroes-core";
+import { canSelectNextHero, getNextHero, Hero } from "heroes-core";
 import { AdventureButtons, EndTurnPrompt } from "heroes-homm1-react";
 
 export interface AdventureButtonsContainerProps {
   readonly heroes: Hero[];
-  readonly selectedIndex?: number;
-  readonly onNextHeroClick: (index: number) => void;
+  readonly activeObjectId?: string;
+  readonly onNextHeroClick: (id: string) => void;
   readonly onKingdomOverviewClick: () => void;
   readonly endTurnPromptVisible: boolean;
   readonly onEndTurnPromptVisibleChange: (value: boolean) => void;
@@ -35,10 +35,10 @@ export class AdventureButtonsContainer extends React.Component<AdventureButtonsC
   }
 
   private readonly onNextHeroClick = () => {
-    const index = getNextHeroIndex(this.props.heroes, this.props.selectedIndex);
+    const nextHero = getNextHero(this.props.heroes, this.props.activeObjectId);
 
-    if (index !== undefined) {
-      this.props.onNextHeroClick(index);
+    if (nextHero !== undefined) {
+      this.props.onNextHeroClick(nextHero);
     }
   }
 

@@ -1,12 +1,12 @@
-import { canSelectNextHero, getNextHeroIndex, Hero } from "./Hero";
+import { canSelectNextHero, getNextHero, Hero } from "./Hero";
 
-const getHero = (mobility: number = 1): Hero => ({
+const getHero = (id: string, mobility: number = 1): Hero => ({
   army: [],
   artifacts: [],
   dataId: "hero",
   experience: 0,
   heroClass: "heroClass",
-  id: "id",
+  id,
   luck: 0,
   mobility,
   morale: 0,
@@ -22,7 +22,7 @@ describe("canSelectNextHero", () => {
 
   it("should return true when there are heroes with mobility", () => {
     const heroes: Hero[] = [
-      getHero(),
+      getHero("id"),
     ];
 
     const result = canSelectNextHero(heroes);
@@ -31,63 +31,63 @@ describe("canSelectNextHero", () => {
   });
 });
 
-describe("getNextHeroIndex", () => {
+describe("getNextHero", () => {
   it("should return nothing when no heroes", () => {
-    const result = getNextHeroIndex([]);
+    const result = getNextHero([]);
 
     expect(result).toBeUndefined();
   });
 
-  it("should return first hero index when none selected", () => {
+  it("should return first hero when none selected", () => {
     const heroes: Hero[] = [
-      getHero(),
+      getHero("id"),
     ];
 
-    const result = getNextHeroIndex(heroes);
+    const result = getNextHero(heroes);
 
-    expect(result).toBe(0);
+    expect(result).toBe("id");
   });
 
   it("should return next hero when one selected", () => {
     const heroes: Hero[] = [
-      getHero(),
-      getHero(),
+      getHero("idA"),
+      getHero("idB"),
     ];
 
-    const result = getNextHeroIndex(heroes, 0);
+    const result = getNextHero(heroes, "idA");
 
-    expect(result).toBe(1);
+    expect(result).toBe("idB");
   });
 
   it("should cycle through all heroes", () => {
     const heroes: Hero[] = [
-      getHero(),
-      getHero(),
+      getHero("idA"),
+      getHero("idB"),
     ];
 
-    const result = getNextHeroIndex(heroes, 1);
+    const result = getNextHero(heroes, "idB");
 
-    expect(result).toBe(0);
+    expect(result).toBe("idA");
   });
 
   it("should return nothing when only hero already selected", () => {
     const heroes: Hero[] = [
-      getHero(),
+      getHero("id"),
     ];
 
-    const result = getNextHeroIndex(heroes, 0);
+    const result = getNextHero(heroes, "id");
 
     expect(result).toBeUndefined();
   });
 
   it("should ignore heroes with no mobility", () => {
     const heroes: Hero[] = [
-      getHero(0),
-      getHero(),
+      getHero("idA", 0),
+      getHero("idB"),
     ];
 
-    const result = getNextHeroIndex(heroes);
+    const result = getNextHero(heroes);
 
-    expect(result).toBe(1);
+    expect(result).toBe("idB");
   });
 });

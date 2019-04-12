@@ -1,34 +1,32 @@
-import { Locator } from "./state";
-
 export enum LocatorsActionType {
-  SelectLocator = "locators/selectLocator",
-  DeselectLocator = "locators/deselectLocator",
+  SelectActiveObject = "locators/selectActiveObject",
+  DeselectActiveObject = "locators/deselectActiveObject",
   OpenLocatorDetails = "locators/openLocatorDetails",
   CloseLocatorDetails = "locators/closeLocatorDetails",
 }
 
 export type LocatorsAction =
-  SelectLocatorAction |
-  DeselectLocatorAction |
+  SelectActiveObjectAction |
+  DeselectActiveObjectAction |
   OpenLocatorDetailsAction |
   CloseLocatorDetailsAction;
 
-export interface SelectLocatorAction {
-  readonly type: LocatorsActionType.SelectLocator;
-  readonly locator: Locator;
+export interface SelectActiveObjectAction {
+  readonly type: LocatorsActionType.SelectActiveObject;
+  readonly objectId: string;
 }
 
-export const selectLocator = (locator: Locator): SelectLocatorAction => ({
-  locator,
-  type: LocatorsActionType.SelectLocator,
+export const selectActiveObject = (objectId: string): SelectActiveObjectAction => ({
+  objectId,
+  type: LocatorsActionType.SelectActiveObject,
 });
 
-export interface DeselectLocatorAction {
-  readonly type: LocatorsActionType.DeselectLocator;
+export interface DeselectActiveObjectAction {
+  readonly type: LocatorsActionType.DeselectActiveObject;
 }
 
-export const deselectLocator = (): DeselectLocatorAction => ({
-  type: LocatorsActionType.DeselectLocator,
+export const deselectActiveObject = (): DeselectActiveObjectAction => ({
+  type: LocatorsActionType.DeselectActiveObject,
 });
 
 export interface OpenLocatorDetailsAction {

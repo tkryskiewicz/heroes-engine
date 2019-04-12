@@ -7,27 +7,38 @@ import { HeroWindow } from "../HeroWindow";
 
 export interface HeroLocatorsContainerProps {
   readonly heroes: Hero[];
-  readonly selectedIndex?: number;
-  readonly onSelectLocatorClick: (index: number) => void;
+  readonly activeObjectId?: string;
+  readonly onSelectLocatorClick: (id: string) => void;
   readonly locatorDetailsVisible: boolean;
   readonly onOpenLocatorDetailsClick: () => void;
   readonly onConfirmDismissHeroClick: () => void;
   readonly onCloseLocatorDetailsClick: () => void;
 }
 
-export class HeroLocatorsContainer extends React.Component<HeroLocatorsContainerProps> {
-  public render() {
-    const { heroes, selectedIndex, locatorDetailsVisible } = this.props;
+type DefaultProp =
+  "onSelectLocatorClick" |
+  "onOpenLocatorDetailsClick" |
+  "onConfirmDismissHeroClick" |
+  "onCloseLocatorDetailsClick";
 
-    const selectedHero = selectedIndex !== undefined && heroes[selectedIndex] ?
-      heroes[selectedIndex] :
-      undefined;
+export class HeroLocatorsContainer extends React.Component<HeroLocatorsContainerProps> {
+  public static readonly defaultProps: Pick<HeroLocatorsContainerProps, DefaultProp> = {
+    onCloseLocatorDetailsClick: () => undefined,
+    onConfirmDismissHeroClick: () => undefined,
+    onOpenLocatorDetailsClick: () => undefined,
+    onSelectLocatorClick: () => undefined,
+  };
+
+  public render() {
+    const { heroes, activeObjectId, locatorDetailsVisible } = this.props;
+
+    const selectedHero = heroes.find((h) => h.id === activeObjectId);
 
     return (
       <>
         <HeroLocators
           heroes={this.props.heroes}
-          selectedIndex={this.props.selectedIndex}
+          selectedIndex={selectedHero && heroes.indexOf(selectedHero)}
           onLocatorClick={this.onLocatorClick}
         />
         {selectedHero && locatorDetailsVisible && this.renderLocatorDetails(selectedHero)}
@@ -42,8 +53,8 @@ export class HeroLocatorsContainer extends React.Component<HeroLocatorsContainer
       return;
     }
 
-    if (index !== this.props.selectedIndex && this.props.onSelectLocatorClick) {
-      this.props.onSelectLocatorClick(index);
+    if (hero.id !== this.props.activeObjectId) {
+      this.props.onSelectLocatorClick(hero.id);
     } else {
       this.props.onOpenLocatorDetailsClick();
     }

@@ -4,7 +4,6 @@ import { Dispatch } from "redux";
 import {
   GameData,
   getVisitor,
-  Hero,
   isArtifactMapObjectData,
   isCreatureMapObjectData,
   isDwellingMapObject,
@@ -14,7 +13,6 @@ import {
   isTreasureMapObject,
   MapObject,
   MapObjectData,
-  Town,
   wasVisitedBy,
 } from "heroes-core";
 import {
@@ -41,7 +39,7 @@ import {
   VisitMinePrompt,
   VisitObeliskPrompt,
 } from "heroes-homm1-react";
-import { adventureScreenActions, gameActions, locatorsActions, LocatorType } from "heroes-homm1-state";
+import { adventureScreenActions, gameActions, locatorsActions } from "heroes-homm1-state";
 
 export const renderMapObject = (object: MapObject, objectData: MapObjectData, data: GameData) => {
   if (isHeroMapObject(object)) {
@@ -110,7 +108,7 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData, da
 export const renderMapObjectDetails = (
   object: MapObject,
   objectData: MapObjectData,
-  activeObject: Hero | undefined,
+  activeObject: MapObject | undefined,
   data: GameData,
   props: {
     readonly onConfirmClick: () => void;
@@ -176,58 +174,50 @@ export const onTileClick = (
   alignment: string,
   object: MapObject,
   objectData: MapObjectData,
-  heroes: Hero[],
-  activeHero: Hero | undefined,
-  towns: Town[],
-  activeTown: Town | undefined,
+  activeObject: MapObject | undefined,
   data: GameData,
   dispatch: Dispatch,
 ) => {
-  // FIXME: extract
   if (isHeroMapObject(object)) {
-    const heroIndex = heroes.indexOf(object);
-
-    if (!activeHero) {
-      dispatch(locatorsActions.selectLocator({ type: LocatorType.Hero, index: heroIndex }));
-    } else if (activeHero && object.id !== activeHero.id) {
-      dispatch(adventureScreenActions.openHeroTradingWindow(activeHero.id, object.id));
+    if (!activeObject) {
+      dispatch(locatorsActions.selectActiveObject(object.id));
+    } else if (isHeroMapObject(activeObject) && object.id !== activeObject.id) {
+      dispatch(adventureScreenActions.openHeroTradingWindow(activeObject.id, object.id));
     } else {
       dispatch(locatorsActions.openLocatorDetails());
     }
   } else if (isTownMapObject(object)) {
-    const townIndex = towns.indexOf(object);
-
-    if (activeHero || object !== activeTown) {
-      dispatch(locatorsActions.selectLocator({ type: LocatorType.Town, index: townIndex }));
+    if (!activeObject || object.id !== activeObject.id) {
+      dispatch(locatorsActions.selectActiveObject(object.id));
     } else {
       dispatch(locatorsActions.openLocatorDetails());
     }
   } else if (isDwellingMapObject(object)) {
-    if (!activeHero) {
+    if (!isHeroMapObject(activeObject)) {
       return;
     }
 
     dispatch(adventureScreenActions.openMapObjectDetails(object.id));
   } else if (isTreasureMapObject(object)) {
-    if (!activeHero) {
+    if (!isHeroMapObject(activeObject)) {
       return;
     }
 
-    dispatch(gameActions.visitMapObject(object.id, activeHero.id));
+    dispatch(gameActions.visitMapObject(object.id, activeObject.id));
   } else if (isMineMapObject(object, data)) {
-    if (!activeHero || isObjectOwnedBy(object, alignment)) {
+    if (!isHeroMapObject(activeObject) || isObjectOwnedBy(object, alignment)) {
       return;
     }
 
     dispatch(adventureScreenActions.openMapObjectDetails(object.id));
   } else if (isArtifactMapObjectData(objectData)) {
-    if (!activeHero) {
+    if (!isHeroMapObject(activeObject)) {
       return;
     }
 
-    dispatch(gameActions.visitMapObject(object.id, activeHero.id));
+    dispatch(gameActions.visitMapObject(object.id, activeObject.id));
   } else {
-    if (!activeHero) {
+    if (!isHeroMapObject(activeObject)) {
       return;
     }
 

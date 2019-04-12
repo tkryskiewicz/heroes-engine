@@ -1,6 +1,6 @@
-import { closeLocatorDetails, deselectLocator, openLocatorDetails, selectLocator } from "./actions";
+import { closeLocatorDetails, deselectActiveObject, openLocatorDetails, selectActiveObject } from "./actions";
 import { locatorsReducer } from "./reducers";
-import { Locator, LocatorsState, LocatorType } from "./state";
+import { LocatorsState } from "./state";
 
 describe("locatorsReducer", () => {
   it("should return initial state", () => {
@@ -13,38 +13,28 @@ describe("locatorsReducer", () => {
     expect(result).toEqual(expected);
   });
 
-  it("should handle selecting locator", () => {
+  it("should handle selecting active object", () => {
     const state: LocatorsState = {
       locatorDetailsVisible: false,
     };
 
-    const locator: Locator = {
-      index: 0,
-      type: LocatorType.Hero,
-    };
-
-    const result = locatorsReducer(state, selectLocator(locator));
+    const result = locatorsReducer(state, selectActiveObject("id"));
 
     const expected: LocatorsState = {
+      activeObjectId: "id",
       locatorDetailsVisible: false,
-      selectedLocator: locator,
     };
 
     expect(result).toEqual(expected);
   });
 
-  it("should handle deselecting locator", () => {
-    const locator: Locator = {
-      index: 0,
-      type: LocatorType.Hero,
-    };
-
+  it("should handle deselecting active object", () => {
     const state: LocatorsState = {
+      activeObjectId: "id",
       locatorDetailsVisible: false,
-      selectedLocator: locator,
     };
 
-    const result = locatorsReducer(state, deselectLocator());
+    const result = locatorsReducer(state, deselectActiveObject());
 
     const expected: LocatorsState = {
       locatorDetailsVisible: false,

@@ -9,29 +9,21 @@ import {
   gameActions,
   gameOptionsActions,
   kingdomOverviewWindowActions,
-  Locator,
   locatorsActions,
-  LocatorType,
 } from "heroes-homm1-state";
 
 import { AdventureButtonsContainer, AdventureButtonsContainerProps } from "./AdventureButtonsContainer";
 
 type StateProp =
   "heroes" |
-  "selectedIndex" |
+  "activeObjectId" |
   "endTurnPromptVisible";
 
-const mapStateToProps = (state: AppState): Pick<AdventureButtonsContainerProps, StateProp> => {
-  const { selectedLocator } = state.locators;
-
-  return {
-    endTurnPromptVisible: state.adventureScreen.endTurnPromptVisible,
-    heroes: getGameHeroes(state.game),
-    selectedIndex: selectedLocator && selectedLocator.type === LocatorType.Hero ?
-      selectedLocator.index :
-      undefined,
-  };
-};
+const mapStateToProps = (state: AppState): Pick<AdventureButtonsContainerProps, StateProp> => ({
+  activeObjectId: state.locators.activeObjectId,
+  endTurnPromptVisible: state.adventureScreen.endTurnPromptVisible,
+  heroes: getGameHeroes(state.game),
+});
 
 type DispatchProp =
   "onNextHeroClick" |
@@ -42,13 +34,8 @@ type DispatchProp =
   "onGameOptionsClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsContainerProps, DispatchProp> => ({
-  onNextHeroClick(index) {
-    const locator: Locator = {
-      index,
-      type: LocatorType.Hero,
-    };
-
-    dispatch(locatorsActions.selectLocator(locator));
+  onNextHeroClick(id) {
+    dispatch(locatorsActions.selectActiveObject(id));
   },
   onKingdomOverviewClick() {
     dispatch(kingdomOverviewWindowActions.open());

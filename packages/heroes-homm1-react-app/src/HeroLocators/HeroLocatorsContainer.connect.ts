@@ -2,24 +2,20 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
 import { getGameHeroes } from "heroes-homm1";
-import { AppState, Locator, locatorsActions, LocatorType } from "heroes-homm1-state";
+import { AppState, locatorsActions } from "heroes-homm1-state";
 
 import { HeroLocatorsContainer, HeroLocatorsContainerProps } from "./HeroLocatorsContainer";
 
 type StateProp =
   "heroes" |
-  "selectedIndex" |
+  "activeObjectId" |
   "locatorDetailsVisible";
 
-const mapStateToProps = (state: AppState): Pick<HeroLocatorsContainerProps, StateProp> => {
-  const { selectedLocator } = state.locators;
-
-  return {
-    heroes: getGameHeroes(state.game),
-    locatorDetailsVisible: state.locators.locatorDetailsVisible,
-    selectedIndex: selectedLocator && selectedLocator.type === LocatorType.Hero ? selectedLocator.index : undefined,
-  };
-};
+const mapStateToProps = (state: AppState): Pick<HeroLocatorsContainerProps, StateProp> => ({
+  activeObjectId: state.locators.activeObjectId,
+  heroes: getGameHeroes(state.game),
+  locatorDetailsVisible: state.locators.locatorDetailsVisible,
+});
 
 type DispatchProp =
   "onSelectLocatorClick" |
@@ -28,20 +24,16 @@ type DispatchProp =
   "onCloseLocatorDetailsClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroLocatorsContainerProps, DispatchProp> => ({
-  onSelectLocatorClick(index) {
-    const locator: Locator = {
-      index,
-      type: LocatorType.Hero,
-    };
-
-    dispatch(locatorsActions.selectLocator(locator));
+  onSelectLocatorClick(id) {
+    dispatch(locatorsActions.selectActiveObject(id));
   },
   onOpenLocatorDetailsClick() {
     dispatch(locatorsActions.openLocatorDetails());
   },
   onConfirmDismissHeroClick() {
     dispatch(locatorsActions.closeLocatorDetails());
-    dispatch(locatorsActions.deselectLocator());
+
+    dispatch(locatorsActions.deselectActiveObject());
   },
   onCloseLocatorDetailsClick() {
     dispatch(locatorsActions.closeLocatorDetails());

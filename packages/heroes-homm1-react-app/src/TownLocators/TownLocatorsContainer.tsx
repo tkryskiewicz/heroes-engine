@@ -8,8 +8,8 @@ import { TownWindow } from "../TownWindow";
 
 interface TownLocatorsContainerProps {
   readonly towns: Town[];
-  readonly selectedIndex?: number;
-  readonly onSelectLocatorClick: (index: number) => void;
+  readonly activeObjectId?: string;
+  readonly onSelectLocatorClick: (id: string) => void;
   readonly locatorDetailsVisible: boolean;
   readonly onOpenLocatorDetailsClick: () => void;
   readonly onCloseLocatorDetailsClick: () => void;
@@ -30,19 +30,16 @@ export class TownLocatorsContainer extends React.Component<TownLocatorsContainer
   };
 
   public render() {
-    const { towns, selectedIndex, locatorDetailsVisible } = this.props;
+    const { towns, activeObjectId, locatorDetailsVisible } = this.props;
 
-    const selectedTown = selectedIndex !== undefined && towns[selectedIndex] ?
-      towns[selectedIndex] :
-      undefined;
+    const selectedTown = towns.find((t) => t.id === activeObjectId);
 
     return (
       <>
         <TownLocators
           towns={towns.map(this.mapTown)}
-          selectedIndex={selectedIndex}
-          onSelectLocator={this.props.onSelectLocatorClick}
-          onSelectedLocatorClick={this.props.onOpenLocatorDetailsClick}
+          selectedIndex={selectedTown && towns.indexOf(selectedTown)}
+          onLocatorClick={this.onLocatorClick}
         />
         {selectedTown && locatorDetailsVisible && this.renderLocatorDetails(selectedTown)}
       </>
@@ -53,6 +50,20 @@ export class TownLocatorsContainer extends React.Component<TownLocatorsContainer
     id: town.id,
     isCastleBuilt: isStructureBuilt(town, StructureId.Castle),
   })
+
+  private readonly onLocatorClick = (index: number) => {
+    const town = this.props.towns[index];
+
+    if (!town) {
+      return;
+    }
+
+    if (town.id !== this.props.activeObjectId) {
+      this.props.onSelectLocatorClick(town.id);
+    } else {
+      this.props.onOpenLocatorDetailsClick();
+    }
+  }
 
   private renderLocatorDetails(town: Town) {
     return (

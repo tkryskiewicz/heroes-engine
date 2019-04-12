@@ -6,7 +6,7 @@ export { gameSettingsActions } from "./gameSettings";
 export { heroTradingWindowActions } from "./heroTradingWindow";
 export { heroWindowActions } from "./heroWindow";
 export { kingdomOverviewWindowActions } from "./kingdomOverviewWindow";
-export { locatorsActions, Locator, LocatorType } from "./locators";
+export { locatorsActions } from "./locators";
 export { mageGuildWindowActions } from "./mageGuildWindow";
 export { puzzleWindowActions } from "./puzzleWindow";
 export { rootReducer } from "./reducers";

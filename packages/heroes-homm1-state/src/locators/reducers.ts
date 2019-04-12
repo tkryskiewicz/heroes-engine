@@ -10,15 +10,15 @@ export const locatorsReducer = (
   action: LocatorsAction,
 ): LocatorsState => {
   switch (action.type) {
-    case LocatorsActionType.SelectLocator:
+    case LocatorsActionType.SelectActiveObject:
       return {
         ...state,
-        selectedLocator: action.locator,
+        activeObjectId: action.objectId,
       };
-    case LocatorsActionType.DeselectLocator:
+    case LocatorsActionType.DeselectActiveObject:
       return {
         ...state,
-        selectedLocator: undefined,
+        activeObjectId: undefined,
       };
     case LocatorsActionType.OpenLocatorDetails:
       return {

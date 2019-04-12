@@ -12,8 +12,7 @@ interface Town {
 export interface TownLocatorsProps {
   readonly towns: Town[];
   readonly selectedIndex?: number;
-  readonly onSelectLocator?: (index: number) => void;
-  readonly onSelectedLocatorClick?: () => void;
+  readonly onLocatorClick?: (index: number) => void;
 }
 
 // TODO: unify hero and town locators?
@@ -29,23 +28,9 @@ export class TownLocators extends React.Component<TownLocatorsProps> {
           town={town ? town.id : undefined}
           isCastleBuilt={town ? town.isCastleBuilt : undefined}
           selected={i === this.props.selectedIndex}
-          onClick={this.onLocatorClick}
+          onClick={this.props.onLocatorClick}
         />
       );
     });
-  }
-
-  private readonly onLocatorClick = (index: number) => {
-    const town = this.props.towns[index];
-
-    if (!town) {
-      return;
-    }
-
-    if (index !== this.props.selectedIndex && this.props.onSelectLocator) {
-      this.props.onSelectLocator(index);
-    } else if (this.props.onSelectedLocatorClick) {
-      this.props.onSelectedLocatorClick();
-    }
   }
 }

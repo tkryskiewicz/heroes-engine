@@ -23,12 +23,20 @@ export interface Hero {
 export const canSelectNextHero = (heroes: Hero[]): boolean =>
   heroes.filter((h) => h.mobility).length !== 0;
 
-export const getNextHeroIndex = (heroes: Hero[], selectedIndex?: number): number | undefined => {
-  const startIndex = selectedIndex !== undefined ? selectedIndex + 1 : 0;
+export const getNextHero = (heroes: Hero[], activeObjectId?: string): string | undefined => {
+  const selectedIndex = activeObjectId !== undefined ?
+    heroes.findIndex((h) => h.id === activeObjectId) :
+    undefined;
+
+  const startIndex = selectedIndex !== undefined ?
+    selectedIndex + 1 :
+    0;
 
   const index = [...new Array(heroes.length).keys()]
     .map((i) => (startIndex + i) % heroes.length)
     .find((i) => heroes[i].mobility > 0 && i !== selectedIndex);
 
-  return index;
+  return index !== undefined ?
+    heroes[index].id :
+    undefined;
 };

@@ -3,14 +3,13 @@ import { DispatchProp } from "react-redux";
 
 import {
   GameData,
-  Hero,
+  getObject,
   Map,
   MapObject,
-  Town,
 } from "heroes-core";
 import { isHeroMapObject, isTownMapObject } from "heroes-homm1";
 import { AdventureWindow, MapTile } from "heroes-homm1-react";
-import { adventureScreenActions, gameActions, Locator, LocatorType } from "heroes-homm1-state";
+import { adventureScreenActions, gameActions } from "heroes-homm1-state";
 
 import { HeroTradingWindow } from "../HeroTradingWindow";
 import { onTileClick, renderMapObject, renderMapObjectDetails } from "./config";
@@ -19,9 +18,7 @@ interface Props extends DispatchProp {
   readonly data: GameData;
   readonly alignment: string;
   readonly map: Map;
-  readonly heroes: Hero[];
-  readonly towns: Town[];
-  readonly selectedLocator?: Locator;
+  readonly activeObjectId?: string;
   readonly visibleMapObjectDetails?: string;
   readonly heroTradingScreenVisible: boolean;
 }
@@ -80,17 +77,19 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private readonly onTileMouseEnter = (index: number) => {
+    const { map, activeObjectId } = this.props;
+
+    const activeObject = activeObjectId !== undefined ?
+      getObject(map, activeObjectId) :
+      undefined;
+
     const tile = this.props.map.tiles[index];
 
     const object = tile.object;
 
     if (object) {
-      const { selectedLocator } = this.props;
-
       if (isHeroMapObject(object)) {
-        const heroIndex = this.props.heroes.indexOf(object);
-
-        if (selectedLocator && selectedLocator.type === LocatorType.Hero && selectedLocator.index !== heroIndex) {
+        if (activeObject !== undefined && activeObject.id !== object.id) {
           this.setState({
             cursor: "trade",
           });
@@ -118,14 +117,10 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private readonly onTileClick = (index: number) => {
-    const { data, heroes, towns, alignment, selectedLocator } = this.props;
+    const { data, map, alignment, activeObjectId } = this.props;
 
-    const activeHero = selectedLocator !== undefined && selectedLocator.type === LocatorType.Hero ?
-      this.props.heroes[selectedLocator.index] :
-      undefined;
-
-    const activeTown = selectedLocator !== undefined && selectedLocator.type === LocatorType.Town ?
-      this.props.towns[selectedLocator.index] :
+    const activeObject = activeObjectId !== undefined ?
+      getObject(map, activeObjectId) :
       undefined;
 
     const tile = this.props.map.tiles[index];
@@ -135,23 +130,22 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     if (object) {
       const objectData = data.mapObjects[object.dataId];
 
-      onTileClick(alignment, object, objectData, heroes, activeHero, towns, activeTown, data, this.props.dispatch);
+      onTileClick(alignment, object, objectData, activeObject, data, this.props.dispatch);
     }
   }
 
   private renderMapObjectDetails(id: string) {
-    const { data, selectedLocator, heroes } = this.props;
+    const { data, map, activeObjectId } = this.props;
 
-    const activeHero = selectedLocator !== undefined && selectedLocator.type === LocatorType.Hero ?
-      heroes[selectedLocator.index] :
+    const activeObject = activeObjectId !== undefined ?
+      getObject(map, activeObjectId) :
       undefined;
 
-    const mapObject: MapObject =
-      this.props.map.tiles.find((t) => t.object !== undefined && (t.object as any).id === id)!.object!;
+    const object = getObject(this.props.map, id)!;
 
-    const objectData = data.mapObjects[mapObject.dataId];
+    const objectData = data.mapObjects[object.dataId];
 
-    return renderMapObjectDetails(mapObject, objectData, activeHero, data, {
+    return renderMapObjectDetails(object, objectData, activeObject, data, {
       onCloseClick: this.onCloseMapObjectDetailsClick,
       onConfirmClick: this.onConfirmMapObjectDetailsClick,
     });
@@ -162,13 +156,11 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private readonly onConfirmMapObjectDetailsClick = () => {
-    const { selectedLocator, visibleMapObjectDetails } = this.props;
+    const { activeObjectId, visibleMapObjectDetails } = this.props;
 
     this.props.dispatch(adventureScreenActions.closeMapObjectDetails());
 
-    const hero = this.props.heroes[selectedLocator!.index];
-
-    this.props.dispatch(gameActions.visitMapObject(visibleMapObjectDetails!, hero.id));
+    this.props.dispatch(gameActions.visitMapObject(visibleMapObjectDetails!, activeObjectId!));
   }
 
   private rendeHeroTradingWindow() {

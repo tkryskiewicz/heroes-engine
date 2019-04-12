@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 
-import { getGameHeroes, getGameTowns } from "heroes-homm1";
 import { AppState } from "heroes-homm1-state";
 
 import { AdventureWindow, AdventureWindowProps } from "./AdventureWindowContainer";
@@ -9,20 +8,16 @@ type StateProp =
   "data" |
   "alignment" |
   "map" |
-  "heroes" |
-  "towns" |
-  "selectedLocator" |
+  "activeObjectId" |
   "visibleMapObjectDetails" |
   "heroTradingScreenVisible";
 
 const mapStateToProps = (state: AppState): Pick<AdventureWindowProps, StateProp> => ({
+  activeObjectId: state.locators.activeObjectId,
   alignment: state.game.alignment,
   data: state.game.data,
   heroTradingScreenVisible: state.adventureScreen.heroTradingWindowVisible,
-  heroes: getGameHeroes(state.game),
   map: state.game.map,
-  selectedLocator: state.locators.selectedLocator,
-  towns: getGameTowns(state.game),
   visibleMapObjectDetails: state.adventureScreen.visibleMapObjectDetails,
 });
 

@@ -1,38 +1,32 @@
 import {
   closeLocatorDetails,
   CloseLocatorDetailsAction,
-  deselectLocator,
-  DeselectLocatorAction,
+  deselectActiveObject,
+  DeselectActiveObjectAction,
   LocatorsActionType,
   openLocatorDetails,
   OpenLocatorDetailsAction,
-  selectLocator,
-  SelectLocatorAction,
+  selectActiveObject,
+  SelectActiveObjectAction,
 } from "./actions";
-import { Locator, LocatorType } from "./state";
 
 describe("locatorsActions", () => {
-  it("should create an action to select locator", () => {
-    const locator: Locator = {
-      index: 0,
-      type: LocatorType.Hero,
-    };
+  it("should create an action to select active object", () => {
+    const result = selectActiveObject("id");
 
-    const result = selectLocator(locator);
-
-    const expected: SelectLocatorAction = {
-      locator,
-      type: LocatorsActionType.SelectLocator,
+    const expected: SelectActiveObjectAction = {
+      objectId: "id",
+      type: LocatorsActionType.SelectActiveObject,
     };
 
     expect(result).toEqual(expected);
   });
 
-  it("should create an action to deselect locator", () => {
-    const result = deselectLocator();
+  it("should create an action to deselect active object", () => {
+    const result = deselectActiveObject();
 
-    const expected: DeselectLocatorAction = {
-      type: LocatorsActionType.DeselectLocator,
+    const expected: DeselectActiveObjectAction = {
+      type: LocatorsActionType.DeselectActiveObject,
     };
 
     expect(result).toEqual(expected);

@@ -24,7 +24,7 @@ export {
   Hero,
   HeroSkills,
   canSelectNextHero,
-  getNextHeroIndex,
+  getNextHero,
 } from "./Hero";
 export { Item, ItemData, ItemSelection } from "./Item";
 export * from "./map";
