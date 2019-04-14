@@ -12,6 +12,8 @@ describe("isResourceMapObject", () => {
 
     const data: GameData = {
       creatures: {},
+      heroClasses: {},
+      heroes: {},
       items: {},
       mapObjects: {},
       resources: {

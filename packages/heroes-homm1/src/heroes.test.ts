@@ -1,15 +1,17 @@
-import { constructHero, HeroId } from "./heroes";
+import { HeroClassData } from "heroes-core";
+
+import { constructHero } from "./heroes";
 
 describe("constructHero", () => {
   it("should construct hero", () => {
-    const hero = constructHero(HeroId.LordKilburn);
+    const heroClassData: HeroClassData = {
+      army: [],
+      id: "heroClass",
+      skills: {},
+    };
+
+    const hero = constructHero("hero", heroClassData);
 
     expect(hero).toBeDefined();
-  });
-
-  it("should throw when hero is invalid", () => {
-    expect(() => {
-      constructHero("hero");
-    }).toThrow();
   });
 });

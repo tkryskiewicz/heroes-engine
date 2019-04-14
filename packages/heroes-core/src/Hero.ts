@@ -1,6 +1,11 @@
 import { Army } from "./Army";
 import { Item } from "./Item";
 
+export interface HeroData {
+  readonly id: string;
+  readonly heroClass: string;
+}
+
 export interface HeroSkills {
   readonly [skill: string]: number;
 }

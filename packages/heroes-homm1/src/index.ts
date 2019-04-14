@@ -8,6 +8,7 @@ export { CreatureId, creatures, creatureById } from "./creatures";
 export { CreatureSpeed } from "./CreatureSpeed";
 export { getCurrentLevel, getNextLevelExperience } from "./experience";
 export {
+  constructGameHero,
   getGameHero,
   getGameHeroes,
   getGameTown,
@@ -22,7 +23,8 @@ export { GameOption } from "./GameOption";
 export { GameSettings } from "./GameSettings";
 export { GameType } from "./GameType";
 export { HeroClass, HeroClassIds } from "./HeroClass";
-export { HeroInfo, HeroId, heroes, constructHero } from "./heroes";
+export { heroClasses } from "./heroClasses";
+export { HeroId, heroes, constructHero } from "./heroes";
 export {
   LuckType,
   getLuckType,

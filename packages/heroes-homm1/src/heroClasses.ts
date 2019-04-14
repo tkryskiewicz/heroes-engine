@@ -1,8 +1,10 @@
+import { HeroClassData } from "heroes-core";
+
 import { CreatureId } from "./creatures";
 import { HeroClass } from "./HeroClass";
 import { Skill } from "./Skill";
 
-export const heroClasses = [
+export const heroClasses: HeroClassData[] = [
   {
     army: [
       {

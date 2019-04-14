@@ -15,6 +15,8 @@ describe("isMineMapObjectData", () => {
 
     const data: GameData = {
       creatures: {},
+      heroClasses: {},
+      heroes: {},
       items: {},
       mapObjects: {},
       resources: {
@@ -41,6 +43,8 @@ describe("isMineMapObject", () => {
 
     const data: GameData = {
       creatures: {},
+      heroClasses: {},
+      heroes: {},
       items: {},
       mapObjects: {},
       resources: {

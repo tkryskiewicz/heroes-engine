@@ -20,8 +20,10 @@ export {
   startGameTurn,
   visitGameMapObject,
 } from "./Game";
+export { HeroClassData } from "./HeroClass";
 export {
   Hero,
+  HeroData,
   HeroSkills,
   canSelectNextHero,
   getNextHero,

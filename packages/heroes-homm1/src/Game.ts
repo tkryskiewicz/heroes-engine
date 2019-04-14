@@ -3,6 +3,7 @@ import {
   buildTownStructure,
   endTownTurn,
   Game,
+  GameData,
   getObject,
   getTownStructure,
   Hero,
@@ -16,10 +17,27 @@ import {
   Town,
 } from "heroes-core";
 
+import { constructHero } from "./heroes";
 import { isHeroMapObject, isTownMapObject, recruitTownMapObjectTroop, TownMapObject } from "./map";
 import { Skill } from "./Skill";
 import { constructSpellBook, SpellBookSpell } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";
+
+export const constructGameHero = (heroId: string, data: GameData) => {
+  const hero = data.heroes[heroId];
+
+  if (!hero) {
+    throw new Error(`${heroId} is not a valid hero`);
+  }
+
+  const heroClass = data.heroClasses[hero.heroClass];
+
+  if (!heroClass) {
+    throw new Error(`${hero.heroClass} is not a valid hero class`);
+  }
+
+  return constructHero(hero.id, heroClass);
+};
 
 export const getGameHeroes = (game: Game): Hero[] =>
   game.map.tiles

@@ -10,6 +10,7 @@ import {
   dismissGameHero,
   dismissGameTroop,
   DwellingMapObjectData,
+  GameData,
   Hero,
   ItemSelection,
   LimitedInteractionMapObjectData,
@@ -30,7 +31,7 @@ import {
   buyMageGuildSpellBook,
   campaignScenarios,
   constructArtifact,
-  constructHero,
+  constructGameHero,
   constructSpellBook,
   constructTown,
   createHeroMapObject,
@@ -38,6 +39,8 @@ import {
   creatureById,
   CreatureId,
   endGameTurn,
+  heroClasses,
+  heroes,
   HeroId,
   HeroMapObjectData,
   MapObjectId,
@@ -59,47 +62,76 @@ import {
 import { GameAction, GameActionType } from "./actions";
 import { GameState } from "./state";
 
-const heroes: Hero[] = [
-  {
-    ...constructHero(HeroId.LordKilburn),
-    artifacts: [
-      constructArtifact(ArtifactId.ThunderMaceOfDominion),
-      constructArtifact(ArtifactId.UltimateSwordOfDominion),
-    ],
-    mobility: MaxMobility,
-  },
-  {
-    ...constructHero(HeroId.Antoine),
-    luck: 3,
-    mobility: MaxMobility,
-    morale: 1,
-  },
-  {
-    ...constructHero(HeroId.Ariel),
-    artifacts: [
-      constructSpellBook([]),
-    ],
-    luck: -1,
-    mobility: 0,
-    morale: -1,
-  },
-  {
-    ...constructHero(HeroId.Agar),
-    artifacts: [
-      {
-        ...constructSpellBook([
-          {
-            charges: 2,
-            id: SpellId.Bless,
-          },
-        ]),
-      },
-    ],
-    luck: 3,
-    mobility: 10,
-    morale: 3,
-  },
-];
+const data: GameData = {
+  creatures: creatureById,
+  heroClasses: heroClasses.reduce((p, c) => ({
+    ...p,
+    [c.id]: c,
+  }), {}),
+  heroes: heroes.reduce((p, c) => ({
+    ...p,
+    [c.id]: c,
+  }), {}),
+  items: artifacts.reduce((p, c) => ({
+    ...p,
+    [c.id]: c,
+  }), {}),
+  mapObjects: mapObjects.reduce((p, c) => ({
+    ...p,
+    [c.id]: c,
+  }), {}),
+  resources: resources.reduce((p, c) => ({
+    ...p,
+    [c.id]: c,
+  }), {}),
+  spells: spells.reduce((p, c) => ({
+    ...p,
+    [c.id]: c,
+  }), {}),
+};
+
+const lordKilburn: Hero = {
+  ...constructGameHero(HeroId.LordKilburn, data),
+  artifacts: [
+    constructArtifact(ArtifactId.ThunderMaceOfDominion),
+    constructArtifact(ArtifactId.UltimateSwordOfDominion),
+  ],
+  mobility: MaxMobility,
+};
+
+const antoine: Hero = {
+  ...constructGameHero(HeroId.Antoine, data),
+  luck: 3,
+  mobility: MaxMobility,
+  morale: 1,
+};
+
+const ariel: Hero = {
+  ...constructGameHero(HeroId.Ariel, data),
+  artifacts: [
+    constructSpellBook([]),
+  ],
+  luck: -1,
+  mobility: 0,
+  morale: -1,
+};
+
+const agar: Hero = {
+  ...constructGameHero(HeroId.Agar, data),
+  artifacts: [
+    {
+      ...constructSpellBook([
+        {
+          charges: 2,
+          id: SpellId.Bless,
+        },
+      ]),
+    },
+  ],
+  luck: 3,
+  mobility: 10,
+  morale: 3,
+};
 
 const farmTown = constructTown(
   TownId.Farm,
@@ -164,7 +196,7 @@ let map: Map = createMap(14, 14, TerrainType.Grass);
 
 const heroData = mapObjects.find((o) => o.id === MapObjectId.Hero)! as HeroMapObjectData;
 
-heroes.forEach((h, i) => {
+[lordKilburn, antoine, ariel, agar].forEach((h, i) => {
   map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h.id, heroData, h, Alignment.Red));
 });
 
@@ -202,25 +234,7 @@ map = placeObject(map, { x: 2, y: 0 }, createMapObject("creature/1", peasantData
 
 const initialState: GameState = {
   alignment: Alignment.Red,
-  data: {
-    creatures: creatureById,
-    items: artifacts.reduce((p, c) => ({
-      ...p,
-      [c.id]: c,
-    }), {}),
-    mapObjects: mapObjects.reduce((p, c) => ({
-      ...p,
-      [c.id]: c,
-    }), {}),
-    resources: resources.reduce((p, c) => ({
-      ...p,
-      [c.id]: c,
-    }), {}),
-    spells: spells.reduce((p, c) => ({
-      ...p,
-      [c.id]: c,
-    }), {}),
-  },
+  data,
   map,
   puzzle: {
     totalPieces: PuzzlePieceCount,

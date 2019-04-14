@@ -76,6 +76,8 @@ describe("buyMageGuildSpellBook", () => {
       alignment: "alignment",
       data: {
         creatures: {},
+        heroClasses: {},
+        heroes: {},
         items: {},
         mapObjects: {},
         resources: {},

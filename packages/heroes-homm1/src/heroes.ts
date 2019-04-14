@@ -1,12 +1,6 @@
-import { Army, Hero, random, Troop } from "heroes-core";
+import { Army, Hero, HeroClassData, HeroData, random, Troop } from "heroes-core";
 
 import { HeroClass } from "./HeroClass";
-import { heroClasses } from "./heroClasses";
-
-export interface HeroInfo {
-  readonly id: string;
-  readonly heroClass: string;
-}
 
 export enum HeroId {
   // Knights
@@ -54,7 +48,7 @@ export enum HeroId {
   Vesper = "vesper",
 }
 
-const knightHeroes: HeroInfo[] = [
+const knightHeroes: HeroData[] = [
   {
     heroClass: HeroClass.Knight,
     id: HeroId.LordKilburn,
@@ -93,7 +87,7 @@ const knightHeroes: HeroInfo[] = [
   },
 ];
 
-const barbarianHeroes: HeroInfo[] = [
+const barbarianHeroes: HeroData[] = [
   {
     heroClass: HeroClass.Barbarian,
     id: HeroId.Thundax,
@@ -132,7 +126,7 @@ const barbarianHeroes: HeroInfo[] = [
   },
 ];
 
-const sorceressHeroes: HeroInfo[] = [
+const sorceressHeroes: HeroData[] = [
   {
     heroClass: HeroClass.Sorceress,
     id: HeroId.Ariel,
@@ -171,7 +165,7 @@ const sorceressHeroes: HeroInfo[] = [
   },
 ];
 
-const warlockHeroes: HeroInfo[] = [
+const warlockHeroes: HeroData[] = [
   {
     heroClass: HeroClass.Warlock,
     id: HeroId.Agar,
@@ -210,24 +204,15 @@ const warlockHeroes: HeroInfo[] = [
   },
 ];
 
-export const heroes: HeroInfo[] = [
+export const heroes: HeroData[] = [
   ...knightHeroes,
   ...barbarianHeroes,
   ...sorceressHeroes,
   ...warlockHeroes,
 ];
 
-// TODO: move to game and inject heroes and hero classes
-export const constructHero = (id: string): Hero => {
-  const hero = heroes.find((h) => h.id === id);
-
-  if (!hero) {
-    throw new Error("Invalid hero");
-  }
-
-  const heroClass = heroClasses.find((c) => c.id === hero.heroClass)!;
-
-  // TODO: test this
+// TODO: test this
+export const constructHero = (id: string, heroClass: HeroClassData): Hero => {
   const army: Army = heroClass.army
     .map((t): Troop => ({
       count: random(t.min, t.max),
@@ -240,7 +225,7 @@ export const constructHero = (id: string): Hero => {
     artifacts: [],
     dataId: "hero",
     experience: 0,
-    heroClass: hero.heroClass,
+    heroClass: heroClass.id,
     id,
     luck: 0,
     mobility: 0,
