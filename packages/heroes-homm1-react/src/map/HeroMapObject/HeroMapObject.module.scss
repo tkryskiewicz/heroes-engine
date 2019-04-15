@@ -1,5 +1,6 @@
 .root {
   position: relative;
+  // FIXME: why this size??
   width: 46px;
   height: 46px;
 }
@@ -8,8 +9,4 @@
   position: absolute;
   top: 4px;
   left: 2px;
-}
-
-.invert {
-  transform: scaleX(-1);
 }
