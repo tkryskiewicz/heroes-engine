@@ -36,8 +36,8 @@ import {
   constructTown,
   createHeroMapObject,
   createTownMapObject,
-  creatureById,
   CreatureId,
+  creatures,
   endGameTurn,
   heroClasses,
   heroes,
@@ -63,7 +63,10 @@ import { GameAction, GameActionType } from "./actions";
 import { GameState } from "./state";
 
 const data: GameData = {
-  creatures: creatureById,
+  creatures: creatures.reduce((p, c) => ({
+    ...p,
+    [c.id]: c,
+  }), {}),
   heroClasses: heroClasses.reduce((p, c) => ({
     ...p,
     [c.id]: c,

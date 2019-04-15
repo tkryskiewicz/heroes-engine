@@ -9,7 +9,7 @@ export {
   createBattlefield,
 } from "./Battlefield";
 export { CombatSide } from "./CombatSide";
-export { Creature, Damage } from "./Creature";
+export { CreatureData, Damage } from "./Creature";
 export {
   Game,
   GameData,

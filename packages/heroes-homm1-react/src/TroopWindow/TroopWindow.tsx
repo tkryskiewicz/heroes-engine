@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Creature, Damage, HeroSkills } from "heroes-core";
+import { CreatureData, Damage, HeroSkills } from "heroes-core";
 import { LuckType, MoraleType, Skill } from "heroes-homm1";
 
 import * as styles from "./TroopWindow.module.scss";
@@ -21,7 +21,7 @@ import { getSpeedMessage, messages } from "./messages";
 
 interface TroopWindowProps extends WithGameWindowProps {
   readonly index: number;
-  readonly creature: Creature;
+  readonly creature: CreatureData;
   // FIXME: not really connected to hero skills
   readonly skillEnhancements: HeroSkills;
   readonly morale: MoraleType;
@@ -78,7 +78,7 @@ class TroopWindow extends React.Component<TroopWindowProps> {
     );
   }
 
-  private renderSkills(creature: Creature, skillEnhancements: HeroSkills) {
+  private renderSkills(creature: CreatureData, skillEnhancements: HeroSkills) {
     return (
       <>
         <div className={styles.creatureName}>

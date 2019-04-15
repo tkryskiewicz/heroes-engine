@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Troop } from "heroes-core";
-import { creatureById, CreatureId, LuckType, MoraleType, Skill } from "heroes-homm1";
+import { CreatureId, creatures, LuckType, MoraleType, Skill } from "heroes-homm1";
 
 import { Placeholder } from "../Placeholder";
 import { creature, luckType, moraleType, troopIndex } from "../stories";
@@ -22,7 +22,7 @@ storiesOf("TroopWindow", module)
     <TroopWindow
       visible={boolean("Visible", true)}
       index={troopIndex("Index")}
-      creature={creatureById[creature("Creature")]}
+      creature={creatures.find((c) => c.id === creature("Creature"))!}
       morale={moraleType("Morale")}
       luck={luckType("Luck")}
       count={number("Count", 1, { range: true, min: 0, max: 9999, step: 1 })}
@@ -34,7 +34,7 @@ storiesOf("TroopWindow", module)
     <TroopWindow
       visible={true}
       index={0}
-      creature={creatureById[creature("Creature")]}
+      creature={creatures.find((c) => c.id === creature("Creature"))!}
       morale={MoraleType.Neutral}
       luck={LuckType.Neutral}
       skillEnhancements={{ [Skill.Attack]: 1, [Skill.Defense]: 2 }}
@@ -45,7 +45,7 @@ storiesOf("TroopWindow", module)
     <TroopWindow
       visible={true}
       index={troopIndex("Index")}
-      creature={creatureById[troopBase.creature]}
+      creature={creatures.find((c) => c.id === creature("Creature"))!}
       morale={MoraleType.Neutral}
       luck={LuckType.Neutral}
       count={troopBase.count}

@@ -3,7 +3,7 @@ export interface Damage {
   readonly max: number;
 }
 
-export interface Creature {
+export interface CreatureData {
   readonly id: string;
   readonly town?: string;
   readonly attack: number;

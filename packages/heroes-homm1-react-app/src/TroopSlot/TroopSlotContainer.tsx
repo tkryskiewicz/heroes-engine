@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Creature } from "heroes-core";
+import { GameData } from "heroes-core";
 
 import { TroopSlot, TroopSlotProps } from "heroes-homm1-react";
 
@@ -10,7 +10,7 @@ interface Troop {
 }
 
 export interface TroopSlotContainerProps extends Pick<TroopSlotProps, Exclude<keyof TroopSlotProps, "troop">> {
-  readonly creatureById: { readonly [id: string]: Creature; };
+  readonly creatureById: GameData["creatures"];
   readonly troop?: Troop;
 }
 

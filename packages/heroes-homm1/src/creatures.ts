@@ -1,4 +1,4 @@
-import { Creature } from "heroes-core";
+import { CreatureData } from "heroes-core";
 
 import { CreatureSpeed } from "./CreatureSpeed";
 import { TownId } from "./TownId";
@@ -43,7 +43,7 @@ export enum CreatureId {
   Ghost = "ghost",
 }
 
-const farmCreatures: Creature[] = [
+const farmCreatures: CreatureData[] = [
   {
     attack: 1,
     damage: {
@@ -119,7 +119,7 @@ const farmCreatures: Creature[] = [
   },
 ];
 
-const plainsCreatures: Creature[] = [
+const plainsCreatures: CreatureData[] = [
   {
     attack: 3,
     damage: {
@@ -196,7 +196,7 @@ const plainsCreatures: Creature[] = [
   },
 ];
 
-const forestCreatures: Creature[] = [
+const forestCreatures: CreatureData[] = [
   {
     attack: 4,
     damage: {
@@ -273,7 +273,7 @@ const forestCreatures: Creature[] = [
   },
 ];
 
-const mountainsCreatures: Creature[] = [
+const mountainsCreatures: CreatureData[] = [
   {
     attack: 3,
     damage: {
@@ -349,7 +349,7 @@ const mountainsCreatures: Creature[] = [
   },
 ];
 
-const neutralCreatures: Creature[] = [
+const neutralCreatures: CreatureData[] = [
   {
     attack: 6,
     damage: {
@@ -403,10 +403,3 @@ export const creatures = [
   ...mountainsCreatures,
   ...neutralCreatures,
 ];
-
-export const creatureById = creatures.reduce<{ readonly [id: string]: Creature }>((p, c) => {
-  return {
-    ...p,
-    [c.id]: c,
-  };
-}, {});

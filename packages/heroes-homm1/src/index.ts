@@ -4,7 +4,7 @@ export { ArtifactId, artifacts, constructArtifact } from "./artifacts";
 export { CampaignId, CampaignIds } from "./campaigns";
 export { CastleOptionStatus } from "./CastleOptionStatus";
 export { ComPort } from "./ComPort";
-export { CreatureId, creatures, creatureById } from "./creatures";
+export { CreatureId, creatures } from "./creatures";
 export { CreatureSpeed } from "./CreatureSpeed";
 export { getCurrentLevel, getNextLevelExperience } from "./experience";
 export {

@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import { Creature } from "heroes-core";
+import { GameData } from "heroes-core";
 import { CreatureIcon, DismissTroopPrompt, TroopWindow, TroopWindowProps } from "heroes-homm1-react";
 
 export interface TroopWindowContainerProps extends
   Pick<TroopWindowProps, Exclude<keyof TroopWindowProps, "creature" | "renderCreature" | "dismissVisible">> {
-  readonly creatureById: { readonly [id: string]: Creature; };
+  readonly creatureById: GameData["creatures"];
   readonly creature: string;
   readonly dismissible: boolean;
   readonly dismissPromptVisible: boolean;
