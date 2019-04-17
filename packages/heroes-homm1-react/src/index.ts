@@ -16,6 +16,8 @@ export * from "./CombatWonWindow";
 export * from "./CongratulationsWindow";
 export * from "./core";
 export * from "./CreditsWindow";
+export * from "./EditorButtons";
+export * from "./EditorWindow";
 export * from "./GameOptions";
 export * from "./HeroCombatOptions";
 export * from "./HeroLocator";
