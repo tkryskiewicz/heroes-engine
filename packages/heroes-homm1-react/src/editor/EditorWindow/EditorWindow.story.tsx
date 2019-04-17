@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { Placeholder } from "../Placeholder";
+import { Placeholder } from "../../Placeholder";
 import { EditorWindow } from "./EditorWindow";
 
 const renderAdventureWindow = () => <Placeholder name="Adventure Window" />;
@@ -10,7 +10,7 @@ const renderOptions = () => <Placeholder name="Options" />;
 const renderOptionDetails = () => <Placeholder name="Option Details" />;
 const renderButtons = () => <Placeholder name="Buttons" />;
 
-storiesOf("EditorWindow", module)
+storiesOf("editor/EditorWindow", module)
   .add("default", () => (
     <EditorWindow
       renderAdventureWindow={renderAdventureWindow}

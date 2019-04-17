@@ -2,7 +2,7 @@ import * as React from "react";
 
 import * as styles from "./EditorButtons.module.scss";
 
-import { ImageButton } from "../base";
+import { ImageButton } from "../../base";
 import { buttonImages } from "./assets";
 
 export interface EditorButtonsProps {
