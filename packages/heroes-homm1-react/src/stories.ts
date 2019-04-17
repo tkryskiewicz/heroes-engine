@@ -36,7 +36,7 @@ import {
   TownId,
 } from "heroes-homm1";
 
-interface SelectOptions {
+export interface SelectOptions {
   readonly [s: string]: string;
 }
 

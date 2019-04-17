@@ -6,6 +6,7 @@ export { CastleOptionStatus } from "./CastleOptionStatus";
 export { ComPort } from "./ComPort";
 export { CreatureId, creatures } from "./creatures";
 export { CreatureSpeed } from "./CreatureSpeed";
+export * from "./editor";
 export { getCurrentLevel, getNextLevelExperience } from "./experience";
 export {
   constructGameHero,
