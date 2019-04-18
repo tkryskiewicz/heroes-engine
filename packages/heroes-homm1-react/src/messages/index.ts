@@ -32,6 +32,7 @@ export {
 export * from "./skills";
 export { getSpellNameMessage, getSpellLongNameMessage, getSpellDescriptionMessage } from "./spells";
 export { getStructureDescriptionMessage, getStructureNameMessage } from "./structures";
+export { getTerrainNameMessage } from "./terrains";
 
 import { unknownMessage } from "./util";
 
