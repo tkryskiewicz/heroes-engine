@@ -13,6 +13,109 @@
   height: 448px;
 }
 
+%scroll-button {
+  position: absolute;
+  display: flex;
+  width: 16px;
+  height: 16px;
+}
+
+.scroll-north-west {
+  @extend %scroll-button;
+
+  top: 0;
+  left: 0;
+}
+
+.scroll-north-east {
+  @extend %scroll-button;
+
+  top: 0;
+  left: 464px;
+}
+
+.scroll-south-west {
+  @extend %scroll-button;
+
+  top: 464px;
+  left: 0;
+}
+
+.scroll-south-east {
+  @extend %scroll-button;
+
+  top: 464px;
+  left: 464px;
+}
+
+.vertical-scroll {
+  position: absolute;
+  top: 16px;
+  left: 464px;
+  width: 16px;
+  height: 16px + 416px + 16px;
+}
+
+.scroll-north {
+  @extend %scroll-button;
+
+  top: 0;
+  left: 0;
+}
+
+.vertical-scroll-background {
+  position: absolute;
+  top: 16px;
+  left: 0;
+}
+
+.scroll-south {
+  @extend %scroll-button;
+
+  top: 16px + 416px;
+  left: 0;
+}
+
+.vertical-scroll-block {
+  position: absolute;
+  top: 16px + 3px;
+  left: 4px;
+}
+
+.horizontal-scroll {
+  position: absolute;
+  top: 464px;
+  left: 16px;
+  width: 16px + 416px + 16px;
+  height: 16px;
+}
+
+.scroll-west {
+  @extend %scroll-button;
+
+  top: 0;
+  left: 0;
+}
+
+.horizontal-scroll-background {
+  position: absolute;
+  top: 0;
+  left: 16px;
+}
+
+.scroll-east {
+  @extend %scroll-button;
+
+  top: 0;
+  left: 16px + 416px;
+}
+
+.horizontal-scroll-block {
+  position: absolute;
+  top: 4px;
+  left: 16px + 3px;
+}
+
 .world-map {
   position: absolute;
   top: 16px;

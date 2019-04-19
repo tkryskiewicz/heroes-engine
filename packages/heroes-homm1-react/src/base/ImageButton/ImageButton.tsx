@@ -1,3 +1,4 @@
+import Classnames from "classnames";
 import * as React from "react";
 
 import * as styles from "./ImageButton.module.scss";
@@ -8,6 +9,7 @@ export interface ButtonImages {
 }
 
 export interface ImageButtonProps {
+  readonly className?: string;
   readonly images: ButtonImages;
   readonly disabled: boolean;
   readonly onMouseEnter: () => void;
@@ -44,7 +46,7 @@ export class ImageButton extends React.Component<ImageButtonProps, ImageButtonSt
 
     return (
       <button
-        className={styles.root}
+        className={Classnames(styles.root, this.props.className)}
         disabled={disabled}
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
