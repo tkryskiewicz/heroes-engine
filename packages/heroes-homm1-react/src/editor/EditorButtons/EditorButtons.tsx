@@ -2,8 +2,9 @@ import * as React from "react";
 
 import * as styles from "./EditorButtons.module.scss";
 
-import { ImageButton } from "../../base";
 import { buttonImages } from "./assets";
+
+import { ImageButton } from "../../base";
 
 export interface EditorButtonsProps {
   readonly onZoomClick: () => void;

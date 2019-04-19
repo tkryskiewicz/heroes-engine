@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import * as styles from "./EditorOptions.module.scss";
-
 import { EditorOption } from "heroes-homm1";
+
+import * as styles from "./EditorOptions.module.scss";
 
 import { buttonImages } from "./assets";
 

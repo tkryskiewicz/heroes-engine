@@ -1,0 +1,36 @@
+.root {
+  position: relative;
+  width: 16px;
+  height: 2 * 16px + 416px;
+}
+
+%scroll-button {
+  position: absolute;
+  display: flex;
+}
+
+.up {
+  @extend %scroll-button;
+
+  top: 0;
+  left: 0;
+}
+
+.background {
+  position: absolute;
+  top: 16px;
+  left: 0;
+}
+
+.down {
+  @extend %scroll-button;
+
+  bottom: 0;
+  left: 0;
+}
+
+.block {
+  position: absolute;
+  top: 16px + 3px;
+  left: 4px;
+}
