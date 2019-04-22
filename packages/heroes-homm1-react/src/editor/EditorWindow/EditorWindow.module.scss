@@ -48,16 +48,20 @@
   left: 464px;
 }
 
-.vertical-scroll {
+.vertical-scrollbar {
   position: absolute;
   top: 16px;
   left: 464px;
+  width: 16px;
+  height: 2 * 16px + 416px;
 }
 
-.horizontal-scroll {
+.horizontal-scrollbar {
   position: absolute;
   top: 464px;
   left: 16px;
+  width: 2 * 16px + 416px;
+  height: 16px;
 }
 
 .world-map {
