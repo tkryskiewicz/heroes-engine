@@ -1,0 +1,49 @@
+.root {
+  display: flex;
+}
+
+.horizontal {
+  flex-flow: row;
+  height: 16px;
+}
+
+.vertical {
+  flex-flow: column;
+  width: 16px;
+}
+
+%box {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.small-box {
+  @extend %box;
+
+  width: 16px;
+  height: 16px;
+  line-height: 16px - 2;
+  background: url("./assets/small-box.jpg");
+}
+
+.horizontal-box {
+  @extend %box;
+
+  width: 32px;
+  height: 16px;
+  line-height: 16px - 2;
+  background: url("./assets/horizontal-box.jpg");
+}
+
+.vertical-box {
+  @extend %box;
+
+  width: 16px;
+  height: 32px;
+  line-height: 32px - 4;
+  background: url("./assets/vertical-box.jpg");
+}
+
+.inactive {
+  color: #ff5159;
+}
