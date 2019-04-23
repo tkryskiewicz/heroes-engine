@@ -33,34 +33,42 @@ export class EditorButtons extends React.Component<EditorButtonsProps> {
     return (
       <div className={styles.root}>
         <ImageButton
+          className={styles.button}
           images={buttonImages.zoom}
           onClick={this.props.onZoomClick}
         />
         <ImageButton
+          className={styles.button}
           images={buttonImages.undo}
           onClick={this.props.onUndoClick}
         />
         <ImageButton
+          className={styles.button}
           images={buttonImages.specs}
           onClick={this.props.onSpecsClick}
         />
         <ImageButton
+          className={styles.button}
           images={buttonImages.random}
           onClick={this.props.onRandomClick}
         />
         <ImageButton
+          className={styles.button}
           images={buttonImages.new}
           onClick={this.props.onNewClick}
         />
         <ImageButton
+          className={styles.button}
           images={buttonImages.load}
           onClick={this.props.onLoadClick}
         />
         <ImageButton
+          className={styles.button}
           images={buttonImages.save}
           onClick={this.props.onSaveClick}
         />
         <ImageButton
+          className={styles.button}
           images={buttonImages.quit}
           onClick={this.props.onQuitClick}
         />

@@ -48,6 +48,22 @@
   left: 464px;
 }
 
+.vertical-cell-numbers {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  width: 16px;
+  height: 2 * 16px + 416px;
+}
+
+.horizontal-cell-numbers {
+  position: absolute;
+  top: 0;
+  left: 16px;
+  width: 2 * 16px + 416px;
+  height: 16px;
+}
+
 .vertical-scrollbar {
   position: absolute;
   top: 16px;
@@ -91,7 +107,7 @@
 .buttons {
   position: absolute;
   top: 336px;
-  left: 480px;
+  left: 481px;
   width: 144px;
   height: 144px;
 }

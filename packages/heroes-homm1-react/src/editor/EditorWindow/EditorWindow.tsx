@@ -12,6 +12,8 @@ export interface EditorWindowProps {
   readonly onScrollTopRight: () => void;
   readonly onScrollBottomLeft: () => void;
   readonly onScrollBottomRight: () => void;
+  readonly renderVerticalCellNumbers: () => React.ReactNode;
+  readonly renderHorizontalCellNumbers: () => React.ReactNode;
   readonly renderHorizontalScrollbar: () => React.ReactNode;
   readonly renderVerticalScrollbar: () => React.ReactNode;
   readonly renderWorldMap: () => React.ReactNode;
@@ -28,9 +30,11 @@ export class EditorWindow extends React.Component<EditorWindowProps> {
     onScrollTopRight: () => undefined,
     renderAdventureWindow: () => undefined,
     renderButtons: () => undefined,
+    renderHorizontalCellNumbers: () => undefined,
     renderHorizontalScrollbar: () => undefined,
     renderOptionDetails: () => undefined,
     renderOptions: () => undefined,
+    renderVerticalCellNumbers: () => undefined,
     renderVerticalScrollbar: () => undefined,
     renderWorldMap: () => undefined,
   };
@@ -61,6 +65,12 @@ export class EditorWindow extends React.Component<EditorWindowProps> {
           images={buttonImages.southEast}
           onClick={this.props.onScrollBottomRight}
         />
+        <div className={styles.verticalCellNumbers}>
+          {this.props.renderVerticalCellNumbers()}
+        </div>
+        <div className={styles.horizontalCellNumbers}>
+          {this.props.renderHorizontalCellNumbers()}
+        </div>
         <div className={styles.verticalScrollbar}>
           {this.props.renderVerticalScrollbar()}
         </div>

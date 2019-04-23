@@ -1,15 +1,39 @@
 import * as React from "react";
 
 import { MapObjectOrientation } from "heroes-core";
-import { EditorHorizontalScroll, EditorVerticalScroll, EditorWindow } from "heroes-homm1-react";
+import {
+  CellNumbers,
+  EditorButtons,
+  EditorHorizontalScroll,
+  EditorVerticalScroll,
+  EditorWindow,
+} from "heroes-homm1-react";
 
 interface EditorWindowContainerProps {
   readonly onScroll: (direction: MapObjectOrientation) => void;
+  readonly zoomed: boolean;
+  readonly onZoomClick: () => void;
+  readonly onUndoClick: () => void;
+  readonly onSpecsClick: () => void;
+  readonly onRandomClick: () => void;
+  readonly onNewClick: () => void;
+  readonly onLoadClick: () => void;
+  readonly onSaveClick: () => void;
+  readonly onQuitClick: () => void;
 }
 
 class EditorWindowContainer extends React.Component<EditorWindowContainerProps> {
   public static readonly defaultProps: EditorWindowContainerProps = {
+    onLoadClick: () => undefined,
+    onNewClick: () => undefined,
+    onQuitClick: () => undefined,
+    onRandomClick: () => undefined,
+    onSaveClick: () => undefined,
     onScroll: () => undefined,
+    onSpecsClick: () => undefined,
+    onUndoClick: () => undefined,
+    onZoomClick: () => undefined,
+    zoomed: false,
   };
 
   public render() {
@@ -19,8 +43,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps> 
         onScrollTopRight={this.onScrollNorthEast}
         onScrollBottomLeft={this.onScrollSouthWest}
         onScrollBottomRight={this.onScrollSouthEast}
+        renderVerticalCellNumbers={this.renderVerticalCellNumbers}
+        renderHorizontalCellNumbers={this.renderHorizontalCellNumbers}
         renderHorizontalScrollbar={this.renderHorizontalScrollbar}
         renderVerticalScrollbar={this.renderVerticalScrollbar}
+        renderButtons={this.renderButtons}
       />
     );
   }
@@ -39,6 +66,28 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps> 
 
   private readonly onScrollSouthEast = () => {
     this.props.onScroll(MapObjectOrientation.SouthEast);
+  }
+
+  private readonly renderVerticalCellNumbers = () => {
+    return (
+      <CellNumbers
+        orientation="vertical"
+        size={this.props.zoomed ? "large" : "small"}
+        from={0}
+        to={this.props.zoomed ? 13 : 27}
+      />
+    );
+  }
+
+  private readonly renderHorizontalCellNumbers = () => {
+    return (
+      <CellNumbers
+        orientation="horizontal"
+        size={this.props.zoomed ? "large" : "small"}
+        from={0}
+        to={this.props.zoomed ? 13 : 27}
+      />
+    );
   }
 
   private readonly renderHorizontalScrollbar = () => {
@@ -73,6 +122,21 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps> 
 
   private readonly onScrollSouth = () => {
     this.props.onScroll(MapObjectOrientation.South);
+  }
+
+  private readonly renderButtons = () => {
+    return (
+      <EditorButtons
+        onZoomClick={this.props.onZoomClick}
+        onUndoClick={this.props.onUndoClick}
+        onSpecsClick={this.props.onSpecsClick}
+        onRandomClick={this.props.onRandomClick}
+        onNewClick={this.props.onNewClick}
+        onLoadClick={this.props.onLoadClick}
+        onSaveClick={this.props.onSaveClick}
+        onQuitClick={this.props.onQuitClick}
+      />
+    );
   }
 }
 

@@ -22,7 +22,7 @@ export class CellNumbers extends React.Component<CellNumbersProps> {
 
     return (
       <div className={Classnames(styles.root, styles[orientation])}>
-        {[...new Array(to - from).keys()].map((i) => this.renderBox(from + i, size, orientation))}
+        {[...new Array(to - from + 1).keys()].map((i) => this.renderBox(from + i, size, orientation))}
       </div>
     );
   }
@@ -39,7 +39,7 @@ export class CellNumbers extends React.Component<CellNumbersProps> {
       >
         <GameText size="small">
           <span className={index !== this.props.active ? styles.inactive : undefined}>
-            {index}
+            {index.toString().padStart(2, "0")}
           </span>
         </GameText>
       </div>

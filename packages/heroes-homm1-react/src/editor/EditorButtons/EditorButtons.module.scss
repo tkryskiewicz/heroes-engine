@@ -1,5 +1,10 @@
 .root {
   display: flex;
   flex-wrap: wrap;
-  width: 2 * 71px;
+  width: 2 * (71px + 1px);
+}
+
+.button {
+  margin-right: 1px;
+  margin-bottom: 1px;
 }
