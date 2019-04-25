@@ -82,6 +82,7 @@ describe("buyMageGuildSpellBook", () => {
         mapObjects: {},
         resources: {},
         spells: {},
+        terrains: {},
       },
       map: placeObject(
         placeObject(createMap(2, 1, "terrain"), { x: 0, y: 0 }, heroObject),

@@ -50,3 +50,5 @@ export * from "./TownWindow";
 export * from "./TroopWindow";
 export * from "./ViewWindow";
 export * from "./WorldWindow";
+
+export { editorOption, terrainType } from "./stories";

@@ -24,21 +24,25 @@ export class EditorOptions extends React.Component<EditorOptionsProps> {
     return (
       <div className={styles.root}>
         <ImageButton
+          className={styles.button}
           images={buttonImages.terrains}
           disabled={selectedOption === EditorOption.Terrains}
           onClick={this.onTerrainsClick}
         />
         <ImageButton
+          className={styles.button}
           images={buttonImages.objects}
           disabled={selectedOption === EditorOption.Objects}
           onClick={this.onObjectsClick}
         />
         <ImageButton
+          className={styles.button}
           images={buttonImages.details}
           disabled={selectedOption === EditorOption.Details}
           onClick={this.onDetailsClick}
         />
         <ImageButton
+          className={styles.button}
           images={buttonImages.erase}
           disabled={selectedOption === EditorOption.Erase}
           onClick={this.onEraseClick}

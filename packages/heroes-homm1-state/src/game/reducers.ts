@@ -53,6 +53,7 @@ import {
   SpellId,
   spells,
   StructureId,
+  terrains,
   TerrainType,
   TownId,
   TownMapObject,
@@ -90,6 +91,10 @@ const data: GameData = {
   spells: spells.reduce((p, c) => ({
     ...p,
     [c.id]: c,
+  }), {}),
+  terrains: terrains.reduce((p, c) => ({
+    ...p,
+    [c.id]: c.id,
   }), {}),
 };
 

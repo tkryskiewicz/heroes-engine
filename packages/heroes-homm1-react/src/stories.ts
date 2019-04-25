@@ -8,6 +8,7 @@ import {
   CastleOptionStatus,
   CreatureId,
   creatures,
+  EditorOption,
   FarmStructureId,
   ForestStructureId,
   GameDifficulty,
@@ -286,3 +287,12 @@ const dwellingObjectOptions = [
 }), {});
 
 export const dwellingObject = (name: string) => select(name, dwellingObjectOptions, MapObjectId.Cottage);
+
+const editorOptionOptions = Object.keys(EditorOption).reduce<SelectOptions>((p, c: any) => {
+  return {
+    ...p,
+    [c]: EditorOption[c],
+  };
+}, {});
+
+export const editorOption = (name: string) => select(name, editorOptionOptions, EditorOption.Terrains);

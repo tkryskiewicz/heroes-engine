@@ -82,6 +82,7 @@ export {
   MageGuild,
   Shipyard,
 } from "./structures";
+export { terrains } from "./terrains";
 export { TerrainType } from "./TerrainType";
 export { TownId, TownIds } from "./TownId";
 export { constructTown } from "./towns";

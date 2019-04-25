@@ -1,16 +1,30 @@
 import * as React from "react";
 
-import { MapObjectOrientation } from "heroes-core";
+import { GameData, MapObjectOrientation } from "heroes-core";
+import { EditorOption } from "heroes-homm1";
 import {
   CellNumbers,
+  DetailsOptionDetails,
   EditorButtons,
   EditorHorizontalScroll,
+  EditorOptions,
   EditorVerticalScroll,
   EditorWindow,
+  EraseOptionDetails,
+  TerrainsOptionDetails,
+  GameText,
 } from "heroes-homm1-react";
 
 interface EditorWindowContainerProps {
+  readonly data: GameData;
+  readonly x: number;
+  readonly y: number;
   readonly onScroll: (direction: MapObjectOrientation) => void;
+  readonly selectedOption: EditorOption;
+  readonly onSelectedOptionChange: (value: EditorOption) => void;
+  readonly selectedTerrain: string;
+  readonly onSelectedTerrainChange: (value: string) => void;
+  readonly onEraseTypesClick: () => void;
   readonly zoomed: boolean;
   readonly onZoomClick: () => void;
   readonly onUndoClick: () => void;
@@ -22,18 +36,34 @@ interface EditorWindowContainerProps {
   readonly onQuitClick: () => void;
 }
 
+type DefaultProp =
+  "onScroll" |
+  "onSelectedOptionChange" |
+  "onSelectedTerrainChange" |
+  "onEraseTypesClick" |
+  "onZoomClick" |
+  "onUndoClick" |
+  "onSpecsClick" |
+  "onRandomClick" |
+  "onNewClick" |
+  "onLoadClick" |
+  "onSaveClick" |
+  "onQuitClick";
+
 class EditorWindowContainer extends React.Component<EditorWindowContainerProps> {
-  public static readonly defaultProps: EditorWindowContainerProps = {
+  public static readonly defaultProps: Pick<EditorWindowContainerProps, DefaultProp> = {
+    onEraseTypesClick: () => undefined,
     onLoadClick: () => undefined,
     onNewClick: () => undefined,
     onQuitClick: () => undefined,
     onRandomClick: () => undefined,
     onSaveClick: () => undefined,
     onScroll: () => undefined,
+    onSelectedOptionChange: () => undefined,
+    onSelectedTerrainChange: () => undefined,
     onSpecsClick: () => undefined,
     onUndoClick: () => undefined,
     onZoomClick: () => undefined,
-    zoomed: false,
   };
 
   public render() {
@@ -47,6 +77,8 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps> 
         renderHorizontalCellNumbers={this.renderHorizontalCellNumbers}
         renderHorizontalScrollbar={this.renderHorizontalScrollbar}
         renderVerticalScrollbar={this.renderVerticalScrollbar}
+        renderOptions={this.renderOptions}
+        renderOptionDetails={this.renderOptionDetails}
         renderButtons={this.renderButtons}
       />
     );
@@ -69,23 +101,27 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps> 
   }
 
   private readonly renderVerticalCellNumbers = () => {
+    const { y } = this.props;
+
     return (
       <CellNumbers
         orientation="vertical"
         size={this.props.zoomed ? "large" : "small"}
-        from={0}
-        to={this.props.zoomed ? 13 : 27}
+        from={y}
+        to={y + (this.props.zoomed ? 13 : 27)}
       />
     );
   }
 
   private readonly renderHorizontalCellNumbers = () => {
+    const { x } = this.props;
+
     return (
       <CellNumbers
         orientation="horizontal"
         size={this.props.zoomed ? "large" : "small"}
-        from={0}
-        to={this.props.zoomed ? 13 : 27}
+        from={x}
+        to={x + (this.props.zoomed ? 13 : 27)}
       />
     );
   }
@@ -122,6 +158,46 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps> 
 
   private readonly onScrollSouth = () => {
     this.props.onScroll(MapObjectOrientation.South);
+  }
+
+  private readonly renderOptions = () => {
+    return (
+      <EditorOptions
+        selectedOption={this.props.selectedOption}
+        onSelectedOptionChange={this.props.onSelectedOptionChange}
+      />
+    );
+  }
+
+  private readonly renderOptionDetails = () => {
+    const { data, selectedOption } = this.props;
+
+    switch (selectedOption) {
+      case EditorOption.Terrains:
+        return (
+          <TerrainsOptionDetails
+            options={Object.values(data.terrains)}
+            selectedOption={this.props.selectedTerrain}
+            onSelectedOptionChange={this.props.onSelectedTerrainChange}
+          />
+        );
+      case EditorOption.Objects:
+        return (
+          <GameText size="normal">
+            OBJECTS
+          </GameText>
+        );
+      case EditorOption.Details:
+        return (
+          <DetailsOptionDetails />
+        );
+      case EditorOption.Erase:
+        return (
+          <EraseOptionDetails
+            onTypesClick={this.props.onEraseTypesClick}
+          />
+        );
+    }
   }
 
   private readonly renderButtons = () => {

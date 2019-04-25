@@ -1,14 +1,39 @@
 import { action } from "@storybook/addon-actions";
-import { boolean } from "@storybook/addon-knobs";
+import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { EditorWindow } from "./EditorWindowContainer";
+import { terrains } from "heroes-homm1";
+import { editorOption, terrainType } from "heroes-homm1-react";
+
+import { EditorWindow, EditorWindowProps } from "./EditorWindowContainer";
+
+const data: EditorWindowProps["data"] = {
+  creatures: {},
+  heroClasses: {},
+  heroes: {},
+  items: {},
+  mapObjects: {},
+  resources: {},
+  spells: {},
+  terrains: terrains.reduce((p, c) => ({
+    ...p,
+    [c.id]: c.id,
+  }), {}),
+};
 
 storiesOf("EditorWindowContainer", module)
   .add("default", () => (
     <EditorWindow
+      data={data}
+      x={number("X", 0, { range: true, min: 0, max: 80, step: 1 })}
+      y={number("Y", 0, { range: true, min: 0, max: 80, step: 1 })}
       onScroll={action("Scroll")}
+      selectedOption={editorOption("Selected Option")}
+      onSelectedOptionChange={action("Selected Option Change")}
+      selectedTerrain={terrainType("Selected Terrain")}
+      onSelectedTerrainChange={action("Selected Terrain Change")}
+      onEraseTypesClick={action("Erase Types Click")}
       zoomed={boolean("Zoomed", false)}
       onZoomClick={action("Zoom Click")}
       onUndoClick={action("Undo Click")}

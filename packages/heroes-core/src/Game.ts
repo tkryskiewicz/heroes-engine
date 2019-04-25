@@ -49,6 +49,7 @@ export interface GameData {
   readonly spells: { readonly [id: string]: Spell; };
   readonly heroClasses: { readonly [id: string]: HeroClassData; };
   readonly heroes: { readonly [id: string]: HeroData; };
+  readonly terrains: { readonly [id: string]: string; };
   readonly mapObjects: { readonly [id: string]: MapObjectData; };
 }
 

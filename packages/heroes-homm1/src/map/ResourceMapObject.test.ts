@@ -23,6 +23,7 @@ describe("isResourceMapObject", () => {
         },
       },
       spells: {},
+      terrains: {},
     };
 
     const result = isResourceMapObject(object, data);
