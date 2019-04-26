@@ -4,6 +4,8 @@ import { AdventureScreenState } from "./state";
 const initialState: AdventureScreenState = {
   endTurnPromptVisible: false,
   heroTradingWindowVisible: false,
+  x: 0,
+  y: 0,
 };
 
 export const adventureScreenReducer = (

@@ -2,12 +2,50 @@
 
 .root {
   position: relative;
-  width: $MAP_TILE_SIZE;
-  height: $MAP_TILE_SIZE;
-  // FIXME: render terrain
-  background: green;
+  width: 30px;
+  height: 30px;
+  background: #fff;
   border: solid grey;
   border-width: 0 1px 1px 0;
+}
+
+.large {
+  width: $MAP_TILE_SIZE;
+  height: $MAP_TILE_SIZE;
+}
+
+.small {
+  width: $MAP_TILE_SIZE / 2;
+  height: $MAP_TILE_SIZE / 2;
+}
+
+// FIXME: render terrain
+.water {
+  background: #0441e1;
+}
+
+.grass {
+  background: #00940e;
+}
+
+.snow {
+  background: #fcfcfc;
+}
+
+.swamp {
+  background: #004a00;
+}
+
+.lava {
+  background: #442704;
+}
+
+.desert {
+  background: #e4c900;
+}
+
+.dirt {
+  background: #8c4e1d;
 }
 
 .content {

@@ -1,8 +1,9 @@
 import * as React from "react";
 
-import { GameData, MapObjectOrientation } from "heroes-core";
+import { GameData, Map, MapObjectOrientation } from "heroes-core";
 import { EditorOption } from "heroes-homm1";
 import {
+  AdventureWindow,
   CellNumbers,
   DetailsOptionDetails,
   EditorButtons,
@@ -11,12 +12,14 @@ import {
   EditorVerticalScroll,
   EditorWindow,
   EraseOptionDetails,
-  TerrainsOptionDetails,
   GameText,
+  MapTile,
+  TerrainsOptionDetails,
 } from "heroes-homm1-react";
 
 interface EditorWindowContainerProps {
   readonly data: GameData;
+  readonly map: Map;
   readonly x: number;
   readonly y: number;
   readonly onScroll: (direction: MapObjectOrientation) => void;
@@ -69,6 +72,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps> 
   public render() {
     return (
       <EditorWindow
+        renderAdventureWindow={this.renderAdventureWindow}
         onScrollTopLeft={this.onScrollNorthWest}
         onScrollTopRight={this.onScrollNorthEast}
         onScrollBottomLeft={this.onScrollSouthWest}
@@ -80,6 +84,35 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps> 
         renderOptions={this.renderOptions}
         renderOptionDetails={this.renderOptionDetails}
         renderButtons={this.renderButtons}
+      />
+    );
+  }
+
+  private readonly renderAdventureWindow = () => {
+    const { zoomed } = this.props;
+
+    const size = zoomed ? 14 : 28;
+
+    return (
+      <AdventureWindow
+        width={size}
+        height={size}
+        x={this.props.x}
+        y={this.props.y}
+        renderTile={this.renderTile}
+      />
+    );
+  }
+
+  private readonly renderTile = (index: number) => {
+    const tile = this.props.map.tiles[index];
+
+    return (
+      <MapTile
+        key={index}
+        index={index}
+        size={this.props.zoomed ? "large" : "small"}
+        terrainType={tile.terrain}
       />
     );
   }

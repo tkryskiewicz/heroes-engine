@@ -15,6 +15,8 @@ describe("adventureScreenReducer", () => {
     const expected: AdventureScreenState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
+      x: 0,
+      y: 0,
     };
 
     expect(result).toEqual(expected);
@@ -24,6 +26,8 @@ describe("adventureScreenReducer", () => {
     const state: AdventureScreenState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
+      x: 0,
+      y: 0,
     };
 
     const result = adventureScreenReducer(state, openMapObjectDetails("id"));
@@ -32,6 +36,8 @@ describe("adventureScreenReducer", () => {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
       visibleMapObjectDetails: "id",
+      x: 0,
+      y: 0,
     };
 
     expect(result).toEqual(expected);
@@ -42,6 +48,8 @@ describe("adventureScreenReducer", () => {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
       visibleMapObjectDetails: "id",
+      x: 0,
+      y: 0,
     };
 
     const result = adventureScreenReducer(state, closeMapObjectDetails());
@@ -49,6 +57,8 @@ describe("adventureScreenReducer", () => {
     const expected: AdventureScreenState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
+      x: 0,
+      y: 0,
     };
 
     expect(result).toEqual(expected);
@@ -58,6 +68,8 @@ describe("adventureScreenReducer", () => {
     const state: AdventureScreenState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
+      x: 0,
+      y: 0,
     };
 
     const result = adventureScreenReducer(state, changeEndTurnPromptVisible(true));
@@ -65,6 +77,8 @@ describe("adventureScreenReducer", () => {
     const expected: AdventureScreenState = {
       endTurnPromptVisible: true,
       heroTradingWindowVisible: false,
+      x: 0,
+      y: 0,
     };
 
     expect(result).toEqual(expected);
@@ -74,6 +88,8 @@ describe("adventureScreenReducer", () => {
     const state: AdventureScreenState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
+      x: 0,
+      y: 0,
     };
 
     const result = adventureScreenReducer(state, openHeroTradingWindow("hero", "otherHero"));
@@ -83,6 +99,8 @@ describe("adventureScreenReducer", () => {
       hero: "hero",
       heroTradingWindowVisible: true,
       otherHero: "otherHero",
+      x: 0,
+      y: 0,
     };
 
     expect(result).toEqual(expected);
@@ -94,6 +112,8 @@ describe("adventureScreenReducer", () => {
       hero: "hero",
       heroTradingWindowVisible: true,
       otherHero: "otherHero",
+      x: 0,
+      y: 0,
     };
 
     const result = adventureScreenReducer(state, closeHeroTradingWindow());
@@ -101,6 +121,8 @@ describe("adventureScreenReducer", () => {
     const expected: AdventureScreenState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
+      x: 0,
+      y: 0,
     };
 
     expect(result).toEqual(expected);

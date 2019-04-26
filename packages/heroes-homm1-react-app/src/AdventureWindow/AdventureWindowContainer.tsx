@@ -18,6 +18,8 @@ interface Props extends DispatchProp {
   readonly data: GameData;
   readonly alignment: string;
   readonly map: Map;
+  readonly x: number;
+  readonly y: number;
   readonly activeObjectId?: string;
   readonly visibleMapObjectDetails?: string;
   readonly heroTradingScreenVisible: boolean;
@@ -38,7 +40,10 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     return (
       <div className={cursor ? `cursor-${cursor}` : undefined}>
         <AdventureWindow
-          map={this.props.map}
+          width={14}
+          height={14}
+          x={this.props.x}
+          y={this.props.y}
           renderTile={this.renderTile}
           onTileClick={this.onTileClick}
         />
@@ -59,6 +64,8 @@ class AdventureWindowContainer extends React.Component<Props, State> {
       <MapTile
         key={index}
         index={index}
+        size="large"
+        terrainType={tile.terrain}
         onMouseEnter={this.onTileMouseEnter}
         onMouseLeave={this.onTileMouseLeave}
         onClick={this.onTileClick}

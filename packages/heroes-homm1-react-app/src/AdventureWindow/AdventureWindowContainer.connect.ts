@@ -8,6 +8,8 @@ type StateProp =
   "data" |
   "alignment" |
   "map" |
+  "x" |
+  "y" |
   "activeObjectId" |
   "visibleMapObjectDetails" |
   "heroTradingScreenVisible";
@@ -19,6 +21,8 @@ const mapStateToProps = (state: AppState): Pick<AdventureWindowProps, StateProp>
   heroTradingScreenVisible: state.adventureScreen.heroTradingWindowVisible,
   map: state.game.map,
   visibleMapObjectDetails: state.adventureScreen.visibleMapObjectDetails,
+  x: state.adventureScreen.x,
+  y: state.adventureScreen.y,
 });
 
 const ContainerConnected = connect(mapStateToProps)(AdventureWindow);
