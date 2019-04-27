@@ -1,12 +1,12 @@
 import * as React from "react";
 
+import { getTileIndex } from "heroes-core";
+
 import * as styles from "./AdventureWindow.module.scss";
 
 interface Props {
   readonly width: number;
   readonly height: number;
-  readonly x: number;
-  readonly y: number;
   readonly renderTile: (index: number) => React.ReactNode;
   readonly onTileClick: (index: number) => void;
 }
@@ -22,11 +22,11 @@ export class AdventureWindow extends React.Component<Props> {
   };
 
   public render() {
-    const { width, height, x, y } = this.props;
+    const { width, height } = this.props;
 
     const tiles = [...new Array(height).keys()]
       .map((i) => [...new Array(width).keys()]
-        .map((j) => this.props.renderTile((y + i) * width + x + j)));
+        .map((j) => this.props.renderTile(getTileIndex(width, { x: j, y: i }))));
 
     return (
       <div className={styles.root}>

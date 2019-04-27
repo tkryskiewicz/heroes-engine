@@ -1,7 +1,7 @@
-import { createMap } from "heroes-core";
+import { createMap, MapPoint } from "heroes-core";
 import { EditorOption, TerrainType } from "heroes-homm1";
 
-import { changeSelectedOption, changeSelectedTerrain, zoomIn, zoomOut } from "./actions";
+import { changePosition, changeSelectedOption, changeSelectedTerrain, zoomIn, zoomOut } from "./actions";
 import { editorWindowReducer } from "./reducers";
 import { EditorWindowState } from "./state";
 
@@ -11,11 +11,40 @@ describe("editorWindowReducer", () => {
 
     const expected: EditorWindowState = {
       map: createMap(50, 50, TerrainType.Water),
+      position: {
+        x: 0,
+        y: 0,
+      },
       selectedOption: EditorOption.Terrains,
       selectedTerrain: TerrainType.Water,
-      x: 0,
-      y: 0,
       zoomed: true,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle changing posiition", () => {
+    const state: EditorWindowState = {
+      map: createMap(1, 1, "terrain"),
+      position: {
+        x: 0,
+        y: 0,
+      },
+      selectedOption: EditorOption.Details,
+      selectedTerrain: "terrain",
+      zoomed: false,
+    };
+
+    const position: MapPoint = {
+      x: 1,
+      y: 1,
+    };
+
+    const result = editorWindowReducer(state, changePosition(position));
+
+    const expected: EditorWindowState = {
+      ...state,
+      position,
     };
 
     expect(result).toEqual(expected);
@@ -24,10 +53,12 @@ describe("editorWindowReducer", () => {
   it("should handle changing selected option", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      position: {
+        x: 0,
+        y: 0,
+      },
       selectedOption: EditorOption.Details,
       selectedTerrain: "terrain",
-      x: 0,
-      y: 0,
       zoomed: false,
     };
 
@@ -44,10 +75,12 @@ describe("editorWindowReducer", () => {
   it("should handle changing selected terrain", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      position: {
+        x: 0,
+        y: 0,
+      },
       selectedOption: EditorOption.Details,
       selectedTerrain: "terrain",
-      x: 0,
-      y: 0,
       zoomed: false,
     };
 
@@ -64,10 +97,12 @@ describe("editorWindowReducer", () => {
   it("should handle zooming in", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      position: {
+        x: 0,
+        y: 0,
+      },
       selectedOption: EditorOption.Details,
       selectedTerrain: "terrain",
-      x: 0,
-      y: 0,
       zoomed: false,
     };
 
@@ -84,10 +119,12 @@ describe("editorWindowReducer", () => {
   it("should handle zooming out", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      position: {
+        x: 0,
+        y: 0,
+      },
       selectedOption: EditorOption.Details,
       selectedTerrain: "terrain",
-      x: 0,
-      y: 0,
       zoomed: true,
     };
 

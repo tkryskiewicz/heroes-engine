@@ -8,10 +8,12 @@ const map = createMap(50, 50, TerrainType.Water);
 
 const initialState: EditorWindowState = {
   map,
+  position: {
+    x: 0,
+    y: 0,
+  },
   selectedOption: EditorOption.Terrains,
   selectedTerrain: TerrainType.Water,
-  x: 0,
-  y: 0,
   zoomed: true,
 };
 
@@ -20,6 +22,11 @@ export const editorWindowReducer = (
   action: EditorWindowAction,
 ): EditorWindowState => {
   switch (action.type) {
+    case EditorWindowActionType.ChangePosition:
+      return {
+        ...state,
+        position: action.value,
+      };
     case EditorWindowActionType.ChangeSelectedOption:
       return {
         ...state,

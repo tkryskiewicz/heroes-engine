@@ -1,6 +1,8 @@
+import { MapPoint } from "heroes-core";
 import { EditorOption } from "heroes-homm1";
 
 export enum EditorWindowActionType {
+  ChangePosition = "editorWindow/changePosition",
   ChangeSelectedOption = "editorWindow/changeSelectedOption",
   ChangeSelectedTerrain = "editorWindow/changeSelectedTerrain",
   ZoomIn = "editorWindow/zoomIn",
@@ -8,10 +10,21 @@ export enum EditorWindowActionType {
 }
 
 export type EditorWindowAction =
+  ChangePositionAction |
   ChangeSelectedOptionAction |
   ChangeSelectedTerrainAction |
   ZoomInAction |
   ZoomOutAction;
+
+export interface ChangePositionAction {
+  readonly type: EditorWindowActionType.ChangePosition;
+  readonly value: MapPoint;
+}
+
+export const changePosition = (value: MapPoint): ChangePositionAction => ({
+  type: EditorWindowActionType.ChangePosition,
+  value,
+});
 
 export interface ChangeSelectedOptionAction {
   readonly type: EditorWindowActionType.ChangeSelectedOption;

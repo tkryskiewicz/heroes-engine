@@ -33,8 +33,8 @@ export const createMap = (width: number, height: number, initialTerrain: string)
 export const isPointValid = (map: Map, point: MapPoint): boolean =>
   point.x >= 0 && point.x < map.width && point.y >= 0 && point.y < map.height;
 
-const getTileIndex = (map: Map, point: MapPoint): number =>
-  point.y * map.width + point.x;
+export const getTileIndex = (width: number, point: MapPoint): number =>
+  point.y * width + point.x;
 
 export const getTilePoint = (width: number, index: number): MapPoint => ({
   x: index % width,
@@ -46,7 +46,7 @@ export const placeObject = (map: Map, point: MapPoint, object: MapObject): Map =
     throw new Error(`Point {${point.x},${point.y}} is outside a ${map.width}x${map.height} map`);
   }
 
-  const index = getTileIndex(map, point);
+  const index = getTileIndex(map.width, point);
 
   if (map.tiles[index].object !== undefined) {
     throw new Error("an object is already placed");
@@ -76,7 +76,7 @@ export const moveObject = (map: Map, from: MapPoint, to: MapPoint): Map => {
     throw new Error("to must be a valid map point");
   }
 
-  const fromIndex = getTileIndex(map, from);
+  const fromIndex = getTileIndex(map.width, from);
 
   const fromTile = map.tiles[fromIndex];
 
@@ -84,7 +84,7 @@ export const moveObject = (map: Map, from: MapPoint, to: MapPoint): Map => {
     throw new Error("an object to move is required");
   }
 
-  const toIndex = getTileIndex(map, to);
+  const toIndex = getTileIndex(map.width, to);
 
   const toTile = map.tiles[toIndex];
 

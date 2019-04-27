@@ -8,8 +8,7 @@ import { EditorWindow, EditorWindowProps } from "./EditorWindowContainer";
 type StateProp =
   "data" |
   "map" |
-  "x" |
-  "y" |
+  "position" |
   "selectedOption" |
   "selectedTerrain" |
   "zoomed";
@@ -17,20 +16,23 @@ type StateProp =
 const mapStateToProps = (state: AppState): Pick<EditorWindowProps, StateProp> => ({
   data: state.game.data,
   map: state.editorWindow.map,
+  position: state.editorWindow.position,
   selectedOption: state.editorWindow.selectedOption,
   selectedTerrain: state.editorWindow.selectedTerrain,
-  x: state.editorWindow.x,
-  y: state.editorWindow.y,
   zoomed: state.editorWindow.zoomed,
 });
 
 type DispatchProp =
+  "onChangePosition" |
   "onSelectedOptionChange" |
   "onSelectedTerrainChange" |
   "onZoomInClick" |
   "onZoomOutClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, DispatchProp> => ({
+  onChangePosition(value) {
+    dispatch(editorWindowActions.changePosition(value));
+  },
   onSelectedOptionChange(value) {
     dispatch(editorWindowActions.changeSelectedOption(value));
   },

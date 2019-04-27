@@ -1,6 +1,14 @@
 import * as React from "react";
 
-import { GameData, getTilePoint, Map, MapObjectOrientation } from "heroes-core";
+import {
+  GameData,
+  getTileIndex,
+  getTilePoint,
+  isSamePoint,
+  Map,
+  MapObjectOrientation,
+  MapPoint,
+} from "heroes-core";
 import { EditorOption } from "heroes-homm1";
 import {
   AdventureWindow,
@@ -20,9 +28,8 @@ import {
 interface EditorWindowContainerProps {
   readonly data: GameData;
   readonly map: Map;
-  readonly x: number;
-  readonly y: number;
-  readonly onScroll: (direction: MapObjectOrientation) => void;
+  readonly position: MapPoint;
+  readonly onChangePosition: (value: MapPoint) => void;
   readonly selectedOption: EditorOption;
   readonly onSelectedOptionChange: (value: EditorOption) => void;
   readonly selectedTerrain: string;
@@ -46,7 +53,7 @@ interface EditorWindowContainerState {
 }
 
 type DefaultProp =
-  "onScroll" |
+  "onChangePosition" |
   "onSelectedOptionChange" |
   "onSelectedTerrainChange" |
   "onEraseTypesClick" |
@@ -62,13 +69,13 @@ type DefaultProp =
 
 class EditorWindowContainer extends React.Component<EditorWindowContainerProps, EditorWindowContainerState> {
   public static readonly defaultProps: Pick<EditorWindowContainerProps, DefaultProp> = {
+    onChangePosition: () => undefined,
     onEraseTypesClick: () => undefined,
     onLoadClick: () => undefined,
     onNewClick: () => undefined,
     onQuitClick: () => undefined,
     onRandomClick: () => undefined,
     onSaveClick: () => undefined,
-    onScroll: () => undefined,
     onSelectedOptionChange: () => undefined,
     onSelectedTerrainChange: () => undefined,
     onSpecsClick: () => undefined,
@@ -82,7 +89,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   public componentDidUpdate(prevProps: EditorWindowContainerProps) {
     if (this.props.zoomed !== prevProps.zoomed ||
       (this.props.selectedOption !== prevProps.selectedOption && prevProps.selectedOption === EditorOption.Details) ||
-      (this.props.x !== prevProps.x || this.props.y !== prevProps.y)) {
+      !isSamePoint(this.props.position, prevProps.position)) {
       this.setState({
         x: undefined,
         y: undefined,
@@ -110,28 +117,34 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly renderAdventureWindow = () => {
-    const { zoomed } = this.props;
-
-    const size = zoomed ? 14 : 28;
+    const size = this.getTileCount();
 
     return (
       <AdventureWindow
         width={size}
         height={size}
-        x={this.props.x}
-        y={this.props.y}
         renderTile={this.renderTile}
       />
     );
   }
 
   private readonly renderTile = (index: number) => {
-    const tile = this.props.map.tiles[index];
+    const { map, position } = this.props;
+
+    // FIXME: move some logic to adventure window?
+    const windowPoint = getTilePoint(this.getTileCount(), index);
+
+    const tileIndex = getTileIndex(map.width, {
+      x: position.x + windowPoint.x,
+      y: position.y + windowPoint.y,
+    });
+
+    const tile = map.tiles[tileIndex];
 
     return (
       <MapTile
         key={index}
-        index={index}
+        index={tileIndex}
         size={this.props.zoomed ? "large" : "small"}
         terrainType={tile.terrain}
         onMouseEnter={this.onTileMouseEnter}
@@ -140,9 +153,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onTileMouseEnter = (index: number) => {
-    const size = this.props.zoomed ? 14 : 28;
-
-    const point = getTilePoint(size, index);
+    const point = getTilePoint(this.props.map.width, index);
 
     this.setState({
       ...point,
@@ -150,44 +161,44 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onScrollNorthWest = () => {
-    this.props.onScroll(MapObjectOrientation.NorthWest);
+    this.onScroll(MapObjectOrientation.NorthWest);
   }
 
   private readonly onScrollNorthEast = () => {
-    this.props.onScroll(MapObjectOrientation.NorthEast);
+    this.onScroll(MapObjectOrientation.NorthEast);
   }
 
   private readonly onScrollSouthWest = () => {
-    this.props.onScroll(MapObjectOrientation.SouthWest);
+    this.onScroll(MapObjectOrientation.SouthWest);
   }
 
   private readonly onScrollSouthEast = () => {
-    this.props.onScroll(MapObjectOrientation.SouthEast);
+    this.onScroll(MapObjectOrientation.SouthEast);
   }
 
   private readonly renderVerticalCellNumbers = () => {
-    const { y } = this.props;
+    const { position } = this.props;
 
     return (
       <CellNumbers
         orientation="vertical"
         size={this.props.zoomed ? "large" : "small"}
-        from={y}
-        to={y + (this.props.zoomed ? 13 : 27)}
+        from={position.y}
+        to={position.y + this.getTileCount() - 1}
         active={this.state.y}
       />
     );
   }
 
   private readonly renderHorizontalCellNumbers = () => {
-    const { x } = this.props;
+    const { position } = this.props;
 
     return (
       <CellNumbers
         orientation="horizontal"
         size={this.props.zoomed ? "large" : "small"}
-        from={x}
-        to={x + (this.props.zoomed ? 13 : 27)}
+        from={position.x}
+        to={position.x + this.getTileCount() - 1}
         active={this.state.x}
       />
     );
@@ -203,11 +214,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onScrollWest = () => {
-    this.props.onScroll(MapObjectOrientation.West);
+    this.onScroll(MapObjectOrientation.West);
   }
 
   private readonly onScrollEast = () => {
-    this.props.onScroll(MapObjectOrientation.East);
+    this.onScroll(MapObjectOrientation.East);
   }
 
   private readonly renderVerticalScrollbar = () => {
@@ -220,11 +231,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onScrollNorth = () => {
-    this.props.onScroll(MapObjectOrientation.North);
+    this.onScroll(MapObjectOrientation.North);
   }
 
   private readonly onScrollSouth = () => {
-    this.props.onScroll(MapObjectOrientation.South);
+    this.onScroll(MapObjectOrientation.South);
   }
 
   private readonly renderOptions = () => {
@@ -287,6 +298,48 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       this.props.onZoomOutClick();
     } else {
       this.props.onZoomInClick();
+    }
+  }
+
+  private getTileCount() {
+    return this.props.zoomed ? 14 : 28;
+  }
+
+  private readonly onScroll = (direction: MapObjectOrientation) => {
+    const { map, position } = this.props;
+
+    // TODO: simplify
+    let point: MapPoint = {
+      x: position.x,
+      y: position.y,
+    };
+
+    if (direction.includes(MapObjectOrientation.North) && position.y > 0) {
+      point = {
+        ...point,
+        y: point.y - 1,
+      };
+    } else if (direction.includes(MapObjectOrientation.South) && position.y < map.height - this.getTileCount()) {
+      point = {
+        ...point,
+        y: point.y + 1,
+      };
+    }
+
+    if (direction.includes(MapObjectOrientation.West) && position.x > 0) {
+      point = {
+        ...point,
+        x: point.x - 1,
+      };
+    } else if (direction.includes(MapObjectOrientation.East) && position.x < map.width - this.getTileCount()) {
+      point = {
+        ...point,
+        x: point.x + 1,
+      };
+    }
+
+    if (!isSamePoint(point, position)) {
+      this.props.onChangePosition(point);
     }
   }
 }

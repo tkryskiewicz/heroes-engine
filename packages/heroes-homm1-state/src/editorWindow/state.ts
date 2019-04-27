@@ -1,10 +1,9 @@
-import { Map } from "heroes-core";
+import { Map, MapPoint } from "heroes-core";
 import { EditorOption } from "heroes-homm1";
 
 export interface EditorWindowState {
   readonly map: Map;
-  readonly x: number;
-  readonly y: number;
+  readonly position: MapPoint;
   readonly selectedOption: EditorOption;
   readonly selectedTerrain: string;
   readonly zoomed: boolean;

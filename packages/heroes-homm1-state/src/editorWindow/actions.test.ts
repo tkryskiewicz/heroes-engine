@@ -1,6 +1,9 @@
+import { MapPoint } from "heroes-core";
 import { EditorOption } from "heroes-homm1";
 
 import {
+  changePosition,
+  ChangePositionAction,
   changeSelectedOption,
   ChangeSelectedOptionAction,
   changeSelectedTerrain,
@@ -13,6 +16,22 @@ import {
 } from "./actions";
 
 describe("editorWindowActions", () => {
+  it("should create an action to change position", () => {
+    const position: MapPoint = {
+      x: 0,
+      y: 0,
+    };
+
+    const result = changePosition(position);
+
+    const expected: ChangePositionAction = {
+      type: EditorWindowActionType.ChangePosition,
+      value: position,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
   it("should create an action to change selected option", () => {
     const result = changeSelectedOption(EditorOption.Details);
 

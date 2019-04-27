@@ -22,8 +22,6 @@ storiesOf("AdventureWindow", module)
     <AdventureWindow
       width={number("Width", 10, { range: true, min: 0, max: 100, step: 1 })}
       height={number("Height", 10, { range: true, min: 0, max: 100, step: 1 })}
-      x={number("X", 0, { range: true, min: 0, max: 100, step: 1 })}
-      y={number("Y", 0, { range: true, min: 0, max: 100, step: 1 })}
       renderTile={renderTile}
     />
   ));

@@ -42,8 +42,6 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         <AdventureWindow
           width={14}
           height={14}
-          x={this.props.x}
-          y={this.props.y}
           renderTile={this.renderTile}
           onTileClick={this.onTileClick}
         />
