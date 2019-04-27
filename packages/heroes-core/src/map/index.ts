@@ -46,6 +46,7 @@ export {
   Map,
   createMap,
   isPointValid,
+  getTilePoint,
   getObject,
   placeObject,
   moveObject,

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { GameData, Map, MapObjectOrientation } from "heroes-core";
+import { GameData, getTilePoint, Map, MapObjectOrientation } from "heroes-core";
 import { EditorOption } from "heroes-homm1";
 import {
   AdventureWindow,
@@ -39,6 +39,11 @@ interface EditorWindowContainerProps {
   readonly onQuitClick: () => void;
 }
 
+interface EditorWindowContainerState {
+  readonly x?: number;
+  readonly y?: number;
+}
+
 type DefaultProp =
   "onScroll" |
   "onSelectedOptionChange" |
@@ -53,7 +58,7 @@ type DefaultProp =
   "onSaveClick" |
   "onQuitClick";
 
-class EditorWindowContainer extends React.Component<EditorWindowContainerProps> {
+class EditorWindowContainer extends React.Component<EditorWindowContainerProps, EditorWindowContainerState> {
   public static readonly defaultProps: Pick<EditorWindowContainerProps, DefaultProp> = {
     onEraseTypesClick: () => undefined,
     onLoadClick: () => undefined,
@@ -68,6 +73,19 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps> 
     onUndoClick: () => undefined,
     onZoomClick: () => undefined,
   };
+
+  public readonly state: EditorWindowContainerState = {};
+
+  public componentDidUpdate(prevProps: EditorWindowContainerProps) {
+    if (this.props.zoomed !== prevProps.zoomed ||
+      (this.props.selectedOption !== prevProps.selectedOption && prevProps.selectedOption === EditorOption.Details) ||
+      (this.props.x !== prevProps.x || this.props.y !== prevProps.y)) {
+      this.setState({
+        x: undefined,
+        y: undefined,
+      });
+    }
+  }
 
   public render() {
     return (
@@ -113,8 +131,19 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps> 
         index={index}
         size={this.props.zoomed ? "large" : "small"}
         terrainType={tile.terrain}
+        onMouseEnter={this.onTileMouseEnter}
       />
     );
+  }
+
+  private readonly onTileMouseEnter = (index: number) => {
+    const size = this.props.zoomed ? 14 : 28;
+
+    const point = getTilePoint(size, index);
+
+    this.setState({
+      ...point,
+    });
   }
 
   private readonly onScrollNorthWest = () => {
@@ -142,6 +171,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps> 
         size={this.props.zoomed ? "large" : "small"}
         from={y}
         to={y + (this.props.zoomed ? 13 : 27)}
+        active={this.state.y}
       />
     );
   }
@@ -155,6 +185,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps> 
         size={this.props.zoomed ? "large" : "small"}
         from={x}
         to={x + (this.props.zoomed ? 13 : 27)}
+        active={this.state.x}
       />
     );
   }

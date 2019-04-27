@@ -23,7 +23,7 @@ const data: EditorWindowProps["data"] = {
   }), {}),
 };
 
-const map = createMap(28, 28, TerrainType.Water);
+const map = createMap(38, 38, TerrainType.Water);
 
 storiesOf("EditorWindowContainer", module)
   .add("default", () => (
