@@ -1,5 +1,6 @@
 import { AdventureOptionsState } from "./adventureOptions";
 import { AdventureScreenState } from "./adventureScreen";
+import { EditorWindowState } from "./editorWindow";
 import { GameState } from "./game";
 import { GameOptionsState } from "./gameOptions";
 import { GameSettingsState } from "./gameSettings";
@@ -30,4 +31,5 @@ export interface AppState {
   readonly mageGuildWindow: MageGuildWindowState;
   readonly spellBookWindow: SpellBookWindowState;
   readonly troopWindow: TroopWindowState;
+  readonly editorWindow: EditorWindowState;
 }

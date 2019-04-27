@@ -6,6 +6,9 @@ const styleRegex = /\.(scss|css)$/;
 const styleModuleRegex = /\.module\.scss$/;
 
 const config: Webpack.Configuration = {
+  devServer: {
+    historyApiFallback: true,
+  },
   entry: "./src/index.tsx",
   mode: "development",
   module: {

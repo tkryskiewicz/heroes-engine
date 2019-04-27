@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { IntlProvider } from "react-intl";
 import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
 import { createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
@@ -18,7 +19,9 @@ import { App } from "./App";
 ReactDOM.render(
   <Provider store={store}>
     <IntlProvider locale="en">
-      <App />
+      <Router>
+        <App />
+      </Router>
     </IntlProvider>
   </Provider>,
   document.getElementById("app-root"),

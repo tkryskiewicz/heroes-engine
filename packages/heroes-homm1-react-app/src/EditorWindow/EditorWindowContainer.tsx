@@ -29,7 +29,8 @@ interface EditorWindowContainerProps {
   readonly onSelectedTerrainChange: (value: string) => void;
   readonly onEraseTypesClick: () => void;
   readonly zoomed: boolean;
-  readonly onZoomClick: () => void;
+  readonly onZoomInClick: () => void;
+  readonly onZoomOutClick: () => void;
   readonly onUndoClick: () => void;
   readonly onSpecsClick: () => void;
   readonly onRandomClick: () => void;
@@ -49,7 +50,8 @@ type DefaultProp =
   "onSelectedOptionChange" |
   "onSelectedTerrainChange" |
   "onEraseTypesClick" |
-  "onZoomClick" |
+  "onZoomInClick" |
+  "onZoomOutClick" |
   "onUndoClick" |
   "onSpecsClick" |
   "onRandomClick" |
@@ -71,7 +73,8 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     onSelectedTerrainChange: () => undefined,
     onSpecsClick: () => undefined,
     onUndoClick: () => undefined,
-    onZoomClick: () => undefined,
+    onZoomInClick: () => undefined,
+    onZoomOutClick: () => undefined,
   };
 
   public readonly state: EditorWindowContainerState = {};
@@ -267,7 +270,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   private readonly renderButtons = () => {
     return (
       <EditorButtons
-        onZoomClick={this.props.onZoomClick}
+        onZoomClick={this.onZoomClick}
         onUndoClick={this.props.onUndoClick}
         onSpecsClick={this.props.onSpecsClick}
         onRandomClick={this.props.onRandomClick}
@@ -277,6 +280,14 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         onQuitClick={this.props.onQuitClick}
       />
     );
+  }
+
+  private readonly onZoomClick = () => {
+    if (this.props.zoomed) {
+      this.props.onZoomOutClick();
+    } else {
+      this.props.onZoomInClick();
+    }
   }
 }
 

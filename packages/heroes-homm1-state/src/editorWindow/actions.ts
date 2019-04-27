@@ -1,0 +1,50 @@
+import { EditorOption } from "heroes-homm1";
+
+export enum EditorWindowActionType {
+  ChangeSelectedOption = "editorWindow/changeSelectedOption",
+  ChangeSelectedTerrain = "editorWindow/changeSelectedTerrain",
+  ZoomIn = "editorWindow/zoomIn",
+  ZoomOut = "editorWindow/zoomOut",
+}
+
+export type EditorWindowAction =
+  ChangeSelectedOptionAction |
+  ChangeSelectedTerrainAction |
+  ZoomInAction |
+  ZoomOutAction;
+
+export interface ChangeSelectedOptionAction {
+  readonly type: EditorWindowActionType.ChangeSelectedOption;
+  readonly value: EditorOption;
+}
+
+export const changeSelectedOption = (value: EditorOption): ChangeSelectedOptionAction => ({
+  type: EditorWindowActionType.ChangeSelectedOption,
+  value,
+});
+
+export interface ChangeSelectedTerrainAction {
+  readonly type: EditorWindowActionType.ChangeSelectedTerrain;
+  readonly value: string;
+}
+
+export const changeSelectedTerrain = (value: string): ChangeSelectedTerrainAction => ({
+  type: EditorWindowActionType.ChangeSelectedTerrain,
+  value,
+});
+
+export interface ZoomInAction {
+  readonly type: EditorWindowActionType.ZoomIn;
+}
+
+export const zoomIn = (): ZoomInAction => ({
+  type: EditorWindowActionType.ZoomIn,
+});
+
+export interface ZoomOutAction {
+  readonly type: EditorWindowActionType.ZoomOut;
+}
+
+export const zoomOut = (): ZoomOutAction => ({
+  type: EditorWindowActionType.ZoomOut,
+});

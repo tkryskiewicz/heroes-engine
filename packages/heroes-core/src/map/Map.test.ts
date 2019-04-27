@@ -1,4 +1,14 @@
-import { createMap, getObject, isPointValid, Map, moveObject, placeObject, removeObject, replaceObject } from "./Map";
+import {
+  createMap,
+  getObject,
+  getTilePoint,
+  isPointValid,
+  Map,
+  moveObject,
+  placeObject,
+  removeObject,
+  replaceObject,
+} from "./Map";
 import { MapObject } from "./MapObject";
 import { MapPoint } from "./MapPoint";
 
@@ -90,6 +100,41 @@ describe("isPointValid", () => {
     const result = isPointValid(map, point);
 
     expect(result).toBe(false);
+  });
+});
+
+describe("getTilePoint", () => {
+  it("should return (0,0) for index 0", () => {
+    const result = getTilePoint(1, 0);
+
+    const expected: MapPoint = {
+      x: 0,
+      y: 0,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should correctly resolve y", () => {
+    const result = getTilePoint(1, 1);
+
+    const expected: MapPoint = {
+      x: 0,
+      y: 1,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should correctly resolve x", () => {
+    const result = getTilePoint(2, 1);
+
+    const expected: MapPoint = {
+      x: 1,
+      y: 0,
+    };
+
+    expect(result).toEqual(expected);
   });
 });
 

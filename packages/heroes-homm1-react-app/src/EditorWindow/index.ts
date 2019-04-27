@@ -1,1 +1,1 @@
-export { EditorWindow, EditorWindowProps } from "./EditorWindowContainer";
+export { EditorWindow, EditorWindowProps } from "./EditorWindowContainer.connect";

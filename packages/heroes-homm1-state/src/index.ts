@@ -1,5 +1,6 @@
 export { adventureOptionsActions } from "./adventureOptions";
 export { adventureScreenActions } from "./adventureScreen";
+export { editorWindowActions } from "./editorWindow";
 export { gameActions } from "./game";
 export { gameOptionsActions } from "./gameOptions";
 export { gameSettingsActions } from "./gameSettings";

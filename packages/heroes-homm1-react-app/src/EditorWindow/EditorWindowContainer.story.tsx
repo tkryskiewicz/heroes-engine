@@ -39,7 +39,8 @@ storiesOf("EditorWindowContainer", module)
       onSelectedTerrainChange={action("Selected Terrain Change")}
       onEraseTypesClick={action("Erase Types Click")}
       zoomed={boolean("Zoomed", false)}
-      onZoomClick={action("Zoom Click")}
+      onZoomInClick={action("Zoom In Click")}
+      onZoomOutClick={action("Zoom Out Click")}
       onUndoClick={action("Undo Click")}
       onSpecsClick={action("Specs Click")}
       onRandomClick={action("Random Click")}
