@@ -225,8 +225,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly renderVerticalScrollbar = () => {
+    const progress = this.props.position.y / (this.props.map.height - this.getTileCount());
+
     return (
       <EditorVerticalScroll
+        progress={progress}
         onScrollUpClick={this.onScrollNorth}
         onScrollDownClick={this.onScrollSouth}
       />
