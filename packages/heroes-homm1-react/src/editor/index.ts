@@ -3,7 +3,7 @@ export * from "./DetailsOptionDetails";
 export * from "./EditorButtons";
 export * from "./EditorHorizontalScrollbar";
 export * from "./EditorOptions";
-export * from "./EditorVerticalScroll";
+export * from "./EditorVerticalScrollbar";
 export * from "./EditorWindow";
 export * from "./EraseOptionDetails";
 export * from "./TerrainsOptionDetails";

@@ -1,20 +1,20 @@
 import Classnames from "classnames";
 import * as React from "react";
 
-import * as styles from "./EditorVerticalScroll.module.scss";
+import * as styles from "./EditorVerticalScrollbar.module.scss";
 
 import { buttonImages, ThumbImage } from "./assets";
 
 import { ImageButton } from "../../base";
 
-export interface EditorVerticalScrollProps {
+export interface EditorVerticalScrollbarProps {
   readonly className?: string;
   readonly progress: number;
   readonly onScrollUpClick?: () => void;
   readonly onScrollDownClick?: () => void;
 }
 
-export class EditorVerticalScroll extends React.Component<EditorVerticalScrollProps> {
+export class EditorVerticalScrollbar extends React.Component<EditorVerticalScrollbarProps> {
   public render() {
     const thumbStyle: React.CSSProperties = {
       marginTop: this.props.progress * 393,

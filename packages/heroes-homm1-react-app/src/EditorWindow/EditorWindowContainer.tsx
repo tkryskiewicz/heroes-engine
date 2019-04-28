@@ -17,7 +17,7 @@ import {
   EditorButtons,
   EditorHorizontalScrollbar,
   EditorOptions,
-  EditorVerticalScroll,
+  EditorVerticalScrollbar,
   EditorWindow,
   EraseOptionDetails,
   GameText,
@@ -228,7 +228,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     const progress = this.props.position.y / (this.props.map.height - this.getTileCount());
 
     return (
-      <EditorVerticalScroll
+      <EditorVerticalScrollbar
         progress={progress}
         onScrollUpClick={this.onScrollNorth}
         onScrollDownClick={this.onScrollSouth}
