@@ -16,10 +16,18 @@
   left: 0;
 }
 
-.background {
+.track {
   position: absolute;
   top: 0;
   left: 16px;
+  width: 416px;
+  height: 16px;
+  padding: 4px 3px;
+  background: url("./assets/track.jpg");
+}
+
+.thumb {
+  position: absolute;
 }
 
 .right {
@@ -27,10 +35,4 @@
 
   top: 0;
   right: 0;
-}
-
-.block {
-  position: absolute;
-  top: 4px;
-  left: 16px + 3px;
 }

@@ -1,5 +1,5 @@
-import BackgroundImage = require("./background.jpg");
-import BlockImage = require("./block.jpg");
+import ThumbImage = require("./block.jpg");
+import TrackImage = require("./track.jpg");
 
 const buttonImages = {
   left: {
@@ -13,7 +13,7 @@ const buttonImages = {
 };
 
 export {
-  BackgroundImage,
-  BlockImage,
+  ThumbImage,
+  TrackImage,
   buttonImages,
 };

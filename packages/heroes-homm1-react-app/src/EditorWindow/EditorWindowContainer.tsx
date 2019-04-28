@@ -15,7 +15,7 @@ import {
   CellNumbers,
   DetailsOptionDetails,
   EditorButtons,
-  EditorHorizontalScroll,
+  EditorHorizontalScrollbar,
   EditorOptions,
   EditorVerticalScroll,
   EditorWindow,
@@ -205,8 +205,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly renderHorizontalScrollbar = () => {
+    const progress = this.props.position.x / (this.props.map.width - this.getTileCount());
+
     return (
-      <EditorHorizontalScroll
+      <EditorHorizontalScrollbar
+        progress={progress}
         onScrollLeftClick={this.onScrollWest}
         onScrollRightClick={this.onScrollEast}
       />
