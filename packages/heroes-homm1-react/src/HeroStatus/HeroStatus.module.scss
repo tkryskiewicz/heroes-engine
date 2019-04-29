@@ -1,0 +1,31 @@
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 2px;
+}
+
+.crest {
+  flex-basis: 50%;
+  line-height: 10px;
+  text-align: center;
+}
+
+.troop-slot {
+  flex-grow: 0.35;
+  flex-basis: 25%;
+  text-align: center;
+}
+
+.troop {
+  position: relative;
+  display: inline-block;
+}
+
+.troop-count {
+  position: absolute;
+  right: -2px;
+  bottom: 0;
+  line-height: 10px;
+}

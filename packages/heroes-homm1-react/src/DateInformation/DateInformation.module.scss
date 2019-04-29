@@ -1,0 +1,28 @@
+.root {
+  position: relative;
+  width: 144px;
+  height: 72px;
+}
+
+.month {
+  position: absolute;
+  top: 25px;
+  width: 50%;
+  padding-right: 5px;
+  text-align: right;
+}
+
+.week {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  width: 50%;
+  padding-left: 10px;
+}
+
+.day {
+  position: absolute;
+  top: 42px;
+  width: 100%;
+  text-align: center;
+}

@@ -1,0 +1,42 @@
+.root {
+  position: relative;
+  top: 2px;
+  left: 5px;
+  width: 134px;
+  height: 56px;
+  text-align: center;
+  background: url("./assets/background.png");
+  background-repeat: no-repeat;
+}
+
+.primary-info {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  display: flex;
+  width: 100%;
+}
+
+.castle-count {
+  flex-basis: 35%;
+}
+
+.town-count {
+  flex-basis: 40%;
+}
+
+.primary-resource {
+  flex-basis: 25%;
+}
+
+.secondary-info {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  display: flex;
+  width: 100%;
+}
+
+.secondary-resource {
+  flex-basis: 16.6%;
+}

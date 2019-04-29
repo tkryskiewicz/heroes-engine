@@ -110,3 +110,18 @@ export const experienceMessages = defineMessages({
     id: "game.experience.value",
   },
 });
+
+export const dateMessages = defineMessages({
+  day: {
+    defaultMessage: "Day",
+    id: "game.date.day",
+  },
+  month: {
+    defaultMessage: "Month",
+    id: "game.date.month",
+  },
+  week: {
+    defaultMessage: "Week",
+    id: "game.date.week",
+  },
+});

@@ -21,6 +21,7 @@ export * from "./ResourceAmount";
 export * from "./ResourceCost";
 export * from "./ResourceIcon";
 export * from "./SkillInfo";
+export * from "./SmallCrest";
 export * from "./SpellIcon";
 export * from "./TownOverview";
 export * from "./TradingArtifactSlot";
