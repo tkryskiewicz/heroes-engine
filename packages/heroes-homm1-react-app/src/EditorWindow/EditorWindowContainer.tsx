@@ -34,6 +34,7 @@ interface EditorWindowContainerProps {
   readonly onSelectedOptionChange: (value: EditorOption) => void;
   readonly selectedTerrain: string;
   readonly onSelectedTerrainChange: (value: string) => void;
+  readonly onChangeTerrainClick: (point: MapPoint, terrain: string) => void;
   readonly onEraseTypesClick: () => void;
   readonly zoomed: boolean;
   readonly onZoomInClick: () => void;
@@ -56,6 +57,7 @@ type DefaultProp =
   "onChangePosition" |
   "onSelectedOptionChange" |
   "onSelectedTerrainChange" |
+  "onChangeTerrainClick" |
   "onEraseTypesClick" |
   "onZoomInClick" |
   "onZoomOutClick" |
@@ -70,6 +72,7 @@ type DefaultProp =
 class EditorWindowContainer extends React.Component<EditorWindowContainerProps, EditorWindowContainerState> {
   public static readonly defaultProps: Pick<EditorWindowContainerProps, DefaultProp> = {
     onChangePosition: () => undefined,
+    onChangeTerrainClick: () => undefined,
     onEraseTypesClick: () => undefined,
     onLoadClick: () => undefined,
     onNewClick: () => undefined,
@@ -148,6 +151,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         size={this.props.zoomed ? "large" : "small"}
         terrainType={tile.terrain}
         onMouseEnter={this.onTileMouseEnter}
+        onClick={this.onTileClick}
       />
     );
   }
@@ -158,6 +162,14 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     this.setState({
       ...point,
     });
+  }
+
+  private readonly onTileClick = (index: number) => {
+    const point = getTilePoint(this.props.map.width, index);
+
+    if (this.props.selectedOption === EditorOption.Terrains) {
+      this.props.onChangeTerrainClick(point, this.props.selectedTerrain);
+    }
   }
 
   private readonly onScrollNorthWest = () => {

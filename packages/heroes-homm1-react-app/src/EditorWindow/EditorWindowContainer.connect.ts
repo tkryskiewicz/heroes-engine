@@ -26,6 +26,7 @@ type DispatchProp =
   "onChangePosition" |
   "onSelectedOptionChange" |
   "onSelectedTerrainChange" |
+  "onChangeTerrainClick" |
   "onZoomInClick" |
   "onZoomOutClick";
 
@@ -38,6 +39,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, Dispatc
   },
   onSelectedTerrainChange(value) {
     dispatch(editorWindowActions.changeSelectedTerrain(value));
+  },
+  onChangeTerrainClick(point, terrain) {
+    dispatch(editorWindowActions.changeTerrain(point, terrain));
   },
   onZoomInClick() {
     dispatch(editorWindowActions.zoomIn());

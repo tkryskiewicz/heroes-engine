@@ -5,6 +5,7 @@ export enum EditorWindowActionType {
   ChangePosition = "editorWindow/changePosition",
   ChangeSelectedOption = "editorWindow/changeSelectedOption",
   ChangeSelectedTerrain = "editorWindow/changeSelectedTerrain",
+  ChangeTerrain = "editorWindow/changeTerrain",
   ZoomIn = "editorWindow/zoomIn",
   ZoomOut = "editorWindow/zoomOut",
 }
@@ -13,6 +14,7 @@ export type EditorWindowAction =
   ChangePositionAction |
   ChangeSelectedOptionAction |
   ChangeSelectedTerrainAction |
+  ChangeTerrainAction |
   ZoomInAction |
   ZoomOutAction;
 
@@ -44,6 +46,18 @@ export interface ChangeSelectedTerrainAction {
 export const changeSelectedTerrain = (value: string): ChangeSelectedTerrainAction => ({
   type: EditorWindowActionType.ChangeSelectedTerrain,
   value,
+});
+
+export interface ChangeTerrainAction {
+  readonly type: EditorWindowActionType.ChangeTerrain;
+  readonly point: MapPoint;
+  readonly terrain: string;
+}
+
+export const changeTerrain = (point: MapPoint, terrain: string): ChangeTerrainAction => ({
+  point,
+  terrain,
+  type: EditorWindowActionType.ChangeTerrain,
 });
 
 export interface ZoomInAction {

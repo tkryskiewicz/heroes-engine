@@ -48,6 +48,7 @@ export {
   isPointValid,
   getTileIndex,
   getTilePoint,
+  changeTerrain,
   getObject,
   placeObject,
   moveObject,

@@ -41,6 +41,25 @@ export const getTilePoint = (width: number, index: number): MapPoint => ({
   y: Math.floor(index / width),
 });
 
+export const changeTerrain = (map: Map, point: MapPoint, terrain: string): Map => {
+  if (!isPointValid(map, point)) {
+    throw new Error(`Point {${point.x},${point.y}} is outside a ${map.width}x${map.height} map`);
+  }
+
+  const index = getTileIndex(map.width, point);
+
+  return {
+    ...map,
+    tiles: map.tiles.map((t, i) => i === index ?
+      {
+        ...t,
+        terrain,
+      } :
+      t,
+    ),
+  };
+};
+
 export const placeObject = (map: Map, point: MapPoint, object: MapObject): Map => {
   if (!isPointValid(map, point)) {
     throw new Error(`Point {${point.x},${point.y}} is outside a ${map.width}x${map.height} map`);
