@@ -1,0 +1,28 @@
+.root {
+  position: relative;
+  top: 10px;
+  left: 13px;
+  width: 117px;
+  height: 51px;
+  background: url("./assets/background.png");
+}
+
+.crest {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+
+.sand {
+  position: absolute;
+  top: 2px;
+  left: 50px;
+  width: 50px;
+  height: 47px;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

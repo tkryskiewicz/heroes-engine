@@ -52,6 +52,7 @@ export * from "./TownPopulationWindow";
 export * from "./TownView";
 export * from "./TownWindow";
 export * from "./TroopWindow";
+export * from "./TurnStatus";
 export * from "./ViewWindow";
 export * from "./WorldWindow";
 
