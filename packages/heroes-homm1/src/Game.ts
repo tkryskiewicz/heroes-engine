@@ -150,4 +150,5 @@ export const endGameTurn = (game: Game): Game => ({
 
     return replaceObject(p, objectResult);
   }, game.map),
+  turn: game.turn + 1,
 });

@@ -23,6 +23,9 @@ const resourceOrder = [
 
 interface KingdomOverviewWindowProps {
   readonly alignment: string;
+  // TODO: combine title and date into just title
+  readonly renderTitle: () => React.ReactNode;
+  readonly renderDate: () => React.ReactNode;
   readonly renderHeroClassSummary: (heroClass: string) => React.ReactNode;
   readonly renderCastleSummary: (town: string) => React.ReactNode;
   readonly renderTownSummary: (town: string) => React.ReactNode;
@@ -33,6 +36,8 @@ interface KingdomOverviewWindowProps {
 }
 
 type DefaultProp =
+  "renderTitle" |
+  "renderDate" |
   "renderHeroClassSummary" |
   "renderCastleSummary" |
   "renderTownSummary" |
@@ -42,9 +47,11 @@ type DefaultProp =
 class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> {
   public static readonly defaultProps: Pick<KingdomOverviewWindowProps, DefaultProp> = {
     renderCastleSummary: () => undefined,
+    renderDate: () => undefined,
     renderHeroClassSummary: () => undefined,
     renderMineSummary: () => undefined,
     renderResourceSummary: () => undefined,
+    renderTitle: () => undefined,
     renderTownSummary: () => undefined,
   };
 
@@ -54,14 +61,10 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
         {this.renderBanner(this.props.alignment)}
         <div className={styles.titleContainer}>
           <div className={styles.title}>
-            <GameText size="large">
-              <FormattedMessage {...messages.title} />
-            </GameText>
+            {this.props.renderTitle()}
           </div>
           <div className={styles.date}>
-            <GameText size="large">
-              Month 1, Week 1, Day 1
-            </GameText>
+            {this.props.renderDate()}
           </div>
         </div>
         <div className={styles.heroClassSummary}>

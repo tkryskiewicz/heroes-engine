@@ -8,6 +8,7 @@ import {
   heroWindowActions,
   kingdomOverviewWindowActions,
   spellBookWindowActions,
+  statusWindowActions,
   troopWindowActions,
 } from "heroes-homm1-state";
 
@@ -104,6 +105,8 @@ const mapDispatchToProps = (
     dispatch(gameActions.dismissHero(ownProps.hero.id));
 
     dispatch(heroWindowActions.reset());
+
+    dispatch(statusWindowActions.setDefaultOption());
 
     if (ownProps.onConfirmDismissHeroClick) {
       ownProps.onConfirmDismissHeroClick();

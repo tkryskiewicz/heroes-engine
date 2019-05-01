@@ -10,6 +10,8 @@ import {
   gameOptionsActions,
   kingdomOverviewWindowActions,
   locatorsActions,
+  statusWindowActions,
+  StatusWindowOption,
 } from "heroes-homm1-state";
 
 import { AdventureButtonsContainer, AdventureButtonsContainerProps } from "./AdventureButtonsContainer";
@@ -36,6 +38,8 @@ type DispatchProp =
 const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsContainerProps, DispatchProp> => ({
   onNextHeroClick(id) {
     dispatch(locatorsActions.selectActiveObject(id));
+
+    dispatch(statusWindowActions.changeSelectedOption(StatusWindowOption.HeroStatus));
   },
   onKingdomOverviewClick() {
     dispatch(kingdomOverviewWindowActions.open());
@@ -48,6 +52,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsContainerP
 
     dispatch(gameActions.endTurn());
     dispatch(gameActions.startTurn());
+
+    dispatch(statusWindowActions.changeSelectedOption(StatusWindowOption.DateInformation));
   },
   onAdventureOptionsClick() {
     dispatch(adventureOptionsActions.open());

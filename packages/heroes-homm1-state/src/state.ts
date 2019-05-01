@@ -12,6 +12,7 @@ import { MageGuildWindowState } from "./mageGuildWindow";
 import { PuzzleWindowState } from "./puzzleWindow";
 import { ScenarioInfoWindowState } from "./scenarioInfoWindow";
 import { SpellBookWindowState } from "./spellBookWindow";
+import { StatusWindowState } from "./statusWindow";
 import { TownWindowState } from "./townWindow";
 import { TroopWindowState } from "./troopWindow";
 
@@ -30,6 +31,7 @@ export interface AppState {
   readonly scenarioInfoWindow: ScenarioInfoWindowState;
   readonly mageGuildWindow: MageGuildWindowState;
   readonly spellBookWindow: SpellBookWindowState;
+  readonly statusWindow: StatusWindowState;
   readonly troopWindow: TroopWindowState;
   readonly editorWindow: EditorWindowState;
 }

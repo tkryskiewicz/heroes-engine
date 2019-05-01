@@ -20,6 +20,7 @@ export {
   startGameTurn,
   visitGameMapObject,
 } from "./Game";
+export { GameDate, getDate } from "./GameDate";
 export { HeroClassData } from "./HeroClass";
 export {
   Hero,

@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
 import { getGameHeroes } from "heroes-homm1";
-import { AppState, locatorsActions } from "heroes-homm1-state";
+import { AppState, locatorsActions, statusWindowActions, StatusWindowOption } from "heroes-homm1-state";
 
 import { HeroLocatorsContainer, HeroLocatorsContainerProps } from "./HeroLocatorsContainer";
 
@@ -26,6 +26,8 @@ type DispatchProp =
 const mapDispatchToProps = (dispatch: Dispatch): Pick<HeroLocatorsContainerProps, DispatchProp> => ({
   onSelectLocatorClick(id) {
     dispatch(locatorsActions.selectActiveObject(id));
+
+    dispatch(statusWindowActions.changeSelectedOption(StatusWindowOption.HeroStatus));
   },
   onOpenLocatorDetailsClick() {
     dispatch(locatorsActions.openLocatorDetails());

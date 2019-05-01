@@ -100,6 +100,7 @@ describe("buyMageGuildSpellBook", () => {
         description: "Description",
         name: "Name",
       },
+      turn: 0,
     };
 
     const result = buyMageGuildSpellBook(game, "hero", "town", mageGuild.data.spellBookCost);

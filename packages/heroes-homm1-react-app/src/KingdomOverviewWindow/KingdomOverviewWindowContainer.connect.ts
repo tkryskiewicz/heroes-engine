@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
 import {
+  getDate,
   isObjectOwnedBy,
   isOwnableMapObject,
   isResourceGeneratorMapObjectData,
@@ -13,6 +14,7 @@ import { AppState, kingdomOverviewWindowActions } from "heroes-homm1-state";
 import { KingdomOverviewWindowContainer, KingdomOverviewWindowContainerProps } from "./KingdomOverviewWindowContainer";
 
 type StateProp =
+  "date" |
   "alignment" |
   "heroClasses" |
   "castles" |
@@ -46,6 +48,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
       ...p,
       [c]: towns.filter((t) => t.id === c && isStructureBuilt(t, StructureId.Castle)).length,
     }), {}),
+    date: getDate(state.game.turn),
     goldPerDay: 0,
     heroClasses: HeroClassIds.reduce((p, c) => ({
       ...p,

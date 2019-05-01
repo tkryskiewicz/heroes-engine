@@ -23,20 +23,17 @@ export class DateInformation extends React.Component<DateInformationProps> {
           {this.renderImage(this.props.week, this.props.day)}
           <div className={styles.month}>
             <GameText size="normal">
-              <FormattedMessage {...dateMessages.month} />:
-          {this.props.month}
+              <FormattedMessage {...dateMessages.month} />: {this.props.month}
             </GameText>
           </div>
           <div className={styles.week}>
             <GameText size="normal">
-              <FormattedMessage {...dateMessages.week} />:
-          {this.props.week}
+              <FormattedMessage {...dateMessages.week} />: {this.props.week}
             </GameText>
           </div>
           <div className={styles.day}>
             <GameText size="large">
-              <FormattedMessage {...dateMessages.day} />:
-            {this.props.day}
+              <FormattedMessage {...dateMessages.day} />: {this.props.day}
             </GameText>
           </div>
         </div>

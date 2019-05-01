@@ -62,6 +62,7 @@ export interface Game {
   readonly data: GameData;
   readonly scenario: Scenario;
   readonly map: Map;
+  readonly turn: number;
   readonly alignment: string;
   readonly resources: Resources;
   readonly puzzle: Puzzle;

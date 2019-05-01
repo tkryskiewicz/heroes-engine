@@ -8,6 +8,8 @@ import {
   ChangeSelectedOptionAction,
   changeSelectedTerrain,
   ChangeSelectedTerrainAction,
+  changeTerrain,
+  ChangeTerrainAction,
   EditorWindowActionType,
   zoomIn,
   ZoomInAction,
@@ -49,6 +51,18 @@ describe("editorWindowActions", () => {
     const expected: ChangeSelectedTerrainAction = {
       type: EditorWindowActionType.ChangeSelectedTerrain,
       value: "terrain",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to change terrain", () => {
+    const result = changeTerrain({ x: 0, y: 0 }, "terrain");
+
+    const expected: ChangeTerrainAction = {
+      point: { x: 0, y: 0 },
+      terrain: "terrain",
+      type: EditorWindowActionType.ChangeTerrain,
     };
 
     expect(result).toEqual(expected);

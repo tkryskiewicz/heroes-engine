@@ -10,6 +10,7 @@ import { GameOptions } from "../GameOptions";
 import { HeroLocators } from "../HeroLocators";
 import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
 import { PuzzleWindow } from "../PuzzleWindow";
+import { StatusWindow } from "../StatusWindow";
 import { TownLocators } from "../TownLocators";
 
 interface Hero {
@@ -120,9 +121,7 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
 
   private readonly renderStatusWindow = () => {
     return (
-      <GameText size="normal">
-        Status Window
-      </GameText>
+      <StatusWindow />
     );
   }
 }

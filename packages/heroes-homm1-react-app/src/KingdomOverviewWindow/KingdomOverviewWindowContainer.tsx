@@ -1,8 +1,13 @@
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 
+import { GameDate } from "heroes-core";
 import {
+  dateMessages,
+  GameText,
   HeroClassOverview,
   KingdomOverviewWindow,
+  kingdomOverviewWindowMessages,
   KingdomOverviewWindowProps,
   MineOverview,
   ResourceAmount,
@@ -22,6 +27,7 @@ export interface ResourceSummary {
 }
 
 export interface KingdomOverviewWindowContainerProps extends KingdomOverviewWindowProps {
+  readonly date: GameDate;
   readonly heroClasses: HeroClassSummary;
   readonly castles: TownSummary;
   readonly towns: TownSummary;
@@ -34,12 +40,34 @@ export class KingdomOverviewWindowContainer extends React.Component<KingdomOverv
     return (
       <KingdomOverviewWindow
         {...this.props}
+        renderTitle={this.renderTitle}
+        renderDate={this.renderDate}
         renderHeroClassSummary={this.renderHeroClassSummary}
         renderCastleSummary={this.renderCastleSummary}
         renderTownSummary={this.renderTownSummary}
         renderMineSummary={this.renderMineSummary}
         renderResourceSummary={this.renderResourceSummary}
       />
+    );
+  }
+
+  private readonly renderTitle = () => {
+    return (
+      <GameText size="large">
+        <FormattedMessage {...kingdomOverviewWindowMessages.title} />
+      </GameText>
+    );
+  }
+
+  private readonly renderDate = () => {
+    const { date } = this.props;
+
+    return (
+      <GameText size="large">
+        <FormattedMessage {...dateMessages.month} /> {date.month}{", "}
+        <FormattedMessage {...dateMessages.week} /> {date.week}{", "}
+        <FormattedMessage {...dateMessages.day} /> {date.day}
+      </GameText>
     );
   }
 

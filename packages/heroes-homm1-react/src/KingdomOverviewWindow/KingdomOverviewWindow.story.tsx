@@ -10,6 +10,8 @@ import { Placeholder } from "../Placeholder";
 import { alignment } from "../stories";
 import { KingdomOverviewWindow } from "./KingdomOverviewWindow";
 
+const renderTitle = () => <Placeholder name="Title" />;
+const renderDate = () => <Placeholder name="Date" />;
 const renderHeroClassSummary = (heroClass: string) => <Placeholder name={heroClass} />;
 const renderCastleSummary = (town: string) => <Placeholder name={town} />;
 const renderTownSummary = (town: string) => <Placeholder name={town} />;
@@ -22,6 +24,8 @@ storiesOf("KingdomOverviewWindow", module)
     <KingdomOverviewWindow
       visible={boolean("Visible", true)}
       alignment={alignment("Alignment")}
+      renderTitle={renderTitle}
+      renderDate={renderDate}
       renderHeroClassSummary={renderHeroClassSummary}
       renderCastleSummary={renderCastleSummary}
       renderTownSummary={renderTownSummary}

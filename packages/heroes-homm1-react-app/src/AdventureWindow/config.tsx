@@ -39,7 +39,13 @@ import {
   VisitMinePrompt,
   VisitObeliskPrompt,
 } from "heroes-homm1-react";
-import { adventureScreenActions, gameActions, locatorsActions } from "heroes-homm1-state";
+import {
+  adventureScreenActions,
+  gameActions,
+  locatorsActions,
+  statusWindowActions,
+  StatusWindowOption,
+} from "heroes-homm1-state";
 
 export const renderMapObject = (object: MapObject, objectData: MapObjectData, data: GameData) => {
   if (isHeroMapObject(object)) {
@@ -179,8 +185,10 @@ export const onTileClick = (
   dispatch: Dispatch,
 ) => {
   if (isHeroMapObject(object)) {
-    if (!activeObject) {
+    if (!activeObject || !isHeroMapObject(activeObject)) {
       dispatch(locatorsActions.selectActiveObject(object.id));
+
+      dispatch(statusWindowActions.changeSelectedOption(StatusWindowOption.HeroStatus));
     } else if (isHeroMapObject(activeObject) && object.id !== activeObject.id) {
       dispatch(adventureScreenActions.openHeroTradingWindow(activeObject.id, object.id));
     } else {

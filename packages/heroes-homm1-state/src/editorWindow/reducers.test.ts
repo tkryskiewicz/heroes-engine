@@ -1,7 +1,7 @@
 import { createMap, MapPoint } from "heroes-core";
 import { EditorOption, TerrainType } from "heroes-homm1";
 
-import { changePosition, changeSelectedOption, changeSelectedTerrain, zoomIn, zoomOut } from "./actions";
+import { changePosition, changeSelectedOption, changeSelectedTerrain, changeTerrain, zoomIn, zoomOut } from "./actions";
 import { editorWindowReducer } from "./reducers";
 import { EditorWindowState } from "./state";
 
@@ -89,6 +89,35 @@ describe("editorWindowReducer", () => {
     const expected: EditorWindowState = {
       ...state,
       selectedTerrain: "otherTerrain",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle changing terrain", () => {
+    const state: EditorWindowState = {
+      map: createMap(1, 1, "terrain"),
+      position: {
+        x: 0,
+        y: 0,
+      },
+      selectedOption: EditorOption.Details,
+      selectedTerrain: "terrain",
+      zoomed: false,
+    };
+
+    const result = editorWindowReducer(state, changeTerrain({ x: 0, y: 0 }, "otherTerrain"));
+
+    const expected: EditorWindowState = {
+      ...state,
+      map: {
+        ...state.map,
+        tiles: [
+          {
+            terrain: "otherTerrain",
+          },
+        ],
+      },
     };
 
     expect(result).toEqual(expected);

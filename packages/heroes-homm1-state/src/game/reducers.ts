@@ -258,6 +258,7 @@ const initialState: GameState = {
     [Resource.Mercury]: 10,
   },
   scenario: campaignScenarios[0],
+  turn: 0,
 };
 
 export const gameReducer = (state: GameState = initialState, action: GameAction): GameState => {

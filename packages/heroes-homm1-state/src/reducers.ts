@@ -15,6 +15,7 @@ import { puzzleWindowReducer } from "./puzzleWindow";
 import { scenarioInfoWindowReducer } from "./scenarioInfoWindow";
 import { spellBookWindowReducer } from "./spellBookWindow";
 import { AppState } from "./state";
+import { statusWindowReducer } from "./statusWindow";
 import { townWindowReducer } from "./townWindow";
 import { troopWindowReducer } from "./troopWindow";
 
@@ -33,6 +34,7 @@ export const rootReducer = combineReducers<AppState>({
   puzzleWindow: puzzleWindowReducer,
   scenarioInfoWindow: scenarioInfoWindowReducer,
   spellBookWindow: spellBookWindowReducer,
+  statusWindow: statusWindowReducer,
   townWindow: townWindowReducer,
   troopWindow: troopWindowReducer,
 });
