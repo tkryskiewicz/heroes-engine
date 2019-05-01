@@ -37,6 +37,7 @@ export * from "./prompt";
 export * from "./PuzzleWindow";
 export * from "./RecruitHeroWindow";
 export * from "./RecruitTroopWindow";
+export * from "./ResourcePickupStatus";
 export * from "./ResourceSummary";
 export * from "./SpellBookWindow";
 export * from "./StandardGameScenarioInfoWindow";
