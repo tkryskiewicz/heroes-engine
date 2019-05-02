@@ -1,0 +1,33 @@
+.root {
+  position: relative;
+
+  &.large {
+    width: 86px;
+    height: 70px;
+    background: url("./assets/background-large.jpg");
+  }
+
+  &.small {
+    width: 69px;
+    height: 53px;
+    background: url("./assets/background-small.jpg");
+  }
+}
+
+.object {
+  position: absolute;
+
+  .large & {
+    bottom: 8px;
+    left: 3px;
+    width: 64px;
+    height: 64px;
+  }
+
+  .small & {
+    bottom: 3px;
+    left: 2px;
+    width: 64px;
+    height: 48px;
+  }
+}

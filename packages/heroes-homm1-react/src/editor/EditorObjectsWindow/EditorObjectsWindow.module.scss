@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  width: 640px;
+  height: 480px;
+  background: #000;
+}
+
+.object {
+  width: 69px;
+  height: 53px;
+}

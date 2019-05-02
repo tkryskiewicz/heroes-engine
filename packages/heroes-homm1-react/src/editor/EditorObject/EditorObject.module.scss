@@ -1,0 +1,29 @@
+.root {
+  position: relative;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  transform: scaleY(-1);
+}
+
+.cell {
+  width: 16px;
+  height: 16px;
+
+  &.obstacle {
+    border: 1px solid #b70014;
+  }
+
+  &.non-obstacle {
+    border: 1px solid #008c00;
+  }
+}
+
+.object {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+}
