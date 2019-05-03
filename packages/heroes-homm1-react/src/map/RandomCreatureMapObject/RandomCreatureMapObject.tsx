@@ -9,10 +9,10 @@ export class RandomCreatureMapObject extends React.Component<RandomCreatureMapOb
   public render() {
     const { size, level } = this.props;
 
-    const fileName = level !== undefined ? `level-${level}` : "random-level";
+    const levelPath = level !== undefined ? `level-${level}` : "random-level";
 
     return (
-      <img src={`/assets/mapObjects/random-creature/${size}/${fileName}.png`} />
+      <img src={`/assets/mapObjects/random-creature/${levelPath}/${size}.png`} />
     );
   }
 }
