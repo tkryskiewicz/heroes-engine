@@ -4,6 +4,7 @@ export * from "./EditorButtons";
 export * from "./EditorHorizontalScrollbar";
 export * from "./EditorObjectSlot";
 export * from "./EditorOptions";
+export * from "./EditorScrollButton";
 export * from "./EditorVerticalScrollbar";
 export * from "./EditorWindow";
 export * from "./EraseOptionDetails";
