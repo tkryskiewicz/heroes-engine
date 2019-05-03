@@ -1,10 +1,10 @@
 import * as React from "react";
 
+import { MapObjectOrientation } from "heroes-core";
+
 import * as styles from "./EditorWindow.module.scss";
 
-import { buttonImages } from "./assets";
-
-import { ImageButton } from "../../base";
+import { EditorScrollButton } from "../EditorScrollButton";
 
 export interface EditorWindowProps {
   readonly renderAdventureWindow: () => React.ReactNode;
@@ -45,24 +45,24 @@ export class EditorWindow extends React.Component<EditorWindowProps> {
         <div className={styles.adventureWindow}>
           {this.props.renderAdventureWindow()}
         </div>
-        <ImageButton
+        <EditorScrollButton
           className={styles.scrollNorthWest}
-          images={buttonImages.northWest}
+          direction={MapObjectOrientation.NorthWest}
           onClick={this.props.onScrollTopLeft}
         />
-        <ImageButton
+        <EditorScrollButton
           className={styles.scrollNorthEast}
-          images={buttonImages.northEast}
+          direction={MapObjectOrientation.NorthEast}
           onClick={this.props.onScrollTopRight}
         />
-        <ImageButton
+        <EditorScrollButton
           className={styles.scrollSouthWest}
-          images={buttonImages.southWest}
+          direction={MapObjectOrientation.SouthWest}
           onClick={this.props.onScrollBottomLeft}
         />
-        <ImageButton
+        <EditorScrollButton
           className={styles.scrollSouthEast}
-          images={buttonImages.southEast}
+          direction={MapObjectOrientation.SouthEast}
           onClick={this.props.onScrollBottomRight}
         />
         <div className={styles.verticalCellNumbers}>

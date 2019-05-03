@@ -8,14 +8,3 @@ export enum MapObjectOrientation {
   West = "west",
   NorthWest = "north-west",
 }
-
-export const MapObjectOrientations = [
-  MapObjectOrientation.North,
-  MapObjectOrientation.NorthEast,
-  MapObjectOrientation.East,
-  MapObjectOrientation.SouthEast,
-  MapObjectOrientation.South,
-  MapObjectOrientation.SouthWest,
-  MapObjectOrientation.West,
-  MapObjectOrientation.NorthWest,
-];

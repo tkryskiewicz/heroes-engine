@@ -1,6 +1,6 @@
 import { number, select } from "@storybook/addon-knobs";
 
-import { CombatSide } from "heroes-core";
+import { CombatSide, MapObjectOrientation } from "heroes-core";
 import {
   Alignment,
   ArmySize,
@@ -276,6 +276,14 @@ const mapObjectOptions = Object.keys(MapObjectId).reduce<SelectOptions>((p, c: a
 }), {});
 
 export const mapObject = (name: string) => select(name, mapObjectOptions, MapObjectId.Bouy);
+
+const mapObjectOrientationOptions = Object.keys(MapObjectOrientation).reduce<SelectOptions>((p, c: any) => ({
+  ...p,
+  [c]: MapObjectOrientation[c],
+}), {});
+
+export const mapObjectOrientation = (name: string) =>
+  select(name, mapObjectOrientationOptions, MapObjectOrientation.North);
 
 const dwellingObjectOptions = [
   MapObjectId.Cottage,

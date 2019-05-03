@@ -56,7 +56,7 @@ export {
   replaceObject,
 } from "./Map";
 export { MapObject, MapObjectData, isMapObject, createMapObject } from "./MapObject";
-export { MapObjectOrientation, MapObjectOrientations } from "./MapObjectOrientation";
+export { MapObjectOrientation } from "./MapObjectOrientation";
 export { MapPoint, isSamePoint } from "./MapPoint";
 export { MapTile } from "./MapTile";
 export {

@@ -1,11 +1,13 @@
 import Classnames from "classnames";
 import * as React from "react";
 
+import { MapObjectOrientation } from "heroes-core";
+
 import * as styles from "./EditorVerticalScrollbar.module.scss";
 
-import { buttonImages, ThumbImage } from "./assets";
+import { ThumbImage } from "./assets";
 
-import { ImageButton } from "../../base";
+import { EditorScrollButton } from "../EditorScrollButton";
 
 export interface EditorVerticalScrollbarProps {
   readonly className?: string;
@@ -22,9 +24,9 @@ export class EditorVerticalScrollbar extends React.Component<EditorVerticalScrol
 
     return (
       <div className={Classnames(styles.root, this.props.className)}>
-        <ImageButton
+        <EditorScrollButton
           className={styles.up}
-          images={buttonImages.up}
+          direction={MapObjectOrientation.North}
           onClick={this.props.onScrollUpClick}
         />
         <div className={styles.track}>
@@ -34,9 +36,9 @@ export class EditorVerticalScrollbar extends React.Component<EditorVerticalScrol
             src={ThumbImage}
           />
         </div>
-        <ImageButton
+        <EditorScrollButton
           className={styles.down}
-          images={buttonImages.down}
+          direction={MapObjectOrientation.South}
           onClick={this.props.onScrollDownClick}
         />
       </div>
