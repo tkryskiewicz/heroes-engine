@@ -31,6 +31,8 @@ export enum MapObjectId {
   // puzzle
   Obelisk = "obelisk",
 
+  RandomArtifact = "random-artifact",
+
   // other
   Bouy = "bouy",
   FaerieRing = "faerie-ring",
