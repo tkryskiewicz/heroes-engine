@@ -1,11 +1,15 @@
 import { MapPoint } from "heroes-core";
-import { EditorOption } from "heroes-homm1";
+import { EditorObjectType, EditorOption } from "heroes-homm1";
 
 export enum EditorWindowActionType {
   ChangePosition = "editorWindow/changePosition",
   ChangeSelectedOption = "editorWindow/changeSelectedOption",
   ChangeSelectedTerrain = "editorWindow/changeSelectedTerrain",
   ChangeTerrain = "editorWindow/changeTerrain",
+  ChangeSelectedObjectType = "editorWindow/changeSelectedObjectType",
+  ChangeSelectedObject = "editorWindow/changeSelectedObject",
+  OpenObjectsWindow = "editorWindow/openObjectsWindow",
+  CloseObjectsWindow = "editorWindow/closeObjectsWindow",
   ZoomIn = "editorWindow/zoomIn",
   ZoomOut = "editorWindow/zoomOut",
 }
@@ -15,6 +19,10 @@ export type EditorWindowAction =
   ChangeSelectedOptionAction |
   ChangeSelectedTerrainAction |
   ChangeTerrainAction |
+  ChangeSelectedObjectTypeAction |
+  ChangeSelectedObjectAction |
+  OpenObjectsWindowAction |
+  CloseObjectsWindowAction |
   ZoomInAction |
   ZoomOutAction;
 
@@ -58,6 +66,42 @@ export const changeTerrain = (point: MapPoint, terrain: string): ChangeTerrainAc
   point,
   terrain,
   type: EditorWindowActionType.ChangeTerrain,
+});
+
+export interface ChangeSelectedObjectTypeAction {
+  readonly type: EditorWindowActionType.ChangeSelectedObjectType;
+  readonly value: EditorObjectType;
+}
+
+export const changeSelectedObjectType = (value: EditorObjectType): ChangeSelectedObjectTypeAction => ({
+  type: EditorWindowActionType.ChangeSelectedObjectType,
+  value,
+});
+
+export interface ChangeSelectedObjectAction {
+  readonly type: EditorWindowActionType.ChangeSelectedObject;
+  readonly value?: string;
+}
+
+export const changeSelectedObject = (value?: string): ChangeSelectedObjectAction => ({
+  type: EditorWindowActionType.ChangeSelectedObject,
+  value,
+});
+
+export interface OpenObjectsWindowAction {
+  readonly type: EditorWindowActionType.OpenObjectsWindow;
+}
+
+export const openObjectsWindow = (): OpenObjectsWindowAction => ({
+  type: EditorWindowActionType.OpenObjectsWindow,
+});
+
+export interface CloseObjectsWindowAction {
+  readonly type: EditorWindowActionType.CloseObjectsWindow;
+}
+
+export const closeObjectsWindow = (): CloseObjectsWindowAction => ({
+  type: EditorWindowActionType.CloseObjectsWindow,
 });
 
 export interface ZoomInAction {

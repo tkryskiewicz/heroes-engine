@@ -1,7 +1,18 @@
 import { createMap, MapPoint } from "heroes-core";
-import { EditorOption, TerrainType } from "heroes-homm1";
+import { EditorObjectType, EditorOption, TerrainType } from "heroes-homm1";
 
-import { changePosition, changeSelectedOption, changeSelectedTerrain, changeTerrain, zoomIn, zoomOut } from "./actions";
+import {
+  changePosition,
+  changeSelectedObject,
+  changeSelectedObjectType,
+  changeSelectedOption,
+  changeSelectedTerrain,
+  changeTerrain,
+  closeObjectsWindow,
+  openObjectsWindow,
+  zoomIn,
+  zoomOut,
+} from "./actions";
 import { editorWindowReducer } from "./reducers";
 import { EditorWindowState } from "./state";
 
@@ -11,10 +22,12 @@ describe("editorWindowReducer", () => {
 
     const expected: EditorWindowState = {
       map: createMap(50, 50, TerrainType.Water),
+      objectsWindowVisible: false,
       position: {
         x: 0,
         y: 0,
       },
+      selectedObjectType: EditorObjectType.WaterObjects,
       selectedOption: EditorOption.Terrains,
       selectedTerrain: TerrainType.Water,
       zoomed: true,
@@ -26,10 +39,12 @@ describe("editorWindowReducer", () => {
   it("should handle changing posiition", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectsWindowVisible: false,
       position: {
         x: 0,
         y: 0,
       },
+      selectedObjectType: EditorObjectType.WaterObjects,
       selectedOption: EditorOption.Details,
       selectedTerrain: "terrain",
       zoomed: false,
@@ -53,10 +68,12 @@ describe("editorWindowReducer", () => {
   it("should handle changing selected option", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectsWindowVisible: false,
       position: {
         x: 0,
         y: 0,
       },
+      selectedObjectType: EditorObjectType.WaterObjects,
       selectedOption: EditorOption.Details,
       selectedTerrain: "terrain",
       zoomed: false,
@@ -75,10 +92,12 @@ describe("editorWindowReducer", () => {
   it("should handle changing selected terrain", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectsWindowVisible: false,
       position: {
         x: 0,
         y: 0,
       },
+      selectedObjectType: EditorObjectType.WaterObjects,
       selectedOption: EditorOption.Details,
       selectedTerrain: "terrain",
       zoomed: false,
@@ -97,10 +116,12 @@ describe("editorWindowReducer", () => {
   it("should handle changing terrain", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectsWindowVisible: false,
       position: {
         x: 0,
         y: 0,
       },
+      selectedObjectType: EditorObjectType.WaterObjects,
       selectedOption: EditorOption.Details,
       selectedTerrain: "terrain",
       zoomed: false,
@@ -123,13 +144,111 @@ describe("editorWindowReducer", () => {
     expect(result).toEqual(expected);
   });
 
-  it("should handle zooming in", () => {
+  it("should handle changing selected object type", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectsWindowVisible: false,
       position: {
         x: 0,
         y: 0,
       },
+      selectedObjectType: EditorObjectType.WaterObjects,
+      selectedOption: EditorOption.Details,
+      selectedTerrain: "terrain",
+      zoomed: false,
+    };
+
+    const result = editorWindowReducer(state, changeSelectedObjectType(EditorObjectType.GrassObjects));
+
+    const expected: EditorWindowState = {
+      ...state,
+      selectedObjectType: EditorObjectType.GrassObjects,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle changing selected object", () => {
+    const state: EditorWindowState = {
+      map: createMap(1, 1, "terrain"),
+      objectsWindowVisible: false,
+      position: {
+        x: 0,
+        y: 0,
+      },
+      selectedObjectType: EditorObjectType.WaterObjects,
+      selectedOption: EditorOption.Details,
+      selectedTerrain: "terrain",
+      zoomed: false,
+    };
+
+    const result = editorWindowReducer(state, changeSelectedObject("object"));
+
+    const expected: EditorWindowState = {
+      ...state,
+      selectedObject: "object",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle opening objects window", () => {
+    const state: EditorWindowState = {
+      map: createMap(1, 1, "terrain"),
+      objectsWindowVisible: false,
+      position: {
+        x: 0,
+        y: 0,
+      },
+      selectedObjectType: EditorObjectType.WaterObjects,
+      selectedOption: EditorOption.Details,
+      selectedTerrain: "terrain",
+      zoomed: false,
+    };
+
+    const result = editorWindowReducer(state, openObjectsWindow());
+
+    const expected: EditorWindowState = {
+      ...state,
+      objectsWindowVisible: true,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle closing objects window", () => {
+    const state: EditorWindowState = {
+      map: createMap(1, 1, "terrain"),
+      objectsWindowVisible: true,
+      position: {
+        x: 0,
+        y: 0,
+      },
+      selectedObjectType: EditorObjectType.WaterObjects,
+      selectedOption: EditorOption.Details,
+      selectedTerrain: "terrain",
+      zoomed: false,
+    };
+
+    const result = editorWindowReducer(state, closeObjectsWindow());
+
+    const expected: EditorWindowState = {
+      ...state,
+      objectsWindowVisible: false,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle zooming in", () => {
+    const state: EditorWindowState = {
+      map: createMap(1, 1, "terrain"),
+      objectsWindowVisible: false,
+      position: {
+        x: 0,
+        y: 0,
+      },
+      selectedObjectType: EditorObjectType.WaterObjects,
       selectedOption: EditorOption.Details,
       selectedTerrain: "terrain",
       zoomed: false,
@@ -148,10 +267,12 @@ describe("editorWindowReducer", () => {
   it("should handle zooming out", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectsWindowVisible: false,
       position: {
         x: 0,
         y: 0,
       },
+      selectedObjectType: EditorObjectType.WaterObjects,
       selectedOption: EditorOption.Details,
       selectedTerrain: "terrain",
       zoomed: true,

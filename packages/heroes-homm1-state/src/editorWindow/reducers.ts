@@ -1,5 +1,5 @@
 import { changeTerrain, createMap } from "heroes-core";
-import { EditorOption, TerrainType } from "heroes-homm1";
+import { EditorObjectType, EditorOption, TerrainType } from "heroes-homm1";
 
 import { EditorWindowAction, EditorWindowActionType } from "./actions";
 import { EditorWindowState } from "./state";
@@ -8,10 +8,12 @@ const map = createMap(50, 50, TerrainType.Water);
 
 const initialState: EditorWindowState = {
   map,
+  objectsWindowVisible: false,
   position: {
     x: 0,
     y: 0,
   },
+  selectedObjectType: EditorObjectType.WaterObjects,
   selectedOption: EditorOption.Terrains,
   selectedTerrain: TerrainType.Water,
   zoomed: true,
@@ -41,6 +43,26 @@ export const editorWindowReducer = (
       return {
         ...state,
         map: changeTerrain(state.map, action.point, action.terrain),
+      };
+    case EditorWindowActionType.ChangeSelectedObjectType:
+      return {
+        ...state,
+        selectedObjectType: action.value,
+      };
+    case EditorWindowActionType.ChangeSelectedObject:
+      return {
+        ...state,
+        selectedObject: action.value,
+      };
+    case EditorWindowActionType.OpenObjectsWindow:
+      return {
+        ...state,
+        objectsWindowVisible: true,
+      };
+    case EditorWindowActionType.CloseObjectsWindow:
+      return {
+        ...state,
+        objectsWindowVisible: false,
       };
     case EditorWindowActionType.ZoomIn:
       return {

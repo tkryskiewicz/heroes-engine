@@ -1,16 +1,24 @@
 import { MapPoint } from "heroes-core";
-import { EditorOption } from "heroes-homm1";
+import { EditorObjectType, EditorOption } from "heroes-homm1";
 
 import {
   changePosition,
   ChangePositionAction,
+  changeSelectedObject,
+  ChangeSelectedObjectAction,
+  changeSelectedObjectType,
+  ChangeSelectedObjectTypeAction,
   changeSelectedOption,
   ChangeSelectedOptionAction,
   changeSelectedTerrain,
   ChangeSelectedTerrainAction,
   changeTerrain,
   ChangeTerrainAction,
+  closeObjectsWindow,
+  CloseObjectsWindowAction,
   EditorWindowActionType,
+  openObjectsWindow,
+  OpenObjectsWindowAction,
   zoomIn,
   ZoomInAction,
   zoomOut,
@@ -63,6 +71,48 @@ describe("editorWindowActions", () => {
       point: { x: 0, y: 0 },
       terrain: "terrain",
       type: EditorWindowActionType.ChangeTerrain,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to change selected object type", () => {
+    const result = changeSelectedObjectType(EditorObjectType.WaterObjects);
+
+    const expected: ChangeSelectedObjectTypeAction = {
+      type: EditorWindowActionType.ChangeSelectedObjectType,
+      value: EditorObjectType.WaterObjects,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to change selected object", () => {
+    const result = changeSelectedObject("object");
+
+    const expected: ChangeSelectedObjectAction = {
+      type: EditorWindowActionType.ChangeSelectedObject,
+      value: "object",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to open objects window", () => {
+    const result = openObjectsWindow();
+
+    const expected: OpenObjectsWindowAction = {
+      type: EditorWindowActionType.OpenObjectsWindow,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to close objects window", () => {
+    const result = closeObjectsWindow();
+
+    const expected: CloseObjectsWindowAction = {
+      type: EditorWindowActionType.CloseObjectsWindow,
     };
 
     expect(result).toEqual(expected);
