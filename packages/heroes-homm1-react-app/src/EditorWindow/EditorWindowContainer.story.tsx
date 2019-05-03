@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { createMap, MapPoint } from "heroes-core";
 import { terrains, TerrainType } from "heroes-homm1";
-import { editorOption, terrainType } from "heroes-homm1-react";
+import { editorObjectType, editorOption, terrainType } from "heroes-homm1-react";
 
 import { EditorWindow, EditorWindowProps } from "./EditorWindowContainer";
 
@@ -42,6 +42,9 @@ storiesOf("EditorWindowContainer", module)
         onSelectedOptionChange={action("Selected Option Change")}
         selectedTerrain={terrainType("Selected Terrain")}
         onSelectedTerrainChange={action("Selected Terrain Change")}
+        selectedObjectType={editorObjectType("Selected Object Type")}
+        onSelectedObjectTypeChange={action("Selected Object Type Change")}
+        objectsWindowVisible={boolean("Objects Window Visible", false)}
         onEraseTypesClick={action("Erase Types Click")}
         zoomed={boolean("Zoomed", false)}
         onZoomInClick={action("Zoom In Click")}

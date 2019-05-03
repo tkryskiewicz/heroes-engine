@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
@@ -13,5 +14,6 @@ storiesOf("editor/EditorObjectsWindow", module)
       visible={boolean("Visible", true)}
       objects={["objectA", "objectB"]}
       renderObject={renderObject}
+      onObjectClick={action("Object Click")}
     />
   ));

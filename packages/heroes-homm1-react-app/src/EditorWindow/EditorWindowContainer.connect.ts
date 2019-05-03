@@ -11,12 +11,18 @@ type StateProp =
   "position" |
   "selectedOption" |
   "selectedTerrain" |
+  "selectedObjectType" |
+  "selectedObject" |
+  "objectsWindowVisible" |
   "zoomed";
 
 const mapStateToProps = (state: AppState): Pick<EditorWindowProps, StateProp> => ({
   data: state.game.data,
   map: state.editorWindow.map,
+  objectsWindowVisible: state.editorWindow.objectsWindowVisible,
   position: state.editorWindow.position,
+  selectedObject: state.editorWindow.selectedObject,
+  selectedObjectType: state.editorWindow.selectedObjectType,
   selectedOption: state.editorWindow.selectedOption,
   selectedTerrain: state.editorWindow.selectedTerrain,
   zoomed: state.editorWindow.zoomed,
@@ -27,6 +33,10 @@ type DispatchProp =
   "onSelectedOptionChange" |
   "onSelectedTerrainChange" |
   "onChangeTerrainClick" |
+  "onSelectedObjectTypeChange" |
+  "onSelectedObjectChange" |
+  "onOpenObjectsWindowClick" |
+  "onCloseObjectsWindowClick" |
   "onZoomInClick" |
   "onZoomOutClick";
 
@@ -42,6 +52,20 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, Dispatc
   },
   onChangeTerrainClick(point, terrain) {
     dispatch(editorWindowActions.changeTerrain(point, terrain));
+  },
+  onSelectedObjectTypeChange(value) {
+    dispatch(editorWindowActions.changeSelectedObjectType(value));
+  },
+  onSelectedObjectChange(value) {
+    dispatch(editorWindowActions.changeSelectedObject(value));
+
+    dispatch(editorWindowActions.closeObjectsWindow());
+  },
+  onOpenObjectsWindowClick() {
+    dispatch(editorWindowActions.openObjectsWindow());
+  },
+  onCloseObjectsWindowClick() {
+    dispatch(editorWindowActions.closeObjectsWindow());
   },
   onZoomInClick() {
     dispatch(editorWindowActions.zoomIn());

@@ -99,6 +99,7 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData, da
   if (isArtifactMapObjectData(objectData)) {
     return (
       <ArtifactMapObject
+        size="large"
         artifact={objectData.artifact}
       />
     );

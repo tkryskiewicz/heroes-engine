@@ -11,13 +11,16 @@ const GridHeight = 9;
 interface EditorObjectsWindowProps extends WithGameWindowProps {
   readonly objects: string[];
   readonly renderObject: (object: string) => React.ReactNode;
+  readonly onObjectClick: (value: string) => void;
 }
 
 type DefaultProp =
-  "renderObject";
+  "renderObject" |
+  "onObjectClick";
 
 class EditorObjectsWindow extends React.Component<EditorObjectsWindowProps> {
   public static readonly defaultProps: Pick<EditorObjectsWindowProps, DefaultProp> = {
+    onObjectClick: () => undefined,
     renderObject: () => undefined,
   };
 
@@ -32,6 +35,9 @@ class EditorObjectsWindow extends React.Component<EditorObjectsWindowProps> {
   private renderObject(index: number) {
     const object = this.props.objects[index];
 
+    // FIXME: get rid of?
+    const onClick = () => object && this.props.onObjectClick(object);
+
     return (
       <div
         key={index}
@@ -39,6 +45,7 @@ class EditorObjectsWindow extends React.Component<EditorObjectsWindowProps> {
       >
         <EditorObjectSlot
           size="small"
+          onClick={onClick}
         >
           {object && this.props.renderObject(object)}
         </EditorObjectSlot>

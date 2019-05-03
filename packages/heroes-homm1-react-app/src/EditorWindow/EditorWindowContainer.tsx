@@ -9,21 +9,25 @@ import {
   MapObjectOrientation,
   MapPoint,
 } from "heroes-core";
-import { EditorOption } from "heroes-homm1";
+import { EditorObjectType, EditorOption, nextObjectType, previousObjectType } from "heroes-homm1";
 import {
   AdventureWindow,
   CellNumbers,
   DetailsOptionDetails,
   EditorButtons,
   EditorHorizontalScrollbar,
+  EditorObject,
+  EditorObjectsWindow,
   EditorOptions,
   EditorVerticalScrollbar,
   EditorWindow,
   EraseOptionDetails,
-  GameText,
   MapTile,
+  ObjectsOptionDetails,
   TerrainsOptionDetails,
 } from "heroes-homm1-react";
+
+import { getObjects, renderObject } from "./config";
 
 interface EditorWindowContainerProps {
   readonly data: GameData;
@@ -35,7 +39,17 @@ interface EditorWindowContainerProps {
   readonly selectedTerrain: string;
   readonly onSelectedTerrainChange: (value: string) => void;
   readonly onChangeTerrainClick: (point: MapPoint, terrain: string) => void;
+
+  readonly selectedObjectType: EditorObjectType;
+  readonly onSelectedObjectTypeChange: (value: EditorObjectType) => void;
+  readonly selectedObject?: string;
+  readonly onSelectedObjectChange: (value: string) => void;
+  readonly objectsWindowVisible: boolean;
+  readonly onOpenObjectsWindowClick: () => void;
+  readonly onCloseObjectsWindowClick: () => void;
+
   readonly onEraseTypesClick: () => void;
+
   readonly zoomed: boolean;
   readonly onZoomInClick: () => void;
   readonly onZoomOutClick: () => void;
@@ -58,6 +72,12 @@ type DefaultProp =
   "onSelectedOptionChange" |
   "onSelectedTerrainChange" |
   "onChangeTerrainClick" |
+
+  "onSelectedObjectTypeChange" |
+  "onSelectedObjectChange" |
+  "onOpenObjectsWindowClick" |
+  "onCloseObjectsWindowClick" |
+
   "onEraseTypesClick" |
   "onZoomInClick" |
   "onZoomOutClick" |
@@ -73,12 +93,16 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   public static readonly defaultProps: Pick<EditorWindowContainerProps, DefaultProp> = {
     onChangePosition: () => undefined,
     onChangeTerrainClick: () => undefined,
+    onCloseObjectsWindowClick: () => undefined,
     onEraseTypesClick: () => undefined,
     onLoadClick: () => undefined,
     onNewClick: () => undefined,
+    onOpenObjectsWindowClick: () => undefined,
     onQuitClick: () => undefined,
     onRandomClick: () => undefined,
     onSaveClick: () => undefined,
+    onSelectedObjectChange: () => undefined,
+    onSelectedObjectTypeChange: () => undefined,
     onSelectedOptionChange: () => undefined,
     onSelectedTerrainChange: () => undefined,
     onSpecsClick: () => undefined,
@@ -279,9 +303,16 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         );
       case EditorOption.Objects:
         return (
-          <GameText size="normal">
-            OBJECTS
-          </GameText>
+          <>
+            <ObjectsOptionDetails
+              onSlotClick={this.props.onOpenObjectsWindowClick}
+              selectedObjectType={this.props.selectedObjectType}
+              onPreviousTypeClick={this.onPreviousObjectTypeClick}
+              onNextTypeClick={this.onNextObjectTypeClick}
+              renderObject={this.renderSelectedObject}
+            />
+            {this.props.objectsWindowVisible && this.renderObjectsWindow()}
+          </>
         );
       case EditorOption.Details:
         return (
@@ -294,6 +325,54 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
           />
         );
     }
+  }
+
+  private readonly onPreviousObjectTypeClick = () => {
+    this.props.onSelectedObjectTypeChange(previousObjectType(this.props.selectedObjectType));
+  }
+
+  private readonly onNextObjectTypeClick = () => {
+    this.props.onSelectedObjectTypeChange(nextObjectType(this.props.selectedObjectType));
+  }
+
+  private readonly renderSelectedObject = () => {
+    const { selectedObject } = this.props;
+
+    return selectedObject && this.renderObject(selectedObject);
+  }
+
+  private renderObjectsWindow() {
+    const { data, selectedObjectType } = this.props;
+
+    const objects = getObjects(selectedObjectType, data);
+
+    return (
+      <EditorObjectsWindow
+        visible={true}
+        objects={objects}
+        renderObject={this.renderObject}
+        onObjectClick={this.props.onSelectedObjectChange}
+      />
+    );
+  }
+
+  private readonly renderObject = (value: string) => {
+    const { data } = this.props;
+
+    const objectData = data.mapObjects[value];
+
+    const object = renderObject(objectData, data);
+
+    const render = () => object;
+
+    return (
+      <EditorObject
+        width={1}
+        height={1}
+        obstacleGrid={[true]}
+        renderObject={render}
+      />
+    );
   }
 
   private readonly renderButtons = () => {
