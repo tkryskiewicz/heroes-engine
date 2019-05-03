@@ -278,6 +278,13 @@ const mapObjectOptions = Object.keys(MapObjectId).reduce<SelectOptions>((p, c: a
 
 export const mapObject = (name: string) => select(name, mapObjectOptions, MapObjectId.Bouy);
 
+const mapObjectSizeOptions = {
+  Large: "large",
+  Small: "small",
+};
+
+export const mapObjectSize = (name: string) => select(name, mapObjectSizeOptions, "large");
+
 const mapObjectOrientationOptions = Object.keys(MapObjectOrientation).reduce<SelectOptions>((p, c: any) => ({
   ...p,
   [c]: MapObjectOrientation[c],
