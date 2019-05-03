@@ -48,6 +48,10 @@ const creatureObjects: CreatureObjectData[] = creatures
     id: c.id,
   }));
 
+const randomCreature: MapObjectData = {
+  id: MapObjectId.RandomCreature,
+};
+
 type ArtifactObjectData = ArtifactMapObjectData & PickableMapObjectData;
 
 const artifactObjects: ArtifactObjectData[] = artifacts
@@ -57,6 +61,10 @@ const artifactObjects: ArtifactObjectData[] = artifacts
     id: a.id,
     pickable: true,
   }));
+
+const randomArtifactObject: MapObjectData = {
+  id: MapObjectId.RandomArtifact,
+};
 
 const resourceObjects: ResourceMapObjectData[] = [
   {
@@ -131,6 +139,10 @@ const resourceObjects: ResourceMapObjectData[] = [
     },
   },
 ];
+
+const randomResourceObject: MapObjectData = {
+  id: MapObjectId.RandomResource,
+};
 
 const treasureObjects: Array<TreasureMapObjectData & PickableMapObjectData> = [
   {
@@ -245,9 +257,12 @@ export const mapObjects: MapObjectData[] = [
   ...heroObjects,
   ...townObjects,
   ...creatureObjects,
+  randomCreature,
   ...resourceObjects,
+  randomResourceObject,
   ...treasureObjects,
   ...artifactObjects,
+  randomArtifactObject,
   ...mineObjects,
   ...dwellingObjects,
   ...puzzleObjects,

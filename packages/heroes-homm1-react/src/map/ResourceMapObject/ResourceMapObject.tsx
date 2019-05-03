@@ -1,17 +1,14 @@
 import * as React from "react";
 
-interface Props {
+export interface ResourceMapObjectProps {
+  readonly size: "large" | "small";
   readonly resource: string;
 }
 
-export class ResourceMapObject extends React.Component<Props> {
+export class ResourceMapObject extends React.Component<ResourceMapObjectProps> {
   public render() {
     return (
-      <img src={`/assets/resources/${this.props.resource}/mapObject.png`} />
+      <img src={`/assets/resources/${this.props.resource}/mapObject/${this.props.size}.png`} />
     );
   }
 }
-
-export {
-  Props as ResourceMapObjectProps,
-};

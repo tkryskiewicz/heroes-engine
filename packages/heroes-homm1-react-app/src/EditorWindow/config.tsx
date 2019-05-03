@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import { GameData, isArtifactMapObjectData, MapObjectData } from "heroes-core";
+import { GameData, isArtifactMapObjectData, isCreatureMapObjectData, MapObjectData } from "heroes-core";
 import { EditorObjectType, isResourceMapObject, MapObjectId } from "heroes-homm1";
-import { ArtifactMapObject, MapObject, ResourceMapObject } from "heroes-homm1-react";
+import { ArtifactMapObject, CreatureMapObject, MapObject, ResourceMapObject } from "heroes-homm1-react";
 
 export const renderObject = (
   objectData: MapObjectData,
@@ -12,8 +12,17 @@ export const renderObject = (
   if (isResourceMapObject({ id: "", dataId: objectData.id }, data)) {
     return (
       <ResourceMapObject
-        // size="small"
+        size="small"
         resource={objectData.id}
+      />
+    );
+  }
+
+  if (isCreatureMapObjectData(objectData)) {
+    return (
+      <CreatureMapObject
+        size="small"
+        creature={objectData.creature}
       />
     );
   }
@@ -36,6 +45,10 @@ export const renderObject = (
 
 export const getObjects = (type: EditorObjectType, data: GameData): string[] => {
   switch (type) {
+    case EditorObjectType.Monsters:
+      return Object.values(data.mapObjects)
+        .filter((o) => isCreatureMapObjectData(o) || o.id === MapObjectId.RandomCreature)
+        .map((o) => o.id);
     case EditorObjectType.Artifacts:
       return Object.values(data.mapObjects)
         .filter((o) => isArtifactMapObjectData(o) || o.id === MapObjectId.RandomArtifact)

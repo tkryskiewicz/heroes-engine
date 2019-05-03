@@ -71,6 +71,7 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData, da
   if (isCreatureMapObjectData(objectData)) {
     return (
       <CreatureMapObject
+        size="large"
         creature={objectData.creature}
       />
     );
@@ -82,6 +83,7 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData, da
 
     return (
       <ResourceMapObject
+        size="large"
         resource={resource}
       />
     );
