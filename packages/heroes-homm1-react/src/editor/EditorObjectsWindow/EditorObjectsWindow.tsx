@@ -3,16 +3,21 @@ import * as React from "react";
 import * as styles from "./EditorObjectsWindow.module.scss";
 
 import { withGameWindow, WithGameWindowProps } from "../../core";
+import { EditorObjectSlot } from "../EditorObjectSlot";
 
 const GridWidth = 9;
 const GridHeight = 9;
 
 interface EditorObjectsWindowProps extends WithGameWindowProps {
-  readonly renderObject: (index: number) => React.ReactNode;
+  readonly objects: string[];
+  readonly renderObject: (object: string) => React.ReactNode;
 }
 
+type DefaultProp =
+  "renderObject";
+
 class EditorObjectsWindow extends React.Component<EditorObjectsWindowProps> {
-  public static readonly defaultProps: EditorObjectsWindowProps = {
+  public static readonly defaultProps: Pick<EditorObjectsWindowProps, DefaultProp> = {
     renderObject: () => undefined,
   };
 
@@ -25,12 +30,18 @@ class EditorObjectsWindow extends React.Component<EditorObjectsWindowProps> {
   }
 
   private renderObject(index: number) {
+    const object = this.props.objects[index];
+
     return (
       <div
         key={index}
         className={styles.object}
       >
-        {this.props.renderObject(index)}
+        <EditorObjectSlot
+          size="small"
+        >
+          {object && this.props.renderObject(object)}
+        </EditorObjectSlot>
       </div>
     );
   }

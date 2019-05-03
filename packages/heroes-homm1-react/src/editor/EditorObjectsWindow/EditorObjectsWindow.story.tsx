@@ -5,12 +5,13 @@ import * as React from "react";
 import { Placeholder } from "../../Placeholder";
 import { EditorObjectsWindow } from "./EditorObjectsWindow";
 
-const renderObject = (index: number) => <Placeholder name={index.toString()} />;
+const renderObject = (object: string) => <Placeholder name={object} />;
 
 storiesOf("editor/EditorObjectsWindow", module)
   .add("defalut", () => (
     <EditorObjectsWindow
       visible={boolean("Visible", true)}
+      objects={["objectA", "objectB"]}
       renderObject={renderObject}
     />
   ));
