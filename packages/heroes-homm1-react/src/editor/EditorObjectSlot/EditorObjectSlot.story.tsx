@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
@@ -10,12 +11,12 @@ const sizeOptions: { readonly [s: string]: EditorObjectSlotProps["size"] } = {
   Small: "small",
 };
 
-const renderObject = () => <Placeholder name="Object" />;
-
 storiesOf("editor/EditorObjectSlot", module)
   .add("default", () => (
     <EditorObjectSlot
       size={select("Size", sizeOptions, "large")}
-      renderObject={renderObject}
-    />
+      onClick={action("Click")}
+    >
+      <Placeholder name="Object" />
+    </EditorObjectSlot>
   ));

@@ -2,6 +2,7 @@ export * from "./CellNumbers";
 export * from "./DetailsOptionDetails";
 export * from "./EditorButtons";
 export * from "./EditorHorizontalScrollbar";
+export * from "./EditorObjectSlot";
 export * from "./EditorOptions";
 export * from "./EditorVerticalScrollbar";
 export * from "./EditorWindow";

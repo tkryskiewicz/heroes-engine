@@ -5,19 +5,22 @@ import * as styles from "./EditorObjectSlot.module.scss";
 
 export interface EditorObjectSlotProps {
   readonly size: "large" | "small";
-  readonly renderObject: () => React.ReactNode;
+  readonly onClick: () => void;
 }
 
 export class EditorObjectSlot extends React.Component<EditorObjectSlotProps> {
-  public static readonly defaultProps: Pick<EditorObjectSlotProps, "renderObject"> = {
-    renderObject: () => undefined,
+  public static readonly defaultProps: Pick<EditorObjectSlotProps, "onClick"> = {
+    onClick: () => undefined,
   };
 
   public render() {
     return (
-      <div className={Classnames(styles.root, styles[this.props.size])}>
+      <div
+        className={Classnames(styles.root, styles[this.props.size])}
+        onClick={this.props.onClick}
+      >
         <div className={styles.object}>
-          {this.props.renderObject()}
+          {this.props.children}
         </div>
       </div>
     );
