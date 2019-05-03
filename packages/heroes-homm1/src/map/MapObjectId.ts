@@ -11,6 +11,8 @@ export enum MapObjectId {
   Sulfur = "sulfur",
   Wood = "wood",
 
+  RandomResource = "random-resource",
+
   Fireplace = "fireplace",
 
   // mines
@@ -22,6 +24,9 @@ export enum MapObjectId {
   OreMine = "ore-mine",
   SulfurMine = "sulfur-mine",
   Sawmill = "sawmill",
+
+  // creatures
+  RandomCreature = "random-creature",
 
   // dwellings
   Cottage = "cottage",
