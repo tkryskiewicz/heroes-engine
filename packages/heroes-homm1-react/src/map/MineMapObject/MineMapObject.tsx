@@ -8,6 +8,7 @@ import * as styles from "./MineMapObject.module.scss";
 import { MapObject } from "../MapObject";
 
 export interface MineMapObjectProps {
+  readonly size: "large" | "small";
   readonly resource: string;
   readonly alignment?: string;
 }
@@ -19,6 +20,7 @@ export class MineMapObject extends React.Component<MineMapObjectProps> {
     return (
       <div className={Classnames(styles.root, styles[resource])}>
         <MapObject
+          size={this.props.size}
           type={this.getObjectType(resource)}
         />
         {this.renderWagon(resource)}

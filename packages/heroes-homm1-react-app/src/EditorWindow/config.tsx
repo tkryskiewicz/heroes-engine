@@ -38,6 +38,7 @@ export const renderObject = (
 
   return (
     <MapObject
+      size="small"
       type={objectData.id}
     />
   );
@@ -46,8 +47,13 @@ export const renderObject = (
 export const getObjects = (type: EditorObjectType, data: GameData): string[] => {
   switch (type) {
     case EditorObjectType.Monsters:
+      const creatureObjects: string[] = [
+        MapObjectId.RandomCreature,
+        MapObjectId.RandomHero,
+      ];
+
       return Object.values(data.mapObjects)
-        .filter((o) => isCreatureMapObjectData(o) || o.id === MapObjectId.RandomCreature)
+        .filter((o) => isCreatureMapObjectData(o) || creatureObjects.indexOf(o.id) !== -1)
         .map((o) => o.id);
     case EditorObjectType.Artifacts:
       return Object.values(data.mapObjects)

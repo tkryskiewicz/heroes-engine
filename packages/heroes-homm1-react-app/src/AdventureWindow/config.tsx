@@ -92,6 +92,7 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData, da
   if (isMineMapObject(object, data) && isMineMapObjectData(objectData, data)) {
     return (
       <MineMapObject
+        size="large"
         resource={objectData.resourceGenerator.resource}
         alignment={object.owner}
       />
@@ -109,6 +110,7 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData, da
 
   return (
     <MapObj
+      size="large"
       type={object.dataId}
     />
   );

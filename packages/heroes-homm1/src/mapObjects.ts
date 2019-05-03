@@ -30,6 +30,10 @@ const heroObjects: HeroMapObjectData[] = [
   },
 ];
 
+const randomHero: MapObjectData = {
+  id: MapObjectId.RandomHero,
+};
+
 const townObjects: TownMapObjectData[] = [
   {
     army: {
@@ -255,6 +259,7 @@ const puzzleObjects: ObeliskMapObjectData[] = [
 
 export const mapObjects: MapObjectData[] = [
   ...heroObjects,
+  randomHero,
   ...townObjects,
   ...creatureObjects,
   randomCreature,

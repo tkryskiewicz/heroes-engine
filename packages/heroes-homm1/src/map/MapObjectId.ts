@@ -1,5 +1,8 @@
 export enum MapObjectId {
   Hero = "hero",
+
+  RandomHero = "random-hero",
+
   Town = "town",
 
   // treasures
