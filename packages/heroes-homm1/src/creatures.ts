@@ -39,8 +39,8 @@ export enum CreatureId {
   // Neutral
   Rogue = "rogue",
   Nomad = "nomad",
-  Genie = "genie",
   Ghost = "ghost",
+  Genie = "genie",
 }
 
 const farmCreatures: CreatureData[] = [
