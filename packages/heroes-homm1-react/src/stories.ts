@@ -8,6 +8,7 @@ import {
   CastleOptionStatus,
   CreatureId,
   creatures,
+  EditorObjectType,
   EditorOption,
   FarmStructureId,
   ForestStructureId,
@@ -304,3 +305,10 @@ const editorOptionOptions = Object.keys(EditorOption).reduce<SelectOptions>((p, 
 }, {});
 
 export const editorOption = (name: string) => select(name, editorOptionOptions, EditorOption.Terrains);
+
+const editorObjectTypeOptions = Object.keys(EditorObjectType).reduce<SelectOptions>((p, c: any) => ({
+  ...p,
+  [c]: EditorObjectType[c],
+}), {});
+
+export const editorObjectType = (name: string) => select(name, editorObjectTypeOptions, EditorObjectType.WaterObjects);

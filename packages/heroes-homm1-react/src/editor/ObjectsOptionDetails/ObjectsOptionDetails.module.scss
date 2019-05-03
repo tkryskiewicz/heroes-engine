@@ -1,0 +1,33 @@
+.root {
+  position: relative;
+  width: 144px;
+  height: 139px;
+  padding-top: 30px;
+  text-align: center;
+  background: url("./assets/background.jpg");
+}
+
+.object {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.selector {
+  position: relative;
+  display: inline-block;
+  width: 80%;
+  line-height: 16px;
+  background: #000;
+}
+
+.previous {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.next {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

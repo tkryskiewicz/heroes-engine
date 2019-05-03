@@ -4,6 +4,7 @@ import { CampaignId } from "heroes-homm1";
 
 export { getArtifactNameMessage, getArtifactShortNameMessage, getArtifactDescriptionMessage } from "./artifacts";
 export { getCreatureNameMessage, getCreaturePluralNameMessage } from "./creatures";
+export { getEditorObjectTypeNameMessage } from "./editor";
 export { getHeroClassNameMessage, getHeroClassTitleMessage } from "./heroClasses";
 export { getHeroNameMessage } from "./heroes";
 export {

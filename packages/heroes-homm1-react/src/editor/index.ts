@@ -8,4 +8,5 @@ export * from "./EditorScrollButton";
 export * from "./EditorVerticalScrollbar";
 export * from "./EditorWindow";
 export * from "./EraseOptionDetails";
+export * from "./ObjectsOptionDetails";
 export * from "./TerrainsOptionDetails";

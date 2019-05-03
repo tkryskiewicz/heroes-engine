@@ -57,4 +57,4 @@ export * from "./TurnStatus";
 export * from "./ViewWindow";
 export * from "./WorldWindow";
 
-export { editorOption, terrainType } from "./stories";
+export { editorObjectType, editorOption, terrainType } from "./stories";
