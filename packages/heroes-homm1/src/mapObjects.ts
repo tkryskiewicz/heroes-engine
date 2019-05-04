@@ -44,6 +44,14 @@ const townObjects: TownMapObjectData[] = [
   },
 ];
 
+const randomTown: MapObjectData = {
+  id: MapObjectId.RandomTown,
+};
+
+const randomCastle: MapObjectData = {
+  id: MapObjectId.RandomCastle,
+};
+
 type CreatureObjectData = CreatureMapObjectData;
 
 const creatureObjects: CreatureObjectData[] = creatures
@@ -261,6 +269,8 @@ export const mapObjects: MapObjectData[] = [
   ...heroObjects,
   randomHero,
   ...townObjects,
+  randomTown,
+  randomCastle,
   ...creatureObjects,
   randomCreature,
   ...resourceObjects,

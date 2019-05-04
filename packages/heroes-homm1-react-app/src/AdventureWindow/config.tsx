@@ -61,6 +61,7 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData, da
   if (isTownMapObject(object)) {
     return (
       <TownMapObject
+        size="large"
         town={object.id}
         isCastleBuilt={isStructureBuilt(object, StructureId.Castle)}
         alignment={object.owner}

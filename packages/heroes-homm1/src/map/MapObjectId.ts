@@ -5,6 +5,9 @@ export enum MapObjectId {
 
   Town = "town",
 
+  RandomTown = "random-town",
+  RandomCastle = "random-castle",
+
   // treasures
   Crystal = "crystal",
   Gems = "gems",

@@ -2,14 +2,15 @@ import * as React from "react";
 
 import * as styles from "./TownMapObject.module.scss";
 
-interface Props {
+export interface TownMapObjectProps {
+  readonly size: "large" | "small";
   readonly town: string;
   readonly isCastleBuilt: boolean;
   readonly alignment?: string;
   readonly onClick?: () => void;
 }
 
-export class TownMapObject extends React.Component<Props> {
+export class TownMapObject extends React.Component<TownMapObjectProps> {
   public render() {
     const { town, isCastleBuilt, alignment } = this.props;
 
@@ -18,8 +19,8 @@ export class TownMapObject extends React.Component<Props> {
         className={styles.root}
         onClick={this.props.onClick}
       >
-        <img src={`/assets/towns/${town}/mapObject/${isCastleBuilt ? "castle" : "town"}.png`} />
-        {alignment && this.renderFlags(alignment)}
+        <img src={`/assets/towns/${town}/mapObject/${isCastleBuilt ? "castle" : "town"}/${this.props.size}.png`} />
+        {this.props.size === "large" && alignment && this.renderFlags(alignment)}
       </div>
     );
   }
@@ -39,7 +40,3 @@ export class TownMapObject extends React.Component<Props> {
     );
   }
 }
-
-export {
-  Props as TownMapObjectProps,
-};

@@ -2,7 +2,13 @@ import * as React from "react";
 
 import { GameData, isArtifactMapObjectData, isCreatureMapObjectData, MapObjectData } from "heroes-core";
 import { EditorObjectType, isResourceMapObject, MapObjectId } from "heroes-homm1";
-import { ArtifactMapObject, CreatureMapObject, MapObject, ResourceMapObject } from "heroes-homm1-react";
+import {
+  ArtifactMapObject,
+  CreatureMapObject,
+  MapObject,
+  RandomTownMapObject,
+  ResourceMapObject,
+} from "heroes-homm1-react";
 
 export const renderObject = (
   objectData: MapObjectData,
@@ -36,6 +42,15 @@ export const renderObject = (
     );
   }
 
+  if (objectData.id === MapObjectId.RandomTown || objectData.id === MapObjectId.RandomCastle) {
+    return (
+      <RandomTownMapObject
+        size="small"
+        isCastleBuilt={objectData.id === MapObjectId.RandomCastle}
+      />
+    );
+  }
+
   return (
     <MapObject
       size="small"
@@ -46,6 +61,16 @@ export const renderObject = (
 
 export const getObjects = (type: EditorObjectType, data: GameData): string[] => {
   switch (type) {
+    case EditorObjectType.Towns:
+      const townObjects: string[] = [
+        MapObjectId.RandomTown,
+        MapObjectId.RandomCastle,
+      ];
+
+      // TODO: add town objects
+      return Object.values(data.mapObjects)
+        .filter((o) => townObjects.indexOf(o.id) !== -1)
+        .map((o) => o.id);
     case EditorObjectType.Monsters:
       const creatureObjects: string[] = [
         MapObjectId.RandomCreature,
