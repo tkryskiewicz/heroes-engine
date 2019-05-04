@@ -6,9 +6,12 @@ import { isObeliskMapObject, isObeliskMapObjectData, ObeliskMapObject, ObeliskMa
 describe("isObeliskMapObjectData", () => {
   it("should return true when obelisk object data", () => {
     const objectData: ObeliskMapObjectData = {
+      grid: [],
+      height: 1,
       id: MapObjectId.Obelisk,
       interactionLimit: InteractionLimitType.OncePerAlignment,
       uncoversPuzzlePiece: true,
+      width: 1,
     };
 
     const result = isObeliskMapObjectData(objectData);

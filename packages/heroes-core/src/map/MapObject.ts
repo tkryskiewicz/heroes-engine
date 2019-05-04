@@ -1,5 +1,8 @@
 export interface MapObjectData {
   readonly id: string;
+  readonly width: number;
+  readonly height: number;
+  readonly grid: Array<boolean | undefined>;
 }
 
 export interface MapObject {

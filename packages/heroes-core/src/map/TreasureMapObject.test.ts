@@ -12,8 +12,11 @@ import {
 describe("isTreasureMapObjectData", () => {
   it("should return true when treasure map object data", () => {
     const objectData: TreasureMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       treasure: {},
+      width: 1,
     };
 
     const result = isTreasureMapObjectData(objectData);
@@ -23,7 +26,10 @@ describe("isTreasureMapObjectData", () => {
 
   it("should return false when not treasure map object data", () => {
     const objectData: MapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const result = isTreasureMapObjectData(objectData);
@@ -35,8 +41,11 @@ describe("isTreasureMapObjectData", () => {
 describe("createTreasureMapObject", () => {
   it("should create treasure map object", () => {
     const objectData: TreasureMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       treasure: {},
+      width: 1,
     };
 
     const result = createTreasureMapObject("id", objectData);
@@ -52,6 +61,8 @@ describe("createTreasureMapObject", () => {
 
   it("should randomize resource amount", () => {
     const objectData: TreasureMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       treasure: {
         resource: {
@@ -59,6 +70,7 @@ describe("createTreasureMapObject", () => {
           min: 0,
         },
       },
+      width: 1,
     };
 
     const result = createTreasureMapObject("id", objectData);
@@ -71,8 +83,11 @@ describe("createTreasureMapObject", () => {
 describe("isTreasureMapObject", () => {
   it("should return true when treasure map object", () => {
     const objectData: TreasureMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       treasure: {},
+      width: 1,
     };
 
     const object = createTreasureMapObject("id", objectData);

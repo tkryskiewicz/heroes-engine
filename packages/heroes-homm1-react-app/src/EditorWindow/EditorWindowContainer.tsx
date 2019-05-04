@@ -16,7 +16,7 @@ import {
   DetailsOptionDetails,
   EditorButtons,
   EditorHorizontalScrollbar,
-  EditorObject,
+  EditorObjectGrid,
   EditorObjectsWindow,
   EditorOptions,
   EditorVerticalScrollbar,
@@ -366,10 +366,10 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     const render = () => object;
 
     return (
-      <EditorObject
-        width={1}
-        height={1}
-        obstacleGrid={[true]}
+      <EditorObjectGrid
+        width={objectData.width}
+        height={objectData.height}
+        grid={objectData.grid}
         renderObject={render}
       />
     );

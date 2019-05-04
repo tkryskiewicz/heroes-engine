@@ -16,7 +16,10 @@ describe("isArmedMapObjectData", () => {
       army: {
         preventMovingLastTroop: false,
       },
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const result = isArmedMapObjectData(objectData);
@@ -26,7 +29,10 @@ describe("isArmedMapObjectData", () => {
 
   it("should return false when not armed object data", () => {
     const objectData: MapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const result = isArmedMapObjectData(objectData);

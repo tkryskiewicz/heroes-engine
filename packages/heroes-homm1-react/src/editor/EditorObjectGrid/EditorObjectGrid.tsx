@@ -1,22 +1,22 @@
 import Classnames from "classnames";
 import * as React from "react";
 
-import * as styles from "./EditorObject.module.scss";
+import * as styles from "./EditorObjectGrid.module.scss";
 
-export interface EditorObjectProps {
+export interface EditorObjectGridProps {
   readonly width: number;
   readonly height: number;
-  readonly obstacleGrid: Array<boolean | undefined>;
+  readonly grid: Array<boolean | undefined>;
   readonly renderObject: () => React.ReactNode;
 }
 
-export class EditorObject extends React.Component<EditorObjectProps> {
-  public static readonly defaultProps: Pick<EditorObjectProps, "renderObject"> = {
+export class EditorObjectGrid extends React.Component<EditorObjectGridProps> {
+  public static readonly defaultProps: Pick<EditorObjectGridProps, "renderObject"> = {
     renderObject: () => undefined,
   };
 
   public render() {
-    const { width, height, obstacleGrid } = this.props;
+    const { width, height, grid } = this.props;
 
     const gridStyle: React.CSSProperties = {
       height: height * 16,
@@ -25,7 +25,7 @@ export class EditorObject extends React.Component<EditorObjectProps> {
 
     return (
       <div className={styles.root} style={gridStyle}>
-        {this.renderGrid(width, height, obstacleGrid)}
+        {this.renderGrid(width, height, grid)}
         <div className={styles.object}>
           {this.props.renderObject()}
         </div>
@@ -33,10 +33,10 @@ export class EditorObject extends React.Component<EditorObjectProps> {
     );
   }
 
-  private renderGrid(width: number, height: number, obstacleGrid: Array<boolean | undefined>) {
+  private renderGrid(width: number, height: number, grid: Array<boolean | undefined>) {
     return (
       <div className={styles.grid}>
-        {[...new Array(width * height).keys()].map((i) => this.renderCell(i, obstacleGrid[i]))}
+        {[...new Array(width * height).keys()].map((i) => this.renderCell(i, grid[i]))}
       </div>
     );
   }

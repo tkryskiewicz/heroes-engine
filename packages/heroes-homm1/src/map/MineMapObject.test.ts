@@ -5,12 +5,15 @@ import { isMineMapObject, isMineMapObjectData, MineMapObject, MineMapObjectData 
 describe("isMineMapObjectData", () => {
   it("should return true when a mine for a resource", () => {
     const objectData: MineMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
       resourceGenerator: {
         amount: 1,
         resource: "resource",
       },
+      width: 1,
     };
 
     const data: GameData = {

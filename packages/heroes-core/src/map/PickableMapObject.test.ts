@@ -4,8 +4,11 @@ import { isPickableMapObjectData, PickableMapObjectData } from "./PickableMapObj
 describe("isPickableMapObjectData", () => {
   it("should return true when pickable map object data", () => {
     const objectData: PickableMapObjectData = {
+      grid: [],
+      height: 1,
       id: "id",
       pickable: true,
+      width: 1,
     };
 
     const result = isPickableMapObjectData(objectData);
@@ -15,7 +18,10 @@ describe("isPickableMapObjectData", () => {
 
   it("should return false when not pickable map object data", () => {
     const objectData: MapObjectData = {
+      grid: [],
+      height: 1,
       id: "id",
+      width: 1,
     };
 
     const result = isPickableMapObjectData(objectData);

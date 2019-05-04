@@ -16,7 +16,10 @@ describe("isDwellingMapObjectData", () => {
         creature: "creature",
         initialCount: 1,
       },
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const result = isDwellingMapObjectData(objectData);
@@ -26,7 +29,10 @@ describe("isDwellingMapObjectData", () => {
 
   it("should return false when object data is not dwelling object data", () => {
     const objectData: MapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const result = isDwellingMapObjectData(objectData);
@@ -42,7 +48,10 @@ describe("createDwellingMapObject", () => {
         creature: "creature",
         initialCount: 1,
       },
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const result = createDwellingMapObject("id", objectData);
@@ -64,7 +73,10 @@ describe("isDwellingMapObject", () => {
         creature: "creature",
         initialCount: 1,
       },
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const object = createDwellingMapObject("id", objectData);
@@ -93,7 +105,10 @@ describe("recruitDwellingMapObjectCreatures", () => {
         creature: "creature",
         initialCount: 1,
       },
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const object = createDwellingMapObject("id", objectData);
@@ -114,7 +129,10 @@ describe("recruitDwellingMapObjectCreatures", () => {
         creature: "creature",
         initialCount: 1,
       },
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const object = createDwellingMapObject("id", objectData);

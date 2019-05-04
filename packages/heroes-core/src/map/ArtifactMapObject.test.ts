@@ -10,7 +10,10 @@ describe("isArtifactMapObjectData", () => {
   it("should return true when artifact object data", () => {
     const objectData: ArtifactMapObjectData = {
       artifact: "artifact",
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const result = isArtifactMapObjectData(objectData);
@@ -20,7 +23,10 @@ describe("isArtifactMapObjectData", () => {
 
   it("should return false when not artifact object data", () => {
     const objectData: MapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const result = isArtifactMapObjectData(objectData);
@@ -33,7 +39,10 @@ describe("constructArtifactMapObjectArtifact", () => {
   it("should construct artifact", () => {
     const objectData: ArtifactMapObjectData = {
       artifact: "artifact",
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const result = constructArtifactMapObjectArtifact(objectData);

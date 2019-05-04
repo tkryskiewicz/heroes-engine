@@ -11,12 +11,15 @@ import {
 describe("isResourceGeneratorMapObjectData", () => {
   it("should return true when resource generator map object data", () => {
     const objectData: ResourceGeneratorMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
       resourceGenerator: {
         amount: 1,
         resource: "resource",
       },
+      width: 1,
     };
 
     const result = isResourceGeneratorMapObjectData(objectData);
@@ -26,7 +29,10 @@ describe("isResourceGeneratorMapObjectData", () => {
 
   it("should return false when not resource generator map object data", () => {
     const objectData: MapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const result = isResourceGeneratorMapObjectData(objectData);
@@ -38,12 +44,15 @@ describe("isResourceGeneratorMapObjectData", () => {
 describe("createResourceGeneratorMapObject", () => {
   it("should create object", () => {
     const objectData: ResourceGeneratorMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
       resourceGenerator: {
         amount: 1,
         resource: "resource",
       },
+      width: 1,
     };
 
     const result = createResourceGeneratorMapObject("id", objectData);
@@ -58,12 +67,15 @@ describe("createResourceGeneratorMapObject", () => {
 
   it("should create object with initial owner", () => {
     const objectData: ResourceGeneratorMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
       resourceGenerator: {
         amount: 1,
         resource: "resource",
       },
+      width: 1,
     };
 
     const result = createResourceGeneratorMapObject("id", objectData, "owner");
@@ -81,12 +93,15 @@ describe("createResourceGeneratorMapObject", () => {
 describe("generateResourceGeneratorMapObjectResources", () => {
   it("should generate resources", () => {
     const objectData: ResourceGeneratorMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
       resourceGenerator: {
         amount: 1,
         resource: "resource",
       },
+      width: 1,
     };
 
     const result = generateResourceGeneratorMapObjectResources(objectData);

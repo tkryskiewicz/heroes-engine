@@ -3,29 +3,29 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Placeholder } from "../../Placeholder";
-import { EditorObject } from "./EditorObject";
+import { EditorObjectGrid } from "./EditorObjectGrid";
 
 const renderObject = () => <Placeholder name="Object" />;
 
-storiesOf("editor/EditorObject", module)
+storiesOf("editor/EditorObjectGrid", module)
   .add("default", () => {
     const width = number("Width", 2, { range: true, min: 1, max: 10, step: 1 });
     const height = number("Height", 2, { range: true, min: 1, max: 10, step: 1 });
 
     return (
-      <EditorObject
+      <EditorObjectGrid
         width={width}
         height={height}
-        obstacleGrid={new Array(width * height).fill(true)}
+        grid={new Array(width * height).fill(true)}
         renderObject={renderObject}
       />
     );
   })
   .add("irregular obstacle", () => (
-    <EditorObject
+    <EditorObjectGrid
       width={3}
       height={2}
-      obstacleGrid={[undefined, true, true, false, false, undefined]}
+      grid={[undefined, true, true, false, false, undefined]}
       renderObject={renderObject}
     />
   ));

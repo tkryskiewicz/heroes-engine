@@ -8,8 +8,11 @@ describe("createHeroMapObject", () => {
       army: {
         preventMovingLastTroop: true,
       },
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
+      width: 1,
     };
 
     const hero: Hero = {
@@ -43,8 +46,11 @@ describe("createHeroMapObject", () => {
       army: {
         preventMovingLastTroop: true,
       },
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
+      width: 1,
     };
 
     const hero: Hero = {
@@ -80,8 +86,11 @@ describe("isHeroMapObject", () => {
       army: {
         preventMovingLastTroop: true,
       },
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
+      width: 1,
     };
 
     const hero: Hero = {

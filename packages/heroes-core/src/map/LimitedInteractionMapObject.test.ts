@@ -15,8 +15,11 @@ import { OwnableMapObject } from "./OwnableMapObject";
 describe("isLimitedInteractionMapObjectData", () => {
   it("should return true when limited interaction object data", () => {
     const objectData: LimitedInteractionMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       interactionLimit: InteractionLimitType.OncePerAlignment,
+      width: 1,
     };
 
     const result = isLimitedInteractionMapObjectData(objectData);
@@ -26,7 +29,10 @@ describe("isLimitedInteractionMapObjectData", () => {
 
   it("should return false when not limited interaction object data", () => {
     const objectData: MapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const result = isLimitedInteractionMapObjectData(objectData);
@@ -63,8 +69,11 @@ describe("isLimitedInteractionMapObject", () => {
 describe("createLimitedInteractionMapObject", () => {
   it("should create object", () => {
     const objectData: LimitedInteractionMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       interactionLimit: InteractionLimitType.OncePerAlignment,
+      width: 1,
     };
 
     const result = createLimitedInteractionMapObject("id", objectData);
@@ -82,8 +91,11 @@ describe("createLimitedInteractionMapObject", () => {
 describe("getVisitor", () => {
   it("should return alignment when once per alignment", () => {
     const objectData: LimitedInteractionMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       interactionLimit: InteractionLimitType.OncePerAlignment,
+      width: 1,
     };
 
     const object: OwnableMapObject = {
@@ -99,8 +111,11 @@ describe("getVisitor", () => {
 
   it("should return object id when once per hero", () => {
     const objectData: LimitedInteractionMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       interactionLimit: InteractionLimitType.OncePerObject,
+      width: 1,
     };
 
     const object: OwnableMapObject = {
@@ -116,8 +131,11 @@ describe("getVisitor", () => {
 
   it("should throw when object is not owned", () => {
     const objectData: LimitedInteractionMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       interactionLimit: InteractionLimitType.OncePerAlignment,
+      width: 1,
     };
 
     const object: OwnableMapObject = {

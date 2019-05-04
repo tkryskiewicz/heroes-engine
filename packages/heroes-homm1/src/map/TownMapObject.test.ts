@@ -14,8 +14,11 @@ describe("createTownMapObject", () => {
       army: {
         preventMovingLastTroop: true,
       },
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
+      width: 1,
     };
 
     const town: Town = {
@@ -44,8 +47,11 @@ describe("createTownMapObject", () => {
       army: {
         preventMovingLastTroop: true,
       },
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
+      width: 1,
     };
 
     const town: Town = {
@@ -76,8 +82,11 @@ describe("isTownMapObject", () => {
       army: {
         preventMovingLastTroop: true,
       },
+      grid: [],
+      height: 1,
       id: "town",
       ownable: true,
+      width: 1,
     };
 
     const town: Town = {

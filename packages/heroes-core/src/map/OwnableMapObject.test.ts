@@ -12,8 +12,11 @@ import {
 describe("isOwnableMapObjectData", () => {
   it("should return true when ownable map object data", () => {
     const objectData: OwnableMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
+      width: 1,
     };
 
     const result = isOwnableMapObjectData(objectData);
@@ -23,7 +26,10 @@ describe("isOwnableMapObjectData", () => {
 
   it("should return false when not ownable map object data", () => {
     const objectData: MapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
+      width: 1,
     };
 
     const result = isOwnableMapObjectData(objectData);
@@ -35,8 +41,11 @@ describe("isOwnableMapObjectData", () => {
 describe("createOwnableMapObject", () => {
   it("should create ownable map object", () => {
     const objectData: OwnableMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
+      width: 1,
     };
 
     const result = createOwnableMapObject("id", objectData);
@@ -52,8 +61,11 @@ describe("createOwnableMapObject", () => {
 
   it("should create with initial owner", () => {
     const objectData: OwnableMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
+      width: 1,
     };
 
     const result = createOwnableMapObject("id", objectData, "owner");
@@ -71,8 +83,11 @@ describe("createOwnableMapObject", () => {
 describe("isOwnableMapObject", () => {
   it("should return true when ownable map object", () => {
     const objectData: OwnableMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
+      width: 1,
     };
 
     const object = createOwnableMapObject("id", objectData);
@@ -97,8 +112,11 @@ describe("isOwnableMapObject", () => {
 describe("isObjectOwnedBy", () => {
   it("should return true when owner", () => {
     const objectData: OwnableMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
+      width: 1,
     };
 
     const object = createOwnableMapObject("id", objectData, "owner");
@@ -110,8 +128,11 @@ describe("isObjectOwnedBy", () => {
 
   it("should return false when not owner", () => {
     const objectData: OwnableMapObjectData = {
+      grid: [],
+      height: 1,
       id: "dataId",
       ownable: true,
+      width: 1,
     };
 
     const object = createOwnableMapObject("id", objectData, "otherOwner");

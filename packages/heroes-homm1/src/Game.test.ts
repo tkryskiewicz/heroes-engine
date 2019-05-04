@@ -33,8 +33,11 @@ describe("buyMageGuildSpellBook", () => {
       army: {
         preventMovingLastTroop: true,
       },
+      grid: [],
+      height: 1,
       id: "hero",
       ownable: true,
+      width: 1,
     };
 
     const heroObject = createHeroMapObject("hero", heroObjectData, hero, "alignment");
@@ -66,8 +69,11 @@ describe("buyMageGuildSpellBook", () => {
       army: {
         preventMovingLastTroop: false,
       },
+      grid: [],
+      height: 1,
       id: "town",
       ownable: true,
+      width: 1,
     };
 
     const townObject = createTownMapObject("town", townObjectData, town, "alignment");
