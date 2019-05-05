@@ -45,14 +45,12 @@ export enum MapObjectId {
   RandomArtifact = "random-artifact",
 
   // other
-  Bouy = "bouy",
   FaerieRing = "faerie-ring",
   Fountain = "fountain",
   Gazebo = "gazebo",
   Graveyard = "graveyard",
   Oasis = "oasis",
   Rosebush = "rosebush",
-  Shipwreck = "shipwreck",
   Shrine = "shrine",
   Shrine2 = "shrine2",
   Signpost = "signpost",
@@ -60,8 +58,29 @@ export enum MapObjectId {
   TravelGate = "travel-gate",
   WagonCamp = "wagon-camp",
   Waterwheel = "waterwheel",
-  Whirlpool = "whirlpool",
   Windmill = "windmill",
+
+  // water
+  Bouy = "bouy",
+  Shipwreck = "shipwreck",
+  Whirlpool = "whirlpool",
+  Water1 = "water1",
+  Water2 = "water2",
+  Water3 = "water3",
+
+  // grass
+  GrassLake = "grass-lake",
+  GrassLakeBig = "grass-lake-big",
+  Grass1 = "grass1",
+  Grass2 = "grass2",
+  Grass3 = "grass3",
+  Grass4 = "grass4",
+  Grass5 = "grass5",
+  Grass6 = "grass6",
+  Grass7 = "grass7",
+  Grass8 = "grass8",
+  Grass9 = "grass9",
+  Grass10 = "grass10",
 
   // mountains
   Mountain1 = "mountain1",

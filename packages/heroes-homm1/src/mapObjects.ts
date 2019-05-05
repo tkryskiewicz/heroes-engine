@@ -423,6 +423,160 @@ const puzzleObjects: ObeliskMapObjectData[] = [
   },
 ];
 
+const waterObjects: MapObjectData[] = [
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Bouy,
+    width: 1,
+  },
+  {
+    grid: [
+      true, true,
+      false, undefined,
+    ],
+    height: 2,
+    id: MapObjectId.Shipwreck,
+    width: 2,
+  },
+  {
+    grid: [
+      true, true, true,
+      true, true, true,
+    ],
+    height: 2,
+    id: MapObjectId.Whirlpool,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true,
+    ],
+    height: 1,
+    id: MapObjectId.Water1,
+    width: 2,
+  },
+  {
+    grid: [
+      true, true,
+    ],
+    height: 1,
+    id: MapObjectId.Water2,
+    width: 2,
+  },
+  {
+    grid: [
+      true, true, true,
+      false, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Water3,
+    width: 3,
+  },
+];
+
+const grassObjects: MapObjectData[] = [
+  {
+    grid: [
+      true, true, true, true,
+    ],
+    height: 1,
+    id: MapObjectId.GrassLake,
+    width: 4,
+  },
+  {
+    grid: [
+      true, true, true, true, true,
+      true, true, true, true, true,
+    ],
+    height: 2,
+    id: MapObjectId.GrassLakeBig,
+    width: 5,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Grass1,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Grass2,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Grass3,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Grass4,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Grass5,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Grass6,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Grass7,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Grass8,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Grass9,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Grass10,
+    width: 1,
+  },
+];
+
 const mountainObjects: MapObjectData[] = [
   {
     grid: [
@@ -929,6 +1083,8 @@ export const mapObjects: MapObjectData[] = [
   ...mineObjects,
   ...dwellingObjects,
   ...puzzleObjects,
+  ...waterObjects,
+  ...grassObjects,
   ...mountainObjects,
   ...treesObjects,
 ];

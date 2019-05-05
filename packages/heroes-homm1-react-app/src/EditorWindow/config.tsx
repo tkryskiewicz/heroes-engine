@@ -89,6 +89,19 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
   ];
 
   switch (type) {
+    case EditorObjectType.WaterObjects:
+      const waterObjects: string[] = [
+        MapObjectId.Bouy,
+        MapObjectId.Water3,
+        MapObjectId.Water1,
+        MapObjectId.Water2,
+        MapObjectId.Shipwreck,
+        MapObjectId.Whirlpool,
+      ];
+
+      return Object.values(data.mapObjects)
+        .filter((o) => waterObjects.indexOf(o.id) !== -1)
+        .map((o) => o.id);
     case EditorObjectType.GrassObjects:
       const grassObjects: string[] = [
         ...mountainObjects,
@@ -97,6 +110,18 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         MapObjectId.Mountain11,
         MapObjectId.Mountain12,
         ...treesObjects,
+        MapObjectId.GrassLake,
+        MapObjectId.GrassLakeBig,
+        MapObjectId.Grass1,
+        MapObjectId.Grass2,
+        MapObjectId.Grass3,
+        MapObjectId.Grass4,
+        MapObjectId.Grass5,
+        MapObjectId.Grass6,
+        MapObjectId.Grass7,
+        MapObjectId.Grass8,
+        MapObjectId.Grass9,
+        MapObjectId.Grass10,
       ];
 
       return Object.values(data.mapObjects)
