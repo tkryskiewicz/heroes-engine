@@ -55,6 +55,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, Dispatc
   },
   onSelectedObjectTypeChange(value) {
     dispatch(editorWindowActions.changeSelectedObjectType(value));
+
+    dispatch(editorWindowActions.changeSelectedObject());
   },
   onSelectedObjectChange(value) {
     dispatch(editorWindowActions.changeSelectedObject(value));
