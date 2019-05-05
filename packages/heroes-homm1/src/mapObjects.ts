@@ -654,6 +654,265 @@ const mountainObjects: MapObjectData[] = [
   },
 ];
 
+const treesObjects: MapObjectData[] = [
+  {
+    grid: [
+      undefined, true, true,
+      true, true, false,
+      false, false, undefined,
+    ],
+    height: 3,
+    id: MapObjectId.Trees1,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      false, false, undefined,
+    ],
+    height: 2,
+    id: MapObjectId.Trees2,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      false, true, true,
+      undefined, false, false,
+    ],
+    height: 3,
+    id: MapObjectId.Trees3,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      undefined, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Trees4,
+    width: 3,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Trees5,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Trees6,
+    width: 1,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      true, true, false,
+      false, false, undefined,
+    ],
+    height: 3,
+    id: MapObjectId.Trees7,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      false, false, undefined,
+    ],
+    height: 2,
+    id: MapObjectId.Trees8,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      false, true, true,
+      undefined, false, false,
+    ],
+    height: 3,
+    id: MapObjectId.Trees9,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      undefined, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Trees10,
+    width: 3,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Trees11,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Trees12,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Trees13,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Trees14,
+    width: 1,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      true, true, false,
+      false, false, undefined,
+    ],
+    height: 3,
+    id: MapObjectId.Trees15,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      false, false, undefined,
+    ],
+    height: 2,
+    id: MapObjectId.Trees16,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      false, true, true,
+      undefined, false, false,
+    ],
+    height: 3,
+    id: MapObjectId.Trees17,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      undefined, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Trees18,
+    width: 3,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Trees19,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Trees20,
+    width: 1,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      true, true, false,
+      false, false, undefined,
+    ],
+    height: 3,
+    id: MapObjectId.Trees21,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      false, false, undefined,
+    ],
+    height: 2,
+    id: MapObjectId.Trees22,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      false, true, true,
+      undefined, false, false,
+    ],
+    height: 3,
+    id: MapObjectId.Trees23,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      undefined, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Trees24,
+    width: 3,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Trees25,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Trees26,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Trees27,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Trees28,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Trees29,
+    width: 1,
+  },
+];
+
 export const mapObjects: MapObjectData[] = [
   ...heroObjects,
   randomHero,
@@ -671,4 +930,5 @@ export const mapObjects: MapObjectData[] = [
   ...dwellingObjects,
   ...puzzleObjects,
   ...mountainObjects,
+  ...treesObjects,
 ];
