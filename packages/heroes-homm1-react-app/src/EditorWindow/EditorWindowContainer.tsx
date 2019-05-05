@@ -363,15 +363,14 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
 
     const object = renderObject(objectData, data);
 
-    const render = () => object;
-
     return (
       <EditorObjectGrid
         width={objectData.width}
         height={objectData.height}
         grid={objectData.grid}
-        renderObject={render}
-      />
+      >
+        {object}
+      </EditorObjectGrid>
     );
   }
 

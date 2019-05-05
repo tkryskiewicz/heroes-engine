@@ -7,14 +7,9 @@ export interface EditorObjectGridProps {
   readonly width: number;
   readonly height: number;
   readonly grid: Array<boolean | undefined>;
-  readonly renderObject: () => React.ReactNode;
 }
 
 export class EditorObjectGrid extends React.Component<EditorObjectGridProps> {
-  public static readonly defaultProps: Pick<EditorObjectGridProps, "renderObject"> = {
-    renderObject: () => undefined,
-  };
-
   public render() {
     const { width, height, grid } = this.props;
 
@@ -27,7 +22,7 @@ export class EditorObjectGrid extends React.Component<EditorObjectGridProps> {
       <div className={styles.root} style={gridStyle}>
         {this.renderGrid(width, height, grid)}
         <div className={styles.object}>
-          {this.props.renderObject()}
+          {this.props.children}
         </div>
       </div>
     );
