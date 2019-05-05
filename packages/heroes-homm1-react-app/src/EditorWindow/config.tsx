@@ -60,7 +60,82 @@ export const renderObject = (
 };
 
 export const getObjects = (type: EditorObjectType, data: GameData): string[] => {
+  const mountainObjects: string[] = [
+    MapObjectId.Mountain1,
+    MapObjectId.Mountain2,
+    MapObjectId.Mountain3,
+    MapObjectId.Mountain4,
+  ];
+
   switch (type) {
+    case EditorObjectType.GrassObjects:
+      const grassMountainObjects = [
+        ...mountainObjects,
+        MapObjectId.Mountain9,
+        MapObjectId.Mountain10,
+        MapObjectId.Mountain11,
+        MapObjectId.Mountain12,
+      ];
+
+      return Object.values(data.mapObjects)
+        .filter((o) => grassMountainObjects.indexOf(o.id) !== -1)
+        .map((o) => o.id);
+    case EditorObjectType.SnowObjects:
+      const snowMountainObjects = [
+        ...mountainObjects,
+        MapObjectId.Mountain21,
+        MapObjectId.Mountain22,
+        MapObjectId.Mountain23,
+        MapObjectId.Mountain24,
+      ];
+
+      return Object.values(data.mapObjects)
+        .filter((o) => snowMountainObjects.indexOf(o.id) !== -1)
+        .map((o) => o.id);
+    case EditorObjectType.SwampObjects:
+      const swampMountainObjects = [
+        ...mountainObjects,
+        MapObjectId.Mountain17,
+        MapObjectId.Mountain18,
+        MapObjectId.Mountain19,
+        MapObjectId.Mountain20,
+      ];
+
+      return Object.values(data.mapObjects)
+        .filter((o) => swampMountainObjects.indexOf(o.id) !== -1)
+        .map((o) => o.id);
+    case EditorObjectType.LavaObjects:
+      const lavaMountainObjects = [
+        ...mountainObjects,
+      ];
+
+      return Object.values(data.mapObjects)
+        .filter((o) => lavaMountainObjects.indexOf(o.id) !== -1)
+        .map((o) => o.id);
+    case EditorObjectType.DesertObjects:
+      const desertMountainObjects = [
+        ...mountainObjects,
+        MapObjectId.Mountain13,
+        MapObjectId.Mountain14,
+        MapObjectId.Mountain15,
+        MapObjectId.Mountain16,
+      ];
+
+      return Object.values(data.mapObjects)
+        .filter((o) => desertMountainObjects.indexOf(o.id) !== -1)
+        .map((o) => o.id);
+    case EditorObjectType.DirtObjects:
+      const dirtMountainObjects = [
+        ...mountainObjects,
+        MapObjectId.Mountain5,
+        MapObjectId.Mountain6,
+        MapObjectId.Mountain7,
+        MapObjectId.Mountain8,
+      ];
+
+      return Object.values(data.mapObjects)
+        .filter((o) => dirtMountainObjects.indexOf(o.id) !== -1)
+        .map((o) => o.id);
     case EditorObjectType.Towns:
       const townObjects: string[] = [
         MapObjectId.RandomTown,

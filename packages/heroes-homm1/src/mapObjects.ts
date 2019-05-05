@@ -423,6 +423,237 @@ const puzzleObjects: ObeliskMapObjectData[] = [
   },
 ];
 
+const mountainObjects: MapObjectData[] = [
+  {
+    grid: [
+      true, true, undefined,
+      false, true, true,
+      undefined, false, false,
+    ],
+    height: 3,
+    id: MapObjectId.Mountain1,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      undefined, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Mountain2,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      true, true, false,
+      false, false, undefined,
+    ],
+    height: 3,
+    id: MapObjectId.Mountain3,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      false, false, undefined,
+    ],
+    height: 2,
+    id: MapObjectId.Mountain4,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      false, true, true,
+      undefined, false, false,
+    ],
+    height: 3,
+    id: MapObjectId.Mountain5,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      undefined, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Mountain6,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      true, true, false,
+      false, false, undefined,
+    ],
+    height: 3,
+    id: MapObjectId.Mountain7,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      false, false, undefined,
+    ],
+    height: 2,
+    id: MapObjectId.Mountain8,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      false, true, true,
+      undefined, false, false,
+    ],
+    height: 3,
+    id: MapObjectId.Mountain9,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      undefined, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Mountain10,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      true, true, false,
+      false, false, undefined,
+    ],
+    height: 3,
+    id: MapObjectId.Mountain11,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      false, false, undefined,
+    ],
+    height: 2,
+    id: MapObjectId.Mountain12,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      false, true, true,
+      undefined, false, false,
+    ],
+    height: 3,
+    id: MapObjectId.Mountain13,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      undefined, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Mountain14,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      true, true, false,
+      false, false, undefined,
+    ],
+    height: 3,
+    id: MapObjectId.Mountain15,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      false, false, undefined,
+    ],
+    height: 2,
+    id: MapObjectId.Mountain16,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      false, true, true,
+      undefined, false, false,
+    ],
+    height: 3,
+    id: MapObjectId.Mountain17,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      undefined, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Mountain18,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      true, true, false,
+      false, false, undefined,
+    ],
+    height: 3,
+    id: MapObjectId.Mountain19,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      false, false, undefined,
+    ],
+    height: 2,
+    id: MapObjectId.Mountain20,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      false, true, true,
+      undefined, false, false,
+    ],
+    height: 3,
+    id: MapObjectId.Mountain21,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, undefined,
+      undefined, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Mountain22,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      true, true, false,
+      false, false, undefined,
+    ],
+    height: 3,
+    id: MapObjectId.Mountain23,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      false, false, undefined,
+    ],
+    height: 2,
+    id: MapObjectId.Mountain24,
+    width: 3,
+  },
+];
+
 export const mapObjects: MapObjectData[] = [
   ...heroObjects,
   randomHero,
@@ -439,4 +670,5 @@ export const mapObjects: MapObjectData[] = [
   ...mineObjects,
   ...dwellingObjects,
   ...puzzleObjects,
+  ...mountainObjects,
 ];
