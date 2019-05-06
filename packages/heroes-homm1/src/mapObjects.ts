@@ -615,11 +615,11 @@ const swampObjects: MapObjectData[] = [
   },
   {
     grid: [
-      true,
+      true, true,
     ],
     height: 1,
     id: MapObjectId.Swamp3,
-    width: 1,
+    width: 2,
   },
   {
     grid: [
@@ -635,14 +635,6 @@ const swampObjects: MapObjectData[] = [
     ],
     height: 1,
     id: MapObjectId.Swamp5,
-    width: 1,
-  },
-  {
-    grid: [
-      true,
-    ],
-    height: 1,
-    id: MapObjectId.Swamp6,
     width: 1,
   },
 ];

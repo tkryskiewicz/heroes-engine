@@ -91,7 +91,6 @@ export enum MapObjectId {
   Swamp3 = "swamp3",
   Swamp4 = "swamp4",
   Swamp5 = "swamp5",
-  Swamp6 = "swamp6",
 
   // mountains
   Mountain1 = "mountain1",
