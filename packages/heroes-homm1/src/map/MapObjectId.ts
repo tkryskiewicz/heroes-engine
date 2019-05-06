@@ -98,6 +98,14 @@ export enum MapObjectId {
   Grass9 = "grass9",
   Grass10 = "grass10",
 
+  // snow
+  SnowLake = "snow-lake",
+  SnowLakeSmall = "snow-lake-small",
+  SnowLakeBig = "snow-lake-big",
+  Snow1 = "snow1",
+  Snow2 = "snow2",
+  Snow3 = "snow3",
+
   // swamp
   SwampLake = "swamp-lake",
   SwampLakeBig = "swamp-lake-big",

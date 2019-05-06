@@ -189,13 +189,13 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         MapObjectId.Fireplace,
         MapObjectId.ThatchedHut,
         MapObjectId.Cottage,
-        // Snow 1
-        // Snow 2
-        // Snow 3
+        MapObjectId.SnowLakeSmall,
+        MapObjectId.SnowLake,
+        MapObjectId.SnowLakeBig,
         MapObjectId.Obelisk,
-        // Snow 4
-        // Snow 5
-        // Snow 6
+        MapObjectId.Snow1,
+        MapObjectId.Snow2,
+        MapObjectId.Snow3,
         MapObjectId.TravelGate,
         MapObjectId.Fountain,
         ...riverObjects,
