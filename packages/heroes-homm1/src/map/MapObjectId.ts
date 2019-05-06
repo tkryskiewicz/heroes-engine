@@ -45,6 +45,7 @@ export enum MapObjectId {
   RandomArtifact = "random-artifact",
 
   // other
+  Cave = "cave",
   FaerieRing = "faerie-ring",
   Fountain = "fountain",
   Gazebo = "gazebo",
@@ -81,6 +82,16 @@ export enum MapObjectId {
   Grass8 = "grass8",
   Grass9 = "grass9",
   Grass10 = "grass10",
+
+  // swamp
+  SwampLake = "swamp-lake",
+  SwampLakeBig = "swamp-lake-big",
+  Swamp1 = "swamp1",
+  Swamp2 = "swamp2",
+  Swamp3 = "swamp3",
+  Swamp4 = "swamp4",
+  Swamp5 = "swamp5",
+  Swamp6 = "swamp6",
 
   // mountains
   Mountain1 = "mountain1",

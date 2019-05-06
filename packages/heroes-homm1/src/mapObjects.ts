@@ -577,6 +577,76 @@ const grassObjects: MapObjectData[] = [
   },
 ];
 
+const swampObjects: MapObjectData[] = [
+  {
+    grid: [
+      true, true, true,
+      true, true, true,
+    ],
+    height: 2,
+    id: MapObjectId.SwampLake,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, true, true, true,
+      true, true, true, true, true,
+      true, true, true, true, true,
+    ],
+    height: 3,
+    id: MapObjectId.SwampLakeBig,
+    width: 5,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Swamp1,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Swamp2,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Swamp3,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Swamp4,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Swamp5,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Swamp6,
+    width: 1,
+  },
+];
+
 const mountainObjects: MapObjectData[] = [
   {
     grid: [
@@ -1085,6 +1155,7 @@ export const mapObjects: MapObjectData[] = [
   ...puzzleObjects,
   ...waterObjects,
   ...grassObjects,
+  ...swampObjects,
   ...mountainObjects,
   ...treesObjects,
 ];

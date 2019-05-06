@@ -156,6 +156,14 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         MapObjectId.Mountain19,
         MapObjectId.Mountain20,
         ...treesObjects,
+        MapObjectId.SwampLake,
+        MapObjectId.SwampLakeBig,
+        MapObjectId.Swamp1,
+        MapObjectId.Swamp2,
+        MapObjectId.Swamp3,
+        MapObjectId.Swamp4,
+        MapObjectId.Swamp5,
+        MapObjectId.Swamp6,
       ];
 
       return Object.values(data.mapObjects)
