@@ -20,6 +20,8 @@ export enum MapObjectId {
   RandomResource = "random-resource",
 
   Fireplace = "fireplace",
+  TreasureChest = "treasure-chest",
+  Lamp = "lamp",
 
   // mines
   CrystalMine = "crystal-mine",
@@ -50,15 +52,29 @@ export enum MapObjectId {
   Fountain = "fountain",
   Gazebo = "gazebo",
   Graveyard = "graveyard",
+  Hole = "hole",
+  OakTree = "oak-tree",
   Rosebush = "rosebush",
   Shrine = "shrine",
   Shrine2 = "shrine2",
   Signpost = "signpost",
   Statue = "statue",
   TravelGate = "travel-gate",
+  TreeStump = "tree-stump",
   WagonCamp = "wagon-camp",
   Waterwheel = "waterwheel",
   Windmill = "windmill",
+
+  // river
+  River1 = "river1",
+  River2 = "river2",
+  River3 = "river3",
+  River4 = "river4",
+  River5 = "river5",
+  River6 = "river6",
+  River7 = "river7",
+  River8 = "river8",
+  River9 = "river9",
 
   // water
   Bouy = "bouy",

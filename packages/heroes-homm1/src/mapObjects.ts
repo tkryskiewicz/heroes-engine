@@ -268,6 +268,26 @@ const treasureObjects: Array<TreasureMapObjectData & PickableMapObjectData> = [
     },
     width: 1,
   },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.TreasureChest,
+    pickable: true,
+    treasure: {},
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Lamp,
+    pickable: true,
+    treasure: {},
+    width: 1,
+  },
 ];
 
 const mineObjects: MineMapObjectData[] = [
@@ -420,6 +440,232 @@ const puzzleObjects: ObeliskMapObjectData[] = [
     interactionLimit: InteractionLimitType.OncePerAlignment,
     uncoversPuzzlePiece: true,
     width: 1,
+  },
+];
+
+const otherObjects: MapObjectData[] = [
+  {
+    grid: [
+      true, true,
+      false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Cave,
+    width: 2,
+  },
+  {
+    grid: [
+      true, true,
+    ],
+    height: 1,
+    id: MapObjectId.FaerieRing,
+    width: 2,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Fountain,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Gazebo,
+    width: 1,
+  },
+  {
+    grid: [
+      true, true, true,
+    ],
+    height: 1,
+    id: MapObjectId.Graveyard,
+    width: 3,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Hole,
+    width: 1,
+  },
+  {
+    grid: [
+      true, true,
+      false, false,
+    ],
+    height: 2,
+    id: MapObjectId.OakTree,
+    width: 2,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Rosebush,
+    width: 1,
+  },
+  {
+    grid: [
+      true, true, true,
+      false, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Shrine,
+    width: 3,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Shrine2,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Signpost,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+      false,
+    ],
+    height: 2,
+    id: MapObjectId.Statue,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.TravelGate,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.TreeStump,
+    width: 1,
+  },
+  {
+    grid: [
+      true, true, true,
+      false, true, true,
+    ],
+    height: 2,
+    id: MapObjectId.WagonCamp,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, true,
+      true, true, true,
+      undefined, false, false,
+    ],
+    height: 3,
+    id: MapObjectId.Waterwheel,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true,
+      false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Windmill,
+    width: 2,
+  },
+];
+
+const riverObjects: MapObjectData[] = [
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.River1,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.River2,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.River3,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.River4,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.River5,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.River6,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.River7,
+    width: 1,
+  },
+  {
+    grid: [
+      undefined, true, undefined,
+      true, true, true,
+      true, true, true,
+    ],
+    height: 3,
+    id: MapObjectId.River8,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, true,
+      true, true, true,
+      undefined, true, undefined,
+    ],
+    height: 3,
+    id: MapObjectId.River9,
+    width: 3,
   },
 ];
 
@@ -1397,6 +1643,8 @@ export const mapObjects: MapObjectData[] = [
   ...mineObjects,
   ...dwellingObjects,
   ...puzzleObjects,
+  ...otherObjects,
+  ...riverObjects,
   ...waterObjects,
   ...grassObjects,
   ...swampObjects,

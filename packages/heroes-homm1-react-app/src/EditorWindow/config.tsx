@@ -91,6 +91,18 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
     MapObjectId.Trees20,
   ];
 
+  const riverObjects = [
+    MapObjectId.River1,
+    MapObjectId.River2,
+    MapObjectId.River3,
+    MapObjectId.River4,
+    MapObjectId.River5,
+    MapObjectId.River6,
+    MapObjectId.River7,
+    MapObjectId.River8,
+    MapObjectId.River9,
+  ];
+
   switch (type) {
     case EditorObjectType.WaterObjects:
       const waterObjects: string[] = [
@@ -100,6 +112,8 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         MapObjectId.Water2,
         MapObjectId.Shipwreck,
         MapObjectId.Whirlpool,
+        MapObjectId.River8,
+        MapObjectId.River9,
       ];
 
       return Object.values(data.mapObjects)
@@ -115,18 +129,39 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         MapObjectId.Mountain12,
         ...treesObjects,
         ...trees2Objects,
+        MapObjectId.Signpost,
         MapObjectId.Grass1,
         MapObjectId.Grass2,
+        MapObjectId.FaerieRing,
         MapObjectId.Grass3,
         MapObjectId.Grass4,
+        MapObjectId.Gazebo,
+        MapObjectId.Hut,
+        MapObjectId.ThatchedHut,
+        MapObjectId.Cottage,
         MapObjectId.GrassLakeBig,
         MapObjectId.GrassLake,
+        MapObjectId.Shrine,
         MapObjectId.Grass5,
         MapObjectId.Grass6,
+        MapObjectId.Obelisk,
         MapObjectId.Grass7,
         MapObjectId.Grass8,
         MapObjectId.Grass9,
         MapObjectId.Grass10,
+        MapObjectId.Rosebush,
+        MapObjectId.Shrine2,
+        MapObjectId.OakTree,
+        MapObjectId.Fountain,
+        MapObjectId.Graveyard,
+        MapObjectId.Hole,
+        MapObjectId.Waterwheel,
+        MapObjectId.Statue,
+        ...riverObjects,
+        MapObjectId.TreeStump,
+        MapObjectId.TravelGate,
+        MapObjectId.WagonCamp,
+        MapObjectId.Windmill,
       ];
 
       return Object.values(data.mapObjects)
@@ -150,6 +185,21 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         MapObjectId.Trees13,
         MapObjectId.Trees14,
         ...trees2Objects,
+        MapObjectId.Signpost,
+        MapObjectId.Fireplace,
+        MapObjectId.ThatchedHut,
+        MapObjectId.Cottage,
+        // Snow 1
+        // Snow 2
+        // Snow 3
+        MapObjectId.Obelisk,
+        // Snow 4
+        // Snow 5
+        // Snow 6
+        MapObjectId.TravelGate,
+        MapObjectId.Fountain,
+        ...riverObjects,
+        MapObjectId.WagonCamp,
       ];
 
       return Object.values(data.mapObjects)
@@ -165,13 +215,27 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         MapObjectId.Mountain20,
         ...treesObjects,
         ...trees2Objects,
+        MapObjectId.Cave,
+        MapObjectId.FaerieRing,
         MapObjectId.Swamp1,
         MapObjectId.Swamp4,
         MapObjectId.Swamp2,
         MapObjectId.SwampLakeBig,
         MapObjectId.SwampLake,
         MapObjectId.Swamp5,
+        MapObjectId.Obelisk,
+        MapObjectId.Shrine2,
         MapObjectId.Swamp3,
+        MapObjectId.OakTree,
+        MapObjectId.Signpost,
+        MapObjectId.Fountain,
+        MapObjectId.Graveyard,
+        MapObjectId.Hole,
+        MapObjectId.Statue,
+        ...riverObjects,
+        MapObjectId.TreeStump,
+        MapObjectId.TravelGate,
+        MapObjectId.WagonCamp,
       ];
 
       return Object.values(data.mapObjects)
@@ -189,10 +253,14 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         MapObjectId.Lava5,
         MapObjectId.Lava6,
         MapObjectId.Lava4,
+        MapObjectId.Obelisk,
         MapObjectId.Lava10,
         MapObjectId.Lava7,
         MapObjectId.Lava8,
         MapObjectId.Lava9,
+        ...riverObjects,
+        MapObjectId.TravelGate,
+        MapObjectId.WagonCamp,
       ];
 
       return Object.values(data.mapObjects)
@@ -211,12 +279,18 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         MapObjectId.Trees28,
         MapObjectId.Trees29,
         ...trees2Objects,
+        MapObjectId.Signpost,
+        MapObjectId.Cave,
         MapObjectId.Skeleton,
         MapObjectId.Desert1,
         MapObjectId.Desert2,
         MapObjectId.Oasis,
+        MapObjectId.Obelisk,
         MapObjectId.Desert3,
         MapObjectId.DesertTent,
+        MapObjectId.TravelGate,
+        ...riverObjects,
+        MapObjectId.WagonCamp,
       ];
 
       return Object.values(data.mapObjects)
@@ -234,17 +308,34 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         ...trees2Objects,
         MapObjectId.Dirt1,
         MapObjectId.Dirt2,
+        MapObjectId.FaerieRing,
         MapObjectId.Dirt3,
         MapObjectId.Dirt4,
         MapObjectId.Dirt5,
+        MapObjectId.Gazebo,
         MapObjectId.DirtLakeBig,
         MapObjectId.DirtLake,
+        MapObjectId.Shrine,
         MapObjectId.Dirt6,
         MapObjectId.Dirt7,
+        MapObjectId.Obelisk,
         MapObjectId.Dirt8,
         MapObjectId.Dirt9,
         MapObjectId.Dirt10,
         MapObjectId.Dirt11,
+        MapObjectId.Rosebush,
+        MapObjectId.Shrine2,
+        MapObjectId.Signpost,
+        MapObjectId.Fountain,
+        MapObjectId.Graveyard,
+        MapObjectId.Hole,
+        MapObjectId.Waterwheel,
+        MapObjectId.Statue,
+        ...riverObjects,
+        MapObjectId.TreeStump,
+        MapObjectId.TravelGate,
+        MapObjectId.WagonCamp,
+        MapObjectId.Windmill,
       ];
 
       return Object.values(data.mapObjects)
@@ -295,9 +386,9 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
           .filter((o) => isResourceMapObject({ id: "", dataId: o.id }, data))
           .map((o) => o.id),
         MapObjectId.RandomResource,
-        // MapObjectId.TreasureChest,
+        MapObjectId.TreasureChest,
         MapObjectId.Fireplace,
-        // MapObjectId.GenieLamp,
+        MapObjectId.Lamp,
       ];
 
       return Object.values(data.mapObjects)
