@@ -232,6 +232,19 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         MapObjectId.Mountain8,
         ...treesObjects,
         ...trees2Objects,
+        MapObjectId.Dirt1,
+        MapObjectId.Dirt2,
+        MapObjectId.Dirt3,
+        MapObjectId.Dirt4,
+        MapObjectId.Dirt5,
+        MapObjectId.DirtLakeBig,
+        MapObjectId.DirtLake,
+        MapObjectId.Dirt6,
+        MapObjectId.Dirt7,
+        MapObjectId.Dirt8,
+        MapObjectId.Dirt9,
+        MapObjectId.Dirt10,
+        MapObjectId.Dirt11,
       ];
 
       return Object.values(data.mapObjects)

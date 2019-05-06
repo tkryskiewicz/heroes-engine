@@ -783,6 +783,114 @@ const desertObjects: MapObjectData[] = [
   },
 ];
 
+const dirtObjects: MapObjectData[] = [
+  {
+    grid: [
+      true, true,
+    ],
+    height: 1,
+    id: MapObjectId.DirtLake,
+    width: 2,
+  },
+  {
+    grid: [
+      true, true, true, true, true,
+      true, true, true, true, true,
+    ],
+    height: 2,
+    id: MapObjectId.DirtLakeBig,
+    width: 5,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Dirt1,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Dirt2,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Dirt3,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Dirt4,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Dirt5,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Dirt6,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Dirt7,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Dirt8,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Dirt9,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Dirt10,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Dirt11,
+    width: 1,
+  },
+];
+
 const mountainObjects: MapObjectData[] = [
   {
     grid: [
@@ -1294,6 +1402,7 @@ export const mapObjects: MapObjectData[] = [
   ...swampObjects,
   ...lavaObjects,
   ...desertObjects,
+  ...dirtObjects,
   ...mountainObjects,
   ...treesObjects,
 ];

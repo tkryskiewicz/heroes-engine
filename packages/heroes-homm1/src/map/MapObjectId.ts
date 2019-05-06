@@ -111,6 +111,21 @@ export enum MapObjectId {
   Desert2 = "desert2",
   Desert3 = "desert3",
 
+  // dirt
+  DirtLake = "dirt-lake",
+  DirtLakeBig = "dirt-lake-big",
+  Dirt1 = "dirt1",
+  Dirt2 = "dirt2",
+  Dirt3 = "dirt3",
+  Dirt4 = "dirt4",
+  Dirt5 = "dirt5",
+  Dirt6 = "dirt6",
+  Dirt7 = "dirt7",
+  Dirt8 = "dirt8",
+  Dirt9 = "dirt9",
+  Dirt10 = "dirt10",
+  Dirt11 = "dirt11",
+
   // mountains
   Mountain1 = "mountain1",
   Mountain2 = "mountain2",
