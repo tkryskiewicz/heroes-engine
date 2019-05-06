@@ -183,6 +183,16 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         ...mountainObjects,
         ...treesObjects,
         ...trees2Objects,
+        MapObjectId.Lava1,
+        MapObjectId.Lava2,
+        MapObjectId.Lava3,
+        MapObjectId.Lava5,
+        MapObjectId.Lava6,
+        MapObjectId.Lava4,
+        MapObjectId.Lava10,
+        MapObjectId.Lava7,
+        MapObjectId.Lava8,
+        MapObjectId.Lava9,
       ];
 
       return Object.values(data.mapObjects)

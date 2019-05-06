@@ -92,6 +92,18 @@ export enum MapObjectId {
   Swamp4 = "swamp4",
   Swamp5 = "swamp5",
 
+  // lava
+  Lava1 = "lava1",
+  Lava2 = "lava2",
+  Lava3 = "lava3",
+  Lava4 = "lava4",
+  Lava5 = "lava5",
+  Lava6 = "lava6",
+  Lava7 = "lava7",
+  Lava8 = "lava8",
+  Lava9 = "lava9",
+  Lava10 = "lava10",
+
   // mountains
   Mountain1 = "mountain1",
   Mountain2 = "mountain2",

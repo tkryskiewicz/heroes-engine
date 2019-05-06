@@ -639,6 +639,97 @@ const swampObjects: MapObjectData[] = [
   },
 ];
 
+const lavaObjects: MapObjectData[] = [
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Lava1,
+    width: 1,
+  },
+  {
+    grid: [
+      true, true, true,
+      true, true, true,
+    ],
+    height: 2,
+    id: MapObjectId.Lava2,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true,
+      true, true,
+    ],
+    height: 2,
+    id: MapObjectId.Lava3,
+    width: 2,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Lava4,
+    width: 1,
+  },
+  {
+    grid: [
+      true, true, true,
+      true, true, true,
+    ],
+    height: 2,
+    id: MapObjectId.Lava5,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true,
+    ],
+    height: 1,
+    id: MapObjectId.Lava6,
+    width: 2,
+  },
+  {
+    grid: [
+      true, true, true,
+      false, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.Lava7,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      true, true, true,
+      true, true, undefined,
+    ],
+    height: 3,
+    id: MapObjectId.Lava8,
+    width: 3,
+  },
+  {
+    grid: [
+      undefined, true, true,
+      true, true, false,
+    ],
+    height: 2,
+    id: MapObjectId.Lava9,
+    width: 3,
+  },
+  {
+    grid: [
+      true,
+      false,
+    ],
+    height: 2,
+    id: MapObjectId.Lava10,
+    width: 1,
+  },
+];
+
 const mountainObjects: MapObjectData[] = [
   {
     grid: [
@@ -1148,6 +1239,7 @@ export const mapObjects: MapObjectData[] = [
   ...waterObjects,
   ...grassObjects,
   ...swampObjects,
+  ...lavaObjects,
   ...mountainObjects,
   ...treesObjects,
 ];
