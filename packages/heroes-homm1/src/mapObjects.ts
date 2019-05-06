@@ -730,6 +730,59 @@ const lavaObjects: MapObjectData[] = [
   },
 ];
 
+const desertObjects: MapObjectData[] = [
+  {
+    grid: [
+      true, true, true,
+      false, false, false,
+    ],
+    height: 2,
+    id: MapObjectId.DesertTent,
+    width: 3,
+  },
+  {
+    grid: [
+      true, true, true, true,
+      undefined, false, false, undefined,
+    ],
+    height: 2,
+    id: MapObjectId.Oasis,
+    width: 4,
+  },
+  {
+    grid: [
+      true, true,
+    ],
+    height: 1,
+    id: MapObjectId.Skeleton,
+    width: 2,
+  },
+  {
+    grid: [
+      true, true,
+    ],
+    height: 1,
+    id: MapObjectId.Desert1,
+    width: 2,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.Desert2,
+    width: 1,
+  },
+  {
+    grid: [
+      true, true, true,
+    ],
+    height: 1,
+    id: MapObjectId.Desert3,
+    width: 3,
+  },
+];
+
 const mountainObjects: MapObjectData[] = [
   {
     grid: [
@@ -1240,6 +1293,7 @@ export const mapObjects: MapObjectData[] = [
   ...grassObjects,
   ...swampObjects,
   ...lavaObjects,
+  ...desertObjects,
   ...mountainObjects,
   ...treesObjects,
 ];

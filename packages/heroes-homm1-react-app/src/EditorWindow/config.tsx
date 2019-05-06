@@ -211,6 +211,12 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         MapObjectId.Trees28,
         MapObjectId.Trees29,
         ...trees2Objects,
+        MapObjectId.Skeleton,
+        MapObjectId.Desert1,
+        MapObjectId.Desert2,
+        MapObjectId.Oasis,
+        MapObjectId.Desert3,
+        MapObjectId.DesertTent,
       ];
 
       return Object.values(data.mapObjects)

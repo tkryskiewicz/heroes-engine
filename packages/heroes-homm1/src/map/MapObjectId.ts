@@ -50,7 +50,6 @@ export enum MapObjectId {
   Fountain = "fountain",
   Gazebo = "gazebo",
   Graveyard = "graveyard",
-  Oasis = "oasis",
   Rosebush = "rosebush",
   Shrine = "shrine",
   Shrine2 = "shrine2",
@@ -103,6 +102,14 @@ export enum MapObjectId {
   Lava8 = "lava8",
   Lava9 = "lava9",
   Lava10 = "lava10",
+
+  // desert
+  DesertTent = "desert-tent",
+  Oasis = "oasis",
+  Skeleton = "skeleton",
+  Desert1 = "desert1",
+  Desert2 = "desert2",
+  Desert3 = "desert3",
 
   // mountains
   Mountain1 = "mountain1",
