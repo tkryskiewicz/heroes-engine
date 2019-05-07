@@ -1,7 +1,7 @@
 import * as Classnames from "classnames";
 import * as React from "react";
 
-import { Resource } from "heroes-homm1";
+import { MapObjectId, Resource } from "heroes-homm1";
 
 import * as styles from "./MineMapObject.module.scss";
 
@@ -15,15 +15,15 @@ export interface MineMapObjectProps {
 
 export class MineMapObject extends React.Component<MineMapObjectProps> {
   public render() {
-    const { resource, alignment } = this.props;
+    const { size, resource, alignment } = this.props;
 
     return (
       <div className={Classnames(styles.root, styles[resource])}>
         <MapObject
-          size={this.props.size}
+          size={size}
           type={this.getObjectType(resource)}
         />
-        {this.renderWagon(resource)}
+        {this.renderWagon(size, resource)}
         {alignment && this.renderFlag(resource, alignment)}
       </div>
     );
@@ -32,15 +32,15 @@ export class MineMapObject extends React.Component<MineMapObjectProps> {
   private getObjectType(resource: string) {
     switch (resource) {
       case Resource.Wood:
-        return "sawmill";
+        return MapObjectId.Sawmill;
       case Resource.Mercury:
-        return "alchemist";
+        return MapObjectId.Alchemist;
       default:
-        return "mine";
+        return MapObjectId.Mine;
     }
   }
 
-  private renderWagon(resource: string) {
+  private renderWagon(size: string, resource: string) {
     if (resource === Resource.Wood || resource === Resource.Mercury) {
       return;
     }
@@ -48,7 +48,7 @@ export class MineMapObject extends React.Component<MineMapObjectProps> {
     return (
       <img
         className={styles.wagon}
-        src={`/assets/resources/${resource}/mine-wagon.png`}
+        src={`/assets/resources/${resource}/mine-wagon/${size}.png`}
       />
     );
   }

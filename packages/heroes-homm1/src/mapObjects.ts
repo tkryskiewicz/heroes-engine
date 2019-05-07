@@ -455,6 +455,17 @@ const otherObjects: MapObjectData[] = [
   },
   {
     grid: [
+      true, true, true,
+      true, true, true,
+      false, false, false,
+      undefined, false, undefined,
+    ],
+    height: 4,
+    id: MapObjectId.DragonCity,
+    width: 3,
+  },
+  {
+    grid: [
       true, true,
     ],
     height: 1,
@@ -492,6 +503,15 @@ const otherObjects: MapObjectData[] = [
     height: 1,
     id: MapObjectId.Hole,
     width: 1,
+  },
+  {
+    grid: [
+      true, true, true,
+      undefined, false, undefined,
+    ],
+    height: 2,
+    id: MapObjectId.Lighthouse,
+    width: 3,
   },
   {
     grid: [

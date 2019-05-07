@@ -1,3 +1,4 @@
+// FIXME: separate objects from their representation
 export enum MapObjectId {
   Hero = "hero",
 
@@ -24,6 +25,8 @@ export enum MapObjectId {
   Lamp = "lamp",
 
   // mines
+  Mine = "mine",
+
   CrystalMine = "crystal-mine",
   // Gem Mine or Gems Mine??
   GemsMine = "gems-mine",
@@ -32,6 +35,8 @@ export enum MapObjectId {
   OreMine = "ore-mine",
   SulfurMine = "sulfur-mine",
   Sawmill = "sawmill",
+
+  RandomMine = "random-mine",
 
   // creatures
   RandomCreature = "random-creature",
@@ -48,11 +53,13 @@ export enum MapObjectId {
 
   // other
   Cave = "cave",
+  DragonCity = "dragon-city",
   FaerieRing = "faerie-ring",
   Fountain = "fountain",
   Gazebo = "gazebo",
   Graveyard = "graveyard",
   Hole = "hole",
+  Lighthouse = "lighthouse",
   OakTree = "oak-tree",
   Rosebush = "rosebush",
   Shrine = "shrine",
