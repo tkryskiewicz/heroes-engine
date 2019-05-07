@@ -36,7 +36,7 @@ export class MineMapObject extends React.Component<MineMapObjectProps> {
       case Resource.Mercury:
         return MapObjectId.Alchemist;
       default:
-        return MapObjectId.Mine;
+        return "mine";
     }
   }
 

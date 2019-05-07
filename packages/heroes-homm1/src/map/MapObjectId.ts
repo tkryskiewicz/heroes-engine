@@ -25,8 +25,6 @@ export enum MapObjectId {
   Lamp = "lamp",
 
   // mines
-  Mine = "mine",
-
   CrystalMine = "crystal-mine",
   // Gem Mine or Gems Mine??
   GemsMine = "gems-mine",
