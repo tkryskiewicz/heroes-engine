@@ -21,6 +21,7 @@ export enum MapObjectId {
   RandomResource = "random-resource",
 
   Fireplace = "fireplace",
+  Fireplace2 = "fireplace2",
   TreasureChest = "treasure-chest",
   Lamp = "lamp",
 

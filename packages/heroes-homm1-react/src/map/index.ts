@@ -6,7 +6,6 @@ export { MapTile, MapTileProps } from "./MapTile";
 export { MineMapObject, MineMapObjectProps } from "./MineMapObject";
 export { OrientableMapObject, OrientableMapObjectProps, withOrientableMapObject } from "./OrientableMapObject";
 export { RandomCreatureMapObject, RandomCreatureMapObjectProps } from "./RandomCreatureMapObject";
-export { RandomTownMapObject, RandomTownMapObjectProps } from "./RandomTownMapObject";
 export { ResourceMapObject, ResourceMapObjectProps } from "./ResourceMapObject";
 export { ShipMapObject, ShipMapObjectProps } from "./ShipMapObject";
 export { TownMapObject, TownMapObjectProps } from "./TownMapObject";

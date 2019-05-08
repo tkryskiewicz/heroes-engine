@@ -16,4 +16,4 @@ export const createMapObject = (id: string, data: MapObjectData): MapObject => (
 });
 
 export const isMapObject = (object: MapObject | undefined): object is MapObject =>
-  object !== undefined && object.id !== "" && object.dataId !== "";
+  object !== undefined && object.id !== undefined && object.dataId !== undefined;

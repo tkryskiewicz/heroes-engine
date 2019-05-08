@@ -10,18 +10,20 @@ import { MapObject } from "../MapObject";
 export interface MineMapObjectProps {
   readonly size: "large" | "small";
   readonly resource: string;
+  readonly variant: string;
   readonly alignment?: string;
 }
 
 export class MineMapObject extends React.Component<MineMapObjectProps> {
   public render() {
-    const { size, resource, alignment } = this.props;
+    const { size, resource, variant, alignment } = this.props;
 
     return (
       <div className={Classnames(styles.root, styles[resource])}>
         <MapObject
           size={size}
           type={this.getObjectType(resource)}
+          variant={variant}
         />
         {this.renderWagon(size, resource)}
         {alignment && this.renderFlag(resource, alignment)}

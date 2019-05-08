@@ -29,3 +29,7 @@ export {
   isTownMapObject,
   recruitTownMapObjectTroop,
 } from "./TownMapObject";
+export {
+  VariantMapObjectData,
+  isVariantMapObjectData,
+} from "./VariantMapObject";

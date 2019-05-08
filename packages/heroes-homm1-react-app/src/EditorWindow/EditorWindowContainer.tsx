@@ -6,10 +6,11 @@ import {
   getTilePoint,
   isSamePoint,
   Map,
+  MapObject,
   MapObjectOrientation,
   MapPoint,
 } from "heroes-core";
-import { EditorObjectType, EditorOption, nextObjectType, previousObjectType } from "heroes-homm1";
+import { EditorObjectType, EditorOption, nextObjectType, previousObjectType, TerrainType } from "heroes-homm1";
 import {
   AdventureWindow,
   CellNumbers,
@@ -356,12 +357,17 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     );
   }
 
-  private readonly renderObject = (value: string) => {
+  private readonly renderObject = (object: string) => {
     const { data } = this.props;
 
-    const objectData = data.mapObjects[value];
+    const obj: MapObject = {
+      dataId: object,
+      id: "",
+    };
 
-    const object = renderObject(objectData, data);
+    const objectData = data.mapObjects[object];
+
+    const terrain = this.getTerrain();
 
     return (
       <EditorObjectGrid
@@ -369,9 +375,31 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         height={objectData.height}
         grid={objectData.grid}
       >
-        {object}
+        {renderObject(obj, objectData, terrain, data)}
       </EditorObjectGrid>
     );
+  }
+
+  // FIXME
+  private getTerrain() {
+    switch (this.props.selectedObjectType) {
+      case EditorObjectType.WaterObjects:
+        return TerrainType.Water;
+      case EditorObjectType.GrassObjects:
+        return TerrainType.Grass;
+      case EditorObjectType.SnowObjects:
+        return TerrainType.Snow;
+      case EditorObjectType.SwampObjects:
+        return TerrainType.Swamp;
+      case EditorObjectType.LavaObjects:
+        return TerrainType.Lava;
+      case EditorObjectType.DesertObjects:
+        return TerrainType.Desert;
+      case EditorObjectType.DirtObjects:
+        return TerrainType.Dirt;
+      default:
+        return undefined;
+    }
   }
 
   private readonly renderButtons = () => {

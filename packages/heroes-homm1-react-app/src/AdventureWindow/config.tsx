@@ -23,6 +23,7 @@ import {
   isObeliskMapObjectData,
   isResourceMapObject,
   isTownMapObject,
+  isVariantMapObjectData,
   StructureId,
 } from "heroes-homm1";
 import {
@@ -47,7 +48,12 @@ import {
   StatusWindowOption,
 } from "heroes-homm1-state";
 
-export const renderMapObject = (object: MapObject, objectData: MapObjectData, data: GameData) => {
+export const renderMapObject = (object: MapObject, objectData: MapObjectData, terrain: string, data: GameData) => {
+  // FIXME: ??
+  const variant = isVariantMapObjectData(objectData) ?
+    objectData.variants[terrain] :
+    "";
+
   if (isHeroMapObject(object)) {
     return (
       <HeroMapObject
@@ -95,6 +101,7 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData, da
       <MineMapObject
         size="large"
         resource={objectData.resourceGenerator.resource}
+        variant={variant}
         alignment={object.owner}
       />
     );
@@ -113,6 +120,7 @@ export const renderMapObject = (object: MapObject, objectData: MapObjectData, da
     <MapObj
       size="large"
       type={object.dataId}
+      variant={variant}
     />
   );
 };

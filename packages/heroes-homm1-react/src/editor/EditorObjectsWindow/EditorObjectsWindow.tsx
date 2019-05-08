@@ -11,7 +11,7 @@ const GridHeight = 9;
 interface EditorObjectsWindowProps extends WithGameWindowProps {
   readonly objects: string[];
   readonly renderObject: (object: string) => React.ReactNode;
-  readonly onObjectClick: (value: string) => void;
+  readonly onObjectClick: (object: string) => void;
 }
 
 type DefaultProp =

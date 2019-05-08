@@ -55,7 +55,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     const tile = this.props.map.tiles[index];
 
     const object = tile.object ?
-      this.renderMapObject(tile.object) :
+      this.renderMapObject(tile.object, tile.terrain) :
       undefined;
 
     return (
@@ -73,12 +73,12 @@ class AdventureWindowContainer extends React.Component<Props, State> {
     );
   }
 
-  private renderMapObject(object: MapObject) {
+  private renderMapObject(object: MapObject, terrain: string) {
     const { data } = this.props;
 
     const objectData = data.mapObjects[object.dataId];
 
-    return renderMapObject(object, objectData, data);
+    return renderMapObject(object, objectData, terrain, data);
   }
 
   private readonly onTileMouseEnter = (index: number) => {

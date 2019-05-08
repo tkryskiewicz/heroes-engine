@@ -17,8 +17,10 @@ import {
   ObeliskMapObjectData,
   ResourceMapObjectData,
   TownMapObjectData,
+  VariantMapObjectData,
 } from "./map";
 import { Resource } from "./Resource";
+import { TerrainType } from "./TerrainType";
 
 const heroObjects: HeroMapObjectData[] = [
   {
@@ -247,27 +249,39 @@ const randomResourceObject: MapObjectData = {
   width: 1,
 };
 
-const treasureObjects: Array<TreasureMapObjectData & PickableMapObjectData> = [
-  {
-    grid: [
-      true,
-    ],
-    height: 1,
-    id: MapObjectId.Fireplace,
-    pickable: true,
-    treasure: {
-      [Resource.Gold]: {
-        max: 7,
-        min: 4,
-      },
-      // TODO: gold + one other resource, x * 100 gold + x other resource
-      [Resource.Wood]: {
-        max: 7,
-        min: 4,
-      },
+const fireplace: TreasureMapObjectData & PickableMapObjectData = {
+  grid: [
+    true,
+  ],
+  height: 1,
+  id: MapObjectId.Fireplace,
+  pickable: true,
+  treasure: {
+    [Resource.Gold]: {
+      max: 7,
+      min: 4,
     },
-    width: 1,
+    // TODO: gold + one other resource, x * 100 gold + x other resource
+    [Resource.Wood]: {
+      max: 7,
+      min: 4,
+    },
   },
+  width: 1,
+};
+
+const fireplace2: typeof fireplace & VariantMapObjectData = {
+  ...fireplace,
+  id: MapObjectId.Fireplace2,
+  variants: {
+    [TerrainType.Snow]: "snow",
+    [TerrainType.Desert]: "desert",
+  },
+};
+
+const treasureObjects: Array<TreasureMapObjectData & PickableMapObjectData> = [
+  fireplace,
+  fireplace2,
   {
     grid: [
       true,
@@ -290,120 +304,146 @@ const treasureObjects: Array<TreasureMapObjectData & PickableMapObjectData> = [
   },
 ];
 
-const mineObjects: MineMapObjectData[] = [
+const mineObjectBase: MineMapObjectData & VariantMapObjectData = {
+  grid: [
+    true, true,
+    false, false,
+  ],
+  height: 2,
+  id: "",
+  ownable: true,
+  resourceGenerator: {
+    amount: 0,
+    resource: "",
+  },
+  variants: {
+    [TerrainType.Grass]: "grass",
+    [TerrainType.Snow]: "snow",
+    [TerrainType.Swamp]: "swamp",
+    [TerrainType.Lava]: "swamp",
+    [TerrainType.Desert]: "desert",
+    [TerrainType.Dirt]: "dirt",
+  },
+  width: 2,
+};
+
+const mineObjects: Array<MineMapObjectData & VariantMapObjectData> = [
   {
-    grid: [
-      true, true,
-      false, false,
-    ],
-    height: 2,
+    ...mineObjectBase,
     id: MapObjectId.CrystalMine,
-    ownable: true,
     resourceGenerator: {
       amount: 1,
       resource: Resource.Crystal,
     },
-    width: 2,
   },
   {
-    grid: [
-      true, true,
-      false, false,
-    ],
-    height: 2,
+    ...mineObjectBase,
     id: MapObjectId.GemsMine,
-    ownable: true,
     resourceGenerator: {
       amount: 1,
-      resource: Resource.Crystal,
+      resource: Resource.Gems,
     },
-    width: 2,
   },
   {
-    grid: [
-      true, true,
-      false, false,
-    ],
-    height: 2,
+    ...mineObjectBase,
     id: MapObjectId.GoldMine,
-    ownable: true,
     resourceGenerator: {
       amount: 1000,
       resource: Resource.Gold,
     },
-    width: 2,
   },
   {
-    grid: [
-      true, true,
-      false, false,
-    ],
-    height: 2,
-    id: MapObjectId.Alchemist,
-    ownable: true,
-    resourceGenerator: {
-      amount: 2,
-      resource: Resource.Mercury,
-    },
-    width: 2,
-  },
-  {
-    grid: [
-      true, true,
-      false, false,
-    ],
-    height: 2,
+    ...mineObjectBase,
     id: MapObjectId.OreMine,
-    ownable: true,
     resourceGenerator: {
       amount: 2,
       resource: Resource.Ore,
     },
-    width: 2,
   },
   {
-    grid: [
-      true, true,
-      false, false,
-    ],
-    height: 2,
+    ...mineObjectBase,
     id: MapObjectId.SulfurMine,
-    ownable: true,
     resourceGenerator: {
       amount: 1,
       resource: Resource.Sulfur,
     },
-    width: 2,
-  },
-  {
-    grid: [
-      true, true,
-      false, false,
-    ],
-    height: 2,
-    id: MapObjectId.Sawmill,
-    ownable: true,
-    resourceGenerator: {
-      amount: 2,
-      resource: Resource.Wood,
-    },
-    width: 2,
   },
 ];
 
-const dwellingObjects: DwellingMapObjectData[] = [
-  {
-    dwelling: {
-      creature: CreatureId.Archer,
-      initialCount: 3,
-    },
-    grid: [
-      true,
-    ],
-    height: 1,
-    id: MapObjectId.Cottage,
-    width: 1,
+const alchemist: MineMapObjectData & VariantMapObjectData = {
+  grid: [
+    true, true,
+    false, false,
+  ],
+  height: 2,
+  id: MapObjectId.Alchemist,
+  ownable: true,
+  resourceGenerator: {
+    amount: 2,
+    resource: Resource.Mercury,
   },
+  variants: {
+    [TerrainType.Grass]: "swamp",
+    [TerrainType.Snow]: "swamp",
+    [TerrainType.Swamp]: "swamp",
+    [TerrainType.Desert]: "desert",
+    [TerrainType.Lava]: "lava",
+    [TerrainType.Dirt]: "swamp",
+  },
+  width: 2,
+};
+
+const sawmill: MineMapObjectData = {
+  grid: [
+    true, true,
+    false, false,
+  ],
+  height: 2,
+  id: MapObjectId.Sawmill,
+  ownable: true,
+  resourceGenerator: {
+    amount: 2,
+    resource: Resource.Wood,
+  },
+  width: 2,
+};
+
+const cottage: DwellingMapObjectData & VariantMapObjectData = {
+  dwelling: {
+    creature: CreatureId.Archer,
+    initialCount: 3,
+  },
+  grid: [
+    true,
+  ],
+  height: 1,
+  id: MapObjectId.Cottage,
+  variants: {
+    [TerrainType.Grass]: "grass",
+    [TerrainType.Snow]: "snow",
+  },
+  width: 1,
+};
+
+const thatchedHut: DwellingMapObjectData & VariantMapObjectData = {
+  dwelling: {
+    creature: CreatureId.Peasant,
+    initialCount: 50,
+  },
+  grid: [
+    true,
+  ],
+  height: 1,
+  id: MapObjectId.ThatchedHut,
+  variants: {
+    [TerrainType.Grass]: "grass",
+    [TerrainType.Snow]: "snow",
+  },
+  width: 1,
+};
+
+const dwellingObjects: DwellingMapObjectData[] = [
+  cottage,
   {
     dwelling: {
       creature: CreatureId.Goblin,
@@ -416,43 +456,147 @@ const dwellingObjects: DwellingMapObjectData[] = [
     id: MapObjectId.Hut,
     width: 1,
   },
-  {
-    dwelling: {
-      creature: CreatureId.Peasant,
-      initialCount: 50,
-    },
-    grid: [
-      true,
-    ],
-    height: 1,
-    id: MapObjectId.ThatchedHut,
-    width: 1,
-  },
+  thatchedHut,
 ];
 
-const puzzleObjects: ObeliskMapObjectData[] = [
-  {
-    grid: [
-      true,
-    ],
-    height: 1,
-    id: MapObjectId.Obelisk,
-    interactionLimit: InteractionLimitType.OncePerAlignment,
-    uncoversPuzzlePiece: true,
-    width: 1,
+const obelisk: ObeliskMapObjectData & VariantMapObjectData = {
+  grid: [
+    true,
+  ],
+  height: 1,
+  id: MapObjectId.Obelisk,
+  interactionLimit: InteractionLimitType.OncePerAlignment,
+  uncoversPuzzlePiece: true,
+  variants: {
+    [TerrainType.Grass]: "grass",
+    [TerrainType.Snow]: "snow",
+    [TerrainType.Swamp]: "swamp",
+    [TerrainType.Desert]: "desert",
+    [TerrainType.Lava]: "lava",
+    [TerrainType.Dirt]: "dirt",
   },
-];
+  width: 1,
+};
+
+const cave: VariantMapObjectData = {
+  grid: [
+    true, true,
+    false, false,
+  ],
+  height: 2,
+  id: MapObjectId.Cave,
+  variants: {
+    [TerrainType.Swamp]: "swamp",
+    [TerrainType.Lava]: "lava",
+    [TerrainType.Desert]: "desert",
+  },
+  width: 2,
+};
+
+const faerieRing: VariantMapObjectData = {
+  grid: [
+    true, true,
+  ],
+  height: 1,
+  id: MapObjectId.FaerieRing,
+  variants: {
+    [TerrainType.Grass]: "grass",
+    [TerrainType.Swamp]: "swamp",
+    [TerrainType.Dirt]: "dirt",
+  },
+  width: 2,
+};
+
+const gazebo: VariantMapObjectData = {
+  grid: [
+    true,
+  ],
+  height: 1,
+  id: MapObjectId.Gazebo,
+  variants: {
+    [TerrainType.Grass]: "grass",
+    [TerrainType.Dirt]: "dirt",
+  },
+  width: 1,
+};
+
+const roseBush: VariantMapObjectData = {
+  grid: [
+    true,
+  ],
+  height: 1,
+  id: MapObjectId.Rosebush,
+  variants: {
+    [TerrainType.Grass]: "grass",
+    [TerrainType.Dirt]: "dirt",
+  },
+  width: 1,
+};
+
+const shrine: VariantMapObjectData = {
+  grid: [
+    true, true, true,
+    false, false, false,
+  ],
+  height: 2,
+  id: MapObjectId.Shrine,
+  variants: {
+    [TerrainType.Grass]: "grass",
+    [TerrainType.Dirt]: "dirt",
+  },
+  width: 3,
+};
+
+const shrine2: VariantMapObjectData = {
+  grid: [
+    true,
+  ],
+  height: 1,
+  id: MapObjectId.Shrine2,
+  variants: {
+    [TerrainType.Grass]: "grass",
+    [TerrainType.Swamp]: "swamp",
+    [TerrainType.Dirt]: "dirt",
+  },
+  width: 1,
+};
+
+const signpost: VariantMapObjectData = {
+  grid: [
+    true,
+  ],
+  height: 1,
+  id: MapObjectId.Signpost,
+  variants: {
+    [TerrainType.Grass]: "grass",
+    [TerrainType.Snow]: "snow",
+    [TerrainType.Swamp]: "dirt",
+    [TerrainType.Desert]: "desert",
+    [TerrainType.Dirt]: "dirt",
+  },
+  width: 1,
+};
+
+const travelGate: VariantMapObjectData = {
+  grid: [
+    true,
+  ],
+  height: 1,
+  id: MapObjectId.TravelGate,
+  variants: {
+    [TerrainType.Grass]: "default",
+    [TerrainType.Snow]: "snow",
+    [TerrainType.Swamp]: "default",
+    [TerrainType.Lava]: "default",
+    [TerrainType.Desert]: "desert",
+    [TerrainType.Dirt]: "default",
+  },
+  width: 1,
+};
 
 const otherObjects: MapObjectData[] = [
-  {
-    grid: [
-      true, true,
-      false, false,
-    ],
-    height: 2,
-    id: MapObjectId.Cave,
-    width: 2,
-  },
+  cave,
+  faerieRing,
   {
     grid: [
       true, true, true,
@@ -466,28 +610,13 @@ const otherObjects: MapObjectData[] = [
   },
   {
     grid: [
-      true, true,
-    ],
-    height: 1,
-    id: MapObjectId.FaerieRing,
-    width: 2,
-  },
-  {
-    grid: [
       true,
     ],
     height: 1,
     id: MapObjectId.Fountain,
     width: 1,
   },
-  {
-    grid: [
-      true,
-    ],
-    height: 1,
-    id: MapObjectId.Gazebo,
-    width: 1,
-  },
+  gazebo,
   {
     grid: [
       true, true, true,
@@ -522,39 +651,10 @@ const otherObjects: MapObjectData[] = [
     id: MapObjectId.OakTree,
     width: 2,
   },
-  {
-    grid: [
-      true,
-    ],
-    height: 1,
-    id: MapObjectId.Rosebush,
-    width: 1,
-  },
-  {
-    grid: [
-      true, true, true,
-      false, false, false,
-    ],
-    height: 2,
-    id: MapObjectId.Shrine,
-    width: 3,
-  },
-  {
-    grid: [
-      true,
-    ],
-    height: 1,
-    id: MapObjectId.Shrine2,
-    width: 1,
-  },
-  {
-    grid: [
-      true,
-    ],
-    height: 1,
-    id: MapObjectId.Signpost,
-    width: 1,
-  },
+  roseBush,
+  shrine,
+  shrine2,
+  signpost,
   {
     grid: [
       true,
@@ -564,14 +664,7 @@ const otherObjects: MapObjectData[] = [
     id: MapObjectId.Statue,
     width: 1,
   },
-  {
-    grid: [
-      true,
-    ],
-    height: 1,
-    id: MapObjectId.TravelGate,
-    width: 1,
-  },
+  travelGate,
   {
     grid: [
       true,
@@ -1712,8 +1805,10 @@ export const mapObjects: MapObjectData[] = [
   ...artifactObjects,
   randomArtifactObject,
   ...mineObjects,
+  alchemist,
+  sawmill,
   ...dwellingObjects,
-  ...puzzleObjects,
+  obelisk,
   ...otherObjects,
   ...riverObjects,
   ...waterObjects,

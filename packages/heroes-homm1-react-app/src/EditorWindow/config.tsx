@@ -1,21 +1,40 @@
 import * as React from "react";
 
-import { GameData, isArtifactMapObjectData, isCreatureMapObjectData, MapObjectData } from "heroes-core";
-import { EditorObjectType, isResourceMapObject, MapObjectId } from "heroes-homm1";
+import {
+  GameData,
+  isArtifactMapObjectData,
+  isCreatureMapObjectData,
+  MapObject as CoreMapObject,
+  MapObjectData,
+} from "heroes-core";
+import {
+  EditorObjectType,
+  isMineMapObject,
+  isMineMapObjectData,
+  isResourceMapObject,
+  isVariantMapObjectData,
+  MapObjectId,
+} from "heroes-homm1";
 import {
   ArtifactMapObject,
   CreatureMapObject,
   MapObject,
-  RandomTownMapObject,
+  MineMapObject,
   ResourceMapObject,
 } from "heroes-homm1-react";
 
 export const renderObject = (
+  object: CoreMapObject,
   objectData: MapObjectData,
+  terrain: string | undefined,
   data: GameData,
 ): React.ReactNode => {
-  // FIXME
-  if (isResourceMapObject({ id: "", dataId: objectData.id }, data)) {
+  // FIXME: ??
+  const variant = terrain && isVariantMapObjectData(objectData) ?
+    objectData.variants[terrain] :
+    "";
+
+  if (isResourceMapObject(object, data)) {
     return (
       <ResourceMapObject
         size="small"
@@ -44,9 +63,20 @@ export const renderObject = (
 
   if (objectData.id === MapObjectId.RandomTown || objectData.id === MapObjectId.RandomCastle) {
     return (
-      <RandomTownMapObject
+      <MapObject
         size="small"
-        isCastleBuilt={objectData.id === MapObjectId.RandomCastle}
+        type="random-town"
+        variant={objectData.id === MapObjectId.RandomCastle ? "castle" : "town"}
+      />
+    );
+  }
+
+  if (isMineMapObjectData(objectData, data) && isMineMapObject(object, data)) {
+    return (
+      <MineMapObject
+        size="small"
+        resource={objectData.resourceGenerator.resource}
+        variant={variant}
       />
     );
   }
@@ -55,6 +85,7 @@ export const renderObject = (
     <MapObject
       size="small"
       type={objectData.id}
+      variant={variant}
     />
   );
 };
@@ -202,7 +233,7 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         MapObjectId.GoldMine,
         MapObjectId.Sawmill,
         MapObjectId.Signpost,
-        MapObjectId.Fireplace,
+        MapObjectId.Fireplace2,
         MapObjectId.ThatchedHut,
         MapObjectId.Cottage,
         MapObjectId.SnowLakeSmall,
@@ -417,7 +448,7 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         .sort((a, b) => creatureObjects.indexOf(a.id) - creatureObjects.indexOf(b.id))
         .map((o) => o.id);
     case EditorObjectType.Artifacts:
-      // TODO: fix order
+      // TODO: fix artifact order
       const artifactObjects: string[] = [
         ...Object.values(data.mapObjects)
           .filter(isArtifactMapObjectData)
