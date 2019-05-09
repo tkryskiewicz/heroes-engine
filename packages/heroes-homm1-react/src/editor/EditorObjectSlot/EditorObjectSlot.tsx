@@ -19,8 +19,10 @@ export class EditorObjectSlot extends React.Component<EditorObjectSlotProps> {
         className={Classnames(styles.root, styles[this.props.size])}
         onClick={this.props.onClick}
       >
-        <div className={styles.object}>
-          {this.props.children}
+        <div className={styles.objectContainer}>
+          <div className={styles.object}>
+            {this.props.children}
+          </div>
         </div>
       </div>
     );
