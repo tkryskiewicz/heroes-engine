@@ -1,4 +1,4 @@
-import { changeTerrain, createMap } from "heroes-core";
+import { changeTerrain, createMap, placeObject } from "heroes-core";
 import { EditorObjectType, EditorOption, TerrainType } from "heroes-homm1";
 
 import { EditorWindowAction, EditorWindowActionType } from "./actions";
@@ -63,6 +63,11 @@ export const editorWindowReducer = (
       return {
         ...state,
         objectsWindowVisible: false,
+      };
+    case EditorWindowActionType.PlaceObject:
+      return {
+        ...state,
+        map: placeObject(state.map, action.point, action.object),
       };
     case EditorWindowActionType.ZoomIn:
       return {

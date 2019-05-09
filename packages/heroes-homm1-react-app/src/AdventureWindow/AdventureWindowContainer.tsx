@@ -11,8 +11,9 @@ import { isHeroMapObject, isTownMapObject } from "heroes-homm1";
 import { AdventureWindow, MapTile } from "heroes-homm1-react";
 import { adventureScreenActions, gameActions } from "heroes-homm1-state";
 
+import { renderObject } from "../config";
 import { HeroTradingWindow } from "../HeroTradingWindow";
-import { onTileClick, renderMapObject, renderMapObjectDetails } from "./config";
+import { onTileClick, renderMapObjectDetails } from "./config";
 
 interface Props extends DispatchProp {
   readonly data: GameData;
@@ -78,7 +79,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
 
     const objectData = data.mapObjects[object.dataId];
 
-    return renderMapObject(object, objectData, terrain, data);
+    return renderObject(object, objectData, terrain, data, "large");
   }
 
   private readonly onTileMouseEnter = (index: number) => {

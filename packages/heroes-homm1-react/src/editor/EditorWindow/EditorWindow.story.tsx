@@ -1,4 +1,5 @@
 import { action } from "@storybook/addon-actions";
+import { text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
@@ -31,5 +32,6 @@ storiesOf("editor/EditorWindow", module)
       renderOptions={renderOptions}
       renderOptionDetails={renderOptionDetails}
       renderButtons={renderButtons}
+      message={text("Message", "")}
     />
   ));

@@ -37,6 +37,7 @@ type DispatchProp =
   "onSelectedObjectChange" |
   "onOpenObjectsWindowClick" |
   "onCloseObjectsWindowClick" |
+  "onPlaceObjectClick" |
   "onZoomInClick" |
   "onZoomOutClick";
 
@@ -68,6 +69,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, Dispatc
   },
   onCloseObjectsWindowClick() {
     dispatch(editorWindowActions.closeObjectsWindow());
+  },
+  onPlaceObjectClick(point, object) {
+    dispatch(editorWindowActions.placeObject(point, object));
   },
   onZoomInClick() {
     dispatch(editorWindowActions.zoomIn());

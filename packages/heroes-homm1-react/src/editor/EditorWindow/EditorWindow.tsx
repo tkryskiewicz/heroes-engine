@@ -4,6 +4,7 @@ import { MapObjectOrientation } from "heroes-core";
 
 import * as styles from "./EditorWindow.module.scss";
 
+import { GameText } from "../../core";
 import { EditorScrollButton } from "../EditorScrollButton";
 
 export interface EditorWindowProps {
@@ -20,10 +21,12 @@ export interface EditorWindowProps {
   readonly renderOptions: () => React.ReactNode;
   readonly renderOptionDetails: () => React.ReactNode;
   readonly renderButtons: () => React.ReactNode;
+  readonly message: string;
 }
 
 export class EditorWindow extends React.Component<EditorWindowProps> {
   public static readonly defaultProps: Pick<EditorWindowProps, keyof EditorWindowProps> = {
+    message: "",
     onScrollBottomLeft: () => undefined,
     onScrollBottomRight: () => undefined,
     onScrollTopLeft: () => undefined,
@@ -89,6 +92,17 @@ export class EditorWindow extends React.Component<EditorWindowProps> {
         <div className={styles.buttons}>
           {this.props.renderButtons()}
         </div>
+        {this.props.message && this.renderMessage(this.props.message)}
+      </div>
+    );
+  }
+
+  private renderMessage(value: string) {
+    return (
+      <div className={styles.message}>
+        <GameText size="normal">
+          {value}
+        </GameText>
       </div>
     );
   }

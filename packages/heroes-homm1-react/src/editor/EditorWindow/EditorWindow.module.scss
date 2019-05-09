@@ -111,3 +111,14 @@
   width: 144px;
   height: 144px;
 }
+
+.message {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 448px + 16 + 16;
+  height: 15px;
+  line-height: 12px;
+  text-align: center;
+  background: #000;
+}

@@ -1,4 +1,4 @@
-import { MapPoint } from "heroes-core";
+import { MapObject, MapPoint } from "heroes-core";
 import { EditorObjectType, EditorOption } from "heroes-homm1";
 
 export enum EditorWindowActionType {
@@ -10,6 +10,7 @@ export enum EditorWindowActionType {
   ChangeSelectedObject = "editorWindow/changeSelectedObject",
   OpenObjectsWindow = "editorWindow/openObjectsWindow",
   CloseObjectsWindow = "editorWindow/closeObjectsWindow",
+  PlaceObject = "editorWindow/placeObject",
   ZoomIn = "editorWindow/zoomIn",
   ZoomOut = "editorWindow/zoomOut",
 }
@@ -23,6 +24,7 @@ export type EditorWindowAction =
   ChangeSelectedObjectAction |
   OpenObjectsWindowAction |
   CloseObjectsWindowAction |
+  PlaceObjectAction |
   ZoomInAction |
   ZoomOutAction;
 
@@ -102,6 +104,18 @@ export interface CloseObjectsWindowAction {
 
 export const closeObjectsWindow = (): CloseObjectsWindowAction => ({
   type: EditorWindowActionType.CloseObjectsWindow,
+});
+
+export interface PlaceObjectAction {
+  readonly type: EditorWindowActionType.PlaceObject;
+  readonly point: MapPoint;
+  readonly object: MapObject;
+}
+
+export const placeObject = (point: MapPoint, object: MapObject): PlaceObjectAction => ({
+  object,
+  point,
+  type: EditorWindowActionType.PlaceObject,
 });
 
 export interface ZoomInAction {

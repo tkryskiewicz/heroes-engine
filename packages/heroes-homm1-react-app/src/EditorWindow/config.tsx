@@ -1,94 +1,13 @@
-import * as React from "react";
-
 import {
   GameData,
   isArtifactMapObjectData,
   isCreatureMapObjectData,
-  MapObject as CoreMapObject,
-  MapObjectData,
 } from "heroes-core";
 import {
   EditorObjectType,
-  isMineMapObject,
-  isMineMapObjectData,
   isResourceMapObject,
-  isVariantMapObjectData,
   MapObjectId,
 } from "heroes-homm1";
-import {
-  ArtifactMapObject,
-  CreatureMapObject,
-  MapObject,
-  MineMapObject,
-  ResourceMapObject,
-} from "heroes-homm1-react";
-
-export const renderObject = (
-  object: CoreMapObject,
-  objectData: MapObjectData,
-  terrain: string | undefined,
-  data: GameData,
-): React.ReactNode => {
-  // FIXME: ??
-  const variant = terrain && isVariantMapObjectData(objectData) ?
-    objectData.variants[terrain] :
-    "";
-
-  if (isResourceMapObject(object, data)) {
-    return (
-      <ResourceMapObject
-        size="small"
-        resource={objectData.id}
-      />
-    );
-  }
-
-  if (isCreatureMapObjectData(objectData)) {
-    return (
-      <CreatureMapObject
-        size="small"
-        creature={objectData.creature}
-      />
-    );
-  }
-
-  if (isArtifactMapObjectData(objectData)) {
-    return (
-      <ArtifactMapObject
-        size="small"
-        artifact={objectData.artifact}
-      />
-    );
-  }
-
-  if (objectData.id === MapObjectId.RandomTown || objectData.id === MapObjectId.RandomCastle) {
-    return (
-      <MapObject
-        size="small"
-        type="random-town"
-        variant={objectData.id === MapObjectId.RandomCastle ? "castle" : "town"}
-      />
-    );
-  }
-
-  if (isMineMapObjectData(objectData, data) && isMineMapObject(object, data)) {
-    return (
-      <MineMapObject
-        size="small"
-        resource={objectData.resourceGenerator.resource}
-        variant={variant}
-      />
-    );
-  }
-
-  return (
-    <MapObject
-      size="small"
-      type={objectData.id}
-      variant={variant}
-    />
-  );
-};
 
 export const getObjects = (type: EditorObjectType, data: GameData): string[] => {
   const mountainObjects = [

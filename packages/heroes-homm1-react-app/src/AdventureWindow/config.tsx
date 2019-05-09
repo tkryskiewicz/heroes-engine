@@ -5,11 +5,9 @@ import {
   GameData,
   getVisitor,
   isArtifactMapObjectData,
-  isCreatureMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
   isObjectOwnedBy,
-  isStructureBuilt,
   isTreasureMapObject,
   MapObject,
   MapObjectData,
@@ -21,22 +19,12 @@ import {
   isMineMapObjectData,
   isObeliskMapObject,
   isObeliskMapObjectData,
-  isResourceMapObject,
   isTownMapObject,
-  isVariantMapObjectData,
-  StructureId,
 } from "heroes-homm1";
 import {
-  ArtifactMapObject,
   CreatureJoinPrompt,
-  CreatureMapObject,
   DwellingEmptyPrompt,
-  HeroMapObject,
-  MapObject as MapObj,
-  MineMapObject,
   ObeliskAlreadyVisitedPrompt,
-  ResourceMapObject,
-  TownMapObject,
   VisitMinePrompt,
   VisitObeliskPrompt,
 } from "heroes-homm1-react";
@@ -47,83 +35,6 @@ import {
   statusWindowActions,
   StatusWindowOption,
 } from "heroes-homm1-state";
-
-export const renderMapObject = (object: MapObject, objectData: MapObjectData, terrain: string, data: GameData) => {
-  // FIXME: ??
-  const variant = isVariantMapObjectData(objectData) ?
-    objectData.variants[terrain] :
-    "";
-
-  if (isHeroMapObject(object)) {
-    return (
-      <HeroMapObject
-        heroClass={object.heroClass}
-        alignment={object.owner}
-        orientation={object.orientation}
-      />
-    );
-  }
-
-  if (isTownMapObject(object)) {
-    return (
-      <TownMapObject
-        size="large"
-        town={object.id}
-        isCastleBuilt={isStructureBuilt(object, StructureId.Castle)}
-        alignment={object.owner}
-      />
-    );
-  }
-
-  if (isCreatureMapObjectData(objectData)) {
-    return (
-      <CreatureMapObject
-        size="large"
-        creature={objectData.creature}
-      />
-    );
-  }
-
-  if (isResourceMapObject(object, data)) {
-    // TODO: handle multiple resources or refactor data to be only one resource
-    const resource = Object.keys(object.treasure)[0];
-
-    return (
-      <ResourceMapObject
-        size="large"
-        resource={resource}
-      />
-    );
-  }
-
-  if (isMineMapObject(object, data) && isMineMapObjectData(objectData, data)) {
-    return (
-      <MineMapObject
-        size="large"
-        resource={objectData.resourceGenerator.resource}
-        variant={variant}
-        alignment={object.owner}
-      />
-    );
-  }
-
-  if (isArtifactMapObjectData(objectData)) {
-    return (
-      <ArtifactMapObject
-        size="large"
-        artifact={objectData.artifact}
-      />
-    );
-  }
-
-  return (
-    <MapObj
-      size="large"
-      type={object.dataId}
-      variant={variant}
-    />
-  );
-};
 
 export const renderMapObjectDetails = (
   object: MapObject,

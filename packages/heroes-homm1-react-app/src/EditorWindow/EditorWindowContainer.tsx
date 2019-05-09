@@ -28,7 +28,8 @@ import {
   TerrainsOptionDetails,
 } from "heroes-homm1-react";
 
-import { getObjects, renderObject } from "./config";
+import { renderObject } from "../config";
+import { getObjects } from "./config";
 
 interface EditorWindowContainerProps {
   readonly data: GameData;
@@ -48,6 +49,7 @@ interface EditorWindowContainerProps {
   readonly objectsWindowVisible: boolean;
   readonly onOpenObjectsWindowClick: () => void;
   readonly onCloseObjectsWindowClick: () => void;
+  readonly onPlaceObjectClick: (point: MapPoint, object: MapObject) => void;
 
   readonly onEraseTypesClick: () => void;
 
@@ -66,6 +68,7 @@ interface EditorWindowContainerProps {
 interface EditorWindowContainerState {
   readonly x?: number;
   readonly y?: number;
+  readonly message: string;
 }
 
 type DefaultProp =
@@ -78,6 +81,7 @@ type DefaultProp =
   "onSelectedObjectChange" |
   "onOpenObjectsWindowClick" |
   "onCloseObjectsWindowClick" |
+  "onPlaceObjectClick" |
 
   "onEraseTypesClick" |
   "onZoomInClick" |
@@ -99,6 +103,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     onLoadClick: () => undefined,
     onNewClick: () => undefined,
     onOpenObjectsWindowClick: () => undefined,
+    onPlaceObjectClick: () => undefined,
     onQuitClick: () => undefined,
     onRandomClick: () => undefined,
     onSaveClick: () => undefined,
@@ -112,7 +117,9 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     onZoomOutClick: () => undefined,
   };
 
-  public readonly state: EditorWindowContainerState = {};
+  public readonly state: EditorWindowContainerState = {
+    message: "",
+  };
 
   public componentDidUpdate(prevProps: EditorWindowContainerProps) {
     if (this.props.zoomed !== prevProps.zoomed ||
@@ -140,6 +147,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         renderOptions={this.renderOptions}
         renderOptionDetails={this.renderOptionDetails}
         renderButtons={this.renderButtons}
+        message={this.state.message}
       />
     );
   }
@@ -157,7 +165,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly renderTile = (index: number) => {
-    const { map, position } = this.props;
+    const { data, map, position } = this.props;
 
     // FIXME: move some logic to adventure window?
     const windowPoint = getTilePoint(this.getTileCount(), index);
@@ -167,17 +175,25 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       y: position.y + windowPoint.y,
     });
 
+    const size = this.props.zoomed ? "large" : "small";
+
     const tile = map.tiles[tileIndex];
+
+    const object = tile.object ?
+      renderObject(tile.object, data.mapObjects[tile.object.dataId], tile.terrain, data, size) :
+      undefined;
 
     return (
       <MapTile
         key={index}
         index={tileIndex}
-        size={this.props.zoomed ? "large" : "small"}
+        size={size}
         terrainType={tile.terrain}
         onMouseEnter={this.onTileMouseEnter}
         onClick={this.onTileClick}
-      />
+      >
+        {object}
+      </MapTile>
     );
   }
 
@@ -190,10 +206,31 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onTileClick = (index: number) => {
+    const { map, selectedOption, selectedObject } = this.props;
+
     const point = getTilePoint(this.props.map.width, index);
 
-    if (this.props.selectedOption === EditorOption.Terrains) {
+    if (selectedOption === EditorOption.Terrains) {
       this.props.onChangeTerrainClick(point, this.props.selectedTerrain);
+    } else if (selectedOption === EditorOption.Objects && selectedObject) {
+      const tile = map.tiles[index];
+
+      if (tile.object) {
+        // FIXME: find better way to clear message
+        this.setState({
+          message: "Invalid Placement",
+        }, () => {
+          setTimeout(() => this.setState({ message: "" }), 1000);
+        });
+      } else {
+        // TODO: create object
+        const object: MapObject = {
+          dataId: selectedObject,
+          id: "test",
+        };
+
+        this.props.onPlaceObjectClick(point, object);
+      }
     }
   }
 
@@ -375,7 +412,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         height={objectData.height}
         grid={objectData.grid}
       >
-        {renderObject(obj, objectData, terrain, data)}
+        {renderObject(obj, objectData, terrain, data, "small")}
       </EditorObjectGrid>
     );
   }
