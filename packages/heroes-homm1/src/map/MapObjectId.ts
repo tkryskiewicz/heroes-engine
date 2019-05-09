@@ -66,6 +66,7 @@ export enum MapObjectId {
   Signpost = "signpost",
   Statue = "statue",
   TravelGate = "travel-gate",
+  TravelGate2 = "travel-gate-2",
   TreeStump = "tree-stump",
   WagonCamp = "wagon-camp",
   Waterwheel = "waterwheel",

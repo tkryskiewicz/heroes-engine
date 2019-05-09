@@ -21,7 +21,12 @@ export {
   ResourceMapObject,
   ResourceMapObjectData,
   isResourceMapObject,
+  isResourceMapObjectData,
 } from "./ResourceMapObject";
+export {
+  TerrainRestrictedMapObjectData,
+  isTerrainRestrictedMapObjectData,
+} from "./TerrainRestrictedMapObject";
 export {
   TownMapObject,
   TownMapObjectData,

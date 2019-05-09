@@ -102,7 +102,7 @@ const CommonStructures: string[] = [
 ];
 
 export const isCommonStructure = (structure: string) =>
-  CommonStructures.indexOf(structure) !== -1;
+  CommonStructures.includes(structure);
 
 export const commonStructures: StructureType[] = [
   {

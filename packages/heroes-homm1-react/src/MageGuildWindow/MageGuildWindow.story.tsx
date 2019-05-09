@@ -24,7 +24,7 @@ const availableSpells: string[] = [
 ];
 
 const spells: MageGuildWindowProps["spells"] = allSpells
-  .filter((s) => availableSpells.indexOf(s.id) !== -1)
+  .filter((s) => availableSpells.includes(s.id))
   .map((s) => ({
     id: s.id,
     level: s.level,

@@ -10,7 +10,14 @@ import {
   MapObjectOrientation,
   MapPoint,
 } from "heroes-core";
-import { EditorObjectType, EditorOption, nextObjectType, previousObjectType, TerrainType } from "heroes-homm1";
+import {
+  EditorObjectType,
+  EditorOption,
+  isTerrainRestrictedMapObjectData,
+  nextObjectType,
+  previousObjectType,
+  TerrainType,
+} from "heroes-homm1";
 import {
   AdventureWindow,
   CellNumbers,
@@ -206,7 +213,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onTileClick = (index: number) => {
-    const { map, selectedOption, selectedObject } = this.props;
+    const { data, map, selectedOption, selectedObject } = this.props;
 
     const point = getTilePoint(this.props.map.width, index);
 
@@ -215,7 +222,12 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     } else if (selectedOption === EditorOption.Objects && selectedObject) {
       const tile = map.tiles[index];
 
-      if (tile.object) {
+      const objectData = data.mapObjects[selectedObject];
+
+      const invalidTerrain = isTerrainRestrictedMapObjectData(objectData) &&
+        !objectData.restrictedTerrains.includes(tile.terrain);
+
+      if (tile.object || invalidTerrain) {
         // FIXME: find better way to clear message
         this.setState({
           message: "Invalid Placement",
