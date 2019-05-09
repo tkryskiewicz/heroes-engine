@@ -20,39 +20,7 @@ const mountainObjects = [
   MapObjectId.Mountain4,
 ];
 
-const grassMountainObjects = [
-  MapObjectId.Mountain9,
-  MapObjectId.Mountain10,
-  MapObjectId.Mountain11,
-  MapObjectId.Mountain12,
-  MapObjectId.Mountain21,
-  MapObjectId.Mountain22,
-  MapObjectId.Mountain23,
-  MapObjectId.Mountain24,
-];
-
-const snowMountainObjects = [
-  MapObjectId.Mountain21,
-  MapObjectId.Mountain22,
-  MapObjectId.Mountain23,
-  MapObjectId.Mountain24,
-];
-
-const swampMountainObjects = [
-  MapObjectId.Mountain17,
-  MapObjectId.Mountain18,
-  MapObjectId.Mountain19,
-  MapObjectId.Mountain20,
-];
-
-const desertMountainObjects = [
-  MapObjectId.Mountain13,
-  MapObjectId.Mountain14,
-  MapObjectId.Mountain15,
-  MapObjectId.Mountain16,
-];
-
-const dirtMountainObjects = [
+const terrainMountainObjects = [
   MapObjectId.Mountain5,
   MapObjectId.Mountain6,
   MapObjectId.Mountain7,
@@ -134,11 +102,7 @@ const riverObjects = [
 
 const objectOrder: string[] = [
   ...mountainObjects,
-  ...grassMountainObjects,
-  ...snowMountainObjects,
-  ...swampMountainObjects,
-  ...desertMountainObjects,
-  ...dirtMountainObjects,
+  ...terrainMountainObjects,
   ...treesObjects,
   ...snowTreesObjects,
   ...desertTreesObjects,

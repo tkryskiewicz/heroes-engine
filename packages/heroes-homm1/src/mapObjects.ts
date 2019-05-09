@@ -1677,6 +1677,9 @@ const mountainObjects: TerrainRestrictedMapObjectData[] = [
     restrictedTerrains: nonWaterTerrains,
     width: 3,
   },
+];
+
+const terrainMountainObjects: Array<TerrainRestrictedMapObjectData & VariantMapObjectData> = [
   {
     grid: [
       true, true, undefined,
@@ -1686,8 +1689,19 @@ const mountainObjects: TerrainRestrictedMapObjectData[] = [
     height: 3,
     id: MapObjectId.Mountain5,
     restrictedTerrains: [
+      TerrainType.Grass,
+      TerrainType.Snow,
+      TerrainType.Swamp,
+      TerrainType.Desert,
       TerrainType.Dirt,
     ],
+    variants: {
+      [TerrainType.Grass]: "grass",
+      [TerrainType.Snow]: "snow",
+      [TerrainType.Swamp]: "swamp",
+      [TerrainType.Desert]: "desert",
+      [TerrainType.Dirt]: "dirt",
+    },
     width: 3,
   },
   {
@@ -1698,8 +1712,19 @@ const mountainObjects: TerrainRestrictedMapObjectData[] = [
     height: 2,
     id: MapObjectId.Mountain6,
     restrictedTerrains: [
+      TerrainType.Grass,
+      TerrainType.Snow,
+      TerrainType.Swamp,
+      TerrainType.Desert,
       TerrainType.Dirt,
     ],
+    variants: {
+      [TerrainType.Grass]: "grass",
+      [TerrainType.Snow]: "snow",
+      [TerrainType.Swamp]: "swamp",
+      [TerrainType.Desert]: "desert",
+      [TerrainType.Dirt]: "dirt",
+    },
     width: 3,
   },
   {
@@ -1711,8 +1736,19 @@ const mountainObjects: TerrainRestrictedMapObjectData[] = [
     height: 3,
     id: MapObjectId.Mountain7,
     restrictedTerrains: [
+      TerrainType.Grass,
+      TerrainType.Snow,
+      TerrainType.Swamp,
+      TerrainType.Desert,
       TerrainType.Dirt,
     ],
+    variants: {
+      [TerrainType.Grass]: "grass",
+      [TerrainType.Snow]: "snow",
+      [TerrainType.Swamp]: "swamp",
+      [TerrainType.Desert]: "desert",
+      [TerrainType.Dirt]: "dirt",
+    },
     width: 3,
   },
   {
@@ -1723,208 +1759,19 @@ const mountainObjects: TerrainRestrictedMapObjectData[] = [
     height: 2,
     id: MapObjectId.Mountain8,
     restrictedTerrains: [
+      TerrainType.Grass,
+      TerrainType.Snow,
+      TerrainType.Swamp,
+      TerrainType.Desert,
       TerrainType.Dirt,
     ],
-    width: 3,
-  },
-  {
-    grid: [
-      true, true, undefined,
-      false, true, true,
-      undefined, false, false,
-    ],
-    height: 3,
-    id: MapObjectId.Mountain9,
-    restrictedTerrains: [
-      TerrainType.Grass,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      true, true, undefined,
-      undefined, false, false,
-    ],
-    height: 2,
-    id: MapObjectId.Mountain10,
-    restrictedTerrains: [
-      TerrainType.Grass,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      undefined, true, true,
-      true, true, false,
-      false, false, undefined,
-    ],
-    height: 3,
-    id: MapObjectId.Mountain11,
-    restrictedTerrains: [
-      TerrainType.Grass,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      undefined, true, true,
-      false, false, undefined,
-    ],
-    height: 2,
-    id: MapObjectId.Mountain12,
-    restrictedTerrains: [
-      TerrainType.Grass,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      true, true, undefined,
-      false, true, true,
-      undefined, false, false,
-    ],
-    height: 3,
-    id: MapObjectId.Mountain13,
-    restrictedTerrains: [
-      TerrainType.Desert,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      true, true, undefined,
-      undefined, false, false,
-    ],
-    height: 2,
-    id: MapObjectId.Mountain14,
-    restrictedTerrains: [
-      TerrainType.Desert,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      undefined, true, true,
-      true, true, false,
-      false, false, undefined,
-    ],
-    height: 3,
-    id: MapObjectId.Mountain15,
-    restrictedTerrains: [
-      TerrainType.Desert,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      undefined, true, true,
-      false, false, undefined,
-    ],
-    height: 2,
-    id: MapObjectId.Mountain16,
-    restrictedTerrains: [
-      TerrainType.Desert,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      true, true, undefined,
-      false, true, true,
-      undefined, false, false,
-    ],
-    height: 3,
-    id: MapObjectId.Mountain17,
-    restrictedTerrains: [
-      TerrainType.Swamp,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      true, true, undefined,
-      undefined, false, false,
-    ],
-    height: 2,
-    id: MapObjectId.Mountain18,
-    restrictedTerrains: [
-      TerrainType.Swamp,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      undefined, true, true,
-      true, true, false,
-      false, false, undefined,
-    ],
-    height: 3,
-    id: MapObjectId.Mountain19,
-    restrictedTerrains: [
-      TerrainType.Swamp,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      undefined, true, true,
-      false, false, undefined,
-    ],
-    height: 2,
-    id: MapObjectId.Mountain20,
-    restrictedTerrains: [
-      TerrainType.Swamp,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      true, true, undefined,
-      false, true, true,
-      undefined, false, false,
-    ],
-    height: 3,
-    id: MapObjectId.Mountain21,
-    restrictedTerrains: [
-      TerrainType.Snow,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      true, true, undefined,
-      undefined, false, false,
-    ],
-    height: 2,
-    id: MapObjectId.Mountain22,
-    restrictedTerrains: [
-      TerrainType.Snow,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      undefined, true, true,
-      true, true, false,
-      false, false, undefined,
-    ],
-    height: 3,
-    id: MapObjectId.Mountain23,
-    restrictedTerrains: [
-      TerrainType.Snow,
-    ],
-    width: 3,
-  },
-  {
-    grid: [
-      undefined, true, true,
-      false, false, undefined,
-    ],
-    height: 2,
-    id: MapObjectId.Mountain24,
-    restrictedTerrains: [
-      TerrainType.Snow,
-    ],
+    variants: {
+      [TerrainType.Grass]: "grass",
+      [TerrainType.Snow]: "snow",
+      [TerrainType.Swamp]: "swamp",
+      [TerrainType.Desert]: "desert",
+      [TerrainType.Dirt]: "dirt",
+    },
     width: 3,
   },
 ];
@@ -2267,5 +2114,6 @@ export const mapObjects: MapObjectData[] = [
   ...desertObjects,
   ...dirtObjects,
   ...mountainObjects,
+  ...terrainMountainObjects,
   ...treesObjects,
 ];
