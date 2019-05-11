@@ -4,6 +4,7 @@ export {
   createHeroMapObject,
   isHeroMapObject,
 } from "./HeroMapObject";
+export * from "./map";
 export { MapObjectId } from "./MapObjectId";
 export {
   MineMapObject,

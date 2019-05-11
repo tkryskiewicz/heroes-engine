@@ -50,6 +50,7 @@ export {
   getTilePoint,
   changeTerrain,
   getObject,
+  canPlaceObject,
   placeObject,
   moveObject,
   removeObject,

@@ -1,4 +1,6 @@
-import { MapObject } from "./MapObject";
+// tslint:disable: no-loop-statement
+
+import { MapObject, MapObjectData } from "./MapObject";
 import { MapPoint } from "./MapPoint";
 import { MapTile } from "./MapTile";
 
@@ -58,6 +60,61 @@ export const changeTerrain = (map: Map, point: MapPoint, terrain: string): Map =
       t,
     ),
   };
+};
+
+export const isPointTaken = (map: Map, point: MapPoint): boolean =>
+  map.tiles[getTileIndex(map.width, point)].object !== undefined;
+
+export const canPlaceObject = (
+  map: Map,
+  point: MapPoint,
+  objectData: MapObjectData,
+  data: import("../Game").GameData,
+): boolean => {
+  if (isPointTaken(map, point)) {
+    return false;
+  }
+
+  // FIXME
+  const TileFree = false;
+  const TileTaken = true;
+
+  // TODO: reduce size
+  const obstacleMap = new Array<boolean>(map.width * map.height).fill(TileFree);
+
+  for (let y = 0; y < map.height; y++) {
+    for (let x = 0; x < map.width; x++) {
+      const tile = map.tiles[getTileIndex(map.width, { x, y })];
+
+      if (tile.object) {
+        const obj = tile.object;
+
+        const objData = data.mapObjects[obj.dataId];
+
+        for (let h = 0; h < objData.height; h++) {
+          for (let w = 0; w < objData.width; w++) {
+            obstacleMap[getTileIndex(map.width, { x: x + w, y: y - h })] =
+              objData.grid[getTileIndex(objData.width, { x: w, y: h })] === TileTaken ?
+                TileTaken :
+                TileFree;
+          }
+        }
+      }
+    }
+  }
+
+  for (let h = 0; h < objectData.height; h++) {
+    for (let w = 0; w < objectData.width; w++) {
+      const objectTile = objectData.grid[getTileIndex(objectData.width, { x: w, y: h })];
+      const mapTile = obstacleMap[getTileIndex(map.width, { x: point.x + w, y: point.y - h })];
+
+      if (objectTile === TileTaken && mapTile === TileTaken) {
+        return false;
+      }
+    }
+  }
+
+  return true;
 };
 
 export const placeObject = (map: Map, point: MapPoint, object: MapObject): Map => {

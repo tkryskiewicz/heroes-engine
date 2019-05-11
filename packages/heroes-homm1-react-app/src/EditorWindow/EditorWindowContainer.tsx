@@ -1,4 +1,5 @@
 import * as React from "react";
+import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import {
   GameData,
@@ -11,9 +12,9 @@ import {
   MapPoint,
 } from "heroes-core";
 import {
+  canPlaceObject,
   EditorObjectType,
   EditorOption,
-  isTerrainRestrictedMapObjectData,
   nextObjectType,
   previousObjectType,
   TerrainType,
@@ -29,6 +30,7 @@ import {
   EditorOptions,
   EditorVerticalScrollbar,
   EditorWindow,
+  editorWindowMessages,
   EraseOptionDetails,
   MapTile,
   ObjectsOptionDetails,
@@ -38,7 +40,7 @@ import {
 import { renderObject } from "../config";
 import { getObjects } from "./config";
 
-interface EditorWindowContainerProps {
+interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly data: GameData;
   readonly map: Map;
   readonly position: MapPoint;
@@ -214,23 +216,19 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
 
   private readonly onTileClick = (index: number) => {
     const { data, map, selectedOption, selectedObject } = this.props;
+    const { formatMessage } = this.props.intl;
 
     const point = getTilePoint(this.props.map.width, index);
 
     if (selectedOption === EditorOption.Terrains) {
       this.props.onChangeTerrainClick(point, this.props.selectedTerrain);
     } else if (selectedOption === EditorOption.Objects && selectedObject) {
-      const tile = map.tiles[index];
-
       const objectData = data.mapObjects[selectedObject];
 
-      const invalidTerrain = isTerrainRestrictedMapObjectData(objectData) &&
-        !objectData.restrictedTerrains.includes(tile.terrain);
-
-      if (tile.object || invalidTerrain) {
+      if (!canPlaceObject(map, point, objectData, data)) {
         // FIXME: find better way to clear message
         this.setState({
-          message: "Invalid Placement",
+          message: formatMessage(editorWindowMessages.invalidPlacement),
         }, () => {
           setTimeout(() => this.setState({ message: "" }), 1000);
         });
@@ -517,7 +515,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 }
 
+const ContainerWrapped = injectIntl(EditorWindowContainer);
+
+type ContainerWrappedProps = ExtractProps<typeof ContainerWrapped>;
+
 export {
-  EditorWindowContainer as EditorWindow,
-  EditorWindowContainerProps as EditorWindowProps,
+  ContainerWrapped as EditorWindow,
+  ContainerWrappedProps as EditorWindowProps,
 };
