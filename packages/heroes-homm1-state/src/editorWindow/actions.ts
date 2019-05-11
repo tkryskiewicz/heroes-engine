@@ -11,6 +11,8 @@ export enum EditorWindowActionType {
   OpenObjectsWindow = "editorWindow/openObjectsWindow",
   CloseObjectsWindow = "editorWindow/closeObjectsWindow",
   PlaceObject = "editorWindow/placeObject",
+  OpenObjectDetailsUnavailablePrompt = "editorWindow/openObjectDetailsUnavailablePrompt",
+  CloseObjectDetailsUnavailablePrompt = "editorWindow/closeObjectDetailsUnavailablePrompt",
   ZoomIn = "editorWindow/zoomIn",
   ZoomOut = "editorWindow/zoomOut",
 }
@@ -25,6 +27,8 @@ export type EditorWindowAction =
   OpenObjectsWindowAction |
   CloseObjectsWindowAction |
   PlaceObjectAction |
+  OpenObjectDetailsUnavailablePromptAction |
+  CloseObjectDetailsUnavailablePromptAction |
   ZoomInAction |
   ZoomOutAction;
 
@@ -116,6 +120,22 @@ export const placeObject = (point: MapPoint, object: MapObject): PlaceObjectActi
   object,
   point,
   type: EditorWindowActionType.PlaceObject,
+});
+
+export interface OpenObjectDetailsUnavailablePromptAction {
+  readonly type: EditorWindowActionType.OpenObjectDetailsUnavailablePrompt;
+}
+
+export const openObjectDetailsUnavailablePrompt = (): OpenObjectDetailsUnavailablePromptAction => ({
+  type: EditorWindowActionType.OpenObjectDetailsUnavailablePrompt,
+});
+
+export interface CloseObjectDetailsUnavailablePromptAction {
+  readonly type: EditorWindowActionType.CloseObjectDetailsUnavailablePrompt;
+}
+
+export const closeObjectDetailsUnavailablePrompt = (): CloseObjectDetailsUnavailablePromptAction => ({
+  type: EditorWindowActionType.CloseObjectDetailsUnavailablePrompt,
 });
 
 export interface ZoomInAction {

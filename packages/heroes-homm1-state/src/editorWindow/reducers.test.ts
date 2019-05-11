@@ -8,7 +8,9 @@ import {
   changeSelectedOption,
   changeSelectedTerrain,
   changeTerrain,
+  closeObjectDetailsUnavailablePrompt,
   closeObjectsWindow,
+  openObjectDetailsUnavailablePrompt,
   openObjectsWindow,
   zoomIn,
   zoomOut,
@@ -22,6 +24,7 @@ describe("editorWindowReducer", () => {
 
     const expected: EditorWindowState = {
       map: createMap(50, 50, TerrainType.Water),
+      objectDetailsUnavailablePromptVisible: false,
       objectsWindowVisible: false,
       position: {
         x: 0,
@@ -39,6 +42,7 @@ describe("editorWindowReducer", () => {
   it("should handle changing posiition", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectDetailsUnavailablePromptVisible: false,
       objectsWindowVisible: false,
       position: {
         x: 0,
@@ -68,6 +72,7 @@ describe("editorWindowReducer", () => {
   it("should handle changing selected option", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectDetailsUnavailablePromptVisible: false,
       objectsWindowVisible: false,
       position: {
         x: 0,
@@ -92,6 +97,7 @@ describe("editorWindowReducer", () => {
   it("should handle changing selected terrain", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectDetailsUnavailablePromptVisible: false,
       objectsWindowVisible: false,
       position: {
         x: 0,
@@ -116,6 +122,7 @@ describe("editorWindowReducer", () => {
   it("should handle changing terrain", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectDetailsUnavailablePromptVisible: false,
       objectsWindowVisible: false,
       position: {
         x: 0,
@@ -147,6 +154,7 @@ describe("editorWindowReducer", () => {
   it("should handle changing selected object type", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectDetailsUnavailablePromptVisible: false,
       objectsWindowVisible: false,
       position: {
         x: 0,
@@ -171,6 +179,7 @@ describe("editorWindowReducer", () => {
   it("should handle changing selected object", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectDetailsUnavailablePromptVisible: false,
       objectsWindowVisible: false,
       position: {
         x: 0,
@@ -195,6 +204,7 @@ describe("editorWindowReducer", () => {
   it("should handle opening objects window", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectDetailsUnavailablePromptVisible: false,
       objectsWindowVisible: false,
       position: {
         x: 0,
@@ -219,6 +229,7 @@ describe("editorWindowReducer", () => {
   it("should handle closing objects window", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectDetailsUnavailablePromptVisible: false,
       objectsWindowVisible: true,
       position: {
         x: 0,
@@ -240,9 +251,60 @@ describe("editorWindowReducer", () => {
     expect(result).toEqual(expected);
   });
 
+  it("should handle opening object details unavailable prompt", () => {
+    const state: EditorWindowState = {
+      map: createMap(1, 1, "terrain"),
+      objectDetailsUnavailablePromptVisible: false,
+      objectsWindowVisible: false,
+      position: {
+        x: 0,
+        y: 0,
+      },
+      selectedObjectType: EditorObjectType.WaterObjects,
+      selectedOption: EditorOption.Details,
+      selectedTerrain: "terrain",
+      zoomed: false,
+    };
+
+    const result = editorWindowReducer(state, openObjectDetailsUnavailablePrompt());
+
+    const expected: EditorWindowState = {
+      ...state,
+      objectDetailsUnavailablePromptVisible: true,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle closing object details unavailable prompt", () => {
+    const state: EditorWindowState = {
+      map: createMap(1, 1, "terrain"),
+      objectDetailsUnavailablePromptVisible: true,
+      objectsWindowVisible: false,
+      position: {
+        x: 0,
+        y: 0,
+      },
+      selectedObjectType: EditorObjectType.WaterObjects,
+      selectedOption: EditorOption.Details,
+      selectedTerrain: "terrain",
+      zoomed: false,
+    };
+
+    const result = editorWindowReducer(state, closeObjectDetailsUnavailablePrompt());
+
+    const expected: EditorWindowState = {
+      ...state,
+      objectDetailsUnavailablePromptVisible: false,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
   it("should handle zooming in", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectDetailsUnavailablePromptVisible: false,
       objectsWindowVisible: false,
       position: {
         x: 0,
@@ -267,6 +329,7 @@ describe("editorWindowReducer", () => {
   it("should handle zooming out", () => {
     const state: EditorWindowState = {
       map: createMap(1, 1, "terrain"),
+      objectDetailsUnavailablePromptVisible: false,
       objectsWindowVisible: false,
       position: {
         x: 0,

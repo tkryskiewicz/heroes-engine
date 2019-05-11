@@ -33,6 +33,7 @@ import {
   editorWindowMessages,
   EraseOptionDetails,
   MapTile,
+  ObjectDetailsUnavailablePrompt,
   ObjectsOptionDetails,
   TerrainsOptionDetails,
 } from "heroes-homm1-react";
@@ -59,6 +60,10 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly onOpenObjectsWindowClick: () => void;
   readonly onCloseObjectsWindowClick: () => void;
   readonly onPlaceObjectClick: (point: MapPoint, object: MapObject) => void;
+
+  readonly objectDetailsUnavailablePromptVisible: boolean;
+  readonly onOpenObjectDetailsUnavailablePromptClick: () => void;
+  readonly onCloseObjectDetailsUnavailablePromptClick: () => void;
 
   readonly onEraseTypesClick: () => void;
 
@@ -92,6 +97,10 @@ type DefaultProp =
   "onCloseObjectsWindowClick" |
   "onPlaceObjectClick" |
 
+  "objectDetailsUnavailablePromptVisible" |
+  "onOpenObjectDetailsUnavailablePromptClick" |
+  "onCloseObjectDetailsUnavailablePromptClick" |
+
   "onEraseTypesClick" |
   "onZoomInClick" |
   "onZoomOutClick" |
@@ -105,12 +114,15 @@ type DefaultProp =
 
 class EditorWindowContainer extends React.Component<EditorWindowContainerProps, EditorWindowContainerState> {
   public static readonly defaultProps: Pick<EditorWindowContainerProps, DefaultProp> = {
+    objectDetailsUnavailablePromptVisible: false,
     onChangePosition: () => undefined,
     onChangeTerrainClick: () => undefined,
+    onCloseObjectDetailsUnavailablePromptClick: () => undefined,
     onCloseObjectsWindowClick: () => undefined,
     onEraseTypesClick: () => undefined,
     onLoadClick: () => undefined,
     onNewClick: () => undefined,
+    onOpenObjectDetailsUnavailablePromptClick: () => undefined,
     onOpenObjectsWindowClick: () => undefined,
     onPlaceObjectClick: () => undefined,
     onQuitClick: () => undefined,
@@ -143,20 +155,32 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
 
   public render() {
     return (
-      <EditorWindow
-        renderAdventureWindow={this.renderAdventureWindow}
-        onScrollTopLeft={this.onScrollNorthWest}
-        onScrollTopRight={this.onScrollNorthEast}
-        onScrollBottomLeft={this.onScrollSouthWest}
-        onScrollBottomRight={this.onScrollSouthEast}
-        renderVerticalCellNumbers={this.renderVerticalCellNumbers}
-        renderHorizontalCellNumbers={this.renderHorizontalCellNumbers}
-        renderHorizontalScrollbar={this.renderHorizontalScrollbar}
-        renderVerticalScrollbar={this.renderVerticalScrollbar}
-        renderOptions={this.renderOptions}
-        renderOptionDetails={this.renderOptionDetails}
-        renderButtons={this.renderButtons}
-        message={this.state.message}
+      <>
+        <EditorWindow
+          renderAdventureWindow={this.renderAdventureWindow}
+          onScrollTopLeft={this.onScrollNorthWest}
+          onScrollTopRight={this.onScrollNorthEast}
+          onScrollBottomLeft={this.onScrollSouthWest}
+          onScrollBottomRight={this.onScrollSouthEast}
+          renderVerticalCellNumbers={this.renderVerticalCellNumbers}
+          renderHorizontalCellNumbers={this.renderHorizontalCellNumbers}
+          renderHorizontalScrollbar={this.renderHorizontalScrollbar}
+          renderVerticalScrollbar={this.renderVerticalScrollbar}
+          renderOptions={this.renderOptions}
+          renderOptionDetails={this.renderOptionDetails}
+          renderButtons={this.renderButtons}
+          message={this.state.message}
+        />
+        {this.props.objectDetailsUnavailablePromptVisible && this.renderObjectDetailsUnavailablePrompt()}
+      </>
+    );
+  }
+
+  private renderObjectDetailsUnavailablePrompt() {
+    return (
+      <ObjectDetailsUnavailablePrompt
+        visible={true}
+        onConfirmClick={this.props.onCloseObjectDetailsUnavailablePromptClick}
       />
     );
   }
@@ -241,6 +265,8 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
 
         this.props.onPlaceObjectClick(point, object);
       }
+    } else if (selectedOption === EditorOption.Details) {
+      this.props.onOpenObjectDetailsUnavailablePromptClick();
     }
   }
 

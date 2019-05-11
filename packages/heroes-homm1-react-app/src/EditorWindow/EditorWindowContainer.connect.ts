@@ -14,11 +14,13 @@ type StateProp =
   "selectedObjectType" |
   "selectedObject" |
   "objectsWindowVisible" |
+  "objectDetailsUnavailablePromptVisible" |
   "zoomed";
 
 const mapStateToProps = (state: AppState): Pick<EditorWindowProps, StateProp> => ({
   data: state.game.data,
   map: state.editorWindow.map,
+  objectDetailsUnavailablePromptVisible: state.editorWindow.objectDetailsUnavailablePromptVisible,
   objectsWindowVisible: state.editorWindow.objectsWindowVisible,
   position: state.editorWindow.position,
   selectedObject: state.editorWindow.selectedObject,
@@ -38,6 +40,8 @@ type DispatchProp =
   "onOpenObjectsWindowClick" |
   "onCloseObjectsWindowClick" |
   "onPlaceObjectClick" |
+  "onOpenObjectDetailsUnavailablePromptClick" |
+  "onCloseObjectDetailsUnavailablePromptClick" |
   "onZoomInClick" |
   "onZoomOutClick";
 
@@ -72,6 +76,12 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, Dispatc
   },
   onPlaceObjectClick(point, object) {
     dispatch(editorWindowActions.placeObject(point, object));
+  },
+  onOpenObjectDetailsUnavailablePromptClick() {
+    dispatch(editorWindowActions.openObjectDetailsUnavailablePrompt());
+  },
+  onCloseObjectDetailsUnavailablePromptClick() {
+    dispatch(editorWindowActions.closeObjectDetailsUnavailablePrompt());
   },
   onZoomInClick() {
     dispatch(editorWindowActions.zoomIn());

@@ -9,5 +9,6 @@ export interface EditorWindowState {
   readonly selectedObjectType: EditorObjectType;
   readonly selectedObject?: string;
   readonly objectsWindowVisible: boolean;
+  readonly objectDetailsUnavailablePromptVisible: boolean;
   readonly zoomed: boolean;
 }

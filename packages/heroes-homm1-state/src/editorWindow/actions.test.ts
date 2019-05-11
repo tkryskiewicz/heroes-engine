@@ -14,9 +14,13 @@ import {
   ChangeSelectedTerrainAction,
   changeTerrain,
   ChangeTerrainAction,
+  closeObjectDetailsUnavailablePrompt,
+  CloseObjectDetailsUnavailablePromptAction,
   closeObjectsWindow,
   CloseObjectsWindowAction,
   EditorWindowActionType,
+  openObjectDetailsUnavailablePrompt,
+  OpenObjectDetailsUnavailablePromptAction,
   openObjectsWindow,
   OpenObjectsWindowAction,
   zoomIn,
@@ -113,6 +117,26 @@ describe("editorWindowActions", () => {
 
     const expected: CloseObjectsWindowAction = {
       type: EditorWindowActionType.CloseObjectsWindow,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to open object details unavailable prompt", () => {
+    const result = openObjectDetailsUnavailablePrompt();
+
+    const expected: OpenObjectDetailsUnavailablePromptAction = {
+      type: EditorWindowActionType.OpenObjectDetailsUnavailablePrompt,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to close object details unavailable prompt", () => {
+    const result = closeObjectDetailsUnavailablePrompt();
+
+    const expected: CloseObjectDetailsUnavailablePromptAction = {
+      type: EditorWindowActionType.CloseObjectDetailsUnavailablePrompt,
     };
 
     expect(result).toEqual(expected);

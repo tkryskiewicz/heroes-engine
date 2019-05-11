@@ -8,6 +8,7 @@ const map = createMap(50, 50, TerrainType.Water);
 
 const initialState: EditorWindowState = {
   map,
+  objectDetailsUnavailablePromptVisible: false,
   objectsWindowVisible: false,
   position: {
     x: 0,
@@ -68,6 +69,16 @@ export const editorWindowReducer = (
       return {
         ...state,
         map: placeObject(state.map, action.point, action.object),
+      };
+    case EditorWindowActionType.OpenObjectDetailsUnavailablePrompt:
+      return {
+        ...state,
+        objectDetailsUnavailablePromptVisible: true,
+      };
+    case EditorWindowActionType.CloseObjectDetailsUnavailablePrompt:
+      return {
+        ...state,
+        objectDetailsUnavailablePromptVisible: false,
       };
     case EditorWindowActionType.ZoomIn:
       return {
