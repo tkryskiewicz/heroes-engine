@@ -15,10 +15,14 @@ type StateProp =
   "selectedObject" |
   "objectsWindowVisible" |
   "objectDetailsUnavailablePromptVisible" |
+  "eraseObjectsSettings" |
+  "eraseObjectsSettingsVisible" |
   "zoomed";
 
 const mapStateToProps = (state: AppState): Pick<EditorWindowProps, StateProp> => ({
   data: state.game.data,
+  eraseObjectsSettings: state.editorWindow.eraseObjectsSettings,
+  eraseObjectsSettingsVisible: state.editorWindow.eraseObejctsSettingsVisible,
   map: state.editorWindow.map,
   objectDetailsUnavailablePromptVisible: state.editorWindow.objectDetailsUnavailablePromptVisible,
   objectsWindowVisible: state.editorWindow.objectsWindowVisible,
@@ -42,6 +46,9 @@ type DispatchProp =
   "onPlaceObjectClick" |
   "onOpenObjectDetailsUnavailablePromptClick" |
   "onCloseObjectDetailsUnavailablePromptClick" |
+  "onOpenEraseObjectsSettingsClick" |
+  "onCloseEraseObjectsSettingsClick" |
+  "onEraseObjectsSettingsChange" |
   "onZoomInClick" |
   "onZoomOutClick";
 
@@ -82,6 +89,17 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, Dispatc
   },
   onCloseObjectDetailsUnavailablePromptClick() {
     dispatch(editorWindowActions.closeObjectDetailsUnavailablePrompt());
+  },
+  onOpenEraseObjectsSettingsClick() {
+    dispatch(editorWindowActions.openEraseObjectsSettings());
+  },
+  onCloseEraseObjectsSettingsClick() {
+    dispatch(editorWindowActions.closeEraseObjectsSettings());
+  },
+  onEraseObjectsSettingsChange(value) {
+    dispatch(editorWindowActions.changeEraseObjectsSettings(value));
+
+    dispatch(editorWindowActions.closeEraseObjectsSettings());
   },
   onZoomInClick() {
     dispatch(editorWindowActions.zoomIn());

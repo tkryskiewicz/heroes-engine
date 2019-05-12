@@ -1,7 +1,9 @@
 import { MapPoint } from "heroes-core";
-import { EditorObjectType, EditorOption } from "heroes-homm1";
+import { EditorObjectType, EditorOption, EraseObjectsSettings } from "heroes-homm1";
 
 import {
+  changeEraseObjectsSettings,
+  ChangeEraseObjectsSettingsAction,
   changePosition,
   ChangePositionAction,
   changeSelectedObject,
@@ -14,11 +16,15 @@ import {
   ChangeSelectedTerrainAction,
   changeTerrain,
   ChangeTerrainAction,
+  closeEraseObjectsSettings,
+  CloseEraseObjectsSettingsAction,
   closeObjectDetailsUnavailablePrompt,
   CloseObjectDetailsUnavailablePromptAction,
   closeObjectsWindow,
   CloseObjectsWindowAction,
   EditorWindowActionType,
+  openEraseObjectsSettings,
+  OpenEraseObjectsSettingsAction,
   openObjectDetailsUnavailablePrompt,
   OpenObjectDetailsUnavailablePromptAction,
   openObjectsWindow,
@@ -137,6 +143,43 @@ describe("editorWindowActions", () => {
 
     const expected: CloseObjectDetailsUnavailablePromptAction = {
       type: EditorWindowActionType.CloseObjectDetailsUnavailablePrompt,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to open erase objects settings", () => {
+    const result = openEraseObjectsSettings();
+
+    const expected: OpenEraseObjectsSettingsAction = {
+      type: EditorWindowActionType.OpenEraseObjectsSettings,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to close erase objects settings", () => {
+    const result = closeEraseObjectsSettings();
+
+    const expected: CloseEraseObjectsSettingsAction = {
+      type: EditorWindowActionType.CloseEraseObjectsSettings,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to change erase objects settings", () => {
+    const value: EraseObjectsSettings = {
+      allOverlays: false,
+      clearEntire: false,
+      objectTypes: [],
+    };
+
+    const result = changeEraseObjectsSettings(value);
+
+    const expected: ChangeEraseObjectsSettingsAction = {
+      type: EditorWindowActionType.ChangeEraseObjectsSettings,
+      value,
     };
 
     expect(result).toEqual(expected);

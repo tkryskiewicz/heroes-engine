@@ -1,0 +1,38 @@
+.root {
+  width: 448px;
+  height: 448px;
+  padding: 30px;
+  background: #120092;
+}
+
+.setting {
+  margin-bottom: 10px;
+  line-height: 15px;
+}
+
+.basic {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 220px;
+  margin-bottom: 30px;
+  text-align: right;
+
+  & .setting {
+    width: 50%;
+  }
+}
+
+.additional {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.confirm {
+  padding-left: 30px;
+}
+
+.cancel {
+  padding-right: 30px;
+  text-align: right;
+}

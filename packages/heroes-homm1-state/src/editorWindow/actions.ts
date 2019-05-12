@@ -1,5 +1,5 @@
 import { MapObject, MapPoint } from "heroes-core";
-import { EditorObjectType, EditorOption } from "heroes-homm1";
+import { EditorObjectType, EditorOption, EraseObjectsSettings } from "heroes-homm1";
 
 export enum EditorWindowActionType {
   ChangePosition = "editorWindow/changePosition",
@@ -13,6 +13,9 @@ export enum EditorWindowActionType {
   PlaceObject = "editorWindow/placeObject",
   OpenObjectDetailsUnavailablePrompt = "editorWindow/openObjectDetailsUnavailablePrompt",
   CloseObjectDetailsUnavailablePrompt = "editorWindow/closeObjectDetailsUnavailablePrompt",
+  OpenEraseObjectsSettings = "editorWindow/openEraseObjectsSettings",
+  CloseEraseObjectsSettings = "editorWindow/closeEraseObjectsSettings",
+  ChangeEraseObjectsSettings = "editorWindow/changeEraseObjectsSettings",
   ZoomIn = "editorWindow/zoomIn",
   ZoomOut = "editorWindow/zoomOut",
 }
@@ -29,6 +32,9 @@ export type EditorWindowAction =
   PlaceObjectAction |
   OpenObjectDetailsUnavailablePromptAction |
   CloseObjectDetailsUnavailablePromptAction |
+  OpenEraseObjectsSettingsAction |
+  CloseEraseObjectsSettingsAction |
+  ChangeEraseObjectsSettingsAction |
   ZoomInAction |
   ZoomOutAction;
 
@@ -136,6 +142,32 @@ export interface CloseObjectDetailsUnavailablePromptAction {
 
 export const closeObjectDetailsUnavailablePrompt = (): CloseObjectDetailsUnavailablePromptAction => ({
   type: EditorWindowActionType.CloseObjectDetailsUnavailablePrompt,
+});
+
+export interface OpenEraseObjectsSettingsAction {
+  readonly type: EditorWindowActionType.OpenEraseObjectsSettings;
+}
+
+export const openEraseObjectsSettings = (): OpenEraseObjectsSettingsAction => ({
+  type: EditorWindowActionType.OpenEraseObjectsSettings,
+});
+
+export interface CloseEraseObjectsSettingsAction {
+  readonly type: EditorWindowActionType.CloseEraseObjectsSettings;
+}
+
+export const closeEraseObjectsSettings = (): CloseEraseObjectsSettingsAction => ({
+  type: EditorWindowActionType.CloseEraseObjectsSettings,
+});
+
+export interface ChangeEraseObjectsSettingsAction {
+  readonly type: EditorWindowActionType.ChangeEraseObjectsSettings;
+  readonly value: EraseObjectsSettings;
+}
+
+export const changeEraseObjectsSettings = (value: EraseObjectsSettings): ChangeEraseObjectsSettingsAction => ({
+  type: EditorWindowActionType.ChangeEraseObjectsSettings,
+  value,
 });
 
 export interface ZoomInAction {

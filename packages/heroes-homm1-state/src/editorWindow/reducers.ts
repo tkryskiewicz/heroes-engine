@@ -7,6 +7,12 @@ import { EditorWindowState } from "./state";
 const map = createMap(50, 50, TerrainType.Water);
 
 const initialState: EditorWindowState = {
+  eraseObejctsSettingsVisible: false,
+  eraseObjectsSettings: {
+    allOverlays: false,
+    clearEntire: false,
+    objectTypes: Object.values(EditorObjectType),
+  },
   map,
   objectDetailsUnavailablePromptVisible: false,
   objectsWindowVisible: false,
@@ -79,6 +85,21 @@ export const editorWindowReducer = (
       return {
         ...state,
         objectDetailsUnavailablePromptVisible: false,
+      };
+    case EditorWindowActionType.OpenEraseObjectsSettings:
+      return {
+        ...state,
+        eraseObejctsSettingsVisible: true,
+      };
+    case EditorWindowActionType.CloseEraseObjectsSettings:
+      return {
+        ...state,
+        eraseObejctsSettingsVisible: false,
+      };
+    case EditorWindowActionType.ChangeEraseObjectsSettings:
+      return {
+        ...state,
+        eraseObjectsSettings: action.value,
       };
     case EditorWindowActionType.ZoomIn:
       return {

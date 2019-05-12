@@ -3,10 +3,8 @@ import * as React from "react";
 
 import * as styles from "./GameModal.module.scss";
 
-import { buttonImages } from "./assets";
-
 import { withGameWindow } from "../../core";
-import { ImageButton } from "../ImageButton";
+import { SystemButton } from "../SystemButton";
 
 type GameModalType =
   "yesNo" |
@@ -77,8 +75,8 @@ class GameModal extends React.Component<GameModalProps> {
             className={styles.actionsConfirm}
             span={12}
           >
-            <ImageButton
-              images={modalType === "yesNo" ? buttonImages.yes : buttonImages.okay}
+            <SystemButton
+              type={modalType === "yesNo" ? "yes" : "okay"}
               disabled={this.props.confirmDisabled}
               onClick={this.props.onConfirmClick}
             />
@@ -87,8 +85,8 @@ class GameModal extends React.Component<GameModalProps> {
             className={styles.actionsCancel}
             span={12}
           >
-            <ImageButton
-              images={modalType === "yesNo" ? buttonImages.no : buttonImages.cancel}
+            <SystemButton
+              type={modalType === "yesNo" ? "no" : "cancel"}
               onClick={this.props.onCancelClick}
             />
           </Col>
@@ -98,8 +96,8 @@ class GameModal extends React.Component<GameModalProps> {
 
     return (
       <Row>
-        <ImageButton
-          images={modalType === "okay" ? buttonImages.okay : buttonImages.cancel}
+        <SystemButton
+          type={modalType === "okay" ? "okay" : "cancel"}
           disabled={modalType === "okay" ? this.props.confirmDisabled : false}
           onClick={modalType === "okay" ? this.props.onConfirmClick : this.props.onCancelClick}
         />

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { MapObjectOrientation } from "heroes-core";
 import { EditorObjectType } from "heroes-homm1";
@@ -10,8 +10,9 @@ import { GameText } from "../../core";
 import { getEditorObjectTypeNameMessage } from "../../messages";
 import { EditorObjectSlot } from "../EditorObjectSlot";
 import { EditorScrollButton } from "../EditorScrollButton";
+import { messages } from "./messages";
 
-export interface ObjectsOptionDetailsProps {
+interface ObjectsOptionDetailsProps extends InjectedIntlProps {
   readonly onSlotClick: () => void;
   readonly selectedObjectType: EditorObjectType;
   readonly onPreviousTypeClick: () => void;
@@ -26,7 +27,7 @@ type DefaultProp =
   "renderObject";
 
 // TODO: refactor to accept children
-export class ObjectsOptionDetails extends React.Component<ObjectsOptionDetailsProps> {
+class ObjectsOptionDetails extends React.Component<ObjectsOptionDetailsProps> {
   public static readonly defaultProps: Pick<ObjectsOptionDetailsProps, DefaultProp> = {
     onNextTypeClick: () => undefined,
     onPreviousTypeClick: () => undefined,
@@ -35,6 +36,9 @@ export class ObjectsOptionDetails extends React.Component<ObjectsOptionDetailsPr
   };
 
   public render() {
+    const optionNumber = Object.values(EditorObjectType).indexOf(this.props.selectedObjectType) + 1;
+    const optionName = this.props.intl.formatMessage(getEditorObjectTypeNameMessage(this.props.selectedObjectType));
+
     return (
       <div className={styles.root}>
         <div className={styles.object}>
@@ -52,7 +56,7 @@ export class ObjectsOptionDetails extends React.Component<ObjectsOptionDetailsPr
             onClick={this.props.onPreviousTypeClick}
           />
           <GameText size="small">
-            <FormattedMessage {...getEditorObjectTypeNameMessage(this.props.selectedObjectType)} />
+            <FormattedMessage {...messages.objectTypeOptionName} values={{ number: optionNumber, name: optionName }} />
           </GameText>
           <EditorScrollButton
             className={styles.next}
@@ -64,3 +68,12 @@ export class ObjectsOptionDetails extends React.Component<ObjectsOptionDetailsPr
     );
   }
 }
+
+const ComponentWrapped = injectIntl(ObjectsOptionDetails);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
+
+export {
+  ComponentWrapped as ObjectsOptionDetails,
+  ComponentWrappedProps as ObjectsOptionDetailsProps,
+};

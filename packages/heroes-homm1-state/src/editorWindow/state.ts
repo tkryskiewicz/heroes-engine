@@ -1,5 +1,5 @@
 import { Map, MapPoint } from "heroes-core";
-import { EditorObjectType, EditorOption } from "heroes-homm1";
+import { EditorObjectType, EditorOption, EraseObjectsSettings } from "heroes-homm1";
 
 export interface EditorWindowState {
   readonly map: Map;
@@ -10,5 +10,7 @@ export interface EditorWindowState {
   readonly selectedObject?: string;
   readonly objectsWindowVisible: boolean;
   readonly objectDetailsUnavailablePromptVisible: boolean;
+  readonly eraseObjectsSettings: EraseObjectsSettings;
+  readonly eraseObejctsSettingsVisible: boolean;
   readonly zoomed: boolean;
 }

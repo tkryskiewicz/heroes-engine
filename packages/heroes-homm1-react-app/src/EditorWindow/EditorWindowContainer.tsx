@@ -15,6 +15,7 @@ import {
   canPlaceObject,
   EditorObjectType,
   EditorOption,
+  EraseObjectsSettings,
   nextObjectType,
   previousObjectType,
   TerrainType,
@@ -32,6 +33,7 @@ import {
   EditorWindow,
   editorWindowMessages,
   EraseOptionDetails,
+  EraseOptionSettingsWindow,
   MapTile,
   ObjectDetailsUnavailablePrompt,
   ObjectsOptionDetails,
@@ -59,13 +61,18 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly objectsWindowVisible: boolean;
   readonly onOpenObjectsWindowClick: () => void;
   readonly onCloseObjectsWindowClick: () => void;
+  // TODO: perform logic here and just update map??
   readonly onPlaceObjectClick: (point: MapPoint, object: MapObject) => void;
 
   readonly objectDetailsUnavailablePromptVisible: boolean;
   readonly onOpenObjectDetailsUnavailablePromptClick: () => void;
   readonly onCloseObjectDetailsUnavailablePromptClick: () => void;
 
-  readonly onEraseTypesClick: () => void;
+  readonly eraseObjectsSettings: EraseObjectsSettings;
+  readonly eraseObjectsSettingsVisible: boolean;
+  readonly onOpenEraseObjectsSettingsClick: () => void;
+  readonly onCloseEraseObjectsSettingsClick: () => void;
+  readonly onEraseObjectsSettingsChange: (value: EraseObjectsSettings) => void;
 
   readonly zoomed: boolean;
   readonly onZoomInClick: () => void;
@@ -83,6 +90,7 @@ interface EditorWindowContainerState {
   readonly x?: number;
   readonly y?: number;
   readonly message: string;
+  readonly eraseObjectsSettings: EraseObjectsSettings;
 }
 
 type DefaultProp =
@@ -101,7 +109,11 @@ type DefaultProp =
   "onOpenObjectDetailsUnavailablePromptClick" |
   "onCloseObjectDetailsUnavailablePromptClick" |
 
-  "onEraseTypesClick" |
+  "eraseObjectsSettingsVisible" |
+  "onOpenEraseObjectsSettingsClick" |
+  "onCloseEraseObjectsSettingsClick" |
+  "onEraseObjectsSettingsChange" |
+
   "onZoomInClick" |
   "onZoomOutClick" |
   "onUndoClick" |
@@ -114,14 +126,17 @@ type DefaultProp =
 
 class EditorWindowContainer extends React.Component<EditorWindowContainerProps, EditorWindowContainerState> {
   public static readonly defaultProps: Pick<EditorWindowContainerProps, DefaultProp> = {
+    eraseObjectsSettingsVisible: false,
     objectDetailsUnavailablePromptVisible: false,
     onChangePosition: () => undefined,
     onChangeTerrainClick: () => undefined,
+    onCloseEraseObjectsSettingsClick: () => undefined,
     onCloseObjectDetailsUnavailablePromptClick: () => undefined,
     onCloseObjectsWindowClick: () => undefined,
-    onEraseTypesClick: () => undefined,
+    onEraseObjectsSettingsChange: () => undefined,
     onLoadClick: () => undefined,
     onNewClick: () => undefined,
+    onOpenEraseObjectsSettingsClick: () => undefined,
     onOpenObjectDetailsUnavailablePromptClick: () => undefined,
     onOpenObjectsWindowClick: () => undefined,
     onPlaceObjectClick: () => undefined,
@@ -139,6 +154,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   };
 
   public readonly state: EditorWindowContainerState = {
+    eraseObjectsSettings: {
+      allOverlays: false,
+      clearEntire: false,
+      objectTypes: [],
+    },
     message: "",
   };
 
@@ -172,6 +192,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
           message={this.state.message}
         />
         {this.props.objectDetailsUnavailablePromptVisible && this.renderObjectDetailsUnavailablePrompt()}
+        {this.props.eraseObjectsSettingsVisible && this.renderEraseObjectsSettingsWindow()}
       </>
     );
   }
@@ -395,7 +416,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       case EditorOption.Erase:
         return (
           <EraseOptionDetails
-            onTypesClick={this.props.onEraseTypesClick}
+            onTypesClick={this.onOpenEraseObjectsSettingsClick}
           />
         );
     }
@@ -473,6 +494,34 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       default:
         return undefined;
     }
+  }
+
+  private readonly onOpenEraseObjectsSettingsClick = () => {
+    this.setState({
+      eraseObjectsSettings: this.props.eraseObjectsSettings,
+    }, this.props.onOpenEraseObjectsSettingsClick);
+  }
+
+  private renderEraseObjectsSettingsWindow() {
+    return (
+      <EraseOptionSettingsWindow
+        visible={true}
+        value={this.state.eraseObjectsSettings}
+        onValueChange={this.onEraseObjectsSettingsChange}
+        onConfirmClick={this.onConfirmEraseObjectsSettingsClick}
+        onCancelClick={this.props.onCloseEraseObjectsSettingsClick}
+      />
+    );
+  }
+
+  private readonly onEraseObjectsSettingsChange = (value: EraseObjectsSettings) => {
+    this.setState({
+      eraseObjectsSettings: value,
+    });
+  }
+
+  private readonly onConfirmEraseObjectsSettingsClick = () => {
+    this.props.onEraseObjectsSettingsChange(this.state.eraseObjectsSettings);
   }
 
   private readonly renderButtons = () => {
