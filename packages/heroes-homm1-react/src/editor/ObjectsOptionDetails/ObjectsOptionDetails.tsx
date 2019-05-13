@@ -17,22 +17,18 @@ interface ObjectsOptionDetailsProps extends InjectedIntlProps {
   readonly selectedObjectType: EditorObjectType;
   readonly onPreviousTypeClick: () => void;
   readonly onNextTypeClick: () => void;
-  readonly renderObject: () => React.ReactNode;
 }
 
 type DefaultProp =
   "onSlotClick" |
   "onPreviousTypeClick" |
-  "onNextTypeClick" |
-  "renderObject";
+  "onNextTypeClick";
 
-// TODO: refactor to accept children
 class ObjectsOptionDetails extends React.Component<ObjectsOptionDetailsProps> {
   public static readonly defaultProps: Pick<ObjectsOptionDetailsProps, DefaultProp> = {
     onNextTypeClick: () => undefined,
     onPreviousTypeClick: () => undefined,
     onSlotClick: () => undefined,
-    renderObject: () => undefined,
   };
 
   public render() {
@@ -46,7 +42,7 @@ class ObjectsOptionDetails extends React.Component<ObjectsOptionDetailsProps> {
             size="large"
             onClick={this.props.onSlotClick}
           >
-            {this.props.renderObject()}
+            {this.props.children}
           </EditorObjectSlot>
         </div>
         <div className={styles.selector}>

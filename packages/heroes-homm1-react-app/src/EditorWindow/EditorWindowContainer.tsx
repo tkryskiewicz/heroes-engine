@@ -404,8 +404,9 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
               selectedObjectType={this.props.selectedObjectType}
               onPreviousTypeClick={this.onPreviousObjectTypeClick}
               onNextTypeClick={this.onNextObjectTypeClick}
-              renderObject={this.renderSelectedObject}
-            />
+            >
+              {this.renderSelectedObject()}
+            </ObjectsOptionDetails>
             {this.props.objectsWindowVisible && this.renderObjectsWindow()}
           </>
         );
