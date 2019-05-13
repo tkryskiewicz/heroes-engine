@@ -1,5 +1,6 @@
 import {
   createMap,
+  createPoint,
   Game,
   Hero,
   placeObject,
@@ -91,8 +92,8 @@ describe("buyMageGuildSpellBook", () => {
         terrains: {},
       },
       map: placeObject(
-        placeObject(createMap(2, 1, "terrain"), { x: 0, y: 0 }, heroObject),
-        { x: 1, y: 0 },
+        placeObject(createMap(2, 1, "terrain"), createPoint(0, 0), heroObject),
+        createPoint(1, 0),
         townObject,
       ),
       puzzle: {

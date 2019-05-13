@@ -10,7 +10,7 @@ import {
   replaceObject,
 } from "./Map";
 import { MapObject } from "./MapObject";
-import { MapPoint } from "./MapPoint";
+import { createPoint } from "./MapPoint";
 
 describe("createMap", () => {
   it("should correctly set size", () => {
@@ -55,7 +55,7 @@ describe("isPointValid", () => {
   it("should return true when point is valid", () => {
     const map = createMap(1, 1, "terrain");
 
-    const point: MapPoint = { x: 0, y: 0 };
+    const point = createPoint(0, 0);
 
     const result = isPointValid(map, point);
 
@@ -65,7 +65,7 @@ describe("isPointValid", () => {
   it("should return false when x is negative", () => {
     const map = createMap(1, 1, "terrain");
 
-    const point: MapPoint = { x: -1, y: 0 };
+    const point = createPoint(-1, 0);
 
     const result = isPointValid(map, point);
 
@@ -75,7 +75,7 @@ describe("isPointValid", () => {
   it("should return false when x is greater than map width", () => {
     const map = createMap(1, 1, "terrain");
 
-    const point: MapPoint = { x: 1, y: 0 };
+    const point = createPoint(1, 0);
 
     const result = isPointValid(map, point);
 
@@ -85,7 +85,7 @@ describe("isPointValid", () => {
   it("should return false when y is negative", () => {
     const map = createMap(1, 1, "terrain");
 
-    const point: MapPoint = { x: 0, y: -1 };
+    const point = createPoint(0, -1);
 
     const result = isPointValid(map, point);
 
@@ -95,7 +95,7 @@ describe("isPointValid", () => {
   it("should return false when y is greater than map height", () => {
     const map = createMap(1, 1, "terrain");
 
-    const point: MapPoint = { x: 0, y: 1 };
+    const point = createPoint(0, 1);
 
     const result = isPointValid(map, point);
 
@@ -107,10 +107,7 @@ describe("getTilePoint", () => {
   it("should return (0,0) for index 0", () => {
     const result = getTilePoint(1, 0);
 
-    const expected: MapPoint = {
-      x: 0,
-      y: 0,
-    };
+    const expected = createPoint(0, 0);
 
     expect(result).toEqual(expected);
   });
@@ -118,10 +115,7 @@ describe("getTilePoint", () => {
   it("should correctly resolve y", () => {
     const result = getTilePoint(1, 1);
 
-    const expected: MapPoint = {
-      x: 0,
-      y: 1,
-    };
+    const expected = createPoint(0, 1);
 
     expect(result).toEqual(expected);
   });
@@ -129,10 +123,7 @@ describe("getTilePoint", () => {
   it("should correctly resolve x", () => {
     const result = getTilePoint(2, 1);
 
-    const expected: MapPoint = {
-      x: 1,
-      y: 0,
-    };
+    const expected = createPoint(1, 0);
 
     expect(result).toEqual(expected);
   });
@@ -147,7 +138,7 @@ describe("placeObject", () => {
 
     const map = createMap(1, 1, "terrain");
 
-    const result = placeObject(map, { x: 0, y: 0 }, object);
+    const result = placeObject(map, createPoint(0, 0), object);
 
     expect(result.tiles[0].object).toEqual(object);
   });
@@ -161,7 +152,7 @@ describe("placeObject", () => {
     const map = createMap(1, 1, "terrain");
 
     expect(() => {
-      placeObject(map, { x: 1, y: 0 }, object);
+      placeObject(map, createPoint(1, 0), object);
     }).toThrow();
   });
 
@@ -173,7 +164,7 @@ describe("placeObject", () => {
 
     let map = createMap(1, 1, "terrain");
 
-    map = placeObject(map, { x: 0, y: 0 }, objectA);
+    map = placeObject(map, createPoint(0, 0), objectA);
 
     const objectB: MapObject = {
       dataId: "dataId",
@@ -181,7 +172,7 @@ describe("placeObject", () => {
     };
 
     expect(() => {
-      placeObject(map, { x: 0, y: 0 }, objectB);
+      placeObject(map, createPoint(0, 0), objectB);
     }).toThrow();
   });
 });
@@ -195,7 +186,7 @@ describe("getObject", () => {
       id: "id",
     };
 
-    map = placeObject(map, { x: 0, y: 0 }, object);
+    map = placeObject(map, createPoint(0, 0), object);
 
     const result = getObject(map, "id");
 
@@ -220,9 +211,9 @@ describe("moveObject", () => {
 
     let map = createMap(2, 1, "terrain");
 
-    map = placeObject(map, { x: 0, y: 0 }, object);
+    map = placeObject(map, createPoint(0, 0), object);
 
-    const result = moveObject(map, { x: 0, y: 0 }, { x: 1, y: 0 });
+    const result = moveObject(map, createPoint(0, 0), createPoint(1, 0));
 
     expect(result.tiles[1].object).toEqual(object);
   });
@@ -235,10 +226,10 @@ describe("moveObject", () => {
 
     let map = createMap(2, 1, "terrain");
 
-    map = placeObject(map, { x: 0, y: 0 }, object);
+    map = placeObject(map, createPoint(0, 0), object);
 
     expect(() => {
-      moveObject(map, { x: 2, y: 0 }, { x: 1, y: 0 });
+      moveObject(map, createPoint(2, 0), createPoint(1, 0));
     }).toThrow();
   });
 
@@ -250,10 +241,10 @@ describe("moveObject", () => {
 
     let map = createMap(2, 1, "terrain");
 
-    map = placeObject(map, { x: 0, y: 0 }, object);
+    map = placeObject(map, createPoint(0, 0), object);
 
     expect(() => {
-      moveObject(map, { x: 0, y: 0 }, { x: 2, y: 0 });
+      moveObject(map, createPoint(0, 0), createPoint(2, 0));
     }).toThrow();
   });
 
@@ -261,7 +252,7 @@ describe("moveObject", () => {
     const map = createMap(2, 1, "terrain");
 
     expect(() => {
-      moveObject(map, { x: 0, y: 0 }, { x: 1, y: 0 });
+      moveObject(map, createPoint(0, 0), createPoint(1, 0));
     }).toThrow();
   });
 
@@ -273,17 +264,17 @@ describe("moveObject", () => {
 
     let map = createMap(2, 1, "terrain");
 
-    map = placeObject(map, { x: 0, y: 0 }, objectA);
+    map = placeObject(map, createPoint(0, 0), objectA);
 
     const objectB: MapObject = {
       dataId: "dataId",
       id: "idB",
     };
 
-    map = placeObject(map, { x: 1, y: 0 }, objectB);
+    map = placeObject(map, createPoint(1, 0), objectB);
 
     expect(() => {
-      moveObject(map, { x: 0, y: 0 }, { x: 1, y: 0 });
+      moveObject(map, createPoint(0, 0), createPoint(1, 0));
     }).toThrow();
   });
 });
@@ -295,7 +286,7 @@ describe("removeObject", () => {
       id: "id",
     };
 
-    const map = placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object);
+    const map = placeObject(createMap(1, 1, "terrain"), createPoint(0, 0), object);
 
     const result = removeObject(map, "id");
 
@@ -318,7 +309,7 @@ describe("removeObject", () => {
       id: "someId",
     };
 
-    const map = placeObject(createMap(1, 1, "terrain"), { x: 0, y: 0 }, object);
+    const map = placeObject(createMap(1, 1, "terrain"), createPoint(0, 0), object);
 
     const result = removeObject(map, "id");
 
@@ -340,8 +331,8 @@ describe("replaceObject", () => {
     };
 
     const map = placeObject(
-      placeObject(createMap(2, 1, "terrain"), { x: 0, y: 0 }, object),
-      { x: 1, y: 0 },
+      placeObject(createMap(2, 1, "terrain"), createPoint(0, 0), object),
+      createPoint(1, 0),
       otherObject);
 
     const updatedObject: MapObject = {

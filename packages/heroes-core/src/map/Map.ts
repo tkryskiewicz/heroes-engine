@@ -1,7 +1,7 @@
 // tslint:disable: no-loop-statement
 
 import { MapObject, MapObjectData } from "./MapObject";
-import { MapPoint } from "./MapPoint";
+import { createPoint, MapPoint, translatePoint } from "./MapPoint";
 import { MapTile } from "./MapTile";
 
 export interface Map {
@@ -84,7 +84,9 @@ export const canPlaceObject = (
 
   for (let y = 0; y < map.height; y++) {
     for (let x = 0; x < map.width; x++) {
-      const tile = map.tiles[getTileIndex(map.width, { x, y })];
+      const mapPoint = createPoint(x, y);
+
+      const tile = map.tiles[getTileIndex(map.width, mapPoint)];
 
       if (tile.object) {
         const obj = tile.object;
@@ -93,8 +95,8 @@ export const canPlaceObject = (
 
         for (let h = 0; h < objData.height; h++) {
           for (let w = 0; w < objData.width; w++) {
-            obstacleMap[getTileIndex(map.width, { x: x + w, y: y - h })] =
-              objData.grid[getTileIndex(objData.width, { x: w, y: h })] === TileTaken ?
+            obstacleMap[getTileIndex(map.width, translatePoint(mapPoint, w, -h))] =
+              objData.grid[getTileIndex(objData.width, createPoint(w, h))] === TileTaken ?
                 TileTaken :
                 TileFree;
           }
@@ -105,8 +107,8 @@ export const canPlaceObject = (
 
   for (let h = 0; h < objectData.height; h++) {
     for (let w = 0; w < objectData.width; w++) {
-      const objectTile = objectData.grid[getTileIndex(objectData.width, { x: w, y: h })];
-      const mapTile = obstacleMap[getTileIndex(map.width, { x: point.x + w, y: point.y - h })];
+      const objectTile = objectData.grid[getTileIndex(objectData.width, createPoint(w, h))];
+      const mapTile = obstacleMap[getTileIndex(map.width, translatePoint(point, w, -h))];
 
       if (objectTile === TileTaken && mapTile === TileTaken) {
         return false;

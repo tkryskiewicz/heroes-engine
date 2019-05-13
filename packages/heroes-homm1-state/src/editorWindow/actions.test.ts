@@ -1,4 +1,4 @@
-import { MapPoint } from "heroes-core";
+import { createPoint } from "heroes-core";
 import { EditorObjectType, EditorOption, EraseObjectsSettings } from "heroes-homm1";
 
 import {
@@ -37,10 +37,7 @@ import {
 
 describe("editorWindowActions", () => {
   it("should create an action to change position", () => {
-    const position: MapPoint = {
-      x: 0,
-      y: 0,
-    };
+    const position = createPoint(0, 0);
 
     const result = changePosition(position);
 
@@ -75,10 +72,10 @@ describe("editorWindowActions", () => {
   });
 
   it("should create an action to change terrain", () => {
-    const result = changeTerrain({ x: 0, y: 0 }, "terrain");
+    const result = changeTerrain(createPoint(0, 0), "terrain");
 
     const expected: ChangeTerrainAction = {
-      point: { x: 0, y: 0 },
+      point: createPoint(0, 0),
       terrain: "terrain",
       type: EditorWindowActionType.ChangeTerrain,
     };

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { getTileIndex } from "heroes-core";
+import { createPoint, getTileIndex } from "heroes-core";
 
 import * as styles from "./AdventureWindow.module.scss";
 
@@ -26,7 +26,7 @@ export class AdventureWindow extends React.Component<Props> {
 
     const tiles = [...new Array(height).keys()]
       .map((i) => [...new Array(width).keys()]
-        .map((j) => this.props.renderTile(getTileIndex(width, { x: j, y: i }))));
+        .map((j) => this.props.renderTile(getTileIndex(width, createPoint(j, i)))));
 
     return (
       <div className={styles.root}>

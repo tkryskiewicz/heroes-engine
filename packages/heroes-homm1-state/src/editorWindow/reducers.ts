@@ -1,4 +1,4 @@
-import { changeTerrain, createMap, placeObject } from "heroes-core";
+import { changeTerrain, createMap, createPoint, placeObject } from "heroes-core";
 import { EditorObjectType, EditorOption, TerrainType } from "heroes-homm1";
 
 import { EditorWindowAction, EditorWindowActionType } from "./actions";
@@ -16,10 +16,7 @@ const initialState: EditorWindowState = {
   map,
   objectDetailsUnavailablePromptVisible: false,
   objectsWindowVisible: false,
-  position: {
-    x: 0,
-    y: 0,
-  },
+  position: createPoint(0, 0),
   selectedObjectType: EditorObjectType.WaterObjects,
   selectedOption: EditorOption.Terrains,
   selectedTerrain: TerrainType.Water,

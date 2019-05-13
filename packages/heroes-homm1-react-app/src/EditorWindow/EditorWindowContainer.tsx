@@ -10,6 +10,7 @@ import {
   MapObject,
   MapObjectOrientation,
   MapPoint,
+  translatePoint,
 } from "heroes-core";
 import {
   canPlaceObject,
@@ -224,10 +225,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     // FIXME: move some logic to adventure window?
     const windowPoint = getTilePoint(this.getTileCount(), index);
 
-    const tileIndex = getTileIndex(map.width, {
-      x: position.x + windowPoint.x,
-      y: position.y + windowPoint.y,
-    });
+    const tileIndex = getTileIndex(map.width, translatePoint(position, windowPoint.x, windowPoint.y));
 
     const size = this.props.zoomed ? "large" : "small";
 
@@ -556,33 +554,22 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     const { map, position } = this.props;
 
     // TODO: simplify
-    let point: MapPoint = {
-      x: position.x,
-      y: position.y,
-    };
+    let point = position;
 
-    if (direction.includes(MapObjectOrientation.North) && position.y > 0) {
-      point = {
-        ...point,
-        y: point.y - 1,
-      };
-    } else if (direction.includes(MapObjectOrientation.South) && position.y < map.height - this.getTileCount()) {
-      point = {
-        ...point,
-        y: point.y + 1,
-      };
+    if ([MapObjectOrientation.NorthWest, MapObjectOrientation.North, MapObjectOrientation.NorthEast]
+      .includes(direction) && position.y > 0) {
+      point = translatePoint(point, 0, -1);
+    } else if ([MapObjectOrientation.SouthWest, MapObjectOrientation.South, MapObjectOrientation.SouthEast]
+      .includes(direction) && position.y < map.height - this.getTileCount()) {
+      point = translatePoint(point, 0, 1);
     }
 
-    if (direction.includes(MapObjectOrientation.West) && position.x > 0) {
-      point = {
-        ...point,
-        x: point.x - 1,
-      };
-    } else if (direction.includes(MapObjectOrientation.East) && position.x < map.width - this.getTileCount()) {
-      point = {
-        ...point,
-        x: point.x + 1,
-      };
+    if ([MapObjectOrientation.NorthWest, MapObjectOrientation.West, MapObjectOrientation.SouthWest]
+      .includes(direction) && position.x > 0) {
+      point = translatePoint(point, -1, 0);
+    } else if ([MapObjectOrientation.NorthEast, MapObjectOrientation.East, MapObjectOrientation.SouthEast]
+      .includes(direction) && position.x < map.width - this.getTileCount()) {
+      point = translatePoint(point, 1, 0);
     }
 
     if (!isSamePoint(point, position)) {

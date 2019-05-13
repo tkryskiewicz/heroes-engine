@@ -58,7 +58,7 @@ export {
 } from "./Map";
 export { MapObject, MapObjectData, isMapObject, createMapObject } from "./MapObject";
 export { MapObjectOrientation } from "./MapObjectOrientation";
-export { MapPoint, isSamePoint } from "./MapPoint";
+export { MapPoint, createPoint, isSamePoint, translatePoint } from "./MapPoint";
 export { MapTile } from "./MapTile";
 export {
   MobileMapObject,

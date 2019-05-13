@@ -1,4 +1,4 @@
-import { createMap, MapPoint } from "heroes-core";
+import { createMap, createPoint } from "heroes-core";
 import { EditorObjectType, EditorOption, EraseObjectsSettings, TerrainType } from "heroes-homm1";
 
 import {
@@ -31,10 +31,7 @@ const defaultState: EditorWindowState = {
   map: createMap(50, 50, TerrainType.Water),
   objectDetailsUnavailablePromptVisible: false,
   objectsWindowVisible: false,
-  position: {
-    x: 0,
-    y: 0,
-  },
+  position: createPoint(0, 0),
   selectedObjectType: EditorObjectType.WaterObjects,
   selectedOption: EditorOption.Terrains,
   selectedTerrain: TerrainType.Water,
@@ -55,16 +52,10 @@ describe("editorWindowReducer", () => {
   it("should handle changing posiition", () => {
     const state: EditorWindowState = {
       ...defaultState,
-      position: {
-        x: 0,
-        y: 0,
-      },
+      position: createPoint(0, 0),
     };
 
-    const position: MapPoint = {
-      x: 1,
-      y: 1,
-    };
+    const position = createPoint(1, 1);
 
     const result = editorWindowReducer(state, changePosition(position));
 
@@ -114,7 +105,7 @@ describe("editorWindowReducer", () => {
       map: createMap(1, 1, "terrain"),
     };
 
-    const result = editorWindowReducer(state, changeTerrain({ x: 0, y: 0 }, "otherTerrain"));
+    const result = editorWindowReducer(state, changeTerrain(createPoint(0, 0), "otherTerrain"));
 
     const expected: EditorWindowState = {
       ...state,
