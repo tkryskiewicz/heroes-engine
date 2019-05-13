@@ -176,33 +176,20 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
 
   public render() {
     return (
-      <>
-        <EditorWindow
-          renderAdventureWindow={this.renderAdventureWindow}
-          onScrollTopLeft={this.onScrollNorthWest}
-          onScrollTopRight={this.onScrollNorthEast}
-          onScrollBottomLeft={this.onScrollSouthWest}
-          onScrollBottomRight={this.onScrollSouthEast}
-          renderVerticalCellNumbers={this.renderVerticalCellNumbers}
-          renderHorizontalCellNumbers={this.renderHorizontalCellNumbers}
-          renderHorizontalScrollbar={this.renderHorizontalScrollbar}
-          renderVerticalScrollbar={this.renderVerticalScrollbar}
-          renderOptions={this.renderOptions}
-          renderOptionDetails={this.renderOptionDetails}
-          renderButtons={this.renderButtons}
-          message={this.state.message}
-        />
-        {this.props.objectDetailsUnavailablePromptVisible && this.renderObjectDetailsUnavailablePrompt()}
-        {this.props.eraseObjectsSettingsVisible && this.renderEraseObjectsSettingsWindow()}
-      </>
-    );
-  }
-
-  private renderObjectDetailsUnavailablePrompt() {
-    return (
-      <ObjectDetailsUnavailablePrompt
-        visible={true}
-        onConfirmClick={this.props.onCloseObjectDetailsUnavailablePromptClick}
+      <EditorWindow
+        renderAdventureWindow={this.renderAdventureWindow}
+        onScrollTopLeft={this.onScrollNorthWest}
+        onScrollTopRight={this.onScrollNorthEast}
+        onScrollBottomLeft={this.onScrollSouthWest}
+        onScrollBottomRight={this.onScrollSouthEast}
+        renderVerticalCellNumbers={this.renderVerticalCellNumbers}
+        renderHorizontalCellNumbers={this.renderHorizontalCellNumbers}
+        renderHorizontalScrollbar={this.renderHorizontalScrollbar}
+        renderVerticalScrollbar={this.renderVerticalScrollbar}
+        renderOptions={this.renderOptions}
+        renderOptionDetails={this.renderOptionDetails}
+        renderButtons={this.renderButtons}
+        message={this.state.message}
       />
     );
   }
@@ -410,13 +397,19 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         );
       case EditorOption.Details:
         return (
-          <DetailsOptionDetails />
+          <>
+            <DetailsOptionDetails />
+            {this.props.objectDetailsUnavailablePromptVisible && this.renderObjectDetailsUnavailablePrompt()}
+          </>
         );
       case EditorOption.Erase:
         return (
-          <EraseOptionDetails
-            onTypesClick={this.onOpenEraseObjectsSettingsClick}
-          />
+          <>
+            <EraseOptionDetails
+              onTypesClick={this.onOpenEraseObjectsSettingsClick}
+            />
+            {this.props.eraseObjectsSettingsVisible && this.renderEraseObjectsSettingsWindow()}
+          </>
         );
     }
   }
@@ -493,6 +486,15 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       default:
         return undefined;
     }
+  }
+
+  private renderObjectDetailsUnavailablePrompt() {
+    return (
+      <ObjectDetailsUnavailablePrompt
+        visible={true}
+        onConfirmClick={this.props.onCloseObjectDetailsUnavailablePromptClick}
+      />
+    );
   }
 
   private readonly onOpenEraseObjectsSettingsClick = () => {
