@@ -48,7 +48,7 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly data: GameData;
   readonly map: Map;
   readonly position: MapPoint;
-  readonly onChangePosition: (value: MapPoint) => void;
+  readonly onPositionChange: (value: MapPoint) => void;
   readonly selectedOption: EditorOption;
   readonly onSelectedOptionChange: (value: EditorOption) => void;
   readonly selectedTerrain: string;
@@ -95,7 +95,7 @@ interface EditorWindowContainerState {
 }
 
 type DefaultProp =
-  "onChangePosition" |
+  "onPositionChange" |
   "onSelectedOptionChange" |
   "onSelectedTerrainChange" |
   "onChangeTerrainClick" |
@@ -129,7 +129,6 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   public static readonly defaultProps: Pick<EditorWindowContainerProps, DefaultProp> = {
     eraseObjectsSettingsVisible: false,
     objectDetailsUnavailablePromptVisible: false,
-    onChangePosition: () => undefined,
     onChangeTerrainClick: () => undefined,
     onCloseEraseObjectsSettingsClick: () => undefined,
     onCloseObjectDetailsUnavailablePromptClick: () => undefined,
@@ -141,6 +140,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     onOpenObjectDetailsUnavailablePromptClick: () => undefined,
     onOpenObjectsWindowClick: () => undefined,
     onPlaceObjectClick: () => undefined,
+    onPositionChange: () => undefined,
     onQuitClick: () => undefined,
     onRandomClick: () => undefined,
     onSaveClick: () => undefined,
@@ -573,7 +573,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     }
 
     if (!isSamePoint(point, position)) {
-      this.props.onChangePosition(point);
+      this.props.onPositionChange(point);
     }
   }
 }

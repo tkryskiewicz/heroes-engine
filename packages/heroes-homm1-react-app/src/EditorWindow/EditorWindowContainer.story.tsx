@@ -43,7 +43,7 @@ storiesOf("EditorWindowContainer", module)
         data={data}
         map={map}
         position={position}
-        onChangePosition={action("Change Position")}
+        onPositionChange={action("Position Change")}
         selectedOption={editorOption("Selected Option")}
         onSelectedOptionChange={action("Selected Option Change")}
         selectedTerrain={terrainType("Selected Terrain")}

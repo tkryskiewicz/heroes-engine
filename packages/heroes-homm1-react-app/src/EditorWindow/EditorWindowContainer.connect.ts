@@ -35,7 +35,7 @@ const mapStateToProps = (state: AppState): Pick<EditorWindowProps, StateProp> =>
 });
 
 type DispatchProp =
-  "onChangePosition" |
+  "onPositionChange" |
   "onSelectedOptionChange" |
   "onSelectedTerrainChange" |
   "onChangeTerrainClick" |
@@ -53,7 +53,7 @@ type DispatchProp =
   "onZoomOutClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, DispatchProp> => ({
-  onChangePosition(value) {
+  onPositionChange(value) {
     dispatch(editorWindowActions.changePosition(value));
   },
   onSelectedOptionChange(value) {
