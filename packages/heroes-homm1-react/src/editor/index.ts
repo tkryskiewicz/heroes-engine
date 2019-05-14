@@ -1,4 +1,5 @@
 export * from "./CellNumbers";
+export * from "./CreatureMapObjectSettingsWindow";
 export * from "./DetailsOptionDetails";
 export * from "./EditorButtons";
 export * from "./EditorHorizontalScrollbar";
@@ -7,6 +8,7 @@ export * from "./EditorObjectSlot";
 export * from "./EditorObjectsWindow";
 export * from "./EditorOptions";
 export * from "./EditorScrollButton";
+export * from "./EditorSettingsWindow";
 export * from "./EditorVerticalScrollbar";
 export * from "./EditorWindow";
 export * from "./EraseOptionDetails";

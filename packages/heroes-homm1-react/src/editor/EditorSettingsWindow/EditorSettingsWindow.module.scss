@@ -1,0 +1,23 @@
+.root {
+  position: relative;
+  width: 448px;
+  height: 448px;
+  background: #120092;
+}
+
+.actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-bottom: 15px;
+}
+
+.confirm {
+  padding-left: 40px;
+}
+
+.cancel {
+  padding-right: 40px;
+  text-align: right;
+}

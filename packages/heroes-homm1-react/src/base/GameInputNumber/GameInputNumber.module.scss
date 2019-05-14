@@ -1,0 +1,17 @@
+.root {
+  width: 68px;
+  height: 19px;
+  color: #fff;
+  background: url("./assets/background.jpg");
+  border: none;
+  border-radius: 0;
+
+  :global(.ant-input-number-handler-wrap) {
+    display: none;
+  }
+
+  :global(.ant-input-number-input) {
+    height: 19px;
+    text-align: center;
+  }
+}

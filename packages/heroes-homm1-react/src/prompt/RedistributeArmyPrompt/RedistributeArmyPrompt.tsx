@@ -1,11 +1,9 @@
-import { InputNumber } from "antd";
-import { InputNumberProps } from "antd/lib/input-number";
 import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { TroopSelectionType } from "heroes-core";
 
-import { GameModal } from "../../base";
+import { GameInputNumber, GameModal } from "../../base";
 import { GameParagraph } from "../../core";
 import { getCreatureNameMessage } from "../../messages";
 import { PromptProps } from "../prompt";
@@ -48,12 +46,11 @@ class RedistributeArmyPrompt extends React.Component<Props> {
         <GameParagraph textSize="large">
           <FormattedMessage {...messages.content} values={{ creatureName, army, targetArmy }} />
         </GameParagraph>
-        <InputNumber
-          precision={0}
+        <GameInputNumber
           min={0}
           max={this.props.max}
           value={this.props.count}
-          onChange={this.onCountChange}
+          onChange={this.props.onCountChange}
         />
       </GameModal>
     );
@@ -63,16 +60,6 @@ class RedistributeArmyPrompt extends React.Component<Props> {
     return type === TroopSelectionType.Hero ?
       messages.heroArmy :
       messages.garrisonArmy;
-  }
-
-  private readonly onCountChange: InputNumberProps["onChange"] = (v) => {
-    const value = v !== undefined ? parseInt(v.toString(), 10) : undefined;
-
-    if (!value || isNaN(value)) {
-      return;
-    }
-
-    this.props.onCountChange(value);
   }
 }
 

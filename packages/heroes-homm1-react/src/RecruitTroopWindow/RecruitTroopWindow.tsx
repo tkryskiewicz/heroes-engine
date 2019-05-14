@@ -1,5 +1,4 @@
-import { Col, InputNumber, Row } from "antd";
-import { InputNumberProps } from "antd/lib/input-number";
+import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -9,7 +8,7 @@ import * as styles from "./RecruitTroopWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { CreatureIcon, ImageButton, ResourceCost } from "../base";
+import { CreatureIcon, GameInputNumber, ImageButton, ResourceCost } from "../base";
 import { GameText, withGameWindow } from "../core";
 import { getCreatureNameMessage } from "../messages";
 import { messages } from "./messages";
@@ -68,13 +67,12 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
           </GameText>
           </Col>
           <Col span={16}>
-            <InputNumber
-              precision={0}
+            <GameInputNumber
               min={0}
               max={this.props.availableCount}
               disabled={!this.props.availableCount}
               value={this.props.count}
-              onChange={this.onCountChange}
+              onChange={this.props.onCountChange}
             />
             <ImageButton
               images={buttonImages.max}
@@ -122,16 +120,6 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
         </div>
       </div>
     );
-  }
-
-  private readonly onCountChange: InputNumberProps["onChange"] = (v) => {
-    if (v === undefined) {
-      return;
-    }
-
-    const value = parseInt(v.toString(), 10);
-
-    this.props.onCountChange(value);
   }
 
   private readonly onMaxClick = () => {
