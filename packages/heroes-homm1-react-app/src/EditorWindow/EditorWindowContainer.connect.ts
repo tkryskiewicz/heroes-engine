@@ -14,6 +14,7 @@ type StateProp =
   "selectedObjectType" |
   "selectedObject" |
   "objectsWindowVisible" |
+  "visibleObjectDetails" |
   "objectDetailsUnavailablePromptVisible" |
   "eraseObjectsSettings" |
   "eraseObjectsSettingsVisible" |
@@ -31,19 +32,21 @@ const mapStateToProps = (state: AppState): Pick<EditorWindowProps, StateProp> =>
   selectedObjectType: state.editorWindow.selectedObjectType,
   selectedOption: state.editorWindow.selectedOption,
   selectedTerrain: state.editorWindow.selectedTerrain,
+  visibleObjectDetails: state.editorWindow.visibleObjectDetails,
   zoomed: state.editorWindow.zoomed,
 });
 
 type DispatchProp =
+  "onMapChange" |
   "onPositionChange" |
   "onSelectedOptionChange" |
   "onSelectedTerrainChange" |
-  "onChangeTerrainClick" |
   "onSelectedObjectTypeChange" |
   "onSelectedObjectChange" |
   "onOpenObjectsWindowClick" |
   "onCloseObjectsWindowClick" |
-  "onPlaceObjectClick" |
+  "onOpenObjectDetailsClick" |
+  "onCloseObjectDetailsClick" |
   "onOpenObjectDetailsUnavailablePromptClick" |
   "onCloseObjectDetailsUnavailablePromptClick" |
   "onOpenEraseObjectsSettingsClick" |
@@ -53,6 +56,9 @@ type DispatchProp =
   "onZoomOutClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, DispatchProp> => ({
+  onMapChange(value) {
+    dispatch(editorWindowActions.changeMap(value));
+  },
   onPositionChange(value) {
     dispatch(editorWindowActions.changePosition(value));
   },
@@ -61,9 +67,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, Dispatc
   },
   onSelectedTerrainChange(value) {
     dispatch(editorWindowActions.changeSelectedTerrain(value));
-  },
-  onChangeTerrainClick(point, terrain) {
-    dispatch(editorWindowActions.changeTerrain(point, terrain));
   },
   onSelectedObjectTypeChange(value) {
     dispatch(editorWindowActions.changeSelectedObjectType(value));
@@ -81,8 +84,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, Dispatc
   onCloseObjectsWindowClick() {
     dispatch(editorWindowActions.closeObjectsWindow());
   },
-  onPlaceObjectClick(point, object) {
-    dispatch(editorWindowActions.placeObject(point, object));
+  onOpenObjectDetailsClick(id) {
+    dispatch(editorWindowActions.openObjectDetails(id));
+  },
+  onCloseObjectDetailsClick() {
+    dispatch(editorWindowActions.closeObjectDetails());
   },
   onOpenObjectDetailsUnavailablePromptClick() {
     dispatch(editorWindowActions.openObjectDetailsUnavailablePrompt());

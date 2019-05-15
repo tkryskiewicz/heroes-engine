@@ -1,8 +1,12 @@
 import {
   ArtifactMapObjectData,
+  createCreatureMapObject,
+  createMapObject as createMapObjectCore,
   CreatureMapObjectData,
   DwellingMapObjectData,
   InteractionLimitType,
+  isCreatureMapObjectData,
+  MapObject,
   MapObjectData,
   PickableMapObjectData,
   TreasureMapObjectData,
@@ -11,10 +15,13 @@ import {
 import { ArtifactId, artifacts } from "./artifacts";
 import { CreatureId, creatures } from "./creatures";
 import {
+  createRandomCreatureMapObject,
   HeroMapObjectData,
+  isRandomCreatureMapObjectData,
   MapObjectId,
   MineMapObjectData,
   ObeliskMapObjectData,
+  RandomCreatureMapObjectData,
   ResourceMapObjectData,
   TerrainRestrictedMapObjectData,
   TownMapObjectData,
@@ -106,15 +113,66 @@ const creatureObjects: CreatureObjectData[] = creatures
     width: 1,
   }));
 
-const randomCreature: TerrainRestrictedMapObjectData = {
-  grid: [
-    true,
-  ],
-  height: 1,
-  id: MapObjectId.RandomCreature,
-  restrictedTerrains: nonWaterTerrains,
-  width: 1,
-};
+const randomCreatureObjects: Array<RandomCreatureMapObjectData & TerrainRestrictedMapObjectData> = [
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.RandomCreature,
+    randomCreature: {},
+    restrictedTerrains: nonWaterTerrains,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.RandomCreature1,
+    randomCreature: {
+      level: 1,
+    },
+    restrictedTerrains: nonWaterTerrains,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.RandomCreature2,
+    randomCreature: {
+      level: 2,
+    },
+    restrictedTerrains: nonWaterTerrains,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.RandomCreature3,
+    randomCreature: {
+      level: 3,
+    },
+    restrictedTerrains: nonWaterTerrains,
+    width: 1,
+  },
+  {
+    grid: [
+      true,
+    ],
+    height: 1,
+    id: MapObjectId.RandomCreature4,
+    randomCreature: {
+      level: 4,
+    },
+    restrictedTerrains: nonWaterTerrains,
+    width: 1,
+  },
+];
 
 type ArtifactObjectData = ArtifactMapObjectData & PickableMapObjectData & TerrainRestrictedMapObjectData;
 
@@ -2093,7 +2151,7 @@ export const mapObjects: MapObjectData[] = [
   randomTown,
   randomCastle,
   ...creatureObjects,
-  randomCreature,
+  ...randomCreatureObjects,
   ...resourceObjects,
   randomResourceObject,
   ...treasureObjects,
@@ -2117,3 +2175,15 @@ export const mapObjects: MapObjectData[] = [
   ...terrainMountainObjects,
   ...treesObjects,
 ];
+
+export const createMapObject = (id: string, objectData: MapObjectData): MapObject => {
+  if (isCreatureMapObjectData(objectData)) {
+    return createCreatureMapObject(id, objectData);
+  }
+
+  if (isRandomCreatureMapObjectData(objectData)) {
+    return createRandomCreatureMapObject(id, objectData);
+  }
+
+  return createMapObjectCore(id, objectData);
+};

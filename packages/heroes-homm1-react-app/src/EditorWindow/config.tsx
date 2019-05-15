@@ -6,6 +6,7 @@ import {
 } from "heroes-core";
 import {
   EditorObjectType,
+  isRandomCreatureMapObjectData,
   isResourceMapObject,
   isResourceMapObjectData,
   isTerrainRestrictedMapObjectData,
@@ -194,6 +195,10 @@ const randomObjects: string[] = [
   MapObjectId.RandomArtifact,
   MapObjectId.RandomCastle,
   MapObjectId.RandomCreature,
+  MapObjectId.RandomCreature1,
+  MapObjectId.RandomCreature2,
+  MapObjectId.RandomCreature3,
+  MapObjectId.RandomCreature4,
   MapObjectId.RandomHero,
   MapObjectId.RandomMine,
   MapObjectId.RandomResource,
@@ -250,9 +255,8 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
     case EditorObjectType.Monsters:
       const creatureObjects: string[] = [
         ...Object.values(data.mapObjects)
-          .filter(isCreatureMapObjectData)
+          .filter((o) => isCreatureMapObjectData(o) || isRandomCreatureMapObjectData(o))
           .map((o) => o.id),
-        MapObjectId.RandomCreature,
         MapObjectId.RandomHero,
       ];
 

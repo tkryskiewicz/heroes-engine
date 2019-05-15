@@ -1,6 +1,8 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
+import { MaxRandomCreatureCount } from "heroes-homm1";
+
 import * as styles from "./CreatureMapObjectSettingsWindow.module.scss";
 
 import { GameInputNumber } from "../../base";
@@ -41,7 +43,7 @@ export class CreatureMapObjectSettingsWindow extends React.Component<CreatureMap
           </div>
           <GameInputNumber
             min={0}
-            max={999}
+            max={MaxRandomCreatureCount}
             value={this.props.count}
             onChange={this.props.onCountChange}
           />

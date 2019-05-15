@@ -3,16 +3,18 @@ import { EditorObjectType, EditorOption, EraseObjectsSettings, TerrainType } fro
 
 import {
   changeEraseObjectsSettings,
+  changeMap,
   changePosition,
   changeSelectedObject,
   changeSelectedObjectType,
   changeSelectedOption,
   changeSelectedTerrain,
-  changeTerrain,
   closeEraseObjectsSettings,
+  closeObjectDetails,
   closeObjectDetailsUnavailablePrompt,
   closeObjectsWindow,
   openEraseObjectsSettings,
+  openObjectDetails,
   openObjectDetailsUnavailablePrompt,
   openObjectsWindow,
   zoomIn,
@@ -44,6 +46,24 @@ describe("editorWindowReducer", () => {
 
     const expected: EditorWindowState = {
       ...defaultState,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle changing map", () => {
+    const state: EditorWindowState = {
+      ...defaultState,
+      map: createMap(1, 1, "terrain"),
+    };
+
+    const map = createMap(2, 2, "otherTerrain");
+
+    const result = editorWindowReducer(state, changeMap(map));
+
+    const expected: EditorWindowState = {
+      ...state,
+      map,
     };
 
     expect(result).toEqual(expected);
@@ -94,29 +114,6 @@ describe("editorWindowReducer", () => {
     const expected: EditorWindowState = {
       ...state,
       selectedTerrain: "otherTerrain",
-    };
-
-    expect(result).toEqual(expected);
-  });
-
-  it("should handle changing terrain", () => {
-    const state: EditorWindowState = {
-      ...defaultState,
-      map: createMap(1, 1, "terrain"),
-    };
-
-    const result = editorWindowReducer(state, changeTerrain(createPoint(0, 0), "otherTerrain"));
-
-    const expected: EditorWindowState = {
-      ...state,
-      map: {
-        ...state.map,
-        tiles: [
-          {
-            terrain: "otherTerrain",
-          },
-        ],
-      },
     };
 
     expect(result).toEqual(expected);
@@ -180,6 +177,38 @@ describe("editorWindowReducer", () => {
     const expected: EditorWindowState = {
       ...state,
       objectsWindowVisible: false,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle opening object details", () => {
+    const state: EditorWindowState = {
+      ...defaultState,
+      visibleObjectDetails: undefined,
+    };
+
+    const result = editorWindowReducer(state, openObjectDetails("id"));
+
+    const expected: EditorWindowState = {
+      ...state,
+      visibleObjectDetails: "id",
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle closing object details", () => {
+    const state: EditorWindowState = {
+      ...defaultState,
+      visibleObjectDetails: "object",
+    };
+
+    const result = editorWindowReducer(state, closeObjectDetails());
+
+    const expected: EditorWindowState = {
+      ...state,
+      visibleObjectDetails: undefined,
     };
 
     expect(result).toEqual(expected);

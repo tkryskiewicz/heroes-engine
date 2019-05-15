@@ -39,6 +39,10 @@ export enum MapObjectId {
 
   // creatures
   RandomCreature = "random-creature",
+  RandomCreature1 = "random-creature-1",
+  RandomCreature2 = "random-creature-2",
+  RandomCreature3 = "random-creature-3",
+  RandomCreature4 = "random-creature-4",
 
   // dwellings
   Cottage = "cottage",

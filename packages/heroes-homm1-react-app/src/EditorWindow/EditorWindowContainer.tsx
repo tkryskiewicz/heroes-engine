@@ -2,21 +2,29 @@ import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import {
+  changeTerrain,
+  CreatureMapObject,
   GameData,
+  getObject,
   getTileIndex,
   getTilePoint,
+  isCreatureMapObject,
   isSamePoint,
   Map,
   MapObject,
   MapObjectOrientation,
   MapPoint,
+  placeObject,
+  replaceObject,
   translatePoint,
 } from "heroes-core";
 import {
   canPlaceObject,
+  createMapObject,
   EditorObjectType,
   EditorOption,
   EraseObjectsSettings,
+  isRandomCreatureMapObject,
   nextObjectType,
   previousObjectType,
   TerrainType,
@@ -24,6 +32,7 @@ import {
 import {
   AdventureWindow,
   CellNumbers,
+  CreatureMapObjectSettingsWindow,
   DetailsOptionDetails,
   EditorButtons,
   EditorHorizontalScrollbar,
@@ -47,13 +56,13 @@ import { getObjects } from "./config";
 interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly data: GameData;
   readonly map: Map;
+  readonly onMapChange: (value: Map) => void;
   readonly position: MapPoint;
   readonly onPositionChange: (value: MapPoint) => void;
   readonly selectedOption: EditorOption;
   readonly onSelectedOptionChange: (value: EditorOption) => void;
   readonly selectedTerrain: string;
   readonly onSelectedTerrainChange: (value: string) => void;
-  readonly onChangeTerrainClick: (point: MapPoint, terrain: string) => void;
 
   readonly selectedObjectType: EditorObjectType;
   readonly onSelectedObjectTypeChange: (value: EditorObjectType) => void;
@@ -62,9 +71,10 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly objectsWindowVisible: boolean;
   readonly onOpenObjectsWindowClick: () => void;
   readonly onCloseObjectsWindowClick: () => void;
-  // TODO: perform logic here and just update map??
-  readonly onPlaceObjectClick: (point: MapPoint, object: MapObject) => void;
 
+  readonly visibleObjectDetails?: string;
+  readonly onOpenObjectDetailsClick: (id: string) => void;
+  readonly onCloseObjectDetailsClick: () => void;
   readonly objectDetailsUnavailablePromptVisible: boolean;
   readonly onOpenObjectDetailsUnavailablePromptClick: () => void;
   readonly onCloseObjectDetailsUnavailablePromptClick: () => void;
@@ -91,21 +101,24 @@ interface EditorWindowContainerState {
   readonly x?: number;
   readonly y?: number;
   readonly message: string;
+  readonly objectId: number;
+  readonly creatureCount: number;
   readonly eraseObjectsSettings: EraseObjectsSettings;
 }
 
 type DefaultProp =
+  "onMapChange" |
   "onPositionChange" |
   "onSelectedOptionChange" |
   "onSelectedTerrainChange" |
-  "onChangeTerrainClick" |
 
   "onSelectedObjectTypeChange" |
   "onSelectedObjectChange" |
   "onOpenObjectsWindowClick" |
   "onCloseObjectsWindowClick" |
-  "onPlaceObjectClick" |
 
+  "onOpenObjectDetailsClick" |
+  "onCloseObjectDetailsClick" |
   "objectDetailsUnavailablePromptVisible" |
   "onOpenObjectDetailsUnavailablePromptClick" |
   "onCloseObjectDetailsUnavailablePromptClick" |
@@ -129,17 +142,18 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   public static readonly defaultProps: Pick<EditorWindowContainerProps, DefaultProp> = {
     eraseObjectsSettingsVisible: false,
     objectDetailsUnavailablePromptVisible: false,
-    onChangeTerrainClick: () => undefined,
     onCloseEraseObjectsSettingsClick: () => undefined,
+    onCloseObjectDetailsClick: () => undefined,
     onCloseObjectDetailsUnavailablePromptClick: () => undefined,
     onCloseObjectsWindowClick: () => undefined,
     onEraseObjectsSettingsChange: () => undefined,
     onLoadClick: () => undefined,
+    onMapChange: () => undefined,
     onNewClick: () => undefined,
     onOpenEraseObjectsSettingsClick: () => undefined,
+    onOpenObjectDetailsClick: () => undefined,
     onOpenObjectDetailsUnavailablePromptClick: () => undefined,
     onOpenObjectsWindowClick: () => undefined,
-    onPlaceObjectClick: () => undefined,
     onPositionChange: () => undefined,
     onQuitClick: () => undefined,
     onRandomClick: () => undefined,
@@ -155,12 +169,14 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   };
 
   public readonly state: EditorWindowContainerState = {
+    creatureCount: 0,
     eraseObjectsSettings: {
       allOverlays: false,
       clearEntire: false,
       objectTypes: [],
     },
     message: "",
+    objectId: 0,
   };
 
   public componentDidUpdate(prevProps: EditorWindowContainerProps) {
@@ -251,7 +267,9 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     const point = getTilePoint(this.props.map.width, index);
 
     if (selectedOption === EditorOption.Terrains) {
-      this.props.onChangeTerrainClick(point, this.props.selectedTerrain);
+      const newMap = changeTerrain(map, point, this.props.selectedTerrain);
+
+      this.props.onMapChange(newMap);
     } else if (selectedOption === EditorOption.Objects && selectedObject) {
       const objectData = data.mapObjects[selectedObject];
 
@@ -263,16 +281,33 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
           setTimeout(() => this.setState({ message: "" }), 1000);
         });
       } else {
-        // TODO: create object
-        const object: MapObject = {
-          dataId: selectedObject,
-          id: "test",
-        };
+        const object = createMapObject(this.state.objectId.toString(), objectData);
 
-        this.props.onPlaceObjectClick(point, object);
+        const newMap = placeObject(map, point, object);
+
+        this.props.onMapChange(newMap);
+
+        this.setState({
+          objectId: this.state.objectId + 1,
+        });
       }
     } else if (selectedOption === EditorOption.Details) {
-      this.props.onOpenObjectDetailsUnavailablePromptClick();
+      const tile = map.tiles[getTileIndex(map.width, point)];
+
+      const object = tile.object;
+
+      if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
+        this.setState({
+          creatureCount: object.count,
+        });
+      }
+
+      if (object === undefined) {
+        this.props.onOpenObjectDetailsUnavailablePromptClick();
+      } else {
+        // FIXME: this will try to open details for every object
+        this.props.onOpenObjectDetailsClick(object.id);
+      }
     }
   }
 
@@ -396,9 +431,12 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
           </>
         );
       case EditorOption.Details:
+        const { visibleObjectDetails } = this.props;
+
         return (
           <>
             <DetailsOptionDetails />
+            {visibleObjectDetails && this.renderObjectDetails(visibleObjectDetails)}
             {this.props.objectDetailsUnavailablePromptVisible && this.renderObjectDetailsUnavailablePrompt()}
           </>
         );
@@ -486,6 +524,54 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       default:
         return undefined;
     }
+  }
+
+  private renderObjectDetails(id: string) {
+    const { data } = this.props;
+
+    const object = getObject(this.props.map, id);
+
+    // TODO: extract
+    if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
+      return (
+        <CreatureMapObjectSettingsWindow
+          visible={true}
+          count={this.state.creatureCount}
+          onCountChange={this.onCreatureCountChange}
+          onConfirmClick={this.onConfirmCreatureDetailsClick}
+          onCancelClick={this.props.onCloseObjectDetailsClick}
+        />
+      );
+    }
+  }
+
+  private readonly onCreatureCountChange = (value: number) => {
+    this.setState({
+      creatureCount: value,
+    });
+  }
+
+  private readonly onConfirmCreatureDetailsClick = () => {
+    const { data, map, visibleObjectDetails } = this.props;
+
+    const object = getObject(map, visibleObjectDetails!)!;
+
+    let newObject = object;
+
+    if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
+      const obj: CreatureMapObject = {
+        ...object,
+        count: this.state.creatureCount,
+      };
+
+      newObject = obj;
+    }
+
+    const newMap = replaceObject(map, newObject);
+
+    this.props.onMapChange(newMap);
+
+    this.props.onCloseObjectDetailsClick();
   }
 
   private renderObjectDetailsUnavailablePrompt() {

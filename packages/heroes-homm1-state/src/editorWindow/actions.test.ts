@@ -1,9 +1,11 @@
-import { createPoint } from "heroes-core";
+import { createMap, createPoint } from "heroes-core";
 import { EditorObjectType, EditorOption, EraseObjectsSettings } from "heroes-homm1";
 
 import {
   changeEraseObjectsSettings,
   ChangeEraseObjectsSettingsAction,
+  changeMap,
+  ChangeMapAction,
   changePosition,
   ChangePositionAction,
   changeSelectedObject,
@@ -14,10 +16,10 @@ import {
   ChangeSelectedOptionAction,
   changeSelectedTerrain,
   ChangeSelectedTerrainAction,
-  changeTerrain,
-  ChangeTerrainAction,
   closeEraseObjectsSettings,
   CloseEraseObjectsSettingsAction,
+  closeObjectDetails,
+  CloseObjectDetailsAction,
   closeObjectDetailsUnavailablePrompt,
   CloseObjectDetailsUnavailablePromptAction,
   closeObjectsWindow,
@@ -25,6 +27,8 @@ import {
   EditorWindowActionType,
   openEraseObjectsSettings,
   OpenEraseObjectsSettingsAction,
+  openObjectDetails,
+  OpenObjectDetailsAction,
   openObjectDetailsUnavailablePrompt,
   OpenObjectDetailsUnavailablePromptAction,
   openObjectsWindow,
@@ -36,6 +40,19 @@ import {
 } from "./actions";
 
 describe("editorWindowActions", () => {
+  it("should create an action to change map", () => {
+    const map = createMap(1, 1, "terrain");
+
+    const result = changeMap(map);
+
+    const expected: ChangeMapAction = {
+      type: EditorWindowActionType.ChangeMap,
+      value: map,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
   it("should create an action to change position", () => {
     const position = createPoint(0, 0);
 
@@ -66,18 +83,6 @@ describe("editorWindowActions", () => {
     const expected: ChangeSelectedTerrainAction = {
       type: EditorWindowActionType.ChangeSelectedTerrain,
       value: "terrain",
-    };
-
-    expect(result).toEqual(expected);
-  });
-
-  it("should create an action to change terrain", () => {
-    const result = changeTerrain(createPoint(0, 0), "terrain");
-
-    const expected: ChangeTerrainAction = {
-      point: createPoint(0, 0),
-      terrain: "terrain",
-      type: EditorWindowActionType.ChangeTerrain,
     };
 
     expect(result).toEqual(expected);
@@ -120,6 +125,27 @@ describe("editorWindowActions", () => {
 
     const expected: CloseObjectsWindowAction = {
       type: EditorWindowActionType.CloseObjectsWindow,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to open object details", () => {
+    const result = openObjectDetails("id");
+
+    const expected: OpenObjectDetailsAction = {
+      id: "id",
+      type: EditorWindowActionType.OpenObjectDetails,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to close object details", () => {
+    const result = closeObjectDetails();
+
+    const expected: CloseObjectDetailsAction = {
+      type: EditorWindowActionType.CloseObjectDetails,
     };
 
     expect(result).toEqual(expected);

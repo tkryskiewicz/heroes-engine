@@ -1,4 +1,4 @@
-import { changeTerrain, createMap, createPoint, placeObject } from "heroes-core";
+import { createMap, createPoint } from "heroes-core";
 import { EditorObjectType, EditorOption, TerrainType } from "heroes-homm1";
 
 import { EditorWindowAction, EditorWindowActionType } from "./actions";
@@ -28,6 +28,11 @@ export const editorWindowReducer = (
   action: EditorWindowAction,
 ): EditorWindowState => {
   switch (action.type) {
+    case EditorWindowActionType.ChangeMap:
+      return {
+        ...state,
+        map: action.value,
+      };
     case EditorWindowActionType.ChangePosition:
       return {
         ...state,
@@ -42,11 +47,6 @@ export const editorWindowReducer = (
       return {
         ...state,
         selectedTerrain: action.value,
-      };
-    case EditorWindowActionType.ChangeTerrain:
-      return {
-        ...state,
-        map: changeTerrain(state.map, action.point, action.terrain),
       };
     case EditorWindowActionType.ChangeSelectedObjectType:
       return {
@@ -68,10 +68,15 @@ export const editorWindowReducer = (
         ...state,
         objectsWindowVisible: false,
       };
-    case EditorWindowActionType.PlaceObject:
+    case EditorWindowActionType.OpenObjectDetails:
       return {
         ...state,
-        map: placeObject(state.map, action.point, action.object),
+        visibleObjectDetails: action.id,
+      };
+    case EditorWindowActionType.CloseObjectDetails:
+      return {
+        ...state,
+        visibleObjectDetails: undefined,
       };
     case EditorWindowActionType.OpenObjectDetailsUnavailablePrompt:
       return {

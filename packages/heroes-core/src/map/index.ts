@@ -15,6 +15,9 @@ export {
 export {
   CreatureMapObjectData,
   isCreatureMapObjectData,
+  CreatureMapObject,
+  isCreatureMapObject,
+  createCreatureMapObject,
 } from "./CreatureMapObject";
 export {
   DwellingMapObject,

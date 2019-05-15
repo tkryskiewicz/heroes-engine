@@ -12,6 +12,7 @@ import {
   isHeroMapObject,
   isMineMapObject,
   isMineMapObjectData,
+  isRandomCreatureMapObjectData,
   isResourceMapObject,
   isTownMapObject,
   isVariantMapObjectData,
@@ -24,6 +25,7 @@ import {
   HeroMapObject,
   MapObject as MapObj,
   MineMapObject,
+  RandomCreatureMapObject,
   ResourceMapObject,
   TownMapObject,
 } from "heroes-homm1-react";
@@ -54,6 +56,15 @@ export const renderObject = (
       <CreatureMapObject
         size={size}
         creature={objectData.creature}
+      />
+    );
+  }
+
+  if (isRandomCreatureMapObjectData(objectData)) {
+    return (
+      <RandomCreatureMapObject
+        size={size}
+        level={objectData.randomCreature.level}
       />
     );
   }

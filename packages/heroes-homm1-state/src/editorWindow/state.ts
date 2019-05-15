@@ -9,6 +9,7 @@ export interface EditorWindowState {
   readonly selectedObjectType: EditorObjectType;
   readonly selectedObject?: string;
   readonly objectsWindowVisible: boolean;
+  readonly visibleObjectDetails?: string;
   readonly objectDetailsUnavailablePromptVisible: boolean;
   readonly eraseObjectsSettings: EraseObjectsSettings;
   readonly eraseObejctsSettingsVisible: boolean;

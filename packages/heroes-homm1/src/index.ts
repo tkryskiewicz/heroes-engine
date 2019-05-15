@@ -35,7 +35,7 @@ export {
   StructureVisitedLuckModifier,
 } from "./luck";
 export * from "./map";
-export { mapObjects } from "./mapObjects";
+export { mapObjects, createMapObject } from "./mapObjects";
 export {
   MoraleType,
   getMoraleType,

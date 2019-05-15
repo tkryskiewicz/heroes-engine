@@ -1,16 +1,18 @@
-import { MapObject, MapPoint } from "heroes-core";
+import { Map, MapPoint } from "heroes-core";
 import { EditorObjectType, EditorOption, EraseObjectsSettings } from "heroes-homm1";
 
 export enum EditorWindowActionType {
+  ChangeMap = "editorWindow/changeMap",
   ChangePosition = "editorWindow/changePosition",
   ChangeSelectedOption = "editorWindow/changeSelectedOption",
   ChangeSelectedTerrain = "editorWindow/changeSelectedTerrain",
-  ChangeTerrain = "editorWindow/changeTerrain",
   ChangeSelectedObjectType = "editorWindow/changeSelectedObjectType",
+  // TODO: rename??
   ChangeSelectedObject = "editorWindow/changeSelectedObject",
   OpenObjectsWindow = "editorWindow/openObjectsWindow",
   CloseObjectsWindow = "editorWindow/closeObjectsWindow",
-  PlaceObject = "editorWindow/placeObject",
+  OpenObjectDetails = "editorWindow/openObjectDetails",
+  CloseObjectDetails = "editorWindow/closeObjectDetails",
   OpenObjectDetailsUnavailablePrompt = "editorWindow/openObjectDetailsUnavailablePrompt",
   CloseObjectDetailsUnavailablePrompt = "editorWindow/closeObjectDetailsUnavailablePrompt",
   OpenEraseObjectsSettings = "editorWindow/openEraseObjectsSettings",
@@ -21,15 +23,16 @@ export enum EditorWindowActionType {
 }
 
 export type EditorWindowAction =
+  ChangeMapAction |
   ChangePositionAction |
   ChangeSelectedOptionAction |
   ChangeSelectedTerrainAction |
-  ChangeTerrainAction |
   ChangeSelectedObjectTypeAction |
   ChangeSelectedObjectAction |
   OpenObjectsWindowAction |
   CloseObjectsWindowAction |
-  PlaceObjectAction |
+  OpenObjectDetailsAction |
+  CloseObjectDetailsAction |
   OpenObjectDetailsUnavailablePromptAction |
   CloseObjectDetailsUnavailablePromptAction |
   OpenEraseObjectsSettingsAction |
@@ -37,6 +40,16 @@ export type EditorWindowAction =
   ChangeEraseObjectsSettingsAction |
   ZoomInAction |
   ZoomOutAction;
+
+export interface ChangeMapAction {
+  readonly type: EditorWindowActionType.ChangeMap;
+  readonly value: Map;
+}
+
+export const changeMap = (value: Map): ChangeMapAction => ({
+  type: EditorWindowActionType.ChangeMap,
+  value,
+});
 
 export interface ChangePositionAction {
   readonly type: EditorWindowActionType.ChangePosition;
@@ -66,18 +79,6 @@ export interface ChangeSelectedTerrainAction {
 export const changeSelectedTerrain = (value: string): ChangeSelectedTerrainAction => ({
   type: EditorWindowActionType.ChangeSelectedTerrain,
   value,
-});
-
-export interface ChangeTerrainAction {
-  readonly type: EditorWindowActionType.ChangeTerrain;
-  readonly point: MapPoint;
-  readonly terrain: string;
-}
-
-export const changeTerrain = (point: MapPoint, terrain: string): ChangeTerrainAction => ({
-  point,
-  terrain,
-  type: EditorWindowActionType.ChangeTerrain,
 });
 
 export interface ChangeSelectedObjectTypeAction {
@@ -116,16 +117,22 @@ export const closeObjectsWindow = (): CloseObjectsWindowAction => ({
   type: EditorWindowActionType.CloseObjectsWindow,
 });
 
-export interface PlaceObjectAction {
-  readonly type: EditorWindowActionType.PlaceObject;
-  readonly point: MapPoint;
-  readonly object: MapObject;
+export interface OpenObjectDetailsAction {
+  readonly type: EditorWindowActionType.OpenObjectDetails;
+  readonly id: string;
 }
 
-export const placeObject = (point: MapPoint, object: MapObject): PlaceObjectAction => ({
-  object,
-  point,
-  type: EditorWindowActionType.PlaceObject,
+export const openObjectDetails = (id: string): OpenObjectDetailsAction => ({
+  id,
+  type: EditorWindowActionType.OpenObjectDetails,
+});
+
+export interface CloseObjectDetailsAction {
+  readonly type: EditorWindowActionType.CloseObjectDetails;
+}
+
+export const closeObjectDetails = (): CloseObjectDetailsAction => ({
+  type: EditorWindowActionType.CloseObjectDetails,
 });
 
 export interface OpenObjectDetailsUnavailablePromptAction {
