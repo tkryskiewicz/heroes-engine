@@ -48,7 +48,6 @@ import {
   editorWindowMessages,
   EraseOptionDetails,
   EraseOptionSettingsWindow,
-  HeroMapObjectDetailsWindow,
   MapTile,
   ObjectDetailsUnavailablePrompt,
   ObjectsOptionDetails,
@@ -56,6 +55,7 @@ import {
 } from "heroes-homm1-react";
 
 import { renderEditorObject } from "../config";
+import { HeroMapObjectDetailsWindow } from "../editor";
 import { getObjects } from "./config";
 
 interface EditorWindowContainerProps extends InjectedIntlProps {
@@ -571,7 +571,6 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       return (
         <HeroMapObjectDetailsWindow
           visible={true}
-          data={data}
           value={this.props.heroMapObjectDetails}
           onValueChange={this.props.onHeroMapObjectDetailsChange}
           onConfirmClick={this.onConfirmHeroDetailsClick}

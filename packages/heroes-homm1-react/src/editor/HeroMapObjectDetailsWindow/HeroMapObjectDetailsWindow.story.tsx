@@ -48,6 +48,9 @@ storiesOf("editor/HeroMapObjectDetailsWindow", module)
         data={data}
         value={value}
         onValueChange={action("Value Change")}
+        creatureValueRangePromptVisible={boolean("Creature Value Range Prompt Visible", false)}
+        onOpenCreatureValueRangePrompt={action("Open Creature Value Range Prompt")}
+        onCloseCreatureValueRangePrompt={action("Close Creature Value Range Prompt")}
         onConfirmClick={action("Confirm Click")}
         onCancelClick={action("Cancel Click")}
       />

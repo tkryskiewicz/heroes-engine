@@ -25,7 +25,7 @@ const mapStateToProps = (state: AppState): Pick<EditorWindowProps, StateProp> =>
   data: state.game.data,
   eraseObjectsSettings: state.editorWindow.eraseObjectsSettings,
   eraseObjectsSettingsVisible: state.editorWindow.eraseObejctsSettingsVisible,
-  heroMapObjectDetails: state.heroMapObjectDetails,
+  heroMapObjectDetails: state.heroMapObjectDetails.value,
   map: state.editorWindow.map,
   objectDetailsUnavailablePromptVisible: state.editorWindow.objectDetailsUnavailablePromptVisible,
   objectsWindowVisible: state.editorWindow.objectsWindowVisible,

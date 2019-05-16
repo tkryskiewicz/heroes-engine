@@ -3,7 +3,7 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { GameData, Troop } from "heroes-core";
-import { HeroMapObjectDetails } from "heroes-homm1";
+import { ArtifactId, HeroMapObjectDetails } from "heroes-homm1";
 
 import * as styles from "./HeroMapObjectDetailsWindow.module.scss";
 
@@ -11,23 +11,36 @@ import { GameCheckbox, GameInputNumber } from "../../base";
 import { GameParagraph, GameText } from "../../core";
 import { getArtifactNameMessage, getCreatureNameMessage, getHeroNameMessage } from "../../messages";
 import { EditorSettingsWindow, EditorSettingsWindowProps } from "../EditorSettingsWindow";
+import { ValueRangePrompt } from "../ValueRangePrompt";
 import { messages } from "./messages";
 
 // TODO: move
+const MaxTroopCount = 999;
 const ArtifactCount = 4;
+const MaxExperience = 99999;
 
 export interface HeroMapObjectDetailsWindowProps extends EditorSettingsWindowProps {
   readonly data: GameData;
   readonly value: HeroMapObjectDetails;
   readonly onValueChange: (value: HeroMapObjectDetails) => void;
+
+  readonly creatureValueRangePromptVisible: boolean;
+  readonly onOpenCreatureValueRangePrompt: () => void;
+  readonly onCloseCreatureValueRangePrompt: () => void;
 }
 
 type DefaultProp =
-  "onValueChange";
+  "onValueChange" |
+  "creatureValueRangePromptVisible" |
+  "onOpenCreatureValueRangePrompt" |
+  "onCloseCreatureValueRangePrompt";
 
-// FIXME: component assumes that every troop is set
+// FIXME: component assumes that every troop is set and there's at least 1 creature
 export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDetailsWindowProps> {
   public static readonly defaultProps: Pick<HeroMapObjectDetailsWindowProps, DefaultProp> = {
+    creatureValueRangePromptVisible: false,
+    onCloseCreatureValueRangePrompt: () => undefined,
+    onOpenCreatureValueRangePrompt: () => undefined,
     onValueChange: () => undefined,
   };
 
@@ -36,6 +49,8 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
 
     const army = [...new Array(data.armySize).keys()]
       .map((i) => value.army[i]!);
+
+    const heroes = this.getHeroes();
 
     return (
       <EditorSettingsWindow
@@ -101,8 +116,8 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
             >
               <GameInputNumber
                 min={0}
-                max={35}
-                value={Object.keys(data.heroes).indexOf(value.hero)}
+                max={heroes.length - 1}
+                value={heroes.indexOf(value.hero)}
                 onChange={this.onHeroChange}
               />
             </Col>
@@ -130,19 +145,22 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
             >
               <GameInputNumber
                 min={0}
-                max={999}
+                max={MaxExperience}
                 value={value.experience}
                 onChange={this.onExperienceChange}
               />
             </Col>
             <Col span={6} />
           </Row>
+          {this.props.creatureValueRangePromptVisible && this.renderCreatureValueRangePrompt()}
         </div>
       </EditorSettingsWindow>
     );
   }
 
   private renderTroop(index: number, troop: Troop) {
+    const creatures = this.getCreatures();
+
     const onCreatureChange = (value: number) => this.onTroopCreatureChange(index, value);
     const onCountChange = (value: number) => this.onTroopCountChange(index, value);
 
@@ -162,8 +180,8 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
         >
           <GameInputNumber
             min={0}
-            max={999}
-            value={Object.keys(this.props.data.creatures).indexOf(troop.creature)}
+            max={creatures.length - 1}
+            value={creatures.indexOf(troop.creature)}
             onChange={onCreatureChange}
           />
         </Col>
@@ -178,7 +196,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
         >
           <GameInputNumber
             min={0}
-            max={999}
+            max={MaxTroopCount}
             value={troop.count}
             onChange={onCountChange}
           />
@@ -188,12 +206,16 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
   }
 
   private readonly onTroopCreatureChange = (index: number, v: number) => {
-    const { data, value } = this.props;
+    const { value } = this.props;
 
-    const creature = Object.keys(data.creatures)[v];
+    const creatures = this.getCreatures();
+
+    let creature = creatures[v];
 
     if (!creature) {
-      return;
+      this.props.onOpenCreatureValueRangePrompt();
+
+      creature = creatures[0];
     }
 
     const newValue: HeroMapObjectDetails = {
@@ -205,6 +227,19 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
     };
 
     this.props.onValueChange(newValue);
+  }
+
+  private renderCreatureValueRangePrompt() {
+    const creatures = this.getCreatures();
+
+    return (
+      <ValueRangePrompt
+        visible={true}
+        min={0}
+        max={creatures.length - 1}
+        onConfirmClick={this.props.onCloseCreatureValueRangePrompt}
+      />
+    );
   }
 
   private readonly onTroopCountChange = (index: number, v: number) => {
@@ -219,6 +254,10 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
     };
 
     this.props.onValueChange(newValue);
+  }
+
+  private getCreatures() {
+    return Object.keys(this.props.data.creatures);
   }
 
   private renderAlignment(index: number, alignment: string, selectedAlignment: string) {
@@ -256,7 +295,9 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
   }
 
   private readonly onHeroChange = (value: number) => {
-    const hero = Object.keys(this.props.data.heroes)[value];
+    const heroes = this.getHeroes();
+
+    const hero = heroes[value];
 
     if (!hero) {
       return;
@@ -270,7 +311,13 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
     this.props.onValueChange(newValue);
   }
 
+  private getHeroes() {
+    return Object.keys(this.props.data.heroes);
+  }
+
   private renderArtifact(index: number, artifact: string | undefined) {
+    const artifacts = this.getArtifacts();
+
     const onChange = (value: number) => this.onArtifactChange(index, value);
 
     return (
@@ -289,8 +336,8 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
         >
           <GameInputNumber
             min={0}
-            max={37}
-            value={artifact ? Object.keys(this.props.data.items).indexOf(artifact) + 1 : 0}
+            max={artifacts.length}
+            value={artifact ? artifacts.indexOf(artifact) + 1 : 0}
             onChange={onChange}
           />
         </Col>
@@ -304,9 +351,11 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
   }
 
   private readonly onArtifactChange = (index: number, v: number) => {
-    const { data, value } = this.props;
+    const { value } = this.props;
 
-    const artifact = Object.keys(data.items)[v - 1];
+    const artifacts = this.getArtifacts();
+
+    const artifact = artifacts[v - 1];
 
     const newValue: HeroMapObjectDetails = {
       ...value,
@@ -315,6 +364,12 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
     };
 
     this.props.onValueChange(newValue);
+  }
+
+  private getArtifacts() {
+    // TODO: extract logic
+    return Object.keys(this.props.data.items)
+      .filter((i) => i !== ArtifactId.Spellbook);
   }
 
   private readonly onExperienceChange = (value: number) => {

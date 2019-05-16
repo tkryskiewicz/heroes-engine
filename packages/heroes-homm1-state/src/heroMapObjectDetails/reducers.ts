@@ -1,14 +1,15 @@
-import { HeroMapObjectDetails } from "heroes-homm1";
-
 import { HeroMapObjectDetailsAction, HeroMapObjectDetailsActionType } from "./actions";
 import { HeroMapObjectDetailsState } from "./state";
 
-const initialState: HeroMapObjectDetails = {
-  alignment: "",
-  army: [],
-  artifacts: [],
-  experience: 0,
-  hero: "",
+const initialState: HeroMapObjectDetailsState = {
+  creatureValueRangePromptVisible: false,
+  value: {
+    alignment: "",
+    army: [],
+    artifacts: [],
+    experience: 0,
+    hero: "",
+  },
 };
 
 export const heroMapObjectDetailsReducer = (
@@ -17,7 +18,20 @@ export const heroMapObjectDetailsReducer = (
 ): HeroMapObjectDetailsState => {
   switch (action.type) {
     case HeroMapObjectDetailsActionType.ChangeValue:
-      return action.value;
+      return {
+        ...state,
+        value: action.value,
+      };
+    case HeroMapObjectDetailsActionType.OpenCreatureValueRangePrompt:
+      return {
+        ...state,
+        creatureValueRangePromptVisible: true,
+      };
+    case HeroMapObjectDetailsActionType.CloseCreatureValueRangePrompt:
+      return {
+        ...state,
+        creatureValueRangePromptVisible: false,
+      };
     default:
       return state;
   }

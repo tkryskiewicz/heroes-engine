@@ -1,3 +1,6 @@
 import { HeroMapObjectDetails } from "heroes-homm1";
 
-export type HeroMapObjectDetailsState = HeroMapObjectDetails;
+export interface HeroMapObjectDetailsState {
+  readonly value: HeroMapObjectDetails;
+  readonly creatureValueRangePromptVisible: boolean;
+}
