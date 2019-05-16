@@ -25,6 +25,8 @@ import {
 } from "heroes-core";
 import {
   Alignment,
+  alignments,
+  ArmySize,
   ArtifactId,
   artifacts,
   buildGameStructure,
@@ -64,6 +66,8 @@ import { GameAction, GameActionType } from "./actions";
 import { GameState } from "./state";
 
 const data: GameData = {
+  alignments,
+  armySize: ArmySize,
   creatures: creatures.reduce((p, c) => ({
     ...p,
     [c.id]: c,
@@ -92,10 +96,7 @@ const data: GameData = {
     ...p,
     [c.id]: c,
   }), {}),
-  terrains: terrains.reduce((p, c) => ({
-    ...p,
-    [c.id]: c.id,
-  }), {}),
+  terrains: terrains.map((t) => t.id),
 };
 
 const lordKilburn: Hero = {

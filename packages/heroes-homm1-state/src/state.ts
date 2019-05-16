@@ -4,6 +4,7 @@ import { EditorWindowState } from "./editorWindow";
 import { GameState } from "./game";
 import { GameOptionsState } from "./gameOptions";
 import { GameSettingsState } from "./gameSettings";
+import { HeroMapObjectDetailsState } from "./heroMapObjectDetails";
 import { HeroTradingWindowState } from "./heroTradingWindow";
 import { HeroWindowState } from "./heroWindow";
 import { KingdomOverviewWindowState } from "./kingdomOverviewWindow";
@@ -34,4 +35,5 @@ export interface AppState {
   readonly statusWindow: StatusWindowState;
   readonly troopWindow: TroopWindowState;
   readonly editorWindow: EditorWindowState;
+  readonly heroMapObjectDetails: HeroMapObjectDetailsState;
 }

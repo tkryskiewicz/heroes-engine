@@ -20,10 +20,14 @@ import {
 } from "heroes-core";
 import {
   canPlaceObject,
+  constructArtifact,
   createMapObject,
   EditorObjectType,
   EditorOption,
   EraseObjectsSettings,
+  HeroMapObject,
+  HeroMapObjectDetails,
+  isHeroMapObject,
   isRandomCreatureMapObject,
   nextObjectType,
   previousObjectType,
@@ -44,13 +48,14 @@ import {
   editorWindowMessages,
   EraseOptionDetails,
   EraseOptionSettingsWindow,
+  HeroMapObjectDetailsWindow,
   MapTile,
   ObjectDetailsUnavailablePrompt,
   ObjectsOptionDetails,
   TerrainsOptionDetails,
 } from "heroes-homm1-react";
 
-import { renderObject } from "../config";
+import { renderEditorObject } from "../config";
 import { getObjects } from "./config";
 
 interface EditorWindowContainerProps extends InjectedIntlProps {
@@ -78,6 +83,9 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly objectDetailsUnavailablePromptVisible: boolean;
   readonly onOpenObjectDetailsUnavailablePromptClick: () => void;
   readonly onCloseObjectDetailsUnavailablePromptClick: () => void;
+
+  readonly heroMapObjectDetails: HeroMapObjectDetails;
+  readonly onHeroMapObjectDetailsChange: (value: HeroMapObjectDetails) => void;
 
   readonly eraseObjectsSettings: EraseObjectsSettings;
   readonly eraseObjectsSettingsVisible: boolean;
@@ -123,6 +131,8 @@ type DefaultProp =
   "onOpenObjectDetailsUnavailablePromptClick" |
   "onCloseObjectDetailsUnavailablePromptClick" |
 
+  "onHeroMapObjectDetailsChange" |
+
   "eraseObjectsSettingsVisible" |
   "onOpenEraseObjectsSettingsClick" |
   "onCloseEraseObjectsSettingsClick" |
@@ -147,6 +157,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     onCloseObjectDetailsUnavailablePromptClick: () => undefined,
     onCloseObjectsWindowClick: () => undefined,
     onEraseObjectsSettingsChange: () => undefined,
+    onHeroMapObjectDetailsChange: () => undefined,
     onLoadClick: () => undefined,
     onMapChange: () => undefined,
     onNewClick: () => undefined,
@@ -235,7 +246,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     const tile = map.tiles[tileIndex];
 
     const object = tile.object ?
-      renderObject(tile.object, data.mapObjects[tile.object.dataId], tile.terrain, data, size) :
+      renderEditorObject(tile.object, data.mapObjects[tile.object.dataId], tile.terrain, data, size) :
       undefined;
 
     return (
@@ -281,7 +292,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
           setTimeout(() => this.setState({ message: "" }), 1000);
         });
       } else {
-        const object = createMapObject(this.state.objectId.toString(), objectData);
+        const object = createMapObject(this.state.objectId.toString(), objectData, data);
 
         const newMap = placeObject(map, point, object);
 
@@ -300,6 +311,18 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         this.setState({
           creatureCount: object.count,
         });
+      }
+
+      if (isHeroMapObject(object)) {
+        const details: HeroMapObjectDetails = {
+          alignment: object.owner!,
+          army: object.army,
+          artifacts: object.artifacts.map((a) => a ? a.id : undefined),
+          experience: object.experience,
+          hero: object.id,
+        };
+
+        this.props.onHeroMapObjectDetailsChange(details);
       }
 
       if (object === undefined) {
@@ -411,7 +434,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       case EditorOption.Terrains:
         return (
           <TerrainsOptionDetails
-            options={Object.values(data.terrains)}
+            options={data.terrains}
             selectedOption={this.props.selectedTerrain}
             onSelectedOptionChange={this.props.onSelectedTerrainChange}
           />
@@ -499,7 +522,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         height={objectData.height}
         grid={objectData.grid}
       >
-        {renderObject(obj, objectData, terrain, data, "small")}
+        {renderEditorObject(obj, objectData, terrain, data, "small")}
       </EditorObjectGrid>
     );
   }
@@ -543,6 +566,19 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         />
       );
     }
+
+    if (isHeroMapObject(object)) {
+      return (
+        <HeroMapObjectDetailsWindow
+          visible={true}
+          data={data}
+          value={this.props.heroMapObjectDetails}
+          onValueChange={this.props.onHeroMapObjectDetailsChange}
+          onConfirmClick={this.onConfirmHeroDetailsClick}
+          onCancelClick={this.props.onCloseObjectDetailsClick}
+        />
+      );
+    }
   }
 
   private readonly onCreatureCountChange = (value: number) => {
@@ -562,6 +598,36 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       const obj: CreatureMapObject = {
         ...object,
         count: this.state.creatureCount,
+      };
+
+      newObject = obj;
+    }
+
+    const newMap = replaceObject(map, newObject);
+
+    this.props.onMapChange(newMap);
+
+    this.props.onCloseObjectDetailsClick();
+  }
+
+  private readonly onConfirmHeroDetailsClick = () => {
+    const { data, map } = this.props;
+
+    const object = getObject(map, this.props.visibleObjectDetails!)!;
+
+    let newObject = object;
+
+    if (isHeroMapObject(object)) {
+      const details = this.props.heroMapObjectDetails;
+
+      const obj: HeroMapObject = {
+        ...object,
+        army: details.army,
+        artifacts: details.artifacts.map((a) => a ? constructArtifact(a) : undefined),
+        experience: details.experience,
+        heroClass: data.heroes[details.hero].heroClass,
+        id: details.hero,
+        owner: details.alignment,
       };
 
       newObject = obj;

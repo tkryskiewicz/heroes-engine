@@ -43,14 +43,16 @@ import { Spell } from "./Spell";
 import { TroopSelection } from "./Troop";
 
 export interface GameData {
+  readonly alignments: string[];
   readonly resources: { readonly [id: string]: ResourceData; };
   readonly items: { readonly [id: string]: ItemData; };
   readonly creatures: { readonly [id: string]: CreatureData; };
   readonly spells: { readonly [id: string]: Spell; };
   readonly heroClasses: { readonly [id: string]: HeroClassData; };
   readonly heroes: { readonly [id: string]: HeroData; };
-  readonly terrains: { readonly [id: string]: string; };
+  readonly terrains: string[];
   readonly mapObjects: { readonly [id: string]: MapObjectData; };
+  readonly armySize: number;
 }
 
 export interface Puzzle {

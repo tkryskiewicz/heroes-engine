@@ -4,6 +4,8 @@ import {
   createMapObject as createMapObjectCore,
   CreatureMapObjectData,
   DwellingMapObjectData,
+  GameData,
+  Hero,
   InteractionLimitType,
   isCreatureMapObjectData,
   MapObject,
@@ -15,8 +17,10 @@ import {
 import { ArtifactId, artifacts } from "./artifacts";
 import { CreatureId, creatures } from "./creatures";
 import {
+  createHeroMapObject,
   createRandomCreatureMapObject,
   HeroMapObjectData,
+  isHeroMapObjectData,
   isRandomCreatureMapObjectData,
   MapObjectId,
   MineMapObjectData,
@@ -47,16 +51,6 @@ const heroObjects: HeroMapObjectData[] = [
     width: 1,
   },
 ];
-
-const randomHero: MapObjectData & TerrainRestrictedMapObjectData = {
-  grid: [
-    true,
-  ],
-  height: 1,
-  id: MapObjectId.RandomHero,
-  restrictedTerrains: nonWaterTerrains,
-  width: 1,
-};
 
 const townObjects: TownMapObjectData[] = [
   {
@@ -2146,7 +2140,6 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
 
 export const mapObjects: MapObjectData[] = [
   ...heroObjects,
-  randomHero,
   ...townObjects,
   randomTown,
   randomCastle,
@@ -2176,13 +2169,33 @@ export const mapObjects: MapObjectData[] = [
   ...treesObjects,
 ];
 
-export const createMapObject = (id: string, objectData: MapObjectData): MapObject => {
+export const createMapObject = (id: string, objectData: MapObjectData, data: GameData): MapObject => {
   if (isCreatureMapObjectData(objectData)) {
     return createCreatureMapObject(id, objectData);
   }
 
   if (isRandomCreatureMapObjectData(objectData)) {
     return createRandomCreatureMapObject(id, objectData);
+  }
+
+  if (isHeroMapObjectData(objectData)) {
+    const heroId = Object.keys(data.heroes)[0];
+
+    const hero: Hero = {
+      army: [...new Array(data.armySize).keys()]
+        .map(() => ({ creature: Object.keys(data.creatures)[0], count: 0 })),
+      artifacts: [],
+      dataId: MapObjectId.Hero,
+      experience: 0,
+      heroClass: data.heroes[heroId].heroClass,
+      id: heroId,
+      luck: 0,
+      mobility: 0,
+      morale: 0,
+      skills: {},
+    };
+
+    return createHeroMapObject(id, objectData, hero, data.alignments[0]);
   }
 
   return createMapObjectCore(id, objectData);

@@ -2,6 +2,7 @@
 export enum MapObjectId {
   Hero = "hero",
 
+  // TODO: not random, rename
   RandomHero = "random-hero",
 
   Town = "town",

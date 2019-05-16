@@ -1,0 +1,32 @@
+.root {
+  padding-top: 15px;
+
+  div:global(.ant-row) {
+    margin-bottom: 6px;
+  }
+
+  div[class^="ant-col-"] {
+    padding-right: 10px;
+  }
+}
+
+.title {
+  text-align: center;
+}
+
+.detail-row {
+  text-align: right;
+}
+
+.detail-column {
+  text-align: center;
+}
+
+.owner {
+  padding: 0 10px;
+}
+
+.alignment {
+  display: inline-block;
+  margin-right: 10px;
+}

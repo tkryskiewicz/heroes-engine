@@ -6,6 +6,7 @@ import { editorWindowReducer } from "./editorWindow";
 import { gameReducer } from "./game";
 import { gameOptionsReducer } from "./gameOptions";
 import { gameSettingsReducer } from "./gameSettings";
+import { heroMapObjectDetailsReducer } from "./heroMapObjectDetails";
 import { heroTradingWindowReducer } from "./heroTradingWindow";
 import { heroWindowReducer } from "./heroWindow";
 import { kingdomOverviewWindowReducer } from "./kingdomOverviewWindow";
@@ -26,6 +27,7 @@ export const rootReducer = combineReducers<AppState>({
   game: gameReducer,
   gameOptions: gameOptionsReducer,
   gameSettings: gameSettingsReducer,
+  heroMapObjectDetails: heroMapObjectDetailsReducer,
   heroTradingWindow: heroTradingWindowReducer,
   heroWindow: heroWindowReducer,
   kingdomOverviewWindow: kingdomOverviewWindowReducer,

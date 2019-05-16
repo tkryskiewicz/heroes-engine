@@ -60,15 +60,6 @@ export const renderObject = (
     );
   }
 
-  if (isRandomCreatureMapObjectData(objectData)) {
-    return (
-      <RandomCreatureMapObject
-        size={size}
-        level={objectData.randomCreature.level}
-      />
-    );
-  }
-
   if (isArtifactMapObjectData(objectData)) {
     return (
       <ArtifactMapObject
@@ -127,4 +118,32 @@ export const renderObject = (
       variant={variant}
     />
   );
+};
+
+export const renderEditorObject = (
+  object: MapObject,
+  objectData: MapObjectData,
+  terrain: string | undefined,
+  data: GameData,
+  size: "small" | "large",
+) => {
+  if (isRandomCreatureMapObjectData(objectData)) {
+    return (
+      <RandomCreatureMapObject
+        size={size}
+        level={objectData.randomCreature.level}
+      />
+    );
+  }
+
+  if (isHeroMapObject(object)) {
+    return (
+      <MapObj
+        size={size}
+        type={MapObjectId.RandomHero}
+      />
+    );
+  }
+
+  return renderObject(object, objectData, terrain, data, size);
 };

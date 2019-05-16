@@ -3,6 +3,8 @@ export {
   HeroMapObjectData,
   createHeroMapObject,
   isHeroMapObject,
+  isHeroMapObjectData,
+  HeroMapObjectDetails,
 } from "./HeroMapObject";
 export * from "./map";
 export { MapObjectId } from "./MapObjectId";

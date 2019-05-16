@@ -17,6 +17,8 @@ describe("isMineMapObjectData", () => {
     };
 
     const data: GameData = {
+      alignments: [],
+      armySize: 0,
       creatures: {},
       heroClasses: {},
       heroes: {},
@@ -29,7 +31,7 @@ describe("isMineMapObjectData", () => {
         },
       },
       spells: {},
-      terrains: {},
+      terrains: [],
     };
 
     const result = isMineMapObjectData(objectData, data);
@@ -46,6 +48,8 @@ describe("isMineMapObject", () => {
     };
 
     const data: GameData = {
+      alignments: [],
+      armySize: 0,
       creatures: {},
       heroClasses: {},
       heroes: {},
@@ -58,7 +62,7 @@ describe("isMineMapObject", () => {
         },
       },
       spells: {},
-      terrains: {},
+      terrains: [],
     };
 
     const result = isMineMapObject(object, data);

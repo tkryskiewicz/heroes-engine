@@ -199,7 +199,6 @@ const randomObjects: string[] = [
   MapObjectId.RandomCreature2,
   MapObjectId.RandomCreature3,
   MapObjectId.RandomCreature4,
-  MapObjectId.RandomHero,
   MapObjectId.RandomMine,
   MapObjectId.RandomResource,
   MapObjectId.RandomTown,
@@ -257,7 +256,7 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
         ...Object.values(data.mapObjects)
           .filter((o) => isCreatureMapObjectData(o) || isRandomCreatureMapObjectData(o))
           .map((o) => o.id),
-        MapObjectId.RandomHero,
+        MapObjectId.Hero,
       ];
 
       return Object.values(data.mapObjects)

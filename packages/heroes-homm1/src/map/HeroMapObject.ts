@@ -1,11 +1,13 @@
 import {
   ArmedMapObject,
   ArmedMapObjectData,
+  Army,
   createMapObject,
   EquipableMapObject,
   Hero,
   isMapObject,
   MapObject,
+  MapObjectData,
   MapObjectOrientation,
   MobileMapObject,
   OwnableMapObject,
@@ -16,6 +18,9 @@ import { MapObjectId } from "./MapObjectId";
 
 export interface HeroMapObjectData extends ArmedMapObjectData, OwnableMapObjectData {
 }
+
+export const isHeroMapObjectData = (objectData: MapObjectData): objectData is HeroMapObjectData =>
+  objectData.id === MapObjectId.Hero;
 
 export interface HeroMapObject extends Hero, ArmedMapObject, EquipableMapObject, OwnableMapObject, MobileMapObject {
 }
@@ -34,3 +39,11 @@ export const createHeroMapObject = (
   orientation: MapObjectOrientation.North,
   owner,
 });
+
+export interface HeroMapObjectDetails {
+  readonly hero: string;
+  readonly alignment: string;
+  readonly army: Army;
+  readonly artifacts: Array<string | undefined>;
+  readonly experience: number;
+}

@@ -13,6 +13,7 @@ export * from "./EditorVerticalScrollbar";
 export * from "./EditorWindow";
 export * from "./EraseOptionDetails";
 export * from "./EraseOptionSettingsWindow";
+export * from "./HeroMapObjectDetailsWindow";
 export * from "./ObjectDetailsUnavailablePrompt";
 export * from "./ObjectsOptionDetails";
 export * from "./TerrainsOptionDetails";

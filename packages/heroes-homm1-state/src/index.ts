@@ -4,6 +4,7 @@ export { editorWindowActions } from "./editorWindow";
 export { gameActions } from "./game";
 export { gameOptionsActions } from "./gameOptions";
 export { gameSettingsActions } from "./gameSettings";
+export { heroMapObjectDetailsActions } from "./heroMapObjectDetails";
 export { heroTradingWindowActions } from "./heroTradingWindow";
 export { heroWindowActions } from "./heroWindow";
 export { kingdomOverviewWindowActions } from "./kingdomOverviewWindow";

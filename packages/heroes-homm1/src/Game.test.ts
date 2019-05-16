@@ -82,6 +82,8 @@ describe("buyMageGuildSpellBook", () => {
     const game: Game = {
       alignment: "alignment",
       data: {
+        alignments: [],
+        armySize: 0,
         creatures: {},
         heroClasses: {},
         heroes: {},
@@ -89,7 +91,7 @@ describe("buyMageGuildSpellBook", () => {
         mapObjects: {},
         resources: {},
         spells: {},
-        terrains: {},
+        terrains: [],
       },
       map: placeObject(
         placeObject(createMap(2, 1, "terrain"), createPoint(0, 0), heroObject),

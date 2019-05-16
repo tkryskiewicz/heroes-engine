@@ -11,6 +11,8 @@ describe("isResourceMapObject", () => {
     };
 
     const data: GameData = {
+      alignments: [],
+      armySize: 0,
       creatures: {},
       heroClasses: {},
       heroes: {},
@@ -23,7 +25,7 @@ describe("isResourceMapObject", () => {
         },
       },
       spells: {},
-      terrains: {},
+      terrains: [],
     };
 
     const result = isResourceMapObject(object, data);

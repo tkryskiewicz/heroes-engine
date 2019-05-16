@@ -3,13 +3,15 @@ import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { createMap, MapPoint } from "heroes-core";
-import { EraseObjectsSettings, terrains, TerrainType } from "heroes-homm1";
+import { createMap, GameData, MapPoint } from "heroes-core";
+import { EraseObjectsSettings, HeroMapObjectDetails, terrains, TerrainType } from "heroes-homm1";
 import { editorObjectType, editorOption, terrainType } from "heroes-homm1-react";
 
-import { EditorWindow, EditorWindowProps } from "./EditorWindowContainer";
+import { EditorWindow } from "./EditorWindowContainer";
 
-const data: EditorWindowProps["data"] = {
+const data: GameData = {
+  alignments: [],
+  armySize: 0,
   creatures: {},
   heroClasses: {},
   heroes: {},
@@ -17,10 +19,7 @@ const data: EditorWindowProps["data"] = {
   mapObjects: {},
   resources: {},
   spells: {},
-  terrains: terrains.reduce((p, c) => ({
-    ...p,
-    [c.id]: c.id,
-  }), {}),
+  terrains: terrains.map((t) => t.id),
 };
 
 const map = createMap(38, 38, TerrainType.Water);
@@ -38,6 +37,14 @@ storiesOf("EditorWindowContainer", module)
       y: number("Y", 0, { range: true, min: 0, max: 80, step: 1 }),
     };
 
+    const heroMapObjectDetails: HeroMapObjectDetails = {
+      alignment: "",
+      army: [],
+      artifacts: [],
+      experience: 0,
+      hero: "",
+    };
+
     return (
       <EditorWindow
         data={data}
@@ -51,6 +58,9 @@ storiesOf("EditorWindowContainer", module)
         selectedObjectType={editorObjectType("Selected Object Type")}
         onSelectedObjectTypeChange={action("Selected Object Type Change")}
         objectsWindowVisible={boolean("Objects Window Visible", false)}
+
+        heroMapObjectDetails={heroMapObjectDetails}
+        onHeroMapObjectDetailsChange={action("Hero Map Object Details Change")}
 
         eraseObjectsSettings={eraseObjectsSettings}
         eraseObjectsSettingsVisible={boolean("Erase Objects Settings Visible", false)}
