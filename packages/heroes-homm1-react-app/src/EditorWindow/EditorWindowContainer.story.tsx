@@ -59,6 +59,9 @@ storiesOf("EditorWindowContainer", module)
         onSelectedObjectTypeChange={action("Selected Object Type Change")}
         objectsWindowVisible={boolean("Objects Window Visible", false)}
 
+        creatureMapObjectCount={number("Creature Map Object Count", 0)}
+        onCreatureMapObjectCountChange={action("Creature Map Object Count Change")}
+
         heroMapObjectDetails={heroMapObjectDetails}
         onHeroMapObjectDetailsChange={action("Hero Map Object Details Change")}
 

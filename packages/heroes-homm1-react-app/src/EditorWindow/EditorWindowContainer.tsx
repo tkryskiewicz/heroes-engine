@@ -36,7 +36,6 @@ import {
 import {
   AdventureWindow,
   CellNumbers,
-  CreatureMapObjectSettingsWindow,
   DetailsOptionDetails,
   EditorButtons,
   EditorHorizontalScrollbar,
@@ -55,7 +54,7 @@ import {
 } from "heroes-homm1-react";
 
 import { renderEditorObject } from "../config";
-import { HeroMapObjectDetailsWindow } from "../editor";
+import { CreatureMapObjectDetailsWindow, HeroMapObjectDetailsWindow } from "../editor";
 import { getObjects } from "./config";
 
 interface EditorWindowContainerProps extends InjectedIntlProps {
@@ -84,6 +83,9 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly onOpenObjectDetailsUnavailablePromptClick: () => void;
   readonly onCloseObjectDetailsUnavailablePromptClick: () => void;
 
+  readonly creatureMapObjectCount: number;
+  readonly onCreatureMapObjectCountChange: (value: number) => void;
+
   readonly heroMapObjectDetails: HeroMapObjectDetails;
   readonly onHeroMapObjectDetailsChange: (value: HeroMapObjectDetails) => void;
 
@@ -110,7 +112,6 @@ interface EditorWindowContainerState {
   readonly y?: number;
   readonly message: string;
   readonly objectId: number;
-  readonly creatureCount: number;
   readonly eraseObjectsSettings: EraseObjectsSettings;
 }
 
@@ -130,6 +131,8 @@ type DefaultProp =
   "objectDetailsUnavailablePromptVisible" |
   "onOpenObjectDetailsUnavailablePromptClick" |
   "onCloseObjectDetailsUnavailablePromptClick" |
+
+  "onCreatureMapObjectCountChange" |
 
   "onHeroMapObjectDetailsChange" |
 
@@ -156,6 +159,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     onCloseObjectDetailsClick: () => undefined,
     onCloseObjectDetailsUnavailablePromptClick: () => undefined,
     onCloseObjectsWindowClick: () => undefined,
+    onCreatureMapObjectCountChange: () => undefined,
     onEraseObjectsSettingsChange: () => undefined,
     onHeroMapObjectDetailsChange: () => undefined,
     onLoadClick: () => undefined,
@@ -180,7 +184,6 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   };
 
   public readonly state: EditorWindowContainerState = {
-    creatureCount: 0,
     eraseObjectsSettings: {
       allOverlays: false,
       clearEntire: false,
@@ -308,9 +311,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       const object = tile.object;
 
       if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
-        this.setState({
-          creatureCount: object.count,
-        });
+        this.props.onCreatureMapObjectCountChange(object.count);
       }
 
       if (isHeroMapObject(object)) {
@@ -557,10 +558,10 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     // TODO: extract
     if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
       return (
-        <CreatureMapObjectSettingsWindow
+        <CreatureMapObjectDetailsWindow
           visible={true}
-          count={this.state.creatureCount}
-          onCountChange={this.onCreatureCountChange}
+          count={this.props.creatureMapObjectCount}
+          onCountChange={this.props.onCreatureMapObjectCountChange}
           onConfirmClick={this.onConfirmCreatureDetailsClick}
           onCancelClick={this.props.onCloseObjectDetailsClick}
         />
@@ -580,12 +581,6 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     }
   }
 
-  private readonly onCreatureCountChange = (value: number) => {
-    this.setState({
-      creatureCount: value,
-    });
-  }
-
   private readonly onConfirmCreatureDetailsClick = () => {
     const { data, map, visibleObjectDetails } = this.props;
 
@@ -596,7 +591,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
       const obj: CreatureMapObject = {
         ...object,
-        count: this.state.creatureCount,
+        count: this.props.creatureMapObjectCount,
       };
 
       newObject = obj;

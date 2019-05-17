@@ -11,6 +11,7 @@ storiesOf("editor/ValueRangePrompt", module)
       visible={boolean("Visible", true)}
       min={number("Min", 0)}
       max={number("Max", 10)}
+      minIsRandom={boolean("Min Is Random", false)}
       onConfirmClick={action("Confirm Click")}
     />
   ));

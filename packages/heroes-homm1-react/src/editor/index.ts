@@ -1,5 +1,5 @@
 export * from "./CellNumbers";
-export * from "./CreatureMapObjectSettingsWindow";
+export * from "./CreatureMapObjectDetailsWindow";
 export * from "./DetailsOptionDetails";
 export * from "./EditorButtons";
 export * from "./EditorHorizontalScrollbar";

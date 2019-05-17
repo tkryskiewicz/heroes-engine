@@ -1,5 +1,6 @@
 export { adventureOptionsActions } from "./adventureOptions";
 export { adventureScreenActions } from "./adventureScreen";
+export { creatureMapObjectDetailsActions } from "./creatureMapObjectDetails";
 export { editorWindowActions } from "./editorWindow";
 export { gameActions } from "./game";
 export { gameOptionsActions } from "./gameOptions";

@@ -1,5 +1,6 @@
 import { AdventureOptionsState } from "./adventureOptions";
 import { AdventureScreenState } from "./adventureScreen";
+import { CreatureMapObjectDetailsState } from "./creatureMapObjectDetails";
 import { EditorWindowState } from "./editorWindow";
 import { GameState } from "./game";
 import { GameOptionsState } from "./gameOptions";
@@ -35,5 +36,6 @@ export interface AppState {
   readonly statusWindow: StatusWindowState;
   readonly troopWindow: TroopWindowState;
   readonly editorWindow: EditorWindowState;
+  readonly creatureMapObjectDetails: CreatureMapObjectDetailsState;
   readonly heroMapObjectDetails: HeroMapObjectDetailsState;
 }

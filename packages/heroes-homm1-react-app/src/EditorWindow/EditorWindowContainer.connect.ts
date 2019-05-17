@@ -1,7 +1,12 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AppState, editorWindowActions, heroMapObjectDetailsActions } from "heroes-homm1-state";
+import {
+  AppState,
+  creatureMapObjectDetailsActions,
+  editorWindowActions,
+  heroMapObjectDetailsActions,
+} from "heroes-homm1-state";
 
 import { EditorWindow, EditorWindowProps } from "./EditorWindowContainer";
 
@@ -16,12 +21,14 @@ type StateProp =
   "objectsWindowVisible" |
   "visibleObjectDetails" |
   "objectDetailsUnavailablePromptVisible" |
+  "creatureMapObjectCount" |
   "heroMapObjectDetails" |
   "eraseObjectsSettings" |
   "eraseObjectsSettingsVisible" |
   "zoomed";
 
 const mapStateToProps = (state: AppState): Pick<EditorWindowProps, StateProp> => ({
+  creatureMapObjectCount: state.creatureMapObjectDetails.count,
   data: state.game.data,
   eraseObjectsSettings: state.editorWindow.eraseObjectsSettings,
   eraseObjectsSettingsVisible: state.editorWindow.eraseObejctsSettingsVisible,
@@ -51,6 +58,7 @@ type DispatchProp =
   "onCloseObjectDetailsClick" |
   "onOpenObjectDetailsUnavailablePromptClick" |
   "onCloseObjectDetailsUnavailablePromptClick" |
+  "onCreatureMapObjectCountChange" |
   "onHeroMapObjectDetailsChange" |
   "onOpenEraseObjectsSettingsClick" |
   "onCloseEraseObjectsSettingsClick" |
@@ -98,6 +106,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, Dispatc
   },
   onCloseObjectDetailsUnavailablePromptClick() {
     dispatch(editorWindowActions.closeObjectDetailsUnavailablePrompt());
+  },
+  onCreatureMapObjectCountChange(value) {
+    dispatch(creatureMapObjectDetailsActions.changeCount(value));
   },
   onHeroMapObjectDetailsChange(value) {
     dispatch(heroMapObjectDetailsActions.changeValue(value));

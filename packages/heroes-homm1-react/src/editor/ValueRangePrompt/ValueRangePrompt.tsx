@@ -9,11 +9,12 @@ import { messages } from "./messages";
 export interface ValueRangePromptProps extends ConfirmPromptProps {
   readonly min: number;
   readonly max: number;
+  readonly minIsRandom?: boolean;
 }
 
 export class ValueRangePrompt extends React.Component<ValueRangePromptProps> {
   public render() {
-    const { min, max } = this.props;
+    const { min, max, minIsRandom } = this.props;
 
     return (
       <GameModal
@@ -23,7 +24,7 @@ export class ValueRangePrompt extends React.Component<ValueRangePromptProps> {
         onConfirmClick={this.props.onConfirmClick}
       >
         <GameText size="large">
-          <FormattedMessage {...messages.content} values={{ min, max }} />
+          <FormattedMessage {...minIsRandom ? messages.contentRandom : messages.content} values={{ min, max }} />
         </GameText>
       </GameModal>
     );
