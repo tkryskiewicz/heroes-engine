@@ -5,6 +5,7 @@ import {
   changeTerrain,
   CreatureMapObject,
   GameData,
+  getCreatureMapObjectDetails,
   getObject,
   getTileIndex,
   getTilePoint,
@@ -16,21 +17,23 @@ import {
   MapPoint,
   placeObject,
   replaceObject,
+  setCreatureMapObjectDetails,
   translatePoint,
 } from "heroes-core";
 import {
   canPlaceObject,
-  constructArtifact,
   createMapObject,
   EditorObjectType,
   EditorOption,
   EraseObjectsSettings,
+  getHeroMapObjectDetails,
   HeroMapObject,
   HeroMapObjectDetails,
   isHeroMapObject,
   isRandomCreatureMapObject,
   nextObjectType,
   previousObjectType,
+  setHeroMapObjectDetails,
   TerrainType,
 } from "heroes-homm1";
 import {
@@ -311,17 +314,13 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       const object = tile.object;
 
       if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
-        this.props.onCreatureMapObjectCountChange(object.count);
+        const details = getCreatureMapObjectDetails(object);
+
+        this.props.onCreatureMapObjectCountChange(details);
       }
 
       if (isHeroMapObject(object)) {
-        const details: HeroMapObjectDetails = {
-          alignment: object.owner!,
-          army: object.army,
-          artifacts: object.artifacts.map((a) => a ? a.id : undefined),
-          experience: object.experience,
-          hero: object.id,
-        };
+        const details = getHeroMapObjectDetails(object);
 
         this.props.onHeroMapObjectDetailsChange(details);
       }
@@ -582,20 +581,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onConfirmCreatureDetailsClick = () => {
-    const { data, map, visibleObjectDetails } = this.props;
+    const { map, visibleObjectDetails } = this.props;
 
-    const object = getObject(map, visibleObjectDetails!)!;
+    const object = getObject(map, visibleObjectDetails!)! as CreatureMapObject;
 
-    let newObject = object;
-
-    if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
-      const obj: CreatureMapObject = {
-        ...object,
-        count: this.props.creatureMapObjectCount,
-      };
-
-      newObject = obj;
-    }
+    const newObject = setCreatureMapObjectDetails(object, this.props.creatureMapObjectCount);
 
     const newMap = replaceObject(map, newObject);
 
@@ -607,25 +597,9 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   private readonly onConfirmHeroDetailsClick = () => {
     const { data, map } = this.props;
 
-    const object = getObject(map, this.props.visibleObjectDetails!)!;
+    const object = getObject(map, this.props.visibleObjectDetails!)! as HeroMapObject;
 
-    let newObject = object;
-
-    if (isHeroMapObject(object)) {
-      const details = this.props.heroMapObjectDetails;
-
-      const obj: HeroMapObject = {
-        ...object,
-        army: details.army,
-        artifacts: details.artifacts.map((a) => a ? constructArtifact(a) : undefined),
-        experience: details.experience,
-        heroClass: data.heroes[details.hero].heroClass,
-        id: details.hero,
-        owner: details.alignment,
-      };
-
-      newObject = obj;
-    }
+    const newObject = setHeroMapObjectDetails(object, this.props.heroMapObjectDetails, data);
 
     const newMap = replaceObject(map, newObject);
 

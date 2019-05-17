@@ -5,6 +5,8 @@ export {
   isHeroMapObject,
   isHeroMapObjectData,
   HeroMapObjectDetails,
+  getHeroMapObjectDetails,
+  setHeroMapObjectDetails,
 } from "./HeroMapObject";
 export * from "./map";
 export { MapObjectId } from "./MapObjectId";
