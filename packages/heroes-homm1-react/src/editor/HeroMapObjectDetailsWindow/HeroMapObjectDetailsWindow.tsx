@@ -2,20 +2,20 @@ import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { GameData, Troop } from "heroes-core";
+import { Army, GameData, Troop } from "heroes-core";
 import { ArtifactId, HeroMapObjectDetails } from "heroes-homm1";
 
 import * as styles from "./HeroMapObjectDetailsWindow.module.scss";
 
 import { GameCheckbox, GameInputNumber } from "../../base";
 import { GameParagraph, GameText } from "../../core";
-import { getArtifactNameMessage, getCreatureNameMessage, getHeroNameMessage } from "../../messages";
+import { getArtifactNameMessage, getHeroNameMessage } from "../../messages";
+import { ArmyDetails } from "../ArmyDetails";
 import { EditorSettingsWindow, EditorSettingsWindowProps } from "../EditorSettingsWindow";
 import { ValueRangePrompt } from "../ValueRangePrompt";
 import { messages } from "./messages";
 
 // TODO: move
-const MaxTroopCount = 999;
 const ArtifactCount = 4;
 const MaxExperience = 99999;
 
@@ -47,8 +47,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
   public render() {
     const { data, value } = this.props;
 
-    const army = [...new Array(data.armySize).keys()]
-      .map((i) => value.army[i]!);
+    const army = value.army.filter((t): t is Troop => t !== undefined);
 
     const heroes = this.getHeroes();
 
@@ -64,33 +63,12 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
               <FormattedMessage {...messages.title} />
             </GameParagraph>
           </div>
-          <div>
-            <Row>
-              <Col span={4} />
-              <Col
-                className={styles.detailColumn}
-                span={4}
-              >
-                <GameText size="large">
-                  <FormattedMessage {...messages.creatureId} />
-                </GameText>
-              </Col>
-              <Col span={6}>
-                <GameText size="large">
-                  <FormattedMessage {...messages.creatureName} />
-                </GameText>
-              </Col>
-              <Col
-                className={styles.detailColumn}
-                span={4}
-              >
-                <GameText size="large">
-                  <FormattedMessage {...messages.creatureQuantity} />
-                </GameText>
-              </Col>
-            </Row>
-            {army.map((t, i) => this.renderTroop(i, t))}
-          </div>
+          <ArmyDetails
+            creatures={this.getCreatures()}
+            value={army}
+            onValueChange={this.onArmyChange}
+            onOpenCreatureValueRangePrompt={this.props.onOpenCreatureValueRangePrompt}
+          />
           <Row className={styles.owner}>
             <Col span={14}>
               <GameText size="large">
@@ -160,72 +138,10 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
     );
   }
 
-  private renderTroop(index: number, troop: Troop) {
-    const creatures = this.getCreatures();
-
-    const onCreatureChange = (value: number) => this.onTroopCreatureChange(index, value);
-    const onCountChange = (value: number) => this.onTroopCountChange(index, value);
-
-    return (
-      <Row key={index}>
-        <Col
-          className={styles.detailRow}
-          span={4}
-        >
-          <GameText size="large">
-            <FormattedMessage {...messages.creature} values={{ index: index + 1 }} />
-          </GameText>
-        </Col>
-        <Col
-          className={styles.detailColumn}
-          span={4}
-        >
-          <GameInputNumber
-            min={0}
-            max={creatures.length - 1}
-            value={creatures.indexOf(troop.creature)}
-            onChange={onCreatureChange}
-          />
-        </Col>
-        <Col span={6}>
-          <GameText size="large">
-            <FormattedMessage {...getCreatureNameMessage(troop.creature)} />
-          </GameText>
-        </Col>
-        <Col
-          className={styles.detailColumn}
-          span={4}
-        >
-          <GameInputNumber
-            min={0}
-            max={MaxTroopCount}
-            value={troop.count}
-            onChange={onCountChange}
-          />
-        </Col>
-      </Row>
-    );
-  }
-
-  private readonly onTroopCreatureChange = (index: number, v: number) => {
-    const { value } = this.props;
-
-    const creatures = this.getCreatures();
-
-    let creature = creatures[v];
-
-    if (!creature) {
-      this.props.onOpenCreatureValueRangePrompt();
-
-      creature = creatures[0];
-    }
-
+  private readonly onArmyChange = (value: Army) => {
     const newValue: HeroMapObjectDetails = {
-      ...value,
-      army: value.army.map((t, i) => i === index ?
-        { ...t!, creature } :
-        t,
-      ),
+      ...this.props.value,
+      army: value,
     };
 
     this.props.onValueChange(newValue);
@@ -242,20 +158,6 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
         onConfirmClick={this.props.onCloseCreatureValueRangePrompt}
       />
     );
-  }
-
-  private readonly onTroopCountChange = (index: number, v: number) => {
-    const { value } = this.props;
-
-    const newValue: HeroMapObjectDetails = {
-      ...value,
-      army: value.army.map((t, i) => i === index ?
-        { ...t!, count: v } :
-        t,
-      ),
-    };
-
-    this.props.onValueChange(newValue);
   }
 
   private getCreatures() {

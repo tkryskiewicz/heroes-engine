@@ -1,0 +1,24 @@
+.root {
+  th,
+  td {
+    padding-bottom: 6px;
+  }
+}
+
+.title,
+.creature,
+.count {
+  width: 16.66%;
+}
+
+.creatureName {
+  width: 20%;
+}
+
+.title {
+  text-align: right;
+}
+
+.creature {
+  text-align: center;
+}
