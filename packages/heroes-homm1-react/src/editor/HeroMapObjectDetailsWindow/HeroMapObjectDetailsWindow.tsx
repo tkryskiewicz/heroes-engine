@@ -118,6 +118,8 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
                 min={0}
                 max={heroes.length - 1}
                 value={heroes.indexOf(value.hero)}
+                // FIXME: hero id is map object id, changing prevents replacing, disabling for now
+                disabled={true}
                 onChange={this.onHeroChange}
               />
             </Col>
