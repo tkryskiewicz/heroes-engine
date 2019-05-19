@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { GameData, Troop } from "heroes-core";
-import { alignments, CreatureId, creatures, TownMapObjectDetails } from "heroes-homm1";
+import { alignments, CreatureId, creatures, EditorMaxCreatureCount, TownMapObjectDetails } from "heroes-homm1";
 
 import { TownMapObjectDetailsWindow } from "./TownMapObjectDetailsWindow";
 
@@ -15,6 +15,11 @@ const data: GameData = {
     ...p,
     [c.id]: c,
   }), {}),
+  editor: {
+    heroArtifactCount: 0,
+    maxCreatureCount: EditorMaxCreatureCount,
+    maxHeroExperience: 0,
+  },
   heroClasses: {},
   heroes: {},
   items: {},

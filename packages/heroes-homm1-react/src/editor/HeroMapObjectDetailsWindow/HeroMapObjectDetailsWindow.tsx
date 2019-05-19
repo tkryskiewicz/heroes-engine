@@ -16,10 +16,6 @@ import { EditorSettingsWindow, EditorSettingsWindowProps } from "../EditorSettin
 import { ValueRangePrompt } from "../ValueRangePrompt";
 import { messages } from "./messages";
 
-// TODO: move
-const ArtifactCount = 4;
-const MaxExperience = 99999;
-
 export interface HeroMapObjectDetailsWindowProps extends EditorSettingsWindowProps {
   readonly data: GameData;
   readonly value: HeroMapObjectDetails;
@@ -43,7 +39,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
   };
 
   public render() {
-    const { value } = this.props;
+    const { data, value } = this.props;
 
     const army = value.army.filter((t): t is Troop => t !== undefined);
 
@@ -68,7 +64,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
             onOpenCreatureValueRangePrompt={this.onOpenCreatureValueRangePrompt}
           />
           <AlignmentDetails
-            alignments={this.props.data.alignments}
+            alignments={data.alignments}
             value={value.alignment}
             onValueChange={this.onAlignmentChange}
           />
@@ -100,9 +96,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
               </GameText>
             </Col>
           </Row>
-          <div>
-            {[...new Array(ArtifactCount).keys()].map((i) => this.renderArtifact(i, value.artifacts[i]))}
-          </div>
+          {this.renderArtifacts()}
           <Row>
             <Col
               className={styles.detailRow}
@@ -118,7 +112,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
             >
               <GameInputNumber
                 min={0}
-                max={MaxExperience}
+                max={data.editor.maxHeroExperience}
                 value={value.experience}
                 onChange={this.onExperienceChange}
               />
@@ -199,6 +193,16 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
     return Object.keys(this.props.data.heroes);
   }
 
+  private renderArtifacts() {
+    const { data, value } = this.props;
+
+    return (
+      <div>
+        {[...new Array(data.editor.heroArtifactCount).keys()].map((i) => this.renderArtifact(i, value.artifacts[i]))}
+      </div>
+    );
+  }
+
   private renderArtifact(index: number, artifact: string | undefined) {
     const artifacts = this.getArtifacts();
 
@@ -235,7 +239,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
   }
 
   private readonly onArtifactChange = (index: number, v: number) => {
-    const { value } = this.props;
+    const { data, value } = this.props;
 
     const artifacts = this.getArtifacts();
 
@@ -243,7 +247,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
 
     const newValue: HeroMapObjectDetails = {
       ...value,
-      artifacts: [...new Array(ArtifactCount).keys()]
+      artifacts: [...new Array(data.editor.heroArtifactCount).keys()]
         .map((i) => i === index ? artifact : value.artifacts[i]),
     };
 

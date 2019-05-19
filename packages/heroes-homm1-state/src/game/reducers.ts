@@ -40,6 +40,9 @@ import {
   createTownMapObject,
   CreatureId,
   creatures,
+  EditorHeroArtifactCount,
+  EditorMaxCreatureCount,
+  EditorMaxHeroExperience,
   endGameTurn,
   heroClasses,
   heroes,
@@ -72,6 +75,11 @@ const data: GameData = {
     ...p,
     [c.id]: c,
   }), {}),
+  editor: {
+    heroArtifactCount: EditorHeroArtifactCount,
+    maxCreatureCount: EditorMaxCreatureCount,
+    maxHeroExperience: EditorMaxHeroExperience,
+  },
   heroClasses: heroClasses.reduce((p, c) => ({
     ...p,
     [c.id]: c,

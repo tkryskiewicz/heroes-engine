@@ -10,6 +10,8 @@ import {
   ChangePositionAction,
   changeSelectedObject,
   ChangeSelectedObjectAction,
+  changeSelectedObjectDetails,
+  ChangeSelectedObjectDetailsAction,
   changeSelectedObjectType,
   ChangeSelectedObjectTypeAction,
   changeSelectedOption,
@@ -149,6 +151,19 @@ describe("editorWindowActions", () => {
 
     const expected: CloseObjectDetailsAction = {
       type: EditorWindowActionType.CloseObjectDetails,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to change selected object details", () => {
+    const value: CreatureMapObjectDetails = 1;
+
+    const result = changeSelectedObjectDetails(value);
+
+    const expected: ChangeSelectedObjectDetailsAction = {
+      type: EditorWindowActionType.ChangeSelectedObjectDetails,
+      value,
     };
 
     expect(result).toEqual(expected);

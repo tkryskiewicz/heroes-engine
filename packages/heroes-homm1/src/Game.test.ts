@@ -85,6 +85,11 @@ describe("buyMageGuildSpellBook", () => {
         alignments: [],
         armySize: 0,
         creatures: {},
+        editor: {
+          heroArtifactCount: 0,
+          maxCreatureCount: 0,
+          maxHeroExperience: 0,
+        },
         heroClasses: {},
         heroes: {},
         items: {},

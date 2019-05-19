@@ -23,6 +23,18 @@ import { Skill } from "./Skill";
 import { constructSpellBook, SpellBookSpell } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";
 
+export interface EditorGameData {
+  readonly maxCreatureCount: number;
+  readonly heroArtifactCount: number;
+  readonly maxHeroExperience: number;
+}
+
+declare module "heroes-core/src/Game" {
+  interface GameData {
+    readonly editor: EditorGameData;
+  }
+}
+
 export const constructGameHero = (heroId: string, data: GameData) => {
   const hero = data.heroes[heroId];
 

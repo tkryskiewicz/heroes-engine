@@ -4,7 +4,17 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { GameData } from "heroes-core";
-import { alignments, artifacts, CreatureId, creatures, heroes, HeroMapObjectDetails } from "heroes-homm1";
+import {
+  alignments,
+  artifacts,
+  CreatureId,
+  creatures,
+  EditorHeroArtifactCount,
+  EditorMaxCreatureCount,
+  EditorMaxHeroExperience,
+  heroes,
+  HeroMapObjectDetails,
+} from "heroes-homm1";
 
 import { alignment, hero } from "../../stories";
 import { HeroMapObjectDetailsWindow } from "./HeroMapObjectDetailsWindow";
@@ -16,6 +26,11 @@ const data: GameData = {
     ...p,
     [c.id]: c,
   }), {}),
+  editor: {
+    heroArtifactCount: EditorHeroArtifactCount,
+    maxCreatureCount: EditorMaxCreatureCount,
+    maxHeroExperience: EditorMaxHeroExperience,
+  },
   heroClasses: {},
   heroes: heroes.reduce((p, c) => ({
     ...p,

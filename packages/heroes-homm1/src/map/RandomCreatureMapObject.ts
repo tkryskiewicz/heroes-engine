@@ -1,7 +1,5 @@
 import { GameData, isMapObject, MapObject, MapObjectData } from "heroes-core";
 
-export const MaxRandomCreatureCount = 127;
-
 export interface RandomCreatureMapObjectData extends MapObjectData {
   readonly randomCreature: {
     readonly level?: number;

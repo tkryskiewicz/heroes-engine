@@ -28,7 +28,6 @@ export {
   isObeliskMapObjectData,
 } from "./ObeliskMapObject";
 export {
-  MaxRandomCreatureCount,
   RandomCreatureMapObject,
   RandomCreatureMapObjectData,
   isRandomCreatureMapObject,

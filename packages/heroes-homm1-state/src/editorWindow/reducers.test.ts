@@ -6,6 +6,7 @@ import {
   changeMap,
   changePosition,
   changeSelectedObject,
+  changeSelectedObjectDetails,
   changeSelectedObjectType,
   changeSelectedOption,
   changeSelectedTerrain,
@@ -212,6 +213,24 @@ describe("editorWindowReducer", () => {
     const expected: EditorWindowState = {
       ...state,
       visibleObjectDetails: undefined,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle changing selected object details", () => {
+    const state: EditorWindowState = {
+      ...defaultState,
+      selectedObjectDetails: 0,
+    };
+
+    const value: CreatureMapObjectDetails = 1;
+
+    const result = editorWindowReducer(state, changeSelectedObjectDetails(value));
+
+    const expected: EditorWindowState = {
+      ...state,
+      selectedObjectDetails: value,
     };
 
     expect(result).toEqual(expected);

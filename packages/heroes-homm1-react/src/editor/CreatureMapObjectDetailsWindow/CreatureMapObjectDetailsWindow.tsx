@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { MaxRandomCreatureCount } from "heroes-homm1";
+import { GameData } from "heroes-core";
 
 import * as styles from "./CreatureMapObjectDetailsWindow.module.scss";
 
@@ -12,6 +12,7 @@ import { ValueRangePrompt } from "../ValueRangePrompt";
 import { messages } from "./messages";
 
 export interface CreatureMapObjectDetailsWindowProps extends EditorSettingsWindowProps {
+  readonly data: GameData;
   readonly count: number;
   readonly onCountChange: (value: number) => void;
   readonly countValueRangePromptVisible: boolean;
@@ -34,6 +35,8 @@ export class CreatureMapObjectDetailsWindow extends React.Component<CreatureMapO
   };
 
   public render() {
+    const { data } = this.props;
+
     return (
       <EditorSettingsWindow
         visible={this.props.visible}
@@ -56,7 +59,7 @@ export class CreatureMapObjectDetailsWindow extends React.Component<CreatureMapO
           </div>
           <GameInputNumber
             min={0}
-            max={MaxRandomCreatureCount}
+            max={data.editor.maxCreatureCount}
             value={this.props.count}
             onChange={this.onCountChange}
           />
@@ -67,23 +70,27 @@ export class CreatureMapObjectDetailsWindow extends React.Component<CreatureMapO
   }
 
   private readonly onCountChange = (v: number) => {
+    const { data } = this.props;
+
     let value = v;
 
-    if (value > MaxRandomCreatureCount) {
+    if (value > data.editor.maxCreatureCount) {
       this.props.onOpenCountValueRangePromptClick();
 
-      value = MaxRandomCreatureCount;
+      value = data.editor.maxCreatureCount;
     }
 
     this.props.onCountChange(value);
   }
 
   private renderCountValueRangePrompt() {
+    const { data } = this.props;
+
     return (
       <ValueRangePrompt
         visible={true}
         min={0}
-        max={MaxRandomCreatureCount}
+        max={data.editor.maxCreatureCount}
         minIsRandom={true}
         onConfirmClick={this.props.onCloseCountValueRangePromptClick}
       />
