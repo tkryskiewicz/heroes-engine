@@ -6,6 +6,7 @@ import {
   creatureMapObjectDetailsActions,
   editorWindowActions,
   heroMapObjectDetailsActions,
+  townMapObjectDetailsActions,
 } from "heroes-homm1-state";
 
 import { EditorWindow, EditorWindowProps } from "./EditorWindowContainer";
@@ -23,6 +24,7 @@ type StateProp =
   "objectDetailsUnavailablePromptVisible" |
   "creatureMapObjectCount" |
   "heroMapObjectDetails" |
+  "townMapObjectDetails" |
   "eraseObjectsSettings" |
   "eraseObjectsSettingsVisible" |
   "zoomed";
@@ -41,6 +43,7 @@ const mapStateToProps = (state: AppState): Pick<EditorWindowProps, StateProp> =>
   selectedObjectType: state.editorWindow.selectedObjectType,
   selectedOption: state.editorWindow.selectedOption,
   selectedTerrain: state.editorWindow.selectedTerrain,
+  townMapObjectDetails: state.townMapObjectDetails.value,
   visibleObjectDetails: state.editorWindow.visibleObjectDetails,
   zoomed: state.editorWindow.zoomed,
 });
@@ -60,6 +63,7 @@ type DispatchProp =
   "onCloseObjectDetailsUnavailablePromptClick" |
   "onCreatureMapObjectCountChange" |
   "onHeroMapObjectDetailsChange" |
+  "onTownMapObjectDetailsChange" |
   "onOpenEraseObjectsSettingsClick" |
   "onCloseEraseObjectsSettingsClick" |
   "onEraseObjectsSettingsChange" |
@@ -112,6 +116,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, Dispatc
   },
   onHeroMapObjectDetailsChange(value) {
     dispatch(heroMapObjectDetailsActions.changeValue(value));
+  },
+  onTownMapObjectDetailsChange(value) {
+    dispatch(townMapObjectDetailsActions.changeValue(value));
   },
   onOpenEraseObjectsSettingsClick() {
     dispatch(editorWindowActions.openEraseObjectsSettings());

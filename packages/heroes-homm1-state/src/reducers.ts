@@ -18,6 +18,7 @@ import { scenarioInfoWindowReducer } from "./scenarioInfoWindow";
 import { spellBookWindowReducer } from "./spellBookWindow";
 import { AppState } from "./state";
 import { statusWindowReducer } from "./statusWindow";
+import { townMapObjectDetailsReducer } from "./townMapObjectDetails";
 import { townWindowReducer } from "./townWindow";
 import { troopWindowReducer } from "./troopWindow";
 
@@ -39,6 +40,7 @@ export const rootReducer = combineReducers<AppState>({
   scenarioInfoWindow: scenarioInfoWindowReducer,
   spellBookWindow: spellBookWindowReducer,
   statusWindow: statusWindowReducer,
+  townMapObjectDetails: townMapObjectDetailsReducer,
   townWindow: townWindowReducer,
   troopWindow: troopWindowReducer,
 });

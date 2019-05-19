@@ -17,5 +17,6 @@ export { AppState } from "./state";
 export { scenarioInforWindowActions } from "./scenarioInfoWindow";
 export { spellBookWindowActions } from "./spellBookWindow";
 export { StatusWindowOption, statusWindowActions } from "./statusWindow";
+export { townMapObjectDetailsActions } from "./townMapObjectDetails";
 export { townWindowActions } from "./townWindow";
 export { troopWindowActions } from "./troopWindow";

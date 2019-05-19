@@ -19,9 +19,11 @@ import { CreatureId, creatures } from "./creatures";
 import {
   createHeroMapObject,
   createRandomCreatureMapObject,
+  createRandomTownMapObject,
   HeroMapObjectData,
   isHeroMapObjectData,
   isRandomCreatureMapObjectData,
+  isRandomTownMapObjectData,
   MapObjectId,
   MineMapObjectData,
   ObeliskMapObjectData,
@@ -2196,6 +2198,10 @@ export const createMapObject = (id: string, objectData: MapObjectData, data: Gam
     };
 
     return createHeroMapObject(id, objectData, hero, data.alignments[0]);
+  }
+
+  if (isRandomTownMapObjectData(objectData)) {
+    return createRandomTownMapObject(id, objectData, data);
   }
 
   return createMapObjectCore(id, objectData);

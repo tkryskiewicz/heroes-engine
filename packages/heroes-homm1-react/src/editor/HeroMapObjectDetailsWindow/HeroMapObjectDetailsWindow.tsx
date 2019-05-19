@@ -7,9 +7,10 @@ import { ArtifactId, HeroMapObjectDetails } from "heroes-homm1";
 
 import * as styles from "./HeroMapObjectDetailsWindow.module.scss";
 
-import { GameCheckbox, GameInputNumber } from "../../base";
+import { GameInputNumber } from "../../base";
 import { GameParagraph, GameText } from "../../core";
 import { getArtifactNameMessage, getHeroNameMessage } from "../../messages";
+import { AlignmentDetails } from "../AlignmentDetails";
 import { ArmyDetails } from "../ArmyDetails";
 import { EditorSettingsWindow, EditorSettingsWindowProps } from "../EditorSettingsWindow";
 import { ValueRangePrompt } from "../ValueRangePrompt";
@@ -35,7 +36,6 @@ type DefaultProp =
   "onOpenCreatureValueRangePrompt" |
   "onCloseCreatureValueRangePrompt";
 
-// FIXME: component assumes that every troop is set and there's at least 1 creature
 export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDetailsWindowProps> {
   public static readonly defaultProps: Pick<HeroMapObjectDetailsWindowProps, DefaultProp> = {
     creatureValueRangePromptVisible: false,
@@ -45,7 +45,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
   };
 
   public render() {
-    const { data, value } = this.props;
+    const { value } = this.props;
 
     const army = value.army.filter((t): t is Troop => t !== undefined);
 
@@ -69,16 +69,11 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
             onValueChange={this.onArmyChange}
             onOpenCreatureValueRangePrompt={this.props.onOpenCreatureValueRangePrompt}
           />
-          <Row className={styles.owner}>
-            <Col span={14}>
-              <GameText size="large">
-                <FormattedMessage {...messages.owner} />:
-            </GameText>
-            </Col>
-            <Col span={10}>
-              {data.alignments.map((a, i) => this.renderAlignment(i, a, value.alignment))}
-            </Col>
-          </Row>
+          <AlignmentDetails
+            alignments={this.props.data.alignments}
+            value={value.alignment}
+            onValueChange={this.onAlignmentChange}
+          />
           <Row>
             <Col
               className={styles.detailRow}
@@ -164,35 +159,10 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
     return Object.keys(this.props.data.creatures);
   }
 
-  private renderAlignment(index: number, alignment: string, selectedAlignment: string) {
-    const onClick = () => this.onAlignmentChange(index);
-
-    return (
-      <div
-        key={index}
-        className={styles.alignment}
-      >
-        <GameText size="large">
-          {index + 1}
-        </GameText>
-        <GameCheckbox
-          checked={selectedAlignment === alignment}
-          onClick={onClick}
-        />
-      </div>
-    );
-  }
-
-  private readonly onAlignmentChange = (index: number) => {
-    const alignment = this.props.data.alignments[index];
-
-    if (!alignment) {
-      return;
-    }
-
+  private readonly onAlignmentChange = (value?: string) => {
     const newValue: HeroMapObjectDetails = {
       ...this.props.value,
-      alignment,
+      alignment: value!,
     };
 
     this.props.onValueChange(newValue);

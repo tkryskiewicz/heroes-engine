@@ -17,4 +17,5 @@ export * from "./HeroMapObjectDetailsWindow";
 export * from "./ObjectDetailsUnavailablePrompt";
 export * from "./ObjectsOptionDetails";
 export * from "./TerrainsOptionDetails";
+export * from "./TownMapObjectDetailsWindow";
 export * from "./ValueRangePrompt";

@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { createMap, GameData, MapPoint } from "heroes-core";
-import { EraseObjectsSettings, HeroMapObjectDetails, terrains, TerrainType } from "heroes-homm1";
+import { EraseObjectsSettings, HeroMapObjectDetails, terrains, TerrainType, TownMapObjectDetails } from "heroes-homm1";
 import { editorObjectType, editorOption, terrainType } from "heroes-homm1-react";
 
 import { EditorWindow } from "./EditorWindowContainer";
@@ -45,6 +45,11 @@ storiesOf("EditorWindowContainer", module)
       hero: "",
     };
 
+    const townMapObjectDetails: TownMapObjectDetails = {
+      army: [],
+      customized: false,
+    };
+
     return (
       <EditorWindow
         data={data}
@@ -64,6 +69,9 @@ storiesOf("EditorWindowContainer", module)
 
         heroMapObjectDetails={heroMapObjectDetails}
         onHeroMapObjectDetailsChange={action("Hero Map Object Details Change")}
+
+        townMapObjectDetails={townMapObjectDetails}
+        onTownMapObjectDetailsChange={action("Town Map Object Details Change")}
 
         eraseObjectsSettings={eraseObjectsSettings}
         eraseObjectsSettingsVisible={boolean("Erase Objects Settings Visible", false)}

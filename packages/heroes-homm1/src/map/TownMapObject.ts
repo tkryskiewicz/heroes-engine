@@ -32,7 +32,7 @@ export const createTownMapObject = (
 });
 
 export const isTownMapObject = (object: MapObject | undefined): object is TownMapObject =>
-  isMapObject(object) && (object as TownMapObject).dataId === MapObjectId.Town;
+  isMapObject(object) && object.dataId === MapObjectId.Town;
 
 export const recruitTownMapObjectTroop = (
   object: TownMapObject,

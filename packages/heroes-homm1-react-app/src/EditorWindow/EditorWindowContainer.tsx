@@ -27,14 +27,19 @@ import {
   EditorOption,
   EraseObjectsSettings,
   getHeroMapObjectDetails,
+  getTownMapObjectDetails,
   HeroMapObject,
   HeroMapObjectDetails,
   isHeroMapObject,
   isRandomCreatureMapObject,
+  isRandomTownMapObject,
   nextObjectType,
   previousObjectType,
+  RandomTownMapObject,
   setHeroMapObjectDetails,
+  setTownMapObjectDetails,
   TerrainType,
+  TownMapObjectDetails,
 } from "heroes-homm1";
 import {
   AdventureWindow,
@@ -57,7 +62,7 @@ import {
 } from "heroes-homm1-react";
 
 import { renderEditorObject } from "../config";
-import { CreatureMapObjectDetailsWindow, HeroMapObjectDetailsWindow } from "../editor";
+import { CreatureMapObjectDetailsWindow, HeroMapObjectDetailsWindow, TownMapObjectDetailsWindow } from "../editor";
 import { getObjects } from "./config";
 
 interface EditorWindowContainerProps extends InjectedIntlProps {
@@ -91,6 +96,9 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
 
   readonly heroMapObjectDetails: HeroMapObjectDetails;
   readonly onHeroMapObjectDetailsChange: (value: HeroMapObjectDetails) => void;
+
+  readonly townMapObjectDetails: TownMapObjectDetails;
+  readonly onTownMapObjectDetailsChange: (value: TownMapObjectDetails) => void;
 
   readonly eraseObjectsSettings: EraseObjectsSettings;
   readonly eraseObjectsSettingsVisible: boolean;
@@ -139,6 +147,8 @@ type DefaultProp =
 
   "onHeroMapObjectDetailsChange" |
 
+  "onTownMapObjectDetailsChange" |
+
   "eraseObjectsSettingsVisible" |
   "onOpenEraseObjectsSettingsClick" |
   "onCloseEraseObjectsSettingsClick" |
@@ -181,6 +191,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     onSelectedOptionChange: () => undefined,
     onSelectedTerrainChange: () => undefined,
     onSpecsClick: () => undefined,
+    onTownMapObjectDetailsChange: () => undefined,
     onUndoClick: () => undefined,
     onZoomInClick: () => undefined,
     onZoomOutClick: () => undefined,
@@ -323,6 +334,12 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         const details = getHeroMapObjectDetails(object);
 
         this.props.onHeroMapObjectDetailsChange(details);
+      }
+
+      if (isRandomTownMapObject(object)) {
+        const details = getTownMapObjectDetails(object);
+
+        this.props.onTownMapObjectDetailsChange(details);
       }
 
       if (object === undefined) {
@@ -578,12 +595,24 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         />
       );
     }
+
+    if (isRandomTownMapObject(object)) {
+      return (
+        <TownMapObjectDetailsWindow
+          visible={true}
+          value={this.props.townMapObjectDetails}
+          onValueChange={this.props.onTownMapObjectDetailsChange}
+          onConfirmClick={this.onConfirmTownDetailsClick}
+          onCancelClick={this.props.onCloseObjectDetailsClick}
+        />
+      );
+    }
   }
 
   private readonly onConfirmCreatureDetailsClick = () => {
     const { map, visibleObjectDetails } = this.props;
 
-    const object = getObject(map, visibleObjectDetails!)! as CreatureMapObject;
+    const object = getObject(map, visibleObjectDetails!) as CreatureMapObject;
 
     const newObject = setCreatureMapObjectDetails(object, this.props.creatureMapObjectCount);
 
@@ -597,9 +626,23 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   private readonly onConfirmHeroDetailsClick = () => {
     const { data, map } = this.props;
 
-    const object = getObject(map, this.props.visibleObjectDetails!)! as HeroMapObject;
+    const object = getObject(map, this.props.visibleObjectDetails!) as HeroMapObject;
 
     const newObject = setHeroMapObjectDetails(object, this.props.heroMapObjectDetails, data);
+
+    const newMap = replaceObject(map, newObject);
+
+    this.props.onMapChange(newMap);
+
+    this.props.onCloseObjectDetailsClick();
+  }
+
+  private readonly onConfirmTownDetailsClick = () => {
+    const { map } = this.props;
+
+    const object = getObject(map, this.props.visibleObjectDetails!)! as RandomTownMapObject;
+
+    const newObject = setTownMapObjectDetails(object, this.props.townMapObjectDetails);
 
     const newMap = replaceObject(map, newObject);
 

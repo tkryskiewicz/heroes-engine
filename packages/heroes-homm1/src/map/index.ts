@@ -31,6 +31,16 @@ export {
   createRandomCreatureMapObject,
 } from "./RandomCreatureMapObject";
 export {
+  RandomTownMapObject,
+  RandomTownMapObjectData,
+  createRandomTownMapObject,
+  isRandomTownMapObject,
+  isRandomTownMapObjectData,
+  TownMapObjectDetails,
+  getTownMapObjectDetails,
+  setTownMapObjectDetails,
+} from "./RandomTownMapObject";
+export {
   ResourceMapObject,
   ResourceMapObjectData,
   isResourceMapObject,

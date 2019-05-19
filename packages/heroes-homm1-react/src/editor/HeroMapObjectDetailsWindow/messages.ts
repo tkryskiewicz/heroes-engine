@@ -17,10 +17,6 @@ export const messages = defineMessages({
     defaultMessage: "(none)",
     id: "game.ui.editor.heroMapObjectDetailsWindow.noArtifact",
   },
-  owner: {
-    defaultMessage: "Owner",
-    id: "game.ui.editor.heroMapObjectDetailsWindow.owner",
-  },
   title: {
     defaultMessage: "Hero Detail",
     id: "game.ui.editor.heroMapObjectDetailsWindow.title",
