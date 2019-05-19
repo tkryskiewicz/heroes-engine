@@ -346,8 +346,8 @@ export const renderObjectDetails = (
       <CreatureMapObjectDetailsWindow
         visible={true}
         data={data}
-        count={value as CreatureMapObjectDetails}
-        onCountChange={props.onValueChange}
+        value={value as CreatureMapObjectDetails}
+        onValueChange={props.onValueChange}
         onConfirmClick={props.onConfirmClick}
         onCancelClick={props.onCloseClick}
       />

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { GameData } from "heroes-core";
+import { CreatureMapObjectDetails, GameData } from "heroes-core";
 
 import * as styles from "./CreatureMapObjectDetailsWindow.module.scss";
 
@@ -13,25 +13,24 @@ import { messages } from "./messages";
 
 export interface CreatureMapObjectDetailsWindowProps extends EditorSettingsWindowProps {
   readonly data: GameData;
-  readonly count: number;
-  readonly onCountChange: (value: number) => void;
+  readonly value: CreatureMapObjectDetails;
+  readonly onValueChange: (value: number) => void;
+}
+
+interface State {
   readonly countValueRangePromptVisible: boolean;
-  readonly onOpenCountValueRangePromptClick: () => void;
-  readonly onCloseCountValueRangePromptClick: () => void;
 }
 
 type DefaultProp =
-  "onCountChange" |
-  "countValueRangePromptVisible" |
-  "onOpenCountValueRangePromptClick" |
-  "onCloseCountValueRangePromptClick";
+  "onValueChange";
 
-export class CreatureMapObjectDetailsWindow extends React.Component<CreatureMapObjectDetailsWindowProps> {
+export class CreatureMapObjectDetailsWindow extends React.Component<CreatureMapObjectDetailsWindowProps, State> {
   public static readonly defaultProps: Pick<CreatureMapObjectDetailsWindowProps, DefaultProp> = {
+    onValueChange: () => undefined,
+  };
+
+  public readonly state: State = {
     countValueRangePromptVisible: false,
-    onCloseCountValueRangePromptClick: () => undefined,
-    onCountChange: () => undefined,
-    onOpenCountValueRangePromptClick: () => undefined,
   };
 
   public render() {
@@ -60,27 +59,33 @@ export class CreatureMapObjectDetailsWindow extends React.Component<CreatureMapO
           <GameInputNumber
             min={0}
             max={data.editor.maxCreatureCount}
-            value={this.props.count}
-            onChange={this.onCountChange}
+            value={this.props.value}
+            onChange={this.onValueChange}
           />
-          {this.props.countValueRangePromptVisible && this.renderCountValueRangePrompt()}
+          {this.state.countValueRangePromptVisible && this.renderCountValueRangePrompt()}
         </div>
       </EditorSettingsWindow>
     );
   }
 
-  private readonly onCountChange = (v: number) => {
+  private readonly onValueChange = (v: number) => {
     const { data } = this.props;
 
     let value = v;
 
     if (value > data.editor.maxCreatureCount) {
-      this.props.onOpenCountValueRangePromptClick();
+      this.onOpenCountValueRangePromptClick();
 
       value = data.editor.maxCreatureCount;
     }
 
-    this.props.onCountChange(value);
+    this.props.onValueChange(value);
+  }
+
+  private readonly onOpenCountValueRangePromptClick = () => {
+    this.setState({
+      countValueRangePromptVisible: true,
+    });
   }
 
   private renderCountValueRangePrompt() {
@@ -92,8 +97,14 @@ export class CreatureMapObjectDetailsWindow extends React.Component<CreatureMapO
         min={0}
         max={data.editor.maxCreatureCount}
         minIsRandom={true}
-        onConfirmClick={this.props.onCloseCountValueRangePromptClick}
+        onConfirmClick={this.onCloseCountValueRangePromptClick}
       />
     );
+  }
+
+  private readonly onCloseCountValueRangePromptClick = () => {
+    this.setState({
+      countValueRangePromptVisible: false,
+    });
   }
 }

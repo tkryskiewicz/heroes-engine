@@ -30,11 +30,8 @@ storiesOf("editor/CreatureMapObjectDetailsWindow", module)
     <CreatureMapObjectDetailsWindow
       visible={boolean("Visible", true)}
       data={data}
-      count={number("Count", 0, { range: true, min: 0, max: 999, step: 1 })}
-      onCountChange={action("Count Change")}
-      countValueRangePromptVisible={boolean("Count Value Range Prompt Visible", false)}
-      onOpenCountValueRangePromptClick={action("Open Count Value Range Prompt Click")}
-      onCloseCountValueRangePromptClick={action("Close Count Value Range Prompt Click")}
+      value={number("Value", 0, { range: true, min: 0, max: 999, step: 1 })}
+      onValueChange={action("Value Change")}
       onConfirmClick={action("Confirm Click")}
       onCancelClick={action("Cancel Click")}
     />
