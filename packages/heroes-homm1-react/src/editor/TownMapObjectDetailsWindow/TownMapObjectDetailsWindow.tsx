@@ -18,24 +18,22 @@ export interface TownMapObjectDetailsWindowProps extends EditorSettingsWindowPro
   readonly data: GameData;
   readonly value: TownMapObjectDetails;
   readonly onValueChange: (value: TownMapObjectDetails) => void;
+}
 
+interface State {
   readonly creatureValueRangePromptVisible: boolean;
-  readonly onOpenCreatureValueRangePrompt: () => void;
-  readonly onCloseCreatureValueRangePrompt: () => void;
 }
 
 type DefaultProp =
-  "onValueChange" |
-  "creatureValueRangePromptVisible" |
-  "onOpenCreatureValueRangePrompt" |
-  "onCloseCreatureValueRangePrompt";
+  "onValueChange";
 
-export class TownMapObjectDetailsWindow extends React.Component<TownMapObjectDetailsWindowProps> {
+export class TownMapObjectDetailsWindow extends React.Component<TownMapObjectDetailsWindowProps, State> {
   public static readonly defaultProps: Pick<TownMapObjectDetailsWindowProps, DefaultProp> = {
-    creatureValueRangePromptVisible: false,
-    onCloseCreatureValueRangePrompt: () => undefined,
-    onOpenCreatureValueRangePrompt: () => undefined,
     onValueChange: () => undefined,
+  };
+
+  public readonly state: State = {
+    creatureValueRangePromptVisible: false,
   };
 
   public render() {
@@ -92,9 +90,9 @@ export class TownMapObjectDetailsWindow extends React.Component<TownMapObjectDet
           creatures={creatures}
           value={army}
           onValueChange={this.onArmyChange}
-          onOpenCreatureValueRangePrompt={this.props.onOpenCreatureValueRangePrompt}
+          onOpenCreatureValueRangePrompt={this.onOpenCreatureValueRangePrompt}
         />
-        {this.props.creatureValueRangePromptVisible && this.renderCreatureValueRangePrompt()}
+        {this.state.creatureValueRangePromptVisible && this.renderCreatureValueRangePrompt()}
         <div>
           <AlignmentDetails
             alignments={this.props.data.alignments}
@@ -119,6 +117,12 @@ export class TownMapObjectDetailsWindow extends React.Component<TownMapObjectDet
     this.props.onValueChange(newValue);
   }
 
+  private readonly onOpenCreatureValueRangePrompt = () => {
+    this.setState({
+      creatureValueRangePromptVisible: true,
+    });
+  }
+
   private renderCreatureValueRangePrompt() {
     const creatures = this.getCreatures();
 
@@ -127,9 +131,15 @@ export class TownMapObjectDetailsWindow extends React.Component<TownMapObjectDet
         visible={true}
         min={0}
         max={creatures.length - 1}
-        onConfirmClick={this.props.onCloseCreatureValueRangePrompt}
+        onConfirmClick={this.onCloseCreatureValueRangePrompt}
       />
     );
+  }
+
+  private readonly onCloseCreatureValueRangePrompt = () => {
+    this.setState({
+      creatureValueRangePromptVisible: false,
+    });
   }
 
   private getCreatures() {

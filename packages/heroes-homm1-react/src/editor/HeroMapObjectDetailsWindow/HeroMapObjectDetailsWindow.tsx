@@ -24,24 +24,22 @@ export interface HeroMapObjectDetailsWindowProps extends EditorSettingsWindowPro
   readonly data: GameData;
   readonly value: HeroMapObjectDetails;
   readonly onValueChange: (value: HeroMapObjectDetails) => void;
+}
 
+interface State {
   readonly creatureValueRangePromptVisible: boolean;
-  readonly onOpenCreatureValueRangePrompt: () => void;
-  readonly onCloseCreatureValueRangePrompt: () => void;
 }
 
 type DefaultProp =
-  "onValueChange" |
-  "creatureValueRangePromptVisible" |
-  "onOpenCreatureValueRangePrompt" |
-  "onCloseCreatureValueRangePrompt";
+  "onValueChange";
 
-export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDetailsWindowProps> {
+export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDetailsWindowProps, State> {
   public static readonly defaultProps: Pick<HeroMapObjectDetailsWindowProps, DefaultProp> = {
-    creatureValueRangePromptVisible: false,
-    onCloseCreatureValueRangePrompt: () => undefined,
-    onOpenCreatureValueRangePrompt: () => undefined,
     onValueChange: () => undefined,
+  };
+
+  public readonly state: State = {
+    creatureValueRangePromptVisible: false,
   };
 
   public render() {
@@ -67,7 +65,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
             creatures={this.getCreatures()}
             value={army}
             onValueChange={this.onArmyChange}
-            onOpenCreatureValueRangePrompt={this.props.onOpenCreatureValueRangePrompt}
+            onOpenCreatureValueRangePrompt={this.onOpenCreatureValueRangePrompt}
           />
           <AlignmentDetails
             alignments={this.props.data.alignments}
@@ -127,7 +125,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
             </Col>
             <Col span={6} />
           </Row>
-          {this.props.creatureValueRangePromptVisible && this.renderCreatureValueRangePrompt()}
+          {this.state.creatureValueRangePromptVisible && this.renderCreatureValueRangePrompt()}
         </div>
       </EditorSettingsWindow>
     );
@@ -142,6 +140,12 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
     this.props.onValueChange(newValue);
   }
 
+  private readonly onOpenCreatureValueRangePrompt = () => {
+    this.setState({
+      creatureValueRangePromptVisible: true,
+    });
+  }
+
   private renderCreatureValueRangePrompt() {
     const creatures = this.getCreatures();
 
@@ -150,9 +154,15 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
         visible={true}
         min={0}
         max={creatures.length - 1}
-        onConfirmClick={this.props.onCloseCreatureValueRangePrompt}
+        onConfirmClick={this.onCloseCreatureValueRangePrompt}
       />
     );
+  }
+
+  private readonly onCloseCreatureValueRangePrompt = () => {
+    this.setState({
+      creatureValueRangePromptVisible: false,
+    });
   }
 
   private getCreatures() {
