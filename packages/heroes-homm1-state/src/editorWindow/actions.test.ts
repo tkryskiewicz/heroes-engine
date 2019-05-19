@@ -1,4 +1,4 @@
-import { createMap, createPoint } from "heroes-core";
+import { createMap, createPoint, CreatureMapObjectDetails } from "heroes-core";
 import { EditorObjectType, EditorOption, EraseObjectsSettings } from "heroes-homm1";
 
 import {
@@ -131,11 +131,14 @@ describe("editorWindowActions", () => {
   });
 
   it("should create an action to open object details", () => {
-    const result = openObjectDetails("id");
+    const value: CreatureMapObjectDetails = 1;
+
+    const result = openObjectDetails("id", value);
 
     const expected: OpenObjectDetailsAction = {
       id: "id",
       type: EditorWindowActionType.OpenObjectDetails,
+      value,
     };
 
     expect(result).toEqual(expected);

@@ -1,4 +1,4 @@
-import { createMap, createPoint } from "heroes-core";
+import { createMap, createPoint, CreatureMapObjectDetails } from "heroes-core";
 import { EditorObjectType, EditorOption, EraseObjectsSettings, TerrainType } from "heroes-homm1";
 
 import {
@@ -188,10 +188,13 @@ describe("editorWindowReducer", () => {
       visibleObjectDetails: undefined,
     };
 
-    const result = editorWindowReducer(state, openObjectDetails("id"));
+    const value: CreatureMapObjectDetails = 1;
+
+    const result = editorWindowReducer(state, openObjectDetails("id", value));
 
     const expected: EditorWindowState = {
       ...state,
+      selectedObjectDetails: value,
       visibleObjectDetails: "id",
     };
 

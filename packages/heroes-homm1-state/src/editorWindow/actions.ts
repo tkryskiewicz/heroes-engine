@@ -1,5 +1,5 @@
 import { Map, MapPoint } from "heroes-core";
-import { EditorObjectType, EditorOption, EraseObjectsSettings } from "heroes-homm1";
+import { EditorObjectType, EditorOption, EraseObjectsSettings, MapObjectDetails } from "heroes-homm1";
 
 export enum EditorWindowActionType {
   ChangeMap = "editorWindow/changeMap",
@@ -11,6 +11,7 @@ export enum EditorWindowActionType {
   ChangeSelectedObject = "editorWindow/changeSelectedObject",
   OpenObjectsWindow = "editorWindow/openObjectsWindow",
   CloseObjectsWindow = "editorWindow/closeObjectsWindow",
+  ChangeSelectedObjectDetails = "editorWindow/changeSelectedObjectDetails",
   OpenObjectDetails = "editorWindow/openObjectDetails",
   CloseObjectDetails = "editorWindow/closeObjectDetails",
   OpenObjectDetailsUnavailablePrompt = "editorWindow/openObjectDetailsUnavailablePrompt",
@@ -31,6 +32,7 @@ export type EditorWindowAction =
   ChangeSelectedObjectAction |
   OpenObjectsWindowAction |
   CloseObjectsWindowAction |
+  ChangeSelectedObjectDetailsAction |
   OpenObjectDetailsAction |
   CloseObjectDetailsAction |
   OpenObjectDetailsUnavailablePromptAction |
@@ -117,14 +119,26 @@ export const closeObjectsWindow = (): CloseObjectsWindowAction => ({
   type: EditorWindowActionType.CloseObjectsWindow,
 });
 
+export interface ChangeSelectedObjectDetailsAction {
+  readonly type: EditorWindowActionType.ChangeSelectedObjectDetails;
+  readonly value: MapObjectDetails;
+}
+
+export const changeSelectedObjectDetails = (value: MapObjectDetails): ChangeSelectedObjectDetailsAction => ({
+  type: EditorWindowActionType.ChangeSelectedObjectDetails,
+  value,
+});
+
 export interface OpenObjectDetailsAction {
   readonly type: EditorWindowActionType.OpenObjectDetails;
   readonly id: string;
+  readonly value: MapObjectDetails;
 }
 
-export const openObjectDetails = (id: string): OpenObjectDetailsAction => ({
+export const openObjectDetails = (id: string, value: MapObjectDetails): OpenObjectDetailsAction => ({
   id,
   type: EditorWindowActionType.OpenObjectDetails,
+  value,
 });
 
 export interface CloseObjectDetailsAction {

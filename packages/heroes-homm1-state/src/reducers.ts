@@ -2,12 +2,10 @@ import { combineReducers } from "redux";
 
 import { adventureOptionsReducer } from "./adventureOptions";
 import { adventureScreenReducer } from "./adventureScreen";
-import { creatureMapObjectDetailsReducer } from "./creatureMapObjectDetails";
 import { editorWindowReducer } from "./editorWindow";
 import { gameReducer } from "./game";
 import { gameOptionsReducer } from "./gameOptions";
 import { gameSettingsReducer } from "./gameSettings";
-import { heroMapObjectDetailsReducer } from "./heroMapObjectDetails";
 import { heroTradingWindowReducer } from "./heroTradingWindow";
 import { heroWindowReducer } from "./heroWindow";
 import { kingdomOverviewWindowReducer } from "./kingdomOverviewWindow";
@@ -18,19 +16,16 @@ import { scenarioInfoWindowReducer } from "./scenarioInfoWindow";
 import { spellBookWindowReducer } from "./spellBookWindow";
 import { AppState } from "./state";
 import { statusWindowReducer } from "./statusWindow";
-import { townMapObjectDetailsReducer } from "./townMapObjectDetails";
 import { townWindowReducer } from "./townWindow";
 import { troopWindowReducer } from "./troopWindow";
 
 export const rootReducer = combineReducers<AppState>({
   adventureOptions: adventureOptionsReducer,
   adventureScreen: adventureScreenReducer,
-  creatureMapObjectDetails: creatureMapObjectDetailsReducer,
   editorWindow: editorWindowReducer,
   game: gameReducer,
   gameOptions: gameOptionsReducer,
   gameSettings: gameSettingsReducer,
-  heroMapObjectDetails: heroMapObjectDetailsReducer,
   heroTradingWindow: heroTradingWindowReducer,
   heroWindow: heroWindowReducer,
   kingdomOverviewWindow: kingdomOverviewWindowReducer,
@@ -40,7 +35,6 @@ export const rootReducer = combineReducers<AppState>({
   scenarioInfoWindow: scenarioInfoWindowReducer,
   spellBookWindow: spellBookWindowReducer,
   statusWindow: statusWindowReducer,
-  townMapObjectDetails: townMapObjectDetailsReducer,
   townWindow: townWindowReducer,
   troopWindow: troopWindowReducer,
 });

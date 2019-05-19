@@ -5,11 +5,9 @@ import {
   changeTerrain,
   CreatureMapObject,
   GameData,
-  getCreatureMapObjectDetails,
   getObject,
   getTileIndex,
   getTilePoint,
-  isCreatureMapObject,
   isSamePoint,
   Map,
   MapObject,
@@ -17,7 +15,6 @@ import {
   MapPoint,
   placeObject,
   replaceObject,
-  setCreatureMapObjectDetails,
   translatePoint,
 } from "heroes-core";
 import {
@@ -26,20 +23,10 @@ import {
   EditorObjectType,
   EditorOption,
   EraseObjectsSettings,
-  getHeroMapObjectDetails,
-  getTownMapObjectDetails,
-  HeroMapObject,
-  HeroMapObjectDetails,
-  isHeroMapObject,
-  isRandomCreatureMapObject,
-  isRandomTownMapObject,
+  MapObjectDetails,
   nextObjectType,
   previousObjectType,
-  RandomTownMapObject,
-  setHeroMapObjectDetails,
-  setTownMapObjectDetails,
   TerrainType,
-  TownMapObjectDetails,
 } from "heroes-homm1";
 import {
   AdventureWindow,
@@ -62,8 +49,7 @@ import {
 } from "heroes-homm1-react";
 
 import { renderEditorObject } from "../config";
-import { CreatureMapObjectDetailsWindow, HeroMapObjectDetailsWindow, TownMapObjectDetailsWindow } from "../editor";
-import { getObjects } from "./config";
+import { getObjectDetails, getObjects, renderObjectDetails, setObjectDetails } from "./config";
 
 interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly data: GameData;
@@ -85,20 +71,14 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly onCloseObjectsWindowClick: () => void;
 
   readonly visibleObjectDetails?: string;
-  readonly onOpenObjectDetailsClick: (id: string) => void;
+  readonly onOpenObjectDetailsClick: (id: string, details: MapObjectDetails) => void;
   readonly onCloseObjectDetailsClick: () => void;
   readonly objectDetailsUnavailablePromptVisible: boolean;
   readonly onOpenObjectDetailsUnavailablePromptClick: () => void;
   readonly onCloseObjectDetailsUnavailablePromptClick: () => void;
 
-  readonly creatureMapObjectCount: number;
-  readonly onCreatureMapObjectCountChange: (value: number) => void;
-
-  readonly heroMapObjectDetails: HeroMapObjectDetails;
-  readonly onHeroMapObjectDetailsChange: (value: HeroMapObjectDetails) => void;
-
-  readonly townMapObjectDetails: TownMapObjectDetails;
-  readonly onTownMapObjectDetailsChange: (value: TownMapObjectDetails) => void;
+  readonly selectedObjectDetails?: MapObjectDetails;
+  readonly onSelectedObjectDetailsChange: (value: MapObjectDetails) => void;
 
   readonly eraseObjectsSettings: EraseObjectsSettings;
   readonly eraseObjectsSettingsVisible: boolean;
@@ -143,11 +123,7 @@ type DefaultProp =
   "onOpenObjectDetailsUnavailablePromptClick" |
   "onCloseObjectDetailsUnavailablePromptClick" |
 
-  "onCreatureMapObjectCountChange" |
-
-  "onHeroMapObjectDetailsChange" |
-
-  "onTownMapObjectDetailsChange" |
+  "onSelectedObjectDetailsChange" |
 
   "eraseObjectsSettingsVisible" |
   "onOpenEraseObjectsSettingsClick" |
@@ -172,9 +148,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     onCloseObjectDetailsClick: () => undefined,
     onCloseObjectDetailsUnavailablePromptClick: () => undefined,
     onCloseObjectsWindowClick: () => undefined,
-    onCreatureMapObjectCountChange: () => undefined,
     onEraseObjectsSettingsChange: () => undefined,
-    onHeroMapObjectDetailsChange: () => undefined,
     onLoadClick: () => undefined,
     onMapChange: () => undefined,
     onNewClick: () => undefined,
@@ -187,11 +161,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     onRandomClick: () => undefined,
     onSaveClick: () => undefined,
     onSelectedObjectChange: () => undefined,
+    onSelectedObjectDetailsChange: () => undefined,
     onSelectedObjectTypeChange: () => undefined,
     onSelectedOptionChange: () => undefined,
     onSelectedTerrainChange: () => undefined,
     onSpecsClick: () => undefined,
-    onTownMapObjectDetailsChange: () => undefined,
     onUndoClick: () => undefined,
     onZoomInClick: () => undefined,
     onZoomOutClick: () => undefined,
@@ -324,29 +298,16 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
 
       const object = tile.object;
 
-      if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
-        const details = getCreatureMapObjectDetails(object);
-
-        this.props.onCreatureMapObjectCountChange(details);
-      }
-
-      if (isHeroMapObject(object)) {
-        const details = getHeroMapObjectDetails(object);
-
-        this.props.onHeroMapObjectDetailsChange(details);
-      }
-
-      if (isRandomTownMapObject(object)) {
-        const details = getTownMapObjectDetails(object);
-
-        this.props.onTownMapObjectDetailsChange(details);
-      }
-
       if (object === undefined) {
         this.props.onOpenObjectDetailsUnavailablePromptClick();
       } else {
-        // FIXME: this will try to open details for every object
-        this.props.onOpenObjectDetailsClick(object.id);
+        const details = getObjectDetails(object, data);
+
+        if (details === undefined) {
+          this.props.onOpenObjectDetailsUnavailablePromptClick();
+        } else {
+          this.props.onOpenObjectDetailsClick(object.id, details);
+        }
       }
     }
   }
@@ -567,82 +528,29 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private renderObjectDetails(id: string) {
-    const { data } = this.props;
+    const { data, selectedObjectDetails } = this.props;
 
     const object = getObject(this.props.map, id);
 
-    // TODO: extract
-    if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
-      return (
-        <CreatureMapObjectDetailsWindow
-          visible={true}
-          count={this.props.creatureMapObjectCount}
-          onCountChange={this.props.onCreatureMapObjectCountChange}
-          onConfirmClick={this.onConfirmCreatureDetailsClick}
-          onCancelClick={this.props.onCloseObjectDetailsClick}
-        />
-      );
+    if (object === undefined || selectedObjectDetails === undefined) {
+      return;
     }
 
-    if (isHeroMapObject(object)) {
-      return (
-        <HeroMapObjectDetailsWindow
-          visible={true}
-          value={this.props.heroMapObjectDetails}
-          onValueChange={this.props.onHeroMapObjectDetailsChange}
-          onConfirmClick={this.onConfirmHeroDetailsClick}
-          onCancelClick={this.props.onCloseObjectDetailsClick}
-        />
-      );
-    }
+    const details = renderObjectDetails(object, selectedObjectDetails, data, {
+      onCloseClick: this.props.onCloseObjectDetailsClick,
+      onConfirmClick: this.onConfirmObjectDetailsClick,
+      onValueChange: this.props.onSelectedObjectDetailsChange,
+    });
 
-    if (isRandomTownMapObject(object)) {
-      return (
-        <TownMapObjectDetailsWindow
-          visible={true}
-          value={this.props.townMapObjectDetails}
-          onValueChange={this.props.onTownMapObjectDetailsChange}
-          onConfirmClick={this.onConfirmTownDetailsClick}
-          onCancelClick={this.props.onCloseObjectDetailsClick}
-        />
-      );
-    }
+    return details;
   }
 
-  private readonly onConfirmCreatureDetailsClick = () => {
-    const { map, visibleObjectDetails } = this.props;
+  private readonly onConfirmObjectDetailsClick = () => {
+    const { data, map, visibleObjectDetails, selectedObjectDetails } = this.props;
 
     const object = getObject(map, visibleObjectDetails!) as CreatureMapObject;
 
-    const newObject = setCreatureMapObjectDetails(object, this.props.creatureMapObjectCount);
-
-    const newMap = replaceObject(map, newObject);
-
-    this.props.onMapChange(newMap);
-
-    this.props.onCloseObjectDetailsClick();
-  }
-
-  private readonly onConfirmHeroDetailsClick = () => {
-    const { data, map } = this.props;
-
-    const object = getObject(map, this.props.visibleObjectDetails!) as HeroMapObject;
-
-    const newObject = setHeroMapObjectDetails(object, this.props.heroMapObjectDetails, data);
-
-    const newMap = replaceObject(map, newObject);
-
-    this.props.onMapChange(newMap);
-
-    this.props.onCloseObjectDetailsClick();
-  }
-
-  private readonly onConfirmTownDetailsClick = () => {
-    const { map } = this.props;
-
-    const object = getObject(map, this.props.visibleObjectDetails!)! as RandomTownMapObject;
-
-    const newObject = setTownMapObjectDetails(object, this.props.townMapObjectDetails);
+    const newObject = setObjectDetails(object, selectedObjectDetails!, data);
 
     const newMap = replaceObject(map, newObject);
 

@@ -1,18 +1,40 @@
+import * as React from "react";
+
 import {
+  CreatureMapObjectDetails,
   GameData,
+  getCreatureMapObjectDetails,
   isArtifactMapObjectData,
+  isCreatureMapObject,
   isCreatureMapObjectData,
+  MapObject,
   MapObjectData,
+  setCreatureMapObjectDetails,
 } from "heroes-core";
 import {
   EditorObjectType,
+  getHeroMapObjectDetails,
+  getTownMapObjectDetails,
+  HeroMapObjectDetails,
+  isHeroMapObject,
+  isRandomCreatureMapObject,
   isRandomCreatureMapObjectData,
+  isRandomTownMapObject,
   isResourceMapObject,
   isResourceMapObjectData,
   isTerrainRestrictedMapObjectData,
+  MapObjectDetails,
   MapObjectId,
+  setHeroMapObjectDetails,
+  setTownMapObjectDetails,
   TerrainType,
+  TownMapObjectDetails,
 } from "heroes-homm1";
+import {
+  CreatureMapObjectDetailsWindow,
+  HeroMapObjectDetailsWindow,
+  TownMapObjectDetailsWindow,
+} from "heroes-homm1-react";
 
 const mountainObjects = [
   MapObjectId.Mountain1,
@@ -293,4 +315,83 @@ export const getObjects = (type: EditorObjectType, data: GameData): string[] => 
     default:
       return [];
   }
+};
+
+export const getObjectDetails = (object: MapObject, data: GameData): MapObjectDetails | undefined => {
+  if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
+    return getCreatureMapObjectDetails(object);
+  }
+
+  if (isHeroMapObject(object)) {
+    return getHeroMapObjectDetails(object);
+  }
+
+  if (isRandomTownMapObject(object)) {
+    return getTownMapObjectDetails(object);
+  }
+};
+
+export const renderObjectDetails = (
+  object: MapObject,
+  value: MapObjectDetails,
+  data: GameData,
+  props: {
+    readonly onValueChange: (value: MapObjectDetails) => void;
+    readonly onConfirmClick: () => void;
+    readonly onCloseClick: () => void;
+  },
+) => {
+  if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
+    return (
+      <CreatureMapObjectDetailsWindow
+        visible={true}
+        count={value as CreatureMapObjectDetails}
+        onCountChange={props.onValueChange}
+        onConfirmClick={props.onConfirmClick}
+        onCancelClick={props.onCloseClick}
+      />
+    );
+  }
+
+  if (isHeroMapObject(object)) {
+    return (
+      <HeroMapObjectDetailsWindow
+        visible={true}
+        data={data}
+        value={value as HeroMapObjectDetails}
+        onValueChange={props.onValueChange}
+        onConfirmClick={props.onConfirmClick}
+        onCancelClick={props.onCloseClick}
+      />
+    );
+  }
+
+  if (isRandomTownMapObject(object)) {
+    return (
+      <TownMapObjectDetailsWindow
+        visible={true}
+        data={data}
+        value={value as TownMapObjectDetails}
+        onValueChange={props.onValueChange}
+        onConfirmClick={props.onConfirmClick}
+        onCancelClick={props.onCloseClick}
+      />
+    );
+  }
+};
+
+export const setObjectDetails = (object: MapObject, value: MapObjectDetails, data: GameData): MapObject => {
+  if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
+    return setCreatureMapObjectDetails(object, value as CreatureMapObjectDetails);
+  }
+
+  if (isHeroMapObject(object)) {
+    return setHeroMapObjectDetails(object, value as HeroMapObjectDetails, data);
+  }
+
+  if (isRandomTownMapObject(object)) {
+    return setTownMapObjectDetails(object, value as TownMapObjectDetails);
+  }
+
+  return object;
 };

@@ -1,11 +1,9 @@
 import { AdventureOptionsState } from "./adventureOptions";
 import { AdventureScreenState } from "./adventureScreen";
-import { CreatureMapObjectDetailsState } from "./creatureMapObjectDetails";
 import { EditorWindowState } from "./editorWindow";
 import { GameState } from "./game";
 import { GameOptionsState } from "./gameOptions";
 import { GameSettingsState } from "./gameSettings";
-import { HeroMapObjectDetailsState } from "./heroMapObjectDetails";
 import { HeroTradingWindowState } from "./heroTradingWindow";
 import { HeroWindowState } from "./heroWindow";
 import { KingdomOverviewWindowState } from "./kingdomOverviewWindow";
@@ -15,7 +13,6 @@ import { PuzzleWindowState } from "./puzzleWindow";
 import { ScenarioInfoWindowState } from "./scenarioInfoWindow";
 import { SpellBookWindowState } from "./spellBookWindow";
 import { StatusWindowState } from "./statusWindow";
-import { TownMapObjectDetailsState } from "./townMapObjectDetails";
 import { TownWindowState } from "./townWindow";
 import { TroopWindowState } from "./troopWindow";
 
@@ -37,7 +34,4 @@ export interface AppState {
   readonly statusWindow: StatusWindowState;
   readonly troopWindow: TroopWindowState;
   readonly editorWindow: EditorWindowState;
-  readonly creatureMapObjectDetails: CreatureMapObjectDetailsState;
-  readonly heroMapObjectDetails: HeroMapObjectDetailsState;
-  readonly townMapObjectDetails: TownMapObjectDetailsState;
 }

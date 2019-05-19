@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { createMap, GameData, MapPoint } from "heroes-core";
-import { EraseObjectsSettings, HeroMapObjectDetails, terrains, TerrainType, TownMapObjectDetails } from "heroes-homm1";
+import { EraseObjectsSettings, terrains, TerrainType } from "heroes-homm1";
 import { editorObjectType, editorOption, terrainType } from "heroes-homm1-react";
 
 import { EditorWindow } from "./EditorWindowContainer";
@@ -37,19 +37,6 @@ storiesOf("EditorWindowContainer", module)
       y: number("Y", 0, { range: true, min: 0, max: 80, step: 1 }),
     };
 
-    const heroMapObjectDetails: HeroMapObjectDetails = {
-      alignment: "",
-      army: [],
-      artifacts: [],
-      experience: 0,
-      hero: "",
-    };
-
-    const townMapObjectDetails: TownMapObjectDetails = {
-      army: [],
-      customized: false,
-    };
-
     return (
       <EditorWindow
         data={data}
@@ -63,15 +50,6 @@ storiesOf("EditorWindowContainer", module)
         selectedObjectType={editorObjectType("Selected Object Type")}
         onSelectedObjectTypeChange={action("Selected Object Type Change")}
         objectsWindowVisible={boolean("Objects Window Visible", false)}
-
-        creatureMapObjectCount={number("Creature Map Object Count", 0)}
-        onCreatureMapObjectCountChange={action("Creature Map Object Count Change")}
-
-        heroMapObjectDetails={heroMapObjectDetails}
-        onHeroMapObjectDetailsChange={action("Hero Map Object Details Change")}
-
-        townMapObjectDetails={townMapObjectDetails}
-        onTownMapObjectDetailsChange={action("Town Map Object Details Change")}
 
         eraseObjectsSettings={eraseObjectsSettings}
         eraseObjectsSettingsVisible={boolean("Erase Objects Settings Visible", false)}

@@ -1,3 +1,8 @@
+import { CreatureMapObjectDetails } from "heroes-core";
+
+import { HeroMapObjectDetails } from "./HeroMapObject";
+import { TownMapObjectDetails } from "./RandomTownMapObject";
+
 export {
   HeroMapObject,
   HeroMapObjectData,
@@ -61,3 +66,8 @@ export {
   VariantMapObjectData,
   isVariantMapObjectData,
 } from "./VariantMapObject";
+
+export type MapObjectDetails =
+  CreatureMapObjectDetails |
+  HeroMapObjectDetails |
+  TownMapObjectDetails;

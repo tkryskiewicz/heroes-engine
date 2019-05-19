@@ -68,14 +68,21 @@ export const editorWindowReducer = (
         ...state,
         objectsWindowVisible: false,
       };
+    case EditorWindowActionType.ChangeSelectedObjectDetails:
+      return {
+        ...state,
+        selectedObjectDetails: action.value,
+      };
     case EditorWindowActionType.OpenObjectDetails:
       return {
         ...state,
+        selectedObjectDetails: action.value,
         visibleObjectDetails: action.id,
       };
     case EditorWindowActionType.CloseObjectDetails:
       return {
         ...state,
+        selectedObjectDetails: undefined,
         visibleObjectDetails: undefined,
       };
     case EditorWindowActionType.OpenObjectDetailsUnavailablePrompt:
