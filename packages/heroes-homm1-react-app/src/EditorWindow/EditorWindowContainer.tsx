@@ -99,8 +99,8 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
 }
 
 interface EditorWindowContainerState {
-  readonly x?: number;
-  readonly y?: number;
+  readonly activePoint?: MapPoint;
+  readonly activeTile: boolean;
   readonly message: string;
   readonly objectId: number;
   readonly eraseObjectsSettings: EraseObjectsSettings;
@@ -172,6 +172,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   };
 
   public readonly state: EditorWindowContainerState = {
+    activeTile: false,
     eraseObjectsSettings: {
       allOverlays: false,
       clearEntire: false,
@@ -186,8 +187,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       (this.props.selectedOption !== prevProps.selectedOption && prevProps.selectedOption === EditorOption.Details) ||
       !isSamePoint(this.props.position, prevProps.position)) {
       this.setState({
-        x: undefined,
-        y: undefined,
+        activePoint: undefined,
       });
     }
   }
@@ -225,12 +225,15 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly renderTile = (index: number) => {
-    const { data, map, position } = this.props;
+    const { data, map, position, selectedOption } = this.props;
+    const { activePoint, activeTile } = this.state;
 
     // FIXME: move some logic to adventure window?
     const windowPoint = getTilePoint(this.getTileCount(), index);
 
-    const tileIndex = getTileIndex(map.width, translatePoint(position, windowPoint.x, windowPoint.y));
+    const tilePoint = translatePoint(position, windowPoint.x, windowPoint.y);
+
+    const tileIndex = getTileIndex(map.width, tilePoint);
 
     const size = this.props.zoomed ? "large" : "small";
 
@@ -240,12 +243,16 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       renderEditorObject(tile.object, data.mapObjects[tile.object.dataId], tile.terrain, data, size) :
       undefined;
 
+    const active = activeTile && activePoint && isSamePoint(activePoint, tilePoint) &&
+      selectedOption === EditorOption.Details;
+
     return (
       <MapTile
         key={index}
         index={tileIndex}
         size={size}
         terrainType={tile.terrain}
+        active={active}
         onMouseEnter={this.onTileMouseEnter}
         onClick={this.onTileClick}
       >
@@ -258,7 +265,8 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     const point = getTilePoint(this.props.map.width, index);
 
     this.setState({
-      ...point,
+      activePoint: point,
+      activeTile: this.props.selectedOption === EditorOption.Details,
     });
   }
 
@@ -330,6 +338,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
 
   private readonly renderVerticalCellNumbers = () => {
     const { position } = this.props;
+    const { activePoint } = this.state;
 
     return (
       <CellNumbers
@@ -337,13 +346,14 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         size={this.props.zoomed ? "large" : "small"}
         from={position.y}
         to={position.y + this.getTileCount() - 1}
-        active={this.state.y}
+        active={activePoint ? activePoint.y : undefined}
       />
     );
   }
 
   private readonly renderHorizontalCellNumbers = () => {
     const { position } = this.props;
+    const { activePoint } = this.state;
 
     return (
       <CellNumbers
@@ -351,7 +361,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         size={this.props.zoomed ? "large" : "small"}
         from={position.x}
         to={position.x + this.getTileCount() - 1}
-        active={this.state.x}
+        active={activePoint ? activePoint.x : undefined}
       />
     );
   }

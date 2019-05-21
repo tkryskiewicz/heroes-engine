@@ -7,18 +7,21 @@ interface Props {
   readonly index: number;
   readonly size: "large" | "small";
   readonly terrainType: string;
+  readonly active: boolean;
   readonly onMouseEnter: (index: number) => void;
   readonly onMouseLeave: () => void;
   readonly onClick: (index: number) => void;
 }
 
 type DefaultProp =
+  "active" |
   "onMouseEnter" |
   "onMouseLeave" |
   "onClick";
 
 export class MapTile extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
+    active: false,
     onClick: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,
@@ -35,7 +38,14 @@ export class MapTile extends React.Component<Props> {
         <div className={styles.content}>
           {this.props.children}
         </div>
+        {this.props.active && this.renderActive()}
       </div>
+    );
+  }
+
+  private renderActive() {
+    return (
+      <div className={styles.active} />
     );
   }
 
