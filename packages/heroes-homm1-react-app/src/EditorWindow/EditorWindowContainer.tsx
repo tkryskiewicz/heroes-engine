@@ -14,6 +14,7 @@ import {
   MapObjectOrientation,
   MapPoint,
   placeObject,
+  removeObject,
   replaceObject,
   translatePoint,
 } from "heroes-core";
@@ -316,6 +317,15 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         } else {
           this.props.onOpenObjectDetailsClick(object.id, details);
         }
+      }
+    } else if (selectedOption === EditorOption.Erase) {
+      const tile = map.tiles[getTileIndex(map.width, point)];
+
+      // TODO: implement erase options
+      if (tile.object) {
+        const newMap = removeObject(map, tile.object.id);
+
+        this.props.onMapChange(newMap);
       }
     }
   }
