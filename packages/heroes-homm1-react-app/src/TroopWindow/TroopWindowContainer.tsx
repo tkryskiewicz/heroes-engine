@@ -5,7 +5,7 @@ import { CreatureIcon, DismissTroopPrompt, TroopWindow, TroopWindowProps } from 
 
 export interface TroopWindowContainerProps extends
   Pick<TroopWindowProps, Exclude<keyof TroopWindowProps, "creature" | "renderCreature" | "dismissVisible">> {
-  readonly creatureById: GameData["creatures"];
+  readonly data: Pick<GameData, "creatures">;
   readonly creature: string;
   readonly dismissible: boolean;
   readonly dismissPromptVisible: boolean;
@@ -15,13 +15,13 @@ export interface TroopWindowContainerProps extends
 
 export class TroopWindowContainer extends React.Component<TroopWindowContainerProps> {
   public render() {
-    const { creatureById, creature, dismissible, dismissPromptVisible, ...rest } = this.props;
+    const { data, creature, dismissible, dismissPromptVisible, ...rest } = this.props;
 
     return (
       <>
         <TroopWindow
           {...rest}
-          creature={creatureById[creature]}
+          creature={data.creatures[creature]}
           renderCreature={this.renderCreature}
           dismissVisible={dismissible}
         />

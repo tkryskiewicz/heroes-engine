@@ -4,8 +4,8 @@ import { AppState } from "heroes-homm1-state";
 
 import { TroopSlotContainer, TroopSlotContainerProps } from "./TroopSlotContainer";
 
-const mapStateToProps = (state: AppState): Pick<TroopSlotContainerProps, "creatureById"> => ({
-  creatureById: state.game.data.creatures,
+const mapStateToProps = (state: AppState): Pick<TroopSlotContainerProps, "data"> => ({
+  data: state.game.data,
 });
 
 const ContainerConnected = connect(mapStateToProps)(TroopSlotContainer);

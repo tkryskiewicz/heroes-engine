@@ -7,13 +7,13 @@ import { AppState, troopWindowActions } from "heroes-homm1-state";
 import { TroopWindowContainer, TroopWindowContainerProps } from "./TroopWindowContainer";
 
 type StateProp =
-  "creatureById" |
+  "data" |
   "morale" |
   "luck" |
   "dismissPromptVisible";
 
 const mapStateToProps = (state: AppState): Pick<TroopWindowContainerProps, StateProp> => ({
-  creatureById: state.game.data.creatures,
+  data: state.game.data,
   dismissPromptVisible: state.troopWindow.dismissPromptVisible,
   luck: LuckType.Neutral,
   morale: MoraleType.Neutral,
