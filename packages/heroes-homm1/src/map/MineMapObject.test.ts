@@ -1,5 +1,3 @@
-import { GameData } from "heroes-core";
-
 import { isMineMapObject, isMineMapObjectData, MineMapObject, MineMapObjectData } from "./MineMapObject";
 
 describe("isMineMapObjectData", () => {
@@ -16,28 +14,13 @@ describe("isMineMapObjectData", () => {
       width: 1,
     };
 
-    const data: GameData = {
-      alignments: [],
-      armySize: 0,
-      creatures: {},
-      editor: {
-        heroArtifactCount: 0,
-        maxCreatureCount: 0,
-        maxHeroExperience: 0,
-      },
-      heroClasses: {},
-      heroes: {},
-      items: {},
-      mapObjects: {},
+    const data: Parameters<typeof isMineMapObjectData>[1] = {
       resources: {
         resource: {
           id: "resource",
           mine: "dataId",
         },
       },
-      spells: {},
-      terrains: [],
-      towns: {},
     };
 
     const result = isMineMapObjectData(objectData, data);
@@ -53,28 +36,13 @@ describe("isMineMapObject", () => {
       id: "id",
     };
 
-    const data: GameData = {
-      alignments: [],
-      armySize: 0,
-      creatures: {},
-      editor: {
-        heroArtifactCount: 0,
-        maxCreatureCount: 0,
-        maxHeroExperience: 0,
-      },
-      heroClasses: {},
-      heroes: {},
-      items: {},
-      mapObjects: {},
+    const data: Parameters<typeof isMineMapObject>[1] = {
       resources: {
         resource: {
           id: "resource",
           mine: "dataId",
         },
       },
-      spells: {},
-      terrains: [],
-      towns: {},
     };
 
     const result = isMineMapObject(object, data);

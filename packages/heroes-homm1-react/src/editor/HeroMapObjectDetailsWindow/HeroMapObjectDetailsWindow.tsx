@@ -17,7 +17,7 @@ import { ValueRangePrompt } from "../ValueRangePrompt";
 import { messages } from "./messages";
 
 export interface HeroMapObjectDetailsWindowProps extends EditorSettingsWindowProps {
-  readonly data: GameData;
+  readonly data: Pick<GameData, "alignments" | "creatures" | "editor" | "heroes" | "items">;
   readonly value: HeroMapObjectDetails;
   readonly onValueChange: (value: HeroMapObjectDetails) => void;
 }

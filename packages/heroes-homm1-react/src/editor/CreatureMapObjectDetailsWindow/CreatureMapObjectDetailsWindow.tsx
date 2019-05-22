@@ -12,7 +12,7 @@ import { ValueRangePrompt } from "../ValueRangePrompt";
 import { messages } from "./messages";
 
 export interface CreatureMapObjectDetailsWindowProps extends EditorSettingsWindowProps {
-  readonly data: GameData;
+  readonly data: Pick<GameData, "editor">;
   readonly value: CreatureMapObjectDetails;
   readonly onValueChange: (value: number) => void;
 }

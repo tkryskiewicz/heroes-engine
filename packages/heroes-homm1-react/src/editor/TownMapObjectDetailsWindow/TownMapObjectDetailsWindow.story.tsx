@@ -1,39 +1,27 @@
 import { action } from "@storybook/addon-actions";
-import { boolean } from "@storybook/addon-knobs";
+import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { GameData, Troop } from "heroes-core";
-import { alignments, CreatureId, creatures, EditorMaxCreatureCount, TownMapObjectDetails } from "heroes-homm1";
+import { Troop } from "heroes-core";
+import { alignments, CreatureId, creatures, TownMapObjectDetails } from "heroes-homm1";
 
-import { TownMapObjectDetailsWindow } from "./TownMapObjectDetailsWindow";
+import { TownMapObjectDetailsWindow, TownMapObjectDetailsWindowProps } from "./TownMapObjectDetailsWindow";
 
-const data: GameData = {
+const data: TownMapObjectDetailsWindowProps["data"] = {
   alignments,
-  armySize: 0,
   creatures: creatures.reduce((p, c) => ({
     ...p,
     [c.id]: c,
   }), {}),
-  editor: {
-    heroArtifactCount: 0,
-    maxCreatureCount: EditorMaxCreatureCount,
-    maxHeroExperience: 0,
-  },
-  heroClasses: {},
-  heroes: {},
-  items: {},
-  mapObjects: {},
-  resources: {},
-  spells: {},
-  terrains: [],
-  towns: {},
 };
 
 storiesOf("editor/TownMapObjectDetailsWindow", module)
   .add("default", () => {
+    const armySize = number("Army Size", 5, { range: true, min: 1, max: 5, step: 1 });
+
     const value: TownMapObjectDetails = {
-      army: [...new Array(5).keys()].map<Troop>(() => ({
+      army: [...new Array(armySize).keys()].map<Troop>(() => ({
         count: 0,
         creature: CreatureId.Peasant,
       })),

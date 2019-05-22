@@ -3,7 +3,6 @@ import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { GameData } from "heroes-core";
 import {
   alignments,
   artifacts,
@@ -17,11 +16,10 @@ import {
 } from "heroes-homm1";
 
 import { alignment, hero } from "../../stories";
-import { HeroMapObjectDetailsWindow } from "./HeroMapObjectDetailsWindow";
+import { HeroMapObjectDetailsWindow, HeroMapObjectDetailsWindowProps } from "./HeroMapObjectDetailsWindow";
 
-const data: GameData = {
+const data: HeroMapObjectDetailsWindowProps["data"] = {
   alignments,
-  armySize: 5,
   creatures: creatures.reduce((p, c) => ({
     ...p,
     [c.id]: c,
@@ -31,7 +29,6 @@ const data: GameData = {
     maxCreatureCount: EditorMaxCreatureCount,
     maxHeroExperience: EditorMaxHeroExperience,
   },
-  heroClasses: {},
   heroes: heroes.reduce((p, c) => ({
     ...p,
     [c.id]: c,
@@ -40,18 +37,15 @@ const data: GameData = {
     ...p,
     [c.id]: c,
   }), {}),
-  mapObjects: {},
-  resources: {},
-  spells: {},
-  terrains: [],
-  towns: {},
 };
 
 storiesOf("editor/HeroMapObjectDetailsWindow", module)
   .add("default", () => {
+    const armySize = number("Army Size", 5, { range: true, min: 1, max: 5, step: 1 });
+
     const value: HeroMapObjectDetails = {
       alignment: alignment("Alignment"),
-      army: [...new Array(data.armySize).keys()]
+      army: [...new Array(armySize).keys()]
         .map(() => ({ creature: CreatureId.Peasant, count: 0 })),
       artifacts: [],
       experience: number("Experience", 0, { range: true, min: 0, max: 99999, step: 1 }),

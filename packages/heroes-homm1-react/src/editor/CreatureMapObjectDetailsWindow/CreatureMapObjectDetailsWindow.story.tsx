@@ -3,27 +3,14 @@ import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { GameData } from "heroes-core";
+import { CreatureMapObjectDetailsWindow, CreatureMapObjectDetailsWindowProps } from "./CreatureMapObjectDetailsWindow";
 
-import { CreatureMapObjectDetailsWindow } from "./CreatureMapObjectDetailsWindow";
-
-const data: GameData = {
-  alignments: [],
-  armySize: 0,
-  creatures: {},
+const data: CreatureMapObjectDetailsWindowProps["data"] = {
   editor: {
     heroArtifactCount: 0,
     maxCreatureCount: 127,
     maxHeroExperience: 0,
   },
-  heroClasses: {},
-  heroes: {},
-  items: {},
-  mapObjects: {},
-  resources: {},
-  spells: {},
-  terrains: [],
-  towns: {},
 };
 
 storiesOf("editor/CreatureMapObjectDetailsWindow", module)

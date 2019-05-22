@@ -15,7 +15,7 @@ import { ValueRangePrompt } from "../ValueRangePrompt";
 import { messages } from "./messages";
 
 export interface TownMapObjectDetailsWindowProps extends EditorSettingsWindowProps {
-  readonly data: GameData;
+  readonly data: Pick<GameData, "alignments" | "creatures">;
   readonly value: TownMapObjectDetails;
   readonly onValueChange: (value: TownMapObjectDetails) => void;
 }
