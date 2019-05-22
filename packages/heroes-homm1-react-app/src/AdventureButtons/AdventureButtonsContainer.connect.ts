@@ -30,8 +30,9 @@ const mapStateToProps = (state: AppState): Pick<AdventureButtonsContainerProps, 
 type DispatchProp =
   "onNextHeroClick" |
   "onKingdomOverviewClick" |
-  "onEndTurnPromptVisibleChange" |
-  "onEndTurn" |
+  "onEndTurnClick" |
+  "onConfirmEndTurnClick" |
+  "onCancelEndTurnClick" |
   "onAdventureOptionsClick" |
   "onGameOptionsClick";
 
@@ -44,16 +45,19 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsContainerP
   onKingdomOverviewClick() {
     dispatch(kingdomOverviewWindowActions.open());
   },
-  onEndTurnPromptVisibleChange(value: boolean) {
-    dispatch(adventureScreenActions.changeEndTurnPromptVisible(value));
+  onEndTurnClick() {
+    dispatch(adventureScreenActions.changeEndTurnPromptVisible(true));
   },
-  onEndTurn() {
+  onConfirmEndTurnClick() {
     dispatch(adventureScreenActions.changeEndTurnPromptVisible(false));
 
     dispatch(gameActions.endTurn());
     dispatch(gameActions.startTurn());
 
     dispatch(statusWindowActions.changeSelectedOption(StatusWindowOption.DateInformation));
+  },
+  onCancelEndTurnClick() {
+    dispatch(adventureScreenActions.changeEndTurnPromptVisible(false));
   },
   onAdventureOptionsClick() {
     dispatch(adventureOptionsActions.open());

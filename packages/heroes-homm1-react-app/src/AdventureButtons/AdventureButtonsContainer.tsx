@@ -9,8 +9,9 @@ export interface AdventureButtonsContainerProps {
   readonly onNextHeroClick: (id: string) => void;
   readonly onKingdomOverviewClick: () => void;
   readonly endTurnPromptVisible: boolean;
-  readonly onEndTurnPromptVisibleChange: (value: boolean) => void;
-  readonly onEndTurn: () => void;
+  readonly onEndTurnClick: () => void;
+  readonly onConfirmEndTurnClick: () => void;
+  readonly onCancelEndTurnClick: () => void;
   readonly onAdventureOptionsClick: () => void;
   readonly onGameOptionsClick: () => void;
 }
@@ -44,29 +45,21 @@ export class AdventureButtonsContainer extends React.Component<AdventureButtonsC
 
   private readonly onEndTurnClick = () => {
     if (this.props.heroes.some((h) => h.mobility !== 0)) {
-      this.props.onEndTurnPromptVisibleChange(true);
+      this.props.onEndTurnClick();
 
       return;
     }
 
-    this.props.onEndTurn();
+    this.props.onConfirmEndTurnClick();
   }
 
   private renderEndTurnPrompt() {
     return (
       <EndTurnPrompt
         visible={true}
-        onConfirmClick={this.onConfirmEndTurnClick}
-        onCancelClick={this.onCancelEndTurnClick}
+        onConfirmClick={this.props.onConfirmEndTurnClick}
+        onCancelClick={this.props.onCancelEndTurnClick}
       />
     );
-  }
-
-  private readonly onConfirmEndTurnClick = () => {
-    this.props.onEndTurn();
-  }
-
-  private readonly onCancelEndTurnClick = () => {
-    this.props.onEndTurnPromptVisibleChange(false);
   }
 }
