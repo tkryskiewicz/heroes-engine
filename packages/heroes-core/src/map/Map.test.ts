@@ -1,7 +1,10 @@
 import {
+  changeTerrain,
   createMap,
   getObject,
+  getTileIndex,
   getTilePoint,
+  isPointTaken,
   isPointValid,
   Map,
   moveObject,
@@ -103,6 +106,26 @@ describe("isPointValid", () => {
   });
 });
 
+describe("getTileIndex", () => {
+  it("should return 0 for first tile", () => {
+    const result = getTileIndex(1, createPoint(0, 0));
+
+    expect(result).toBe(0);
+  });
+
+  it("should take x into account", () => {
+    const result = getTileIndex(2, createPoint(1, 0));
+
+    expect(result).toBe(1);
+  });
+
+  it("should take y into account", () => {
+    const result = getTileIndex(1, createPoint(0, 1));
+
+    expect(result).toBe(1);
+  });
+});
+
 describe("getTilePoint", () => {
   it("should return (0,0) for index 0", () => {
     const result = getTilePoint(1, 0);
@@ -126,6 +149,51 @@ describe("getTilePoint", () => {
     const expected = createPoint(1, 0);
 
     expect(result).toEqual(expected);
+  });
+});
+
+describe("changeTerrain", () => {
+  it("should change terrain", () => {
+    const map = createMap(1, 1, "terrain");
+
+    const result = changeTerrain(map, createPoint(0, 0), "otherTerrain");
+
+    expect(result.tiles[getTileIndex(map.width, createPoint(0, 0))].terrain).toBe("otherTerrain");
+  });
+
+  it("should throw when point is invalid", () => {
+    const map = createMap(1, 1, "terrain");
+
+    expect(() => {
+      changeTerrain(map, createPoint(1, 1), "otherTerrain");
+    }).toThrow();
+  });
+});
+
+describe("isPointTaken", () => {
+  it("should return true when point is taken", () => {
+    const object: MapObject = {
+      dataId: "dataId",
+      id: "id",
+    };
+
+    const map = placeObject(
+      createMap(1, 1, "terrain"),
+      createPoint(0, 0),
+      object,
+    );
+
+    const result = isPointTaken(map, createPoint(0, 0));
+
+    expect(result).toBe(true);
+  });
+
+  it("should return false when point is not taken", () => {
+    const map = createMap(1, 1, "terrain");
+
+    const result = isPointTaken(map, createPoint(0, 0));
+
+    expect(result).toBe(false);
   });
 });
 

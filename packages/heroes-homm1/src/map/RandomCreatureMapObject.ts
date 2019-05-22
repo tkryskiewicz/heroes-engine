@@ -24,6 +24,6 @@ export const createRandomCreatureMapObject = (
 
 export const isRandomCreatureMapObject = (
   object: MapObject | undefined,
-  data: GameData,
+  data: Pick<GameData, "mapObjects">,
 ): object is RandomCreatureMapObject =>
   isMapObject(object) && isRandomCreatureMapObjectData(data.mapObjects[object.dataId]);

@@ -12,11 +12,14 @@ export interface ResourceMapObjectData extends TreasureMapObjectData, PickableMa
 
 export const isResourceMapObjectData = (
   objectData: MapObjectData,
-  data: GameData,
+  data: Pick<GameData, "resources">,
 ): objectData is ResourceMapObjectData =>
   data.resources[objectData.id] !== undefined;
 
 export type ResourceMapObject = TreasureMapObject;
 
-export const isResourceMapObject = (object: MapObject, data: GameData): object is ResourceMapObject =>
+export const isResourceMapObject = (
+  object: MapObject,
+  data: Pick<GameData, "resources">,
+): object is ResourceMapObject =>
   data.resources[object.dataId] !== undefined;

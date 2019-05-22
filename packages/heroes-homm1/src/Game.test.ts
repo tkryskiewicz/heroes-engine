@@ -9,7 +9,14 @@ import {
 } from "heroes-core";
 
 import { buyMageGuildSpellBook } from "./Game";
-import { createHeroMapObject, createTownMapObject, HeroMapObject, HeroMapObjectData, TownMapObjectData } from "./map";
+import {
+  createHeroMapObject,
+  createTownMapObject,
+  HeroMapObject,
+  HeroMapObjectData,
+  MapObjectId,
+  TownMapObjectData,
+} from "./map";
 import { Resource } from "./Resource";
 import { constructSpellBook } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";
@@ -36,7 +43,7 @@ describe("buyMageGuildSpellBook", () => {
       },
       grid: [],
       height: 1,
-      id: "hero",
+      id: MapObjectId.Hero,
       ownable: true,
       width: 1,
     };

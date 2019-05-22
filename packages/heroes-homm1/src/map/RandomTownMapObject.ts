@@ -12,13 +12,14 @@ import {
 import { MapObjectId } from "./MapObjectId";
 
 export interface RandomTownMapObjectData extends MapObjectData {
-  readonly id: MapObjectId.RandomTown;
+  readonly id: MapObjectId.RandomTown | MapObjectId.RandomCastle;
 }
 
 export const isRandomTownMapObjectData = (objectData: MapObjectData): objectData is RandomTownMapObjectData =>
   objectData.id === MapObjectId.RandomTown || objectData.id === MapObjectId.RandomCastle;
 
 export interface RandomTownMapObject extends OwnableMapObject {
+  readonly dataId: MapObjectId.RandomTown | MapObjectId.RandomCastle;
   readonly customized: boolean;
   readonly army: Army;
 }
@@ -26,7 +27,7 @@ export interface RandomTownMapObject extends OwnableMapObject {
 export const createRandomTownMapObject = (
   id: string,
   objectData: RandomTownMapObjectData,
-  data: GameData,
+  data: Pick<GameData, "alignments" | "armySize" | "creatures">,
 ): RandomTownMapObject => ({
   ...createMapObject(id, objectData),
   army: [...new Array(data.armySize).keys()].map<Troop>(() => ({
@@ -34,6 +35,8 @@ export const createRandomTownMapObject = (
     creature: Object.keys(data.creatures)[0],
   })),
   customized: false,
+  // FIXME: this is already set by createMapObject but doesn't preserve type
+  dataId: objectData.id,
   owner: data.alignments[0],
 });
 

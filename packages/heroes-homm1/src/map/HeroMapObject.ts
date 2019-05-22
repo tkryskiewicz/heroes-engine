@@ -19,12 +19,14 @@ import { constructArtifact } from "../artifacts";
 import { MapObjectId } from "./MapObjectId";
 
 export interface HeroMapObjectData extends ArmedMapObjectData, OwnableMapObjectData {
+  readonly id: MapObjectId.Hero;
 }
 
 export const isHeroMapObjectData = (objectData: MapObjectData): objectData is HeroMapObjectData =>
   objectData.id === MapObjectId.Hero;
 
 export interface HeroMapObject extends Hero, ArmedMapObject, EquipableMapObject, OwnableMapObject, MobileMapObject {
+  readonly dataId: MapObjectId.Hero;
 }
 
 export const isHeroMapObject = (object: MapObject | undefined): object is HeroMapObject =>
@@ -38,6 +40,7 @@ export const createHeroMapObject = (
 ): HeroMapObject => ({
   ...createMapObject(id, objectData),
   ...hero,
+  dataId: MapObjectId.Hero,
   orientation: MapObjectOrientation.North,
   owner,
 });
@@ -61,7 +64,7 @@ export const getHeroMapObjectDetails = (object: HeroMapObject): HeroMapObjectDet
 export const setHeroMapObjectDetails = (
   object: HeroMapObject,
   details: HeroMapObjectDetails,
-  data: GameData,
+  data: Pick<GameData, "heroes">,
 ): HeroMapObject => ({
   ...object,
   army: details.army,

@@ -1,6 +1,35 @@
-import { GameData } from "heroes-core";
+import {
+  isResourceMapObject,
+  isResourceMapObjectData,
+  ResourceMapObject,
+  ResourceMapObjectData,
+} from "./ResourceMapObject";
 
-import { isResourceMapObject, ResourceMapObject } from "./ResourceMapObject";
+describe("isResourceMapObjectData", () => {
+  it("should return true when resource object", () => {
+    const objectData: ResourceMapObjectData = {
+      grid: [],
+      height: 1,
+      id: "dataId",
+      pickable: true,
+      treasure: {},
+      width: 1,
+    };
+
+    const data: Parameters<typeof isResourceMapObjectData>[1] = {
+      resources: {
+        [objectData.id]: {
+          id: objectData.id,
+          mine: "mine",
+        },
+      },
+    };
+
+    const result = isResourceMapObjectData(objectData, data);
+
+    expect(result).toBe(true);
+  });
+});
 
 describe("isResourceMapObject", () => {
   it("should return true when there is a resource with same id", () => {
@@ -10,27 +39,13 @@ describe("isResourceMapObject", () => {
       treasure: {},
     };
 
-    const data: GameData = {
-      alignments: [],
-      armySize: 0,
-      creatures: {},
-      editor: {
-        heroArtifactCount: 0,
-        maxCreatureCount: 0,
-        maxHeroExperience: 0,
-      },
-      heroClasses: {},
-      heroes: {},
-      items: {},
-      mapObjects: {},
+    const data: Parameters<typeof isResourceMapObject>[1] = {
       resources: {
         resource: {
           id: "resource",
           mine: "mine",
         },
       },
-      spells: {},
-      terrains: [],
     };
 
     const result = isResourceMapObject(object, data);

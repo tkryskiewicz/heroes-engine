@@ -19,7 +19,8 @@ export const createCreatureMapObject = (id: string, objectData: CreatureMapObjec
 
 export const isCreatureMapObject = (
   object: MapObject | undefined,
-  data: import("../Game").GameData,
+  // FIXME
+  data: Pick<import("../Game").GameData, "creatures">,
 ): object is CreatureMapObject =>
   isMapObject(object) && data.creatures[object.dataId] !== undefined;
 
