@@ -44,6 +44,7 @@ export {
 export { Scenario } from "./Scenario";
 export {
   Structure,
+  StructureData,
   Dwelling,
   isDwellingStructure,
   buildStructure,
@@ -51,6 +52,6 @@ export {
   recruitTroop,
   DwellingStructure,
 } from "./Structure";
-export { Town, isStructureBuilt, getTownStructure, buildTownStructure, endTownTurn } from "./Town";
+export { Town, TownData, isStructureBuilt, getTownStructure, buildTownStructure, endTownTurn } from "./Town";
 export { Troop, TroopSelectionType, TroopSelection } from "./Troop";
 export { random } from "./util";

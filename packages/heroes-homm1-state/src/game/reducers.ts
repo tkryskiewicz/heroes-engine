@@ -63,6 +63,8 @@ import {
   TownId,
   TownMapObject,
   TownMapObjectData,
+  // FIXME
+  towns as homm1Towns,
 } from "heroes-homm1";
 
 import { GameAction, GameActionType } from "./actions";
@@ -105,6 +107,10 @@ const data: GameData = {
     [c.id]: c,
   }), {}),
   terrains: terrains.map((t) => t.id),
+  towns: homm1Towns.reduce((p, c) => ({
+    ...p,
+    [c.id]: c,
+  }), {}),
 };
 
 const lordKilburn: Hero = {
@@ -153,11 +159,13 @@ const agar: Hero = {
 const farmTown = constructTown(
   TownId.Farm,
   "Farm Town",
+  data,
 );
 
 const plainsTown = constructTown(
   TownId.Plains,
   "Plains Town",
+  data,
 );
 
 const townData = mapObjects.find((o) => o.id === MapObjectId.Town)! as TownMapObjectData;
@@ -195,6 +203,7 @@ const towns: TownMapObject[] = [
     constructTown(
       TownId.Forest,
       "Forest Town",
+      data,
     ),
     Alignment.Red,
   ),
@@ -204,6 +213,7 @@ const towns: TownMapObject[] = [
     constructTown(
       TownId.Mountains,
       "Mountains Town",
+      data,
     ),
     Alignment.Red,
   ),

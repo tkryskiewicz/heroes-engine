@@ -23,6 +23,7 @@ const data: GameData = {
   resources: {},
   spells: {},
   terrains: [],
+  towns: {},
 };
 
 storiesOf("editor/CreatureMapObjectDetailsWindow", module)

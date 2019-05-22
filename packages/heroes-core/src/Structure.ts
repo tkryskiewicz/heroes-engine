@@ -1,6 +1,11 @@
 import { Resources } from "./Resource";
 import { Troop } from "./Troop";
 
+export interface StructureData<TData = {}> {
+  readonly id: string;
+  readonly data?: TData;
+}
+
 export interface Dwelling {
   readonly creature: string;
   readonly availableCount: number;

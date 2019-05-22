@@ -85,8 +85,9 @@ export {
 } from "./structures";
 export { terrains } from "./terrains";
 export { TerrainType } from "./TerrainType";
+export { constructTown } from "./Town";
 export { TownId, TownIds } from "./TownId";
-export { constructTown } from "./towns";
+export { towns } from "./towns";
 
 export const MaxPlayers = 4;
 export const HeroLimit = 8;

@@ -1,4 +1,4 @@
-import { Structure } from "heroes-core";
+import { Structure, StructureData } from "heroes-core";
 
 import { CastleOptionStatus } from "./CastleOptionStatus";
 import { Resource } from "./Resource";
@@ -8,12 +8,11 @@ import {
   getCastleOptionStatus,
   isCommonStructure,
   StructureId,
-  StructureType,
 } from "./structures";
 
 describe("constructStructure", () => {
   it("should construct structure", () => {
-    const structureType: StructureType = {
+    const structureType: StructureData = {
       cost: {
         [Resource.Gold]: 200,
       },
@@ -35,7 +34,7 @@ describe("constructStructure", () => {
   });
 
   it("should construct a dwelling structure", () => {
-    const structureType: StructureType = {
+    const structureType: StructureData = {
       cost: {
         [Resource.Gold]: 200,
       },

@@ -3,16 +3,23 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { buildStructure } from "heroes-core";
-import { constructTown } from "heroes-homm1";
+import { constructTown, towns } from "heroes-homm1";
 
 import { town } from "../stories";
 import { TownView } from "./TownView";
+
+const data: Parameters<typeof constructTown>[2] = {
+  towns: towns.reduce((p, c) => ({
+    ...p,
+    [c.id]: c,
+  }), {}),
+};
 
 storiesOf("TownView", module)
   .add("default", () => {
     const townId = town("Town");
 
-    const t = constructTown(townId, "Name");
+    const t = constructTown(townId, "Name", data);
 
     return (
       <TownView

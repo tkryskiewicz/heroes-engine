@@ -25,6 +25,7 @@ const data: GameData = {
   resources: {},
   spells: {},
   terrains: terrains.map((t) => t.id),
+  towns: {},
 };
 
 const map = createMap(38, 38, TerrainType.Water);

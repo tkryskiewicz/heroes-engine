@@ -40,6 +40,7 @@ import {
 import { addResources, ResourceData, Resources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
+import { TownData } from "./Town";
 import { TroopSelection } from "./Troop";
 
 export interface GameData {
@@ -53,6 +54,7 @@ export interface GameData {
   readonly terrains: string[];
   readonly mapObjects: { readonly [id: string]: MapObjectData; };
   readonly armySize: number;
+  readonly towns: { readonly [id: string]: TownData; };
 }
 
 export interface Puzzle {

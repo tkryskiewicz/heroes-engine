@@ -1,5 +1,10 @@
 import { Army } from "./Army";
-import { buildStructure, Structure } from "./Structure";
+import { buildStructure, Structure, StructureData } from "./Structure";
+
+export interface TownData {
+  readonly id: string;
+  readonly structures: StructureData[];
+}
 
 export interface Town {
   readonly id: string;

@@ -1,4 +1,4 @@
-import { Dwelling, enoughResources, Resources, Structure } from "heroes-core";
+import { Dwelling, enoughResources, Resources, Structure, StructureData } from "heroes-core";
 
 import { CastleOptionStatus } from "./CastleOptionStatus";
 import { CreatureId } from "./creatures";
@@ -18,14 +18,14 @@ const constructDwelling = (dwellingType: DwellingType): Dwelling => ({
   growth: dwellingType.growth,
 });
 
-export interface StructureType<TData = {}> {
-  readonly id: string;
-  readonly cost: Resources;
-  readonly dwelling?: DwellingType;
-  readonly data?: TData;
+declare module "heroes-core/src/Structure" {
+  interface StructureData<TData> {
+    readonly cost: Resources;
+    readonly dwelling?: DwellingType;
+  }
 }
 
-export const constructStructure = (structureType: StructureType): Structure => ({
+export const constructStructure = (structureType: StructureData): Structure => ({
   cost: structureType.cost,
   data: structureType.data || {},
   dwelling: structureType.dwelling ?
@@ -82,7 +82,7 @@ export interface Shipyard extends Structure {
   readonly data: ShipyardData;
 }
 
-export const coreStructures: StructureType[] = [
+export const coreStructures: StructureData[] = [
   {
     cost: {
       [Resource.Gold]: 10000,
@@ -104,7 +104,7 @@ const CommonStructures: string[] = [
 export const isCommonStructure = (structure: string) =>
   CommonStructures.includes(structure);
 
-export const commonStructures: StructureType[] = [
+export const commonStructures: StructureData[] = [
   {
     cost: {
       [Resource.Gold]: 2000,
@@ -174,7 +174,7 @@ export enum FarmStructureId {
   Cathedral = "cathedral",
 }
 
-export const farmStructures: StructureType[] = [
+export const farmStructures: StructureData[] = [
   {
     cost: {
       [Resource.Gold]: 200,
@@ -271,7 +271,7 @@ export enum PlainsStructureId {
   Pyramid = "pyramid",
 }
 
-export const plainsStructures: StructureType[] = [
+export const plainsStructures: StructureData[] = [
   {
     cost: {
       [Resource.Gold]: 300,
@@ -368,7 +368,7 @@ export enum ForestStructureId {
   RedTower = "red-tower",
 }
 
-export const forestStructures: StructureType[] = [
+export const forestStructures: StructureData[] = [
   {
     cost: {
       [Resource.Gold]: 500,
@@ -469,7 +469,7 @@ export enum MountainsStructureId {
   BlackTower = "black-tower",
 }
 
-export const mountainsStructures: StructureType[] = [
+export const mountainsStructures: StructureData[] = [
   {
     cost: {
       [Resource.Gold]: 500,

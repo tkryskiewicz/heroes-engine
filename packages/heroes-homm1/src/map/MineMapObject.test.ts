@@ -37,6 +37,7 @@ describe("isMineMapObjectData", () => {
       },
       spells: {},
       terrains: [],
+      towns: {},
     };
 
     const result = isMineMapObjectData(objectData, data);
@@ -73,6 +74,7 @@ describe("isMineMapObject", () => {
       },
       spells: {},
       terrains: [],
+      towns: {},
     };
 
     const result = isMineMapObject(object, data);
