@@ -10,6 +10,7 @@ export * from "./ExperienceAmount";
 export * from "./ExperienceIcon";
 export * from "./Frame";
 export * from "./GameCheckbox";
+export * from "./GameInput";
 export * from "./GameInputNumber";
 export * from "./GameModal";
 export * from "./HeroClassOverview";

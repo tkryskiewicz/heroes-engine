@@ -1,0 +1,18 @@
+.root {
+  width: 271px;
+  color: #fff;
+  text-align: center;
+  border: none;
+  border-radius: 0;
+  resize: none;
+
+  &.large {
+    height: 68px;
+    background: url("./assets/background-large.jpg");
+  }
+
+  &.small {
+    height: 31px;
+    background: url("./assets/background-small.jpg");
+  }
+}

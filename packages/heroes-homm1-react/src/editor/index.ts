@@ -14,6 +14,7 @@ export * from "./EditorWindow";
 export * from "./EraseOptionDetails";
 export * from "./EraseOptionSettingsWindow";
 export * from "./HeroMapObjectDetailsWindow";
+export * from "./MapSpecificationWindow";
 export * from "./ObjectDetailsUnavailablePrompt";
 export * from "./ObjectsOptionDetails";
 export * from "./TerrainsOptionDetails";
