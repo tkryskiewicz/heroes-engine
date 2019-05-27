@@ -18,4 +18,4 @@ Displays various game type options.
 
 ![Cancel](./assets/cancel/enabled.png "Cancel")
 
-Goes back to [Main Menu](/?selectedKind=MainMenu).
+Goes back to [Main Menu](/?path=/story/menu-mainmenu--default).

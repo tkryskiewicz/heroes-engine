@@ -6,7 +6,7 @@ Displays your hero's statistics and commands available during combat.
 
 ![Cast Spell](./assets/cast-spell/enabled.png "Cast Spell")
 
-Opens the [Spell Book Window](/?selectedKind=SpellBookWindow) and allows you to cast a combat spell.
+Opens the [Spell Book Window](/?path=/story/buyspellbookwindow--default) and allows you to cast a combat spell.
 
 ## Retreat
 

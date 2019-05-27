@@ -1,3 +1,3 @@
 # Resource Amount
 
-Displays a [Resource Icon](/?selectedKind=base%2FResourceIcon) and the amount of that resource.
+Displays a [Resource Icon](/?path=/story/base-resourceicon--default) and the amount of that resource.

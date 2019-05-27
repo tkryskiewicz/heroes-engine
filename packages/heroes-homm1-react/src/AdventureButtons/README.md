@@ -18,7 +18,7 @@ Clicking it will cause the active hero to continue his movement path (if one is 
 
 ![Kingdom Overview](./assets/kingdom-overview/enabled.png "Kingdom Overview")
 
-Opens [Kingdom Overview](/?selectedKind=KingdomOverviewWindow).
+Opens [Kingdom Overview](/?path=/story/kingdomoverviewwindow--default).
 
 ## End Turn
 
@@ -32,10 +32,10 @@ Clicking it ends current players turn.
 
 ![Adventure Options](./assets/adventure-options/enabled.png "Adventure Options")
 
-Opens [Adventure Options](?selectedKind=AdventureOptions).
+Opens [Adventure Options](?path=/story/adventureoptions--default).
 
 ## Game Options
 
 ![Game Options](./assets/game-options/enabled.png "Game Options")
 
-Opens [Game Options](?selectedKind=GameOptions).
+Opens [Game Options](?path=/story/gameoptions--default).

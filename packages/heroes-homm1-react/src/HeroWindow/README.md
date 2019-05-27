@@ -32,7 +32,7 @@ Shows hero's experience.
 
 ## Crest
 
-Clicking opens [Kingdom Overview Window](/?selectedKind=KingdomOverviewWindow).
+Clicking opens [Kingdom Overview Window](/?path=/story/kingdomoverviewwindow--default).
 
 ## Army
 

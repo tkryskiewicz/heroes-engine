@@ -1,10 +1,10 @@
 import * as Webpack from "webpack";
 
-import config from "../webpack.config";
+import devConfig from "../webpack.config";
 
-export default (_baseConfig: Webpack.Configuration, _env: string, defaultConfig: Webpack.Configuration) => {
-  defaultConfig.module!.rules = [
-    ...config.module!.rules,
+export default async ({ config }: { readonly config: Webpack.Configuration }) => {
+  config.module!.rules = [
+    ...devConfig.module!.rules,
     // FIXME: remove, Storybook already has markdown loader
     {
       test: /\.md$/,
@@ -14,8 +14,8 @@ export default (_baseConfig: Webpack.Configuration, _env: string, defaultConfig:
       ],
     },
   ];
-  defaultConfig.resolve!.extensions = config.resolve!.extensions;
-  defaultConfig.resolve!.plugins = config.resolve!.plugins;
+  config.resolve!.extensions = devConfig.resolve!.extensions;
+  config.resolve!.plugins = devConfig.resolve!.plugins;
 
-  return defaultConfig;
+  return config;
 };

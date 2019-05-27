@@ -6,19 +6,19 @@ Contains various actions to perform in game.
 
 ![View World](./assets/view-world/enabled.png "View World")
 
-Opens [World Window](/?selectedKind=WorldWindow).
+Opens [World Window](?path=/story/worldwindow--default).
 
 ## View Puzzle
 
 ![View Puzzle](./assets/view-puzzle/enabled.png "View Puzzle")
 
-Opens [View Puzzle Window](/?selectedKind=PuzzleWindow)
+Opens [View Puzzle Window](/?path=/story/puzzlewindow--default)
 
 ## Cast Spell
 
 ![Cast Spell](./assets/cast-spell/enabled.png "Cast Spell")
 
-Opens [Spell Book Window](/?selectedKind=SpellBookWindow) and allows to cast an adventure spell.
+Opens [Spell Book Window](/?path=/story/spellbookwindow--default) and allows to cast an adventure spell.
 
 ## Dig/Search
 

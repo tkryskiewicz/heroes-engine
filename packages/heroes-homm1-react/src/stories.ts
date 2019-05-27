@@ -89,7 +89,7 @@ const structureOptions = {
 };
 
 export const structure = (name: string) =>
-  select(name, structureOptions, StructureId.Castle);
+  select<string>(name, structureOptions, StructureId.Castle);
 
 export const castleOptionStatus = (name: string) =>
   select<CastleOptionStatus>(name, Object.values(CastleOptionStatus), CastleOptionStatus.Built);

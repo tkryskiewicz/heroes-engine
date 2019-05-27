@@ -4,13 +4,13 @@
 
 ![New Game](./assets/new-game/enabled.png "New Game")
 
-Allows you to start a new game. Opens [Game Type Menu](/?selectedKind=GameTypeMenu "Game Type Menu").
+Allows you to start a new game. Opens [Game Type Menu](/?path=/story/menu-gametypemenu--default "Game Type Menu").
 
 ## Load Game
 
 ![Load Game](./assets/load-game/enabled.png "Load Game")
 
-Allows you to load a previously saved game. Opens [Game Type Menu](/?selectedKind=GameTypeMenu "Game Type Menu").
+Allows you to load a previously saved game. Opens [Game Type Menu](/?path=/story/menu-gametypemenu--default "Game Type Menu").
 
 ## Save Game
 
@@ -50,4 +50,4 @@ Toggles viewing your opponent’s movement *On* and *Off*.
 
 ## Info
 
-Shows the scenario information (either [Campaign Scenario Info Window](/?selectedKind=CampaignScenarioInfoWindow) or [Standard Scenario Info Window](/?selectedKind=StandardScenarioInfoWindow)).
+Shows the scenario information (either [Campaign Scenario Info Window](/?path=/story/campaignscenarioinfowindow--default) or [Standard Scenario Info Window](/?path=/story/standardgamescenarioinfowindow--default)).
