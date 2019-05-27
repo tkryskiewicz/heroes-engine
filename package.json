@@ -9,7 +9,7 @@
   "devDependencies": {
     "tslint-immutable": "^5.1.2",
     "tslint-no-circular-imports": "^0.6.1",
-    "typescript": "^3.0.3"
+    "typescript": "^3.4.5"
   },
   "scripts": {
     "build": "yarn workspaces run build",
