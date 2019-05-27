@@ -7,8 +7,8 @@
     "packages/*"
   ],
   "devDependencies": {
-    "tslint-immutable": "^5.1.2",
-    "tslint-no-circular-imports": "^0.6.1",
+    "tslint-immutable": "^5.5.2",
+    "tslint-no-circular-imports": "^0.6.2",
     "typescript": "^3.4.5"
   },
   "scripts": {

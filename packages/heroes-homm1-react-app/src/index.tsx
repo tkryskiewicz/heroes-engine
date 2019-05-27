@@ -17,12 +17,14 @@ const store = createStore(rootReducer, composeWithDevTools());
 import { App } from "./App";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <IntlProvider locale="en">
-      <Router>
-        <App />
-      </Router>
-    </IntlProvider>
-  </Provider>,
+  (
+    <Provider store={store}>
+      <IntlProvider locale="en">
+        <Router>
+          <App />
+        </Router>
+      </IntlProvider>
+    </Provider>
+  ),
   document.getElementById("app-root"),
 );
