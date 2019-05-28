@@ -1,17 +1,68 @@
-import { HeroClassData } from "heroes-core";
+import { Army, HeroClassData, HeroSkills } from "heroes-core";
 
 import { constructHero } from "./heroes";
 
 describe("constructHero", () => {
-  it("should construct hero", () => {
-    const heroClassData: HeroClassData = {
+  it("should assign skills", () => {
+    const data: HeroClassData = {
       army: [],
-      id: "heroClass",
+      id: "data",
+      skills: {
+        skill: 1,
+      },
+    };
+
+    const result = constructHero("id", data);
+
+    const expected: HeroSkills = {
+      skill: 1,
+    };
+
+    expect(result.skills).toEqual(expected);
+  });
+
+  it("should assign initial army", () => {
+    const data: HeroClassData = {
+      army: [
+        {
+          creature: "creature",
+          max: 1,
+          min: 1,
+        },
+      ],
+      id: "data",
       skills: {},
     };
 
-    const hero = constructHero("hero", heroClassData);
+    const result = constructHero("id", data);
 
-    expect(hero).toBeDefined();
+    const expected: Army = [
+      {
+        count: 1,
+        creature: "creature",
+      },
+    ];
+
+    expect(result.army).toEqual(expected);
+  });
+
+  it("should remove empty troops", () => {
+    const data: HeroClassData = {
+      army: [
+        {
+          creature: "creature",
+          max: 0,
+          min: 0,
+        },
+      ],
+      id: "data",
+      skills: {},
+    };
+
+    const result = constructHero("id", data);
+
+    const expected: Army = [];
+
+    expect(result.army).toEqual(expected);
   });
 });

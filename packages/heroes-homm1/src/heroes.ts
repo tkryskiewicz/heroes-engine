@@ -211,7 +211,6 @@ export const heroes: HeroData[] = [
   ...warlockHeroes,
 ];
 
-// TODO: test this
 export const constructHero = (id: string, heroClass: HeroClassData): Hero => {
   const army: Army = heroClass.army
     .map((t): Troop => ({
