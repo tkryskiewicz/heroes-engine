@@ -9,7 +9,6 @@ import {
   getTileIndex,
   getTilePoint,
   isSamePoint,
-  Map,
   MapObject,
   MapObjectOrientation,
   MapPoint,
@@ -24,9 +23,13 @@ import {
   EditorObjectType,
   EditorOption,
   EraseObjectsSettings,
+  getScenarioSpecification,
   MapObjectDetails,
   nextObjectType,
   previousObjectType,
+  Scenario,
+  ScenarioSpecification,
+  setScenarioSpecification,
   TerrainType,
 } from "heroes-homm1";
 import {
@@ -46,6 +49,7 @@ import {
   MapTile,
   ObjectDetailsUnavailablePrompt,
   ObjectsOptionDetails,
+  ScenarioSpecificationWindow,
   TerrainsOptionDetails,
 } from "heroes-homm1-react";
 
@@ -54,8 +58,8 @@ import { getObjectDetails, getObjects, renderObjectDetails, setObjectDetails } f
 
 interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly data: GameData;
-  readonly map: Map;
-  readonly onMapChange: (value: Map) => void;
+  readonly scenario: Scenario;
+  readonly onScenarioChange: (value: Scenario) => void;
   readonly position: MapPoint;
   readonly onPositionChange: (value: MapPoint) => void;
   readonly selectedOption: EditorOption;
@@ -87,11 +91,16 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly onCloseEraseObjectsSettingsClick: () => void;
   readonly onEraseObjectsSettingsChange: (value: EraseObjectsSettings) => void;
 
+  readonly scenarioSpecification: ScenarioSpecification;
+  readonly scenarioSpecificationVisible: boolean;
+  readonly onOpenScenarioSpecificationClick: () => void;
+  readonly onCloseScenarioSpecificationClick: () => void;
+  readonly onScenarioSpecificationChange: (value: ScenarioSpecification) => void;
+
   readonly zoomed: boolean;
   readonly onZoomInClick: () => void;
   readonly onZoomOutClick: () => void;
   readonly onUndoClick: () => void;
-  readonly onSpecsClick: () => void;
   readonly onRandomClick: () => void;
   readonly onNewClick: () => void;
   readonly onLoadClick: () => void;
@@ -108,7 +117,7 @@ interface EditorWindowContainerState {
 }
 
 type DefaultProp =
-  "onMapChange" |
+  "onScenarioChange" |
   "onPositionChange" |
   "onSelectedOptionChange" |
   "onSelectedTerrainChange" |
@@ -131,10 +140,14 @@ type DefaultProp =
   "onCloseEraseObjectsSettingsClick" |
   "onEraseObjectsSettingsChange" |
 
+  "scenarioSpecificationVisible" |
+  "onOpenScenarioSpecificationClick" |
+  "onCloseScenarioSpecificationClick" |
+  "onScenarioSpecificationChange" |
+
   "onZoomInClick" |
   "onZoomOutClick" |
   "onUndoClick" |
-  "onSpecsClick" |
   "onRandomClick" |
   "onNewClick" |
   "onLoadClick" |
@@ -149,27 +162,30 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     onCloseObjectDetailsClick: () => undefined,
     onCloseObjectDetailsUnavailablePromptClick: () => undefined,
     onCloseObjectsWindowClick: () => undefined,
+    onCloseScenarioSpecificationClick: () => undefined,
     onEraseObjectsSettingsChange: () => undefined,
     onLoadClick: () => undefined,
-    onMapChange: () => undefined,
     onNewClick: () => undefined,
     onOpenEraseObjectsSettingsClick: () => undefined,
     onOpenObjectDetailsClick: () => undefined,
     onOpenObjectDetailsUnavailablePromptClick: () => undefined,
     onOpenObjectsWindowClick: () => undefined,
+    onOpenScenarioSpecificationClick: () => undefined,
     onPositionChange: () => undefined,
     onQuitClick: () => undefined,
     onRandomClick: () => undefined,
     onSaveClick: () => undefined,
+    onScenarioChange: () => undefined,
+    onScenarioSpecificationChange: () => undefined,
     onSelectedObjectChange: () => undefined,
     onSelectedObjectDetailsChange: () => undefined,
     onSelectedObjectTypeChange: () => undefined,
     onSelectedOptionChange: () => undefined,
     onSelectedTerrainChange: () => undefined,
-    onSpecsClick: () => undefined,
     onUndoClick: () => undefined,
     onZoomInClick: () => undefined,
     onZoomOutClick: () => undefined,
+    scenarioSpecificationVisible: false,
   };
 
   public readonly state: EditorWindowContainerState = {
@@ -226,7 +242,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly renderTile = (index: number) => {
-    const { data, map, position, selectedOption } = this.props;
+    const { data, scenario, position, selectedOption } = this.props;
     const { activePoint, activeTile } = this.state;
 
     // FIXME: move some logic to adventure window?
@@ -234,11 +250,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
 
     const tilePoint = translatePoint(position, windowPoint.x, windowPoint.y);
 
-    const tileIndex = getTileIndex(map.width, tilePoint);
+    const tileIndex = getTileIndex(scenario.map.width, tilePoint);
 
     const size = this.props.zoomed ? "large" : "small";
 
-    const tile = map.tiles[tileIndex];
+    const tile = scenario.map.tiles[tileIndex];
 
     const object = tile.object ?
       renderEditorObject(tile.object, data.mapObjects[tile.object.dataId], tile.terrain, data, size) :
@@ -263,7 +279,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onTileMouseEnter = (index: number) => {
-    const point = getTilePoint(this.props.map.width, index);
+    const point = getTilePoint(this.props.scenario.map.width, index);
 
     this.setState({
       activePoint: point,
@@ -272,19 +288,22 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onTileClick = (index: number) => {
-    const { data, map, selectedOption, selectedObject } = this.props;
+    const { data, scenario, selectedOption, selectedObject } = this.props;
     const { formatMessage } = this.props.intl;
 
-    const point = getTilePoint(this.props.map.width, index);
+    const point = getTilePoint(scenario.map.width, index);
 
     if (selectedOption === EditorOption.Terrains) {
-      const newMap = changeTerrain(map, point, this.props.selectedTerrain);
+      const newScenario: Scenario = {
+        ...scenario,
+        map: changeTerrain(scenario.map, point, this.props.selectedTerrain),
+      };
 
-      this.props.onMapChange(newMap);
+      this.props.onScenarioChange(newScenario);
     } else if (selectedOption === EditorOption.Objects && selectedObject) {
       const objectData = data.mapObjects[selectedObject];
 
-      if (!canPlaceObject(map, point, objectData, data)) {
+      if (!canPlaceObject(scenario.map, point, objectData, data)) {
         // FIXME: find better way to clear message
         this.setState({
           message: formatMessage(editorWindowMessages.invalidPlacement),
@@ -294,16 +313,19 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       } else {
         const object = createMapObject(this.state.objectId.toString(), objectData, data);
 
-        const newMap = placeObject(map, point, object);
+        const newScenario: Scenario = {
+          ...scenario,
+          map: placeObject(scenario.map, point, object),
+        };
 
-        this.props.onMapChange(newMap);
+        this.props.onScenarioChange(newScenario);
 
         this.setState({
           objectId: this.state.objectId + 1,
         });
       }
     } else if (selectedOption === EditorOption.Details) {
-      const tile = map.tiles[getTileIndex(map.width, point)];
+      const tile = scenario.map.tiles[getTileIndex(scenario.map.width, point)];
 
       const object = tile.object;
 
@@ -319,13 +341,16 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         }
       }
     } else if (selectedOption === EditorOption.Erase) {
-      const tile = map.tiles[getTileIndex(map.width, point)];
+      const tile = scenario.map.tiles[getTileIndex(scenario.map.width, point)];
 
       // TODO: implement erase options
       if (tile.object) {
-        const newMap = removeObject(map, tile.object.id);
+        const newScenario: Scenario = {
+          ...scenario,
+          map: removeObject(scenario.map, tile.object.id),
+        };
 
-        this.props.onMapChange(newMap);
+        this.props.onScenarioChange(newScenario);
       }
     }
   }
@@ -377,7 +402,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly renderHorizontalScrollbar = () => {
-    const progress = this.props.position.x / (this.props.map.width - this.getTileCount());
+    const progress = this.props.position.x / (this.props.scenario.map.width - this.getTileCount());
 
     return (
       <EditorHorizontalScrollbar
@@ -397,7 +422,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly renderVerticalScrollbar = () => {
-    const progress = this.props.position.y / (this.props.map.height - this.getTileCount());
+    const progress = this.props.position.y / (this.props.scenario.map.height - this.getTileCount());
 
     return (
       <EditorVerticalScrollbar
@@ -550,7 +575,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   private renderObjectDetails(id: string) {
     const { data, selectedObjectDetails } = this.props;
 
-    const object = getObject(this.props.map, id);
+    const object = getObject(this.props.scenario.map, id);
 
     if (object === undefined || selectedObjectDetails === undefined) {
       return;
@@ -566,15 +591,18 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onConfirmObjectDetailsClick = () => {
-    const { data, map, visibleObjectDetails, selectedObjectDetails } = this.props;
+    const { data, scenario, visibleObjectDetails, selectedObjectDetails } = this.props;
 
-    const object = getObject(map, visibleObjectDetails!) as CreatureMapObject;
+    const object = getObject(scenario.map, visibleObjectDetails!) as CreatureMapObject;
 
     const newObject = setObjectDetails(object, selectedObjectDetails!, data);
 
-    const newMap = replaceObject(map, newObject);
+    const newScenario: Scenario = {
+      ...scenario,
+      map: replaceObject(scenario.map, newObject),
+    };
 
-    this.props.onMapChange(newMap);
+    this.props.onScenarioChange(newScenario);
 
     this.props.onCloseObjectDetailsClick();
   }
@@ -618,16 +646,19 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
 
   private readonly renderButtons = () => {
     return (
-      <EditorButtons
-        onZoomClick={this.onZoomClick}
-        onUndoClick={this.props.onUndoClick}
-        onSpecsClick={this.props.onSpecsClick}
-        onRandomClick={this.props.onRandomClick}
-        onNewClick={this.props.onNewClick}
-        onLoadClick={this.props.onLoadClick}
-        onSaveClick={this.props.onSaveClick}
-        onQuitClick={this.props.onQuitClick}
-      />
+      <>
+        <EditorButtons
+          onZoomClick={this.onZoomClick}
+          onUndoClick={this.props.onUndoClick}
+          onSpecsClick={this.onOpenScenarioSpecificationClick}
+          onRandomClick={this.props.onRandomClick}
+          onNewClick={this.props.onNewClick}
+          onLoadClick={this.props.onLoadClick}
+          onSaveClick={this.props.onSaveClick}
+          onQuitClick={this.props.onQuitClick}
+        />
+        {this.props.scenarioSpecificationVisible && this.renderScenarioSpecification()}
+      </>
     );
   }
 
@@ -639,12 +670,42 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     }
   }
 
+  private readonly onOpenScenarioSpecificationClick = () => {
+    const value = getScenarioSpecification(this.props.scenario);
+
+    this.props.onScenarioSpecificationChange(value);
+
+    this.props.onOpenScenarioSpecificationClick();
+  }
+
+  private renderScenarioSpecification() {
+    return (
+      <ScenarioSpecificationWindow
+        visible={true}
+        value={this.props.scenarioSpecification}
+        onValueChange={this.props.onScenarioSpecificationChange}
+        onConfirmClick={this.onConfirmScenarioSpecificationClick}
+        onCancelClick={this.props.onCloseScenarioSpecificationClick}
+      />
+    );
+  }
+
+  private readonly onConfirmScenarioSpecificationClick = () => {
+    const { scenario, scenarioSpecification } = this.props;
+
+    const newScenario = setScenarioSpecification(scenario, scenarioSpecification);
+
+    this.props.onScenarioChange(newScenario);
+
+    this.props.onCloseScenarioSpecificationClick();
+  }
+
   private getTileCount() {
     return this.props.zoomed ? 14 : 28;
   }
 
   private readonly onScroll = (direction: MapObjectOrientation) => {
-    const { map, position } = this.props;
+    const { scenario, position } = this.props;
 
     // TODO: simplify
     let point = position;
@@ -653,7 +714,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       .includes(direction) && position.y > 0) {
       point = translatePoint(point, 0, -1);
     } else if ([MapObjectOrientation.SouthWest, MapObjectOrientation.South, MapObjectOrientation.SouthEast]
-      .includes(direction) && position.y < map.height - this.getTileCount()) {
+      .includes(direction) && position.y < scenario.map.height - this.getTileCount()) {
       point = translatePoint(point, 0, 1);
     }
 
@@ -661,7 +722,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       .includes(direction) && position.x > 0) {
       point = translatePoint(point, -1, 0);
     } else if ([MapObjectOrientation.NorthEast, MapObjectOrientation.East, MapObjectOrientation.SouthEast]
-      .includes(direction) && position.x < map.width - this.getTileCount()) {
+      .includes(direction) && position.x < scenario.map.width - this.getTileCount()) {
       point = translatePoint(point, 1, 0);
     }
 

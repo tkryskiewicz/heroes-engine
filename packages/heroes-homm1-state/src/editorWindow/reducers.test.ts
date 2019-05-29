@@ -1,10 +1,20 @@
 import { createMap, createPoint, CreatureMapObjectDetails } from "heroes-core";
-import { EditorObjectType, EditorOption, EraseObjectsSettings, TerrainType } from "heroes-homm1";
+import {
+  EditorObjectType,
+  EditorOption,
+  EraseObjectsSettings,
+  Scenario,
+  ScenarioDifficulty,
+  ScenarioSize,
+  ScenarioSpecification,
+  TerrainType,
+} from "heroes-homm1";
 
 import {
   changeEraseObjectsSettings,
-  changeMap,
   changePosition,
+  changeScenario,
+  changeScenarioSpecification,
   changeSelectedObject,
   changeSelectedObjectDetails,
   changeSelectedObjectType,
@@ -14,10 +24,12 @@ import {
   closeObjectDetails,
   closeObjectDetailsUnavailablePrompt,
   closeObjectsWindow,
+  closeScenarioSpecification,
   openEraseObjectsSettings,
   openObjectDetails,
   openObjectDetailsUnavailablePrompt,
   openObjectsWindow,
+  openScenarioSpecification,
   zoomIn,
   zoomOut,
 } from "./actions";
@@ -31,10 +43,25 @@ const defaultState: EditorWindowState = {
     clearEntire: false,
     objectTypes: Object.values(EditorObjectType),
   },
-  map: createMap(50, 50, TerrainType.Water),
   objectDetailsUnavailablePromptVisible: false,
   objectsWindowVisible: false,
   position: createPoint(0, 0),
+  scenario: {
+    description: "No Description",
+    difficulty: ScenarioDifficulty.Normal,
+    filePrefix: "VJVF",
+    map: createMap(50, 50, TerrainType.Water),
+    name: "No Name",
+    size: ScenarioSize.Medium,
+  },
+  scenarioSpecification: {
+    description: "",
+    difficulty: ScenarioDifficulty.Normal,
+    filePrefix: "",
+    name: "",
+    size: ScenarioSize.Medium,
+  },
+  scenarioSpecificationVisible: false,
   selectedObjectType: EditorObjectType.WaterObjects,
   selectedOption: EditorOption.Terrains,
   selectedTerrain: TerrainType.Water,
@@ -52,19 +79,33 @@ describe("editorWindowReducer", () => {
     expect(result).toEqual(expected);
   });
 
-  it("should handle changing map", () => {
+  it("should handle changing scenario", () => {
     const state: EditorWindowState = {
       ...defaultState,
-      map: createMap(1, 1, "terrain"),
+      scenario: {
+        description: "",
+        difficulty: ScenarioDifficulty.Normal,
+        filePrefix: "",
+        map: createMap(1, 1, "terrain"),
+        name: "",
+        size: ScenarioSize.Medium,
+      },
     };
 
-    const map = createMap(2, 2, "otherTerrain");
+    const value: Scenario = {
+      description: "description",
+      difficulty: ScenarioDifficulty.Impossible,
+      filePrefix: "prefix",
+      map: createMap(2, 2, "otherTerrain"),
+      name: "name",
+      size: ScenarioSize.Large,
+    };
 
-    const result = editorWindowReducer(state, changeMap(map));
+    const result = editorWindowReducer(state, changeScenario(value));
 
     const expected: EditorWindowState = {
       ...state,
-      map,
+      scenario: value,
     };
 
     expect(result).toEqual(expected);
@@ -323,6 +364,68 @@ describe("editorWindowReducer", () => {
     const expected: EditorWindowState = {
       ...state,
       eraseObjectsSettings: value,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle opening scenario specification", () => {
+    const state: EditorWindowState = {
+      ...defaultState,
+      scenarioSpecificationVisible: false,
+    };
+
+    const result = editorWindowReducer(state, openScenarioSpecification());
+
+    const expected: EditorWindowState = {
+      ...state,
+      scenarioSpecificationVisible: true,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle closing scenario specification", () => {
+    const state: EditorWindowState = {
+      ...defaultState,
+      scenarioSpecificationVisible: true,
+    };
+
+    const result = editorWindowReducer(state, closeScenarioSpecification());
+
+    const expected: EditorWindowState = {
+      ...state,
+      scenarioSpecificationVisible: false,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle changing scenario specification", () => {
+    const state: EditorWindowState = {
+      ...defaultState,
+      scenarioSpecification: {
+        description: "",
+        difficulty: ScenarioDifficulty.Normal,
+        filePrefix: "",
+        name: "",
+        size: ScenarioSize.Medium,
+      },
+    };
+
+    const value: ScenarioSpecification = {
+      description: "description",
+      difficulty: ScenarioDifficulty.Easy,
+      filePrefix: "prefix",
+      name: "name",
+      size: ScenarioSize.Small,
+    };
+
+    const result = editorWindowReducer(state, changeScenarioSpecification(value));
+
+    const expected: EditorWindowState = {
+      ...state,
+      scenarioSpecification: value,
     };
 
     expect(result).toEqual(expected);

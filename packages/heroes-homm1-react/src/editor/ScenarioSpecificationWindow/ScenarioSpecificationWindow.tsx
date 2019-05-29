@@ -2,9 +2,9 @@ import { Col, Row } from "antd";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { ScenarioDifficulty, ScenarioSize } from "heroes-homm1";
+import { ScenarioDifficulty, ScenarioSize, ScenarioSpecification } from "heroes-homm1";
 
-import * as styles from "./MapSpecificationWindow.module.scss";
+import * as styles from "./ScenarioSpecificationWindow.module.scss";
 
 import { GameCheckbox, GameInput } from "../../base";
 import { GameText } from "../../core";
@@ -12,36 +12,22 @@ import { getScenarioDifficultyMessage, getScenarioSizeMessage } from "../../mess
 import { EditorSettingsWindow, EditorSettingsWindowProps } from "../EditorSettingsWindow";
 import { messages } from "./messages";
 
-export interface MapSpecificationWindowProps extends EditorSettingsWindowProps {
-  readonly selectedDifficulty: ScenarioDifficulty;
-  readonly onDifficultyChange: (value: ScenarioDifficulty) => void;
-  readonly selectedSize: ScenarioSize;
-  readonly onSizeChange: (value: ScenarioSize) => void;
-  readonly name: string;
-  readonly onNameChange: (value: string) => void;
-  readonly description: string;
-  readonly onDescriptionChange: (value: string) => void;
-  readonly filePrefix: string;
-  readonly onFilePrefixChange: (value: string) => void;
+export interface ScenarioSpecificationWindowProps extends EditorSettingsWindowProps {
+  readonly value: ScenarioSpecification;
+  readonly onValueChange: (value: ScenarioSpecification) => void;
 }
 
 type DefaultProp =
-  "onDifficultyChange" |
-  "onSizeChange" |
-  "onNameChange" |
-  "onDescriptionChange" |
-  "onFilePrefixChange";
+  "onValueChange";
 
-export class MapSpecificationWindow extends React.Component<MapSpecificationWindowProps> {
-  public static readonly defaultProps: Pick<MapSpecificationWindowProps, DefaultProp> = {
-    onDescriptionChange: () => undefined,
-    onDifficultyChange: () => undefined,
-    onFilePrefixChange: () => undefined,
-    onNameChange: () => undefined,
-    onSizeChange: () => undefined,
+export class ScenarioSpecificationWindow extends React.Component<ScenarioSpecificationWindowProps> {
+  public static readonly defaultProps: Pick<ScenarioSpecificationWindowProps, DefaultProp> = {
+    onValueChange: () => undefined,
   };
 
   public render() {
+    const { value } = this.props;
+
     return (
       <EditorSettingsWindow
         visible={this.props.visible}
@@ -67,8 +53,8 @@ export class MapSpecificationWindow extends React.Component<MapSpecificationWind
               <GameInput
                 size="small"
                 maxLength={14}
-                value={this.props.name}
-                onChange={this.props.onNameChange}
+                value={value.name}
+                onChange={this.onNameChange}
               />
             </Col>
           </Row>
@@ -81,8 +67,8 @@ export class MapSpecificationWindow extends React.Component<MapSpecificationWind
             <Col span={18}>
               <GameInput
                 size="large"
-                value={this.props.description}
-                onChange={this.props.onDescriptionChange}
+                value={value.description}
+                onChange={this.onDescriptionChange}
               />
             </Col>
           </Row>
@@ -96,8 +82,8 @@ export class MapSpecificationWindow extends React.Component<MapSpecificationWind
               <GameInput
                 size="small"
                 maxLength={4}
-                value={this.props.filePrefix}
-                onChange={this.props.onFilePrefixChange}
+                value={value.filePrefix}
+                onChange={this.onFilePrefixChange}
               />
             </Col>
           </Row>
@@ -107,7 +93,7 @@ export class MapSpecificationWindow extends React.Component<MapSpecificationWind
   }
 
   private renderDifficulty(value: ScenarioDifficulty) {
-    const onClick = () => this.props.onDifficultyChange(value);
+    const onClick = () => this.onDifficultyChange(value);
 
     return (
       <div
@@ -119,15 +105,24 @@ export class MapSpecificationWindow extends React.Component<MapSpecificationWind
         </GameText>
         {" "}
         <GameCheckbox
-          checked={this.props.selectedDifficulty === value}
+          checked={this.props.value.difficulty === value}
           onClick={onClick}
         />
       </div>
     );
   }
 
+  private readonly onDifficultyChange = (value: ScenarioDifficulty) => {
+    const newValue: ScenarioSpecification = {
+      ...this.props.value,
+      difficulty: value,
+    };
+
+    this.props.onValueChange(newValue);
+  }
+
   private renderSize(value: ScenarioSize) {
-    const onClick = () => this.props.onSizeChange(value);
+    const onClick = () => this.onSizeChange(value);
 
     return (
       <div
@@ -139,10 +134,46 @@ export class MapSpecificationWindow extends React.Component<MapSpecificationWind
         </GameText>
         {" "}
         <GameCheckbox
-          checked={this.props.selectedSize === value}
+          checked={this.props.value.size === value}
           onClick={onClick}
         />
       </div>
     );
+  }
+
+  private readonly onSizeChange = (value: ScenarioSize) => {
+    const newValue: ScenarioSpecification = {
+      ...this.props.value,
+      size: value,
+    };
+
+    this.props.onValueChange(newValue);
+  }
+
+  private readonly onNameChange = (value: string) => {
+    const newValue: ScenarioSpecification = {
+      ...this.props.value,
+      name: value,
+    };
+
+    this.props.onValueChange(newValue);
+  }
+
+  private readonly onDescriptionChange = (value: string) => {
+    const newValue: ScenarioSpecification = {
+      ...this.props.value,
+      description: value,
+    };
+
+    this.props.onValueChange(newValue);
+  }
+
+  private readonly onFilePrefixChange = (value: string) => {
+    const newValue: ScenarioSpecification = {
+      ...this.props.value,
+      filePrefix: value,
+    };
+
+    this.props.onValueChange(newValue);
   }
 }

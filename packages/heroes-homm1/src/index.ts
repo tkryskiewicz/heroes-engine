@@ -54,6 +54,7 @@ export { MovementSpeed, changeMovementSpeed } from "./MovementSpeed";
 export { OpponentSetting, changeOpponentSetting, getOpponentSettingRating } from "./OpponentSetting";
 export { Resource } from "./Resource";
 export { resources } from "./resources";
+export { Scenario } from "./Scenario";
 export { ScenarioDifficulty } from "./ScenarioDifficulty";
 export { campaignScenarios } from "./scenarios";
 export { ScenarioSize } from "./ScenarioSize";

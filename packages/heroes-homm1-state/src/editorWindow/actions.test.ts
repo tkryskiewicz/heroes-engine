@@ -1,13 +1,23 @@
 import { createMap, createPoint, CreatureMapObjectDetails } from "heroes-core";
-import { EditorObjectType, EditorOption, EraseObjectsSettings } from "heroes-homm1";
+import {
+  EditorObjectType,
+  EditorOption,
+  EraseObjectsSettings,
+  Scenario,
+  ScenarioDifficulty,
+  ScenarioSize,
+  ScenarioSpecification,
+} from "heroes-homm1";
 
 import {
   changeEraseObjectsSettings,
   ChangeEraseObjectsSettingsAction,
-  changeMap,
-  ChangeMapAction,
   changePosition,
   ChangePositionAction,
+  changeScenario,
+  ChangeScenarioAction,
+  changeScenarioSpecification,
+  ChangeScenarioSpecificationAction,
   changeSelectedObject,
   ChangeSelectedObjectAction,
   changeSelectedObjectDetails,
@@ -26,6 +36,8 @@ import {
   CloseObjectDetailsUnavailablePromptAction,
   closeObjectsWindow,
   CloseObjectsWindowAction,
+  closeScenarioSpecification,
+  CloseScenarioSpecificationAction,
   EditorWindowActionType,
   openEraseObjectsSettings,
   OpenEraseObjectsSettingsAction,
@@ -35,6 +47,8 @@ import {
   OpenObjectDetailsUnavailablePromptAction,
   openObjectsWindow,
   OpenObjectsWindowAction,
+  openScenarioSpecification,
+  OpenScenarioSpecificationAction,
   zoomIn,
   ZoomInAction,
   zoomOut,
@@ -42,14 +56,21 @@ import {
 } from "./actions";
 
 describe("editorWindowActions", () => {
-  it("should create an action to change map", () => {
-    const map = createMap(1, 1, "terrain");
+  it("should create an action to change scenario", () => {
+    const scenario: Scenario = {
+      description: "description",
+      difficulty: ScenarioDifficulty.Easy,
+      filePrefix: "prefix",
+      map: createMap(1, 1, "terrain"),
+      name: "name",
+      size: ScenarioSize.Small,
+    };
 
-    const result = changeMap(map);
+    const result = changeScenario(scenario);
 
-    const expected: ChangeMapAction = {
-      type: EditorWindowActionType.ChangeMap,
-      value: map,
+    const expected: ChangeScenarioAction = {
+      type: EditorWindowActionType.ChangeScenario,
+      value: scenario,
     };
 
     expect(result).toEqual(expected);
@@ -220,6 +241,45 @@ describe("editorWindowActions", () => {
 
     const expected: ChangeEraseObjectsSettingsAction = {
       type: EditorWindowActionType.ChangeEraseObjectsSettings,
+      value,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to open scenario specification", () => {
+    const result = openScenarioSpecification();
+
+    const expected: OpenScenarioSpecificationAction = {
+      type: EditorWindowActionType.OpenScenarioSpecification,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to close scenario specification", () => {
+    const result = closeScenarioSpecification();
+
+    const expected: CloseScenarioSpecificationAction = {
+      type: EditorWindowActionType.CloseScenarioSpecification,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to changing scenario specification", () => {
+    const value: ScenarioSpecification = {
+      description: "description",
+      difficulty: ScenarioDifficulty.Normal,
+      filePrefix: "prefix",
+      name: "name",
+      size: ScenarioSize.Medium,
+    };
+
+    const result = changeScenarioSpecification(value);
+
+    const expected: ChangeScenarioSpecificationAction = {
+      type: EditorWindowActionType.ChangeScenarioSpecification,
       value,
     };
 

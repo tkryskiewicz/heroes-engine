@@ -10,7 +10,7 @@ import { EditorWindow, EditorWindowProps } from "./EditorWindowContainer";
 
 type StateProp =
   "data" |
-  "map" |
+  "scenario" |
   "position" |
   "selectedOption" |
   "selectedTerrain" |
@@ -22,16 +22,20 @@ type StateProp =
   "objectDetailsUnavailablePromptVisible" |
   "eraseObjectsSettings" |
   "eraseObjectsSettingsVisible" |
+  "scenarioSpecification" |
+  "scenarioSpecificationVisible" |
   "zoomed";
 
 const mapStateToProps = (state: AppState): Pick<EditorWindowProps, StateProp> => ({
   data: state.game.data,
   eraseObjectsSettings: state.editorWindow.eraseObjectsSettings,
   eraseObjectsSettingsVisible: state.editorWindow.eraseObejctsSettingsVisible,
-  map: state.editorWindow.map,
   objectDetailsUnavailablePromptVisible: state.editorWindow.objectDetailsUnavailablePromptVisible,
   objectsWindowVisible: state.editorWindow.objectsWindowVisible,
   position: state.editorWindow.position,
+  scenario: state.editorWindow.scenario,
+  scenarioSpecification: state.editorWindow.scenarioSpecification,
+  scenarioSpecificationVisible: state.editorWindow.scenarioSpecificationVisible,
   selectedObject: state.editorWindow.selectedObject,
   selectedObjectDetails: state.editorWindow.selectedObjectDetails,
   selectedObjectType: state.editorWindow.selectedObjectType,
@@ -42,7 +46,7 @@ const mapStateToProps = (state: AppState): Pick<EditorWindowProps, StateProp> =>
 });
 
 type DispatchProp =
-  "onMapChange" |
+  "onScenarioChange" |
   "onPositionChange" |
   "onSelectedOptionChange" |
   "onSelectedTerrainChange" |
@@ -58,12 +62,15 @@ type DispatchProp =
   "onOpenEraseObjectsSettingsClick" |
   "onCloseEraseObjectsSettingsClick" |
   "onEraseObjectsSettingsChange" |
+  "onOpenScenarioSpecificationClick" |
+  "onCloseScenarioSpecificationClick" |
+  "onScenarioSpecificationChange" |
   "onZoomInClick" |
   "onZoomOutClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, DispatchProp> => ({
-  onMapChange(value) {
-    dispatch(editorWindowActions.changeMap(value));
+  onScenarioChange(value) {
+    dispatch(editorWindowActions.changeScenario(value));
   },
   onPositionChange(value) {
     dispatch(editorWindowActions.changePosition(value));
@@ -115,6 +122,15 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, Dispatc
     dispatch(editorWindowActions.changeEraseObjectsSettings(value));
 
     dispatch(editorWindowActions.closeEraseObjectsSettings());
+  },
+  onOpenScenarioSpecificationClick() {
+    dispatch(editorWindowActions.openScenarioSpecification());
+  },
+  onCloseScenarioSpecificationClick() {
+    dispatch(editorWindowActions.closeScenarioSpecification());
+  },
+  onScenarioSpecificationChange(value) {
+    dispatch(editorWindowActions.changeScenarioSpecification(value));
   },
   onZoomInClick() {
     dispatch(editorWindowActions.zoomIn());

@@ -1,7 +1,23 @@
-import { Scenario } from "heroes-core";
+import { createMap } from "heroes-core";
+
+import { Scenario } from "./Scenario";
+import { ScenarioDifficulty } from "./ScenarioDifficulty";
+import { ScenarioSize } from "./ScenarioSize";
+import { TerrainType } from "./TerrainType";
+
+// FIXME
+const baseScenario: Scenario = {
+  description: "",
+  difficulty: ScenarioDifficulty.Normal,
+  filePrefix: "",
+  map: createMap(1, 1, TerrainType.Water),
+  name: "",
+  size: ScenarioSize.Medium,
+};
 
 export const campaignScenarios: Scenario[] = [
   {
+    ...baseScenario,
     description: `
       You have established a foothold in the new land.
       This small island is fiercely contested by three other factions,
@@ -13,6 +29,7 @@ export const campaignScenarios: Scenario[] = [
     name: "Gateway",
   },
   {
+    ...baseScenario,
     description: `
       Your way to the mainland is blocked by the Archipelago of the Ancients,
       a series of four large islands, each held by a different lord.
@@ -22,6 +39,7 @@ export const campaignScenarios: Scenario[] = [
     name: "The Archipelago",
   },
   {
+    ...baseScenario,
     description: `
       Chaos. A maelstorm of combat plagues the land. The people suffer,
       but will rally behind the wielder of the Eye of Goros, an artifact that can heal the wounded land.
@@ -31,6 +49,7 @@ export const campaignScenarios: Scenario[] = [
     name: "The Wounded Land",
   },
   {
+    ...baseScenario,
     description: `
       With the founding of a homeland, the other lords now take you seriously.
       All seek to dominate the central continent, and each is suspicious of the others.
@@ -40,6 +59,7 @@ export const campaignScenarios: Scenario[] = [
     name: "Free-for-All",
   },
   {
+    ...baseScenario,
     description: `
       The land of the Knights, led by Lord Ironfist, is divided by the twisting Floodwater River.
       Ironfist is counting on the river to protect him. The only town suitable to boat-building
@@ -49,6 +69,7 @@ export const campaignScenarios: Scenario[] = [
     name: "Castle Ironfist",
   },
   {
+    ...baseScenario,
     description: `
       Far to the north, beyond the Trackless Desert, lies the Frozen Wastes.
       It is the homeland of Lord Slayer and his barbarian followers.
@@ -58,6 +79,7 @@ export const campaignScenarios: Scenario[] = [
     name: "Castle Slayer",
   },
   {
+    ...baseScenario,
     description: `
       Warned of your approach, the sorceress Queen Lamanda worked on a dreadful magic and
       sank the approach to the only port.
@@ -68,6 +90,7 @@ export const campaignScenarios: Scenario[] = [
     name: "Castle Lamanda",
   },
   {
+    ...baseScenario,
     description: `
       The warlocks' castle lies shrouded in the somkey volcanic rift.
       To reach Lord Alamar's home castle in the extreme southeast, you must wander through the Minotaur Maze.
@@ -77,6 +100,7 @@ export const campaignScenarios: Scenario[] = [
     name: "Castle Alamar",
   },
   {
+    ...baseScenario,
     description: `
       Final victory lies within your grasp - but the defeated warlords have pooled their last resources
       and have banded together against you.

@@ -1,5 +1,5 @@
 import { createMap, createPoint } from "heroes-core";
-import { EditorObjectType, EditorOption, TerrainType } from "heroes-homm1";
+import { EditorObjectType, EditorOption, ScenarioDifficulty, ScenarioSize, TerrainType } from "heroes-homm1";
 
 import { EditorWindowAction, EditorWindowActionType } from "./actions";
 import { EditorWindowState } from "./state";
@@ -13,10 +13,25 @@ const initialState: EditorWindowState = {
     clearEntire: false,
     objectTypes: Object.values(EditorObjectType),
   },
-  map,
   objectDetailsUnavailablePromptVisible: false,
   objectsWindowVisible: false,
   position: createPoint(0, 0),
+  scenario: {
+    description: "No Description",
+    difficulty: ScenarioDifficulty.Normal,
+    filePrefix: "VJVF",
+    map,
+    name: "No Name",
+    size: ScenarioSize.Medium,
+  },
+  scenarioSpecification: {
+    description: "",
+    difficulty: ScenarioDifficulty.Normal,
+    filePrefix: "",
+    name: "",
+    size: ScenarioSize.Medium,
+  },
+  scenarioSpecificationVisible: false,
   selectedObjectType: EditorObjectType.WaterObjects,
   selectedOption: EditorOption.Terrains,
   selectedTerrain: TerrainType.Water,
@@ -28,10 +43,10 @@ export const editorWindowReducer = (
   action: EditorWindowAction,
 ): EditorWindowState => {
   switch (action.type) {
-    case EditorWindowActionType.ChangeMap:
+    case EditorWindowActionType.ChangeScenario:
       return {
         ...state,
-        map: action.value,
+        scenario: action.value,
       };
     case EditorWindowActionType.ChangePosition:
       return {
@@ -109,6 +124,21 @@ export const editorWindowReducer = (
       return {
         ...state,
         eraseObjectsSettings: action.value,
+      };
+    case EditorWindowActionType.OpenScenarioSpecification:
+      return {
+        ...state,
+        scenarioSpecificationVisible: true,
+      };
+    case EditorWindowActionType.CloseScenarioSpecification:
+      return {
+        ...state,
+        scenarioSpecificationVisible: false,
+      };
+    case EditorWindowActionType.ChangeScenarioSpecification:
+      return {
+        ...state,
+        scenarioSpecification: action.value,
       };
     case EditorWindowActionType.ZoomIn:
       return {

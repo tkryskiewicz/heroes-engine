@@ -4,7 +4,15 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { createMap, GameData, MapPoint } from "heroes-core";
-import { EraseObjectsSettings, terrains, TerrainType } from "heroes-homm1";
+import {
+  EraseObjectsSettings,
+  Scenario,
+  ScenarioDifficulty,
+  ScenarioSize,
+  ScenarioSpecification,
+  terrains,
+  TerrainType,
+} from "heroes-homm1";
 import { editorObjectType, editorOption, terrainType } from "heroes-homm1-react";
 
 import { EditorWindow } from "./EditorWindowContainer";
@@ -30,10 +38,27 @@ const data: GameData = {
 
 const map = createMap(38, 38, TerrainType.Water);
 
+const scenario: Scenario = {
+  description: "No Description",
+  difficulty: ScenarioDifficulty.Easy,
+  filePrefix: "PREF",
+  map,
+  name: "No Name",
+  size: ScenarioSize.Small,
+};
+
 const eraseObjectsSettings: EraseObjectsSettings = {
   allOverlays: false,
   clearEntire: false,
   objectTypes: [],
+};
+
+const scenarioSpecification: ScenarioSpecification = {
+  description: "",
+  difficulty: ScenarioDifficulty.Normal,
+  filePrefix: "",
+  name: "",
+  size: ScenarioSize.Medium,
 };
 
 storiesOf("EditorWindowContainer", module)
@@ -46,7 +71,7 @@ storiesOf("EditorWindowContainer", module)
     return (
       <EditorWindow
         data={data}
-        map={map}
+        scenario={scenario}
         position={position}
         onPositionChange={action("Position Change")}
         selectedOption={editorOption("Selected Option")}
@@ -63,11 +88,12 @@ storiesOf("EditorWindowContainer", module)
         onCloseEraseObjectsSettingsClick={action("Close Erase Objects Settings Window Click")}
         onEraseObjectsSettingsChange={action("Erase Objects Settings Change")}
 
+        scenarioSpecification={scenarioSpecification}
+
         zoomed={boolean("Zoomed", false)}
         onZoomInClick={action("Zoom In Click")}
         onZoomOutClick={action("Zoom Out Click")}
         onUndoClick={action("Undo Click")}
-        onSpecsClick={action("Specs Click")}
         onRandomClick={action("Random Click")}
         onNewClick={action("New Click")}
         onLoadClick={action("Load Click")}

@@ -120,6 +120,7 @@ describe("buyMageGuildSpellBook", () => {
       },
       scenario: {
         description: "Description",
+        map: createMap(1, 1, "terrain"),
         name: "Name",
       },
       turn: 0,

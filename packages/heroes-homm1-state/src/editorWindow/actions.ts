@@ -1,8 +1,15 @@
-import { Map, MapPoint } from "heroes-core";
-import { EditorObjectType, EditorOption, EraseObjectsSettings, MapObjectDetails } from "heroes-homm1";
+import { MapPoint } from "heroes-core";
+import {
+  EditorObjectType,
+  EditorOption,
+  EraseObjectsSettings,
+  MapObjectDetails,
+  Scenario,
+  ScenarioSpecification,
+} from "heroes-homm1";
 
 export enum EditorWindowActionType {
-  ChangeMap = "editorWindow/changeMap",
+  ChangeScenario = "editorWindow/changeScenario",
   ChangePosition = "editorWindow/changePosition",
   ChangeSelectedOption = "editorWindow/changeSelectedOption",
   ChangeSelectedTerrain = "editorWindow/changeSelectedTerrain",
@@ -19,12 +26,15 @@ export enum EditorWindowActionType {
   OpenEraseObjectsSettings = "editorWindow/openEraseObjectsSettings",
   CloseEraseObjectsSettings = "editorWindow/closeEraseObjectsSettings",
   ChangeEraseObjectsSettings = "editorWindow/changeEraseObjectsSettings",
+  OpenScenarioSpecification = "editorWindow/openScenarioSpecification",
+  CloseScenarioSpecification = "editorWindow/closeScenarioSpecification",
+  ChangeScenarioSpecification = "editorWindow/changeScenarioSpecification",
   ZoomIn = "editorWindow/zoomIn",
   ZoomOut = "editorWindow/zoomOut",
 }
 
 export type EditorWindowAction =
-  ChangeMapAction |
+  ChangeScenarioAction |
   ChangePositionAction |
   ChangeSelectedOptionAction |
   ChangeSelectedTerrainAction |
@@ -40,16 +50,19 @@ export type EditorWindowAction =
   OpenEraseObjectsSettingsAction |
   CloseEraseObjectsSettingsAction |
   ChangeEraseObjectsSettingsAction |
+  OpenScenarioSpecificationAction |
+  CloseScenarioSpecificationAction |
+  ChangeScenarioSpecificationAction |
   ZoomInAction |
   ZoomOutAction;
 
-export interface ChangeMapAction {
-  readonly type: EditorWindowActionType.ChangeMap;
-  readonly value: Map;
+export interface ChangeScenarioAction {
+  readonly type: EditorWindowActionType.ChangeScenario;
+  readonly value: Scenario;
 }
 
-export const changeMap = (value: Map): ChangeMapAction => ({
-  type: EditorWindowActionType.ChangeMap,
+export const changeScenario = (value: Scenario): ChangeScenarioAction => ({
+  type: EditorWindowActionType.ChangeScenario,
   value,
 });
 
@@ -188,6 +201,32 @@ export interface ChangeEraseObjectsSettingsAction {
 
 export const changeEraseObjectsSettings = (value: EraseObjectsSettings): ChangeEraseObjectsSettingsAction => ({
   type: EditorWindowActionType.ChangeEraseObjectsSettings,
+  value,
+});
+
+export interface OpenScenarioSpecificationAction {
+  readonly type: EditorWindowActionType.OpenScenarioSpecification;
+}
+
+export const openScenarioSpecification = (): OpenScenarioSpecificationAction => ({
+  type: EditorWindowActionType.OpenScenarioSpecification,
+});
+
+export interface CloseScenarioSpecificationAction {
+  readonly type: EditorWindowActionType.CloseScenarioSpecification;
+}
+
+export const closeScenarioSpecification = (): CloseScenarioSpecificationAction => ({
+  type: EditorWindowActionType.CloseScenarioSpecification,
+});
+
+export interface ChangeScenarioSpecificationAction {
+  readonly type: EditorWindowActionType.ChangeScenarioSpecification;
+  readonly value: ScenarioSpecification;
+}
+
+export const changeScenarioSpecification = (value: ScenarioSpecification): ChangeScenarioSpecificationAction => ({
+  type: EditorWindowActionType.ChangeScenarioSpecification,
   value,
 });
 
