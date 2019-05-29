@@ -1,5 +1,6 @@
-import { createMap, createPoint, CreatureMapObjectDetails } from "heroes-core";
+import { createMap, createPoint } from "heroes-core";
 import {
+  CreatureMapObjectDetails,
   EditorObjectType,
   EditorOption,
   EraseObjectsSettings,

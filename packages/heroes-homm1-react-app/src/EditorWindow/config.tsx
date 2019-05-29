@@ -1,18 +1,17 @@
 import * as React from "react";
 
 import {
-  CreatureMapObjectDetails,
   GameData,
-  getCreatureMapObjectDetails,
   isArtifactMapObjectData,
   isCreatureMapObject,
   isCreatureMapObjectData,
   MapObject,
   MapObjectData,
-  setCreatureMapObjectDetails,
 } from "heroes-core";
 import {
+  CreatureMapObjectDetails,
   EditorObjectType,
+  getCreatureMapObjectDetails,
   getHeroMapObjectDetails,
   getTownMapObjectDetails,
   HeroMapObjectDetails,
@@ -25,6 +24,7 @@ import {
   isTerrainRestrictedMapObjectData,
   MapObjectDetails,
   MapObjectId,
+  setCreatureMapObjectDetails,
   setHeroMapObjectDetails,
   setTownMapObjectDetails,
   TerrainType,

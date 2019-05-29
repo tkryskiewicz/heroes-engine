@@ -3,11 +3,8 @@ import {
   createCreatureMapObject,
   CreatureMapObject,
   CreatureMapObjectData,
-  CreatureMapObjectDetails,
-  getCreatureMapObjectDetails,
   isCreatureMapObject,
   isCreatureMapObjectData,
-  setCreatureMapObjectDetails,
 } from "./CreatureMapObject";
 import { MapObject, MapObjectData } from "./MapObject";
 
@@ -106,42 +103,5 @@ describe("isCreatureMapObject", () => {
     const result = isCreatureMapObject(object, data);
 
     expect(result).toBe(false);
-  });
-});
-
-describe("getCreatureMapObjectDetails", () => {
-  it("should return object details", () => {
-    const object: CreatureMapObject = {
-      count: 1,
-      dataId: "dataId",
-      id: "id",
-    };
-
-    const result = getCreatureMapObjectDetails(object);
-
-    const expected: CreatureMapObjectDetails = 1;
-
-    expect(result).toEqual(expected);
-  });
-});
-
-describe("setCreatureMapObjectDetails", () => {
-  it("should set object details", () => {
-    const object: CreatureMapObject = {
-      count: 0,
-      dataId: "dataId",
-      id: "id",
-    };
-
-    const value: CreatureMapObjectDetails = 1;
-
-    const result = setCreatureMapObjectDetails(object, value);
-
-    const expected: CreatureMapObject = {
-      ...object,
-      count: 1,
-    };
-
-    expect(result).toEqual(expected);
   });
 });

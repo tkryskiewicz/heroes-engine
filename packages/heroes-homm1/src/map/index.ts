@@ -1,17 +1,9 @@
-import { CreatureMapObjectDetails } from "heroes-core";
-
-import { HeroMapObjectDetails } from "./HeroMapObject";
-import { TownMapObjectDetails } from "./RandomTownMapObject";
-
 export {
   HeroMapObject,
   HeroMapObjectData,
   createHeroMapObject,
   isHeroMapObject,
   isHeroMapObjectData,
-  HeroMapObjectDetails,
-  getHeroMapObjectDetails,
-  setHeroMapObjectDetails,
 } from "./HeroMapObject";
 export * from "./map";
 export { MapObjectId } from "./MapObjectId";
@@ -40,9 +32,6 @@ export {
   createRandomTownMapObject,
   isRandomTownMapObject,
   isRandomTownMapObjectData,
-  TownMapObjectDetails,
-  getTownMapObjectDetails,
-  setTownMapObjectDetails,
 } from "./RandomTownMapObject";
 export {
   ResourceMapObject,
@@ -65,8 +54,3 @@ export {
   VariantMapObjectData,
   isVariantMapObjectData,
 } from "./VariantMapObject";
-
-export type MapObjectDetails =
-  CreatureMapObjectDetails |
-  HeroMapObjectDetails |
-  TownMapObjectDetails;

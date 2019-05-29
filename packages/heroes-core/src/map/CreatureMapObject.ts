@@ -23,16 +23,3 @@ export const isCreatureMapObject = (
   data: Pick<import("../Game").GameData, "creatures">,
 ): object is CreatureMapObject =>
   isMapObject(object) && data.creatures[object.dataId] !== undefined;
-
-export type CreatureMapObjectDetails = number;
-
-export const getCreatureMapObjectDetails = (object: CreatureMapObject): CreatureMapObjectDetails =>
-  object.count;
-
-export const setCreatureMapObjectDetails = (
-  object: CreatureMapObject,
-  details: CreatureMapObjectDetails,
-): CreatureMapObject => ({
-  ...object,
-  count: details,
-});

@@ -1,7 +1,8 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { CreatureMapObjectDetails, GameData } from "heroes-core";
+import { GameData } from "heroes-core";
+import { CreatureMapObjectDetails } from "heroes-homm1";
 
 import * as styles from "./CreatureMapObjectDetailsWindow.module.scss";
 
