@@ -58,6 +58,8 @@ export {
   moveObject,
   removeObject,
   replaceObject,
+  everyMapObjectPoint,
+  forEachMapObjectPoint,
 } from "./Map";
 export { MapObject, MapObjectData, isMapObject, createMapObject } from "./MapObject";
 export { MapObjectOrientation } from "./MapObjectOrientation";

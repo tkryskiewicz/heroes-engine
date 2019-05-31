@@ -65,6 +65,38 @@ export const changeTerrain = (map: Map, point: MapPoint, terrain: string): Map =
 export const isPointTaken = (map: Map, point: MapPoint): boolean =>
   map.tiles[getTileIndex(map.width, point)].object !== undefined;
 
+export const forEachMapObjectPoint = (objectData: MapObjectData, callbackfn: (point: MapPoint) => void): void => {
+  for (let h = 0; h < objectData.height; h++) {
+    for (let w = 0; w < objectData.width; w++) {
+      const point = createPoint(w, h);
+
+      const objectTile = objectData.grid[getTileIndex(objectData.width, point)];
+
+      if (objectTile) {
+        callbackfn(point);
+      }
+    }
+  }
+};
+
+export const everyMapObjectPoint = (objectData: MapObjectData, callbackfn: (point: MapPoint) => boolean): boolean => {
+  for (let h = 0; h < objectData.height; h++) {
+    for (let w = 0; w < objectData.width; w++) {
+      const point = createPoint(w, h);
+
+      const objectTile = objectData.grid[getTileIndex(objectData.width, point)];
+
+      if (objectTile) {
+        if (!callbackfn(point)) {
+          return false;
+        }
+      }
+    }
+  }
+
+  return true;
+};
+
 export const canPlaceObject = (
   map: Map,
   point: MapPoint,
@@ -93,30 +125,20 @@ export const canPlaceObject = (
 
         const objData = data.mapObjects[obj.dataId];
 
-        for (let h = 0; h < objData.height; h++) {
-          for (let w = 0; w < objData.width; w++) {
-            obstacleMap[getTileIndex(map.width, translatePoint(mapPoint, w, -h))] =
-              objData.grid[getTileIndex(objData.width, createPoint(w, h))] === TileTaken ?
-                TileTaken :
-                TileFree;
-          }
-        }
+        forEachMapObjectPoint(objData, (objectPoint) => {
+          obstacleMap[getTileIndex(map.width, translatePoint(mapPoint, objectPoint.x, -objectPoint.y))] = TileTaken;
+        });
       }
     }
   }
 
-  for (let h = 0; h < objectData.height; h++) {
-    for (let w = 0; w < objectData.width; w++) {
-      const objectTile = objectData.grid[getTileIndex(objectData.width, createPoint(w, h))];
-      const mapTile = obstacleMap[getTileIndex(map.width, translatePoint(point, w, -h))];
+  const canPlace = everyMapObjectPoint(objectData, (objectPoint) => {
+    const mapTile = obstacleMap[getTileIndex(map.width, translatePoint(point, objectPoint.x, -objectPoint.y))];
 
-      if (objectTile === TileTaken && mapTile === TileTaken) {
-        return false;
-      }
-    }
-  }
+    return mapTile !== TileTaken;
+  });
 
-  return true;
+  return canPlace;
 };
 
 export const placeObject = (map: Map, point: MapPoint, object: MapObject): Map => {
