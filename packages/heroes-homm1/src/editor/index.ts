@@ -17,7 +17,12 @@ export {
 } from "./HeroMapObjectDetails";
 export { createRandomMap } from "./randomMap";
 export { LandMassSetting, RandomMapSettings, createDefaultRandomMapSettings } from "./RandomMapSettings";
-export { getScenarioSpecification, ScenarioSpecification, setScenarioSpecification } from "./ScenarioSpecification";
+export {
+  createDefaultScenarioSpecification,
+  getScenarioSpecification,
+  ScenarioSpecification,
+  setScenarioSpecification,
+} from "./ScenarioSpecification";
 export {
   TownMapObjectDetails,
   getTownMapObjectDetails,

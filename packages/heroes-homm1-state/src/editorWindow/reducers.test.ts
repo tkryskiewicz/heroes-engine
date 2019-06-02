@@ -1,6 +1,7 @@
 import { createMap, createPoint } from "heroes-core";
 import {
   createDefaultRandomMapSettings,
+  createDefaultScenarioSpecification,
   CreatureMapObjectDetails,
   EditorObjectType,
   EditorOption,
@@ -63,13 +64,7 @@ const defaultState: EditorWindowState = {
     name: "No Name",
     size: ScenarioSize.Medium,
   },
-  scenarioSpecification: {
-    description: "",
-    difficulty: ScenarioDifficulty.Normal,
-    filePrefix: "",
-    name: "",
-    size: ScenarioSize.Medium,
-  },
+  scenarioSpecification: createDefaultScenarioSpecification(),
   scenarioSpecificationVisible: false,
   selectedObjectType: EditorObjectType.WaterObjects,
   selectedOption: EditorOption.Terrains,

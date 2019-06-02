@@ -730,16 +730,22 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onConfirmRandomMapSettingsClick = () => {
+    const { randomMapSettings } = this.props;
+
     // TODO: is this random scenario?
     // NOTE: randomizing also resets scenario specification
     const newScenario = {
       ...this.props.scenario,
-      map: createRandomMap(this.props.data, this.props.randomMapSettings),
+      map: createRandomMap(this.props.data, randomMapSettings),
     };
 
     this.props.onScenarioChange(newScenario);
 
     this.props.onCloseRandomMapSettingsClick();
+
+    if (randomMapSettings.saveWithoutViewing) {
+      this.props.onOpenScenarioSpecificationClick();
+    }
   }
 
   private getTileCount() {

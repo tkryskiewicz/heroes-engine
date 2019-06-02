@@ -10,6 +10,14 @@ export interface ScenarioSpecification {
   readonly filePrefix: string;
 }
 
+export const createDefaultScenarioSpecification = (): ScenarioSpecification => ({
+  description: "No Description",
+  difficulty: ScenarioDifficulty.Normal,
+  filePrefix: "VJVF",
+  name: "No Name",
+  size: ScenarioSize.Medium,
+});
+
 export const getScenarioSpecification = (scenario: Scenario): ScenarioSpecification => ({
   description: scenario.description,
   difficulty: scenario.difficulty,
