@@ -1,0 +1,32 @@
+.root {
+  position: relative;
+  width: 16px + 250 + 1 + 16;
+  height: 14px;
+  line-height: 14px;
+}
+
+.decrease {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.increase {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.track {
+  position: relative;
+  left: 16px;
+  display: inline-block;
+  width: 250px;
+  height: 14px;
+  padding: 3px;
+  background: url("./assets/track.jpg");
+}
+
+.thumb {
+  position: absolute;
+}

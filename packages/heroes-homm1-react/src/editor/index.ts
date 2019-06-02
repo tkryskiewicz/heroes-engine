@@ -16,6 +16,7 @@ export * from "./EraseOptionSettingsWindow";
 export * from "./HeroMapObjectDetailsWindow";
 export * from "./ObjectDetailsUnavailablePrompt";
 export * from "./ObjectsOptionDetails";
+export * from "./RandomMapSettingsWindow";
 export * from "./ScenarioSpecificationWindow";
 export * from "./TerrainsOptionDetails";
 export * from "./TownMapObjectDetailsWindow";
