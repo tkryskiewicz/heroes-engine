@@ -1,8 +1,8 @@
 import { createMap, createPoint } from "heroes-core";
 import {
+  createDefaultRandomMapSettings,
   EditorObjectType,
   EditorOption,
-  LandMassSetting,
   ScenarioDifficulty,
   ScenarioSize,
   TerrainType,
@@ -23,16 +23,7 @@ const initialState: EditorWindowState = {
   objectDetailsUnavailablePromptVisible: false,
   objectsWindowVisible: false,
   position: createPoint(0, 0),
-  randomMapSettings: {
-    landMass: LandMassSetting.Scattered,
-    mines: 0,
-    monsters: 0,
-    mountains: 0,
-    saveWithoutViewing: false,
-    terrainAmount: {},
-    treasures: 0,
-    trees: 0,
-  },
+  randomMapSettings: createDefaultRandomMapSettings(),
   randomMapSettingsVisible: false,
   scenario: {
     description: "No Description",
