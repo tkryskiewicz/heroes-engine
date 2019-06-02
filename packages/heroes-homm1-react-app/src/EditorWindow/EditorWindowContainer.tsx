@@ -20,6 +20,7 @@ import {
 import {
   canPlaceObject,
   createMapObject,
+  createRandomMap,
   EditorObjectType,
   EditorOption,
   EraseObjectsSettings,
@@ -27,6 +28,7 @@ import {
   MapObjectDetails,
   nextObjectType,
   previousObjectType,
+  RandomMapSettings,
   Scenario,
   ScenarioSpecification,
   setScenarioSpecification,
@@ -49,6 +51,7 @@ import {
   MapTile,
   ObjectDetailsUnavailablePrompt,
   ObjectsOptionDetails,
+  RandomMapSettingsWindow,
   ScenarioSpecificationWindow,
   TerrainsOptionDetails,
 } from "heroes-homm1-react";
@@ -97,11 +100,16 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly onCloseScenarioSpecificationClick: () => void;
   readonly onScenarioSpecificationChange: (value: ScenarioSpecification) => void;
 
+  readonly randomMapSettings: RandomMapSettings;
+  readonly randomMapSettingsVisible: boolean;
+  readonly onOpenRandomMapSettingsClick: () => void;
+  readonly onCloseRandomMapSettingsClick: () => void;
+  readonly onRandomMapSettingsChange: (value: RandomMapSettings) => void;
+
   readonly zoomed: boolean;
   readonly onZoomInClick: () => void;
   readonly onZoomOutClick: () => void;
   readonly onUndoClick: () => void;
-  readonly onRandomClick: () => void;
   readonly onNewClick: () => void;
   readonly onLoadClick: () => void;
   readonly onSaveClick: () => void;
@@ -145,10 +153,14 @@ type DefaultProp =
   "onCloseScenarioSpecificationClick" |
   "onScenarioSpecificationChange" |
 
+  "randomMapSettingsVisible" |
+  "onOpenRandomMapSettingsClick" |
+  "onCloseRandomMapSettingsClick" |
+  "onRandomMapSettingsChange" |
+
   "onZoomInClick" |
   "onZoomOutClick" |
   "onUndoClick" |
-  "onRandomClick" |
   "onNewClick" |
   "onLoadClick" |
   "onSaveClick" |
@@ -162,6 +174,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     onCloseObjectDetailsClick: () => undefined,
     onCloseObjectDetailsUnavailablePromptClick: () => undefined,
     onCloseObjectsWindowClick: () => undefined,
+    onCloseRandomMapSettingsClick: () => undefined,
     onCloseScenarioSpecificationClick: () => undefined,
     onEraseObjectsSettingsChange: () => undefined,
     onLoadClick: () => undefined,
@@ -170,10 +183,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     onOpenObjectDetailsClick: () => undefined,
     onOpenObjectDetailsUnavailablePromptClick: () => undefined,
     onOpenObjectsWindowClick: () => undefined,
+    onOpenRandomMapSettingsClick: () => undefined,
     onOpenScenarioSpecificationClick: () => undefined,
     onPositionChange: () => undefined,
     onQuitClick: () => undefined,
-    onRandomClick: () => undefined,
+    onRandomMapSettingsChange: () => undefined,
     onSaveClick: () => undefined,
     onScenarioChange: () => undefined,
     onScenarioSpecificationChange: () => undefined,
@@ -185,6 +199,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     onUndoClick: () => undefined,
     onZoomInClick: () => undefined,
     onZoomOutClick: () => undefined,
+    randomMapSettingsVisible: false,
     scenarioSpecificationVisible: false,
   };
 
@@ -651,13 +666,14 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
           onZoomClick={this.onZoomClick}
           onUndoClick={this.props.onUndoClick}
           onSpecsClick={this.onOpenScenarioSpecificationClick}
-          onRandomClick={this.props.onRandomClick}
+          onRandomClick={this.props.onOpenRandomMapSettingsClick}
           onNewClick={this.props.onNewClick}
           onLoadClick={this.props.onLoadClick}
           onSaveClick={this.props.onSaveClick}
           onQuitClick={this.props.onQuitClick}
         />
         {this.props.scenarioSpecificationVisible && this.renderScenarioSpecification()}
+        {this.props.randomMapSettingsVisible && this.renderRandomMapSettings()}
       </>
     );
   }
@@ -698,6 +714,32 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     this.props.onScenarioChange(newScenario);
 
     this.props.onCloseScenarioSpecificationClick();
+  }
+
+  private renderRandomMapSettings() {
+    return (
+      <RandomMapSettingsWindow
+        visible={true}
+        data={this.props.data}
+        value={this.props.randomMapSettings}
+        onValueChange={this.props.onRandomMapSettingsChange}
+        onConfirmClick={this.onConfirmRandomMapSettingsClick}
+        onCancelClick={this.props.onCloseRandomMapSettingsClick}
+      />
+    );
+  }
+
+  private readonly onConfirmRandomMapSettingsClick = () => {
+    // TODO: is this random scenario?
+    // NOTE: randomizing also resets scenario specification
+    const newScenario = {
+      ...this.props.scenario,
+      map: createRandomMap(this.props.data, this.props.randomMapSettings),
+    };
+
+    this.props.onScenarioChange(newScenario);
+
+    this.props.onCloseRandomMapSettingsClick();
   }
 
   private getTileCount() {

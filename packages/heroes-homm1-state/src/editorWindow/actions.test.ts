@@ -4,6 +4,8 @@ import {
   EditorObjectType,
   EditorOption,
   EraseObjectsSettings,
+  LandMassSetting,
+  RandomMapSettings,
   Scenario,
   ScenarioDifficulty,
   ScenarioSize,
@@ -15,6 +17,8 @@ import {
   ChangeEraseObjectsSettingsAction,
   changePosition,
   ChangePositionAction,
+  changeRandomMapSettings,
+  ChangeRandomMapSettingsAction,
   changeScenario,
   ChangeScenarioAction,
   changeScenarioSpecification,
@@ -37,6 +41,8 @@ import {
   CloseObjectDetailsUnavailablePromptAction,
   closeObjectsWindow,
   CloseObjectsWindowAction,
+  closeRandomMapSettings,
+  CloseRandomMapSettingsAction,
   closeScenarioSpecification,
   CloseScenarioSpecificationAction,
   EditorWindowActionType,
@@ -48,6 +54,8 @@ import {
   OpenObjectDetailsUnavailablePromptAction,
   openObjectsWindow,
   OpenObjectsWindowAction,
+  openRandomMapSettings,
+  OpenRandomMapSettingsAction,
   openScenarioSpecification,
   OpenScenarioSpecificationAction,
   zoomIn,
@@ -281,6 +289,48 @@ describe("editorWindowActions", () => {
 
     const expected: ChangeScenarioSpecificationAction = {
       type: EditorWindowActionType.ChangeScenarioSpecification,
+      value,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to open random map settings", () => {
+    const result = openRandomMapSettings();
+
+    const expected: OpenRandomMapSettingsAction = {
+      type: EditorWindowActionType.OpenRandomMapSettings,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to close random map settings", () => {
+    const result = closeRandomMapSettings();
+
+    const expected: CloseRandomMapSettingsAction = {
+      type: EditorWindowActionType.CloseRandomMapSettings,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should create an action to change random map settings", () => {
+    const value: RandomMapSettings = {
+      landMass: LandMassSetting.Scattered,
+      mines: 0,
+      monsters: 0,
+      mountains: 0,
+      saveWithoutViewing: false,
+      terrainAmount: {},
+      treasures: 0,
+      trees: 0,
+    };
+
+    const result = changeRandomMapSettings(value);
+
+    const expected: ChangeRandomMapSettingsAction = {
+      type: EditorWindowActionType.ChangeRandomMapSettings,
       value,
     };
 

@@ -4,6 +4,8 @@ import {
   EditorObjectType,
   EditorOption,
   EraseObjectsSettings,
+  LandMassSetting,
+  RandomMapSettings,
   Scenario,
   ScenarioDifficulty,
   ScenarioSize,
@@ -14,6 +16,7 @@ import {
 import {
   changeEraseObjectsSettings,
   changePosition,
+  changeRandomMapSettings,
   changeScenario,
   changeScenarioSpecification,
   changeSelectedObject,
@@ -25,11 +28,13 @@ import {
   closeObjectDetails,
   closeObjectDetailsUnavailablePrompt,
   closeObjectsWindow,
+  closeRandomMapSettings,
   closeScenarioSpecification,
   openEraseObjectsSettings,
   openObjectDetails,
   openObjectDetailsUnavailablePrompt,
   openObjectsWindow,
+  openRandomMapSettings,
   openScenarioSpecification,
   zoomIn,
   zoomOut,
@@ -47,6 +52,17 @@ const defaultState: EditorWindowState = {
   objectDetailsUnavailablePromptVisible: false,
   objectsWindowVisible: false,
   position: createPoint(0, 0),
+  randomMapSettings: {
+    landMass: LandMassSetting.Scattered,
+    mines: 0,
+    monsters: 0,
+    mountains: 0,
+    saveWithoutViewing: false,
+    terrainAmount: {},
+    treasures: 0,
+    trees: 0,
+  },
+  randomMapSettingsVisible: false,
   scenario: {
     description: "No Description",
     difficulty: ScenarioDifficulty.Normal,
@@ -427,6 +443,76 @@ describe("editorWindowReducer", () => {
     const expected: EditorWindowState = {
       ...state,
       scenarioSpecification: value,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle opening random map settings", () => {
+    const state: EditorWindowState = {
+      ...defaultState,
+      randomMapSettingsVisible: false,
+    };
+
+    const result = editorWindowReducer(state, openRandomMapSettings());
+
+    const expected: EditorWindowState = {
+      ...state,
+      randomMapSettingsVisible: true,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle closing random map settings", () => {
+    const state: EditorWindowState = {
+      ...defaultState,
+      randomMapSettingsVisible: true,
+    };
+
+    const result = editorWindowReducer(state, closeRandomMapSettings());
+
+    const expected: EditorWindowState = {
+      ...state,
+      randomMapSettingsVisible: false,
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it("should handle changing random map settings", () => {
+    const state: EditorWindowState = {
+      ...defaultState,
+      randomMapSettings: {
+        landMass: LandMassSetting.Scattered,
+        mines: 0,
+        monsters: 0,
+        mountains: 0,
+        saveWithoutViewing: false,
+        terrainAmount: {},
+        treasures: 0,
+        trees: 0,
+      },
+    };
+
+    const value: RandomMapSettings = {
+      landMass: LandMassSetting.Centralized,
+      mines: 1,
+      monsters: 1,
+      mountains: 1,
+      saveWithoutViewing: true,
+      terrainAmount: {
+        terrain: 1,
+      },
+      treasures: 1,
+      trees: 1,
+    };
+
+    const result = editorWindowReducer(state, changeRandomMapSettings(value));
+
+    const expected: EditorWindowState = {
+      ...state,
+      randomMapSettings: value,
     };
 
     expect(result).toEqual(expected);

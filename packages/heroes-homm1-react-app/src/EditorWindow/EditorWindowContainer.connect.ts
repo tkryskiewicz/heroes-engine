@@ -24,6 +24,8 @@ type StateProp =
   "eraseObjectsSettingsVisible" |
   "scenarioSpecification" |
   "scenarioSpecificationVisible" |
+  "randomMapSettings" |
+  "randomMapSettingsVisible" |
   "zoomed";
 
 const mapStateToProps = (state: AppState): Pick<EditorWindowProps, StateProp> => ({
@@ -33,6 +35,8 @@ const mapStateToProps = (state: AppState): Pick<EditorWindowProps, StateProp> =>
   objectDetailsUnavailablePromptVisible: state.editorWindow.objectDetailsUnavailablePromptVisible,
   objectsWindowVisible: state.editorWindow.objectsWindowVisible,
   position: state.editorWindow.position,
+  randomMapSettings: state.editorWindow.randomMapSettings,
+  randomMapSettingsVisible: state.editorWindow.randomMapSettingsVisible,
   scenario: state.editorWindow.scenario,
   scenarioSpecification: state.editorWindow.scenarioSpecification,
   scenarioSpecificationVisible: state.editorWindow.scenarioSpecificationVisible,
@@ -65,6 +69,9 @@ type DispatchProp =
   "onOpenScenarioSpecificationClick" |
   "onCloseScenarioSpecificationClick" |
   "onScenarioSpecificationChange" |
+  "onOpenRandomMapSettingsClick" |
+  "onCloseRandomMapSettingsClick" |
+  "onRandomMapSettingsChange" |
   "onZoomInClick" |
   "onZoomOutClick";
 
@@ -131,6 +138,15 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<EditorWindowProps, Dispatc
   },
   onScenarioSpecificationChange(value) {
     dispatch(editorWindowActions.changeScenarioSpecification(value));
+  },
+  onOpenRandomMapSettingsClick() {
+    dispatch(editorWindowActions.openRandomMapSettings());
+  },
+  onCloseRandomMapSettingsClick() {
+    dispatch(editorWindowActions.closeRandomMapSettings());
+  },
+  onRandomMapSettingsChange(value) {
+    dispatch(editorWindowActions.changeRandomMapSettings(value));
   },
   onZoomInClick() {
     dispatch(editorWindowActions.zoomIn());

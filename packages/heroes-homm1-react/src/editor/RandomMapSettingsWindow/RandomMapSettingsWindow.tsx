@@ -20,7 +20,14 @@ export interface RandomMapSettingsWindowProps extends EditorSettingsWindowProps 
   readonly onValueChange: (value: RandomMapSettings) => void;
 }
 
+type DefaultProp =
+  "onValueChange";
+
 export class RandomMapSettingsWindow extends React.Component<RandomMapSettingsWindowProps> {
+  public static readonly defaultProps: Pick<RandomMapSettingsWindowProps, DefaultProp> = {
+    onValueChange: () => undefined,
+  };
+
   public render() {
     const { value } = this.props;
 
@@ -44,6 +51,7 @@ export class RandomMapSettingsWindow extends React.Component<RandomMapSettingsWi
                 {" "}
                 <GameCheckbox
                   checked={value.saveWithoutViewing}
+                  onClick={this.onSaveWithoutViewingChange}
                 />
               </GameText>
             </Col>
@@ -265,6 +273,9 @@ export class RandomMapSettingsWindow extends React.Component<RandomMapSettingsWi
   }
 
   private renderLandMassSettings(value: LandMassSetting) {
+    const onScatteredClick = () => this.onLandMassChange(LandMassSetting.Scattered);
+    const onCentralizedClick = () => this.onLandMassChange(LandMassSetting.Centralized);
+
     return (
       <Row className={styles.landMassSettings}>
         <Col
@@ -282,6 +293,7 @@ export class RandomMapSettingsWindow extends React.Component<RandomMapSettingsWi
           {" "}
           <GameCheckbox
             checked={value === LandMassSetting.Scattered}
+            onClick={onScatteredClick}
           />
         </Col>
         <Col span={8}>
@@ -291,9 +303,28 @@ export class RandomMapSettingsWindow extends React.Component<RandomMapSettingsWi
           {" "}
           <GameCheckbox
             checked={value === LandMassSetting.Centralized}
+            onClick={onCentralizedClick}
           />
         </Col>
       </Row>
     );
+  }
+
+  private readonly onLandMassChange = (value: LandMassSetting) => {
+    const newValue: RandomMapSettings = {
+      ...this.props.value,
+      landMass: value,
+    };
+
+    this.props.onValueChange(newValue);
+  }
+
+  private readonly onSaveWithoutViewingChange = (checked: boolean) => {
+    const newValue: RandomMapSettings = {
+      ...this.props.value,
+      saveWithoutViewing: checked,
+    };
+
+    this.props.onValueChange(newValue);
   }
 }

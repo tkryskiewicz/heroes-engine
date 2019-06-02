@@ -6,6 +6,8 @@ import * as React from "react";
 import { createMap, GameData, MapPoint } from "heroes-core";
 import {
   EraseObjectsSettings,
+  LandMassSetting,
+  RandomMapSettings,
   Scenario,
   ScenarioDifficulty,
   ScenarioSize,
@@ -61,6 +63,17 @@ const scenarioSpecification: ScenarioSpecification = {
   size: ScenarioSize.Medium,
 };
 
+const randomMapSettings: RandomMapSettings = {
+  landMass: LandMassSetting.Scattered,
+  mines: 0,
+  monsters: 0,
+  mountains: 0,
+  saveWithoutViewing: false,
+  terrainAmount: {},
+  treasures: 0,
+  trees: 0,
+};
+
 storiesOf("EditorWindowContainer", module)
   .add("default", () => {
     const position: MapPoint = {
@@ -90,11 +103,12 @@ storiesOf("EditorWindowContainer", module)
 
         scenarioSpecification={scenarioSpecification}
 
+        randomMapSettings={randomMapSettings}
+
         zoomed={boolean("Zoomed", false)}
         onZoomInClick={action("Zoom In Click")}
         onZoomOutClick={action("Zoom Out Click")}
         onUndoClick={action("Undo Click")}
-        onRandomClick={action("Random Click")}
         onNewClick={action("New Click")}
         onLoadClick={action("Load Click")}
         onSaveClick={action("Save Click")}

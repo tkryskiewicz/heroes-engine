@@ -4,6 +4,7 @@ import {
   EditorOption,
   EraseObjectsSettings,
   MapObjectDetails,
+  RandomMapSettings,
   Scenario,
   ScenarioSpecification,
 } from "heroes-homm1";
@@ -29,6 +30,9 @@ export enum EditorWindowActionType {
   OpenScenarioSpecification = "editorWindow/openScenarioSpecification",
   CloseScenarioSpecification = "editorWindow/closeScenarioSpecification",
   ChangeScenarioSpecification = "editorWindow/changeScenarioSpecification",
+  OpenRandomMapSettings = "editorWindow/openRandomMapSettings",
+  CloseRandomMapSettings = "editorWindow/closeRandomMapSettings",
+  ChangeRandomMapSettings = "editorWindow/changeRandomMapSettings",
   ZoomIn = "editorWindow/zoomIn",
   ZoomOut = "editorWindow/zoomOut",
 }
@@ -53,6 +57,9 @@ export type EditorWindowAction =
   OpenScenarioSpecificationAction |
   CloseScenarioSpecificationAction |
   ChangeScenarioSpecificationAction |
+  OpenRandomMapSettingsAction |
+  CloseRandomMapSettingsAction |
+  ChangeRandomMapSettingsAction |
   ZoomInAction |
   ZoomOutAction;
 
@@ -227,6 +234,32 @@ export interface ChangeScenarioSpecificationAction {
 
 export const changeScenarioSpecification = (value: ScenarioSpecification): ChangeScenarioSpecificationAction => ({
   type: EditorWindowActionType.ChangeScenarioSpecification,
+  value,
+});
+
+export interface OpenRandomMapSettingsAction {
+  readonly type: EditorWindowActionType.OpenRandomMapSettings;
+}
+
+export const openRandomMapSettings = (): OpenRandomMapSettingsAction => ({
+  type: EditorWindowActionType.OpenRandomMapSettings,
+});
+
+export interface CloseRandomMapSettingsAction {
+  readonly type: EditorWindowActionType.CloseRandomMapSettings;
+}
+
+export const closeRandomMapSettings = (): CloseRandomMapSettingsAction => ({
+  type: EditorWindowActionType.CloseRandomMapSettings,
+});
+
+export interface ChangeRandomMapSettingsAction {
+  readonly type: EditorWindowActionType.ChangeRandomMapSettings;
+  readonly value: RandomMapSettings;
+}
+
+export const changeRandomMapSettings = (value: RandomMapSettings): ChangeRandomMapSettingsAction => ({
+  type: EditorWindowActionType.ChangeRandomMapSettings,
   value,
 });
 

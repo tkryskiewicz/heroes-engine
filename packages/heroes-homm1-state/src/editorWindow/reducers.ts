@@ -1,5 +1,12 @@
 import { createMap, createPoint } from "heroes-core";
-import { EditorObjectType, EditorOption, ScenarioDifficulty, ScenarioSize, TerrainType } from "heroes-homm1";
+import {
+  EditorObjectType,
+  EditorOption,
+  LandMassSetting,
+  ScenarioDifficulty,
+  ScenarioSize,
+  TerrainType,
+} from "heroes-homm1";
 
 import { EditorWindowAction, EditorWindowActionType } from "./actions";
 import { EditorWindowState } from "./state";
@@ -16,6 +23,17 @@ const initialState: EditorWindowState = {
   objectDetailsUnavailablePromptVisible: false,
   objectsWindowVisible: false,
   position: createPoint(0, 0),
+  randomMapSettings: {
+    landMass: LandMassSetting.Scattered,
+    mines: 0,
+    monsters: 0,
+    mountains: 0,
+    saveWithoutViewing: false,
+    terrainAmount: {},
+    treasures: 0,
+    trees: 0,
+  },
+  randomMapSettingsVisible: false,
   scenario: {
     description: "No Description",
     difficulty: ScenarioDifficulty.Normal,
@@ -139,6 +157,21 @@ export const editorWindowReducer = (
       return {
         ...state,
         scenarioSpecification: action.value,
+      };
+    case EditorWindowActionType.OpenRandomMapSettings:
+      return {
+        ...state,
+        randomMapSettingsVisible: true,
+      };
+    case EditorWindowActionType.CloseRandomMapSettings:
+      return {
+        ...state,
+        randomMapSettingsVisible: false,
+      };
+    case EditorWindowActionType.ChangeRandomMapSettings:
+      return {
+        ...state,
+        randomMapSettings: action.value,
       };
     case EditorWindowActionType.ZoomIn:
       return {

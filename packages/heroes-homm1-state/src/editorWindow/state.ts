@@ -4,6 +4,7 @@ import {
   EditorOption,
   EraseObjectsSettings,
   MapObjectDetails,
+  RandomMapSettings,
   Scenario,
   ScenarioSpecification,
 } from "heroes-homm1";
@@ -23,5 +24,7 @@ export interface EditorWindowState {
   readonly eraseObejctsSettingsVisible: boolean;
   readonly scenarioSpecification: ScenarioSpecification;
   readonly scenarioSpecificationVisible: boolean;
+  readonly randomMapSettings: RandomMapSettings;
+  readonly randomMapSettingsVisible: boolean;
   readonly zoomed: boolean;
 }
