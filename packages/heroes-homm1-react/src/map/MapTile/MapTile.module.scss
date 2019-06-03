@@ -19,35 +19,6 @@
   height: $MAP_TILE_SIZE / 2;
 }
 
-// FIXME: render terrain
-.water {
-  background: #0441e1;
-}
-
-.grass {
-  background: #00940e;
-}
-
-.snow {
-  background: #fcfcfc;
-}
-
-.swamp {
-  background: #004a00;
-}
-
-.lava {
-  background: #442704;
-}
-
-.desert {
-  background: #e4c900;
-}
-
-.dirt {
-  background: #8c4e1d;
-}
-
 .content {
   position: absolute;
   bottom: 0;

@@ -43,6 +43,7 @@ export {
   TerrainRestrictedMapObjectData,
   isTerrainRestrictedMapObjectData,
 } from "./TerrainRestrictedMapObject";
+export { TerrainTransition, getTerrainTransition } from "./TerrainTransition";
 export {
   TownMapObject,
   TownMapObjectData,

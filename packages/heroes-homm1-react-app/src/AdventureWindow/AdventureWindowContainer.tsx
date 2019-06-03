@@ -4,10 +4,11 @@ import { DispatchProp } from "react-redux";
 import {
   GameData,
   getObject,
+  getTilePoint,
   Map,
   MapObject,
 } from "heroes-core";
-import { isHeroMapObject, isTownMapObject } from "heroes-homm1";
+import { getTerrainTransition, isHeroMapObject, isTownMapObject } from "heroes-homm1";
 import { AdventureWindow, MapTile } from "heroes-homm1-react";
 import { adventureScreenActions, gameActions } from "heroes-homm1-state";
 
@@ -53,11 +54,17 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private readonly renderTile = (index: number) => {
-    const tile = this.props.map.tiles[index];
+    const { map } = this.props;
+
+    const tile = map.tiles[index];
 
     const object = tile.object ?
       this.renderMapObject(tile.object, tile.terrain) :
       undefined;
+
+    const point = getTilePoint(map.width, index);
+
+    const transition = getTerrainTransition(map, point);
 
     return (
       <MapTile
@@ -65,6 +72,8 @@ class AdventureWindowContainer extends React.Component<Props, State> {
         index={index}
         size="large"
         terrainType={tile.terrain}
+        terrainVariant={0}
+        terrainTransition={transition}
         onMouseEnter={this.onTileMouseEnter}
         onMouseLeave={this.onTileMouseLeave}
         onClick={this.onTileClick}

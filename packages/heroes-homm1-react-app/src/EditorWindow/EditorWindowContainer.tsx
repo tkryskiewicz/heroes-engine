@@ -25,6 +25,7 @@ import {
   EditorOption,
   EraseObjectsSettings,
   getScenarioSpecification,
+  getTerrainTransition,
   MapObjectDetails,
   nextObjectType,
   previousObjectType,
@@ -275,6 +276,8 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       renderEditorObject(tile.object, data.mapObjects[tile.object.dataId], tile.terrain, data, size) :
       undefined;
 
+    const transition = getTerrainTransition(scenario.map, tilePoint);
+
     const active = activeTile && activePoint && isSamePoint(activePoint, tilePoint) &&
       selectedOption === EditorOption.Details;
 
@@ -284,6 +287,8 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         index={tileIndex}
         size={size}
         terrainType={tile.terrain}
+        terrainTransition={transition}
+        terrainVariant={0}
         active={active}
         onMouseEnter={this.onTileMouseEnter}
         onClick={this.onTileClick}

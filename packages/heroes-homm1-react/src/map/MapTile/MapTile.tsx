@@ -1,12 +1,16 @@
 import Classnames from "classnames";
 import * as React from "react";
 
+import { TerrainTransition } from "heroes-homm1";
+
 import * as styles from "./MapTile.module.scss";
 
 interface Props {
   readonly index: number;
   readonly size: "large" | "small";
   readonly terrainType: string;
+  readonly terrainTransition: TerrainTransition;
+  readonly terrainVariant: number;
   readonly active: boolean;
   readonly onMouseEnter: (index: number) => void;
   readonly onMouseLeave: () => void;
@@ -28,9 +32,17 @@ export class MapTile extends React.Component<Props> {
   };
 
   public render() {
+    const { terrainType, terrainTransition, terrainVariant } = this.props;
+
+    // FIXME: change to image?
+    const style: React.CSSProperties = {
+      background: `url("/assets/terrains/${terrainType}/tiles/${terrainTransition}-${terrainVariant}.jpg")`,
+    };
+
     return (
       <div
-        className={Classnames(styles.root, styles[this.props.size], styles[this.props.terrainType])}
+        className={Classnames(styles.root, styles[this.props.size])}
+        style={style}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
         onClick={this.onClick}

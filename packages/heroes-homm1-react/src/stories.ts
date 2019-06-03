@@ -32,6 +32,7 @@ import {
   SpellId,
   SpellType,
   StructureId,
+  TerrainTransition,
   TerrainType,
   TownId,
 } from "heroes-homm1";
@@ -155,3 +156,6 @@ export const editorOption = (name: string) =>
 
 export const editorObjectType = (name: string) =>
   select<EditorObjectType>(name, Object.values(EditorObjectType), EditorObjectType.WaterObjects);
+
+export const terrainTransition = (name: string) =>
+  select<TerrainTransition>(name, Object.values(TerrainTransition), TerrainTransition.None);
