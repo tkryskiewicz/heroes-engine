@@ -5,6 +5,38 @@ import { TerrainTransition } from "heroes-homm1";
 
 import * as styles from "./MapTile.module.scss";
 
+const imageMap = {
+  [TerrainTransition.None]: "none",
+  [TerrainTransition.North]: "north",
+  [TerrainTransition.NorthEastIn]: "in",
+  [TerrainTransition.NorthEastOut]: "out",
+  [TerrainTransition.East]: "east",
+  [TerrainTransition.SouthEastIn]: "in",
+  [TerrainTransition.SouthEastOut]: "out",
+  [TerrainTransition.South]: "north",
+  [TerrainTransition.SouthWestIn]: "in",
+  [TerrainTransition.SouthWestOut]: "out",
+  [TerrainTransition.West]: "east",
+  [TerrainTransition.NorthWestIn]: "in",
+  [TerrainTransition.NorthWestOut]: "out",
+};
+
+const horizontalInversion = [
+  TerrainTransition.West,
+  TerrainTransition.NorthWestIn,
+  TerrainTransition.NorthWestOut,
+  TerrainTransition.SouthWestIn,
+  TerrainTransition.SouthWestOut,
+];
+
+const verticalInversion = [
+  TerrainTransition.South,
+  TerrainTransition.SouthEastIn,
+  TerrainTransition.SouthEastOut,
+  TerrainTransition.SouthWestIn,
+  TerrainTransition.SouthWestOut,
+];
+
 interface Props {
   readonly index: number;
   readonly size: "large" | "small";
@@ -34,9 +66,13 @@ export class MapTile extends React.Component<Props> {
   public render() {
     const { terrainType, terrainTransition, terrainVariant } = this.props;
 
+    const scaleX = horizontalInversion.includes(terrainTransition) ? -1 : 1;
+    const scaleY = verticalInversion.includes(terrainTransition) ? -1 : 1;
+
     // FIXME: change to image?
     const style: React.CSSProperties = {
-      background: `url("/assets/terrains/${terrainType}/tiles/${terrainTransition}-${terrainVariant}.jpg")`,
+      background: `url("/assets/terrains/${terrainType}/tiles/${imageMap[terrainTransition]}-${terrainVariant}.jpg")`,
+      transform: `scale(${scaleX}, ${scaleY})`,
     };
 
     return (
