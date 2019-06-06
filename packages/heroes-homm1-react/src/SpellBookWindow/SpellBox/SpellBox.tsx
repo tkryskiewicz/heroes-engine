@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import * as styles from "./SpellBox.module.scss";
 
@@ -28,7 +28,7 @@ export class SpellBox extends React.Component<SpellBoxProps> {
         <div>
           <GameText size="normal">
             <FormattedMessage {...getSpellNameMessage(this.props.spell)} />
-            [{this.props.charges}]
+            [<FormattedNumber value={this.props.charges} />]
           </GameText>
         </div>
       </div>

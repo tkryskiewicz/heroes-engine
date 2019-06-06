@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
+import { FormattedMessage, FormattedNumber, InjectedIntlProps, injectIntl } from "react-intl";
 
 import * as styles from "./ResourcePickupStatus.module.scss";
 
@@ -33,7 +33,7 @@ class ResourcePickupStatus extends React.Component<ResourcePickupStatusProps> {
             />
           </div>
           <GameText size="small">
-            {amount}
+            <FormattedNumber value={amount} />
           </GameText>
         </div>
       </StatusWindow>

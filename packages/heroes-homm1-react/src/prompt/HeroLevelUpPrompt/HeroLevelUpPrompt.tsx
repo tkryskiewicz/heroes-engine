@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import { HeroSkills } from "heroes-core";
 
@@ -52,7 +52,9 @@ export class HeroLevelUpPrompt extends React.Component<HeroLevelUpPromptProps> {
         <GameText
           size="large"
         >
-          <FormattedMessage {...getSkillNameMessage(skill)} /> +{value}
+          <FormattedMessage {...getSkillNameMessage(skill)} />
+          {" "}
+          {value > 0 && "+"}<FormattedNumber value={value} />
         </GameText>
       </div>
     );

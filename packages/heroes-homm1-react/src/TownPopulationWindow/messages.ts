@@ -10,7 +10,7 @@ export const messages = defineMessages({
     id: "ui.townPopulationWindow.defaultStatusText",
   },
   growthRate: {
-    defaultMessage: "{value}/week",
+    defaultMessage: "{value, number}/week",
     id: "ui.townPopulationWindow.growthRate",
   },
   growthRateTitle: {

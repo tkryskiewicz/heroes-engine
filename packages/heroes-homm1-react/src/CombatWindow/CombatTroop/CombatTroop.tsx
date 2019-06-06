@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FormattedNumber } from "react-intl";
 
 import { CombatSide } from "heroes-core";
 
@@ -40,7 +41,7 @@ export class CombatTroop extends React.Component<CombatTroopProps> {
     return (
       <div className={styles.count}>
         <GameParagraph textSize="tiny">
-          {value}
+          <FormattedNumber value={value} />
         </GameParagraph>
       </div>
     );

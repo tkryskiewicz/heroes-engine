@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
+import { FormattedMessage, FormattedNumber, InjectedIntlProps, injectIntl } from "react-intl";
 
 import * as styles from "./TownPopulationWindow.module.scss";
 
@@ -69,7 +69,7 @@ class TownPopulationWindow extends React.Component<TownPopulationWindowProps> {
           <GameText size="normal">
             <FormattedMessage {...messages.available} />:
             <br />
-            {dwelling.available !== undefined ? dwelling.available : <FormattedMessage {...messages.noneAvailable} />}
+            {this.renderCount(dwelling.available)}
             <br />
             <FormattedMessage {...messages.growthRateTitle} />:
             <br />
@@ -81,6 +81,12 @@ class TownPopulationWindow extends React.Component<TownPopulationWindowProps> {
         </div>
       </div>
     );
+  }
+
+  private renderCount(value: number | undefined) {
+    return value !== undefined ?
+      <FormattedNumber value={value} /> :
+      <FormattedMessage {...messages.noneAvailable} />;
   }
 }
 

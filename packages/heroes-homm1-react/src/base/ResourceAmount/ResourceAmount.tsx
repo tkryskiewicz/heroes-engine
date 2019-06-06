@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FormattedNumber } from "react-intl";
 
 import * as styles from "./ResourceAmount.module.scss";
 
@@ -20,7 +21,7 @@ export class ResourceAmount extends React.Component<ResourceAmountProps> {
         />
         <div>
           <GameText size="normal">
-            {this.props.amount}
+            <FormattedNumber value={this.props.amount} />
           </GameText>
         </div>
       </div>

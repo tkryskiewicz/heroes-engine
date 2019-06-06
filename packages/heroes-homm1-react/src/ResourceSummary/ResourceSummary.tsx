@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FormattedNumber } from "react-intl";
 
 import { Resources } from "heroes-core";
 import { Resource } from "heroes-homm1";
@@ -22,17 +23,17 @@ export class ResourceSummary extends React.Component<ResourceSummaryProps> {
           <div className={styles.primaryInfo}>
             <div className={styles.castleCount}>
               <GameText size="small">
-                {this.props.castleCount}
+                <FormattedNumber value={this.props.castleCount} />
               </GameText>
             </div>
             <div className={styles.townCount}>
               <GameText size="small">
-                {this.props.townCount}
+                <FormattedNumber value={this.props.townCount} />
               </GameText>
             </div>
             <div className={styles.primaryResource}>
               <GameText size="small">
-                {this.props.resources[Resource.Gold]}
+                <FormattedNumber value={this.props.resources[Resource.Gold]} />
               </GameText>
             </div>
           </div>
@@ -58,7 +59,7 @@ export class ResourceSummary extends React.Component<ResourceSummaryProps> {
         className={styles.secondaryResource}
       >
         <GameText size="small">
-          {resources[r] || 0}
+          <FormattedNumber value={resources[r] || 0} />
         </GameText>
       </div>
     ));

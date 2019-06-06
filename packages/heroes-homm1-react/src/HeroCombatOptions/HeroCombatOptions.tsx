@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
+import { FormattedMessage, FormattedNumber, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { HeroSkills } from "heroes-core";
 import { LuckType, MoraleType, SkillIds } from "heroes-homm1";
@@ -147,8 +147,9 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps> {
   private renderCharacteristics(alignment: string, skills: HeroSkills, morale: MoraleType, luck: LuckType) {
     const content = SkillIds.map((s) => (
       <span key={s}>
-        <FormattedMessage {...getSkillNameMessage(s)} />
-        : {skills[s] || 0}
+        <FormattedMessage {...getSkillNameMessage(s)} />:
+        {" "}
+        <FormattedNumber value={skills[s] || 0} />
         <br />
       </span>
     ));

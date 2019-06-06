@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import { Army, Troop } from "heroes-core";
 import { ArmySize } from "heroes-homm1";
@@ -70,7 +70,7 @@ export class HeroStatus extends React.Component<HeroStatusProps> {
         />
         <div className={styles.troopCount}>
           <GameText size="small">
-            {troop.count}
+            <FormattedNumber value={troop.count} />
           </GameText>
         </div>
       </div>

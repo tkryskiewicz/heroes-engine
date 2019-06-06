@@ -95,11 +95,11 @@ export const getCampaignNameMessage = (campaign: string) => {
 
 export const experienceMessages = defineMessages({
   level: {
-    defaultMessage: "Level {value}",
+    defaultMessage: "Level {value, number}",
     id: "game.experience.level",
   },
   nextLevel: {
-    defaultMessage: "Next level {value}",
+    defaultMessage: "Next level {value, number}",
     id: "game.experience.nextLevel",
   },
   title: {
@@ -107,7 +107,7 @@ export const experienceMessages = defineMessages({
     id: "game.experience",
   },
   value: {
-    defaultMessage: "Current Experience {value}",
+    defaultMessage: "Current Experience {value, number}",
     id: "game.experience.value",
   },
 });

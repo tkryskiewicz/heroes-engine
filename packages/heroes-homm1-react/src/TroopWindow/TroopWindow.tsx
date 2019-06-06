@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import { CreatureData, Damage, HeroSkills } from "heroes-core";
 import { LuckType, MoraleType, Skill } from "heroes-homm1";
@@ -87,40 +87,56 @@ class TroopWindow extends React.Component<TroopWindowProps> {
           </GameText>
         </div>
         <GameParagraph textSize="normal">
-          <FormattedMessage {...messages.attack} />: {creature.attack}
+          <FormattedMessage {...messages.attack} />:
+          {" "}
+          <FormattedNumber value={creature.attack} />
+          {" "}
           {this.renderEnhancedValue(creature.attack, skillEnhancements[Skill.Attack])}
           <br />
-          <FormattedMessage {...messages.defense} />: {creature.defense}
+          <FormattedMessage {...messages.defense} />:
+          {" "}
+          <FormattedNumber value={creature.defense} />
+          {" "}
           {this.renderEnhancedValue(creature.defense, skillEnhancements[Skill.Defense])}
           <br />
           {creature.shots && this.renderShots(creature.shots)}
-          <FormattedMessage {...messages.damage} />: {this.renderDamage(creature.damage)}
+          <FormattedMessage {...messages.damage} />:
+          {" "}
+          {this.renderDamage(creature.damage)}
           <br />
-          <FormattedMessage {...messages.hitPoints} />: {creature.hitPoints}
+          <FormattedMessage {...messages.hitPoints} />:
+          {" "}
+          <FormattedNumber value={creature.hitPoints} />
           <br />
-          <FormattedMessage {...messages.speed} />: <FormattedMessage {...getSpeedMessage(creature.speed)} />
+          <FormattedMessage {...messages.speed} />:
+          {" "}
+          <FormattedMessage {...getSpeedMessage(creature.speed)} />
           <br />
-          <FormattedMessage {...moraleMessages.title} />
-          : <FormattedMessage {...getMoraleTypeValueMessage(this.props.morale)} />
+          <FormattedMessage {...moraleMessages.title} />:
+          {" "}
+          <FormattedMessage {...getMoraleTypeValueMessage(this.props.morale)} />
           <br />
-          <FormattedMessage {...luckMessages.title} />
-          : <FormattedMessage {...getLuckValueMessage(this.props.luck)} />
+          <FormattedMessage {...luckMessages.title} />:
+          {" "}
+          <FormattedMessage {...getLuckValueMessage(this.props.luck)} />
         </GameParagraph>
       </>
     );
   }
 
   private renderEnhancedValue(baseValue: number, bonus: number) {
-    return bonus ?
-      ` (${baseValue + bonus})` :
-      undefined;
+    return bonus ? (
+      <>
+        (<FormattedNumber value={baseValue + bonus} />)
+      </>
+    ) : undefined;
   }
 
   private renderCount(value: number) {
     return (
       <div className={styles.count}>
         <GameText size="normal">
-          {value}
+          <FormattedNumber value={value} />
         </GameText>
       </div>
     );
@@ -130,9 +146,9 @@ class TroopWindow extends React.Component<TroopWindowProps> {
     return (
       <>
         <GameText size="normal">
-          <FormattedMessage {...messages.shots} />
-          :
-          {value}
+          <FormattedMessage {...messages.shots} />:
+          {" "}
+          <FormattedNumber value={value} />
         </GameText>
         <br />
       </>
@@ -140,9 +156,15 @@ class TroopWindow extends React.Component<TroopWindowProps> {
   }
 
   private renderDamage(damage: Damage) {
-    return damage.min !== damage.max ?
-      `${damage.min}-${damage.max}` :
-      damage.min;
+    return damage.min !== damage.max ? (
+      <>
+        <FormattedNumber value={damage.min} />
+        -
+        <FormattedNumber value={damage.max} />
+      </>
+    ) : (
+        <FormattedNumber value={damage.min} />
+      );
   }
 
   private readonly onDismissClick = () => {

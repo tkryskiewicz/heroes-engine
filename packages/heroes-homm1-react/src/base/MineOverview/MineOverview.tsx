@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FormattedNumber } from "react-intl";
 
 import * as styles from "./MineOverview.module.scss";
 
@@ -18,7 +19,7 @@ export class MineOverview extends React.Component<MineOverviewProps> {
         />
         <div className={styles.count}>
           <GameText size="normal">
-            {this.props.count}
+            <FormattedNumber value={this.props.count} />
           </GameText>
         </div>
       </div>

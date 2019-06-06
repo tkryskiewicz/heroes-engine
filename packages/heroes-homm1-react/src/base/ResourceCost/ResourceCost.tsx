@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FormattedNumber } from "react-intl";
 
 import { Resources } from "heroes-core";
 import { Resource } from "heroes-homm1";
@@ -34,7 +35,7 @@ export class ResourceCost extends React.Component<ResourceCostProps> {
         />
         <div className={styles.resourceAmount}>
           <GameText size="normal">
-            {amount}
+            <FormattedNumber value={amount} />
           </GameText>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import {
   Alignment,
@@ -81,7 +81,10 @@ class StandardGameScenarioInfoWindow extends React.Component<StandardGameScenari
         </div>
         <div className={styles.difficultyRating}>
           <GameText size="large">
-            {difficultyRating}%
+            <FormattedNumber
+              style="percent"
+              value={difficultyRating / 100}
+            />
           </GameText>
         </div>
         <div className={styles.scenarioSize}>

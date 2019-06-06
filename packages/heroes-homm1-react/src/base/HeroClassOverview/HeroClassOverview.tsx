@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FormattedNumber } from "react-intl";
 
 import * as styles from "./HeroClassOverview.module.scss";
 
@@ -29,7 +30,7 @@ export class HeroClassOverview extends React.Component<HeroClassOverviewProps> {
     return (
       <div className={styles.count}>
         <GameText size="normal">
-          {count}
+          <FormattedNumber value={count} />
         </GameText>
       </div>
     );

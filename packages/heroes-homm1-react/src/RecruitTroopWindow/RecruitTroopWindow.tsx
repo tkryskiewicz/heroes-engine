@@ -1,6 +1,6 @@
 import { Col, Row } from "antd";
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import { divideResources, multiplyResources, Resources } from "heroes-core";
 
@@ -53,7 +53,9 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
               creature={this.props.creature}
             />
             <GameText size="normal">
-              <FormattedMessage {...messages.available} />: {this.props.availableCount}
+              <FormattedMessage {...messages.available} />:
+              {" "}
+              <FormattedNumber value={this.props.availableCount} />
             </GameText>
           </Col>
           <Col span={16}>

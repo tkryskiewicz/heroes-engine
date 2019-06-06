@@ -1,6 +1,6 @@
 import { Col, Row } from "antd";
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import {
   CampaignGameScore,
@@ -106,7 +106,7 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
         </Col>
         <Col span={3}>
           <GameText size="normal">
-            {score.daysCount}
+            <FormattedNumber value={score.daysCount} />
           </GameText>
         </Col>
         <Col span={4}>
@@ -168,7 +168,7 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
         </Col>
         <Col span={3}>
           <GameText size="normal">
-            {score.score}
+            <FormattedNumber value={score.score} />
           </GameText>
         </Col>
         <Col span={4}>

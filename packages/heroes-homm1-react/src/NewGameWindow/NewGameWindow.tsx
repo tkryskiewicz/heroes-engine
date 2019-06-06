@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import {
   Alignment,
@@ -59,13 +59,13 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
       <div className={styles.root}>
         <div className={styles.gameDifficultiesTitle}>
           <GameText size="large">
-            <FormattedMessage {...messages.difficultyTitle} />
+            <FormattedMessage {...messages.difficultyTitle} />:
           </GameText>
         </div>
         {this.renderDifficulties()}
         <div className={styles.opponentSettingsTitle}>
           <GameText size="large">
-            <FormattedMessage {...messages.opponentsTitle} />
+            <FormattedMessage {...messages.opponentsTitle} />:
           </GameText>
         </div>
         <div className={styles.opponentSettings}>
@@ -73,7 +73,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
         </div>
         <div className={styles.alignment}>
           <GameText size="large">
-            <FormattedMessage {...messages.alignmentTitle} />
+            <FormattedMessage {...messages.alignmentTitle} />:
           </GameText>
           <div>
             <AlignmentJewel
@@ -84,7 +84,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
         </div>
         <div className={styles.kingOfTheHill}>
           <GameText size="large">
-            <FormattedMessage {...messages.kingOfTheHill} />
+            <FormattedMessage {...messages.kingOfTheHill} />:
           </GameText>
           <div>
             <ImageSwitch
@@ -96,7 +96,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
         </div>
         <div className={styles.scenario}>
           <GameText size="large">
-            <FormattedMessage {...messages.scenarioTitle} />
+            <FormattedMessage {...messages.scenarioTitle} />:
           </GameText>
         </div>
         <div>
@@ -104,7 +104,12 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
         </div>
         <div className={styles.difficultyRating}>
           <GameText size="large">
-            <FormattedMessage {...messages.difficultyRatingTitle} /> {difficultyRating}%
+            <FormattedMessage {...messages.difficultyRatingTitle} />:
+            {" "}
+            <FormattedNumber
+              style="percent"
+              value={difficultyRating / 100}
+            />
           </GameText>
         </div>
         <div className={styles.okay}>

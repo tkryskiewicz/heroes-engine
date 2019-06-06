@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
+import { FormattedMessage, FormattedNumber, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { LuckModifier, LuckModifierType, LuckType } from "heroes-homm1";
 
@@ -73,13 +73,14 @@ class LuckDetailsPrompt extends React.Component<LuckDetailsPromptProps> {
         break;
     }
 
-    const message = formatMessage(getLuckModifierTypeMessage(modifier.type), {
-      name,
-    });
-
     return (
       <>
-        {message} {modifier.value > 0 && "+"}{modifier.value}
+        <FormattedMessage
+          {...getLuckModifierTypeMessage(modifier.type)}
+          values={{ name }}
+        />
+        {" "}
+        {modifier.value > 0 && "+"}<FormattedNumber value={modifier.value} />
         <br />
       </>
     );

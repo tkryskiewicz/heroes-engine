@@ -1,6 +1,6 @@
 import { Row } from "antd";
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import { Army, Troop } from "heroes-core";
 
@@ -77,7 +77,7 @@ export class CombatSummaryWindow extends React.Component<CombatSummaryWindowProp
         />
         <div>
           <GameText size="small">
-            {troop.count}
+            <FormattedNumber value={troop.count} />
           </GameText>
         </div>
       </div>

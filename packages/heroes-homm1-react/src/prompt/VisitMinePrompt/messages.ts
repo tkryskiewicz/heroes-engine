@@ -2,11 +2,11 @@ import { defineMessages } from "react-intl";
 
 export const messages = defineMessages({
   amount: {
-    defaultMessage: "{amount} {resource}",
+    defaultMessage: "{amount, number} {resource}",
     id: "ui.visitMinePrompt.amount",
   },
   amountPerDay: {
-    defaultMessage: "{amount}/day",
+    defaultMessage: "{amount, number}/day",
     id: "ui.visitMinePrompt.amountPerDay",
   },
   amountUnits: {
@@ -15,11 +15,12 @@ export const messages = defineMessages({
   },
   // FIXME: should be 'of an ore mine'
   content: {
-    defaultMessage: "You gain control of a {mine}. It will provide you with {amount} per day.",
+    defaultMessage: "You gain control of a {mine}. It will provide you with {amount, number} per day.",
     id: "ui.visitMinePrompt.content",
   },
   contentAlchemist: {
-    defaultMessage: "You have taken control of the local {mine} shop. It will provide you with {amount} per day.",
+    defaultMessage: `You have taken control of the local {mine} shop.
+      It will provide you with {amount, number} per day.`,
     id: "ui.visitMinePrompt.contentAlchemist",
   },
 });

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FormattedNumber } from "react-intl";
 
 import { Troop } from "heroes-core";
 
@@ -61,7 +62,7 @@ export class TradingTroopSlot extends React.Component<TradingTroopSlotProps> {
     return (
       <div className={styles.count}>
         <GameText size="small">
-          {count}
+          <FormattedNumber value={count} />
         </GameText>
       </div>
     );

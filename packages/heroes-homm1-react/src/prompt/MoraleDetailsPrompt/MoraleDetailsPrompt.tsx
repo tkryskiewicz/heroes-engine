@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
+import { FormattedMessage, FormattedNumber, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { MoraleModifier, MoraleModifierType, MoraleType } from "heroes-homm1";
 
@@ -86,14 +86,14 @@ class MoraleDetailsPrompt extends React.Component<MoraleDetailsPromptProps> {
         break;
     }
 
-    const message = formatMessage(getMoraleModifierTypeMessage(modifier.type), {
-      count,
-      name,
-    });
-
     return (
       <>
-        {message} {modifier.value > 0 && "+"}{modifier.value}
+        <FormattedMessage
+          {...getMoraleModifierTypeMessage(modifier.type)}
+          values={{ count, name }}
+        />
+        {" "}
+        {modifier.value > 0 && "+"}<FormattedNumber value={modifier.value} />
         <br />
       </>
     );

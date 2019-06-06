@@ -1,5 +1,6 @@
 import { Row } from "antd";
 import * as React from "react";
+import { FormattedNumber } from "react-intl";
 
 import { LuckType, MoraleType } from "heroes-homm1";
 
@@ -158,7 +159,7 @@ export class AdditionalStatsInfo extends React.Component<AdditionalStatsInfoProp
         />
         <div className={styles.experienceValue}>
           <GameText size="small">
-            {experience}
+            <FormattedNumber value={experience} />
           </GameText>
         </div>
       </Row>

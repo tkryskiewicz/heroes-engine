@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import * as styles from "./SkillInfo.module.scss";
 
@@ -60,7 +60,7 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
     return (
       <div className={styles.value}>
         <GameText size="normal">
-          {value}
+          <FormattedNumber value={value} />
         </GameText>
       </div>
     );
