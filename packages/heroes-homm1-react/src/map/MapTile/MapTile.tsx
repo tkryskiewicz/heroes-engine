@@ -64,32 +64,38 @@ export class MapTile extends React.Component<Props> {
   };
 
   public render() {
-    const { size, terrainType, terrainTransition, terrainVariant } = this.props;
-
-    const scaleX = horizontalInversion.includes(terrainTransition) ? -1 : 1;
-    const scaleY = verticalInversion.includes(terrainTransition) ? -1 : 1;
-
-    // FIXME: change to image?
-    const file = `${imageMap[terrainTransition]}-${terrainVariant}.jpg`;
-
-    const style: React.CSSProperties = {
-      background: `url("/assets/terrains/${terrainType}/tiles/${size}/${file}")`,
-      transform: `scale(${scaleX}, ${scaleY})`,
-    };
-
     return (
       <div
-        className={Classnames(styles.root, styles[size])}
-        style={style}
+        className={Classnames(styles.root, styles[this.props.size])}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
         onClick={this.onClick}
       >
+        {this.renderTerrain()}
         <div className={styles.content}>
           {this.props.children}
         </div>
         {this.props.active && this.renderActive()}
       </div>
+    );
+  }
+
+  private renderTerrain() {
+    const { size, terrainType, terrainTransition, terrainVariant } = this.props;
+
+    const scaleX = horizontalInversion.includes(terrainTransition) ? -1 : 1;
+    const scaleY = verticalInversion.includes(terrainTransition) ? -1 : 1;
+
+    const style: React.CSSProperties = {
+      transform: `scale(${scaleX}, ${scaleY})`,
+    };
+
+    return (
+      <img
+        className={styles.terrain}
+        style={style}
+        src={`/assets/terrains/${terrainType}/tiles/${size}/${imageMap[terrainTransition]}-${terrainVariant}.jpg`}
+      />
     );
   }
 

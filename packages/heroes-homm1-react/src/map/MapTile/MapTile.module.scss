@@ -5,8 +5,8 @@
   width: 30px;
   height: 30px;
   background: #fff;
-  border: solid grey;
-  border-width: 0 1px 1px 0;
+  outline: solid grey;
+  outline-width: 1px;
 }
 
 .large {
@@ -17,6 +17,12 @@
 .small {
   width: $MAP_TILE_SIZE / 2;
   height: $MAP_TILE_SIZE / 2;
+}
+
+.terrain {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .content {
