@@ -8,7 +8,7 @@ import { Skill } from "heroes-homm1";
 import { hero } from "../../stories";
 import { HeroLevelUpPrompt } from "./HeroLevelUpPrompt";
 
-storiesOf("prompt/HeroLevelUpPrompt", module)
+storiesOf("prompt|HeroLevelUpPrompt", module)
   .add("default", () => (
     <HeroLevelUpPrompt
       visible={boolean("Visible", true)}

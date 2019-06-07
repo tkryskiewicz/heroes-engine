@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { ExperienceDetailsPrompt } from "./ExperienceDetailsPrompt";
 
-storiesOf("prompt/ExperienceDetailsPrompt", module)
+storiesOf("prompt|ExperienceDetailsPrompt", module)
   .add("default", () => (
     <ExperienceDetailsPrompt
       visible={boolean("Visible", true)}

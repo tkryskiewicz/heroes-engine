@@ -14,7 +14,7 @@ const sizeOptions: { readonly [s: string]: ResourceIconProps["size"] } = {
   Small: "small",
 };
 
-storiesOf("base/ResourceIcon", module)
+storiesOf("base|ResourceIcon", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <ResourceIcon

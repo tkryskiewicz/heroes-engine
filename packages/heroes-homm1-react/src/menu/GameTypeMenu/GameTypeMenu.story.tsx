@@ -7,7 +7,7 @@ import Readme = require("./README.md");
 
 import { GameTypeMenu } from "./GameTypeMenu";
 
-storiesOf("menu/GameTypeMenu", module)
+storiesOf("menu|GameTypeMenu", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <GameTypeMenu

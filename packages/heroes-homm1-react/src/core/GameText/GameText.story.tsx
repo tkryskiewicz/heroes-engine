@@ -11,7 +11,7 @@ const sizeOptions: { readonly [s: string]: GameTextProps["size"] } = {
   Tiny: "tiny",
 };
 
-storiesOf("core/GameText", module)
+storiesOf("core|GameText", module)
   .add("default", () => (
     <GameText size={select("Size", sizeOptions, "large")}>
       {text("Text", "Some Text")}

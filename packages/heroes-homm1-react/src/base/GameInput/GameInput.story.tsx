@@ -10,7 +10,7 @@ const sizeOptions: Array<GameInputProps["size"]> = [
   "small",
 ];
 
-storiesOf("base/GameInput", module)
+storiesOf("base|GameInput", module)
   .add("default", () => (
     <GameInput
       size={select("Size", sizeOptions, "large")}

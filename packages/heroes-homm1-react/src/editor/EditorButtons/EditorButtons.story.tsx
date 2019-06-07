@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { EditorButtons } from "./EditorButtons";
 
-storiesOf("editor/EditorButtons", module)
+storiesOf("editor|EditorButtons", module)
   .add("default", () => (
     <EditorButtons
       onZoomClick={action("Zoom Click")}

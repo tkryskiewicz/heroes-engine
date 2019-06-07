@@ -12,7 +12,7 @@ const sizeOptions: { readonly [s: string]: CreatureIconProps["size"] } = {
   Tiny: "tiny",
 };
 
-storiesOf("base/CreatureIcon", module)
+storiesOf("base|CreatureIcon", module)
   .add("default", () => (
     <CreatureIcon
       size={select("Size", sizeOptions, "large")}

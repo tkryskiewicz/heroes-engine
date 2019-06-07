@@ -5,7 +5,7 @@ import * as React from "react";
 import { luckType } from "../../stories";
 import { LuckIcon } from "./LuckIcon";
 
-storiesOf("base/LuckIcon", module)
+storiesOf("base|LuckIcon", module)
   .add("default", () => (
     <LuckIcon
       type={luckType("Type")}

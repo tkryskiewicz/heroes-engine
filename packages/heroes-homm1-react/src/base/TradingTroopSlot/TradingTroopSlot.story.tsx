@@ -8,7 +8,7 @@ import { Troop } from "heroes-core";
 import { creature, hero, troopIndex } from "../../stories";
 import { TradingTroopSlot } from "./TradingTroopSlot";
 
-storiesOf("base/TradingTroopSlot", module)
+storiesOf("base|TradingTroopSlot", module)
   .add("default", () => {
     const troop: Troop = {
       count: number("Count", 0, { range: true, min: 0, max: 9999, step: 1 }),

@@ -13,7 +13,7 @@ const armyTypeOptions = {
   Hero: TroopSelectionType.Hero,
 };
 
-storiesOf("prompt/RedistributeArmyPrompt", module)
+storiesOf("prompt|RedistributeArmyPrompt", module)
   .add("default", () => (
     <RedistributeArmyPrompt
       visible={boolean("Visible", true)}

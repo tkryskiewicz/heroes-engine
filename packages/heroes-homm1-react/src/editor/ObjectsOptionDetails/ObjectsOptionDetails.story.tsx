@@ -6,7 +6,7 @@ import { Placeholder } from "../../Placeholder";
 import { editorObjectType } from "../../stories";
 import { ObjectsOptionDetails } from "./ObjectsOptionDetails";
 
-storiesOf("editor/ObjectsOptionDetails", module)
+storiesOf("editor|ObjectsOptionDetails", module)
   .add("default", () => (
     <ObjectsOptionDetails
       onSlotClick={action("Slot Click")}

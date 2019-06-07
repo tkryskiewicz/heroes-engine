@@ -5,7 +5,7 @@ import * as React from "react";
 import { spell } from "../../stories";
 import { SpellIcon } from "./SpellIcon";
 
-storiesOf("base/SpellIcon", module)
+storiesOf("base|SpellIcon", module)
   .add("default", () => (
     <SpellIcon
       spell={spell("Spell")}

@@ -8,7 +8,7 @@ import Readme = require("./README.md");
 import { resource } from "../../stories";
 import { ResourceAmount } from "./ResourceAmount";
 
-storiesOf("base/ResourceAmount", module)
+storiesOf("base|ResourceAmount", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <ResourceAmount

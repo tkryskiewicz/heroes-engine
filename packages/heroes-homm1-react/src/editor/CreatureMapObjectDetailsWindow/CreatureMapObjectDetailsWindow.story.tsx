@@ -13,7 +13,7 @@ const data: CreatureMapObjectDetailsWindowProps["data"] = {
   },
 };
 
-storiesOf("editor/CreatureMapObjectDetailsWindow", module)
+storiesOf("editor|CreatureMapObjectDetailsWindow", module)
   .add("default", () => (
     <CreatureMapObjectDetailsWindow
       visible={boolean("Visible", true)}

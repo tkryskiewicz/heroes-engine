@@ -14,7 +14,7 @@ const cost: Resources = {
   [Resource.Mercury]: 10,
 };
 
-storiesOf("base/ResourceCost", module)
+storiesOf("base|ResourceCost", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <ResourceCost

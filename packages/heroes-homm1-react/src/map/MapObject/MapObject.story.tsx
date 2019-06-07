@@ -4,7 +4,7 @@ import * as React from "react";
 import { mapObject, mapObjectSize } from "../../stories";
 import { MapObject } from "./MapObject";
 
-storiesOf("map/MapObject", module)
+storiesOf("map|MapObject", module)
   .add("default", () => (
     <MapObject
       size={mapObjectSize("Size")}

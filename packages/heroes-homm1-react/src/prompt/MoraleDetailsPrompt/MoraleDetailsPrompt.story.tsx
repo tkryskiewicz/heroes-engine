@@ -16,7 +16,7 @@ import {
 import { moraleType } from "../../stories";
 import { MoraleDetailsPrompt } from "./MoraleDetailsPrompt";
 
-storiesOf("prompt/MoraleDetailsPrompt", module)
+storiesOf("prompt|MoraleDetailsPrompt", module)
   .add("default", () => (
     <MoraleDetailsPrompt
       visible={boolean("Visible", true)}

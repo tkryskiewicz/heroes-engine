@@ -5,7 +5,7 @@ import * as React from "react";
 import { skill, skillValue } from "../../stories";
 import { SkillInfo } from "./SkillInfo";
 
-storiesOf("base/SkillInfo", module)
+storiesOf("base|SkillInfo", module)
   .add("default", () => (
     <SkillInfo
       skill={skill("Skill")}

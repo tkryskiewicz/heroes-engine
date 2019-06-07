@@ -16,7 +16,7 @@ const data: TownMapObjectDetailsWindowProps["data"] = {
   }), {}),
 };
 
-storiesOf("editor/TownMapObjectDetailsWindow", module)
+storiesOf("editor|TownMapObjectDetailsWindow", module)
   .add("default", () => {
     const armySize = number("Army Size", 5, { range: true, min: 1, max: 5, step: 1 });
 

@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { EditorHorizontalScrollbar } from "./EditorHorizontalScrollbar";
 
-storiesOf("editor/EditorHorizontalScrollbar", module)
+storiesOf("editor|EditorHorizontalScrollbar", module)
   .add("default", () => (
     <EditorHorizontalScrollbar
       progress={number("Progress", 0, { range: true, min: 0, max: 1, step: 0.005 })}

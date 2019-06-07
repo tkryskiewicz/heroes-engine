@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { OrientableMapObject } from "./OrientableMapObject";
 
-storiesOf("map/OrientableMapObject", module)
+storiesOf("map|OrientableMapObject", module)
   .add("default", () => (
     <OrientableMapObject
       invert={boolean("Invert", false)}

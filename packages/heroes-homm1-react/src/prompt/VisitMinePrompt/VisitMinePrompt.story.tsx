@@ -6,7 +6,7 @@ import * as React from "react";
 import { mine, resource } from "../../stories";
 import { VisitMinePrompt } from "./VisitMinePrompt";
 
-storiesOf("prompt/VisitMinePrompt", module)
+storiesOf("prompt|VisitMinePrompt", module)
   .add("default", () => (
     <VisitMinePrompt
       visible={boolean("Visible", true)}

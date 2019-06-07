@@ -5,7 +5,7 @@ import * as React from "react";
 import { mapObjectSize } from "../../stories";
 import { RandomCreatureMapObject } from "./RandomCreatureMapObject";
 
-storiesOf("map/RandomCreatureMapObject", module)
+storiesOf("map|RandomCreatureMapObject", module)
   .add("default", () => (
     <RandomCreatureMapObject
       size={mapObjectSize("Size")}

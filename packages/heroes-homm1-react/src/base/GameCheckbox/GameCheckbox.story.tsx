@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { GameCheckbox } from "./GameCheckbox";
 
-storiesOf("base/GameCheckbox", module)
+storiesOf("base|GameCheckbox", module)
   .add("default", () => (
     <GameCheckbox
       checked={boolean("Checked", false)}

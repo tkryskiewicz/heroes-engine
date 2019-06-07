@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { EditorSettingsWindow } from "./EditorSettingsWindow";
 
-storiesOf("editor/EditorSettingsWindow", module)
+storiesOf("editor|EditorSettingsWindow", module)
   .add("default", () => (
     <EditorSettingsWindow
       visible={boolean("Visible", true)}

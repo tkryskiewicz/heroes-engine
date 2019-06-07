@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { CampaignGameMenu } from "./CampaignGameMenu";
 
-storiesOf("menu/CampaignGameMenu", module)
+storiesOf("menu|CampaignGameMenu", module)
   .add("default", () => (
     <CampaignGameMenu
       onPlayClick={action("Play Click")}

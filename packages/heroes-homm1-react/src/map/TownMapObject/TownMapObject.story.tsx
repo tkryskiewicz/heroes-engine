@@ -6,7 +6,7 @@ import * as React from "react";
 import { alignment, mapObjectSize, town } from "../../stories";
 import { TownMapObject } from "./TownMapObject";
 
-storiesOf("map/TownMapObject", module)
+storiesOf("map|TownMapObject", module)
   .add("default", () => (
     <TownMapObject
       size={mapObjectSize("Size")}

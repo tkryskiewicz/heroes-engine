@@ -8,7 +8,7 @@ import { ArtifactId, LuckModifier, LuckModifierType, LuckType, MapObjectId } fro
 import { luckType } from "../../stories";
 import { LuckDetailsPrompt } from "./LuckDetailsPrompt";
 
-storiesOf("prompt/LuckDetailsPrompt", module)
+storiesOf("prompt|LuckDetailsPrompt", module)
   .add("default", () => (
     <LuckDetailsPrompt
       visible={boolean("Visible", true)}

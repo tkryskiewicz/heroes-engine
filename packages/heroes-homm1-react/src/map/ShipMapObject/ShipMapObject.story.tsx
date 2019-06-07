@@ -6,7 +6,7 @@ import * as React from "react";
 import { alignment, mapObjectOrientation } from "../../stories";
 import { ShipMapObject } from "./ShipMapObject";
 
-storiesOf("map/ShipMapObject", module)
+storiesOf("map|ShipMapObject", module)
   .add("default", () => (
     <ShipMapObject
       alignment={boolean("Aligned?", true) ? alignment("Alignment") : undefined}

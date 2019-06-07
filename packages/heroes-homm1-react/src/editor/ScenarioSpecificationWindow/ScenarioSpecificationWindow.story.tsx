@@ -8,7 +8,7 @@ import { ScenarioSpecification } from "heroes-homm1";
 import { scenarioDifficulty, scenarioSize } from "../../stories";
 import { ScenarioSpecificationWindow } from "./ScenarioSpecificationWindow";
 
-storiesOf("editor/ScenarioSpecificationWindow", module)
+storiesOf("editor|ScenarioSpecificationWindow", module)
   .add("default", () => {
     const value: ScenarioSpecification = {
       description: text("Description", "Description"),

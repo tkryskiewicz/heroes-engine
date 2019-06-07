@@ -7,7 +7,7 @@ import { TerrainType } from "heroes-homm1";
 import { terrainType } from "../../stories";
 import { TerrainsOptionDetails } from "./TerrainsOptionDetails";
 
-storiesOf("editor/TerrainsOptionDetails", module)
+storiesOf("editor|TerrainsOptionDetails", module)
   .add("default", () => (
     <TerrainsOptionDetails
       options={Object.values(TerrainType).map(String)}

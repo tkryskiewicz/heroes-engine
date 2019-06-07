@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { ArtifactNotTradablePrompt } from "./ArtifactNotTradablePrompt";
 
-storiesOf("prompt/ArtifactNotTradablePrompt", module)
+storiesOf("prompt|ArtifactNotTradablePrompt", module)
   .add("default", () => (
     <ArtifactNotTradablePrompt
       visible={boolean("Visible", true)}

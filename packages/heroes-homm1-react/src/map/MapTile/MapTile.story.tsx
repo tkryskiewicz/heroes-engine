@@ -6,7 +6,7 @@ import * as React from "react";
 import { mapObjectSize, terrainTransition, terrainType } from "../../stories";
 import { MapTile } from "./MapTile";
 
-storiesOf("map/MapTile", module)
+storiesOf("map|MapTile", module)
   .add("default", () => (
     <MapTile
       index={number("Index", 0, { range: true, min: 0, max: 100, step: 1 })}

@@ -6,7 +6,7 @@ import * as React from "react";
 import { luck, morale } from "../../stories";
 import { AdditionalStatsInfo } from "./AdditionalStatsInfo";
 
-storiesOf("base/AdditionalStatsInfo", module)
+storiesOf("base|AdditionalStatsInfo", module)
   .add("default", () => {
     const values = {
       experience: number("Experience", 0, { range: true, min: 0, max: 999999, step: 1 }),

@@ -16,7 +16,7 @@ const renderOptions = () => <Placeholder name="Options" />;
 const renderOptionDetails = () => <Placeholder name="Option Details" />;
 const renderButtons = () => <Placeholder name="Buttons" />;
 
-storiesOf("editor/EditorWindow", module)
+storiesOf("editor|EditorWindow", module)
   .add("default", () => (
     <EditorWindow
       renderAdventureWindow={renderAdventureWindow}

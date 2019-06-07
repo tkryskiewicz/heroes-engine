@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { ObjectDetailsUnavailablePrompt } from "./ObjectDetailsUnavailablePrompt";
 
-storiesOf("editor/ObjectDetailsUnavailablePrompt", module)
+storiesOf("editor|ObjectDetailsUnavailablePrompt", module)
   .add("default", () => (
     <ObjectDetailsUnavailablePrompt
       visible={boolean("Visible", true)}

@@ -12,7 +12,7 @@ const typeOptions: Array<SystemButtonProps["type"]> = [
   "cancel",
 ];
 
-storiesOf("base/SystemButton", module)
+storiesOf("base|SystemButton", module)
   .add("default", () => (
     <SystemButton
       type={select("Type", typeOptions, "yes")}

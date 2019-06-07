@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { GameInputNumber } from "./GameInputNumber";
 
-storiesOf("base/GameInputNumber", module)
+storiesOf("base|GameInputNumber", module)
   .add("default", () => (
     <GameInputNumber
       min={number("Min", 0, { range: true, min: 0, max: 999, step: 1 })}

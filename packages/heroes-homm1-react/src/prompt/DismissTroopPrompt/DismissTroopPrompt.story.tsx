@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { DismissTroopPrompt } from "./DismissTroopPrompt";
 
-storiesOf("prompt/DismissTroopPrompt", module)
+storiesOf("prompt|DismissTroopPrompt", module)
   .add("default", () => (
     <DismissTroopPrompt
       visible={boolean("Visible", true)}

@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { EndTurnPrompt } from "./EndTurnPrompt";
 
-storiesOf("prompt/EndTurnPrompt", module)
+storiesOf("prompt|EndTurnPrompt", module)
   .add("default", () => (
     <EndTurnPrompt
       visible={boolean("Visible", true)}

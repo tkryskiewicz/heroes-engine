@@ -6,7 +6,7 @@ import * as React from "react";
 import { creature, dwellingObject } from "../../stories";
 import { CreatureJoinPrompt } from "./CreatureJoinPrompt";
 
-storiesOf("prompt/CreatureJoinPrompt", module)
+storiesOf("prompt|CreatureJoinPrompt", module)
   .add("default", () => (
     <CreatureJoinPrompt
       visible={boolean("Visible", true)}

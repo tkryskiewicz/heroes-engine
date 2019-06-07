@@ -14,7 +14,7 @@ const orientationOptions: { readonly [index: string]: CellNumbersProps["orientat
   Vertical: "vertical",
 };
 
-storiesOf("editor/CellNumbers", module)
+storiesOf("editor|CellNumbers", module)
   .add("default", () => (
     <CellNumbers
       size={select("Size", sizeOptions, "large")}

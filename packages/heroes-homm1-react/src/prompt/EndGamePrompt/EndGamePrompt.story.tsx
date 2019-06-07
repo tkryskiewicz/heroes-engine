@@ -6,7 +6,7 @@ import * as React from "react";
 import { gameOption } from "../../stories";
 import { EndGamePrompt } from "./EndGamePrompt";
 
-storiesOf("prompt/EndGamePrompt", module)
+storiesOf("prompt|EndGamePrompt", module)
   .add("default", () => (
     <EndGamePrompt
       visible={boolean("Visible", true)}

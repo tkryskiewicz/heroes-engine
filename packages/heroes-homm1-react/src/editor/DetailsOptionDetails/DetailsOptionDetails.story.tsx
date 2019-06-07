@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { DetailsOptionDetails } from "./DetailsOptionDetails";
 
-storiesOf("editor/DetailsOptionDetails", module)
+storiesOf("editor|DetailsOptionDetails", module)
   .add("default", () => (
     <DetailsOptionDetails />
   ));

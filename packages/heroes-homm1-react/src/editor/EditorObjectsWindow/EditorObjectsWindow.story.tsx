@@ -8,7 +8,7 @@ import { EditorObjectsWindow } from "./EditorObjectsWindow";
 
 const renderObject = (object: string) => <Placeholder name={object} />;
 
-storiesOf("editor/EditorObjectsWindow", module)
+storiesOf("editor|EditorObjectsWindow", module)
   .add("defalut", () => (
     <EditorObjectsWindow
       visible={boolean("Visible", true)}

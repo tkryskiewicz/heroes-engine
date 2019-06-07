@@ -5,7 +5,7 @@ import * as React from "react";
 import { resource } from "../../stories";
 import { MineOverview } from "./MineOverview";
 
-storiesOf("base/MineOverview", module)
+storiesOf("base|MineOverview", module)
   .add("deafult", () => (
     <MineOverview
       resource={resource("Resource")}

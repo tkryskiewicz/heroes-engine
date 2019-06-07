@@ -11,7 +11,7 @@ const sizeOptions: { readonly [s: string]: EditorObjectSlotProps["size"] } = {
   Small: "small",
 };
 
-storiesOf("editor/EditorObjectSlot", module)
+storiesOf("editor|EditorObjectSlot", module)
   .add("default", () => (
     <EditorObjectSlot
       size={select("Size", sizeOptions, "large")}

@@ -5,7 +5,7 @@ import * as React from "react";
 import { hero } from "../../stories";
 import { HeroPortrait } from "./HeroPortrait";
 
-storiesOf("base/HeroPortrait", module)
+storiesOf("base|HeroPortrait", module)
   .add("default", () => (
     <HeroPortrait
       hero={hero("Hero")}

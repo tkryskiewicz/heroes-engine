@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { ComMenu } from "./ComMenu";
 
-storiesOf("menu/ComMenu", module)
+storiesOf("menu|ComMenu", module)
   .add("default", () => (
     <ComMenu
       onOptionClick={action("Option Click")}

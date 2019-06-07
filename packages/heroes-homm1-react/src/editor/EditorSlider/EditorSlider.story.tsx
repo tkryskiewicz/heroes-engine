@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { EditorSlider } from "./EditorSlider";
 
-storiesOf("editor/EditorSlider", module)
+storiesOf("editor|EditorSlider", module)
   .add("default", () => (
     <EditorSlider
       value={number("Value", 0, { range: true, min: 0, max: 1, step: 0.01 })}

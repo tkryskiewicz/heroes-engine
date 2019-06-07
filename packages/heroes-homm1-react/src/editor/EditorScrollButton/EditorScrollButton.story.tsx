@@ -5,7 +5,7 @@ import * as React from "react";
 import { mapObjectOrientation } from "../../stories";
 import { EditorScrollButton } from "./EditorScrollButton";
 
-storiesOf("editor/EditorScrollButton", module)
+storiesOf("editor|EditorScrollButton", module)
   .add("default", () => (
     <EditorScrollButton
       direction={mapObjectOrientation("direction")}

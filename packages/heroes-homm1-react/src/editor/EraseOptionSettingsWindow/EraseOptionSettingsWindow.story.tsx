@@ -13,7 +13,7 @@ const value: EraseObjectsSettings = {
   objectTypes: [],
 };
 
-storiesOf("editor/EraseOptionSettingsWindow", module)
+storiesOf("editor|EraseOptionSettingsWindow", module)
   .add("default", () => (
     <EraseOptionSettingsWindow
       visible={boolean("Visible", true)}

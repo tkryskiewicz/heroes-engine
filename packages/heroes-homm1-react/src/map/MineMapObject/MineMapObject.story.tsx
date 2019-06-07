@@ -13,7 +13,7 @@ const variantOptions = [
   "dirt",
 ];
 
-storiesOf("map/MineMapObject", module)
+storiesOf("map|MineMapObject", module)
   .add("default", () => (
     <MineMapObject
       size={mapObjectSize("Size")}

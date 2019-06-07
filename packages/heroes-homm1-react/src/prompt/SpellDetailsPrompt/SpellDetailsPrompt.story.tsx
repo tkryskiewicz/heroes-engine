@@ -6,7 +6,7 @@ import * as React from "react";
 import { spell } from "../../stories";
 import { SpellDetailsPrompt } from "./SpellDetailsPrompt";
 
-storiesOf("prompt/SpellDetailsPrompt", module)
+storiesOf("prompt|SpellDetailsPrompt", module)
   .add("default", () => (
     <SpellDetailsPrompt
       visible={boolean("Visible", true)}

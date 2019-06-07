@@ -6,7 +6,7 @@ import * as React from "react";
 import { creature, dwellingObject } from "../../stories";
 import { DwellingEmptyPrompt } from "./DwellingEmptyPrompt";
 
-storiesOf("prompt/DwellingEmptyPrompt", module)
+storiesOf("prompt|DwellingEmptyPrompt", module)
   .add("default", () => (
     <DwellingEmptyPrompt
       visible={boolean("Visible", true)}

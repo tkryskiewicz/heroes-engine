@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { BaudMenu } from "./BaudMenu";
 
-storiesOf("menu/BaudMenu", module)
+storiesOf("menu|BaudMenu", module)
   .add("default", () => (
     <BaudMenu
       onOptionClick={action("Option Click")}

@@ -5,7 +5,7 @@ import * as React from "react";
 import { alignment, heroClass } from "../../stories";
 import { Crest } from "./Crest";
 
-storiesOf("base/Crest", module)
+storiesOf("base|Crest", module)
   .add("default", () => (
     <Crest
       alignment={alignment("Alignment")}

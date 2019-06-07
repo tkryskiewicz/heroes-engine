@@ -7,7 +7,7 @@ import { Resource } from "heroes-homm1";
 
 import { TreasureChestPrompt } from "./TreasureChestPrompt";
 
-storiesOf("prompt/TreasureChestPrompt", module)
+storiesOf("prompt|TreasureChestPrompt", module)
   .add("default", () => (
     <TreasureChestPrompt
       visible={boolean("Visible", true)}

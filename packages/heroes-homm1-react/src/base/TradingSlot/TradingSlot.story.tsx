@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { TradingSlot } from "./TradingSlot";
 
-storiesOf("base/TradingSlot", module)
+storiesOf("base|TradingSlot", module)
   .add("default", () => (
     <TradingSlot
       index={number("Index", 0, { range: true, min: 0, max: 20, step: 1 })}

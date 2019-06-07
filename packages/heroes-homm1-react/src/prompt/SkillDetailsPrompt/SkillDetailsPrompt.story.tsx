@@ -6,7 +6,7 @@ import * as React from "react";
 import { skill } from "../../stories";
 import { SkillDetailsPrompt } from "./SkillDetailsPrompt";
 
-storiesOf("prompt/SkillDetailsPrompt", module)
+storiesOf("prompt|SkillDetailsPrompt", module)
   .add("default", () => (
     <SkillDetailsPrompt
       visible={boolean("Visible", true)}

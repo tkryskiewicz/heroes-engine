@@ -39,7 +39,7 @@ const data: HeroMapObjectDetailsWindowProps["data"] = {
   }), {}),
 };
 
-storiesOf("editor/HeroMapObjectDetailsWindow", module)
+storiesOf("editor|HeroMapObjectDetailsWindow", module)
   .add("default", () => {
     const armySize = number("Army Size", 5, { range: true, min: 1, max: 5, step: 1 });
 

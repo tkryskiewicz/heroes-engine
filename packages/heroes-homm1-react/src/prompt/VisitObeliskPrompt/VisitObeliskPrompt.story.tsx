@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { VisitObeliskPrompt } from "./VisitObeliskPrompt";
 
-storiesOf("prompt/VisitObeliskPrompt", module)
+storiesOf("prompt|VisitObeliskPrompt", module)
   .add("default", () => (
     <VisitObeliskPrompt
       visible={boolean("Visible", true)}

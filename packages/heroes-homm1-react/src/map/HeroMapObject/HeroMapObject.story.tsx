@@ -6,7 +6,7 @@ import * as React from "react";
 import { alignment, heroClass, mapObjectOrientation } from "../../stories";
 import { HeroMapObject } from "./HeroMapObject";
 
-storiesOf("map/HeroMapObject", module)
+storiesOf("map|HeroMapObject", module)
   .add("default", () => (
     <HeroMapObject
       heroClass={heroClass("Hero Class")}

@@ -6,7 +6,7 @@ import * as React from "react";
 import { artifact } from "../../stories";
 import { ArtifactDetailsPrompt } from "./ArtifactDetailsPrompt";
 
-storiesOf("prompt/ArtifactDetailsPrompt", module)
+storiesOf("prompt|ArtifactDetailsPrompt", module)
   .add("default", () => (
     <ArtifactDetailsPrompt
       visible={boolean("Visible", true)}

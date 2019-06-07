@@ -8,7 +8,7 @@ import { CreatureId } from "heroes-homm1";
 import { creature } from "../../stories";
 import { ArmyDetails } from "./ArmyDetails";
 
-storiesOf("editor/ArmyDetails", module)
+storiesOf("editor|ArmyDetails", module)
   .add("default", () => {
     const armySize = number("Army Size", 1, { range: true, min: 0, max: 10, step: 1 });
 

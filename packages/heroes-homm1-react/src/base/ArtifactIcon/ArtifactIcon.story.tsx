@@ -11,7 +11,7 @@ const sizeOptions: { readonly [s: string]: ArtifactIconProps["size"] } = {
   Small: "small",
 };
 
-storiesOf("base/ArtifactIcon", module)
+storiesOf("base|ArtifactIcon", module)
   .add("default", () => (
     <ArtifactIcon
       size={select("Size", sizeOptions, "large")}

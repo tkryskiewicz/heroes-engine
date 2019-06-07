@@ -10,7 +10,7 @@ const sizeOptions: { readonly [s: string]: ExperienceIconProps["size"] } = {
   Small: "small",
 };
 
-storiesOf("base/ExperienceIcon", module)
+storiesOf("base|ExperienceIcon", module)
   .add("default", () => (
     <ExperienceIcon
       size={select("Size", sizeOptions, "large")}

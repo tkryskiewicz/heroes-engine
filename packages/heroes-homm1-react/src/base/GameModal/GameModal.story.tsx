@@ -13,7 +13,7 @@ const typeOptions: { readonly [s: string]: GameModalProps["type"] } = {
   "Yes/No": "yesNo",
 };
 
-storiesOf("base/GameModal", module)
+storiesOf("base|GameModal", module)
   .add("default", () => (
     <GameModal
       visible={boolean("Visible", true)}

@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { ValueRangePrompt } from "./ValueRangePrompt";
 
-storiesOf("editor/ValueRangePrompt", module)
+storiesOf("editor|ValueRangePrompt", module)
   .add("default", () => (
     <ValueRangePrompt
       visible={boolean("Visible", true)}

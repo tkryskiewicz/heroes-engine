@@ -8,7 +8,7 @@ import { Alignment } from "heroes-homm1";
 import { alignment } from "../../stories";
 import { AlignmentDetails } from "./AlignmentDetails";
 
-storiesOf("editor/AlignmentDetails", module)
+storiesOf("editor|AlignmentDetails", module)
   .add("default", () => (
     <AlignmentDetails
       alignments={Object.values(Alignment)}

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { EditorObjectGrid } from "./EditorObjectGrid";
 
-storiesOf("editor/EditorObjectGrid", module)
+storiesOf("editor|EditorObjectGrid", module)
   .add("default", () => {
     const width = number("Width", 2, { range: true, min: 1, max: 10, step: 1 });
     const height = number("Height", 2, { range: true, min: 1, max: 10, step: 1 });

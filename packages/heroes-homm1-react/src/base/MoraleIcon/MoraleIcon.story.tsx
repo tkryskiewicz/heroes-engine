@@ -5,7 +5,7 @@ import * as React from "react";
 import { moraleType } from "../../stories";
 import { MoraleIcon } from "./MoraleIcon";
 
-storiesOf("base/MoraleIcon", module)
+storiesOf("base|MoraleIcon", module)
   .add("default", () => (
     <MoraleIcon
       type={moraleType("Type")}

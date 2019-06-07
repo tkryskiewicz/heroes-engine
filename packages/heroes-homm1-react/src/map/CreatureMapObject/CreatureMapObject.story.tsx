@@ -4,7 +4,7 @@ import * as React from "react";
 import { creature, mapObjectSize } from "../../stories";
 import { CreatureMapObject } from "./CreatureMapObject";
 
-storiesOf("map/CreatureMapObject", module)
+storiesOf("map|CreatureMapObject", module)
   .add("default", () => (
     <CreatureMapObject
       size={mapObjectSize("Size")}

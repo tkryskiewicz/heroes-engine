@@ -22,7 +22,7 @@ const value: RandomMapSettings = {
   trees: 0,
 };
 
-storiesOf("editor/RandomMapSettingsWindow", module)
+storiesOf("editor|RandomMapSettingsWindow", module)
   .add("default", () => (
     <RandomMapSettingsWindow
       visible={boolean("Visible", true)}
