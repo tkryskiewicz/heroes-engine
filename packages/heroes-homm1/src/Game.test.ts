@@ -103,7 +103,7 @@ describe("buyMageGuildSpellBook", () => {
         mapObjects: {},
         resources: {},
         spells: {},
-        terrains: [],
+        terrains: {},
         towns: {},
       },
       map: placeObject(

@@ -106,7 +106,10 @@ const data: GameData = {
     ...p,
     [c.id]: c,
   }), {}),
-  terrains: terrains.map((t) => t.id),
+  terrains: terrains.reduce((p, c) => ({
+    ...p,
+    [c.id]: c,
+  }), {}),
   towns: homm1Towns.reduce((p, c) => ({
     ...p,
     [c.id]: c,

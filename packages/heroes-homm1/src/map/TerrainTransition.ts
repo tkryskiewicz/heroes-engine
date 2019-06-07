@@ -1,4 +1,4 @@
-import { getTileIndex, isPointValid, Map, MapPoint, MapTile, translatePoint } from "heroes-core";
+import { GameData, getTileIndex, isPointValid, Map, MapPoint, MapTile, translatePoint } from "heroes-core";
 
 export enum TerrainTransition {
   None = "none",
@@ -27,8 +27,18 @@ const getMapTile = (map: Map, point: MapPoint): MapTile | undefined => {
 const isDifferentTerrain = (tileA: MapTile | undefined, tileB: MapTile | undefined): boolean =>
   tileA !== undefined && tileB !== undefined && tileA.terrain !== tileB.terrain;
 
-export const getTerrainTransition = (map: Map, point: MapPoint): TerrainTransition => {
+export const getTerrainTransition = (
+  map: Map,
+  point: MapPoint,
+  data: Pick<GameData, "terrains">,
+): TerrainTransition => {
   const tile = getMapTile(map, point)!;
+
+  const terrainData = data.terrains[tile.terrain];
+
+  if (!terrainData.hasTransitions) {
+    return TerrainTransition.None;
+  }
 
   const northTerrainDifferent = isDifferentTerrain(getMapTile(map, translatePoint(point, 0, -1)), tile);
   const eastTerrainDifferent = isDifferentTerrain(getMapTile(map, translatePoint(point, 1, 0)), tile);

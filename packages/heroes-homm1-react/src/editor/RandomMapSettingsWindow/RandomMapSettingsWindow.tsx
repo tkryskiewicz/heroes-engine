@@ -82,7 +82,7 @@ export class RandomMapSettingsWindow extends React.Component<RandomMapSettingsWi
             </GameText>
           </Col>
         </Row>
-        {this.props.data.terrains.map((t) => this.renderTerrain(t, terrains[t]))}
+        {Object.keys(this.props.data.terrains).map((t) => this.renderTerrain(t, terrains[t]))}
       </div>
     );
   }

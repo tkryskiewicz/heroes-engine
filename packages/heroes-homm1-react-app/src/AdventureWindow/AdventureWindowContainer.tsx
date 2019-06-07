@@ -54,7 +54,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
   }
 
   private readonly renderTile = (index: number) => {
-    const { map } = this.props;
+    const { data, map } = this.props;
 
     const tile = map.tiles[index];
 
@@ -64,7 +64,7 @@ class AdventureWindowContainer extends React.Component<Props, State> {
 
     const point = getTilePoint(map.width, index);
 
-    const transition = getTerrainTransition(map, point);
+    const transition = getTerrainTransition(map, point, data);
 
     return (
       <MapTile

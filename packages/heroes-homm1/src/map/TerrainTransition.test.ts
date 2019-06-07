@@ -2,11 +2,24 @@ import { changeTerrain, createMap, createPoint } from "heroes-core";
 
 import { getTerrainTransition, TerrainTransition } from "./TerrainTransition";
 
+const defaultData: Parameters<typeof getTerrainTransition>[2] = {
+  terrains: {
+    otherTerrain: {
+      hasTransitions: true,
+      id: "otherTerrain",
+    },
+    terrain: {
+      hasTransitions: true,
+      id: "terrain",
+    },
+  },
+};
+
 describe("getTerrainTransition", () => {
   it("should return none", () => {
     const map = createMap(1, 1, "terrain");
 
-    const result = getTerrainTransition(map, createPoint(0, 0));
+    const result = getTerrainTransition(map, createPoint(0, 0), defaultData);
 
     expect(result).toBe(TerrainTransition.None);
   });
@@ -18,7 +31,7 @@ describe("getTerrainTransition", () => {
       "otherTerrain",
     );
 
-    const result = getTerrainTransition(map, createPoint(0, 0));
+    const result = getTerrainTransition(map, createPoint(0, 0), defaultData);
 
     expect(result).toBe(TerrainTransition.SouthEastOut);
   });
@@ -30,7 +43,7 @@ describe("getTerrainTransition", () => {
       "otherTerrain",
     );
 
-    const result = getTerrainTransition(map, createPoint(1, 0));
+    const result = getTerrainTransition(map, createPoint(1, 0), defaultData);
 
     expect(result).toBe(TerrainTransition.SouthWestOut);
   });
@@ -42,7 +55,7 @@ describe("getTerrainTransition", () => {
       "otherTerrain",
     );
 
-    const result = getTerrainTransition(map, createPoint(0, 1));
+    const result = getTerrainTransition(map, createPoint(0, 1), defaultData);
 
     expect(result).toBe(TerrainTransition.NorthEastOut);
   });
@@ -54,7 +67,7 @@ describe("getTerrainTransition", () => {
       "otherTerrain",
     );
 
-    const result = getTerrainTransition(map, createPoint(1, 1));
+    const result = getTerrainTransition(map, createPoint(1, 1), defaultData);
 
     expect(result).toBe(TerrainTransition.NorthWestOut);
   });
@@ -66,7 +79,7 @@ describe("getTerrainTransition", () => {
       "otherTerrain",
     );
 
-    const result = getTerrainTransition(map, createPoint(0, 0));
+    const result = getTerrainTransition(map, createPoint(0, 0), defaultData);
 
     expect(result).toBe(TerrainTransition.East);
   });
@@ -78,7 +91,7 @@ describe("getTerrainTransition", () => {
       "otherTerrain",
     );
 
-    const result = getTerrainTransition(map, createPoint(1, 0));
+    const result = getTerrainTransition(map, createPoint(1, 0), defaultData);
 
     expect(result).toBe(TerrainTransition.West);
   });
@@ -90,7 +103,7 @@ describe("getTerrainTransition", () => {
       "otherTerrain",
     );
 
-    const result = getTerrainTransition(map, createPoint(0, 0));
+    const result = getTerrainTransition(map, createPoint(0, 0), defaultData);
 
     expect(result).toBe(TerrainTransition.South);
   });
@@ -102,7 +115,7 @@ describe("getTerrainTransition", () => {
       "otherTerrain",
     );
 
-    const result = getTerrainTransition(map, createPoint(0, 1));
+    const result = getTerrainTransition(map, createPoint(0, 1), defaultData);
 
     expect(result).toBe(TerrainTransition.North);
   });
@@ -115,7 +128,7 @@ describe("getTerrainTransition", () => {
         "otherTerrain",
       );
 
-    const result = getTerrainTransition(map, createPoint(1, 1));
+    const result = getTerrainTransition(map, createPoint(1, 1), defaultData);
 
     expect(result).toBe(TerrainTransition.NorthWestIn);
   });
@@ -128,7 +141,7 @@ describe("getTerrainTransition", () => {
         "otherTerrain",
       );
 
-    const result = getTerrainTransition(map, createPoint(0, 0));
+    const result = getTerrainTransition(map, createPoint(0, 0), defaultData);
 
     expect(result).toBe(TerrainTransition.SouthEastIn);
   });
@@ -141,7 +154,7 @@ describe("getTerrainTransition", () => {
         "otherTerrain",
       );
 
-    const result = getTerrainTransition(map, createPoint(1, 0));
+    const result = getTerrainTransition(map, createPoint(1, 0), defaultData);
 
     expect(result).toBe(TerrainTransition.SouthWestIn);
   });
@@ -154,8 +167,33 @@ describe("getTerrainTransition", () => {
         "otherTerrain",
       );
 
-    const result = getTerrainTransition(map, createPoint(0, 1));
+    const result = getTerrainTransition(map, createPoint(0, 1), defaultData);
 
     expect(result).toBe(TerrainTransition.NorthEastIn);
+  });
+
+  it("should return none when terrain has no transitions", () => {
+    const data: Parameters<typeof getTerrainTransition>[2] = {
+      terrains: {
+        otherTerrain: {
+          hasTransitions: false,
+          id: "otherTerrain",
+        },
+        terrain: {
+          hasTransitions: true,
+          id: "terrain",
+        },
+      },
+    };
+
+    const map = changeTerrain(
+      createMap(2, 1, "terrain"),
+      createPoint(0, 0),
+      "otherTerrain",
+    );
+
+    const result = getTerrainTransition(map, createPoint(0, 0), data);
+
+    expect(result).toBe(TerrainTransition.None);
   });
 });

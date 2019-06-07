@@ -8,7 +8,10 @@ import { LandMassSetting, RandomMapSettings, terrains } from "heroes-homm1";
 import { RandomMapSettingsWindow, RandomMapSettingsWindowProps } from "./RandomMapSettingsWindow";
 
 const data: RandomMapSettingsWindowProps["data"] = {
-  terrains: terrains.map((t) => t.id),
+  terrains: terrains.reduce((p, c) => ({
+    ...p,
+    [c.id]: c,
+  }), {}),
 };
 
 const value: RandomMapSettings = {

@@ -34,7 +34,10 @@ const data: GameData = {
   mapObjects: {},
   resources: {},
   spells: {},
-  terrains: terrains.map((t) => t.id),
+  terrains: terrains.reduce((p, c) => ({
+    ...p,
+    [c.id]: c,
+  }), {}),
   towns: {},
 };
 

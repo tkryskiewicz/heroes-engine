@@ -276,7 +276,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       renderEditorObject(tile.object, data.mapObjects[tile.object.dataId], tile.terrain, data, size) :
       undefined;
 
-    const transition = getTerrainTransition(scenario.map, tilePoint);
+    const transition = getTerrainTransition(scenario.map, tilePoint, data);
 
     const active = activeTile && activePoint && isSamePoint(activePoint, tilePoint) &&
       selectedOption === EditorOption.Details;
@@ -477,7 +477,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       case EditorOption.Terrains:
         return (
           <TerrainsOptionDetails
-            options={data.terrains}
+            options={Object.keys(data.terrains)}
             selectedOption={this.props.selectedTerrain}
             onSelectedOptionChange={this.props.onSelectedTerrainChange}
           />
