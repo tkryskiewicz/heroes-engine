@@ -5,12 +5,12 @@ import * as React from "react";
 import { creature } from "../../stories";
 import { CreatureIcon, CreatureIconProps } from "./CreatureIcon";
 
-const sizeOptions: { readonly [s: string]: CreatureIconProps["size"] } = {
-  Large: "large",
-  Medium: "medium",
-  Small: "small",
-  Tiny: "tiny",
-};
+const sizeOptions: Array<CreatureIconProps["size"]> = [
+  "large",
+  "medium",
+  "small",
+  "tiny",
+];
 
 storiesOf("base|CreatureIcon", module)
   .add("default", () => (

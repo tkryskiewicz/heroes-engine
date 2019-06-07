@@ -6,12 +6,12 @@ import * as React from "react";
 import { GameText } from "../../core";
 import { GameModal, GameModalProps } from "./GameModal";
 
-const typeOptions: { readonly [s: string]: GameModalProps["type"] } = {
-  "Cancel": "cancel",
-  "Okay": "okay",
-  "Okay/Cancel": "okayCancel",
-  "Yes/No": "yesNo",
-};
+const typeOptions: Array<GameModalProps["type"]> = [
+  "cancel",
+  "okay",
+  "okayCancel",
+  "yesNo",
+];
 
 storiesOf("base|GameModal", module)
   .add("default", () => (

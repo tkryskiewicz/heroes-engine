@@ -5,10 +5,10 @@ import * as React from "react";
 
 import { ViewWindow, ViewWindowProps } from "./ViewWindow";
 
-const typeOptions: { readonly [s: string]: ViewWindowProps["type"] } = {
-  Puzzle: "puzzle",
-  World: "world",
-};
+const typeOptions: Array<ViewWindowProps["type"]> = [
+  "puzzle",
+  "world",
+];
 
 storiesOf("ViewWindow", module)
   .add("default", () => (

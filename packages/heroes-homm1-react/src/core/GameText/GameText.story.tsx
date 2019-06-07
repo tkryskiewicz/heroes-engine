@@ -4,12 +4,12 @@ import * as React from "react";
 
 import { GameText, GameTextProps } from "./GameText";
 
-const sizeOptions: { readonly [s: string]: GameTextProps["size"] } = {
-  Large: "large",
-  Normal: "normal",
-  Small: "small",
-  Tiny: "tiny",
-};
+const sizeOptions: Array<GameTextProps["size"]> = [
+  "large",
+  "normal",
+  "small",
+  "tiny",
+];
 
 storiesOf("core|GameText", module)
   .add("default", () => (

@@ -6,10 +6,10 @@ import * as React from "react";
 import { Placeholder } from "../../Placeholder";
 import { EditorObjectSlot, EditorObjectSlotProps } from "./EditorObjectSlot";
 
-const sizeOptions: { readonly [s: string]: EditorObjectSlotProps["size"] } = {
-  Large: "large",
-  Small: "small",
-};
+const sizeOptions: Array<EditorObjectSlotProps["size"]> = [
+  "large",
+  "small",
+];
 
 storiesOf("editor|EditorObjectSlot", module)
   .add("default", () => (

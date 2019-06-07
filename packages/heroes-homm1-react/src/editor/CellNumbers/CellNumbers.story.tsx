@@ -4,15 +4,15 @@ import * as React from "react";
 
 import { CellNumbers, CellNumbersProps } from "./CellNumbers";
 
-const sizeOptions: { readonly [index: string]: CellNumbersProps["size"] } = {
-  Large: "large",
-  Small: "small",
-};
+const sizeOptions: Array<CellNumbersProps["size"]> = [
+  "large",
+  "small",
+];
 
-const orientationOptions: { readonly [index: string]: CellNumbersProps["orientation"] } = {
-  Horizontal: "horizontal",
-  Vertical: "vertical",
-};
+const orientationOptions: Array<CellNumbersProps["orientation"]> = [
+  "horizontal",
+  "vertical",
+];
 
 storiesOf("editor|CellNumbers", module)
   .add("default", () => (

@@ -9,10 +9,10 @@ import Readme = require("./README.md");
 import { resource } from "../../stories";
 import { ResourceIcon, ResourceIconProps } from "./ResourceIcon";
 
-const sizeOptions: { readonly [s: string]: ResourceIconProps["size"] } = {
-  Large: "large",
-  Small: "small",
-};
+const sizeOptions: Array<ResourceIconProps["size"]> = [
+  "large",
+  "small",
+];
 
 storiesOf("base|ResourceIcon", module)
   .addDecorator(withReadme(Readme))

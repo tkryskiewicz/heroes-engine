@@ -4,12 +4,12 @@ import * as React from "react";
 
 import { GameParagraph, GameParagraphProps } from "./GameParagraph";
 
-const textSizeOptions: { readonly [s: string]: GameParagraphProps["textSize"] } = {
-  Large: "large",
-  Normal: "normal",
-  Small: "small",
-  Tiny: "tiny",
-};
+const textSizeOptions: Array<GameParagraphProps["textSize"]> = [
+  "large",
+  "normal",
+  "small",
+  "tiny",
+];
 
 storiesOf("core|GameParagraph", module)
   .add("default", () => (

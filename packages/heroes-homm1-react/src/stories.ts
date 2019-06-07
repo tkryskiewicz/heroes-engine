@@ -81,16 +81,16 @@ export const hero = (name: string) =>
 export const town = (name: string) =>
   select<TownId>(name, Object.values(TownId), TownId.Farm);
 
-const structureOptions = {
-  ...StructureId,
-  ...FarmStructureId,
-  ...PlainsStructureId,
-  ...ForestStructureId,
-  ...MountainsStructureId,
-};
+const structureOptions: string[] = [
+  ...Object.values(StructureId),
+  ...Object.values(FarmStructureId),
+  ...Object.values(PlainsStructureId),
+  ...Object.values(ForestStructureId),
+  ...Object.values(MountainsStructureId),
+];
 
 export const structure = (name: string) =>
-  select<string>(name, structureOptions, StructureId.Castle);
+  select(name, structureOptions, StructureId.Castle);
 
 export const castleOptionStatus = (name: string) =>
   select<CastleOptionStatus>(name, Object.values(CastleOptionStatus), CastleOptionStatus.Built);
@@ -142,14 +142,14 @@ export const mapObjectSize = (name: string) =>
 export const mapObjectOrientation = (name: string) =>
   select<MapObjectOrientation>(name, Object.values(MapObjectOrientation), MapObjectOrientation.North);
 
-const dwellingObjectOptions = [
+const dwellingObjectOptions: MapObjectId[] = [
   MapObjectId.Cottage,
   MapObjectId.Hut,
   MapObjectId.ThatchedHut,
 ];
 
 export const dwellingObject = (name: string) =>
-  select<MapObjectId>(name, dwellingObjectOptions, MapObjectId.Cottage);
+  select(name, dwellingObjectOptions, MapObjectId.Cottage);
 
 export const editorOption = (name: string) =>
   select<EditorOption>(name, Object.values(EditorOption), EditorOption.Terrains);

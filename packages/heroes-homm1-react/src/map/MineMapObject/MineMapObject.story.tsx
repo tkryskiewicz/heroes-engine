@@ -3,9 +3,9 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { alignment, mapObjectSize, resource } from "../../stories";
-import { MineMapObject } from "./MineMapObject";
+import { MineMapObject, MineMapObjectProps } from "./MineMapObject";
 
-const variantOptions = [
+const variantOptions: Array<MineMapObjectProps["variant"]> = [
   "grass",
   "snow",
   "swamp",

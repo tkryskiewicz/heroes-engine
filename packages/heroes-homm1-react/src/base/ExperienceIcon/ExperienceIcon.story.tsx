@@ -5,10 +5,10 @@ import * as React from "react";
 
 import { ExperienceIcon, ExperienceIconProps } from "./ExperienceIcon";
 
-const sizeOptions: { readonly [s: string]: ExperienceIconProps["size"] } = {
-  Large: "large",
-  Small: "small",
-};
+const sizeOptions: Array<ExperienceIconProps["size"]> = [
+  "large",
+  "small",
+];
 
 storiesOf("base|ExperienceIcon", module)
   .add("default", () => (

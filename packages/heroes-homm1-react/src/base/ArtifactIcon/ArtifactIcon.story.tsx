@@ -6,10 +6,10 @@ import * as React from "react";
 import { artifact } from "../../stories";
 import { ArtifactIcon, ArtifactIconProps } from "./ArtifactIcon";
 
-const sizeOptions: { readonly [s: string]: ArtifactIconProps["size"] } = {
-  Large: "large",
-  Small: "small",
-};
+const sizeOptions: Array<ArtifactIconProps["size"]> = [
+  "large",
+  "small",
+];
 
 storiesOf("base|ArtifactIcon", module)
   .add("default", () => (
