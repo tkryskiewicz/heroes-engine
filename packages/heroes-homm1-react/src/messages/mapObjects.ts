@@ -8,10 +8,6 @@ const getKey = (mapObject: string) =>
   convertValue(mapObject);
 
 const mapObjectTypeMessages: Messages = defineMessages({
-  [MapObjectType.Other]: {
-    defaultMessage: "Other Objs",
-    id: "game.editor.objectType.otherObjects",
-  },
   [MapObjectType.Water]: {
     defaultMessage: "Water Objs",
     id: "game.editor.objectType.waterObjects",
