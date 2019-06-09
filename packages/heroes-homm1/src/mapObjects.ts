@@ -196,8 +196,52 @@ const randomCreatureObjects: Array<RandomCreatureMapObjectData & TerrainRestrict
 
 type ArtifactObjectData = ArtifactMapObjectData & PickableMapObjectData & TerrainRestrictedMapObjectData;
 
+const artifactObjectOrder: string[] = [
+  ArtifactId.ArcaneNecklaceOfMagic,
+  ArtifactId.CastersBraceletOfMagic,
+  ArtifactId.MagesRingOfPower,
+  ArtifactId.WitchsBroachOfMagic,
+
+  ArtifactId.MedalOfValor,
+  ArtifactId.MedalOfCourage,
+  ArtifactId.MedalOfHonor,
+  ArtifactId.MedalOfDistinction,
+
+  ArtifactId.FizbinOfMisfortune,
+
+  ArtifactId.ThunderMaceOfDominion,
+  ArtifactId.ArmoredGauntletsOfProtection,
+  ArtifactId.DefenderHelmOfProtection,
+  ArtifactId.GiantFlailOfDominion,
+  ArtifactId.BallistaOfQuickness,
+  ArtifactId.StealthShieldOfProtection,
+  ArtifactId.DragonSwordOfDominion,
+  ArtifactId.PowerAxeOfDominion,
+  ArtifactId.DivineBreastplateOfProtection,
+
+  ArtifactId.MinorScrollOfKnowledge,
+  ArtifactId.MajorScrollOfKnowledge,
+  ArtifactId.SuperiorScrollOfKnowledge,
+  ArtifactId.ForemostScrollOfKnowledge,
+
+  ArtifactId.EndlessSackOfGold,
+  ArtifactId.EndlessBagOfGold,
+  ArtifactId.EndlessPurseOfGold,
+
+  ArtifactId.NomadBootsOfMobility,
+  ArtifactId.TravelersBootsOfMobility,
+
+  ArtifactId.LuckyRabbitsFoot,
+  ArtifactId.GoldenHoreshoe,
+  ArtifactId.GamblersLuckyCoin,
+  ArtifactId.FourLeafClover,
+  ArtifactId.TrueCompassOfMobility,
+  ArtifactId.SailorsAstrolabeOfMobility,
+];
+
 const artifactObjects: ArtifactObjectData[] = artifacts
   .filter((a) => a.id !== ArtifactId.Spellbook && !a.isUltimate)
+  .sort((a, b) => artifactObjectOrder.indexOf(a.id) - artifactObjectOrder.indexOf(b.id))
   .map<ArtifactObjectData>((a) => ({
     artifact: a.id,
     grid: [

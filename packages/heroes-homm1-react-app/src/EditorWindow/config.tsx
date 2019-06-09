@@ -212,7 +212,6 @@ const objectOrder: string[] = [
 ];
 
 // TODO: add town objects
-// TODO: fix artifact order
 export const getObjects = (type: MapObjectType, data: GameData): string[] =>
   Object.values(data.mapObjects)
     .filter((o) => o.type === type || (Array.isArray(o.type) && o.type.includes(type)))
