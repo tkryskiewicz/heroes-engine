@@ -18,6 +18,7 @@ describe("createTownMapObject", () => {
       height: 1,
       id: "dataId",
       ownable: true,
+      type: "type",
       width: 1,
     };
 
@@ -51,6 +52,7 @@ describe("createTownMapObject", () => {
       height: 1,
       id: "dataId",
       ownable: true,
+      type: "type",
       width: 1,
     };
 
@@ -86,6 +88,7 @@ describe("isTownMapObject", () => {
       height: 1,
       id: "town",
       ownable: true,
+      type: "type",
       width: 1,
     };
 

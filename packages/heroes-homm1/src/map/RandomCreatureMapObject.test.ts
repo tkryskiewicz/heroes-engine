@@ -13,6 +13,7 @@ describe("isRandomCreatureMapObjectData", () => {
       height: 1,
       id: "dataId",
       randomCreature: {},
+      type: "type",
       width: 1,
     };
 
@@ -29,6 +30,7 @@ describe("createRandomCreatureMapObject", () => {
       height: 1,
       id: "dataId",
       randomCreature: {},
+      type: "type",
       width: 1,
     };
 
@@ -51,6 +53,7 @@ describe("isRandomCreatureMapObject", () => {
       height: 1,
       id: "dataId",
       randomCreature: {},
+      type: "type",
       width: 1,
     };
 

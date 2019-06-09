@@ -15,6 +15,7 @@ describe("isRandomTownMapObjectData", () => {
       grid: [],
       height: 1,
       id: MapObjectId.RandomTown,
+      type: "type",
       width: 1,
     };
 
@@ -28,6 +29,7 @@ describe("isRandomTownMapObjectData", () => {
       grid: [],
       height: 1,
       id: MapObjectId.RandomCastle,
+      type: "type",
       width: 1,
     };
 
@@ -43,6 +45,7 @@ describe("createRandomTownMapObject", () => {
       grid: [],
       height: 1,
       id: MapObjectId.RandomTown,
+      type: "type",
       width: 1,
     };
 
@@ -93,6 +96,7 @@ describe("isRandomTownMapObject", () => {
       grid: [],
       height: 1,
       id: MapObjectId.RandomTown,
+      type: "type",
       width: 1,
     };
 
@@ -114,6 +118,7 @@ describe("isRandomTownMapObject", () => {
       grid: [],
       height: 1,
       id: MapObjectId.RandomCastle,
+      type: "type",
       width: 1,
     };
 

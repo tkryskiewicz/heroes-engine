@@ -19,6 +19,7 @@ describe("isHeroMapObjectData", () => {
       height: 1,
       id: MapObjectId.Hero,
       ownable: true,
+      type: "type",
       width: 1,
     };
 
@@ -38,6 +39,7 @@ describe("createHeroMapObject", () => {
       height: 1,
       id: MapObjectId.Hero,
       ownable: true,
+      type: "type",
       width: 1,
     };
 
@@ -76,6 +78,7 @@ describe("createHeroMapObject", () => {
       height: 1,
       id: MapObjectId.Hero,
       ownable: true,
+      type: "type",
       width: 1,
     };
 
@@ -116,6 +119,7 @@ describe("isHeroMapObject", () => {
       height: 1,
       id: MapObjectId.Hero,
       ownable: true,
+      type: "type",
       width: 1,
     };
 

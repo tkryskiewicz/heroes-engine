@@ -6,7 +6,9 @@ export {
   isHeroMapObjectData,
 } from "./HeroMapObject";
 export * from "./map";
+export { MapObjectData } from "./MapObject";
 export { MapObjectId } from "./MapObjectId";
+export { MapObjectType } from "./MapObjectType";
 export {
   MineMapObject,
   MineMapObjectData,

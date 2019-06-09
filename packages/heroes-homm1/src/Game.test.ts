@@ -45,6 +45,7 @@ describe("buyMageGuildSpellBook", () => {
       height: 1,
       id: MapObjectId.Hero,
       ownable: true,
+      type: "type",
       width: 1,
     };
 
@@ -81,6 +82,7 @@ describe("buyMageGuildSpellBook", () => {
       height: 1,
       id: "town",
       ownable: true,
+      type: "type",
       width: 1,
     };
 

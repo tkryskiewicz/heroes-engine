@@ -373,17 +373,6 @@ const neutralCreatures: CreatureData[] = [
     speed: CreatureSpeed.Fast,
   },
   {
-    attack: 10,
-    damage: {
-      max: 30,
-      min: 20,
-    },
-    defense: 9,
-    hitPoints: 50,
-    id: CreatureId.Genie,
-    speed: CreatureSpeed.Fast,
-  },
-  {
     attack: 8,
     damage: {
       max: 6,
@@ -393,6 +382,17 @@ const neutralCreatures: CreatureData[] = [
     hitPoints: 20,
     id: CreatureId.Ghost,
     speed: CreatureSpeed.Medium,
+  },
+  {
+    attack: 10,
+    damage: {
+      max: 30,
+      min: 20,
+    },
+    defense: 9,
+    hitPoints: 50,
+    id: CreatureId.Genie,
+    speed: CreatureSpeed.Fast,
   },
 ];
 

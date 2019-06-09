@@ -13,6 +13,7 @@ describe("isResourceMapObjectData", () => {
       id: "dataId",
       pickable: true,
       treasure: {},
+      type: "type",
       width: 1,
     };
 

@@ -10,6 +10,7 @@ describe("isObeliskMapObjectData", () => {
       height: 1,
       id: MapObjectId.Obelisk,
       interactionLimit: InteractionLimitType.OncePerAlignment,
+      type: "type",
       uncoversPuzzlePiece: true,
       width: 1,
     };

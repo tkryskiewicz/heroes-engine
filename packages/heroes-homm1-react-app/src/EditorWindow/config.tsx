@@ -2,11 +2,8 @@ import * as React from "react";
 
 import {
   GameData,
-  isArtifactMapObjectData,
   isCreatureMapObject,
-  isCreatureMapObjectData,
   MapObject,
-  MapObjectData,
 } from "heroes-core";
 import {
   CreatureMapObjectDetails,
@@ -17,17 +14,13 @@ import {
   HeroMapObjectDetails,
   isHeroMapObject,
   isRandomCreatureMapObject,
-  isRandomCreatureMapObjectData,
   isRandomTownMapObject,
-  isResourceMapObject,
-  isResourceMapObjectData,
-  isTerrainRestrictedMapObjectData,
   MapObjectDetails,
   MapObjectId,
+  MapObjectType,
   setCreatureMapObjectDetails,
   setHeroMapObjectDetails,
   setTownMapObjectDetails,
-  TerrainType,
   TownMapObjectDetails,
 } from "heroes-homm1";
 import {
@@ -211,107 +204,46 @@ const objectOrder: string[] = [
   MapObjectId.TravelGate,
   MapObjectId.WagonCamp,
   MapObjectId.Windmill,
-];
-
-const randomObjects: string[] = [
-  MapObjectId.RandomArtifact,
-  MapObjectId.RandomCastle,
   MapObjectId.RandomCreature,
   MapObjectId.RandomCreature1,
   MapObjectId.RandomCreature2,
   MapObjectId.RandomCreature3,
   MapObjectId.RandomCreature4,
-  MapObjectId.RandomMine,
-  MapObjectId.RandomResource,
-  MapObjectId.RandomTown,
+  MapObjectId.Hero,
 ];
 
-const treasures: string[] = [
-  MapObjectId.Fireplace,
-  MapObjectId.TreasureChest,
-  MapObjectId.Lamp,
-];
-
-const isStaticObject = (objectData: MapObjectData, data: GameData): boolean =>
-  !isCreatureMapObjectData(objectData) &&
-  !isArtifactMapObjectData(objectData) &&
-  !isResourceMapObjectData(objectData, data) &&
-  !randomObjects.includes(objectData.id) &&
-  !treasures.includes(objectData.id);
-
-const getTerrainObjects = (data: GameData, terrain: TerrainType): string[] =>
+const getObjectsByType = (data: GameData, type: MapObjectType): string[] =>
   Object.values(data.mapObjects)
-    .filter((o) => isStaticObject(o, data))
-    .filter((o) => isTerrainRestrictedMapObjectData(o) && o.restrictedTerrains.includes(terrain))
-    .sort((a, b) => objectOrder.indexOf(a.id) - objectOrder.indexOf(b.id))
-    .map((o) => o.id);
+    .filter((o) => o.type === type || (Array.isArray(o.type) && o.type.includes(type)))
+    .map((o) => o.id)
+    .sort((a, b) => objectOrder.indexOf(a) - objectOrder.indexOf(b));
 
 export const getObjects = (type: EditorObjectType, data: GameData): string[] => {
   switch (type) {
     case EditorObjectType.WaterObjects:
-      return getTerrainObjects(data, TerrainType.Water);
+      return getObjectsByType(data, MapObjectType.Water);
     case EditorObjectType.GrassObjects:
-      return getTerrainObjects(data, TerrainType.Grass);
+      return getObjectsByType(data, MapObjectType.Grass);
     case EditorObjectType.SnowObjects:
-      return getTerrainObjects(data, TerrainType.Snow);
+      return getObjectsByType(data, MapObjectType.Snow);
     case EditorObjectType.SwampObjects:
-      return getTerrainObjects(data, TerrainType.Swamp);
+      return getObjectsByType(data, MapObjectType.Swamp);
     case EditorObjectType.LavaObjects:
-      return getTerrainObjects(data, TerrainType.Lava);
+      return getObjectsByType(data, MapObjectType.Lava);
     case EditorObjectType.DesertObjects:
-      return getTerrainObjects(data, TerrainType.Desert);
+      return getObjectsByType(data, MapObjectType.Desert);
     case EditorObjectType.DirtObjects:
-      return getTerrainObjects(data, TerrainType.Dirt);
+      return getObjectsByType(data, MapObjectType.Dirt);
     case EditorObjectType.Towns:
-      const townObjects: string[] = [
-        MapObjectId.RandomCastle,
-        MapObjectId.RandomTown,
-      ];
-
       // TODO: add town objects
-      return Object.values(data.mapObjects)
-        .filter((o) => townObjects.includes(o.id))
-        .sort((a, b) => townObjects.indexOf(a.id) - townObjects.indexOf(b.id))
-        .map((o) => o.id);
+      return getObjectsByType(data, MapObjectType.Town);
     case EditorObjectType.Monsters:
-      const creatureObjects: string[] = [
-        ...Object.values(data.mapObjects)
-          .filter((o) => isCreatureMapObjectData(o) || isRandomCreatureMapObjectData(o))
-          .map((o) => o.id),
-        MapObjectId.Hero,
-      ];
-
-      return Object.values(data.mapObjects)
-        .filter((o) => creatureObjects.includes(o.id))
-        .sort((a, b) => creatureObjects.indexOf(a.id) - creatureObjects.indexOf(b.id))
-        .map((o) => o.id);
+      return getObjectsByType(data, MapObjectType.Monster);
     case EditorObjectType.Artifacts:
       // TODO: fix artifact order
-      const artifactObjects: string[] = [
-        ...Object.values(data.mapObjects)
-          .filter(isArtifactMapObjectData)
-          .map((o) => o.id),
-        MapObjectId.RandomArtifact,
-      ];
-
-      return Object.values(data.mapObjects)
-        .filter((o) => artifactObjects.includes(o.id))
-        .sort((a, b) => artifactObjects.indexOf(a.id) - artifactObjects.indexOf(b.id))
-        .map((o) => o.id);
+      return getObjectsByType(data, MapObjectType.Artifact);
     case EditorObjectType.Treasures:
-      const treasureObjects: string[] = [
-        // FIXME: creating object and order
-        ...Object.values(data.mapObjects)
-          .filter((o) => isResourceMapObject({ id: "", dataId: o.id }, data))
-          .map((o) => o.id),
-        MapObjectId.RandomResource,
-        ...treasures,
-      ];
-
-      return Object.values(data.mapObjects)
-        .filter((o) => treasureObjects.includes(o.id))
-        .sort((a, b) => treasureObjects.indexOf(a.id) - treasureObjects.indexOf(b.id))
-        .map((o) => o.id);
+      return getObjectsByType(data, MapObjectType.Treasure);
     default:
       return [];
   }

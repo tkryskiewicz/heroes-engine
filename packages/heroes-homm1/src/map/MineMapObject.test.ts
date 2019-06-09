@@ -11,6 +11,7 @@ describe("isMineMapObjectData", () => {
         amount: 1,
         resource: "resource",
       },
+      type: "type",
       width: 1,
     };
 

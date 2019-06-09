@@ -7,6 +7,7 @@ describe("isTerrainRestrictedMapObjectData", () => {
       height: 1,
       id: "dataId",
       restrictedTerrains: [],
+      type: "type",
       width: 1,
     };
 

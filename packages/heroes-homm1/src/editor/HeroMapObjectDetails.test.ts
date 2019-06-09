@@ -13,6 +13,7 @@ describe("getHeroMapObjectDetails", () => {
       height: 1,
       id: MapObjectId.Hero,
       ownable: true,
+      type: "type",
       width: 1,
     };
 

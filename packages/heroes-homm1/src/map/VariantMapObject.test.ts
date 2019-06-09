@@ -6,6 +6,7 @@ describe("isVariantMapObjectData", () => {
       grid: [],
       height: 1,
       id: "dataId",
+      type: "type",
       variants: {},
       width: 1,
     };
