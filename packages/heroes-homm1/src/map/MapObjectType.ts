@@ -1,5 +1,4 @@
 export enum MapObjectType {
-  Other = "other",
   Water = "water",
   Grass = "grass",
   Snow = "snow",
@@ -12,3 +11,11 @@ export enum MapObjectType {
   Artifact = "artifact",
   Treasure = "treasure",
 }
+
+const objectTypes = Object.values(MapObjectType);
+
+export const previousObjectType = (value: MapObjectType): MapObjectType =>
+  objectTypes[(objectTypes.length + objectTypes.indexOf(value) - 1) % objectTypes.length];
+
+export const nextObjectType = (value: MapObjectType): MapObjectType =>
+  objectTypes[(objectTypes.indexOf(value) + 1) % objectTypes.length];

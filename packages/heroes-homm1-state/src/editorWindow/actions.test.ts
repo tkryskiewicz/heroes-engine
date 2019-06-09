@@ -1,10 +1,10 @@
 import { createMap, createPoint } from "heroes-core";
 import {
   CreatureMapObjectDetails,
-  EditorObjectType,
   EditorOption,
   EraseObjectsSettings,
   LandMassSetting,
+  MapObjectType,
   RandomMapSettings,
   Scenario,
   ScenarioDifficulty,
@@ -121,11 +121,11 @@ describe("editorWindowActions", () => {
   });
 
   it("should create an action to change selected object type", () => {
-    const result = changeSelectedObjectType(EditorObjectType.WaterObjects);
+    const result = changeSelectedObjectType(MapObjectType.Water);
 
     const expected: ChangeSelectedObjectTypeAction = {
       type: EditorWindowActionType.ChangeSelectedObjectType,
-      value: EditorObjectType.WaterObjects,
+      value: MapObjectType.Water,
     };
 
     expect(result).toEqual(expected);

@@ -21,12 +21,12 @@ import {
   canPlaceObject,
   createMapObject,
   createRandomMap,
-  EditorObjectType,
   EditorOption,
   EraseObjectsSettings,
   getScenarioSpecification,
   getTerrainTransition,
   MapObjectDetails,
+  MapObjectType,
   nextObjectType,
   previousObjectType,
   RandomMapSettings,
@@ -71,8 +71,8 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly selectedTerrain: string;
   readonly onSelectedTerrainChange: (value: string) => void;
 
-  readonly selectedObjectType: EditorObjectType;
-  readonly onSelectedObjectTypeChange: (value: EditorObjectType) => void;
+  readonly selectedObjectType: MapObjectType;
+  readonly onSelectedObjectTypeChange: (value: MapObjectType) => void;
   readonly selectedObject?: string;
   readonly onSelectedObjectChange: (value: string) => void;
   readonly objectsWindowVisible: boolean;
@@ -573,19 +573,19 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   // FIXME
   private getTerrain() {
     switch (this.props.selectedObjectType) {
-      case EditorObjectType.WaterObjects:
+      case MapObjectType.Water:
         return TerrainType.Water;
-      case EditorObjectType.GrassObjects:
+      case MapObjectType.Grass:
         return TerrainType.Grass;
-      case EditorObjectType.SnowObjects:
+      case MapObjectType.Snow:
         return TerrainType.Snow;
-      case EditorObjectType.SwampObjects:
+      case MapObjectType.Swamp:
         return TerrainType.Swamp;
-      case EditorObjectType.LavaObjects:
+      case MapObjectType.Lava:
         return TerrainType.Lava;
-      case EditorObjectType.DesertObjects:
+      case MapObjectType.Desert:
         return TerrainType.Desert;
-      case EditorObjectType.DirtObjects:
+      case MapObjectType.Dirt:
         return TerrainType.Dirt;
       default:
         return undefined;

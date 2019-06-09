@@ -1,7 +1,7 @@
-import { EditorObjectType } from "./EditorObjectType";
+import { MapObjectType } from "../map";
 
 export interface EraseObjectsSettings {
-  readonly objectTypes: EditorObjectType[];
+  readonly objectTypes: MapObjectType[];
   readonly allOverlays: boolean;
   readonly clearEntire: boolean;
 }

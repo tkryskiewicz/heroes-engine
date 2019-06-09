@@ -3,14 +3,14 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Placeholder } from "../../Placeholder";
-import { editorObjectType } from "../../stories";
+import { mapObjectType } from "../../stories";
 import { ObjectsOptionDetails } from "./ObjectsOptionDetails";
 
 storiesOf("editor|ObjectsOptionDetails", module)
   .add("default", () => (
     <ObjectsOptionDetails
       onSlotClick={action("Slot Click")}
-      selectedObjectType={editorObjectType("Selected Object Type")}
+      selectedObjectType={mapObjectType("Selected Object Type")}
       onPreviousTypeClick={action("Previous Type Click")}
       onNextTypeClick={action("Next Type Click")}
     >

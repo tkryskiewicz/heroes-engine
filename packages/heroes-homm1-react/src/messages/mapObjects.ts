@@ -1,11 +1,65 @@
 import { defineMessages, Messages } from "react-intl";
 
-import { MapObjectId } from "heroes-homm1";
+import { MapObjectId, MapObjectType } from "heroes-homm1";
 
 import { convertValue, unknownMessage } from "./util";
 
 const getKey = (mapObject: string) =>
   convertValue(mapObject);
+
+const mapObjectTypeMessages: Messages = defineMessages({
+  [MapObjectType.Other]: {
+    defaultMessage: "Other Objs",
+    id: "game.editor.objectType.otherObjects",
+  },
+  [MapObjectType.Water]: {
+    defaultMessage: "Water Objs",
+    id: "game.editor.objectType.waterObjects",
+  },
+  [MapObjectType.Grass]: {
+    defaultMessage: "Grass Objs",
+    id: "game.editor.objectType.grassObjects",
+  },
+  [MapObjectType.Snow]: {
+    defaultMessage: "Snow Objs",
+    id: "game.editor.objectType.snowObjects",
+  },
+  [MapObjectType.Swamp]: {
+    defaultMessage: "Swamp Objs",
+    id: "game.editor.objectType.swampObjects",
+  },
+  [MapObjectType.Lava]: {
+    defaultMessage: "Lava Objs",
+    id: "game.editor.objectType.lavaObjects",
+  },
+  [MapObjectType.Desert]: {
+    defaultMessage: "Desert Objs",
+    id: "game.editor.objectType.desertObjects",
+  },
+  [MapObjectType.Dirt]: {
+    defaultMessage: "Dirt Objs",
+    id: "game.editor.objectType.dirtObjects",
+  },
+  [MapObjectType.Town]: {
+    defaultMessage: "Towns",
+    id: "game.editor.objectType.towns",
+  },
+  [MapObjectType.Monster]: {
+    defaultMessage: "Monsters",
+    id: "game.editor.objectType.monsters",
+  },
+  [MapObjectType.Artifact]: {
+    defaultMessage: "Artifacts",
+    id: "game.editor.objectType.artifacts",
+  },
+  [MapObjectType.Treasure]: {
+    defaultMessage: "Treasures",
+    id: "game.editor.objectType.treasures",
+  },
+});
+
+export const getMapObjectTypeNameMessage = (type: MapObjectType) =>
+  mapObjectTypeMessages[type];
 
 const mapObjectMessages: Messages = defineMessages({
   // mines

@@ -7,7 +7,6 @@ export {
   getCreatureMapObjectDetails,
   setCreatureMapObjectDetails,
 } from "./CreatureMapObjectDetails";
-export { EditorObjectType, previousObjectType, nextObjectType } from "./EditorObjectType";
 export { EditorOption } from "./EditorOption";
 export { EraseObjectsSettings } from "./EraseObjectsSettings";
 export {

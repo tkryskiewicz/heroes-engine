@@ -3,10 +3,10 @@ import {
   createDefaultRandomMapSettings,
   createDefaultScenarioSpecification,
   CreatureMapObjectDetails,
-  EditorObjectType,
   EditorOption,
   EraseObjectsSettings,
   LandMassSetting,
+  MapObjectType,
   RandomMapSettings,
   Scenario,
   ScenarioDifficulty,
@@ -49,7 +49,7 @@ const defaultState: EditorWindowState = {
   eraseObjectsSettings: {
     allOverlays: false,
     clearEntire: false,
-    objectTypes: Object.values(EditorObjectType),
+    objectTypes: Object.values(MapObjectType),
   },
   objectDetailsUnavailablePromptVisible: false,
   objectsWindowVisible: false,
@@ -66,7 +66,7 @@ const defaultState: EditorWindowState = {
   },
   scenarioSpecification: createDefaultScenarioSpecification(),
   scenarioSpecificationVisible: false,
-  selectedObjectType: EditorObjectType.WaterObjects,
+  selectedObjectType: MapObjectType.Water,
   selectedOption: EditorOption.Terrains,
   selectedTerrain: TerrainType.Water,
   zoomed: true,
@@ -168,14 +168,14 @@ describe("editorWindowReducer", () => {
   it("should handle changing selected object type", () => {
     const state: EditorWindowState = {
       ...defaultState,
-      selectedObjectType: EditorObjectType.WaterObjects,
+      selectedObjectType: MapObjectType.Water,
     };
 
-    const result = editorWindowReducer(state, changeSelectedObjectType(EditorObjectType.GrassObjects));
+    const result = editorWindowReducer(state, changeSelectedObjectType(MapObjectType.Grass));
 
     const expected: EditorWindowState = {
       ...state,
-      selectedObjectType: EditorObjectType.GrassObjects,
+      selectedObjectType: MapObjectType.Grass,
     };
 
     expect(result).toEqual(expected);
@@ -352,7 +352,7 @@ describe("editorWindowReducer", () => {
         allOverlays: false,
         clearEntire: false,
         objectTypes: [
-          EditorObjectType.Artifacts,
+          MapObjectType.Artifact,
         ],
       },
     };

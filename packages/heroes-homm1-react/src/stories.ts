@@ -7,7 +7,6 @@ import {
   ArtifactId,
   CastleOptionStatus,
   CreatureId,
-  EditorObjectType,
   EditorOption,
   FarmStructureId,
   ForestStructureId,
@@ -18,6 +17,7 @@ import {
   HeroId,
   LuckType,
   MapObjectId,
+  MapObjectType,
   MoraleType,
   MountainsStructureId,
   MovementSpeed,
@@ -154,8 +154,8 @@ export const dwellingObject = (name: string) =>
 export const editorOption = (name: string) =>
   select<EditorOption>(name, Object.values(EditorOption), EditorOption.Terrains);
 
-export const editorObjectType = (name: string) =>
-  select<EditorObjectType>(name, Object.values(EditorObjectType), EditorObjectType.WaterObjects);
+export const mapObjectType = (name: string) =>
+  select<MapObjectType>(name, Object.values(MapObjectType), MapObjectType.Water);
 
 export const terrainTransition = (name: string) =>
   select<TerrainTransition>(name, Object.values(TerrainTransition), TerrainTransition.None);

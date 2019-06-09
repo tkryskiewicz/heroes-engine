@@ -7,7 +7,6 @@ import {
 } from "heroes-core";
 import {
   CreatureMapObjectDetails,
-  EditorObjectType,
   getCreatureMapObjectDetails,
   getHeroMapObjectDetails,
   getTownMapObjectDetails,
@@ -212,42 +211,13 @@ const objectOrder: string[] = [
   MapObjectId.Hero,
 ];
 
-const getObjectsByType = (data: GameData, type: MapObjectType): string[] =>
+// TODO: add town objects
+// TODO: fix artifact order
+export const getObjects = (type: MapObjectType, data: GameData): string[] =>
   Object.values(data.mapObjects)
     .filter((o) => o.type === type || (Array.isArray(o.type) && o.type.includes(type)))
     .map((o) => o.id)
     .sort((a, b) => objectOrder.indexOf(a) - objectOrder.indexOf(b));
-
-export const getObjects = (type: EditorObjectType, data: GameData): string[] => {
-  switch (type) {
-    case EditorObjectType.WaterObjects:
-      return getObjectsByType(data, MapObjectType.Water);
-    case EditorObjectType.GrassObjects:
-      return getObjectsByType(data, MapObjectType.Grass);
-    case EditorObjectType.SnowObjects:
-      return getObjectsByType(data, MapObjectType.Snow);
-    case EditorObjectType.SwampObjects:
-      return getObjectsByType(data, MapObjectType.Swamp);
-    case EditorObjectType.LavaObjects:
-      return getObjectsByType(data, MapObjectType.Lava);
-    case EditorObjectType.DesertObjects:
-      return getObjectsByType(data, MapObjectType.Desert);
-    case EditorObjectType.DirtObjects:
-      return getObjectsByType(data, MapObjectType.Dirt);
-    case EditorObjectType.Towns:
-      // TODO: add town objects
-      return getObjectsByType(data, MapObjectType.Town);
-    case EditorObjectType.Monsters:
-      return getObjectsByType(data, MapObjectType.Monster);
-    case EditorObjectType.Artifacts:
-      // TODO: fix artifact order
-      return getObjectsByType(data, MapObjectType.Artifact);
-    case EditorObjectType.Treasures:
-      return getObjectsByType(data, MapObjectType.Treasure);
-    default:
-      return [];
-  }
-};
 
 export const getObjectDetails = (object: MapObject, data: GameData): MapObjectDetails | undefined => {
   if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {

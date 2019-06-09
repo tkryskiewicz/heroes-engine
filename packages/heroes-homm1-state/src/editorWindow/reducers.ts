@@ -2,8 +2,8 @@ import { createMap, createPoint } from "heroes-core";
 import {
   createDefaultRandomMapSettings,
   createDefaultScenarioSpecification,
-  EditorObjectType,
   EditorOption,
+  MapObjectType,
   ScenarioDifficulty,
   ScenarioSize,
   TerrainType,
@@ -19,7 +19,7 @@ const initialState: EditorWindowState = {
   eraseObjectsSettings: {
     allOverlays: false,
     clearEntire: false,
-    objectTypes: Object.values(EditorObjectType),
+    objectTypes: Object.values(MapObjectType),
   },
   objectDetailsUnavailablePromptVisible: false,
   objectsWindowVisible: false,
@@ -36,7 +36,7 @@ const initialState: EditorWindowState = {
   },
   scenarioSpecification: createDefaultScenarioSpecification(),
   scenarioSpecificationVisible: false,
-  selectedObjectType: EditorObjectType.WaterObjects,
+  selectedObjectType: MapObjectType.Water,
   selectedOption: EditorOption.Terrains,
   selectedTerrain: TerrainType.Water,
   zoomed: true,

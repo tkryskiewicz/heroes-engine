@@ -15,7 +15,7 @@ import {
   terrains,
   TerrainType,
 } from "heroes-homm1";
-import { editorObjectType, editorOption, terrainType } from "heroes-homm1-react";
+import { editorOption, mapObjectType, terrainType } from "heroes-homm1-react";
 
 import { EditorWindow } from "./EditorWindowContainer";
 
@@ -94,7 +94,7 @@ storiesOf("EditorWindowContainer", module)
         onSelectedOptionChange={action("Selected Option Change")}
         selectedTerrain={terrainType("Selected Terrain")}
         onSelectedTerrainChange={action("Selected Terrain Change")}
-        selectedObjectType={editorObjectType("Selected Object Type")}
+        selectedObjectType={mapObjectType("Selected Object Type")}
         onSelectedObjectTypeChange={action("Selected Object Type Change")}
         objectsWindowVisible={boolean("Objects Window Visible", false)}
 

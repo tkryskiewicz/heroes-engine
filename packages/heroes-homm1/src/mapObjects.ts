@@ -81,7 +81,8 @@ const townObjects: TownMapObjectData[] = [
     height: 3,
     id: MapObjectId.Town,
     ownable: true,
-    type: MapObjectType.Other,
+    // FIXME: make town objects work
+    type: "other",
     width: 4,
   },
 ];
