@@ -55,4 +55,4 @@ export {
 export { TerrainData } from "./Terrain";
 export { Town, TownData, isStructureBuilt, getTownStructure, buildTownStructure, endTownTurn } from "./Town";
 export { Troop, TroopSelectionType, TroopSelection } from "./Troop";
-export { random } from "./util";
+export { random, previousOption, nextOption } from "./util";

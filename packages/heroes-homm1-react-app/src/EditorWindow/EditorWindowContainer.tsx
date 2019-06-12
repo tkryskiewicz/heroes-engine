@@ -12,7 +12,9 @@ import {
   MapObject,
   MapObjectOrientation,
   MapPoint,
+  nextOption,
   placeObject,
+  previousOption,
   removeObject,
   replaceObject,
   translatePoint,
@@ -27,8 +29,6 @@ import {
   getTerrainTransition,
   MapObjectDetails,
   MapObjectType,
-  nextObjectType,
-  previousObjectType,
   RandomMapSettings,
   Scenario,
   ScenarioSpecification,
@@ -519,11 +519,15 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onPreviousObjectTypeClick = () => {
-    this.props.onSelectedObjectTypeChange(previousObjectType(this.props.selectedObjectType));
+    const option = previousOption<MapObjectType>(Object.values(MapObjectType), this.props.selectedObjectType);
+
+    this.props.onSelectedObjectTypeChange(option);
   }
 
   private readonly onNextObjectTypeClick = () => {
-    this.props.onSelectedObjectTypeChange(nextObjectType(this.props.selectedObjectType));
+    const option = nextOption<MapObjectType>(Object.values(MapObjectType), this.props.selectedObjectType);
+
+    this.props.onSelectedObjectTypeChange(option);
   }
 
   private readonly renderSelectedObject = () => {

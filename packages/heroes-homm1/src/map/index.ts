@@ -8,7 +8,7 @@ export {
 export * from "./map";
 export { MapObjectData } from "./MapObject";
 export { MapObjectId } from "./MapObjectId";
-export { MapObjectType, previousObjectType, nextObjectType } from "./MapObjectType";
+export { MapObjectType } from "./MapObjectType";
 export {
   MineMapObject,
   MineMapObjectData,
