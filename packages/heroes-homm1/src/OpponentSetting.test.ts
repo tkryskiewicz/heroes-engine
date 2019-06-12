@@ -1,36 +1,4 @@
-import { changeOpponentSetting, getOpponentSettingRating, OpponentSetting } from "./OpponentSetting";
-
-describe("changeOpponentSetting", () => {
-  it("should return average when dumb", () => {
-    const result = changeOpponentSetting(OpponentSetting.Dumb);
-
-    expect(result).toBe(OpponentSetting.Average);
-  });
-
-  it("should return smart when average", () => {
-    const result = changeOpponentSetting(OpponentSetting.Average);
-
-    expect(result).toBe(OpponentSetting.Smart);
-  });
-
-  it("should return genius when smart", () => {
-    const result = changeOpponentSetting(OpponentSetting.Smart);
-
-    expect(result).toBe(OpponentSetting.Genius);
-  });
-
-  it("should return none when genius", () => {
-    const result = changeOpponentSetting(OpponentSetting.Genius);
-
-    expect(result).toBe(OpponentSetting.None);
-  });
-
-  it("should return dumb when none", () => {
-    const result = changeOpponentSetting(OpponentSetting.None);
-
-    expect(result).toBe(OpponentSetting.Dumb);
-  });
-});
+import { getOpponentSettingRating, OpponentSetting } from "./OpponentSetting";
 
 describe("getOpponentSettingRating", () => {
   it("should return 15 when dumb", () => {

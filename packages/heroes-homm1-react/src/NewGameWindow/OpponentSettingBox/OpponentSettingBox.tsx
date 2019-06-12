@@ -1,7 +1,8 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { changeOpponentSetting, OpponentSetting } from "heroes-homm1";
+import { nextOption } from "heroes-core";
+import { OpponentSetting } from "heroes-homm1";
 
 import * as styles from "./OpponentSettingBox.module.scss";
 
@@ -35,7 +36,7 @@ export class OpponentSettingBox extends React.Component<OpponentSettingBoxProps>
   }
 
   private readonly onClick = () => {
-    const value = changeOpponentSetting(this.props.value);
+    const value = nextOption(Object.values(OpponentSetting), this.props.value);
 
     this.props.onChange(this.props.index, value);
   }

@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { nextOption } from "heroes-core";
 import {
   DateInformation,
   DateInformationProps,
@@ -68,7 +69,7 @@ class StatusWindowContainer extends React.Component<StatusWindowContainerProps> 
       options.push(StatusWindowOption.HeroStatus);
     }
 
-    const option = options[(options.indexOf(this.props.selectedOption) + 1) % options.length];
+    const option = nextOption(options, this.props.selectedOption);
 
     this.props.onSelectedOptionChange(option);
   }

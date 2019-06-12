@@ -1,4 +1,4 @@
-export { Alignment, changeAlignment } from "./Alignment";
+export { Alignment } from "./Alignment";
 export { alignments } from "./alignments";
 export { Artifact, ArtifactData, ArtifactSelection } from "./Artifact";
 export { ArtifactId, artifacts, constructArtifact } from "./artifacts";
@@ -50,8 +50,8 @@ export {
   StructureRobberMoraleModifier,
   BattleCowardiceMoraleModifier,
 } from "./morale";
-export { MovementSpeed, changeMovementSpeed } from "./MovementSpeed";
-export { OpponentSetting, changeOpponentSetting, getOpponentSettingRating } from "./OpponentSetting";
+export { MovementSpeed } from "./MovementSpeed";
+export { OpponentSetting, getOpponentSettingRating } from "./OpponentSetting";
 export { Resource } from "./Resource";
 export { resources } from "./resources";
 export { Scenario } from "./Scenario";
@@ -67,7 +67,7 @@ export {
   getStandardGameRating,
 } from "./scores";
 export { Skill, SkillIds } from "./Skill";
-export { SoundVolume, changeVolume } from "./SoundVolume";
+export { SoundVolume } from "./SoundVolume";
 export { Spell } from "./Spell";
 export { SpellBook, SpellBookSpell, constructSpellBook } from "./SpellBook";
 export { SpellId, spells } from "./spells";

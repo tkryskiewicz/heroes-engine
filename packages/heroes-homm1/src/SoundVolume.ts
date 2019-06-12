@@ -11,5 +11,3 @@ export enum SoundVolume {
   Volume9 = 9,
   On = 10,
 }
-
-export const changeVolume = (volume: SoundVolume) => (SoundVolume.On + volume) % (SoundVolume.On + 1);

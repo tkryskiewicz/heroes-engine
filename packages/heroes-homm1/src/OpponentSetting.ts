@@ -7,16 +7,5 @@ export enum OpponentSetting {
   None = "none",
 }
 
-const OpponentSettings = [
-  OpponentSetting.Dumb,
-  OpponentSetting.Average,
-  OpponentSetting.Smart,
-  OpponentSetting.Genius,
-  OpponentSetting.None,
-];
-
-export const changeOpponentSetting = (value: OpponentSetting): OpponentSetting =>
-  OpponentSettings[(OpponentSettings.indexOf(value) + 1) % OpponentSettings.length];
-
 export const getOpponentSettingRating = (value: OpponentSetting): number =>
-  value !== OpponentSetting.None ? 10 + (OpponentSettings.indexOf(value) + 1) * 5 : 0;
+  value !== OpponentSetting.None ? 10 + (Object.values(OpponentSetting).indexOf(value) + 1) * 5 : 0;

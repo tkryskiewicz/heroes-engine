@@ -1,7 +1,8 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { changeMovementSpeed, changeVolume, MovementSpeed, SoundVolume } from "heroes-homm1";
+import { nextOption, previousOption } from "heroes-core";
+import { MovementSpeed, SoundVolume } from "heroes-homm1";
 
 import * as styles from "./GameOptions.module.scss";
 
@@ -211,21 +212,23 @@ class GameOptions extends React.Component<GameOptionsProps> {
   }
 
   private readonly onMusicVolumeChange = () => {
-    const value = changeVolume(this.props.musicVolume);
+    const value = previousOption<SoundVolume>(Object.values(SoundVolume).filter(Number.isInteger),
+      this.props.musicVolume);
 
     this.props.onMusicVolumeChange(value);
   }
 
   private readonly onEffectsVolumeChange = () => {
-    const value = changeVolume(this.props.effectsVolume);
+    const value = previousOption<SoundVolume>(Object.values(SoundVolume).filter(Number.isInteger),
+      this.props.effectsVolume);
 
     this.props.onEffectsVolumeChange(value);
   }
 
   private readonly onMovementSpeedChange = () => {
-    const movementSpeed = changeMovementSpeed(this.props.movementSpeed);
+    const value = nextOption(Object.values(MovementSpeed), this.props.movementSpeed);
 
-    this.props.onMovementSpeedChange(movementSpeed);
+    this.props.onMovementSpeedChange(value);
   }
 }
 

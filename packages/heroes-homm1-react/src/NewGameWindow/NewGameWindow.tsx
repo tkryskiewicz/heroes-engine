@@ -1,9 +1,9 @@
 import * as React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
+import { nextOption } from "heroes-core";
 import {
   Alignment,
-  changeAlignment,
   GameDifficulty,
   getGameDifficultyRating,
   getOpponentSettingRating,
@@ -187,9 +187,9 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
     this.props.onOpponentSettingsChange(settings);
   }
 
-  private readonly onAlignmentClick = (value: Alignment) => {
-    const newValue = changeAlignment(value);
+  private readonly onAlignmentClick = () => {
+    const value = nextOption(Object.values(Alignment), this.props.selectedAlignment);
 
-    this.props.onAlignmentChange(newValue);
+    this.props.onAlignmentChange(value);
   }
 }
