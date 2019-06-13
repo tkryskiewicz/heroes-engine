@@ -63,15 +63,22 @@ export const skill = (name: string) =>
 
 export const skillValue = (name: string) => number(name, 0, { range: true, min: 0, max: 999, step: 1 });
 
+export const skills = (name: string) => ({
+  [Skill.Attack]: skillValue(`${name} / Attack`),
+  [Skill.Defense]: skillValue(`${name} / Defense`),
+  [Skill.SpellPower]: skillValue(`${name} / Spell Power`),
+  [Skill.Knowledge]: skillValue(`${name} / Knowledge`),
+});
+
 export const morale = (name: string) => number(name, 0, { range: true, min: -3, max: 3, step: 1 });
 
 export const moraleType = (name: string) =>
-  select<MoraleType>(name, Object.values(MoraleType), MoraleType.Good);
+  select<MoraleType>(name, Object.values(MoraleType), MoraleType.Neutral);
 
 export const luck = (name: string) => number(name, 0, { range: true, min: -3, max: 3, step: 1 });
 
 export const luckType = (name: string) =>
-  select<LuckType>(name, Object.values(LuckType), LuckType.Good);
+  select<LuckType>(name, Object.values(LuckType), LuckType.Neutral);
 
 export const troopIndex = (name: string) => number(name, 0, { range: true, min: 0, max: ArmySize - 1, step: 1 });
 

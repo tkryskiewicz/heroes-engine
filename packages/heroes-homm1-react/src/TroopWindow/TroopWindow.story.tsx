@@ -4,10 +4,10 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { Troop } from "heroes-core";
-import { CreatureId, creatures, LuckType, MoraleType, Skill } from "heroes-homm1";
+import { CreatureId, creatures, LuckType, MoraleType } from "heroes-homm1";
 
 import { Placeholder } from "../Placeholder";
-import { creature, luckType, moraleType, troopIndex } from "../stories";
+import { creature, luckType, moraleType, skills, troopIndex } from "../stories";
 import { TroopWindow } from "./TroopWindow";
 
 const troopBase: Troop = {
@@ -37,7 +37,7 @@ storiesOf("TroopWindow", module)
       creature={creatures.find((c) => c.id === creature("Creature"))!}
       morale={MoraleType.Neutral}
       luck={LuckType.Neutral}
-      skillEnhancements={{ [Skill.Attack]: 1, [Skill.Defense]: 2 }}
+      skillEnhancements={skills("Skill Enhancements")}
       count={1}
     />
   ))

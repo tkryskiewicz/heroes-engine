@@ -57,4 +57,12 @@ export * from "./TurnStatus";
 export * from "./ViewWindow";
 export * from "./WorldWindow";
 
-export { mapObjectType, editorOption, terrainType } from "./stories";
+export {
+  creature,
+  editorOption,
+  luckType,
+  mapObjectType,
+  moraleType,
+  skills,
+  terrainType,
+} from "./stories";
