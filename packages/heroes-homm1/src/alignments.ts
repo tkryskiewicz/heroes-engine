@@ -1,8 +1,8 @@
-import { Alignment } from "./Alignment";
+import { AlignmentId } from "./AlignmentId";
 
 export const alignments = [
-  Alignment.Red,
-  Alignment.Green,
-  Alignment.Blue,
-  Alignment.Yellow,
+  AlignmentId.Red,
+  AlignmentId.Green,
+  AlignmentId.Blue,
+  AlignmentId.Yellow,
 ];

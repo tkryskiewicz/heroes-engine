@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { Battlefield, BattlefieldObjectType, CombatSide, createBattlefield } from "heroes-core";
 import {
-  Alignment,
+  AlignmentId,
   BattlefieldHeigth,
   BattlefieldWidth,
   CreatureId,
@@ -21,7 +21,7 @@ storiesOf("CombatWindow", module)
   .add("default", () => {
     const attacker: CombatWindowProps["attacker"] = {
       hero: {
-        alignment: Alignment.Red,
+        alignment: AlignmentId.Red,
         heroClass: HeroClass.Knight,
         id: HeroId.LordKilburn,
         luck: 0,
@@ -32,7 +32,7 @@ storiesOf("CombatWindow", module)
 
     const defender: CombatWindowProps["defender"] = {
       hero: {
-        alignment: Alignment.Green,
+        alignment: AlignmentId.Green,
         heroClass: HeroClass.Barbarian,
         id: HeroId.LordHaart,
         luck: 0,

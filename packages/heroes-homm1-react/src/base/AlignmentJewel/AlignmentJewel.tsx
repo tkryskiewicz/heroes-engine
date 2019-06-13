@@ -1,10 +1,8 @@
 import * as React from "react";
 
-import { Alignment } from "heroes-homm1";
-
 export interface AlignmentJewelProps {
-  readonly value: Alignment;
-  readonly onClick: (value: Alignment) => void;
+  readonly value: string;
+  readonly onClick: (value: string) => void;
 }
 
 export class AlignmentJewel extends React.Component<AlignmentJewelProps> {

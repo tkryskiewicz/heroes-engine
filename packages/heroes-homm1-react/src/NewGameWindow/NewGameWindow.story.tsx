@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { withReadme } from "storybook-readme";
 
-import { OpponentSetting } from "heroes-homm1";
+import { alignments, OpponentSetting } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
@@ -19,6 +19,7 @@ storiesOf("NewGameWindow", module)
       onGameDifficultyChange={action("Game Difficulty Change")}
       opponentSettings={[OpponentSetting.Dumb, OpponentSetting.Average, OpponentSetting.None]}
       onOpponentSettingsChange={action("Opponent Settings Change")}
+      alignments={alignments}
       selectedAlignment={alignment("Alignment")}
       onAlignmentChange={action("Alignment Change")}
       kingOfTheHill={boolean("King of the Hill", false)}

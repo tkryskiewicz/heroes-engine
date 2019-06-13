@@ -24,7 +24,7 @@ import {
   visitGameMapObject,
 } from "heroes-core";
 import {
-  Alignment,
+  AlignmentId,
   alignments,
   ArmySize,
   ArtifactId,
@@ -182,7 +182,7 @@ const towns: TownMapObject[] = [
         ...farmTown,
         structures: farmTown.structures.map(buildStructure),
       },
-      Alignment.Red,
+      AlignmentId.Red,
     ),
     army: [
       {
@@ -198,7 +198,7 @@ const towns: TownMapObject[] = [
       ...plainsTown,
       structures: plainsTown.structures.map((s) => s.id === StructureId.Castle ? buildStructure(s) : s),
     },
-    Alignment.Red,
+    AlignmentId.Red,
   ),
   createTownMapObject(
     TownId.Forest,
@@ -208,7 +208,7 @@ const towns: TownMapObject[] = [
       "Forest Town",
       data,
     ),
-    Alignment.Red,
+    AlignmentId.Red,
   ),
   createTownMapObject(
     TownId.Mountains,
@@ -218,7 +218,7 @@ const towns: TownMapObject[] = [
       "Mountains Town",
       data,
     ),
-    Alignment.Red,
+    AlignmentId.Red,
   ),
 ];
 
@@ -227,7 +227,7 @@ let map: Map = createMap(14, 14, TerrainType.Grass);
 const heroData = mapObjects.find((o) => o.id === MapObjectId.Hero)! as HeroMapObjectData;
 
 [lordKilburn, antoine, ariel, agar].forEach((h, i) => {
-  map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h.id, heroData, h, Alignment.Red));
+  map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h.id, heroData, h, AlignmentId.Red));
 });
 
 towns.forEach((t, i) => {
@@ -263,7 +263,7 @@ const peasantData = mapObjects.find((o) => o.id === CreatureId.Peasant)!;
 map = placeObject(map, { x: 2, y: 0 }, createMapObject("creature/1", peasantData));
 
 const initialState: GameState = {
-  alignment: Alignment.Red,
+  alignment: AlignmentId.Red,
   data,
   map,
   puzzle: {

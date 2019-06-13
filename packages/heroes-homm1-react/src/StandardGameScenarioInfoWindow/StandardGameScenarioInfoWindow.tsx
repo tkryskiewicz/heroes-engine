@@ -2,7 +2,6 @@ import * as React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import {
-  Alignment,
   GameDifficulty,
   getGameDifficultyRating,
   getOpponentSettingRating,
@@ -29,7 +28,7 @@ interface StandardGameScenarioInfoWindowProps {
   readonly scenarioName: string;
   readonly gameDifficulty: GameDifficulty;
   readonly opponentSettings: OpponentSetting[];
-  readonly alignment: Alignment;
+  readonly alignment: string;
   readonly kingOfTheHill: boolean;
   readonly scenarioSize: ScenarioSize;
   readonly scenarioDescription: string;

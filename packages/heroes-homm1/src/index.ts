@@ -1,4 +1,4 @@
-export { Alignment } from "./Alignment";
+export { AlignmentId } from "./AlignmentId";
 export { alignments } from "./alignments";
 export { Artifact, ArtifactData, ArtifactSelection } from "./Artifact";
 export { ArtifactId, artifacts, constructArtifact } from "./artifacts";

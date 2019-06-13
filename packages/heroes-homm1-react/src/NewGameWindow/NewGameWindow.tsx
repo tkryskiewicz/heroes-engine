@@ -3,7 +3,6 @@ import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import { nextOption } from "heroes-core";
 import {
-  Alignment,
   GameDifficulty,
   getGameDifficultyRating,
   getOpponentSettingRating,
@@ -25,8 +24,9 @@ export interface NewGameWindowProps {
   readonly onGameDifficultyChange: (value: GameDifficulty) => void;
   readonly opponentSettings: OpponentSetting[];
   readonly onOpponentSettingsChange: (settings: OpponentSetting[]) => void;
-  readonly selectedAlignment: Alignment;
-  readonly onAlignmentChange: (value: Alignment) => void;
+  readonly alignments: string[];
+  readonly selectedAlignment: string;
+  readonly onAlignmentChange: (value: string) => void;
   readonly kingOfTheHill: boolean;
   readonly onKingOfTheHillChange: (value: boolean) => void;
   readonly onOkayClick: () => void;
@@ -188,7 +188,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
   }
 
   private readonly onAlignmentClick = () => {
-    const value = nextOption(Object.values(Alignment), this.props.selectedAlignment);
+    const value = nextOption(this.props.alignments, this.props.selectedAlignment);
 
     this.props.onAlignmentChange(value);
   }
