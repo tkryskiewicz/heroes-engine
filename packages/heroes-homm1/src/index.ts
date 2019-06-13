@@ -1,7 +1,8 @@
 export { AlignmentId } from "./AlignmentId";
 export { alignments } from "./alignments";
 export { Artifact, ArtifactData, ArtifactSelection } from "./Artifact";
-export { ArtifactId, artifacts, constructArtifact } from "./artifacts";
+export { ArtifactId } from "./ArtifactId";
+export { artifacts, constructArtifact } from "./artifacts";
 export { CampaignId, CampaignIds } from "./campaigns";
 export { CastleOptionStatus } from "./CastleOptionStatus";
 export { ComPort } from "./ComPort";

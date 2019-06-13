@@ -14,7 +14,8 @@ import {
   TreasureMapObjectData,
 } from "heroes-core";
 
-import { ArtifactId, artifacts } from "./artifacts";
+import { ArtifactId } from "./ArtifactId";
+import { artifacts } from "./artifacts";
 import { CreatureId, creatures } from "./creatures";
 import {
   createHeroMapObject,

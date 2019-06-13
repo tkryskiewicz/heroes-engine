@@ -1,5 +1,5 @@
 import { Artifact } from "./Artifact";
-import { ArtifactId } from "./artifacts";
+import { ArtifactId } from "./ArtifactId";
 
 export interface SpellBookSpell {
   readonly id: string;

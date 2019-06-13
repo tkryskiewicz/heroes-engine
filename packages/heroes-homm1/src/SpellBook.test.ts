@@ -1,4 +1,4 @@
-import { ArtifactId } from "./artifacts";
+import { ArtifactId } from "./ArtifactId";
 import { constructSpellBook, SpellBook } from "./SpellBook";
 
 describe("constructSpellBook", () => {
