@@ -4,8 +4,8 @@ import * as styles from "./CombatBar.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { ImageButton } from "../../base";
-import { GameText } from "../../core";
+import { ImageButton } from "../../../base";
+import { GameText } from "../../../core";
 
 export interface CombatBarProps {
   readonly statusText: string;

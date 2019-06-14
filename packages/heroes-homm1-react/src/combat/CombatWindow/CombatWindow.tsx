@@ -6,7 +6,7 @@ import { getLuckType, getMoraleType } from "heroes-homm1";
 
 import * as styles from "./CombatWindow.module.scss";
 
-import { withGameWindow } from "../core";
+import { withGameWindow } from "../../core";
 import { HeroCombatOptions, heroCombatOptionsMessages } from "../HeroCombatOptions";
 import { terrainBackgrounds } from "./assets";
 import { CombatBar } from "./CombatBar";

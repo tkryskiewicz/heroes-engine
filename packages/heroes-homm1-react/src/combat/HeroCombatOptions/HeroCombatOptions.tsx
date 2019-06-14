@@ -8,8 +8,8 @@ import * as styles from "./HeroCombatOptions.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { ImageButton } from "../base";
-import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "../core";
+import { ImageButton } from "../../base";
+import { GameParagraph, GameText, withGameWindow, WithGameWindowProps } from "../../core";
 import {
   getHeroClassTitleMessage,
   getHeroNameMessage,
@@ -18,7 +18,7 @@ import {
   getSkillNameMessage,
   luckMessages,
   moraleMessages,
-} from "../messages";
+} from "../../messages";
 
 interface Hero {
   readonly id: string;

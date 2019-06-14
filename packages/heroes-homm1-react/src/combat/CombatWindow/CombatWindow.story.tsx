@@ -14,10 +14,10 @@ import {
   TerrainVariants,
 } from "heroes-homm1";
 
-import { combatSide, terrainType } from "../stories";
+import { combatSide, terrainType } from "../../stories";
 import { CombatWindow, CombatWindowProps } from "./CombatWindow";
 
-storiesOf("CombatWindow", module)
+storiesOf("combat|CombatWindow", module)
   .add("default", () => {
     const attacker: CombatWindowProps["attacker"] = {
       hero: {

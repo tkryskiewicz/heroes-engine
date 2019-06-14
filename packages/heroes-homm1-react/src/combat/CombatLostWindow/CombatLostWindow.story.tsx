@@ -1,18 +1,18 @@
 import { action } from "@storybook/addon-actions";
-import { number } from "@storybook/addon-knobs";
+import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { CreatureId } from "heroes-homm1";
 
-import { hero } from "../stories";
-import { CombatWonWindow } from "./CombatWonWindow";
+import { hero } from "../../stories";
+import { CombatLostWindow } from "./CombatLostWindow";
 
-storiesOf("CombatWonWindow", module)
+storiesOf("combat|CombatLostWindow", module)
   .add("default", () => (
-    <CombatWonWindow
+    <CombatLostWindow
       hero={hero("Hero")}
-      rewardedExperience={number("Rewarded Experience", 0, { range: true, min: 0, max: 9999, step: 1 })}
+      isRetreat={boolean("Is Retreat", false)}
       attackerCasualties={[{ creature: CreatureId.Peasant, count: 10 }]}
       defenderCasualties={[]}
       onOkayClick={action("Okay Click")}

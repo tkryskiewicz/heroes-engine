@@ -6,10 +6,10 @@ import { Army } from "heroes-core";
 
 import { AnimationImage, buttonImages } from "./assets";
 
-import { ImageButton } from "../base";
+import { ImageButton } from "../../base";
+import { GameText } from "../../core";
+import { getHeroNameMessage } from "../../messages";
 import { CombatSummaryWindow } from "../CombatSummaryWindow";
-import { GameText } from "../core";
-import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 
 export interface CombatWonWindowProps {

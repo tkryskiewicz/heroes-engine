@@ -8,13 +8,13 @@ import { LuckType, MoraleType } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
-import { Placeholder } from "../Placeholder";
-import { alignment, hero, heroClass } from "../stories";
+import { Placeholder } from "../../Placeholder";
+import { alignment, hero, heroClass } from "../../stories";
 import { HeroCombatOptions, HeroCombatOptionsProps } from "./HeroCombatOptions";
 
 const renderHeroPortrait = () => <Placeholder name="Hero Portrait" />;
 
-storiesOf("HeroCombatOptions", module)
+storiesOf("combat|HeroCombatOptions", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => {
     const h: HeroCombatOptionsProps["hero"] = {

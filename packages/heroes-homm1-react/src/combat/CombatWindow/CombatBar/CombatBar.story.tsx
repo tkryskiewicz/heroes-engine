@@ -8,7 +8,7 @@ import Readme = require("./README.md");
 
 import { CombatBar } from "./CombatBar";
 
-storiesOf("CombatWindow/CombatBar", module)
+storiesOf("combat|CombatWindow/CombatBar", module)
   .addDecorator(withReadme(Readme))
   .add("default", () => (
     <CombatBar

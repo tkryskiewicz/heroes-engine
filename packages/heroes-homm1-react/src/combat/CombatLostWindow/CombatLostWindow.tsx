@@ -8,10 +8,10 @@ import * as styles from "./CombatLostWindow.module.scss";
 
 import { AnimationImage, buttonImages } from "./assets";
 
-import { ImageButton } from "../base";
+import { ImageButton } from "../../base";
+import { GameText } from "../../core";
+import { getHeroNameMessage } from "../../messages";
 import { CombatSummaryWindow } from "../CombatSummaryWindow";
-import { GameText } from "../core";
-import { getHeroNameMessage } from "../messages";
 import { messages } from "./messages";
 
 interface CombatLostWindowProps extends InjectedIntlProps {

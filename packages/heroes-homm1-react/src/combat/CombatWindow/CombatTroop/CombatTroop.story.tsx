@@ -2,10 +2,10 @@ import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { combatSide, creature } from "../../stories";
+import { combatSide, creature } from "../../../stories";
 import { CombatTroop } from "./CombatTroop";
 
-storiesOf("CombatWindow/CombatTroop", module)
+storiesOf("combat|CombatWindow/CombatTroop", module)
   .add("default", () => {
     return (
       <CombatTroop

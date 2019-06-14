@@ -5,8 +5,8 @@ import { CombatSide } from "heroes-core";
 
 import * as styles from "./CombatTroop.module.scss";
 
-import { CreatureIcon } from "../../base";
-import { GameParagraph } from "../../core";
+import { CreatureIcon } from "../../../base";
+import { GameParagraph } from "../../../core";
 
 export interface CombatTroopProps {
   readonly side: CombatSide;
