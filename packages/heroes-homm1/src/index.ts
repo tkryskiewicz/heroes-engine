@@ -25,7 +25,7 @@ export { GameDifficulty, getGameDifficultyRating } from "./GameDifficulty";
 export { GameOption } from "./GameOption";
 export { GameSettings } from "./GameSettings";
 export { GameType } from "./GameType";
-export { HeroClass, HeroClassIds } from "./HeroClass";
+export { HeroClass } from "./HeroClass";
 export { heroClasses } from "./heroClasses";
 export { HeroId, heroes, constructHero } from "./heroes";
 export {
@@ -88,7 +88,7 @@ export {
 export { terrains } from "./terrains";
 export { TerrainType } from "./TerrainType";
 export { constructTown } from "./Town";
-export { TownId, TownIds } from "./TownId";
+export { TownId } from "./TownId";
 export { towns } from "./towns";
 
 export const MaxPlayers = 4;

@@ -1,17 +1,17 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { GameDate } from "heroes-core";
+import { GameData, GameDate } from "heroes-core";
 import {
   dateMessages,
   GameText,
   HeroClassOverview,
   KingdomOverviewWindow,
   kingdomOverviewWindowMessages,
-  KingdomOverviewWindowProps,
   MineOverview,
   ResourceAmount,
   TownOverview,
+  WithGameWindowProps,
 } from "heroes-homm1-react";
 
 export interface HeroClassSummary {
@@ -26,27 +26,39 @@ export interface ResourceSummary {
   readonly [resource: string]: number;
 }
 
-export interface KingdomOverviewWindowContainerProps extends KingdomOverviewWindowProps {
+export interface KingdomOverviewWindowContainerProps extends WithGameWindowProps {
+  readonly data: Pick<GameData, "heroClasses" | "resources" | "towns">;
   readonly date: GameDate;
+  readonly alignment: string;
   readonly heroClasses: HeroClassSummary;
   readonly castles: TownSummary;
   readonly towns: TownSummary;
   readonly mines: ResourceSummary;
   readonly resources: ResourceSummary;
+  readonly goldPerDay: number;
+  readonly onExitClick?: () => void;
 }
 
 export class KingdomOverviewWindowContainer extends React.Component<KingdomOverviewWindowContainerProps> {
   public render() {
+    const { data } = this.props;
+
     return (
       <KingdomOverviewWindow
-        {...this.props}
+        visible={this.props.visible}
+        alignment={this.props.alignment}
         renderTitle={this.renderTitle}
         renderDate={this.renderDate}
+        heroClasses={Object.keys(data.heroClasses)}
         renderHeroClassSummary={this.renderHeroClassSummary}
+        towns={Object.keys(data.towns)}
         renderCastleSummary={this.renderCastleSummary}
         renderTownSummary={this.renderTownSummary}
+        resources={Object.keys(data.resources)}
         renderMineSummary={this.renderMineSummary}
         renderResourceSummary={this.renderResourceSummary}
+        goldPerDay={this.props.goldPerDay}
+        onExitClick={this.props.onExitClick}
       />
     );
   }

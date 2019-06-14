@@ -1,7 +1,5 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
-
-import { HeroClassIds, Resource, TownIds } from "heroes-homm1";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import * as styles from "./KingdomOverviewWindow.module.scss";
 
@@ -11,24 +9,17 @@ import { ImageButton } from "../base";
 import { GameText, withGameWindow } from "../core";
 import { messages } from "./messages";
 
-const resourceOrder = [
-  Resource.Wood,
-  Resource.Mercury,
-  Resource.Ore,
-  Resource.Sulfur,
-  Resource.Crystal,
-  Resource.Gems,
-  Resource.Gold,
-];
-
 interface KingdomOverviewWindowProps {
   readonly alignment: string;
   // TODO: combine title and date into just title
   readonly renderTitle: () => React.ReactNode;
   readonly renderDate: () => React.ReactNode;
+  readonly heroClasses: string[];
   readonly renderHeroClassSummary: (heroClass: string) => React.ReactNode;
+  readonly towns: string[];
   readonly renderCastleSummary: (town: string) => React.ReactNode;
   readonly renderTownSummary: (town: string) => React.ReactNode;
+  readonly resources: string[];
   readonly renderMineSummary: (resource: string) => React.ReactNode;
   readonly renderResourceSummary: (resource: string) => React.ReactNode;
   readonly goldPerDay: number;
@@ -138,7 +129,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
   }
 
   private renderHeroClasses() {
-    return HeroClassIds.map((c) => (
+    return this.props.heroClasses.map((c) => (
       <div
         key={c}
         className={styles.heroClassSummaryItem}
@@ -149,7 +140,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
   }
 
   private renderCastles() {
-    return TownIds.map((t) => (
+    return this.props.towns.map((t) => (
       <div
         key={t}
         className={styles.castleSummaryItem}
@@ -160,7 +151,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
   }
 
   private renderTowns() {
-    return TownIds.map((t) => (
+    return this.props.towns.map((t) => (
       <div
         key={t}
         className={styles.townSummaryItem}
@@ -171,7 +162,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
   }
 
   private renderMines() {
-    return resourceOrder.map((r) => (
+    return this.props.resources.map((r) => (
       <div
         key={r}
         className={styles.mineSummaryItem}
@@ -182,7 +173,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
   }
 
   private renderResources() {
-    return resourceOrder.map((r) => (
+    return this.props.resources.map((r) => (
       <div
         key={r}
         className={styles.resourceSummaryItem}
@@ -198,7 +189,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
         <div className={styles.goldPerDayText}>
           <GameText size="normal">
             <FormattedMessage {...messages.goldPerDay} />:<br />
-            {amount}
+            <FormattedNumber value={amount} />
           </GameText>
         </div>
       </div>

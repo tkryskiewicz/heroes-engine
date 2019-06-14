@@ -4,10 +4,3 @@ export enum TownId {
   Forest = "forest",
   Mountains = "mountains",
 }
-
-export const TownIds = [
-  TownId.Farm,
-  TownId.Plains,
-  TownId.Forest,
-  TownId.Mountains,
-];

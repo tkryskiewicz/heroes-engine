@@ -5,16 +5,8 @@ import { Resource } from "./Resource";
 
 export const resources: ResourceData[] = [
   {
-    id: Resource.Crystal,
-    mine: MapObjectId.CrystalMine,
-  },
-  {
-    id: Resource.Gems,
-    mine: MapObjectId.GemsMine,
-  },
-  {
-    id: Resource.Gold,
-    mine: MapObjectId.GoldMine,
+    id: Resource.Wood,
+    mine: MapObjectId.Sawmill,
   },
   {
     id: Resource.Mercury,
@@ -29,7 +21,15 @@ export const resources: ResourceData[] = [
     mine: MapObjectId.SulfurMine,
   },
   {
-    id: Resource.Wood,
-    mine: MapObjectId.Sawmill,
+    id: Resource.Crystal,
+    mine: MapObjectId.CrystalMine,
+  },
+  {
+    id: Resource.Gems,
+    mine: MapObjectId.GemsMine,
+  },
+  {
+    id: Resource.Gold,
+    mine: MapObjectId.GoldMine,
   },
 ];

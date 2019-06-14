@@ -58,11 +58,14 @@ export * from "./ViewWindow";
 export * from "./WorldWindow";
 
 export {
+  alignment,
   creature,
   editorOption,
+  gameDate,
   luckType,
   mapObjectType,
   moraleType,
+  resourceAmounts,
   skills,
   terrainType,
 } from "./stories";

@@ -1,6 +1,6 @@
 import { number, select } from "@storybook/addon-knobs";
 
-import { CombatSide, MapObjectOrientation } from "heroes-core";
+import { CombatSide, GameDate, MapObjectOrientation, Resources } from "heroes-core";
 import {
   AlignmentId,
   ArmySize,
@@ -166,3 +166,19 @@ export const mapObjectType = (name: string) =>
 
 export const terrainTransition = (name: string) =>
   select<TerrainTransition>(name, Object.values(TerrainTransition), TerrainTransition.None);
+
+export const gameDate = (name: string): GameDate => ({
+  day: number(`${name} / Day`, 1, { range: true, min: 1, max: 7, step: 1 }),
+  month: number(`${name} / Month`, 1, { range: true, min: 1, max: 99, step: 1 }),
+  week: number(`${name} / Week`, 1, { range: true, min: 1, max: 4, step: 1 }),
+});
+
+export const resourceAmounts = (name: string): Resources => ({
+  [Resource.Wood]: number(`${name} / Wood`, 0, { range: true, min: 0, max: 999, step: 1 }),
+  [Resource.Mercury]: number(`${name} / Mercury`, 0, { range: true, min: 0, max: 999, step: 1 }),
+  [Resource.Ore]: number(`${name} / Ore`, 0, { range: true, min: 0, max: 999, step: 1 }),
+  [Resource.Sulfur]: number(`${name} / Sulfur`, 0, { range: true, min: 0, max: 999, step: 1 }),
+  [Resource.Crystal]: number(`${name} / Crystal`, 0, { range: true, min: 0, max: 999, step: 1 }),
+  [Resource.Gems]: number(`${name} / Gems`, 0, { range: true, min: 0, max: 999, step: 1 }),
+  [Resource.Gold]: number(`${name} / Gold`, 0, { range: true, min: 0, max: 999, step: 1 }),
+});
