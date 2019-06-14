@@ -7,12 +7,12 @@ import { getLuckType, getMoraleType } from "heroes-homm1";
 import * as styles from "./CombatWindow.module.scss";
 
 import { withGameWindow } from "../../core";
+import { CombatTent } from "../CombatTent";
 import { HeroCombatOptions, heroCombatOptionsMessages } from "../HeroCombatOptions";
 import { terrainBackgrounds } from "./assets";
 import { CombatBar } from "./CombatBar";
 import { CombatCell } from "./CombatCell";
 import { messages } from "./messages";
-import { Tent } from "./Tent";
 
 interface Hero {
   readonly id: string;
@@ -138,7 +138,7 @@ class CombatWindow extends React.Component<CombatWindowProps, CombatWindowState>
   private renderTent(side: CombatSide, hero: Hero) {
     return (
       <div className={side === CombatSide.Attacker ? styles.tentAttacker : styles.tentDefender}>
-        <Tent
+        <CombatTent
           side={side}
           alignment={hero.alignment}
           heroClass={hero.heroClass}

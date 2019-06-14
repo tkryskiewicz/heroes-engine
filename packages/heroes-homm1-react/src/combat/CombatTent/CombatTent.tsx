@@ -2,9 +2,9 @@ import * as React from "react";
 
 import { CombatSide } from "heroes-core";
 
-import * as styles from "./Tent.module.scss";
+import * as styles from "./CombatTent.module.scss";
 
-export interface TentProps {
+export interface CombatTentProps {
   readonly side: CombatSide;
   readonly alignment: string;
   readonly heroClass: string;
@@ -18,8 +18,8 @@ type DefaultProp =
   "onMouseLeave" |
   "onClick";
 
-export class Tent extends React.Component<TentProps> {
-  public static readonly defaultProps: Pick<TentProps, DefaultProp> = {
+export class CombatTent extends React.Component<CombatTentProps> {
+  public static readonly defaultProps: Pick<CombatTentProps, DefaultProp> = {
     onClick: () => undefined,
     onMouseEnter: () => undefined,
     onMouseLeave: () => undefined,

@@ -2,12 +2,12 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { alignment, combatSide, heroClass } from "../../../stories";
-import { Tent } from "./Tent";
+import { alignment, combatSide, heroClass } from "../../stories";
+import { CombatTent } from "./CombatTent";
 
-storiesOf("combat|CombatWindow/Tent", module)
+storiesOf("combat|CombatTent", module)
   .add("default", () => (
-    <Tent
+    <CombatTent
       side={combatSide("Side")}
       alignment={alignment("Alignment")}
       heroClass={heroClass("Hero Class")}
