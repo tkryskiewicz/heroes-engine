@@ -33,9 +33,10 @@ const config: Webpack.Configuration = {
           {
             loader: "css-loader",
             options: {
-              camelCase: "dashes",
-              localIdentName: "[name]__[local]--[hash:base64:5]",
-              modules: true,
+              localsConvention: "dashes",
+              modules: {
+                localIdentName: "[name]__[local]--[hash:base64:5]",
+              },
             },
           },
           "sass-loader",
