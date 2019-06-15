@@ -34,7 +34,8 @@ describe("getHeroMapObjectDetails", () => {
       dataId: "dataId",
       experience: 1,
       heroClass: "heroClass",
-      id: "hero",
+      heroId: "heroId",
+      id: "id",
       luck: 0,
       mobility: 0,
       morale: 0,
@@ -58,7 +59,7 @@ describe("getHeroMapObjectDetails", () => {
         undefined,
       ],
       experience: 1,
-      hero: "hero",
+      heroId: "heroId",
     };
 
     expect(result).toEqual(expected);
@@ -73,7 +74,8 @@ describe("setHeroMapObjectDetails", () => {
       dataId: MapObjectId.Hero,
       experience: 0,
       heroClass: "heroClass",
-      id: "hero",
+      heroId: "heroId",
+      id: "id",
       luck: 0,
       mobility: 0,
       morale: 0,
@@ -95,14 +97,14 @@ describe("setHeroMapObjectDetails", () => {
         undefined,
       ],
       experience: 1,
-      hero: "otherHero",
+      heroId: "otherHeroId",
     };
 
     const data: Parameters<typeof setHeroMapObjectDetails>[2] = {
       heroes: {
-        otherHero: {
+        otherHeroId: {
           heroClass: "otherHeroClass",
-          id: "otherHero",
+          id: "otherHeroId",
         },
       },
     };
@@ -126,7 +128,8 @@ describe("setHeroMapObjectDetails", () => {
       ],
       experience: 1,
       heroClass: "otherHeroClass",
-      id: "otherHero",
+      heroId: "otherHeroId",
+      id: "id",
       owner: "otherAlignment",
     };
 

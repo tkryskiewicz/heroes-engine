@@ -31,7 +31,7 @@ const mapStateToProps = (state: AppState): Pick<StatusWindowProps, StateProp> =>
         // FIXME
         alignment: activeObject.owner || state.game.alignment,
         army: activeObject.army,
-        hero: activeObject.id,
+        hero: activeObject.heroId,
         heroClass: activeObject.heroClass,
       } :
       undefined,

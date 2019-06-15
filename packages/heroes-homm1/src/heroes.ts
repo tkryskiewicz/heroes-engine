@@ -1,6 +1,7 @@
 import { Army, Hero, HeroClassData, HeroData, random, Troop } from "heroes-core";
 
 import { HeroClass } from "./HeroClass";
+import { MapObjectId } from "./map";
 
 export enum HeroId {
   // Knights
@@ -211,7 +212,7 @@ export const heroes: HeroData[] = [
   ...warlockHeroes,
 ];
 
-export const constructHero = (id: string, heroClass: HeroClassData): Hero => {
+export const constructHero = (id: string, heroId: string, heroClass: HeroClassData): Hero => {
   const army: Army = heroClass.army
     .map((t): Troop => ({
       count: random(t.min, t.max),
@@ -222,9 +223,10 @@ export const constructHero = (id: string, heroClass: HeroClassData): Hero => {
   return {
     army,
     artifacts: [],
-    dataId: "hero",
+    dataId: MapObjectId.Hero,
     experience: 0,
     heroClass: heroClass.id,
+    heroId,
     id,
     luck: 0,
     mobility: 0,

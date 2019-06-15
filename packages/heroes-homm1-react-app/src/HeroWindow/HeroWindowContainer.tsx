@@ -99,7 +99,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
       <>
         <HeroWindow
           visible={this.props.visible}
-          title={getHeroWindowTitle(this.props.intl, hero.id, hero.heroClass)}
+          title={getHeroWindowTitle(this.props.intl, hero.heroId, hero.heroClass)}
           renderHeroPortrait={this.renderHeroPortrait}
           renderSkill={this.renderSkill}
           renderAdditionalStats={this.renderAdditionalStats}
@@ -126,7 +126,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   private readonly renderHeroPortrait = () => {
     return (
       <HeroPortrait
-        hero={this.props.hero.id}
+        hero={this.props.hero.heroId}
       />
     );
   }
@@ -490,7 +490,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   private readonly onDismissHeroMouseEnter = () => {
     const { intl, hero } = this.props;
 
-    const title = getHeroWindowTitle(intl, hero.id, hero.heroClass);
+    const title = getHeroWindowTitle(intl, hero.heroId, hero.heroClass);
 
     const statusText = this.props.intl.formatMessage(heroWindowMessages.dismiss, { heroName: title });
 

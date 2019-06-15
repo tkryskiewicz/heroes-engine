@@ -4,7 +4,7 @@ import { constructArtifact } from "../artifacts";
 import { HeroMapObject } from "../map";
 
 export interface HeroMapObjectDetails {
-  readonly hero: string;
+  readonly heroId: string;
   readonly alignment: string;
   readonly army: Army;
   readonly artifacts: Array<string | undefined>;
@@ -16,7 +16,7 @@ export const getHeroMapObjectDetails = (object: HeroMapObject): HeroMapObjectDet
   army: object.army,
   artifacts: object.artifacts.map((a) => a ? a.id : undefined),
   experience: object.experience,
-  hero: object.id,
+  heroId: object.heroId,
 });
 
 export const setHeroMapObjectDetails = (
@@ -28,7 +28,7 @@ export const setHeroMapObjectDetails = (
   army: details.army,
   artifacts: details.artifacts.map((a) => a ? constructArtifact(a) : undefined),
   experience: details.experience,
-  heroClass: data.heroes[details.hero].heroClass,
-  id: details.hero,
+  heroClass: data.heroes[details.heroId].heroClass,
+  heroId: details.heroId,
   owner: details.alignment,
 });

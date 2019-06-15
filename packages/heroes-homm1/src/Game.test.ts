@@ -30,6 +30,7 @@ describe("buyMageGuildSpellBook", () => {
       dataId: "hero",
       experience: 0,
       heroClass: "heroClass",
+      heroId: "heroId",
       id: "hero",
       luck: 0,
       mobility: 0,

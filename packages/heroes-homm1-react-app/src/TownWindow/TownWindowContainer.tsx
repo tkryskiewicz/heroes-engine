@@ -198,7 +198,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
     return (
       <>
         <HeroPortrait
-          hero={visitingHero ? visitingHero.id : undefined}
+          hero={visitingHero ? visitingHero.heroId : undefined}
           onMouseEnter={this.onHeroPortraitMouseEnter}
           onMouseLeave={this.onHeroPortraitMouseLeave}
           onClick={this.props.onOpenVisitingHeroDetailsClick}

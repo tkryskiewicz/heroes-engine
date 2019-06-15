@@ -117,7 +117,7 @@ const data: GameData = {
 };
 
 const lordKilburn: Hero = {
-  ...constructGameHero(HeroId.LordKilburn, data),
+  ...constructGameHero("hero/1", HeroId.LordKilburn, data),
   artifacts: [
     constructArtifact(ArtifactId.ThunderMaceOfDominion),
     constructArtifact(ArtifactId.UltimateSwordOfDominion),
@@ -126,14 +126,14 @@ const lordKilburn: Hero = {
 };
 
 const antoine: Hero = {
-  ...constructGameHero(HeroId.Antoine, data),
+  ...constructGameHero("hero/2", HeroId.Antoine, data),
   luck: 3,
   mobility: MaxMobility,
   morale: 1,
 };
 
 const ariel: Hero = {
-  ...constructGameHero(HeroId.Ariel, data),
+  ...constructGameHero("hero/3", HeroId.Ariel, data),
   artifacts: [
     constructSpellBook([]),
   ],
@@ -143,7 +143,7 @@ const ariel: Hero = {
 };
 
 const agar: Hero = {
-  ...constructGameHero(HeroId.Agar, data),
+  ...constructGameHero("hero/4", HeroId.Agar, data),
   artifacts: [
     {
       ...constructSpellBook([

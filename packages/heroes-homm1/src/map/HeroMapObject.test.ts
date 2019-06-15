@@ -49,7 +49,8 @@ describe("createHeroMapObject", () => {
       dataId: "hero",
       experience: 0,
       heroClass: "heroClass",
-      id: "heroId",
+      heroId: "heroId",
+      id: "id",
       luck: 0,
       mobility: 0,
       morale: 0,
@@ -61,7 +62,7 @@ describe("createHeroMapObject", () => {
     const expected: HeroMapObject = {
       ...hero,
       dataId: MapObjectId.Hero,
-      id: "heroId",
+      id: "id",
       orientation: MapObjectOrientation.North,
       owner: undefined,
     };
@@ -88,7 +89,8 @@ describe("createHeroMapObject", () => {
       dataId: "hero",
       experience: 0,
       heroClass: "heroClass",
-      id: "heroId",
+      heroId: "heroId",
+      id: "id",
       luck: 0,
       mobility: 0,
       morale: 0,
@@ -100,7 +102,7 @@ describe("createHeroMapObject", () => {
     const expected: HeroMapObject = {
       ...hero,
       dataId: MapObjectId.Hero,
-      id: "heroId",
+      id: "id",
       orientation: MapObjectOrientation.North,
       owner: "owner",
     };
@@ -129,6 +131,7 @@ describe("isHeroMapObject", () => {
       dataId: "hero",
       experience: 0,
       heroClass: "heroClass",
+      heroId: "heroId",
       id: "id",
       luck: 0,
       mobility: 0,

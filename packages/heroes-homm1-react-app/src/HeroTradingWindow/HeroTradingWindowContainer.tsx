@@ -86,13 +86,13 @@ class HeroTradingWindowContainer extends React.Component<Props> {
           visible={this.props.visible}
           hero={hero}
           otherHero={otherHero}
-          title={getHeroTradingWindowTitle(intl, hero.id, otherHero.id)}
+          title={getHeroTradingWindowTitle(intl, hero.heroId, otherHero.heroId)}
           renderHeroPortrait={this.renderHeroPortrait}
           renderTroop={this.renderTroop}
           renderArtifact={this.renderArtifact}
           onExitClick={this.props.onExitClick}
         />
-        {visibleHeroDetails && this.renderHeroDetails(visibleHeroDetails === hero.id ? hero : otherHero)}
+        {visibleHeroDetails && this.renderHeroDetails(this.getHero(visibleHeroDetails))}
         {selectedArtifact && this.props.artifactDetailsVisible && this.renderArtifactDetails(selectedArtifact)}
         {this.props.artifactNotTradablePromptVisible && this.renderArtifactNotTradablePrompt()}
       </div>
@@ -100,16 +100,16 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   }
 
   private readonly renderHeroPortrait = (hero: string) => {
+    const h = this.getHero(hero);
+
+    const onClick = () => this.props.onOpenHeroDetailsClick(h.id);
+
     return (
       <HeroPortrait
-        hero={hero}
-        onClick={this.onHeroPortraitClick}
+        hero={h.heroId}
+        onClick={onClick}
       />
     );
-  }
-
-  private readonly onHeroPortraitClick = (hero?: string) => {
-    this.props.onOpenHeroDetailsClick(hero!);
   }
 
   private renderHeroDetails(hero: Hero) {
@@ -126,9 +126,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   private readonly renderTroop = (hero: string, index: number) => {
     const { selectedTroop } = this.props;
 
-    const h = this.props.hero.id === hero ?
-      this.props.hero :
-      this.props.otherHero;
+    const h = this.getHero(hero);
 
     return (
       <TradingTroopSlot
@@ -162,17 +160,15 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   }
 
   private getTroop(troop: TroopSelection) {
-    return troop.id === this.props.hero.id ?
-      this.props.hero.army[troop.index] :
-      this.props.otherHero.army[troop.index];
+    const h = this.getHero(troop.id);
+
+    return h.army[troop.index];
   }
 
   private readonly renderArtifact = (hero: string, index: number) => {
     const { selectedArtifact } = this.props;
 
-    const h = this.props.hero.id === hero ?
-      this.props.hero :
-      this.props.otherHero;
+    const h = this.getHero(hero);
 
     const artifact = h.artifacts[index];
 
@@ -190,9 +186,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   private readonly onArtifactClick = (hero: string, index: number) => {
     const { artifacts, selectedArtifact } = this.props;
 
-    const h = this.props.hero.id === hero ?
-      this.props.hero :
-      this.props.otherHero;
+    const h = this.getHero(hero);
 
     const artifact = h.artifacts[index];
 
@@ -220,11 +214,9 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   }
 
   private renderArtifactDetails(artifact: ArtifactSelection) {
-    const hero = this.props.hero.id === artifact.hero ?
-      this.props.hero :
-      this.props.otherHero;
+    const h = this.getHero(artifact.hero);
 
-    const a = hero.artifacts[artifact.index]!;
+    const a = h.artifacts[artifact.index]!;
 
     return (
       <ArtifactDetailsPrompt
@@ -242,6 +234,14 @@ class HeroTradingWindowContainer extends React.Component<Props> {
         onConfirmClick={this.props.onCloseArtifactNotTradablePrompt}
       />
     );
+  }
+
+  private getHero(id: string) {
+    const { hero, otherHero } = this.props;
+
+    return hero.id === id ?
+      hero :
+      otherHero;
   }
 }
 

@@ -84,15 +84,13 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
               <GameInputNumber
                 min={0}
                 max={heroes.length - 1}
-                value={heroes.indexOf(value.hero)}
-                // FIXME: hero id is map object id, changing prevents replacing, disabling for now
-                disabled={true}
+                value={heroes.indexOf(value.heroId)}
                 onChange={this.onHeroChange}
               />
             </Col>
             <Col span={6}>
               <GameText size="large">
-                <FormattedMessage {...getHeroNameMessage(value.hero)} />
+                <FormattedMessage {...getHeroNameMessage(value.heroId)} />
               </GameText>
             </Col>
           </Row>
@@ -183,7 +181,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
 
     const newValue: HeroMapObjectDetails = {
       ...this.props.value,
-      hero,
+      heroId: hero,
     };
 
     this.props.onValueChange(newValue);

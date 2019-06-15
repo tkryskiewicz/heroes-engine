@@ -12,7 +12,7 @@ describe("constructHero", () => {
       },
     };
 
-    const result = constructHero("id", data);
+    const result = constructHero("id", "heroId", data);
 
     const expected: HeroSkills = {
       skill: 1,
@@ -34,7 +34,7 @@ describe("constructHero", () => {
       skills: {},
     };
 
-    const result = constructHero("id", data);
+    const result = constructHero("id", "heroId", data);
 
     const expected: Army = [
       {
@@ -59,7 +59,7 @@ describe("constructHero", () => {
       skills: {},
     };
 
-    const result = constructHero("id", data);
+    const result = constructHero("id", "heroId", data);
 
     const expected: Army = [];
 

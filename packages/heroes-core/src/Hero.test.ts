@@ -6,6 +6,7 @@ const getHero = (id: string, mobility: number = 1): Hero => ({
   dataId: "hero",
   experience: 0,
   heroClass: "heroClass",
+  heroId: "heroId",
   id,
   luck: 0,
   mobility,

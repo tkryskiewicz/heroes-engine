@@ -35,7 +35,7 @@ declare module "heroes-core/src/Game" {
   }
 }
 
-export const constructGameHero = (heroId: string, data: GameData) => {
+export const constructGameHero = (id: string, heroId: string, data: GameData) => {
   const hero = data.heroes[heroId];
 
   if (!hero) {
@@ -48,7 +48,7 @@ export const constructGameHero = (heroId: string, data: GameData) => {
     throw new Error(`${hero.heroClass} is not a valid hero class`);
   }
 
-  return constructHero(hero.id, heroClass);
+  return constructHero(id, hero.id, heroClass);
 };
 
 export const getGameHeroes = (game: Game): Hero[] =>

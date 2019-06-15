@@ -30,7 +30,7 @@ export class HeroLocators extends React.Component<HeroLocatorsProps> {
       <HeroLocator
         key={index}
         index={index}
-        hero={hero ? { id: hero.id, mobility: hero.mobility } : undefined}
+        hero={hero ? { id: hero.heroId, mobility: hero.mobility } : undefined}
         selected={index === this.props.selectedIndex}
         onClick={this.props.onLocatorClick}
       />
