@@ -49,7 +49,7 @@ storiesOf("editor|HeroMapObjectDetailsWindow", module)
         .map(() => ({ creature: CreatureId.Peasant, count: 0 })),
       artifacts: [],
       experience: number("Experience", 0, { range: true, min: 0, max: 99999, step: 1 }),
-      hero: hero("Hero"),
+      heroId: hero("Hero"),
     };
 
     return (
