@@ -2,7 +2,6 @@ import * as React from "react";
 import { FormattedNumber } from "react-intl";
 
 import { Resources } from "heroes-core";
-import { Resource } from "heroes-homm1";
 
 import * as styles from "./ResourceCost.module.scss";
 
@@ -30,7 +29,6 @@ export class ResourceCost extends React.Component<ResourceCostProps> {
         key={resource}
       >
         <ResourceIcon
-          size={resource !== Resource.Gold ? "small" : "large"}
           resource={resource}
         />
         <div className={styles.resourceAmount}>

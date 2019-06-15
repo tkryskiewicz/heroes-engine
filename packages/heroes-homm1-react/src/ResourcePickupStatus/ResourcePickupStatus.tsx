@@ -28,7 +28,6 @@ class ResourcePickupStatus extends React.Component<ResourcePickupStatusProps> {
           </GameText>
           <div>
             <ResourceIcon
-              size="large"
               resource={resource}
             />
           </div>

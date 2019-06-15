@@ -16,7 +16,6 @@ export class ResourceAmount extends React.Component<ResourceAmountProps> {
     return (
       <div className={styles.root}>
         <ResourceIcon
-          size="large"
           resource={this.props.resource}
         />
         <div>

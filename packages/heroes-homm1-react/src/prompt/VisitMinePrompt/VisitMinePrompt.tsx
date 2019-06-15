@@ -47,7 +47,6 @@ class VisitMinePrompt extends React.Component<Props> {
         </GameParagraph>
         <div>
           <ResourceIcon
-            size="large"
             resource={resource}
           />
         </div>
