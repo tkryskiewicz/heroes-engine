@@ -91,7 +91,7 @@ export class RandomMapSettingsWindow extends React.Component<RandomMapSettingsWi
     const onChange = (value: number) => this.onTerrainAmountChange(terrain, value);
 
     return (
-      <Row>
+      <Row key={terrain}>
         <Col
           className={styles.settingName}
           span={6}

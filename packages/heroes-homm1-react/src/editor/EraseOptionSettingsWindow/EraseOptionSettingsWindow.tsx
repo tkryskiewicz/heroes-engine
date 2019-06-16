@@ -67,7 +67,10 @@ export class EraseOptionSettingsWindow extends React.Component<EraseOptionSettin
     const onClick = (checked: boolean) => this.onObjectTypeSettingChange(type, checked);
 
     return (
-      <div className={styles.setting}>
+      <div
+        key={type}
+        className={styles.setting}
+      >
         <GameText size="large">
           <FormattedMessage {...getMapObjectTypeNameMessage(type)} />:
         </GameText>
