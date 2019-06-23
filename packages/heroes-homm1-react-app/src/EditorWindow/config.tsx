@@ -192,7 +192,7 @@ const objectOrder: string[] = [
   MapObjectId.Hole,
   MapObjectId.Waterwheel,
   MapObjectId.Statue,
-  MapObjectId.Bouy,
+  MapObjectId.Buoy,
   MapObjectId.Water3,
   MapObjectId.Water1,
   MapObjectId.Water2,

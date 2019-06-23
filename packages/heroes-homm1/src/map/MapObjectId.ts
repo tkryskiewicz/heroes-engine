@@ -89,7 +89,7 @@ export enum MapObjectId {
   River9 = "river9",
 
   // water
-  Bouy = "bouy",
+  Buoy = "buoy",
   Shipwreck = "shipwreck",
   Whirlpool = "whirlpool",
   Water1 = "water1",

@@ -1214,7 +1214,7 @@ const waterObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Bouy,
+    id: MapObjectId.Buoy,
     restrictedTerrains: [
       TerrainType.Water,
     ],

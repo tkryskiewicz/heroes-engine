@@ -88,7 +88,7 @@ const mapObjectMessages: Messages = defineMessages({
     id: "game.mapObject.sawmill",
   },
   // other
-  [getKey(MapObjectId.Bouy)]: {
+  [getKey(MapObjectId.Buoy)]: {
     defaultMessage: "Buoy",
     id: "game.mapObject.buoy",
   },

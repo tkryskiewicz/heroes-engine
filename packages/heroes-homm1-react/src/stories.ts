@@ -141,7 +141,7 @@ export const spell = (name: string) =>
   select<SpellId>(name, Object.values(SpellId), SpellId.Bless);
 
 export const mapObject = (name: string) =>
-  select<MapObjectId>(name, Object.values(MapObjectId), MapObjectId.Bouy);
+  select<MapObjectId>(name, Object.values(MapObjectId), MapObjectId.Buoy);
 
 export const mapObjectSize = (name: string) =>
   select(name, ["large", "small"], "large");
