@@ -604,10 +604,10 @@ const sawmill: MineObjectData = {
   width: 2,
 };
 
-const cottage: DwellingMapObjectData & TerrainRestrictedMapObjectData & VariantMapObjectData = {
+const cottage: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
   dwelling: {
     creature: CreatureId.Archer,
-    initialCount: 3,
+    initialCount: 1, // 1-4
   },
   grid: [
     true,
@@ -616,23 +616,68 @@ const cottage: DwellingMapObjectData & TerrainRestrictedMapObjectData & VariantM
   id: MapObjectId.Cottage,
   restrictedTerrains: [
     TerrainType.Grass,
-    TerrainType.Snow,
   ],
-  type: [
-    MapObjectType.Grass,
-    MapObjectType.Snow,
-  ],
-  variants: {
-    [TerrainType.Grass]: "grass",
-    [TerrainType.Snow]: "snow",
-  },
+  type: MapObjectType.Grass,
   width: 1,
 };
 
-const thatchedHut: DwellingMapObjectData & TerrainRestrictedMapObjectData & VariantMapObjectData = {
+const cottageSnow: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
   dwelling: {
     creature: CreatureId.Peasant,
-    initialCount: 50,
+    initialCount: 20, // 20-50
+  },
+  grid: [
+    true,
+    false,
+  ],
+  height: 2,
+  id: MapObjectId.CottageSnow,
+  restrictedTerrains: [
+    TerrainType.Snow,
+  ],
+  type: MapObjectType.Snow,
+  width: 1,
+};
+
+const desertTent: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
+  dwelling: {
+    creature: CreatureId.Nomad,
+    initialCount: 10, // 10-20
+  },
+  grid: [
+    true, true, true,
+    false, false, false,
+  ],
+  height: 2,
+  id: MapObjectId.DesertTent,
+  restrictedTerrains: [
+    TerrainType.Desert,
+  ],
+  type: MapObjectType.Desert,
+  width: 3,
+};
+
+const hut: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
+  dwelling: {
+    creature: CreatureId.Goblin,
+    initialCount: 10, // 10-20
+  },
+  grid: [
+    true,
+  ],
+  height: 1,
+  id: MapObjectId.Hut,
+  restrictedTerrains: [
+    TerrainType.Grass,
+  ],
+  type: MapObjectType.Grass,
+  width: 1,
+};
+
+const thatchedHut: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
+  dwelling: {
+    creature: CreatureId.Peasant,
+    initialCount: 20, // 20-50
   },
   grid: [
     true,
@@ -641,38 +686,52 @@ const thatchedHut: DwellingMapObjectData & TerrainRestrictedMapObjectData & Vari
   id: MapObjectId.ThatchedHut,
   restrictedTerrains: [
     TerrainType.Grass,
+  ],
+  type: MapObjectType.Grass,
+  width: 1,
+};
+
+const thatchedHutSnow: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
+  dwelling: {
+    creature: CreatureId.Dwarf,
+    initialCount: 1, // 1-3
+  },
+  grid: [
+    true,
+  ],
+  height: 1,
+  id: MapObjectId.ThatchedHutSnow,
+  restrictedTerrains: [
     TerrainType.Snow,
   ],
-  type: [
-    MapObjectType.Grass,
-    MapObjectType.Snow,
-  ],
-  variants: {
-    [TerrainType.Grass]: "grass",
-    [TerrainType.Snow]: "snow",
-  },
+  type: MapObjectType.Snow,
   width: 1,
+};
+
+const wagonCamp: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
+  dwelling: {
+    creature: CreatureId.Rogue,
+    initialCount: 30, // 30-50
+  },
+  grid: [
+    true, true, true,
+    false, true, true,
+  ],
+  height: 2,
+  id: MapObjectId.WagonCamp,
+  restrictedTerrains: nonWaterTerrains,
+  type: nonWaterTerrainTypes,
+  width: 3,
 };
 
 const dwellingObjects: Array<DwellingMapObjectData & TerrainRestrictedMapObjectData> = [
   cottage,
-  {
-    dwelling: {
-      creature: CreatureId.Goblin,
-      initialCount: 27,
-    },
-    grid: [
-      true,
-    ],
-    height: 1,
-    id: MapObjectId.Hut,
-    restrictedTerrains: [
-      TerrainType.Grass,
-    ],
-    type: MapObjectType.Grass,
-    width: 1,
-  },
+  cottageSnow,
+  desertTent,
+  hut,
   thatchedHut,
+  thatchedHutSnow,
+  wagonCamp,
 ];
 
 const obelisk: ObeliskMapObjectData & TerrainRestrictedMapObjectData & VariantMapObjectData = {
@@ -1062,17 +1121,6 @@ const otherObjects: TerrainRestrictedMapObjectData[] = [
       MapObjectType.Dirt,
     ],
     width: 1,
-  },
-  {
-    grid: [
-      true, true, true,
-      false, true, true,
-    ],
-    height: 2,
-    id: MapObjectId.WagonCamp,
-    restrictedTerrains: nonWaterTerrains,
-    type: nonWaterTerrainTypes,
-    width: 3,
   },
   {
     grid: [
@@ -1731,19 +1779,6 @@ const lavaObjects: TerrainRestrictedMapObjectData[] = [
 ];
 
 const desertObjects: TerrainRestrictedMapObjectData[] = [
-  {
-    grid: [
-      true, true, true,
-      false, false, false,
-    ],
-    height: 2,
-    id: MapObjectId.DesertTent,
-    restrictedTerrains: [
-      TerrainType.Desert,
-    ],
-    type: MapObjectType.Desert,
-    width: 3,
-  },
   {
     grid: [
       true, true, true, true,

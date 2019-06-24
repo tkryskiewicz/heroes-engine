@@ -129,6 +129,8 @@ const objectOrder: string[] = [
   MapObjectId.Sawmill,
   MapObjectId.Signpost, // order changes
   MapObjectId.Fireplace2,
+  MapObjectId.ThatchedHutSnow,
+  MapObjectId.CottageSnow,
   MapObjectId.Grass1,
   MapObjectId.Grass2,
   MapObjectId.Swamp1,

@@ -47,8 +47,12 @@ export enum MapObjectId {
 
   // dwellings
   Cottage = "cottage",
+  CottageSnow = "cottage-snow",
+  DesertTent = "desert-tent",
   Hut = "hut",
   ThatchedHut = "thatched-hut",
+  ThatchedHutSnow = "thatched-hut-snow",
+  WagonCamp = "wagon-camp",
 
   // puzzle
   Obelisk = "obelisk",
@@ -73,7 +77,6 @@ export enum MapObjectId {
   TravelGate = "travel-gate",
   TravelGate2 = "travel-gate-2",
   TreeStump = "tree-stump",
-  WagonCamp = "wagon-camp",
   Waterwheel = "waterwheel",
   Windmill = "windmill",
 
@@ -140,7 +143,6 @@ export enum MapObjectId {
   Lava10 = "lava10",
 
   // desert
-  DesertTent = "desert-tent",
   Oasis = "oasis",
   Skeleton = "skeleton",
   Desert1 = "desert1",
