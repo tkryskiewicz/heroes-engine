@@ -1,5 +1,3 @@
-// tslint:disable: no-loop-statement
-
 import {
   canPlaceObject as canPlaceObjectCore,
   everyMapObjectPoint,

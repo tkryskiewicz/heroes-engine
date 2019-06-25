@@ -80,21 +80,11 @@ export const forEachMapObjectPoint = (objectData: MapObjectData, callbackfn: (po
 };
 
 export const everyMapObjectPoint = (objectData: MapObjectData, callbackfn: (point: MapPoint) => boolean): boolean => {
-  for (let h = 0; h < objectData.height; h++) {
-    for (let w = 0; w < objectData.width; w++) {
-      const point = createPoint(w, h);
+  let result = true;
 
-      const objectTile = objectData.grid[getTileIndex(objectData.width, point)];
+  forEachMapObjectPoint(objectData, (point) => result = result && callbackfn(point));
 
-      if (objectTile) {
-        if (!callbackfn(point)) {
-          return false;
-        }
-      }
-    }
-  }
-
-  return true;
+  return result;
 };
 
 export const canPlaceObject = (

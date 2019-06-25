@@ -3,7 +3,28 @@ import { createMap } from "heroes-core";
 import { Scenario } from "../Scenario";
 import { ScenarioDifficulty } from "../ScenarioDifficulty";
 import { ScenarioSize } from "../ScenarioSize";
-import { getScenarioSpecification, ScenarioSpecification, setScenarioSpecification } from "./ScenarioSpecification";
+import {
+  createDefaultScenarioSpecification,
+  getScenarioSpecification,
+  ScenarioSpecification,
+  setScenarioSpecification,
+} from "./ScenarioSpecification";
+
+describe("createDefaultScenarioSpecification", () => {
+  it("should return default specification", () => {
+    const result = createDefaultScenarioSpecification();
+
+    const expected: ScenarioSpecification = {
+      description: "No Description",
+      difficulty: ScenarioDifficulty.Normal,
+      filePrefix: "VJVF",
+      name: "No Name",
+      size: ScenarioSize.Medium,
+    };
+
+    expect(result).toEqual(expected);
+  });
+});
 
 describe("getScenarioSpecification", () => {
   it("should return specification", () => {

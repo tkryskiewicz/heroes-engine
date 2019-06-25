@@ -1,6 +1,8 @@
 import {
   changeTerrain,
   createMap,
+  everyMapObjectPoint,
+  forEachMapObjectPoint,
   getObject,
   getTileIndex,
   getTilePoint,
@@ -12,8 +14,8 @@ import {
   removeObject,
   replaceObject,
 } from "./Map";
-import { MapObject } from "./MapObject";
-import { createPoint } from "./MapPoint";
+import { MapObject, MapObjectData } from "./MapObject";
+import { createPoint, isSamePoint } from "./MapPoint";
 
 describe("createMap", () => {
   it("should correctly set size", () => {
@@ -192,6 +194,106 @@ describe("isPointTaken", () => {
     const map = createMap(1, 1, "terrain");
 
     const result = isPointTaken(map, createPoint(0, 0));
+
+    expect(result).toBe(false);
+  });
+});
+
+describe("forEachMapObjectPoint", () => {
+  it("should call callback for obstacle point", () => {
+    const objectData: MapObjectData = {
+      grid: [
+        true,
+      ],
+      height: 1,
+      id: "id",
+      width: 1,
+    };
+
+    const callback = jest.fn();
+
+    forEachMapObjectPoint(objectData, callback);
+
+    expect(callback).toBeCalledWith(createPoint(0, 0));
+  });
+
+  it("should not call callback for non-obstacle point", () => {
+    const objectData: MapObjectData = {
+      grid: [
+        false,
+      ],
+      height: 1,
+      id: "id",
+      width: 1,
+    };
+
+    const callback = jest.fn();
+
+    forEachMapObjectPoint(objectData, callback);
+
+    expect(callback).not.toBeCalled();
+  });
+
+  it("should not call callback for undefined point", () => {
+    const objectData: MapObjectData = {
+      grid: [
+        undefined,
+      ],
+      height: 1,
+      id: "id",
+      width: 1,
+    };
+
+    const callback = jest.fn();
+
+    forEachMapObjectPoint(objectData, callback);
+
+    expect(callback).not.toBeCalled();
+  });
+});
+
+describe("everyMapObjectPoint", () => {
+  it("should return true when every point passes condition", () => {
+    const objectData: MapObjectData = {
+      grid: [
+        true,
+      ],
+      height: 1,
+      id: "id",
+      width: 1,
+    };
+
+    const result = everyMapObjectPoint(objectData, () => true);
+
+    expect(result).toBe(true);
+  });
+
+  it("should return false when no point passes condition", () => {
+    const objectData: MapObjectData = {
+      grid: [
+        true,
+      ],
+      height: 1,
+      id: "id",
+      width: 1,
+    };
+
+    const result = everyMapObjectPoint(objectData, () => false);
+
+    expect(result).toBe(false);
+  });
+
+  it("should return false when not every point passes condition", () => {
+    const objectData: MapObjectData = {
+      grid: [
+        true, true,
+      ],
+      height: 1,
+      id: "id",
+      width: 2,
+    };
+
+    const result = everyMapObjectPoint(objectData, (point) => isSamePoint(point, createPoint(0, 0)));
 
     expect(result).toBe(false);
   });
