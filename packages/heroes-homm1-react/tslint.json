@@ -1,3 +1,21 @@
 {
-  "extends": "../../tslint.json"
+  "extends": [
+    "tslint-microsoft-contrib/latest",
+    "../../tslint.json"
+  ],
+  "rules": {
+    // tslint-microsoft-contrib
+    "export-name": false,
+    "import-name": false,
+    "max-func-body-length": false,
+    "no-relative-imports": false,
+    "no-suspicious-comment": false,
+    "no-unnecessary-local-variable": false,
+    "prefer-array-literal": false,
+    "prefer-type-cast": false,
+    "react-a11y-event-has-role": false,
+    "react-a11y-img-has-alt": false,
+    "react-this-binding-issue": false,
+    "use-simple-attributes": false
+  }
 }
