@@ -139,9 +139,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps> {
 
     const heroName = formatMessage(getHeroNameMessage(this.props.hero.id));
 
-    const heroTitle = formatMessage(getHeroClassTitleMessage(this.props.hero.heroClass), { heroName });
-
-    return heroTitle;
+    return formatMessage(getHeroClassTitleMessage(this.props.hero.heroClass), { heroName });
   }
 
   private renderCharacteristics(alignment: string, skills: HeroSkills, morale: MoraleType, luck: LuckType) {

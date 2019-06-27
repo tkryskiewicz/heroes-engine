@@ -139,10 +139,8 @@ class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
   }
 
   private renderStats(ranking: Ranking) {
-    const content = [...new Array(4).keys()]
+    return [...new Array(4).keys()]
       .map((_, i) => this.renderRanking(ranking[i] || [], i));
-
-    return content;
   }
 
   private renderRanking(ranking: string[], index: number) {

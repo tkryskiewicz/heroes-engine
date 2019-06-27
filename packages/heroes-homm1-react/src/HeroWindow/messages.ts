@@ -28,7 +28,5 @@ export const messages = defineMessages({
 export const getTitle = (intl: InjectedIntl, hero: string, heroClass: string) => {
   const heroName = intl.formatMessage(getHeroNameMessage(hero));
 
-  const heroTitle = intl.formatMessage(getHeroClassTitleMessage(heroClass), { heroName });
-
-  return heroTitle;
+  return intl.formatMessage(getHeroClassTitleMessage(heroClass), { heroName });
 };
