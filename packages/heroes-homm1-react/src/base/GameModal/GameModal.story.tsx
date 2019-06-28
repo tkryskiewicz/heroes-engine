@@ -6,7 +6,7 @@ import * as React from "react";
 import { GameText } from "../../core";
 import { GameModal, GameModalProps } from "./GameModal";
 
-const typeOptions: Array<GameModalProps["type"]> = [
+const typeOptions: GameModalProps["type"][] = [
   "cancel",
   "okay",
   "okayCancel",

@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { GameText, GameTextProps } from "./GameText";
 
-const sizeOptions: Array<GameTextProps["size"]> = [
+const sizeOptions: GameTextProps["size"][] = [
   "large",
   "normal",
   "small",

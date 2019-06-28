@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { GameInput, GameInputProps } from "./GameInput";
 
-const sizeOptions: Array<GameInputProps["size"]> = [
+const sizeOptions: GameInputProps["size"][] = [
   "large",
   "small",
 ];

@@ -4,13 +4,23 @@
     "../../tslint.json"
   ],
   "rules": {
+    // tslint
+    "array-type": [
+      true,
+      "array"
+    ],
     // tslint-microsoft-contrib
     "export-name": false,
     "import-name": false,
     "max-func-body-length": false,
     "no-relative-imports": false,
     "no-suspicious-comment": false,
-    "prefer-array-literal": false,
+    "prefer-array-literal": [
+      true,
+      {
+        "allow-size-argument": true
+      }
+    ],
     "prefer-type-cast": false,
     "react-a11y-event-has-role": false,
     "react-a11y-img-has-alt": false,

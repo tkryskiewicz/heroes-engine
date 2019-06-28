@@ -61,7 +61,7 @@ export {
   everyMapObjectPoint,
   forEachMapObjectPoint,
 } from "./Map";
-export { MapObject, MapObjectData, isMapObject, createMapObject } from "./MapObject";
+export { MapObject, MapObjectData, MapObjectGridCell, isMapObject, createMapObject } from "./MapObject";
 export { MapObjectOrientation } from "./MapObjectOrientation";
 export { MapPoint, createPoint, isSamePoint, translatePoint } from "./MapPoint";
 export { MapTile } from "./MapTile";

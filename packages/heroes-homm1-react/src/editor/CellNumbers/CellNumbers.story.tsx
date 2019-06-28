@@ -4,12 +4,12 @@ import * as React from "react";
 
 import { CellNumbers, CellNumbersProps } from "./CellNumbers";
 
-const sizeOptions: Array<CellNumbersProps["size"]> = [
+const sizeOptions: CellNumbersProps["size"][] = [
   "large",
   "small",
 ];
 
-const orientationOptions: Array<CellNumbersProps["orientation"]> = [
+const orientationOptions: CellNumbersProps["orientation"][] = [
   "horizontal",
   "vertical",
 ];

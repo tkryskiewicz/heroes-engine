@@ -6,7 +6,7 @@ import * as React from "react";
 import { Placeholder } from "../../Placeholder";
 import { EditorObjectSlot, EditorObjectSlotProps } from "./EditorObjectSlot";
 
-const sizeOptions: Array<EditorObjectSlotProps["size"]> = [
+const sizeOptions: EditorObjectSlotProps["size"][] = [
   "large",
   "small",
 ];
