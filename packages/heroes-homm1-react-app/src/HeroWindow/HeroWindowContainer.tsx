@@ -469,12 +469,10 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   private renderArtifactDetails(visibleArtifactDetails: number) {
     const artifact = this.props.hero.artifacts[visibleArtifactDetails]!;
 
-    const artifactDetails = this.props.getArtifactDetails(artifact, {
+    return this.props.getArtifactDetails(artifact, {
       onCloseClick: this.onCloseArtifactDetailsClick,
       onStatusTextChange: this.onArtifactStatusTextChange,
     });
-
-    return artifactDetails;
   }
 
   private readonly onArtifactStatusTextChange = (statusText: string) => {

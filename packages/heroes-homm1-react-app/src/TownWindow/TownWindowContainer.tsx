@@ -134,11 +134,9 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
     const struc = town.structures.find((s) => s.id === structure)!;
 
     // TODO: optimize and handle case with result missing
-    const structureDetails = this.props.getStructureDetails(struc, town.id, visitingHero, resources, {
+    return this.props.getStructureDetails(struc, town.id, visitingHero, resources, {
       onCloseClick: this.onCloseStructureDetailsClick,
     });
-
-    return structureDetails;
   }
 
   private readonly onCloseStructureDetailsClick = () => {

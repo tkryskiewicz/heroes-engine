@@ -64,7 +64,6 @@
     "mocha-no-side-effect-code": false,
     "no-relative-imports": false,
     "no-suspicious-comment": false,
-    "no-unnecessary-local-variable": false,
     "react-a11y-event-has-role": false,
     "react-a11y-img-has-alt": false,
     "react-this-binding-issue": false,

@@ -605,13 +605,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       return;
     }
 
-    const details = renderObjectDetails(object, selectedObjectDetails, data, {
+    return renderObjectDetails(object, selectedObjectDetails, data, {
       onCloseClick: this.props.onCloseObjectDetailsClick,
       onConfirmClick: this.onConfirmObjectDetailsClick,
       onValueChange: this.props.onSelectedObjectDetailsChange,
     });
-
-    return details;
   }
 
   private readonly onConfirmObjectDetailsClick = () => {
