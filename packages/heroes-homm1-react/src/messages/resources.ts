@@ -1,6 +1,6 @@
 import { defineMessages } from "react-intl";
 
-import { Resource } from "heroes-homm1";
+import { ResourceId } from "heroes-homm1";
 
 import { convertValue, unknownMessage } from "./util";
 
@@ -8,31 +8,31 @@ const getKey = (resource: string) =>
   convertValue(resource);
 
 const resourceMessages = defineMessages({
-  [getKey(Resource.Gold)]: {
+  [getKey(ResourceId.Gold)]: {
     defaultMessage: "Gold",
     id: "game.resources.gold",
   },
-  [getKey(Resource.Wood)]: {
+  [getKey(ResourceId.Wood)]: {
     defaultMessage: "Wood",
     id: "game.resources.wood",
   },
-  [getKey(Resource.Ore)]: {
+  [getKey(ResourceId.Ore)]: {
     defaultMessage: "Ore",
     id: "game.resources.ore",
   },
-  [getKey(Resource.Crystal)]: {
+  [getKey(ResourceId.Crystal)]: {
     defaultMessage: "Crystal",
     id: "game.resources.crystal",
   },
-  [getKey(Resource.Sulfur)]: {
+  [getKey(ResourceId.Sulfur)]: {
     defaultMessage: "Sulfur",
     id: "game.resources.sulfur",
   },
-  [getKey(Resource.Gems)]: {
+  [getKey(ResourceId.Gems)]: {
     defaultMessage: "Gems",
     id: "game.resources.gems",
   },
-  [getKey(Resource.Mercury)]: {
+  [getKey(ResourceId.Mercury)]: {
     defaultMessage: "Mercury",
     id: "game.resources.mercury",
   },

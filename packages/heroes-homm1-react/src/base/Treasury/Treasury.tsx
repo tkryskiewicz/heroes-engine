@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Resources } from "heroes-core";
-import { Resource } from "heroes-homm1";
+import { ResourceId } from "heroes-homm1";
 
 import * as styles from "./Treasury.module.scss";
 
@@ -20,13 +20,13 @@ export interface TreasuryProps {
 export class Treasury extends React.Component<TreasuryProps> {
   public render() {
     const content = [
-      Resource.Wood,
-      Resource.Sulfur,
-      Resource.Crystal,
-      Resource.Mercury,
-      Resource.Ore,
-      Resource.Gems,
-      Resource.Gold,
+      ResourceId.Wood,
+      ResourceId.Sulfur,
+      ResourceId.Crystal,
+      ResourceId.Mercury,
+      ResourceId.Ore,
+      ResourceId.Gems,
+      ResourceId.Gold,
     ].map((r) => this.renderResource(r, this.props.resources[r] || 0));
 
     return (

@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { withReadme } from "storybook-readme";
 
-import { HeroClass, Resource, TownId } from "heroes-homm1";
+import { HeroClass, ResourceId, TownId } from "heroes-homm1";
 
 import Readme = require("./README.md");
 
@@ -33,7 +33,7 @@ storiesOf("KingdomOverviewWindow", module)
       towns={Object.values(TownId)}
       renderCastleSummary={renderCastleSummary}
       renderTownSummary={renderTownSummary}
-      resources={Object.values(Resource)}
+      resources={Object.values(ResourceId)}
       renderMineSummary={renderMineSummary}
       renderResourceSummary={renderResourceSummary}
       goldPerDay={number("Gold Per Day", 0, { range: true, min: 0, max: 9999, step: 1 })}

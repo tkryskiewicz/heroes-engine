@@ -3,7 +3,7 @@ import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { Resource } from "heroes-homm1";
+import { ResourceId } from "heroes-homm1";
 
 import { structure, town } from "../stories";
 import { BuildStructureWindow } from "./BuildStructureWindow";
@@ -13,7 +13,7 @@ storiesOf("BuildStructureWindow", module)
     <BuildStructureWindow
       town={town("Town")}
       structure={structure("Structure")}
-      cost={{ [Resource.Gold]: 2000, [Resource.Ore]: 20 }}
+      cost={{ [ResourceId.Gold]: 2000, [ResourceId.Ore]: 20 }}
       canBuild={boolean("Can Build", true)}
       visible={boolean("Visible", true)}
       onOkayClick={action("Okay Click")}

@@ -35,7 +35,7 @@ import {
   TownMapObjectData,
   VariantMapObjectData,
 } from "./map";
-import { Resource } from "./Resource";
+import { ResourceId } from "./ResourceId";
 import { TerrainType } from "./TerrainType";
 
 const allTerrains = Object.values(TerrainType);
@@ -278,7 +278,7 @@ const goldObject: ResourceObjectData = {
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
-    [Resource.Gold]: {
+    [ResourceId.Gold]: {
       // TODO: multiplies of 100
       max: 500,
       min: 1000,
@@ -297,7 +297,7 @@ const woodObject: ResourceObjectData = {
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
-    [Resource.Wood]: {
+    [ResourceId.Wood]: {
       max: 15,
       min: 8,
     },
@@ -315,7 +315,7 @@ const oreObject: ResourceObjectData = {
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
-    [Resource.Ore]: {
+    [ResourceId.Ore]: {
       max: 16,
       min: 8,
     },
@@ -333,7 +333,7 @@ const crystalObject: ResourceObjectData = {
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
-    [Resource.Crystal]: {
+    [ResourceId.Crystal]: {
       max: 7,
       min: 4,
     },
@@ -351,7 +351,7 @@ const sulfurObject: ResourceObjectData = {
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
-    [Resource.Sulfur]: {
+    [ResourceId.Sulfur]: {
       max: 7,
       min: 4,
     },
@@ -369,7 +369,7 @@ const gemsObject: ResourceObjectData = {
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
-    [Resource.Gems]: {
+    [ResourceId.Gems]: {
       max: 7,
       min: 4,
     },
@@ -387,7 +387,7 @@ const mercuryObject: ResourceObjectData = {
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
-    [Resource.Mercury]: {
+    [ResourceId.Mercury]: {
       max: 7,
       min: 4,
     },
@@ -428,12 +428,12 @@ const fireplace: TreasureObjectData = {
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
-    [Resource.Gold]: {
+    [ResourceId.Gold]: {
       max: 7,
       min: 4,
     },
     // TODO: gold + one other resource, x * 100 gold + x other resource
-    [Resource.Wood]: {
+    [ResourceId.Wood]: {
       max: 7,
       min: 4,
     },
@@ -525,7 +525,7 @@ const mineObjects: (MineObjectData & VariantMapObjectData)[] = [
     id: MapObjectId.CrystalMine,
     resourceGenerator: {
       amount: 1,
-      resource: Resource.Crystal,
+      resource: ResourceId.Crystal,
     },
   },
   {
@@ -533,7 +533,7 @@ const mineObjects: (MineObjectData & VariantMapObjectData)[] = [
     id: MapObjectId.GemsMine,
     resourceGenerator: {
       amount: 1,
-      resource: Resource.Gems,
+      resource: ResourceId.Gems,
     },
   },
   {
@@ -541,7 +541,7 @@ const mineObjects: (MineObjectData & VariantMapObjectData)[] = [
     id: MapObjectId.GoldMine,
     resourceGenerator: {
       amount: 1000,
-      resource: Resource.Gold,
+      resource: ResourceId.Gold,
     },
   },
   {
@@ -549,7 +549,7 @@ const mineObjects: (MineObjectData & VariantMapObjectData)[] = [
     id: MapObjectId.OreMine,
     resourceGenerator: {
       amount: 2,
-      resource: Resource.Ore,
+      resource: ResourceId.Ore,
     },
   },
   {
@@ -557,7 +557,7 @@ const mineObjects: (MineObjectData & VariantMapObjectData)[] = [
     id: MapObjectId.SulfurMine,
     resourceGenerator: {
       amount: 1,
-      resource: Resource.Sulfur,
+      resource: ResourceId.Sulfur,
     },
   },
 ];
@@ -572,7 +572,7 @@ const alchemist: MineObjectData & VariantMapObjectData = {
   ownable: true,
   resourceGenerator: {
     amount: 2,
-    resource: Resource.Mercury,
+    resource: ResourceId.Mercury,
   },
   restrictedTerrains: nonWaterTerrains,
   type: nonWaterTerrainTypes,
@@ -597,7 +597,7 @@ const sawmill: MineObjectData = {
   ownable: true,
   resourceGenerator: {
     amount: 2,
-    resource: Resource.Wood,
+    resource: ResourceId.Wood,
   },
   restrictedTerrains: nonWaterTerrains,
   type: nonWaterTerrainTypes,

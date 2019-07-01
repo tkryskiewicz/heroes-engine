@@ -17,7 +17,6 @@ import {
   MapObjectId,
   TownMapObjectData,
 } from "./map";
-import { Resource } from "./Resource";
 import { constructSpellBook } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";
 
@@ -55,7 +54,9 @@ describe("buyMageGuildSpellBook", () => {
     const mageGuild: MageGuild = {
       cost: {},
       data: {
-        spellBookCost: { [Resource.Gold]: 500 },
+        spellBookCost: {
+          resource: 500,
+        },
         spells: [
           "spell",
         ],
@@ -119,7 +120,7 @@ describe("buyMageGuildSpellBook", () => {
         uncoveredPieces: 0,
       },
       resources: {
-        [Resource.Gold]: 1000,
+        resource: 1000,
       },
       scenario: {
         description: "Description",
@@ -147,7 +148,7 @@ describe("buyMageGuildSpellBook", () => {
       ...game,
       map: replaceObject(game.map, expectedHero),
       resources: {
-        [Resource.Gold]: 500,
+        resource: 500,
       },
     };
 

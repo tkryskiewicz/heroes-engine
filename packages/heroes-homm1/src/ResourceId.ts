@@ -1,4 +1,4 @@
-export enum Resource {
+export enum ResourceId {
   Gold = "gold",
   Wood = "wood",
   Ore = "ore",

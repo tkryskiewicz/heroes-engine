@@ -53,7 +53,7 @@ export {
 } from "./morale";
 export { MovementSpeed } from "./MovementSpeed";
 export { OpponentSetting, getOpponentSettingRating } from "./OpponentSetting";
-export { Resource } from "./Resource";
+export { ResourceId } from "./ResourceId";
 export { resources } from "./resources";
 export { Scenario } from "./Scenario";
 export { ScenarioDifficulty } from "./ScenarioDifficulty";

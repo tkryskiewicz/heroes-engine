@@ -2,7 +2,7 @@ import * as React from "react";
 import { FormattedNumber } from "react-intl";
 
 import { Resources } from "heroes-core";
-import { Resource } from "heroes-homm1";
+import { ResourceId } from "heroes-homm1";
 
 import * as styles from "./ResourceSummary.module.scss";
 
@@ -33,7 +33,7 @@ export class ResourceSummary extends React.Component<ResourceSummaryProps> {
             </div>
             <div className={styles.primaryResource}>
               <GameText size="small">
-                <FormattedNumber value={this.props.resources[Resource.Gold]} />
+                <FormattedNumber value={this.props.resources[ResourceId.Gold]} />
               </GameText>
             </div>
           </div>
@@ -47,12 +47,12 @@ export class ResourceSummary extends React.Component<ResourceSummaryProps> {
 
   private renderSecondaryResources(resources: Resources) {
     return [
-      Resource.Wood,
-      Resource.Mercury,
-      Resource.Ore,
-      Resource.Sulfur,
-      Resource.Crystal,
-      Resource.Gems,
+      ResourceId.Wood,
+      ResourceId.Mercury,
+      ResourceId.Ore,
+      ResourceId.Sulfur,
+      ResourceId.Crystal,
+      ResourceId.Gems,
     ].map((r) => (
       <div
         key={r}

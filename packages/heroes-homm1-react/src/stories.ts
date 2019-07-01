@@ -23,7 +23,7 @@ import {
   MovementSpeed,
   OpponentSetting,
   PlainsStructureId,
-  Resource,
+  ResourceId,
   resources,
   ScenarioDifficulty,
   ScenarioSize,
@@ -50,7 +50,7 @@ export const alignment = (name: string) =>
   select<AlignmentId>(name, Object.values(AlignmentId), AlignmentId.Red);
 
 export const resource = (name: string) =>
-  select<Resource>(name, Object.values(Resource), Resource.Gold);
+  select<ResourceId>(name, Object.values(ResourceId), ResourceId.Gold);
 
 export const mine = (name: string) =>
   select<MapObjectId>(name, Object.values(resources).map((r) => r.mine) as MapObjectId[], MapObjectId.OreMine);
@@ -174,11 +174,11 @@ export const gameDate = (name: string): GameDate => ({
 });
 
 export const resourceAmounts = (name: string): Resources => ({
-  [Resource.Wood]: number(`${name} / Wood`, 0, { range: true, min: 0, max: 999, step: 1 }),
-  [Resource.Mercury]: number(`${name} / Mercury`, 0, { range: true, min: 0, max: 999, step: 1 }),
-  [Resource.Ore]: number(`${name} / Ore`, 0, { range: true, min: 0, max: 999, step: 1 }),
-  [Resource.Sulfur]: number(`${name} / Sulfur`, 0, { range: true, min: 0, max: 999, step: 1 }),
-  [Resource.Crystal]: number(`${name} / Crystal`, 0, { range: true, min: 0, max: 999, step: 1 }),
-  [Resource.Gems]: number(`${name} / Gems`, 0, { range: true, min: 0, max: 999, step: 1 }),
-  [Resource.Gold]: number(`${name} / Gold`, 0, { range: true, min: 0, max: 999, step: 1 }),
+  [ResourceId.Wood]: number(`${name} / Wood`, 0, { range: true, min: 0, max: 999, step: 1 }),
+  [ResourceId.Mercury]: number(`${name} / Mercury`, 0, { range: true, min: 0, max: 999, step: 1 }),
+  [ResourceId.Ore]: number(`${name} / Ore`, 0, { range: true, min: 0, max: 999, step: 1 }),
+  [ResourceId.Sulfur]: number(`${name} / Sulfur`, 0, { range: true, min: 0, max: 999, step: 1 }),
+  [ResourceId.Crystal]: number(`${name} / Crystal`, 0, { range: true, min: 0, max: 999, step: 1 }),
+  [ResourceId.Gems]: number(`${name} / Gems`, 0, { range: true, min: 0, max: 999, step: 1 }),
+  [ResourceId.Gold]: number(`${name} / Gold`, 0, { range: true, min: 0, max: 999, step: 1 }),
 });

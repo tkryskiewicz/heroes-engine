@@ -3,7 +3,7 @@ import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
-import { HeroClass, HeroId, Resource } from "heroes-homm1";
+import { HeroClass, HeroId, ResourceId } from "heroes-homm1";
 
 import { Hero, RecruitHeroWindow } from "./RecruitHeroWindow";
 
@@ -22,8 +22,8 @@ storiesOf("RecruitHeroWindow", module)
   .add("default", () => (
     <RecruitHeroWindow
       heroes={heroes}
-      resources={{ [Resource.Gold]: number("Gold", 0, { range: true, min: 0, max: 10000, step: 1 }) }}
-      cost={{ [Resource.Gold]: number("Cost", 2500, { range: true, min: 0, max: 10000, step: 1 }) }}
+      resources={{ [ResourceId.Gold]: number("Gold", 0, { range: true, min: 0, max: 10000, step: 1 }) }}
+      cost={{ [ResourceId.Gold]: number("Cost", 2500, { range: true, min: 0, max: 10000, step: 1 }) }}
       visible={boolean("Visible", true)}
       onHeroPortraitClick={action("Hero Portrait Click")}
       onRecruitHeroClick={action("Recruit Hero Click")}

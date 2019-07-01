@@ -1,7 +1,7 @@
 import * as Classnames from "classnames";
 import * as React from "react";
 
-import { MapObjectId, Resource } from "heroes-homm1";
+import { MapObjectId, ResourceId } from "heroes-homm1";
 
 import * as styles from "./MineMapObject.module.scss";
 
@@ -33,9 +33,9 @@ export class MineMapObject extends React.Component<MineMapObjectProps> {
 
   private getObjectType(resource: string) {
     switch (resource) {
-      case Resource.Wood:
+      case ResourceId.Wood:
         return MapObjectId.Sawmill;
-      case Resource.Mercury:
+      case ResourceId.Mercury:
         return MapObjectId.Alchemist;
       default:
         return "mine";
@@ -43,7 +43,7 @@ export class MineMapObject extends React.Component<MineMapObjectProps> {
   }
 
   private renderWagon(size: string, resource: string) {
-    if (resource === Resource.Wood || resource === Resource.Mercury) {
+    if (resource === ResourceId.Wood || resource === ResourceId.Mercury) {
       return;
     }
 
@@ -56,7 +56,7 @@ export class MineMapObject extends React.Component<MineMapObjectProps> {
   }
 
   private renderFlag(resource: string, alignment: string) {
-    const flag = resource !== Resource.Mercury ?
+    const flag = resource !== ResourceId.Mercury ?
       "mine-flag" :
       "mine-flag-2";
 

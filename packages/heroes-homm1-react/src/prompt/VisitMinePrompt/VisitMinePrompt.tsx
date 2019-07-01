@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
-import { MapObjectId, Resource } from "heroes-homm1";
+import { MapObjectId, ResourceId } from "heroes-homm1";
 
 import { GameModal, ResourceIcon } from "../../base";
 import { GameParagraph, GameText } from "../../core";
@@ -24,9 +24,9 @@ class VisitMinePrompt extends React.Component<Props> {
 
     const mineName = formatMessage(getMapObjectNameMessage(mine));
 
-    const amount = formatMessage(resource !== Resource.Gold ? messages.amountUnits : messages.amount, {
+    const amount = formatMessage(resource !== ResourceId.Gold ? messages.amountUnits : messages.amount, {
       amount: this.props.amount,
-      resource: resource !== Resource.Mercury ? resourceName.toLowerCase() : resourceName,
+      resource: resource !== ResourceId.Mercury ? resourceName.toLowerCase() : resourceName,
     });
 
     return (

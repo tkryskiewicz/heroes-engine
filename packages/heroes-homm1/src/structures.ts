@@ -2,7 +2,7 @@ import { Dwelling, enoughResources, Resources, Structure, StructureData } from "
 
 import { CastleOptionStatus } from "./CastleOptionStatus";
 import { CreatureId } from "./creatures";
-import { Resource } from "./Resource";
+import { ResourceId } from "./ResourceId";
 import { SpellId } from "./spells";
 
 interface DwellingType {
@@ -85,9 +85,9 @@ export interface Shipyard extends Structure {
 export const coreStructures: StructureData[] = [
   {
     cost: {
-      [Resource.Gold]: 10000,
-      [Resource.Wood]: 20,
-      [Resource.Ore]: 20,
+      [ResourceId.Gold]: 10000,
+      [ResourceId.Wood]: 20,
+      [ResourceId.Ore]: 20,
     },
     id: StructureId.Castle,
   },
@@ -107,13 +107,13 @@ export const isCommonStructure = (structure: string) =>
 export const commonStructures: StructureData[] = [
   {
     cost: {
-      [Resource.Gold]: 2000,
-      [Resource.Wood]: 5,
-      [Resource.Ore]: 5,
+      [ResourceId.Gold]: 2000,
+      [ResourceId.Wood]: 5,
+      [ResourceId.Ore]: 5,
     },
     data: {
       spellBookCost: {
-        [Resource.Gold]: 500,
+        [ResourceId.Gold]: 500,
       },
       spells: [
         SpellId.Bless,
@@ -131,34 +131,34 @@ export const commonStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 750,
-      [Resource.Wood]: 5,
+      [ResourceId.Gold]: 750,
+      [ResourceId.Wood]: 5,
     },
     id: StructureId.ThievesGuild,
   },
   {
     cost: {
-      [Resource.Gold]: 500,
-      [Resource.Wood]: 5,
+      [ResourceId.Gold]: 500,
+      [ResourceId.Wood]: 5,
     },
     id: StructureId.Tavern,
   },
   {
     cost: {
-      [Resource.Gold]: 2000,
-      [Resource.Wood]: 20,
+      [ResourceId.Gold]: 2000,
+      [ResourceId.Wood]: 20,
     },
     data: {
       shipCost: {
-        [Resource.Gold]: 1000,
-        [Resource.Wood]: 10,
+        [ResourceId.Gold]: 1000,
+        [ResourceId.Wood]: 10,
       },
     },
     id: StructureId.Shipyard,
   },
   {
     cost: {
-      [Resource.Gold]: 500,
+      [ResourceId.Gold]: 500,
     },
     id: StructureId.Well,
   },
@@ -177,11 +177,11 @@ export enum FarmStructureId {
 export const farmStructures: StructureData[] = [
   {
     cost: {
-      [Resource.Gold]: 200,
+      [ResourceId.Gold]: 200,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 20,
+        [ResourceId.Gold]: 20,
       },
       creature: CreatureId.Peasant,
       growth: 12,
@@ -190,11 +190,11 @@ export const farmStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 1000,
+      [ResourceId.Gold]: 1000,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 150,
+        [ResourceId.Gold]: 150,
       },
       creature: CreatureId.Archer,
       growth: 8,
@@ -203,12 +203,12 @@ export const farmStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 1000,
-      [Resource.Ore]: 5,
+      [ResourceId.Gold]: 1000,
+      [ResourceId.Ore]: 5,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 200,
+        [ResourceId.Gold]: 200,
       },
       creature: CreatureId.Pikeman,
       growth: 5,
@@ -217,13 +217,13 @@ export const farmStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 1000,
-      [Resource.Wood]: 10,
-      [Resource.Ore]: 10,
+      [ResourceId.Gold]: 1000,
+      [ResourceId.Wood]: 10,
+      [ResourceId.Ore]: 10,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 250,
+        [ResourceId.Gold]: 250,
       },
       creature: CreatureId.Swordsman,
       growth: 4,
@@ -232,12 +232,12 @@ export const farmStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 4000,
-      [Resource.Wood]: 20,
+      [ResourceId.Gold]: 4000,
+      [ResourceId.Wood]: 20,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 300,
+        [ResourceId.Gold]: 300,
       },
       creature: CreatureId.Cavalry,
       growth: 3,
@@ -246,13 +246,13 @@ export const farmStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 5000,
-      [Resource.Ore]: 20,
-      [Resource.Crystal]: 20,
+      [ResourceId.Gold]: 5000,
+      [ResourceId.Ore]: 20,
+      [ResourceId.Crystal]: 20,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 600,
+        [ResourceId.Gold]: 600,
       },
       creature: CreatureId.Paladin,
       growth: 2,
@@ -274,11 +274,11 @@ export enum PlainsStructureId {
 export const plainsStructures: StructureData[] = [
   {
     cost: {
-      [Resource.Gold]: 300,
+      [ResourceId.Gold]: 300,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 40,
+        [ResourceId.Gold]: 40,
       },
       creature: CreatureId.Goblin,
       growth: 10,
@@ -287,12 +287,12 @@ export const plainsStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 800,
-      [Resource.Wood]: 5,
+      [ResourceId.Gold]: 800,
+      [ResourceId.Wood]: 5,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 140,
+        [ResourceId.Gold]: 140,
       },
       creature: CreatureId.Orc,
       growth: 8,
@@ -301,11 +301,11 @@ export const plainsStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 1000,
+      [ResourceId.Gold]: 1000,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 200,
+        [ResourceId.Gold]: 200,
       },
       creature: CreatureId.Wolf,
       growth: 5,
@@ -314,13 +314,13 @@ export const plainsStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 2000,
-      [Resource.Wood]: 10,
-      [Resource.Ore]: 10,
+      [ResourceId.Gold]: 2000,
+      [ResourceId.Wood]: 10,
+      [ResourceId.Ore]: 10,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 300,
+        [ResourceId.Gold]: 300,
       },
       creature: CreatureId.Ogre,
       growth: 4,
@@ -329,12 +329,12 @@ export const plainsStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 3000,
-      [Resource.Ore]: 20,
+      [ResourceId.Gold]: 3000,
+      [ResourceId.Ore]: 20,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 600,
+        [ResourceId.Gold]: 600,
       },
       creature: CreatureId.Troll,
       growth: 3,
@@ -343,13 +343,13 @@ export const plainsStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 6000,
-      [Resource.Ore]: 20,
-      [Resource.Crystal]: 20,
+      [ResourceId.Gold]: 6000,
+      [ResourceId.Ore]: 20,
+      [ResourceId.Crystal]: 20,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 750,
+        [ResourceId.Gold]: 750,
       },
       creature: CreatureId.Cyclops,
       growth: 2,
@@ -371,12 +371,12 @@ export enum ForestStructureId {
 export const forestStructures: StructureData[] = [
   {
     cost: {
-      [Resource.Gold]: 500,
-      [Resource.Wood]: 5,
+      [ResourceId.Gold]: 500,
+      [ResourceId.Wood]: 5,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 50,
+        [ResourceId.Gold]: 50,
       },
       creature: CreatureId.Sprite,
       growth: 8,
@@ -385,12 +385,12 @@ export const forestStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 1000,
-      [Resource.Wood]: 5,
+      [ResourceId.Gold]: 1000,
+      [ResourceId.Wood]: 5,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 200,
+        [ResourceId.Gold]: 200,
       },
       creature: CreatureId.Dwarf,
       growth: 6,
@@ -399,11 +399,11 @@ export const forestStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 1500,
+      [ResourceId.Gold]: 1500,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 250,
+        [ResourceId.Gold]: 250,
       },
       creature: CreatureId.Elf,
       growth: 4,
@@ -412,13 +412,13 @@ export const forestStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 2500,
-      [Resource.Ore]: 10,
-      [Resource.Mercury]: 10,
+      [ResourceId.Gold]: 2500,
+      [ResourceId.Ore]: 10,
+      [ResourceId.Mercury]: 10,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 350,
+        [ResourceId.Gold]: 350,
       },
       creature: CreatureId.Druid,
       growth: 3,
@@ -427,13 +427,13 @@ export const forestStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 3000,
-      [Resource.Wood]: 10,
-      [Resource.Gems]: 10,
+      [ResourceId.Gold]: 3000,
+      [ResourceId.Wood]: 10,
+      [ResourceId.Gems]: 10,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 500,
+        [ResourceId.Gold]: 500,
       },
       creature: CreatureId.Unicorn,
       growth: 2,
@@ -442,14 +442,14 @@ export const forestStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 10000,
-      [Resource.Ore]: 30,
-      [Resource.Mercury]: 20,
+      [ResourceId.Gold]: 10000,
+      [ResourceId.Ore]: 30,
+      [ResourceId.Mercury]: 20,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 1500,
-        [Resource.Mercury]: 1,
+        [ResourceId.Gold]: 1500,
+        [ResourceId.Mercury]: 1,
 
       },
       creature: CreatureId.Phoenix,
@@ -472,11 +472,11 @@ export enum MountainsStructureId {
 export const mountainsStructures: StructureData[] = [
   {
     cost: {
-      [Resource.Gold]: 500,
+      [ResourceId.Gold]: 500,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 60,
+        [ResourceId.Gold]: 60,
       },
       creature: CreatureId.Centaur,
       growth: 8,
@@ -485,12 +485,12 @@ export const mountainsStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 1000,
-      [Resource.Ore]: 10,
+      [ResourceId.Gold]: 1000,
+      [ResourceId.Ore]: 10,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 200,
+        [ResourceId.Gold]: 200,
       },
       creature: CreatureId.Gargoyle,
       growth: 6,
@@ -499,11 +499,11 @@ export const mountainsStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 2000,
+      [ResourceId.Gold]: 2000,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 300,
+        [ResourceId.Gold]: 300,
       },
       creature: CreatureId.Griffin,
       growth: 4,
@@ -512,12 +512,12 @@ export const mountainsStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 3000,
-      [Resource.Gems]: 10,
+      [ResourceId.Gold]: 3000,
+      [ResourceId.Gems]: 10,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 400,
+        [ResourceId.Gold]: 400,
       },
       creature: CreatureId.Minotaur,
       growth: 3,
@@ -526,12 +526,12 @@ export const mountainsStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 4000,
-      [Resource.Sulfur]: 10,
+      [ResourceId.Gold]: 4000,
+      [ResourceId.Sulfur]: 10,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 800,
+        [ResourceId.Gold]: 800,
       },
       creature: CreatureId.Hydra,
       growth: 2,
@@ -540,14 +540,14 @@ export const mountainsStructures: StructureData[] = [
   },
   {
     cost: {
-      [Resource.Gold]: 15000,
-      [Resource.Ore]: 30,
-      [Resource.Sulfur]: 20,
+      [ResourceId.Gold]: 15000,
+      [ResourceId.Ore]: 30,
+      [ResourceId.Sulfur]: 20,
     },
     dwelling: {
       cost: {
-        [Resource.Gold]: 3000,
-        [Resource.Sulfur]: 1,
+        [ResourceId.Gold]: 3000,
+        [ResourceId.Sulfur]: 1,
       },
       creature: CreatureId.Dragon,
       growth: 1,
