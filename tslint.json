@@ -6,6 +6,11 @@
     "tslint-immutable"
   ],
   "rules": {
+    // tslint
+    "array-type": [
+      true,
+      "array"
+    ],
     "interface-name": [
       true,
       "never-prefix"

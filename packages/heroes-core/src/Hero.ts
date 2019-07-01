@@ -1,5 +1,5 @@
 import { Army } from "./Army";
-import { Item } from "./Item";
+import { ItemSlot } from "./map";
 
 export interface HeroData {
   readonly id: string;
@@ -22,7 +22,7 @@ export interface Hero {
   readonly morale: number;
   readonly luck: number;
   readonly experience: number;
-  readonly artifacts: Array<Item | undefined>;
+  readonly artifacts: ItemSlot[];
 }
 
 // TODO: does this belong to core???

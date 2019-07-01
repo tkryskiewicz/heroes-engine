@@ -28,6 +28,7 @@ export {
   recruitDwellingMapObjectCreatures,
 } from "./DwellingMapObject";
 export {
+  ItemSlot,
   EquipableMapObject,
   isEquipableMapObject,
   addEquipableMapObjectItem,

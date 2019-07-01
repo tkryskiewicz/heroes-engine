@@ -1,6 +1,8 @@
 import { Troop } from "./Troop";
 
-export type Army = Array<Troop | undefined>;
+export type ArmySlot = Troop | undefined;
+
+export type Army = ArmySlot[];
 
 export const getArmySize = (army: Army): number =>
   army.filter((t) => t !== undefined).length;

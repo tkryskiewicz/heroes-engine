@@ -4,11 +4,6 @@
     "../../tslint.json"
   ],
   "rules": {
-    // tslint
-    "array-type": [
-      true,
-      "array"
-    ],
     // tslint-microsoft-contrib
     "export-name": false,
     "import-name": false,
