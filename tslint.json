@@ -1,11 +1,17 @@
 {
   "extends": [
+    "tslint-microsoft-contrib/latest",
     "tslint:latest",
     "tslint-no-circular-imports",
     "tslint-react",
     "tslint-immutable"
   ],
   "rules": {
+    // tslint
+    "array-type": [
+      true,
+      "array"
+    ],
     "interface-name": [
       true,
       "never-prefix"
@@ -42,6 +48,32 @@
     "no-throw": false,
     "no-try": false,
     "readonly-array": false,
-    "readonly-keyword": true
+    "readonly-keyword": true,
+    // tslint-microsoft-contrib
+    "prefer-array-literal": [
+      true,
+      {
+        "allow-size-argument": true
+      }
+    ],
+    "prefer-type-cast": false,
+    "export-name": false,
+    "import-name": false,
+    "insecure-random": false,
+    "max-func-body-length": false,
+    "mocha-no-side-effect-code": false,
+    "no-relative-imports": false,
+    "no-suspicious-comment": false,
+    "react-a11y-event-has-role": false,
+    "react-a11y-img-has-alt": false,
+    "react-this-binding-issue": false,
+    "react-unused-props-and-state": [
+      true,
+      {
+        "props-interface-regex": "Props$",
+        "state-interface-regex": "State$"
+      }
+    ],
+    "use-simple-attributes": false
   }
 }

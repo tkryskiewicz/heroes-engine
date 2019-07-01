@@ -13,7 +13,5 @@ export const getTitle = (intl: InjectedIntl, hero: string, otherHero: string) =>
   const heroName = intl.formatMessage(getHeroNameMessage(hero));
   const otherHeroName = intl.formatMessage(getHeroNameMessage(otherHero));
 
-  const title = intl.formatMessage(messages.title, { heroName, otherHeroName });
-
-  return title;
+  return intl.formatMessage(messages.title, { heroName, otherHeroName });
 };

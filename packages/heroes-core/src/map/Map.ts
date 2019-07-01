@@ -122,13 +122,11 @@ export const canPlaceObject = (
     }
   }
 
-  const canPlace = everyMapObjectPoint(objectData, (objectPoint) => {
+  return everyMapObjectPoint(objectData, (objectPoint) => {
     const mapTile = obstacleMap[getTileIndex(map.width, translatePoint(point, objectPoint.x, -objectPoint.y))];
 
     return mapTile !== TileTaken;
   });
-
-  return canPlace;
 };
 
 export const placeObject = (map: Map, point: MapPoint, object: MapObject): Map => {

@@ -5,7 +5,7 @@ import * as React from "react";
 import { alignment, mapObjectSize, resource } from "../../stories";
 import { MineMapObject, MineMapObjectProps } from "./MineMapObject";
 
-const variantOptions: Array<MineMapObjectProps["variant"]> = [
+const variantOptions: MineMapObjectProps["variant"][] = [
   "grass",
   "snow",
   "swamp",

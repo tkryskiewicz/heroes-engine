@@ -7,7 +7,7 @@ export interface HeroMapObjectDetails {
   readonly heroId: string;
   readonly alignment: string;
   readonly army: Army;
-  readonly artifacts: Array<string | undefined>;
+  readonly artifacts: (string | undefined)[];
   readonly experience: number;
 }
 

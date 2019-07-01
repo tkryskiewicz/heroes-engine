@@ -1,8 +1,10 @@
+export type MapObjectGridCell = boolean | undefined;
+
 export interface MapObjectData {
   readonly id: string;
   readonly width: number;
   readonly height: number;
-  readonly grid: Array<boolean | undefined>;
+  readonly grid: MapObjectGridCell[];
 }
 
 export interface MapObject {

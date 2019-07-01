@@ -117,11 +117,9 @@ class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> impl
   }
 
   private renderOptionDetails(town: string, option: Structure) {
-    const optionDetails = this.props.getOptionDetails(town, option, {
+    return this.props.getOptionDetails(town, option, {
       onCloseClick: this.props.onCloseOptionDetailsClick,
     });
-
-    return optionDetails;
   }
 
   private setDefaultStatusText() {

@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { SystemButton, SystemButtonProps } from "./SystemButton";
 
-const typeOptions: Array<SystemButtonProps["type"]> = [
+const typeOptions: SystemButtonProps["type"][] = [
   "yes",
   "no",
   "okay",

@@ -1,8 +1,10 @@
 import { Item } from "../Item";
 import { isMapObject, MapObject } from "./MapObject";
 
+export type ItemSlot = Item | undefined;
+
 export interface EquipableMapObject extends MapObject {
-  readonly artifacts: Array<Item | undefined>;
+  readonly artifacts: ItemSlot[];
 }
 
 export const isEquipableMapObject = (object: MapObject | undefined): object is EquipableMapObject =>

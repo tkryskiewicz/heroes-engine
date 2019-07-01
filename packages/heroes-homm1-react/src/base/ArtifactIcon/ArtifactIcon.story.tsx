@@ -6,7 +6,7 @@ import * as React from "react";
 import { artifact } from "../../stories";
 import { ArtifactIcon, ArtifactIconProps } from "./ArtifactIcon";
 
-const sizeOptions: Array<ArtifactIconProps["size"]> = [
+const sizeOptions: ArtifactIconProps["size"][] = [
   "large",
   "small",
 ];

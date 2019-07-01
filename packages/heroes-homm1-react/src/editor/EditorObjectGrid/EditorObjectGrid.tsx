@@ -1,12 +1,14 @@
 import Classnames from "classnames";
 import * as React from "react";
 
+import { MapObjectGridCell } from "heroes-core";
+
 import * as styles from "./EditorObjectGrid.module.scss";
 
 export interface EditorObjectGridProps {
   readonly width: number;
   readonly height: number;
-  readonly grid: Array<boolean | undefined>;
+  readonly grid: MapObjectGridCell[];
 }
 
 export class EditorObjectGrid extends React.Component<EditorObjectGridProps> {
@@ -28,7 +30,7 @@ export class EditorObjectGrid extends React.Component<EditorObjectGridProps> {
     );
   }
 
-  private renderGrid(width: number, height: number, grid: Array<boolean | undefined>) {
+  private renderGrid(width: number, height: number, grid: MapObjectGridCell[]) {
     return (
       <div className={styles.grid}>
         {[...new Array(width * height).keys()].map((i) => this.renderCell(i, grid[i]))}

@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { ViewWindow, ViewWindowProps } from "./ViewWindow";
 
-const typeOptions: Array<ViewWindowProps["type"]> = [
+const typeOptions: ViewWindowProps["type"][] = [
   "puzzle",
   "world",
 ];

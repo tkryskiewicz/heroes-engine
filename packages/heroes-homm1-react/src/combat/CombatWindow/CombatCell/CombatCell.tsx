@@ -16,12 +16,20 @@ export interface CombatCellProps {
   readonly terrainType: string;
   readonly terrainVariant: number;
   readonly object?: BattlefieldObject;
+  readonly onClick: (index: number) => void;
 }
 
 export class CombatCell extends React.Component<CombatCellProps> {
+  public static readonly defaultProps: Pick<CombatCellProps, "onClick"> = {
+    onClick: () => undefined,
+  };
+
   public render() {
     return (
-      <div className={styles.root}>
+      <div
+        className={styles.root}
+        onClick={this.onClick}
+      >
         <img src={`assets/terrains/${this.props.terrainType}/cell-${this.props.terrainVariant}.png`} />
         {this.props.object && this.renderObject(this.props.object)}
       </div>
@@ -55,5 +63,9 @@ export class CombatCell extends React.Component<CombatCellProps> {
         />
       </div>
     );
+  }
+
+  private readonly onClick = () => {
+    this.props.onClick(this.props.index);
   }
 }

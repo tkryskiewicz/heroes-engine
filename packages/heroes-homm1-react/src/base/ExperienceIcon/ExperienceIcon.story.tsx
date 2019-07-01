@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { ExperienceIcon, ExperienceIconProps } from "./ExperienceIcon";
 
-const sizeOptions: Array<ExperienceIconProps["size"]> = [
+const sizeOptions: ExperienceIconProps["size"][] = [
   "large",
   "small",
 ];

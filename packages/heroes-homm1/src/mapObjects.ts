@@ -129,7 +129,7 @@ const creatureObjects: CreatureObjectData[] = creatures
     width: 1,
   }));
 
-const randomCreatureObjects: Array<RandomCreatureMapObjectData & TerrainRestrictedMapObjectData> = [
+const randomCreatureObjects: (RandomCreatureMapObjectData & TerrainRestrictedMapObjectData)[] = [
   {
     grid: [
       true,
@@ -519,7 +519,7 @@ const mineObjectBase: MineObjectData & VariantMapObjectData = {
   width: 2,
 };
 
-const mineObjects: Array<MineObjectData & VariantMapObjectData> = [
+const mineObjects: (MineObjectData & VariantMapObjectData)[] = [
   {
     ...mineObjectBase,
     id: MapObjectId.CrystalMine,
@@ -724,7 +724,7 @@ const wagonCamp: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
   width: 3,
 };
 
-const dwellingObjects: Array<DwellingMapObjectData & TerrainRestrictedMapObjectData> = [
+const dwellingObjects: (DwellingMapObjectData & TerrainRestrictedMapObjectData)[] = [
   cottage,
   cottageSnow,
   desertTent,
@@ -2051,7 +2051,7 @@ const mountainObjects: TerrainRestrictedMapObjectData[] = [
   },
 ];
 
-const terrainMountainObjects: Array<TerrainRestrictedMapObjectData & VariantMapObjectData> = [
+const terrainMountainObjects: (TerrainRestrictedMapObjectData & VariantMapObjectData)[] = [
   {
     grid: [
       true, true, undefined,

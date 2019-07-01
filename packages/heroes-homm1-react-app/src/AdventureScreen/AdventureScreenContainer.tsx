@@ -13,12 +13,7 @@ import { PuzzleWindow } from "../PuzzleWindow";
 import { StatusWindow } from "../StatusWindow";
 import { TownLocators } from "../TownLocators";
 
-interface Hero {
-  readonly mobility: number;
-}
-
 export interface AdventureScreenContainerProps {
-  readonly heroes: Hero[];
   readonly kingdomOverviewWindowVisible?: boolean;
   readonly adventureOptionsVisible?: boolean;
   readonly gameOptionsVisible?: boolean;

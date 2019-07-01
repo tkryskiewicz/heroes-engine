@@ -1,4 +1,4 @@
-export { Army, getArmySize, setArmyTroop, appendArmyTroop, dismissArmyTroop, swapArmyTroops } from "./Army";
+export { Army, ArmySlot, getArmySize, setArmyTroop, appendArmyTroop, dismissArmyTroop, swapArmyTroops } from "./Army";
 export {
   Battlefield,
   BattlefieldCell,

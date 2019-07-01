@@ -5,7 +5,7 @@ import * as React from "react";
 import { creature } from "../../stories";
 import { CreatureIcon, CreatureIconProps } from "./CreatureIcon";
 
-const sizeOptions: Array<CreatureIconProps["size"]> = [
+const sizeOptions: CreatureIconProps["size"][] = [
   "large",
   "medium",
   "small",
