@@ -24,6 +24,43 @@
       true,
       "antd"
     ],
+    "ordered-imports": {
+      "options": {
+        "grouped-imports": true,
+        "groups": [
+          {
+            "name": "External imports",
+            "match": "^(?!heroes-)(?!\\.).+",
+            "order": 10
+          },
+          {
+            "name": "Project imports",
+            "match": "^heroes-",
+            "order": 20
+          },
+          {
+            "name": "Style imports",
+            "match": "^\\./.+\\.scss$",
+            "order": 30
+          },
+          {
+            "name": "Asset imports",
+            "match": "^\\..*/assets$",
+            "order": 40
+          },
+          {
+            "name": "README imports",
+            "match": "^\\./README",
+            "order": 50
+          },
+          {
+            "name": "Relative imports",
+            "match": "^\\.",
+            "order": 60
+          }
+        ]
+      }
+    },
     "variable-name": [
       true,
       "ban-keywords",

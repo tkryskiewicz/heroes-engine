@@ -1,10 +1,10 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 
+import * as styles from "./EditorSettingsWindow.module.scss";
+
 import { SystemButton } from "../../base";
 import { withGameWindow } from "../../core";
-
-import * as styles from "./EditorSettingsWindow.module.scss";
 
 interface EditorSettingsWindowProps {
   readonly onConfirmClick: () => void;

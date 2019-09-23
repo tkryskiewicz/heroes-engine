@@ -1,7 +1,7 @@
+import { MovementSpeed, SoundVolume } from "heroes-homm1";
+
 import { GameSettingsAction, GameSettingsActionType } from "./actions";
 import { GameSettingsState } from "./state";
-
-import { MovementSpeed, SoundVolume } from "heroes-homm1";
 
 const initialState: GameSettingsState = {
   autoSave: true,

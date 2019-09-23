@@ -5,9 +5,10 @@ import { GameDifficulty } from "heroes-homm1";
 
 import * as styles from "./GameDifficultyBox.module.scss";
 
+import { difficultyImages, SelectionImage } from "./assets";
+
 import { GameText } from "../../core";
 import { getGameDifficultyMessage } from "../../messages";
-import { difficultyImages, SelectionImage } from "./assets";
 
 export interface GameDifficultyBoxProps {
   readonly value: GameDifficulty;

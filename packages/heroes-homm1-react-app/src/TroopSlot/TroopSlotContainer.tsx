@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { GameData } from "heroes-core";
-
 import { TroopSlot, TroopSlotProps } from "heroes-homm1-react";
 
 interface Troop {

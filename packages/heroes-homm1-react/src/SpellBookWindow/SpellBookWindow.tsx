@@ -5,10 +5,11 @@ import { SpellType } from "heroes-homm1";
 
 import * as styles from "./SpellBookWindow.module.scss";
 
+import { AdventureSpellsImage, CombatSpellsImage, ExitImage, NextPageImage, PreviousPageImage } from "./assets";
+
 import { GameModal, SpellIcon } from "../base";
 import { GameParagraph, withGameWindow, WithGameWindowProps } from "../core";
 import { getSpellDescriptionMessage, getSpellLongNameMessage, getSpellNameMessage } from "../messages";
-import { AdventureSpellsImage, CombatSpellsImage, ExitImage, NextPageImage, PreviousPageImage } from "./assets";
 import { getSpellTypeStatusTextMessage, messages } from "./messages";
 import { SpellBox } from "./SpellBox";
 

@@ -6,9 +6,10 @@ import { OpponentSetting } from "heroes-homm1";
 
 import * as styles from "./OpponentSettingBox.module.scss";
 
+import { opponentSettingImages } from "./assets";
+
 import { GameParagraph } from "../../core";
 import { getOpponentSettingNameMessage } from "../../messages";
-import { opponentSettingImages } from "./assets";
 
 export interface OpponentSettingBoxProps {
   readonly index: number;

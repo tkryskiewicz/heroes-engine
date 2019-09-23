@@ -4,7 +4,6 @@ import { FormattedMessage } from "react-intl";
 import { GameModal } from "../../base";
 import { GameText } from "../../core";
 import { ConfirmPromptProps } from "../../prompt/prompt";
-
 import { messages } from "./messages";
 
 export class ObjectDetailsUnavailablePrompt extends React.Component<ConfirmPromptProps> {

@@ -3,9 +3,10 @@ import * as React from "react";
 
 import { CampaignIds } from "heroes-homm1";
 
+import { buttonImages } from "./assets";
+
 import { ImageButton } from "../../base";
 import { Menu } from "../Menu";
-import { buttonImages } from "./assets";
 
 export interface CampaignGameMenuProps {
   readonly onPlayClick: (campaign: string) => void;
