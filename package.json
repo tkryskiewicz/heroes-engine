@@ -7,8 +7,11 @@
     "packages/*"
   ],
   "devDependencies": {
+    "tslint": "^5.17.0",
     "tslint-immutable": "^6.0.0",
     "tslint-no-circular-imports": "^0.7.0",
+    "tslint-microsoft-contrib": "^6.2.0",
+    "tslint-react": "^4.0.0",
     "typescript": "^3.4.5"
   },
   "scripts": {
