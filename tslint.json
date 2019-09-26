@@ -16,10 +16,8 @@
       true,
       "never-prefix"
     ],
-    "no-implicit-dependencies": [
-      true,
-      "dev"
-    ],
+    // TODO: enable after moving deps to individual packages
+    "no-implicit-dependencies": false,
     "no-submodule-imports": [
       true,
       "antd"

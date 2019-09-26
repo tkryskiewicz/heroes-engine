@@ -11,9 +11,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
-    "@storybook/addon-actions": "^5.1.8",
-    "@storybook/addon-knobs": "^5.1.8",
-    "@storybook/react": "^5.1.8",
     "@types/classnames": "^2.2.8",
     "@types/enzyme": "^3.9.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
@@ -31,8 +28,6 @@
     "babel-loader": "^8.0.6",
     "classnames": "^2.2.6",
     "css-loader": "^3.0.0",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
     "file-loader": "^4.0.0",
     "node-sass": "^4.12.0",
     "react": "^16.5.2",
@@ -49,7 +44,6 @@
     "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
     "stylelint-order": "^3.0.0",
     "stylelint-scss": "^3.8.0",
-    "ts-node": "^8.3.0",
     "typescript": "^3.4.5",
     "webpack": "^4.34.0"
   },
