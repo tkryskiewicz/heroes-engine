@@ -10,8 +10,7 @@
   },
   "devDependencies": {
     "@types/react-redux": "^7.1.0",
-    "redux-devtools-extension": "^2.13.5",
-    "typescript": "^3.4.5"
+    "redux-devtools-extension": "^2.13.5"
   },
   "scripts": {
     "build": "webpack",

@@ -5,9 +5,7 @@
     "heroes-core": "0.0.0",
     "heroes-homm1": "0.0.0"
   },
-  "devDependencies": {
-    "typescript": "^3.4.5"
-  },
+  "devDependencies": {},
   "scripts": {
     "build": "tsc",
     "clean": "rimraf coverage dist",
