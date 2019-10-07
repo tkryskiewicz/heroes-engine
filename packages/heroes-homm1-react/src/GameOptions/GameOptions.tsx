@@ -212,15 +212,15 @@ class GameOptions extends React.Component<GameOptionsProps> {
   }
 
   private readonly onMusicVolumeChange = () => {
-    const value = previousOption<SoundVolume>(Object.values(SoundVolume).filter(Number.isInteger),
-      this.props.musicVolume);
+    const value = previousOption<SoundVolume>(Object.values(SoundVolume)
+      .filter((v): v is SoundVolume => typeof v === "number"), this.props.musicVolume);
 
     this.props.onMusicVolumeChange(value);
   }
 
   private readonly onEffectsVolumeChange = () => {
-    const value = previousOption<SoundVolume>(Object.values(SoundVolume).filter(Number.isInteger),
-      this.props.effectsVolume);
+    const value = previousOption<SoundVolume>(Object.values(SoundVolume)
+      .filter((v): v is SoundVolume => typeof v === "number"), this.props.effectsVolume);
 
     this.props.onEffectsVolumeChange(value);
   }
