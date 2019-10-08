@@ -1,6 +1,5 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import { withReadme } from "storybook-readme";
 
 import { Resources } from "heroes-core";
 import { ResourceId } from "heroes-homm1";
@@ -15,7 +14,11 @@ const cost: Resources = {
 };
 
 storiesOf("base|ResourceCost", module)
-  .addDecorator(withReadme(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add("default", () => (
     <ResourceCost
       cost={cost}

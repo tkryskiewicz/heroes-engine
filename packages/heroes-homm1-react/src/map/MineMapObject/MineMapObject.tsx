@@ -1,4 +1,4 @@
-import * as Classnames from "classnames";
+import Classnames from "classnames";
 import * as React from "react";
 
 import { MapObjectId, ResourceId } from "heroes-homm1";

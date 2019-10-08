@@ -1,7 +1,6 @@
 import { number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import { withReadme } from "storybook-readme";
 
 import Readme = require("./README.md");
 
@@ -9,7 +8,11 @@ import { resource } from "../../stories";
 import { ResourceAmount } from "./ResourceAmount";
 
 storiesOf("base|ResourceAmount", module)
-  .addDecorator(withReadme(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add("default", () => (
     <ResourceAmount
       resource={resource("Resource")}

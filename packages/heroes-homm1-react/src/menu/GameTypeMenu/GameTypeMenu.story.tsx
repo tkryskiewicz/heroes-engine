@@ -1,14 +1,17 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import { withReadme } from "storybook-readme";
 
 import Readme = require("./README.md");
 
 import { GameTypeMenu } from "./GameTypeMenu";
 
 storiesOf("menu|GameTypeMenu", module)
-  .addDecorator(withReadme(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add("default", () => (
     <GameTypeMenu
       onStandardGameClick={action("Standard Game Click")}

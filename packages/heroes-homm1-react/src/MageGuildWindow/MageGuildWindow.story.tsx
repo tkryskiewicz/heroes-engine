@@ -2,7 +2,6 @@ import { action } from "@storybook/addon-actions";
 import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import { withReadme } from "storybook-readme";
 
 import { SpellId, spells as allSpells } from "heroes-homm1";
 
@@ -31,7 +30,11 @@ const spells: MageGuildWindowProps["spells"] = allSpells
   }));
 
 storiesOf("MageGuildWindow", module)
-  .addDecorator(withReadme(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add("default", () => (
     <MageGuildWindow
       visible={boolean("Visible", true)}

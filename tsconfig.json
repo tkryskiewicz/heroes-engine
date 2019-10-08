@@ -3,10 +3,12 @@
     "baseUrl": ".",
     "target": "es6",
     "lib": [
-      "es6"
+      "es6",
+      "dom"
     ],
     "module": "commonjs",
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noUnusedLocals": true,

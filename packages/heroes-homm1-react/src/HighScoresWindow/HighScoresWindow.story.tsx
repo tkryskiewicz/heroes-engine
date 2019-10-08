@@ -1,7 +1,6 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import { withReadme } from "storybook-readme";
 
 import { GameType, initialCampaignGameScores, initialStandardGameScores } from "heroes-homm1";
 
@@ -16,7 +15,11 @@ const scores = {
 };
 
 storiesOf("HighScoresWindow", module)
-  .addDecorator(withReadme(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add("default", () => (
     <HighScoresWindow
       scores={scores}

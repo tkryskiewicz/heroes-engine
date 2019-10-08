@@ -2,7 +2,6 @@ import { action } from "@storybook/addon-actions";
 import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import { withReadme } from "storybook-readme";
 
 import { ArtifactLimit } from "heroes-homm1";
 
@@ -12,7 +11,11 @@ import { artifact } from "../../stories";
 import { ArtifactSlot } from "./ArtifactSlot";
 
 storiesOf("base|ArtifactSlot", module)
-  .addDecorator(withReadme(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add("default", () => (
     <ArtifactSlot
       index={number("Index", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 })}

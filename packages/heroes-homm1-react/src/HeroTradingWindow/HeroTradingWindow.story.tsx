@@ -2,7 +2,6 @@ import { action } from "@storybook/addon-actions";
 import { boolean, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import { withReadme } from "storybook-readme";
 
 import { HeroId } from "heroes-homm1";
 
@@ -26,7 +25,11 @@ const renderTroop = (_hero: string, index: number) => <Placeholder name={`T${ind
 const renderArtifact = (_hero: string, index: number) => <Placeholder name={`A${index}`} />;
 
 storiesOf("HeroTradingWindow", module)
-  .addDecorator(withReadme(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add("default", () => (
     <HeroTradingWindow
       visible={boolean("Visible", true)}

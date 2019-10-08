@@ -2,7 +2,6 @@ import { action } from "@storybook/addon-actions";
 import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import { withReadme } from "storybook-readme";
 
 import { alignments, OpponentSetting } from "heroes-homm1";
 
@@ -12,7 +11,11 @@ import { alignment, gameDifficulty } from "../stories";
 import { NewGameWindow } from "./NewGameWindow";
 
 storiesOf("NewGameWindow", module)
-  .addDecorator(withReadme(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add("default", () => (
     <NewGameWindow
       selectedGameDifficulty={gameDifficulty("Difficulty")}

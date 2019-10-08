@@ -1,5 +1,5 @@
 import { TsConfigPathsPlugin } from "awesome-typescript-loader";
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 import * as Webpack from "webpack";
 
 const styleRegex = /\.(scss|css)$/;

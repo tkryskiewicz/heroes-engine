@@ -1,7 +1,6 @@
 import { boolean, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import { withReadme } from "storybook-readme";
 
 import Readme = require("./README.md");
 
@@ -16,7 +15,11 @@ const renderHeroTroop = (index: number) => <Placeholder name={`Hero Troop ${inde
 const renderTreasury = () => <Placeholder name="Treasury" />;
 
 storiesOf("TownWindow", module)
-  .addDecorator(withReadme(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add("default", () => (
     <TownWindow
       visible={boolean("Visible", true)}
