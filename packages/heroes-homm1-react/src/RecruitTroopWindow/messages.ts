@@ -1,6 +1,6 @@
-import * as React from "react-intl";
+import { defineMessages } from "react-intl";
 
-export const messages = React.defineMessages({
+export const messages = defineMessages({
   available: {
     defaultMessage: "Available",
     id: "game.ui.recruitTroop.available",

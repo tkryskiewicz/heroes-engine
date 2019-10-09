@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { canSelectNextHero, getNextHero, Hero } from "heroes-core";
 import { AdventureButtons, EndTurnPrompt } from "heroes-homm1-react";

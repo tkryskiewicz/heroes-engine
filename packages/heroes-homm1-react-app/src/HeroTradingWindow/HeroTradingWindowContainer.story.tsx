@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { boolean, number, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
-import * as React from "react";
+import React from "react";
 
 import { Hero } from "heroes-core";
 import { ArtifactId, ArtifactLimit, constructArtifact, CreatureId, HeroClass, HeroId } from "heroes-homm1";

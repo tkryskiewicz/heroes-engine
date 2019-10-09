@@ -1,5 +1,5 @@
 import { render } from "enzyme";
-import * as React from "react";
+import React from "react";
 
 // FIXME: any tests importing from "heroes-homm1-react" will fail because require.context
 // is not mocked

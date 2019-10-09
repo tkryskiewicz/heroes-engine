@@ -1,4 +1,4 @@
-import * as Webpack from "webpack";
+import Webpack from "webpack";
 
 import devConfig from "../webpack.config";
 

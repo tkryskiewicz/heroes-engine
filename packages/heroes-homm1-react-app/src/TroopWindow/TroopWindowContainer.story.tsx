@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
-import * as React from "react";
+import React from "react";
 
 import { creatures, LuckType, MoraleType } from "heroes-homm1";
 import { creature, luckType, moraleType, skills } from "heroes-homm1-react";

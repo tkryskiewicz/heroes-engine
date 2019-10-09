@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import * as React from "react";
+import React from "react";
 
 import { Resources } from "heroes-core";
 import { ResourceId } from "heroes-homm1";

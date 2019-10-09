@@ -1,5 +1,5 @@
 import { Row } from "antd";
-import * as React from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { HeroClass } from "heroes-homm1";

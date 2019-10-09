@@ -1,5 +1,5 @@
 import { Row } from "antd";
-import * as React from "react";
+import React from "react";
 import { FormattedNumber } from "react-intl";
 
 import { LuckType, MoraleType } from "heroes-homm1";

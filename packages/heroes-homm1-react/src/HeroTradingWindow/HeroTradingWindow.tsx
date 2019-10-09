@@ -1,5 +1,5 @@
 import { Col, Row } from "antd";
-import * as React from "react";
+import React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { HeroSkills } from "heroes-core";

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { Spell } from "heroes-homm1";
 import { MageGuildWindow, MageGuildWindowProps } from "heroes-homm1-react";

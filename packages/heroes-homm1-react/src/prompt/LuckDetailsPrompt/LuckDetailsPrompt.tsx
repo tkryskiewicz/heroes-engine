@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { FormattedMessage, FormattedNumber, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { LuckModifier, LuckModifierType, LuckType } from "heroes-homm1";

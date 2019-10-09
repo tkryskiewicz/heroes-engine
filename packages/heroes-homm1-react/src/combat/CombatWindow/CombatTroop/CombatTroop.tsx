@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { FormattedNumber } from "react-intl";
 
 import { CombatSide } from "heroes-core";

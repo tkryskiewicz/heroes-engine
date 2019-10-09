@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { Artifact, ArtifactId, SpellBook } from "heroes-homm1";
 import { ArtifactDetailsPrompt, NoSpellsPrompt } from "heroes-homm1-react";

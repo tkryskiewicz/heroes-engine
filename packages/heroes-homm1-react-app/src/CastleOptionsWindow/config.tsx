@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { CastleOptionsWindowProps } from "heroes-homm1-react";
 

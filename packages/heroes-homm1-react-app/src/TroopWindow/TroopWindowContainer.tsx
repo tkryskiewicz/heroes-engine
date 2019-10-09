@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { GameData, HeroSkills } from "heroes-core";
 import { LuckType, MoraleType } from "heroes-homm1";

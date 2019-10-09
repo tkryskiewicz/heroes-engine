@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { Resources } from "heroes-core";
 import { BuySpellBookWindow, BuySpellBookWindowProps } from "heroes-homm1-react";

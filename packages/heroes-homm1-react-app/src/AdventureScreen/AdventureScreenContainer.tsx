@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { AdventureScreen, GameText } from "heroes-homm1-react";
 

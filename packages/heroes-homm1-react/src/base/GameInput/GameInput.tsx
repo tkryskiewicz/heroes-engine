@@ -1,6 +1,6 @@
 import { Input } from "antd";
 import Classnames from "classnames";
-import * as React from "react";
+import React from "react";
 
 import * as styles from "./GameInput.module.scss";
 

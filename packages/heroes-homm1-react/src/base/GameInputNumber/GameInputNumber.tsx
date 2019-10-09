@@ -1,5 +1,5 @@
 import InputNumber from "antd/lib/input-number";
-import * as React from "react";
+import React from "react";
 
 import * as styles from "./GameInputNumber.module.scss";
 

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 export interface ResourceMapObjectProps {
   readonly size: "large" | "small";

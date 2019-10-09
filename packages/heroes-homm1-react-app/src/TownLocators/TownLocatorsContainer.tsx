@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { isStructureBuilt, Town } from "heroes-core";
 import { StructureId } from "heroes-homm1";

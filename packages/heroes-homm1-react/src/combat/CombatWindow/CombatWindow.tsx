@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Battlefield, CombatSide, HeroSkills } from "heroes-core";

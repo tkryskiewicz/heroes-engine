@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { Structure } from "heroes-core";
 import { WithGameWindowProps } from "heroes-homm1-react";

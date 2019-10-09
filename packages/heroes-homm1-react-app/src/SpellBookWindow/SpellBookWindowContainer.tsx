@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { Spell, SpellBookSpell } from "heroes-homm1";
 import { SpellBookWindow, SpellBookWindowProps } from "heroes-homm1-react";

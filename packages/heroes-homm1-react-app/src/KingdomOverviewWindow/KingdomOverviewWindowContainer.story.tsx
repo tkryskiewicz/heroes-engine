@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
-import * as React from "react";
+import React from "react";
 
 import { heroClasses, resources, towns } from "heroes-homm1";
 import { alignment, gameDate, resourceAmounts } from "heroes-homm1-react";

@@ -1,6 +1,6 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
-import * as React from "react";
+import React from "react";
 
 import { buildStructure } from "heroes-core";
 import { constructTown, towns } from "heroes-homm1";
