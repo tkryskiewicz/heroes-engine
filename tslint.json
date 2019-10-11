@@ -27,11 +27,6 @@
         "grouped-imports": true,
         "groups": [
           {
-            "name": "External imports",
-            "match": "^(?!heroes-)(?!\\.).+",
-            "order": 10
-          },
-          {
             "name": "Project imports",
             "match": "^heroes-",
             "order": 20
@@ -55,6 +50,11 @@
             "name": "Relative imports",
             "match": "^\\.",
             "order": 60
+          },
+          {
+            "name": "External imports",
+            "match": ".*",
+            "order": 10
           }
         ]
       }
