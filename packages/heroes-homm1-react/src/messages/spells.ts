@@ -1,4 +1,4 @@
-import { defineMessages, Messages } from "react-intl";
+import { defineMessages } from "react-intl";
 
 import { SpellId } from "heroes-homm1";
 
@@ -14,7 +14,7 @@ const getLongNameKey = (spell: string) =>
   `${convertValue(spell)}LongName`;
 
 // TODO: fill out long names and descriptions
-const spellMessages: Messages = defineMessages({
+const spellMessages = defineMessages({
   [getKey(SpellId.Antimagic)]: {
     defaultMessage: "Anti-Magic",
     id: "game.spell.antimagic",

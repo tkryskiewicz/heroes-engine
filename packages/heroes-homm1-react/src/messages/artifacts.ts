@@ -1,4 +1,4 @@
-import { defineMessages, Messages } from "react-intl";
+import { defineMessages } from "react-intl";
 
 import { ArtifactId } from "heroes-homm1";
 
@@ -13,7 +13,7 @@ const getShortNameKey = (artifact: string) =>
 const getDescriptionKey = (artifact: string) =>
   `${convertValue(artifact)}Description`;
 
-const artifactMessages: Messages = defineMessages({
+const artifactMessages = defineMessages({
   // Attack
   [getKey(ArtifactId.ThunderMaceOfDominion)]: {
     defaultMessage: "Thunder Mace of Dominion",

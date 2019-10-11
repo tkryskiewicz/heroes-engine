@@ -1,4 +1,4 @@
-import { defineMessages, Messages } from "react-intl";
+import { defineMessages } from "react-intl";
 
 import { MoraleModifierType, MoraleType, TownId } from "heroes-homm1";
 
@@ -101,7 +101,7 @@ export const getMoraleModifierTypeMessage = (value: MoraleModifierType) =>
   moraleModifierTypeMessages[value];
 
 // TODO: move to town messages?
-const originMessages: Messages = defineMessages({
+const originMessages = defineMessages<string>({
   [TownId.Farm]: {
     defaultMessage: "human",
     id: "game.morale.origin.farm",

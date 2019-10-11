@@ -1,4 +1,4 @@
-import { defineMessages, Messages } from "react-intl";
+import { defineMessages } from "react-intl";
 
 import { CampaignId } from "heroes-homm1";
 
@@ -36,7 +36,7 @@ export { getTerrainNameMessage } from "./terrains";
 
 import { unknownMessage } from "./util";
 
-export const gameDifficultyMessages: Messages = defineMessages({
+export const gameDifficultyMessages = defineMessages<string>({
   easy: {
     defaultMessage: "Easy",
     id: "game.gameDifficulty.easy",

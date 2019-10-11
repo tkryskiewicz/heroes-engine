@@ -1,6 +1,6 @@
-import { FormattedMessage } from "react-intl";
+import { MessageDescriptor } from "react-intl";
 
-export const unknownMessage: FormattedMessage.MessageDescriptor = {
+export const unknownMessage: MessageDescriptor = {
   defaultMessage: "Unknown",
   id: "unknown",
 };

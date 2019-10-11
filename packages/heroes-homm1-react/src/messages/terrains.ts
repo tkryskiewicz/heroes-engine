@@ -1,10 +1,10 @@
-import { defineMessages, Messages } from "react-intl";
+import { defineMessages } from "react-intl";
 
 import { TerrainType } from "heroes-homm1";
 
 import { unknownMessage } from "./util";
 
-const terrainMessages: Messages = defineMessages({
+const terrainMessages = defineMessages<string>({
   [TerrainType.Water]: {
     defaultMessage: "Water",
     id: "game.terrain.water",

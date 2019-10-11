@@ -1,4 +1,4 @@
-import { defineMessages, Messages } from "react-intl";
+import { defineMessages } from "react-intl";
 
 import { HeroClass } from "heroes-homm1";
 
@@ -10,7 +10,7 @@ const getKey = (heroclass: string) =>
 const getTitleKey = (heroClass: string) =>
   `${convertValue(heroClass)}Title`;
 
-const heroClassMessages: Messages = defineMessages({
+const heroClassMessages = defineMessages({
   [getKey(HeroClass.Knight)]: {
     defaultMessage: "Knight",
     id: "game.heroClass.knight",

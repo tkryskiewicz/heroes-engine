@@ -1,4 +1,4 @@
-import { defineMessages, Messages } from "react-intl";
+import { defineMessages } from "react-intl";
 
 import { HeroId } from "heroes-homm1";
 
@@ -163,7 +163,7 @@ const warlockHeroMessages = defineMessages({
   },
 });
 
-const heroMessages: Messages = {
+const heroMessages = {
   ...knightHeroMessages,
   ...barbarianHeroMessages,
   ...sorceressHeroMessages,

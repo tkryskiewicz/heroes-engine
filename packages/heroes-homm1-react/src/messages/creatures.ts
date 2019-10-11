@@ -1,4 +1,4 @@
-import { defineMessages, Messages } from "react-intl";
+import { defineMessages } from "react-intl";
 
 import { CreatureId } from "heroes-homm1";
 
@@ -249,7 +249,7 @@ const neutralCreatureMessages = defineMessages({
   },
 });
 
-const creatureMessages: Messages = {
+const creatureMessages = {
   ...farmCreatureMessages,
   ...plainsCreatureMessages,
   ...forestCreatureMessages,

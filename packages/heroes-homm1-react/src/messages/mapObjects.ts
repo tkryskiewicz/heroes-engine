@@ -1,4 +1,4 @@
-import { defineMessages, Messages } from "react-intl";
+import { defineMessages } from "react-intl";
 
 import { MapObjectId, MapObjectType } from "heroes-homm1";
 
@@ -7,7 +7,7 @@ import { convertValue, unknownMessage } from "./util";
 const getKey = (mapObject: string) =>
   convertValue(mapObject);
 
-const mapObjectTypeMessages: Messages = defineMessages({
+const mapObjectTypeMessages = defineMessages({
   [MapObjectType.Water]: {
     defaultMessage: "Water Objs",
     id: "game.editor.objectType.waterObjects",
@@ -57,7 +57,7 @@ const mapObjectTypeMessages: Messages = defineMessages({
 export const getMapObjectTypeNameMessage = (type: MapObjectType) =>
   mapObjectTypeMessages[type];
 
-const mapObjectMessages: Messages = defineMessages({
+const mapObjectMessages = defineMessages({
   // mines
   [getKey(MapObjectId.CrystalMine)]: {
     defaultMessage: "Crystal Mine",

@@ -1,4 +1,4 @@
-import { defineMessages, Messages } from "react-intl";
+import { defineMessages } from "react-intl";
 
 import { CastleOptionStatus } from "heroes-homm1";
 
@@ -13,7 +13,7 @@ export const messages = defineMessages({
   },
 });
 
-const optionMessages: Messages = defineMessages({
+const optionMessages = defineMessages({
   [`${CastleOptionStatus.Available}StatusText`]: {
     defaultMessage: "Build {optionName}",
     id: "ui.castleOptionsWindow.option.availableStatusText",
@@ -35,7 +35,7 @@ const optionMessages: Messages = defineMessages({
 export const getOptionStatusTextMessage = (status: CastleOptionStatus) =>
   optionMessages[`${status}StatusText`];
 
-const recruitHeroMessages: Messages = defineMessages({
+const recruitHeroMessages = defineMessages({
   [`${CastleOptionStatus.Available}StatusText`]: {
     defaultMessage: "Recruit a new Hero",
     id: "ui.castleOptionsWindow.recruitHero.availableStatusText",

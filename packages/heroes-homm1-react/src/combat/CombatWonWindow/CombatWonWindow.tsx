@@ -39,7 +39,7 @@ export class CombatWonWindow extends React.Component<CombatWonWindowProps> {
         <Row>
           <GameText size="large">
             <FormattedMessage {...getHeroNameMessage(this.props.hero)}>
-              {(heroName) => this.renderRewards(heroName.toString(), this.props.rewardedExperience)}
+              {(heroName: string) => this.renderRewards(heroName, this.props.rewardedExperience)}
             </FormattedMessage>
           </GameText>
         </Row>

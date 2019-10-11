@@ -1,4 +1,4 @@
-import { defineMessages, FormattedMessage, Messages } from "react-intl";
+import { defineMessages, MessageDescriptor } from "react-intl";
 
 import { FarmStructureId, ForestStructureId, MountainsStructureId, PlainsStructureId, StructureId } from "heroes-homm1";
 
@@ -71,7 +71,7 @@ const commonStructureMessages = defineMessages({
 });
 
 // TODO: override message ids
-const dwellingStructureDescriptionMessage: FormattedMessage.MessageDescriptor = {
+const dwellingStructureDescriptionMessage: MessageDescriptor = {
   defaultMessage: "The {structureName} produces {creatureName}.",
   id: "game.structure.dwelling.description",
 };
@@ -256,7 +256,7 @@ const mountainsStructureMessages = defineMessages({
   },
 });
 
-const structureMessages: Messages = defineMessages({
+const structureMessages = defineMessages({
   ...commonStructureMessages,
   ...farmStructureMessages,
   ...plainsStructureMessages,

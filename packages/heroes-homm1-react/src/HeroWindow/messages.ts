@@ -1,4 +1,4 @@
-import { defineMessages, InjectedIntl } from "react-intl";
+import { defineMessages, IntlShape } from "react-intl";
 
 import { getHeroClassTitleMessage, getHeroNameMessage } from "../messages";
 
@@ -25,7 +25,7 @@ export const messages = defineMessages({
   },
 });
 
-export const getTitle = (intl: InjectedIntl, hero: string, heroClass: string) => {
+export const getTitle = (intl: IntlShape, hero: string, heroClass: string) => {
   const heroName = intl.formatMessage(getHeroNameMessage(hero));
 
   return intl.formatMessage(getHeroClassTitleMessage(heroClass), { heroName });
