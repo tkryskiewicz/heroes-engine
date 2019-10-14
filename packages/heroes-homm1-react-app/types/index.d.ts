@@ -23,3 +23,5 @@ declare module "*.md" {
 }
 
 type ExtractProps<C> = C extends React.ComponentType<infer P> ? P : never;
+
+type ExtractPublicProps<C> = JSX.LibraryManagedAttributes<C, ExtractProps<C>>;
