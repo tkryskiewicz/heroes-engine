@@ -4,12 +4,12 @@ import * as styles from "./CreditsWindow.module.scss";
 
 import { withGameWindow } from "../core";
 
-interface CreditsWindowProps {
+interface Props {
   readonly onClick: () => void;
 }
 
-class CreditsWindow extends React.Component<CreditsWindowProps> {
-  public static readonly defaultProps: CreditsWindowProps = {
+class CreditsWindow extends React.Component<Props> {
+  public static readonly defaultProps: Props = {
     onClick: () => undefined,
   };
 
