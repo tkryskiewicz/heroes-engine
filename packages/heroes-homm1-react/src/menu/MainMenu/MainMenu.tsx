@@ -1,10 +1,9 @@
-import { Row } from "antd";
 import React from "react";
 
 import { buttonImages } from "./assets";
 
-import { ImageButton } from "../../base";
-import { Menu } from "../Menu";
+import { ImageButton } from "../../base/ImageButton";
+import { Menu, MenuOption } from "../Menu";
 
 export interface MainMenuProps {
   readonly onNewGameClick?: () => void;
@@ -18,36 +17,41 @@ export class MainMenu extends React.Component<MainMenuProps> {
   public render() {
     return (
       <Menu>
-        <Row>
+        <MenuOption>
           <ImageButton
+            className="new-game"
             images={buttonImages.newGame}
             onClick={this.props.onNewGameClick}
           />
-        </Row>
-        <Row>
+        </MenuOption>
+        <MenuOption>
           <ImageButton
+            className="load-game"
             images={buttonImages.loadGame}
             onClick={this.props.onLoadGameClick}
           />
-        </Row>
-        <Row>
+        </MenuOption>
+        <MenuOption>
           <ImageButton
+            className="view-high-scores"
             images={buttonImages.viewHighScores}
             onClick={this.props.onViewHighScoresClick}
           />
-        </Row>
-        <Row>
+        </MenuOption>
+        <MenuOption>
           <ImageButton
+            className="view-credits"
             images={buttonImages.viewCredits}
             onClick={this.props.onViewCreditsClick}
           />
-        </Row>
-        <Row>
+        </MenuOption>
+        <MenuOption>
           <ImageButton
+            className="quit"
             images={buttonImages.quit}
             onClick={this.props.onQuitClick}
           />
-        </Row>
+        </MenuOption>
       </Menu>
     );
   }

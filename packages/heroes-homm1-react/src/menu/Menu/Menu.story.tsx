@@ -3,10 +3,13 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Menu } from "./Menu";
+import { MenuOption } from "./MenuOption";
 
 storiesOf("menu|Menu", module)
   .add("default", () => (
     <Menu>
-      {text("Content", "Content")}
+      <MenuOption>
+        {text("Content", "Content")}
+      </MenuOption>
     </Menu>
   ));
