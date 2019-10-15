@@ -2,8 +2,8 @@ import React from "react";
 
 import { buttonImages } from "./assets";
 
-import { ImageButton } from "../../base";
-import { Menu } from "../Menu";
+import { ImageButton } from "../../base/ImageButton";
+import { Menu, MenuOption } from "../Menu";
 
 export interface GameTypeMenuProps {
   readonly onStandardGameClick?: () => void;
@@ -16,30 +16,35 @@ export class GameTypeMenu extends React.Component<GameTypeMenuProps> {
   public render() {
     return (
       <Menu>
-        <div>
+        <MenuOption>
           <ImageButton
+            className="standard-game"
             images={buttonImages.standardGame}
             onClick={this.props.onStandardGameClick}
           />
-        </div>
-        <div>
+        </MenuOption>
+        <MenuOption>
           <ImageButton
+            className="campaign-game"
             images={buttonImages.campaignGame}
             onClick={this.props.onCampaignGameClick}
           />
-        </div>
-        <div>
+        </MenuOption>
+        <MenuOption>
           <ImageButton
+            className="multi-player-game"
             images={buttonImages.multiPlayerGame}
             onClick={this.props.onMultiPlayerGameClick}
           />
-        </div>
-        <div>
+        </MenuOption>
+        <MenuOption />
+        <MenuOption>
           <ImageButton
+            className="cancel"
             images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />
-        </div>
+        </MenuOption>
       </Menu>
     );
   }

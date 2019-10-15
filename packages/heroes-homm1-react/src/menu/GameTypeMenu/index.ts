@@ -1,1 +1,1 @@
-export { GameTypeMenu } from "./GameTypeMenu";
+export { GameTypeMenu, GameTypeMenuProps } from "./GameTypeMenu";
