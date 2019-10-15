@@ -1,14 +1,14 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { AdventureOptions, AdventureOptionsProps } from "heroes-homm1-react";
+import { AdventureOptionsWindow, AdventureOptionsWindowProps } from "heroes-homm1-react";
 import { adventureOptionsActions, puzzleWindowActions } from "heroes-homm1-state";
 
 type DispatchProp =
   "onViewPuzzleClick" |
   "onOkayClick";
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureOptionsProps, DispatchProp> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureOptionsWindowProps, DispatchProp> => ({
   onViewPuzzleClick() {
     dispatch(adventureOptionsActions.close());
 
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureOptionsProps, Dis
   },
 });
 
-const ComponentConnected = connect(null, mapDispatchToProps)(AdventureOptions);
+const ComponentConnected = connect(null, mapDispatchToProps)(AdventureOptionsWindow);
 
 type ComponentConnectedProps = ExtractProps<typeof ComponentConnected>;
 

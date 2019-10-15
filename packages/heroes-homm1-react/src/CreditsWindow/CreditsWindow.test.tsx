@@ -1,4 +1,4 @@
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import React from "react";
 
 import { CreditsWindow, CreditsWindowProps } from "./CreditsWindow";
@@ -7,9 +7,10 @@ describe("CreditsWindow", () => {
   it("should handle click", () => {
     const props: CreditsWindowProps = {
       onClick: jest.fn(),
+      visible: true,
     };
 
-    const wrapper = shallow(<CreditsWindow {...props} />).find("CreditsWindow");
+    const wrapper = mount(<CreditsWindow {...props} />).find(".root");
 
     wrapper.simulate("click");
 

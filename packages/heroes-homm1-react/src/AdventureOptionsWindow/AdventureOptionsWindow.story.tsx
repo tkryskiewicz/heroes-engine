@@ -3,18 +3,11 @@ import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import Readme = require("./README.md");
+import { AdventureOptionsWindow } from "./AdventureOptionsWindow";
 
-import { AdventureOptions } from "./AdventureOptions";
-
-storiesOf("AdventureOptions", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
+storiesOf("AdventureOptionsWindow", module)
   .add("default", () => (
-    <AdventureOptions
+    <AdventureOptionsWindow
       visible={boolean("Visible", true)}
       onViewWorldClick={action("View World Click")}
       onViewPuzzleClick={action("View Puzzle Click")}

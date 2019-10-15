@@ -3,33 +3,43 @@
   width: 322px;
   height: 236px;
   background: url("./assets/background.jpg");
+}
 
-  > div {
-    position: absolute;
-  }
+.button {
+  position: absolute;
 }
 
 .view-world {
+  @extend .button;
+
   top: 31px;
   left: 46px;
 }
 
 .view-puzzle {
+  @extend .button;
+
   top: 31px;
   left: 179px;
 }
 
 .cast-spell {
+  @extend .button;
+
   top: 107px;
   left: 46px;
 }
 
 .dig {
+  @extend .button;
+
   top: 107px;
   left: 179px;
 }
 
 .okay {
+  @extend .button;
+
   top: 184px;
   left: 112px;
 }

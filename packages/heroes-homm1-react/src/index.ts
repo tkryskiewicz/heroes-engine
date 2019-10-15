@@ -1,5 +1,5 @@
 export * from "./AdventureButtons";
-export * from "./AdventureOptions";
+export * from "./AdventureOptionsWindow";
 export * from "./AdventureScreen";
 export * from "./AdventureWindow";
 export * from "./base";

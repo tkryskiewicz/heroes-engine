@@ -3,16 +3,9 @@ import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import Readme = require("./README.md");
-
 import { AdventureButtons } from "./AdventureButtons";
 
 storiesOf("AdventureButtons", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => (
     <AdventureButtons
       nextHeroDisabled={boolean("Next Hero Disabled", false)}

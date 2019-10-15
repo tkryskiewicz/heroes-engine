@@ -1,6 +1,6 @@
 import { ButtonImages } from "../../ImageButton";
 
-const buttonImages: { readonly [index: string]: ButtonImages } = {
+const buttonImages: { readonly [i: string]: ButtonImages } = {
   cancel: {
     disabled: require("./cancel/disabled.png"),
     enabled: require("./cancel/enabled.png"),

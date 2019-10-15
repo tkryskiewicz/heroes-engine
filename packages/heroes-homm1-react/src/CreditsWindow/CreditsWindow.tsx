@@ -5,18 +5,14 @@ import * as styles from "./CreditsWindow.module.scss";
 import { withGameWindow } from "../core";
 
 interface Props {
-  readonly onClick: () => void;
+  readonly onClick?: () => void;
 }
 
 class CreditsWindow extends React.Component<Props> {
-  public static readonly defaultProps: Props = {
-    onClick: () => undefined,
-  };
-
   public render() {
     return (
       <div
-        className={styles.root}
+        className={`root ${styles.root}`}
         onClick={this.props.onClick}
       />
     );
