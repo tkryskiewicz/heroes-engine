@@ -6,3 +6,4 @@ export * from "./HotSeatGameMenu";
 export * from "./MainMenu";
 export * from "./Menu";
 export * from "./MultiPlayerGameMenu";
+export * from "./PlayersMenu";
