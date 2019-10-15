@@ -7,7 +7,7 @@ import { PlayersMenu } from "./PlayersMenu";
 storiesOf("menu|PlayersMenu", module)
   .add("default", () => (
     <PlayersMenu
-      onPlayersClick={action("Players Click")}
+      onOptionClick={action("Option Click")}
       onCancelClick={action("Cancel Click")}
     />
   ));

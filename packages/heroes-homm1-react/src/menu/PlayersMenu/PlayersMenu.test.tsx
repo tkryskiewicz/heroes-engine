@@ -7,7 +7,7 @@ import { PlayersMenu, PlayersMenuProps } from "./PlayersMenu";
 describe("PlayersMenu", () => {
   it("should handle 2 players click", () => {
     const props: PlayersMenuProps = {
-      onPlayersClick: jest.fn(),
+      onOptionClick: jest.fn(),
     };
 
     const wrapper = shallow(<PlayersMenu {...props} />);
@@ -16,12 +16,12 @@ describe("PlayersMenu", () => {
 
     twoPlayersButton.props().onClick();
 
-    expect(props.onPlayersClick).toHaveBeenCalledWith(2);
+    expect(props.onOptionClick).toHaveBeenCalledWith(2);
   });
 
   it("should handle 3 players click", () => {
     const props: PlayersMenuProps = {
-      onPlayersClick: jest.fn(),
+      onOptionClick: jest.fn(),
     };
 
     const wrapper = shallow(<PlayersMenu {...props} />);
@@ -30,12 +30,12 @@ describe("PlayersMenu", () => {
 
     threePlayersButton.props().onClick();
 
-    expect(props.onPlayersClick).toHaveBeenCalledWith(3);
+    expect(props.onOptionClick).toHaveBeenCalledWith(3);
   });
 
   it("should handle 4 players click", () => {
     const props: PlayersMenuProps = {
-      onPlayersClick: jest.fn(),
+      onOptionClick: jest.fn(),
     };
 
     const wrapper = shallow(<PlayersMenu {...props} />);
@@ -44,7 +44,7 @@ describe("PlayersMenu", () => {
 
     fourPlayersButton.props().onClick();
 
-    expect(props.onPlayersClick).toHaveBeenCalledWith(4);
+    expect(props.onOptionClick).toHaveBeenCalledWith(4);
   });
 
   it("should handle cancel click", () => {

@@ -6,16 +6,16 @@ import { ImageButton } from "../../base/ImageButton";
 import { Menu, MenuOption } from "../Menu";
 
 interface Props {
-  readonly onPlayersClick: (count: number) => void;
+  readonly onOptionClick: (value: number) => void;
   readonly onCancelClick?: () => void;
 }
 
 type DefaultProp =
-  "onPlayersClick";
+  "onOptionClick";
 
 export class PlayersMenu extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
-    onPlayersClick: () => undefined,
+    onOptionClick: () => undefined,
   };
 
   public render() {
@@ -55,15 +55,15 @@ export class PlayersMenu extends React.Component<Props> {
   }
 
   private readonly on2PlayersClick = () => {
-    this.props.onPlayersClick(2);
+    this.props.onOptionClick(2);
   }
 
   private readonly on3PlayersClick = () => {
-    this.props.onPlayersClick(3);
+    this.props.onOptionClick(3);
   }
 
   private readonly on4PlayersClick = () => {
-    this.props.onPlayersClick(4);
+    this.props.onOptionClick(4);
   }
 }
 
