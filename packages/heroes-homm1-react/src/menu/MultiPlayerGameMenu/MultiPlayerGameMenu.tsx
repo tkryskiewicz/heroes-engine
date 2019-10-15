@@ -2,66 +2,56 @@ import React from "react";
 
 import { buttonImages } from "./assets";
 
-import { ImageButton } from "../../base";
-import { Menu } from "../Menu";
+import { ImageButton } from "../../base/ImageButton";
+import { Menu, MenuOption } from "../Menu";
 
 export interface MultiPlayerGameMenuProps {
-  readonly onHotSeatClick: () => void;
-  readonly onDirectConnectClick: () => void;
-  readonly onModemClick: () => void;
-  readonly onNetworkClick: () => void;
-  readonly onCancelClick: () => void;
+  readonly onHotSeatClick?: () => void;
+  readonly onDirectConnectClick?: () => void;
+  readonly onModemClick?: () => void;
+  readonly onNetworkClick?: () => void;
+  readonly onCancelClick?: () => void;
 }
 
-type DefaultProp =
-  "onHotSeatClick" |
-  "onDirectConnectClick" |
-  "onModemClick" |
-  "onNetworkClick" |
-  "onCancelClick";
-
 export class MultiPlayerGameMenu extends React.Component<MultiPlayerGameMenuProps> {
-  public static readonly defaultProps: Pick<MultiPlayerGameMenuProps, DefaultProp> = {
-    onCancelClick: () => undefined,
-    onDirectConnectClick: () => undefined,
-    onHotSeatClick: () => undefined,
-    onModemClick: () => undefined,
-    onNetworkClick: () => undefined,
-  };
-
   public render() {
     return (
       <Menu>
-        <div>
+        <MenuOption>
           <ImageButton
+            className="hot-seat"
             images={buttonImages.hotSeat}
             onClick={this.props.onHotSeatClick}
           />
-        </div>
-        <div>
+        </MenuOption>
+        <MenuOption>
           <ImageButton
+            className="direct-connect"
             images={buttonImages.directConnect}
             onClick={this.props.onDirectConnectClick}
           />
-        </div>
-        <div>
+        </MenuOption>
+        <MenuOption>
           <ImageButton
+            className="modem"
             images={buttonImages.modem}
             onClick={this.props.onModemClick}
           />
-        </div>
-        <div>
+        </MenuOption>
+        <MenuOption>
           <ImageButton
+            className="network"
             images={buttonImages.network}
             onClick={this.props.onNetworkClick}
           />
-        </div>
-        <div>
+        </MenuOption>
+        <MenuOption>
           <ImageButton
+            className="cancel"
             images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />
-        </div>
+        </MenuOption>
       </Menu>
     );
   }
