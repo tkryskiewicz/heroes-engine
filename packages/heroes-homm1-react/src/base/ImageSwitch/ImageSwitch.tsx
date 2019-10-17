@@ -1,3 +1,4 @@
+import Classnames from "classnames";
 import React from "react";
 
 import * as styles from "./ImageSwitch.module.scss";
@@ -8,6 +9,7 @@ export interface SwitchImages {
 }
 
 export interface ImageSwitchProps {
+  readonly className?: string;
   readonly images: SwitchImages;
   readonly checked: boolean;
   readonly onChange: (value: boolean) => void;
@@ -22,7 +24,7 @@ export class ImageSwitch extends React.Component<ImageSwitchProps> {
   public render() {
     return (
       <div
-        className={styles.root}
+        className={Classnames(styles.root, this.props.className)}
         onClick={this.onClick}
       >
         {this.props.checked ? this.renderChecked() : this.renderUnchecked()}

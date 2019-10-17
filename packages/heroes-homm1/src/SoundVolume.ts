@@ -11,3 +11,6 @@ export enum SoundVolume {
   Volume9 = 9,
   On = 10,
 }
+
+export const isSoundEnabled = (volume: SoundVolume): boolean =>
+  volume !== SoundVolume.Off;

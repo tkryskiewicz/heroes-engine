@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { GameOptions, GameOptionsProps } from "heroes-homm1-react";
+import { GameOptionsWindow, GameOptionsWindowProps } from "heroes-homm1-react";
 import {
   AppState,
   gameOptionsActions,
@@ -17,7 +17,7 @@ type StateProp =
   "showPath" |
   "viewEnemyMovement";
 
-const mapStateToProps = (state: AppState): Pick<GameOptionsProps, StateProp> => ({
+const mapStateToProps = (state: AppState): Pick<GameOptionsWindowProps, StateProp> => ({
   autoSave: state.gameSettings.autoSave,
   effectsVolume: state.gameSettings.effectsVolume,
   movementSpeed: state.gameSettings.movementSpeed,
@@ -36,7 +36,7 @@ type DispatchProp =
   "onOkayClick" |
   "onInfoClick";
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<GameOptionsProps, DispatchProp> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<GameOptionsWindowProps, DispatchProp> => ({
   onMusicVolumeChange(volume) {
     dispatch(gameSettingsActions.changeMusicVolume(volume));
   },
@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<GameOptionsProps, Dispatch
   },
 });
 
-const ComponentConnected = connect(mapStateToProps, mapDispatchToProps)(GameOptions);
+const ComponentConnected = connect(mapStateToProps, mapDispatchToProps)(GameOptionsWindow);
 
 type ComponentConnectedProps = ExtractProps<typeof ComponentConnected>;
 

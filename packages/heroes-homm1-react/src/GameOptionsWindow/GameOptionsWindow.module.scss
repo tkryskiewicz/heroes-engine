@@ -1,0 +1,125 @@
+.root {
+  position: relative;
+  width: 322px;
+  height: 459px;
+  background: url("./assets/background.jpg");
+}
+
+.container {
+  position: absolute;
+  text-align: center;
+}
+
+.button {
+  position: absolute;
+}
+
+.new-game {
+  @extend .button;
+
+  top: 31px;
+  left: 46px;
+}
+
+.load-game {
+  @extend .button;
+
+  top: 31px;
+  left: 179px;
+}
+
+.save-game {
+  @extend .button;
+
+  top: 107px;
+  left: 46px;
+}
+
+.quit {
+  @extend .button;
+
+  top: 107px;
+  left: 179px;
+}
+
+.music-volume-container {
+  @extend .container;
+
+  top: 173px;
+  left: 36px;
+}
+
+.music-volume {
+  display: block;
+}
+
+.effects-volume-container {
+  @extend .container;
+
+  top: 173px;
+  left: 128px;
+}
+
+.effects-volume {
+  display: block;
+}
+
+.movement-speed-container {
+  @extend .container;
+
+  top: 173px;
+  left: 220px;
+}
+
+.movement-speed {
+  display: block;
+}
+
+.auto-save-container {
+  @extend .container;
+
+  top: 293px;
+  left: 36px;
+}
+
+.auto-save {
+  display: block;
+}
+
+.show-path-container {
+  @extend .container;
+
+  top: 293px;
+  left: 128px;
+}
+
+.show-path {
+  display: block;
+}
+
+.view-enemy-movement-container {
+  @extend .container;
+
+  top: 293px;
+  left: 220px;
+  // FIXME: multiline label breaks position
+  margin: 0 -33px;
+}
+
+.view-enemy-movement {
+  display: block;
+}
+
+.okay {
+  @extend .button;
+
+  top: 408px;
+  left: 24px;
+}
+
+.info {
+  @extend .button;
+
+  top: 408px;
+  left: 203px;
+}

@@ -15,7 +15,7 @@ export * from "./core";
 export * from "./CreditsWindow";
 export * from "./DateInformation";
 export * from "./editor";
-export * from "./GameOptions";
+export * from "./GameOptionsWindow";
 export * from "./HeroLocator";
 export * from "./HeroLocators";
 export * from "./HeroStatus";

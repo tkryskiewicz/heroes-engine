@@ -3,19 +3,12 @@ import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import Readme = require("./README.md");
-
 import { movementSpeed, soundVolume } from "../stories";
-import { GameOptions } from "./GameOptions";
+import { GameOptionsWindow } from "./GameOptionsWindow";
 
-storiesOf("GameOptions", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
+storiesOf("GameOptionsWindow", module)
   .add("default", () => (
-    <GameOptions
+    <GameOptionsWindow
       visible={boolean("Visible", true)}
       onNewGameClick={action("New Game Click")}
       onLoadGameClick={action("Load Game Click")}

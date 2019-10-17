@@ -68,7 +68,7 @@ export {
   getStandardGameRating,
 } from "./scores";
 export { Skill, SkillIds } from "./Skill";
-export { SoundVolume } from "./SoundVolume";
+export { SoundVolume, isSoundEnabled } from "./SoundVolume";
 export { Spell } from "./Spell";
 export { SpellBook, SpellBookSpell, constructSpellBook } from "./SpellBook";
 export { SpellId, spells } from "./spells";
