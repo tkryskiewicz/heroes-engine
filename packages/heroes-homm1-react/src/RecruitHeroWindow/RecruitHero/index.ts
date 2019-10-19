@@ -1,1 +1,1 @@
-export { RecruitHero } from "./RecruitHero";
+export { RecruitHero, RecruitHeroProps } from "./RecruitHero";

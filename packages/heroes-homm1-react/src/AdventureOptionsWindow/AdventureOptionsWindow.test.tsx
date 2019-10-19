@@ -1,7 +1,7 @@
 import { mount } from "enzyme";
 import React from "react";
 
-import { ImageButton } from "../base/ImageButton";
+import { ImageButton } from "../base";
 import { AdventureOptionsWindow, AdventureOptionsWindowProps } from "./AdventureOptionsWindow";
 
 describe("AdventureOptionsWindow", () => {

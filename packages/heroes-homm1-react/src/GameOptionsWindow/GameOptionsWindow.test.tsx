@@ -5,8 +5,7 @@ import { MovementSpeed, SoundVolume } from "heroes-homm1";
 
 import { movementSpeed } from "./assets";
 
-import { ImageButton } from "../base/ImageButton";
-import { ImageSwitch } from "../base/ImageSwitch";
+import { ImageButton, ImageSwitch } from "../base";
 import { GameOptionsWindow, GameOptionsWindowProps } from "./GameOptionsWindow";
 
 describe("GameOptionsWindow", () => {

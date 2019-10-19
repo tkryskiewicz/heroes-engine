@@ -4,7 +4,7 @@ import { CampaignId } from "heroes-homm1";
 
 import { buttonImages } from "./assets";
 
-import { ImageButton } from "../../base/ImageButton";
+import { ImageButton } from "../../base";
 import { Menu, MenuOption } from "../Menu";
 
 interface Props {

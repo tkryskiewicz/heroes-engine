@@ -2,7 +2,7 @@ import React from "react";
 
 import { buttonImages } from "./assets";
 
-import { ImageButton } from "../../base/ImageButton";
+import { ImageButton } from "../../base";
 import { Menu, MenuOption } from "../Menu";
 
 export interface MainMenuProps {

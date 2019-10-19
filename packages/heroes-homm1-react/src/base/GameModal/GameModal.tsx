@@ -62,6 +62,7 @@ class GameModal extends React.Component<GameModalProps> {
     return (
       <div
         key={index}
+        data-test-id="body"
         className={styles.body}
       />
     );
@@ -76,6 +77,7 @@ class GameModal extends React.Component<GameModalProps> {
             span={12}
           >
             <SystemButton
+              data-test-id="confirm"
               type={modalType === "yesNo" ? "yes" : "okay"}
               disabled={this.props.confirmDisabled}
               onClick={this.props.onConfirmClick}
@@ -86,6 +88,7 @@ class GameModal extends React.Component<GameModalProps> {
             span={12}
           >
             <SystemButton
+              data-test-id="cancel"
               type={modalType === "yesNo" ? "no" : "cancel"}
               onClick={this.props.onCancelClick}
             />
@@ -94,12 +97,25 @@ class GameModal extends React.Component<GameModalProps> {
       );
     }
 
+    if (modalType === "okay") {
+      return (
+      <Row>
+        <SystemButton
+          data-test-id="confirm"
+          type="okay"
+          disabled={this.props.confirmDisabled}
+          onClick={this.props.onConfirmClick}
+        />
+      </Row>
+      );
+    }
+
     return (
       <Row>
         <SystemButton
-          type={modalType === "okay" ? "okay" : "cancel"}
-          disabled={modalType === "okay" ? this.props.confirmDisabled : false}
-          onClick={modalType === "okay" ? this.props.onConfirmClick : this.props.onCancelClick}
+          data-test-id="cancel"
+          type="cancel"
+          onClick={this.props.onCancelClick}
         />
       </Row>
     );

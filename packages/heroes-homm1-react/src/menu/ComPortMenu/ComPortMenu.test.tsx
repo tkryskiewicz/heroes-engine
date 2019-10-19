@@ -3,7 +3,7 @@ import React from "react";
 
 import { ComPort } from "heroes-homm1";
 
-import { ImageButton } from "../../base/ImageButton";
+import { ImageButton } from "../../base";
 import { ComPortMenu, ComPortMenuProps } from "./ComPortMenu";
 
 describe("ComPortMenu", () => {

@@ -1,10 +1,5 @@
-const buttonImages = {
-  recruit: {
-    disabled: require("./recruit/disabled.png"),
-    enabled: require("./recruit/enabled.png"),
-  },
-};
+import { recruit } from "./recruit";
 
-export {
-  buttonImages,
+export const buttonImages = {
+  recruit,
 };

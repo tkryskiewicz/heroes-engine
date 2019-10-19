@@ -12,7 +12,7 @@ import { Frame, HeroPortrait, ImageButton } from "../../base";
 import { GameText } from "../../core";
 import { getHeroClassNameMessage } from "../../messages";
 
-export interface RecruitHeroProps {
+interface Props {
   readonly heroId: string;
   readonly heroClass: HeroClass;
   readonly disabled: boolean;
@@ -20,8 +20,13 @@ export interface RecruitHeroProps {
   readonly onRecruitClick: (id: string) => void;
 }
 
-export class RecruitHero extends React.Component<RecruitHeroProps> {
-  public static readonly defaultProps: Pick<RecruitHeroProps, "disabled" | "onPortraitClick" | "onRecruitClick"> = {
+type DefaultProp =
+  "disabled" |
+  "onPortraitClick" |
+  "onRecruitClick";
+
+export class RecruitHero extends React.Component<Props> {
+  public static readonly defaultProps: Pick<Props, DefaultProp> = {
     disabled: false,
     onPortraitClick: () => undefined,
     onRecruitClick: () => undefined,
@@ -33,18 +38,23 @@ export class RecruitHero extends React.Component<RecruitHeroProps> {
         <Row>
           <Frame>
             <HeroPortrait
+              data-test-id="portrait"
               hero={this.props.heroId}
               onClick={this.onPortraitClick}
             />
           </Frame>
         </Row>
         <Row className={styles.heroName}>
-          <GameText size="normal">
+          <GameText
+            data-test-id="hero-class"
+            size="normal"
+          >
             <FormattedMessage {...getHeroClassNameMessage(this.props.heroClass)} />
           </GameText>
         </Row>
         <Row>
           <ImageButton
+            data-test-id="recruit"
             images={buttonImages.recruit}
             disabled={this.props.disabled}
             onClick={this.onRecruitClick}
@@ -62,3 +72,5 @@ export class RecruitHero extends React.Component<RecruitHeroProps> {
     this.props.onRecruitClick(this.props.heroId);
   }
 }
+
+export type RecruitHeroProps = ExtractPublicProps<typeof RecruitHero>;

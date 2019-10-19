@@ -1,1 +1,1 @@
-export { luckImages } from "./luck";
+export { luck as images } from "./luck";

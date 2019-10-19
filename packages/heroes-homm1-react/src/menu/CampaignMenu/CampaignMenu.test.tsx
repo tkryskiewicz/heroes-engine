@@ -3,7 +3,7 @@ import React from "react";
 
 import { CampaignId } from "heroes-homm1";
 
-import { ImageButton } from "../../base/ImageButton";
+import { ImageButton } from "../../base";
 import { CampaignMenu, CampaignMenuProps } from "./CampaignMenu";
 
 describe("CampaignMenu", () => {

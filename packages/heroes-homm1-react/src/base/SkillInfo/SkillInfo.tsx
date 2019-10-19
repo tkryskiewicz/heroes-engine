@@ -3,7 +3,7 @@ import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import * as styles from "./SkillInfo.module.scss";
 
-import { skillImages } from "./assets";
+import { images } from "./assets";
 
 import { GameText } from "../../core";
 import { getSkillNameMessage } from "../../messages";
@@ -41,7 +41,7 @@ export class SkillInfo extends React.Component<SkillInfoProps> {
   private renderBackground(skill: string) {
     return (
       <img
-        src={skillImages[skill]}
+        src={images[skill]}
       />
     );
   }

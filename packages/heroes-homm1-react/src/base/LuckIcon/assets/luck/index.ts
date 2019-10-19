@@ -1,12 +1,11 @@
-const pattern = /luck-([a-z]+)\.png/;
+import { LuckType } from "heroes-homm1";
 
-const req = require.context(".", false, /luck-([a-z]+)\.png/);
+import bad = require("./luck-bad.png");
+import good = require("./luck-good.png");
+import neutral = require("./luck-neutral.png");
 
-export const luckImages = req.keys().reduce<{ readonly [index: string]: string }>((p, key) => {
-  const index = key.match(pattern)![1];
-
-  return {
-    ...p,
-    [index]: req(key),
-  };
-}, {});
+export const luck = {
+  [LuckType.Bad]: bad,
+  [LuckType.Good]: good,
+  [LuckType.Neutral]: neutral,
+};

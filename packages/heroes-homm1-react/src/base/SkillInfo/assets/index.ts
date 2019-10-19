@@ -1,1 +1,1 @@
-export { skillImages } from "./skill";
+export { skill as images } from "./skill";

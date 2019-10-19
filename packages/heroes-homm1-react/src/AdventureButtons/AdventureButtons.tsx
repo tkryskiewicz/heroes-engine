@@ -4,7 +4,7 @@ import * as styles from "./AdventureButtons.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { ImageButton } from "../base/ImageButton";
+import { ImageButton } from "../base";
 
 interface Props {
   readonly nextHeroDisabled: boolean;

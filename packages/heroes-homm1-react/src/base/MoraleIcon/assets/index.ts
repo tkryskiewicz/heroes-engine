@@ -1,1 +1,1 @@
-export { moraleImages } from "./morale";
+export { morale as images } from "./morale";

@@ -1,1 +1,1 @@
-export { RecruitHeroWindow } from "./RecruitHeroWindow";
+export { RecruitHeroWindow, RecruitHeroWindowProps } from "./RecruitHeroWindow";

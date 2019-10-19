@@ -173,12 +173,15 @@ export const gameDate = (name: string): GameDate => ({
   week: number(`${name} / Week`, 1, { range: true, min: 1, max: 4, step: 1 }),
 });
 
-export const resourceAmounts = (name: string): Resources => ({
-  [ResourceId.Wood]: number(`${name} / Wood`, 0, { range: true, min: 0, max: 999, step: 1 }),
-  [ResourceId.Mercury]: number(`${name} / Mercury`, 0, { range: true, min: 0, max: 999, step: 1 }),
-  [ResourceId.Ore]: number(`${name} / Ore`, 0, { range: true, min: 0, max: 999, step: 1 }),
-  [ResourceId.Sulfur]: number(`${name} / Sulfur`, 0, { range: true, min: 0, max: 999, step: 1 }),
-  [ResourceId.Crystal]: number(`${name} / Crystal`, 0, { range: true, min: 0, max: 999, step: 1 }),
-  [ResourceId.Gems]: number(`${name} / Gems`, 0, { range: true, min: 0, max: 999, step: 1 }),
-  [ResourceId.Gold]: number(`${name} / Gold`, 0, { range: true, min: 0, max: 999, step: 1 }),
+const resourceAmount = (res: ResourceId, name: string, value: number = 0) =>
+  number(name, value, { range: true, min: 0, max: res !== ResourceId.Gold ? 999 : 999999, step: 1 });
+
+export const resourceAmounts = (name: string, value: Resources = {}): Resources => ({
+  [ResourceId.Wood]: resourceAmount(ResourceId.Wood, `${name} / Wood`, value[ResourceId.Wood]),
+  [ResourceId.Mercury]: resourceAmount(ResourceId.Mercury, `${name} / Mercury`, value[ResourceId.Mercury]),
+  [ResourceId.Ore]: resourceAmount(ResourceId.Ore, `${name} / Ore`, value[ResourceId.Ore]),
+  [ResourceId.Sulfur]: resourceAmount(ResourceId.Sulfur, `${name} / Sulfur`, value[ResourceId.Sulfur]),
+  [ResourceId.Crystal]: resourceAmount(ResourceId.Crystal, `${name} / Crystal`, value[ResourceId.Crystal]),
+  [ResourceId.Gems]: resourceAmount(ResourceId.Gems, `${name} / Gems`, value[ResourceId.Gems]),
+  [ResourceId.Gold]: resourceAmount(ResourceId.Gold, `${name} / Gold`, value[ResourceId.Gold]),
 });

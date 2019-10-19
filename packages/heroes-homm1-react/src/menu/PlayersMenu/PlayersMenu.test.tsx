@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
 import React from "react";
 
-import { ImageButton } from "../../base/ImageButton";
+import { ImageButton } from "../../base";
 import { PlayersMenu, PlayersMenuProps } from "./PlayersMenu";
 
 describe("PlayersMenu", () => {

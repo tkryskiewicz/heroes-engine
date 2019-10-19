@@ -1,12 +1,11 @@
-const pattern = /morale-([a-z]+)\.png/;
+import { MoraleType } from "heroes-homm1";
 
-const req = require.context(".", false, /morale-([a-z]+)\.png/);
+import bad = require("./morale-bad.png");
+import good = require("./morale-good.png");
+import neutral = require("./morale-neutral.png");
 
-export const moraleImages = req.keys().reduce<{ readonly [index: string]: string }>((p, key) => {
-  const index = key.match(pattern)![1];
-
-  return {
-    ...p,
-    [index]: req(key),
-  };
-}, {});
+export const morale = {
+  [MoraleType.Bad]: bad,
+  [MoraleType.Good]: good,
+  [MoraleType.Neutral]: neutral,
+};

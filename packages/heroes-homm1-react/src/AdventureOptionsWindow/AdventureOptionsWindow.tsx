@@ -4,7 +4,7 @@ import * as styles from "./AdventureOptionsWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { ImageButton } from "../base/ImageButton";
+import { ImageButton } from "../base";
 import { withGameWindow } from "../core";
 
 interface Props {

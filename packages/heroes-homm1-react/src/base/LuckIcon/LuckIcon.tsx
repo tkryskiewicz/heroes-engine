@@ -2,7 +2,7 @@ import React from "react";
 
 import { LuckType } from "heroes-homm1";
 
-import { luckImages } from "./assets";
+import { images } from "./assets";
 
 export interface LuckIconProps {
   readonly type: LuckType;
@@ -13,7 +13,7 @@ export class LuckIcon extends React.Component<LuckIconProps> {
   public render() {
     return (
       <img
-        src={luckImages[this.props.type]}
+        src={images[this.props.type]}
         onClick={this.props.onClick}
       />
     );

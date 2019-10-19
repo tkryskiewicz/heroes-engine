@@ -15,9 +15,12 @@ export interface ResourceCostProps {
 export class ResourceCost extends React.Component<ResourceCostProps> {
   public render() {
     // TODO: reflect order of resources
+    const resources = Object.keys(this.props.cost)
+      .filter((r) => this.props.cost[r]);
+
     return (
       <div className={styles.root}>
-        {Object.keys(this.props.cost).map((r) => this.renderResource(r, this.props.cost[r]))}
+        {resources.map((r) => this.renderResource(r, this.props.cost[r]))}
       </div>
     );
   }

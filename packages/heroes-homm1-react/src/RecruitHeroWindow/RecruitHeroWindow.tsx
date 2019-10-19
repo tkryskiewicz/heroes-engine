@@ -2,7 +2,7 @@ import { Col, Row } from "antd";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { enoughResources, Resources } from "heroes-core";
+import { Resources } from "heroes-core";
 import { HeroClass } from "heroes-homm1";
 
 import { GameModal, ResourceCost } from "../base";
@@ -15,17 +15,30 @@ export interface Hero {
   readonly heroClass: HeroClass;
 }
 
-export interface RecruitHeroWindowProps {
-  readonly heroes: Hero[];
-  readonly resources: Resources;
+interface Props {
+  readonly heroes: [Hero, Hero];
   readonly cost: Resources;
+  readonly disabled: boolean;
   readonly visible?: boolean;
-  readonly onHeroPortraitClick?: (id: string) => void;
-  readonly onRecruitHeroClick?: (id: string) => void;
-  readonly onCancelClick?: () => void;
+  readonly onHeroPortraitClick: (id: string) => void;
+  readonly onRecruitHeroClick: (id: string) => void;
+  readonly onCancelClick: () => void;
 }
 
-export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {
+export type DefaultProp =
+  "disabled" |
+  "onHeroPortraitClick" |
+  "onRecruitHeroClick" |
+  "onCancelClick";
+
+export class RecruitHeroWindow extends React.Component<Props> {
+  public static readonly defaultProps: Pick<Props, DefaultProp> = {
+    disabled: false,
+    onCancelClick: () => undefined,
+    onHeroPortraitClick: () => undefined,
+    onRecruitHeroClick: () => undefined,
+  };
+
   public render() {
     return (
       <GameModal
@@ -40,7 +53,7 @@ export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {
           </GameText>
         </Row>
         <Row>
-          {this.props.heroes.map((h) => this.renderHero(h, this.props.resources, this.props.cost))}
+          {this.props.heroes.map((h, i) => this.renderHero(i, h))}
         </Row>
         <Row className="recruit-hero-window-cost">
           <ResourceCost
@@ -51,17 +64,18 @@ export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {
     );
   }
 
-  private renderHero(hero: Hero, resources: Resources, cost: Resources) {
+  private renderHero(index: number, hero: Hero) {
     return (
       <Col
         className="recruit-hero-window-hero"
-        key={hero.id}
+        key={index}
         span={12}
       >
         <RecruitHero
+          data-test-id={`hero${index}`}
           heroId={hero.id}
           heroClass={hero.heroClass}
-          disabled={!enoughResources(resources, cost)}
+          disabled={this.props.disabled}
           onPortraitClick={this.props.onHeroPortraitClick}
           onRecruitClick={this.props.onRecruitHeroClick}
         />
@@ -69,3 +83,5 @@ export class RecruitHeroWindow extends React.Component<RecruitHeroWindowProps> {
     );
   }
 }
+
+export type RecruitHeroWindowProps = ExtractPublicProps<typeof RecruitHeroWindow>;

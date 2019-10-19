@@ -8,8 +8,7 @@ import * as styles from "./GameOptionsWindow.module.scss";
 
 import { buttonImages, movementSpeed, switchImages } from "./assets";
 
-import { ImageButton } from "../base/ImageButton";
-import { ImageSwitch } from "../base/ImageSwitch";
+import { ImageButton, ImageSwitch } from "../base";
 import { GameText, withGameWindow } from "../core";
 import { getMovementSpeedMessage, messages } from "./messages";
 

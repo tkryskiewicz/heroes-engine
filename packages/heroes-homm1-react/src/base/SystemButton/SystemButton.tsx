@@ -4,13 +4,22 @@ import { buttonImages } from "./assets";
 
 import { ImageButton } from "../ImageButton";
 
-export interface SystemButtonProps {
+interface Props {
   readonly type: "yes" | "no" | "okay" | "cancel";
-  readonly disabled?: boolean;
-  readonly onClick?: () => void;
+  readonly disabled: boolean;
+  readonly onClick: () => void;
 }
 
-export class SystemButton extends React.Component<SystemButtonProps> {
+type DefaultProp =
+  "disabled" |
+  "onClick";
+
+export class SystemButton extends React.Component<Props> {
+  public static readonly defaultProps: Pick<Props, DefaultProp> = {
+    disabled: false,
+    onClick: () => undefined,
+  };
+
   public render() {
     return (
       <ImageButton
@@ -21,3 +30,5 @@ export class SystemButton extends React.Component<SystemButtonProps> {
     );
   }
 }
+
+export type SystemButtonProps = ExtractPublicProps<typeof SystemButton>;
