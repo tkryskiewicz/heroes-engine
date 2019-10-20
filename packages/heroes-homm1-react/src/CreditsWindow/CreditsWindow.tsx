@@ -9,6 +9,10 @@ interface Props {
 }
 
 class CreditsWindow extends React.Component<Props> {
+  public static readonly defaultProps: Props = {
+    onClick: () => undefined,
+  };
+
   public render() {
     return (
       <div

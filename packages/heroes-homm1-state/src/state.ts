@@ -9,6 +9,7 @@ import { HeroWindowState } from "./heroWindow";
 import { KingdomOverviewWindowState } from "./kingdomOverviewWindow";
 import { LocatorsState } from "./locators";
 import { MageGuildWindowState } from "./mageGuildWindow";
+import { MainWindowState } from "./mainWindow";
 import { PuzzleWindowState } from "./puzzleWindow";
 import { ScenarioInfoWindowState } from "./scenarioInfoWindow";
 import { SpellBookWindowState } from "./spellBookWindow";
@@ -17,6 +18,7 @@ import { TownWindowState } from "./townWindow";
 import { TroopWindowState } from "./troopWindow";
 
 export interface AppState {
+  readonly mainWindow: MainWindowState;
   readonly game: GameState;
   readonly adventureScreen: AdventureScreenState;
   readonly gameSettings: GameSettingsState;

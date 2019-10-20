@@ -1,12 +1,15 @@
-const pattern = /opponent-([a-z]+)\.jpg$/;
+import { OpponentSetting } from "heroes-homm1";
 
-const req = require.context(".", false, /opponent-([a-z]+)\.jpg$/);
+import average = require("./opponent-average.jpg");
+import dumb = require("./opponent-dumb.jpg");
+import genius = require("./opponent-genius.jpg");
+import none = require("./opponent-none.jpg");
+import smart = require("./opponent-smart.jpg");
 
-export const opponentSettingImages = req.keys().reduce<{ readonly [index: string]: string }>((p, key) => {
-  const index = key.match(pattern)![1];
-
-  return {
-    ...p,
-    [index]: req(key),
-  };
-}, {});
+export const opponentSettingImages = {
+  [OpponentSetting.None]: none,
+  [OpponentSetting.Dumb]: dumb,
+  [OpponentSetting.Average]: average,
+  [OpponentSetting.Smart]: smart,
+  [OpponentSetting.Genius]: genius,
+};

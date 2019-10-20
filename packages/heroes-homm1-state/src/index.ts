@@ -9,6 +9,7 @@ export { heroWindowActions } from "./heroWindow";
 export { kingdomOverviewWindowActions } from "./kingdomOverviewWindow";
 export { locatorsActions } from "./locators";
 export { mageGuildWindowActions } from "./mageGuildWindow";
+export { mainWindowActions } from "./mainWindow";
 export { puzzleWindowActions } from "./puzzleWindow";
 export { rootReducer } from "./reducers";
 export { AppState } from "./state";

@@ -38,7 +38,7 @@ export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
     );
   }
 
-  private renderIcon(difficulty: string) {
+  private renderIcon(difficulty: GameDifficulty) {
     return (
       <img
         className={styles.icon}

@@ -1,12 +1,13 @@
-const pattern = /difficulty-([a-z]+)\.jpg/;
+import { GameDifficulty } from "heroes-homm1";
 
-const req = require.context(".", false, /difficulty-([a-z]+)\.jpg/);
+import easy = require("./difficulty-easy.jpg");
+import expert = require("./difficulty-expert.jpg");
+import hard = require("./difficulty-hard.jpg");
+import normal = require("./difficulty-normal.jpg");
 
-export const difficultyImages = req.keys().reduce<{ readonly [index: string]: string }>((p, key) => {
-  const index = key.match(pattern)![1];
-
-  return {
-    ...p,
-    [index]: req(key),
-  };
-}, {});
+export const difficultyImages = {
+  [GameDifficulty.Easy]: easy,
+  [GameDifficulty.Normal]: normal,
+  [GameDifficulty.Hard]: hard,
+  [GameDifficulty.Expert]: expert,
+};
