@@ -1,8 +1,16 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
+import { MainMenu, MainWindow } from "heroes-homm1-react";
+
 import { AdventureScreen } from "./AdventureScreen";
 import { EditorWindow } from "./EditorWindow";
+
+const renderMainWindow = () => (
+  <MainWindow>
+    <MainMenu />
+  </MainWindow>
+);
 
 export class App extends React.Component {
   public render() {
@@ -17,6 +25,10 @@ export class App extends React.Component {
         <Route
           path="/"
           exact={true}
+          component={renderMainWindow}
+        />
+        <Route
+          path="/adventure"
           component={AdventureScreen}
         />
         <Route
