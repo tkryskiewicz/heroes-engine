@@ -1,1 +1,1 @@
-export { HighScoresWindow } from "./HighScoresWindow";
+export { HighScoresWindow, HighScoresWindowProps } from "./HighScoresWindow";

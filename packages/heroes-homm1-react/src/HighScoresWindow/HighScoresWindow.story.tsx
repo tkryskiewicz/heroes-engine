@@ -4,8 +4,6 @@ import React from "react";
 
 import { GameType, initialCampaignGameScores, initialStandardGameScores } from "heroes-homm1";
 
-import Readme = require("./README.md");
-
 import { gameType } from "../stories";
 import { HighScoresWindow } from "./HighScoresWindow";
 
@@ -15,16 +13,11 @@ const scores = {
 };
 
 storiesOf("HighScoresWindow", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => (
     <HighScoresWindow
       scores={scores}
       gameType={gameType("Game Type")}
-      onGameTypeChange={action("Game Type Change")}
+      onGameTypeClick={action("Game Type Click")}
       onExitClick={action("Exit Click")}
     />
   ));

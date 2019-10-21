@@ -5,25 +5,92 @@
   background: url("./assets/background.jpg");
 }
 
+.header {
+  position: relative;
+  width: 100%;
+  height: 19px;
+  margin-bottom: 9px;
+
+  & > img {
+    position: absolute;
+  }
+
+  .player {
+    left: 19px;
+  }
+
+  .leader {
+    left: 189px;
+  }
+
+  .days {
+    left: 293px;
+  }
+
+  .land {
+    left: 189px;
+  }
+
+  .score {
+    left: 293px;
+  }
+
+  .title {
+    left: 381px;
+  }
+}
+
 .scores {
   position: absolute;
-  top: 29px;
+  top: 31px;
   left: 80px;
   width: 505px;
 }
 
-.category {
+.entry {
+  display: flex;
+  margin-bottom: 8px;
+
+  & > div {
+    padding-top: 8px;
+  }
+
+  .player {
+    width: 174px;
+    padding-left: 2px;
+  }
+
+  .campaign {
+    width: 150px;
+  }
+
+  .days {
+    width: 40px;
+  }
+
+  .title {
+    width: 80px;
+  }
+
+  .icon {
+    width: 50px;
+    padding-top: 0;
+    text-align: center;
+  }
+
+  .scenario {
+    width: 150px;
+  }
+
+  .score {
+    width: 42px;
+  }
+}
+
+.game-type {
   position: absolute;
   top: 314px;
   left: 8px;
-}
-
-.header {
-  margin-bottom: 13px;
-}
-
-.score {
-  margin-bottom: 8px;
 }
 
 .exit {

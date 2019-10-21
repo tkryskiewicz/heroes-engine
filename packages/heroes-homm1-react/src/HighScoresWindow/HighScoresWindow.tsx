@@ -1,4 +1,3 @@
-import { Col, Row } from "antd";
 import React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
@@ -12,7 +11,7 @@ import {
 
 import * as styles from "./HighScoresWindow.module.scss";
 
-import { buttonImages, DaysImage, LandImage, LeaderImage, PlayerImage, ScoreImage, TitleImage } from "./assets";
+import { buttonImages, images } from "./assets";
 
 import { CreatureIcon, ImageButton } from "../base";
 import { GameText } from "../core";
@@ -23,17 +22,21 @@ interface HighScores {
   readonly [GameType.Standard]: StandardGameScore[];
 }
 
-export interface HighScoresWindowProps {
+export interface Props {
   readonly scores: HighScores;
   readonly gameType: GameType;
-  readonly onGameTypeChange: (value: GameType) => void;
+  readonly onGameTypeClick: () => void;
   readonly onExitClick: () => void;
 }
 
-export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
-  public static readonly defaultProps: Pick<HighScoresWindowProps, "onGameTypeChange" | "onExitClick"> = {
+type DefaultProp =
+  "onGameTypeClick" |
+  "onExitClick";
+
+export class HighScoresWindow extends React.Component<Props> {
+  public static readonly defaultProps: Pick<Props, DefaultProp> = {
     onExitClick: () => undefined,
-    onGameTypeChange: () => undefined,
+    onGameTypeClick: () => undefined,
   };
 
   public render() {
@@ -46,14 +49,16 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
         <div className={styles.scores}>
           {scores}
         </div>
-        <div className={styles.category}>
+        <div className={styles.gameType}>
           <ImageButton
+            data-test-id="game-type"
             images={this.props.gameType === GameType.Campaign ? buttonImages.campaign : buttonImages.standard}
-            onClick={this.onCategoryClick}
+            onClick={this.props.onGameTypeClick}
           />
         </div>
         <div className={styles.exit}>
           <ImageButton
+            data-test-id="exit"
             images={buttonImages.exit}
             onClick={this.props.onExitClick}
           />
@@ -65,21 +70,24 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
   private renderCampaignGameScores(scores: CampaignGameScore[]) {
     return (
       <div>
-        <Row className={styles.header}>
-          <Col span={1} />
-          <Col span={8}>
-            <img src={PlayerImage} />
-          </Col>
-          <Col span={5}>
-            <img src={LeaderImage} />
-          </Col>
-          <Col span={4}>
-            <img src={DaysImage} />
-          </Col>
-          <Col span={5}>
-            <img src={TitleImage} />
-          </Col>
-        </Row>
+        <div className={styles.header}>
+          <img
+            className={styles.player}
+            src={images.player}
+          />
+          <img
+            className={styles.leader}
+            src={images.leader}
+          />
+          <img
+            className={styles.days}
+            src={images.days}
+          />
+          <img
+            className={styles.title}
+            src={images.title}
+          />
+        </div>
         {scores.map(this.renderCampaignScore)}
       </div>
     );
@@ -89,59 +97,71 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
     const rating = getCampaignGameRating(score.daysCount);
 
     return (
-      <Row
-        className={styles.score}
+      <div
+        data-test-id="entry"
+        className={styles.entry}
         key={index}
       >
-        <Col span={1} />
-        <Col span={7}>
-          <GameText size="normal">
+        <div className={styles.player}>
+          <GameText
+            data-test-id="player-name"
+            size="normal"
+          >
             {score.playerName}
           </GameText>
-        </Col>
-        <Col span={7}>
-          <GameText size="normal">
+        </div>
+        <div className={styles.campaign}>
+          <GameText
+            data-test-id="campaign"
+            size="normal"
+          >
             <FormattedMessage {...getCampaignNameMessage(score.campaign)} />
           </GameText>
-        </Col>
-        <Col span={3}>
-          <GameText size="normal">
+        </div>
+        <div className={styles.days}>
+          <GameText
+            data-test-id="days"
+            size="normal"
+          >
             <FormattedNumber value={score.daysCount} />
           </GameText>
-        </Col>
-        <Col span={4}>
+        </div>
+        <div className={styles.title}>
           <GameText size="normal">
             <FormattedMessage {...getCreatureNameMessage(rating)} />
           </GameText>
-        </Col>
-        <Col span={2}>
+        </div>
+        <div className={styles.icon}>
           <CreatureIcon
             size="small"
             creature={rating}
           />
-        </Col>
-      </Row>
+        </div>
+      </div>
     );
   }
 
   private renderStandardGameScores(scores: StandardGameScore[]) {
     return (
       <div>
-        <Row className={styles.header}>
-          <Col span={1} />
-          <Col span={9}>
-            <img src={PlayerImage} />
-          </Col>
-          <Col span={5}>
-            <img src={LandImage} />
-          </Col>
-          <Col span={4}>
-            <img src={ScoreImage} />
-          </Col>
-          <Col span={5}>
-            <img src={TitleImage} />
-          </Col>
-        </Row>
+        <div className={styles.header}>
+          <img
+            className={styles.player}
+            src={images.player}
+          />
+          <img
+            className={styles.land}
+            src={images.land}
+          />
+          <img
+            className={styles.score}
+            src={images.score}
+          />
+          <img
+            className={styles.title}
+            src={images.title}
+          />
+        </div>
         {scores.map(this.renderStandardScore)}
       </div>
     );
@@ -151,46 +171,49 @@ export class HighScoresWindow extends React.Component<HighScoresWindowProps> {
     const rating = getStandardGameRating(score.score);
 
     return (
-      <Row
-        className={styles.score}
+      <div
+        data-test-id="entry"
+        className={styles.entry}
         key={index}
       >
-        <Col span={1} />
-        <Col span={7}>
-          <GameText size="normal">
+        <div className={styles.player}>
+          <GameText
+            data-test-id="player-name"
+            size="normal"
+          >
             {score.playerName}
           </GameText>
-        </Col>
-        <Col span={7}>
-          <GameText size="normal">
+        </div>
+        <div className={styles.scenario}>
+          <GameText
+            data-test-id="scenario"
+            size="normal"
+          >
             {score.scenario}
           </GameText>
-        </Col>
-        <Col span={3}>
-          <GameText size="normal">
+        </div>
+        <div className={styles.score}>
+          <GameText
+            data-test-id="score"
+            size="normal"
+          >
             <FormattedNumber value={score.score} />
           </GameText>
-        </Col>
-        <Col span={4}>
+        </div>
+        <div className={styles.title}>
           <GameText size="normal">
             <FormattedMessage {...getCreatureNameMessage(rating)} />
           </GameText>
-        </Col>
-        <Col span={2}>
+        </div>
+        <div className={styles.icon}>
           <CreatureIcon
             size="small"
             creature={rating}
           />
-        </Col>
-      </Row>
+        </div>
+      </div>
     );
   }
-
-  private readonly onCategoryClick = () => {
-    const value = this.props.gameType === GameType.Campaign ?
-      GameType.Standard :
-      GameType.Campaign;
-
-    this.props.onGameTypeChange(value);
-  }
 }
+
+export type HighScoresWindowProps = ExtractPublicProps<typeof HighScoresWindow>;
