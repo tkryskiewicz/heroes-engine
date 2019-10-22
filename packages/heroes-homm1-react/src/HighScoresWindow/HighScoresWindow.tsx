@@ -6,6 +6,7 @@ import {
   GameType,
   getCampaignGameRating,
   getStandardGameRating,
+  HighScores,
   StandardGameScore,
 } from "heroes-homm1";
 
@@ -14,15 +15,10 @@ import * as styles from "./HighScoresWindow.module.scss";
 import { buttonImages, images } from "./assets";
 
 import { CreatureIcon, ImageButton } from "../base";
-import { GameText } from "../core";
+import { GameText, withGameWindow } from "../core";
 import { getCampaignNameMessage, getCreatureNameMessage } from "../messages";
 
-interface HighScores {
-  readonly [GameType.Campaign]: CampaignGameScore[];
-  readonly [GameType.Standard]: StandardGameScore[];
-}
-
-export interface Props {
+interface Props {
   readonly scores: HighScores;
   readonly gameType: GameType;
   readonly onGameTypeClick: () => void;
@@ -33,7 +29,7 @@ type DefaultProp =
   "onGameTypeClick" |
   "onExitClick";
 
-export class HighScoresWindow extends React.Component<Props> {
+class HighScoresWindow extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
     onExitClick: () => undefined,
     onGameTypeClick: () => undefined,
@@ -216,4 +212,11 @@ export class HighScoresWindow extends React.Component<Props> {
   }
 }
 
-export type HighScoresWindowProps = ExtractPublicProps<typeof HighScoresWindow>;
+const ComponentWrapped = withGameWindow(640)(HighScoresWindow);
+
+type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
+
+export {
+  ComponentWrapped as HighScoresWindow,
+  ComponentWrappedProps as HighScoresWindowProps,
+};

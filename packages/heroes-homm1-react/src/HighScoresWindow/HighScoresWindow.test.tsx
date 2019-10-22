@@ -15,11 +15,13 @@ describe("HighScoresWindow", () => {
       campaign: [],
       standard: [],
     },
+    visible: true,
   };
 
   describe("standard game", () => {
     it("should render scores", () => {
       const props: HighScoresWindowProps = {
+        ...defaultProps,
         gameType: GameType.Standard,
         scores: {
           campaign: [],
@@ -60,6 +62,7 @@ describe("HighScoresWindow", () => {
   describe("campaign game", () => {
     it("should render scores", () => {
       const props: HighScoresWindowProps = {
+        ...defaultProps,
         gameType: GameType.Campaign,
         scores: {
           campaign: [

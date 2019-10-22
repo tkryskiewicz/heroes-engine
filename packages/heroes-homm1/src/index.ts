@@ -60,12 +60,14 @@ export { ScenarioDifficulty } from "./ScenarioDifficulty";
 export { campaignScenarios } from "./scenarios";
 export { ScenarioSize } from "./ScenarioSize";
 export {
+  HighScores,
   CampaignGameScore,
   initialCampaignGameScores,
   getCampaignGameRating,
   StandardGameScore,
   initialStandardGameScores,
   getStandardGameRating,
+  initialHighScores,
 } from "./scores";
 export { Skill, SkillIds } from "./Skill";
 export { SoundVolume, isSoundEnabled } from "./SoundVolume";

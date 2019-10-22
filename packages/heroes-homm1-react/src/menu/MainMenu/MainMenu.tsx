@@ -5,15 +5,23 @@ import { buttonImages } from "./assets";
 import { ImageButton } from "../../base";
 import { Menu, MenuOption } from "../Menu";
 
-export interface MainMenuProps {
-  readonly onNewGameClick?: () => void;
-  readonly onLoadGameClick?: () => void;
-  readonly onViewHighScoresClick?: () => void;
-  readonly onViewCreditsClick?: () => void;
-  readonly onQuitClick?: () => void;
+export interface Props {
+  readonly onNewGameClick: () => void;
+  readonly onLoadGameClick: () => void;
+  readonly onViewHighScoresClick: () => void;
+  readonly onViewCreditsClick: () => void;
+  readonly onQuitClick: () => void;
 }
 
-export class MainMenu extends React.Component<MainMenuProps> {
+export class MainMenu extends React.Component<Props> {
+  public static readonly defaultProps: Props = {
+    onLoadGameClick: () => undefined,
+    onNewGameClick: () => undefined,
+    onQuitClick: () => undefined,
+    onViewCreditsClick: () => undefined,
+    onViewHighScoresClick: () => undefined,
+  };
+
   public render() {
     return (
       <Menu>
@@ -56,3 +64,5 @@ export class MainMenu extends React.Component<MainMenuProps> {
     );
   }
 }
+
+export type MainMenuProps = ExtractPublicProps<typeof MainMenu>;

@@ -1,5 +1,11 @@
 import { CampaignId } from "./campaigns";
 import { CreatureId } from "./creatures";
+import { GameType } from "./GameType";
+
+export interface HighScores {
+  readonly [GameType.Campaign]: CampaignGameScore[];
+  readonly [GameType.Standard]: StandardGameScore[];
+}
 
 export interface CampaignGameScore {
   readonly playerName: string;
@@ -139,6 +145,11 @@ export const initialStandardGameScores: StandardGameScore[] = [
     score: 10,
   },
 ];
+
+export const initialHighScores: HighScores = {
+  [GameType.Standard]: initialStandardGameScores,
+  [GameType.Campaign]: initialCampaignGameScores,
+};
 
 const standardGameRatings: { readonly [score: number]: string } = {
   130: CreatureId.Cavalry,

@@ -1,3 +1,4 @@
+import { GameType } from "heroes-homm1";
 import { AppState, mainWindowActions, rootReducer } from "heroes-homm1-state";
 
 import { mapDispatchToProps, mapStateToProps } from "./MainWindowContainer.connect";
@@ -9,6 +10,12 @@ describe("MainWindowContainer", () => {
         ...rootReducer(undefined, {} as any),
         mainWindow: {
           creditsVisible: true,
+          gameType: GameType.Campaign,
+          highScores: {
+            [GameType.Standard]: [],
+            [GameType.Campaign]: [],
+          },
+          highScoresVisible: true,
         },
       };
 
@@ -16,6 +23,12 @@ describe("MainWindowContainer", () => {
 
       const expected: ReturnType<typeof mapStateToProps> = {
         creditsVisible : true,
+        gameType: GameType.Campaign,
+        highScores: {
+          [GameType.Standard]: [],
+          [GameType.Campaign]: [],
+        },
+        highScoresVisible: true,
       };
 
       expect(result).toEqual(expected);
