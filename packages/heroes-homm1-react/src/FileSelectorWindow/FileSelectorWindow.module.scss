@@ -1,0 +1,89 @@
+.root {
+  position: relative;
+  width: 320px;
+  height: 331px;
+  background: url("./assets/background.jpg");
+
+  &.with-scenario-info {
+    height: 318px + 141px;
+  }
+}
+
+.title {
+  position: absolute;
+  top: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.list {
+  position: absolute;
+  top: 40px;
+  left: 57px;
+  width: 210px;
+  height: 200px;
+  text-align: center;
+}
+
+.file {
+  width: 100%;
+  cursor: default;
+}
+
+.input {
+  position: absolute;
+  top: 253px;
+  left: 48px;
+  width: 225px;
+  height: 19px;
+  color: #fff;
+  text-align: center;
+  background: url("./assets/input-background.jpg");
+  border: none;
+}
+
+.okay {
+  position: absolute;
+  top: 279px;
+  left: 37px;
+}
+
+.cancel {
+  position: absolute;
+  top: 279px;
+  left: 190px;
+}
+
+.scenario-info {
+  position: absolute;
+  top: 318px;
+  width: 320px;
+  height: 141px;
+  text-align: center;
+  background: url("./assets/scenario-info-background.jpg");
+}
+
+.size {
+  position: absolute;
+  top: 30px;
+  left: 25px;
+  width: 80px;
+  text-align: center;
+}
+
+.difficulty {
+  position: absolute;
+  top: 30px;
+  left: 160px;
+  width: 140px;
+  text-align: center;
+}
+
+.description {
+  position: absolute;
+  top: 55px;
+  left: 25px;
+  width: 271px;
+  height: 65px;
+  text-align: center;
+}

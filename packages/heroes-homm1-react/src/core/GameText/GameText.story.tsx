@@ -1,4 +1,4 @@
-import { select, text } from "@storybook/addon-knobs";
+import { boolean, select, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
@@ -14,6 +14,14 @@ const sizeOptions: GameTextProps["size"][] = [
 storiesOf("core|GameText", module)
   .add("default", () => (
     <GameText size={select("Size", sizeOptions, "large")}>
+      {text("Text", "Some Text")}
+    </GameText>
+  ))
+  .add("selection", () => (
+    <GameText
+      size="normal"
+      selected={boolean("Selected", true)}
+    >
       {text("Text", "Some Text")}
     </GameText>
   ));
