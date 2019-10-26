@@ -1,9 +1,11 @@
+@import "../../style/index";
+
 .root {
+  @include screen();
+
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  width: 640px;
-  height: 480px;
   background: #000;
 }
 

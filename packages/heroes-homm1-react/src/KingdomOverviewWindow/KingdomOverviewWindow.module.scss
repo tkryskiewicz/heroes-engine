@@ -1,7 +1,9 @@
+@import "../style/index";
+
 .root {
+  @include screen();
+
   position: relative;
-  width: 640px;
-  height: 480px;
   text-align: center;
   background: url("./assets/background.jpg");
   background-position-x: 96px;
@@ -17,7 +19,7 @@
   position: absolute;
   top: 3px;
   left: 96px;
-  width: 640px - 96;
+  width: $SCREEN_WIDTH - 96;
   padding: 0 40px;
 }
 
@@ -39,7 +41,7 @@
 
 .summary-content {
   display: inline-block;
-  width: 640px - 96;
+  width: $SCREEN_WIDTH - 96;
   height: 100%;
 }
 

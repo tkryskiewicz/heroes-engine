@@ -6,7 +6,7 @@ import * as styles from "./KingdomOverviewWindow.module.scss";
 import { buttonImages } from "./assets";
 
 import { ImageButton } from "../base";
-import { GameText, withGameWindow } from "../core";
+import { GameText, ScreenWidth, withGameWindow } from "../core";
 import { messages } from "./messages";
 
 interface KingdomOverviewWindowProps {
@@ -197,7 +197,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
   }
 }
 
-const ComponentWrapped = withGameWindow(640)(KingdomOverviewWindow);
+const ComponentWrapped = withGameWindow(ScreenWidth)(KingdomOverviewWindow);
 
 type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 

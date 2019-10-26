@@ -1,7 +1,9 @@
+@import "../style/index";
+
 .root {
+  @include screen();
+
   position: relative;
-  width: 640px;
-  height: 480px;
   background: url("./assets/background.jpg");
 }
 
@@ -16,7 +18,7 @@
 .world-map {
   position: absolute;
   top: 16px;
-  left: 480px;
+  left: $SCREEN_HEIGHT;
   width: 144px;
   height: 144px;
 }
@@ -32,7 +34,7 @@
 
   position: absolute;
   top: 176px;
-  left: 480px;
+  left: $SCREEN_HEIGHT;
 }
 
 .town-locators {
@@ -46,7 +48,7 @@
 .adventure-buttons {
   position: absolute;
   top: 320px;
-  left: 480px;
+  left: $SCREEN_HEIGHT;
   width: 144px;
   height: 72px;
 }
@@ -54,7 +56,7 @@
 .status-window {
   position: absolute;
   top: 393px;
-  left: 480px;
+  left: $SCREEN_HEIGHT;
   width: 144px;
   height: 71px;
 }

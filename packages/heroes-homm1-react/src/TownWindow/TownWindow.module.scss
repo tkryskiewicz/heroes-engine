@@ -1,9 +1,9 @@
 @import "../style/index";
 
 .root {
+  @include screen();
+
   position: relative;
-  width: 640px;
-  height: 480px;
 }
 
 .town-view {

@@ -1,7 +1,9 @@
+@import "../../style/index";
+
 .root {
+  @include screen();
+
   position: relative;
-  width: 640px;
-  height: 480px;
   background: url("./assets/background.jpg");
 }
 
@@ -83,7 +85,7 @@
 .world-map {
   position: absolute;
   top: 16px;
-  left: 480px;
+  left: $SCREEN_HEIGHT;
   width: 144px;
   height: 144px;
 }
@@ -91,7 +93,7 @@
 .options {
   position: absolute;
   top: 161px;
-  left: 480px;
+  left: $SCREEN_HEIGHT;
   width: 144px;
   height: 36px;
 }
@@ -99,7 +101,7 @@
 .option-details {
   position: absolute;
   top: 198px;
-  left: 480px;
+  left: $SCREEN_HEIGHT;
   width: 144px;
   height: 137px;
 }

@@ -8,7 +8,7 @@ import * as styles from "./CombatWindow.module.scss";
 
 import { terrainBackgrounds } from "./assets";
 
-import { withGameWindow } from "../../core";
+import { ScreenWidth, withGameWindow } from "../../core";
 import { CombatTent } from "../CombatTent";
 import { HeroCombatOptions, heroCombatOptionsMessages } from "../HeroCombatOptions";
 import { CombatBar } from "./CombatBar";
@@ -258,7 +258,7 @@ class CombatWindow extends React.Component<CombatWindowProps, CombatWindowState>
 }
 
 const ComponentWrapped = injectIntl(
-  withGameWindow(640)(CombatWindow),
+  withGameWindow(ScreenWidth)(CombatWindow),
 );
 
 type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;

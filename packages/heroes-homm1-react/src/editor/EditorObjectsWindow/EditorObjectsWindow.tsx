@@ -2,7 +2,7 @@ import React from "react";
 
 import * as styles from "./EditorObjectsWindow.module.scss";
 
-import { withGameWindow, WithGameWindowProps } from "../../core";
+import { ScreenWidth, withGameWindow, WithGameWindowProps } from "../../core";
 import { EditorObjectSlot } from "../EditorObjectSlot";
 
 const GridWidth = 9;
@@ -54,7 +54,7 @@ class EditorObjectsWindow extends React.Component<EditorObjectsWindowProps> {
   }
 }
 
-const ComponentWrapped = withGameWindow(640)(EditorObjectsWindow);
+const ComponentWrapped = withGameWindow(ScreenWidth)(EditorObjectsWindow);
 
 type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 

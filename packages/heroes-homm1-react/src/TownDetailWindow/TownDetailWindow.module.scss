@@ -1,6 +1,8 @@
+@import "../style/index";
+
 .root {
   position: relative;
-  width: 640px;
+  width: $SCREEN_WIDTH;
   height: 262px;
   background: url("./assets/background.jpg");
 }

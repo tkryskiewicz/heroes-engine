@@ -6,7 +6,7 @@ import * as styles from "./TownDetailWindow.module.scss";
 import { buttonImages } from "../base/Treasury/assets";
 
 import { ImageButton } from "../base";
-import { withGameWindow } from "../core";
+import { ScreenWidth, withGameWindow } from "../core";
 import { StatusBar } from "./StatusBar";
 
 interface TownDetailWindowProps {
@@ -52,7 +52,7 @@ class TownDetailWindow extends React.Component<TownDetailWindowProps> {
   }
 }
 
-const ComponentWrapped = withGameWindow(640)(TownDetailWindow);
+const ComponentWrapped = withGameWindow(ScreenWidth)(TownDetailWindow);
 
 type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 

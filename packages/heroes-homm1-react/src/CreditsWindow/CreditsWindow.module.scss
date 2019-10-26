@@ -1,5 +1,7 @@
+@import "../style/index";
+
 .root {
-  width: 640px;
-  height: 480px;
+  @include screen();
+
   background: url("./assets/background.jpg");
 }

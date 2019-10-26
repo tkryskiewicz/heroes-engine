@@ -15,7 +15,7 @@ import * as styles from "./HighScoresWindow.module.scss";
 import { buttonImages, images } from "./assets";
 
 import { CreatureIcon, ImageButton } from "../base";
-import { GameText, withGameWindow } from "../core";
+import { GameText, ScreenWidth, withGameWindow } from "../core";
 import { getCampaignNameMessage, getCreatureNameMessage } from "../messages";
 
 interface Props {
@@ -212,7 +212,7 @@ class HighScoresWindow extends React.Component<Props> {
   }
 }
 
-const ComponentWrapped = withGameWindow(640)(HighScoresWindow);
+const ComponentWrapped = withGameWindow(ScreenWidth)(HighScoresWindow);
 
 type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 

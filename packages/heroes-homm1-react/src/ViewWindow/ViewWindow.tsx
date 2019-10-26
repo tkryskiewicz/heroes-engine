@@ -6,7 +6,7 @@ import * as styles from "./ViewWindow.module.scss";
 import { buttonImages, legendImages } from "./assets";
 
 import { ImageButton } from "../base";
-import { withGameWindow } from "../core";
+import { ScreenWidth, withGameWindow } from "../core";
 
 interface ViewWindowProps {
   // FIXME: inject background
@@ -46,7 +46,7 @@ class ViewWindow extends React.Component<ViewWindowProps> {
   }
 }
 
-const ComponentWrapped = withGameWindow(640)(ViewWindow);
+const ComponentWrapped = withGameWindow(ScreenWidth)(ViewWindow);
 
 type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 

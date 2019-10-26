@@ -2,7 +2,7 @@ import React from "react";
 
 import * as styles from "./CreditsWindow.module.scss";
 
-import { withGameWindow } from "../core";
+import { ScreenWidth, withGameWindow } from "../core";
 
 interface Props {
   readonly onClick?: () => void;
@@ -24,7 +24,7 @@ class CreditsWindow extends React.Component<Props> {
   }
 }
 
-const ComponentWrapped = withGameWindow(640)(CreditsWindow);
+const ComponentWrapped = withGameWindow(ScreenWidth)(CreditsWindow);
 
 type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 

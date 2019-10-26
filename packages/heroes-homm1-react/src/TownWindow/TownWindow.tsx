@@ -3,7 +3,7 @@ import React from "react";
 import * as styles from "./TownWindow.module.scss";
 
 import { BigBar } from "../base";
-import { GameText, withGameWindow, WithGameWindowProps } from "../core";
+import { GameText, ScreenWidth, withGameWindow, WithGameWindowProps } from "../core";
 
 const TroopSlotCount = 5;
 
@@ -116,7 +116,7 @@ class TownWindow extends React.Component<TownWindowProps> {
   }
 }
 
-const ComponentWrapped = withGameWindow(640)(TownWindow);
+const ComponentWrapped = withGameWindow(ScreenWidth)(TownWindow);
 
 type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 

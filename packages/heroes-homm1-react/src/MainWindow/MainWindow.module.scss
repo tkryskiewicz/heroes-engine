@@ -1,9 +1,11 @@
+@import "../style/index";
+
 .root {
+  @include screen();
+
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  width: 640px;
-  height: 480px;
   padding: 20px 10px;
   background: url("./assets/background.jpg");
 }

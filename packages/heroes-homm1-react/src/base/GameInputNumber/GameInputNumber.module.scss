@@ -1,7 +1,9 @@
+@import "../../style/index";
+
 .root {
   width: 68px;
   height: 19px;
-  color: #fff;
+  color: $TEXT_COLOR;
   background: url("./assets/background.jpg");
   border: none;
   border-radius: 0;

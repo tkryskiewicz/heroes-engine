@@ -10,6 +10,7 @@ import {
   TownId,
 } from "heroes-homm1";
 
+import { ScreenWidth } from "../core";
 import { StructureView } from "../StructureView";
 
 interface StructurePosition {
@@ -282,7 +283,7 @@ export class TownView extends React.Component<TownViewProps> {
     const style: React.CSSProperties = {
       background: `url("assets/towns/${town.id}/background.jpg")`,
       height: 256,
-      width: 640,
+      width: ScreenWidth,
     };
 
     return (

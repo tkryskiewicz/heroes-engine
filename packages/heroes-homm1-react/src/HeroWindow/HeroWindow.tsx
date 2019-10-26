@@ -5,7 +5,7 @@ import * as styles from "./HeroWindow.module.scss";
 import { buttonImages } from "./assets";
 
 import { ImageButton } from "../base";
-import { GameText, withGameWindow, WithGameWindowProps } from "../core";
+import { GameText, ScreenWidth, withGameWindow, WithGameWindowProps } from "../core";
 
 const SkillSlotCount = 4;
 const TroopSlotCount = 5;
@@ -186,7 +186,7 @@ class HeroWindow extends React.Component<HeroWindowProps> {
   }
 }
 
-const ComponentWrapped = withGameWindow(640)(HeroWindow);
+const ComponentWrapped = withGameWindow(ScreenWidth)(HeroWindow);
 
 type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 

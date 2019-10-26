@@ -1,3 +1,10 @@
+@import "./_constants";
+
+@mixin screen() {
+  width: $SCREEN_WIDTH;
+  height: $SCREEN_HEIGHT;
+}
+
 @mixin hero-portrait() {
   width: 101px;
   height: 93px;

@@ -7,7 +7,7 @@ import { GameWindow } from "./GameWindow";
 storiesOf("core|GameWindow", module)
   .add("default", () => (
     <GameWindow
-      width={number("Width", 640)}
+      width={number("Width", 300)}
       visible={boolean("Visible", true)}
     >
       {text("Content", "Content")}
