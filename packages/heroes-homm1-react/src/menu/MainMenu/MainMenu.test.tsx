@@ -1,5 +1,6 @@
 import { shallow } from "enzyme";
 import React from "react";
+import { byTestId } from "test-helpers";
 
 import { ImageButton } from "../../base";
 import { MainMenu, MainMenuProps } from "./MainMenu";
@@ -12,7 +13,7 @@ describe("MainMenu", () => {
 
     const wrapper = shallow(<MainMenu {...props} />);
 
-    const newGameButton = wrapper.find(".new-game").find(ImageButton);
+    const newGameButton = wrapper.find(byTestId("new-game")).find(ImageButton);
 
     newGameButton.props().onClick();
 
@@ -26,7 +27,7 @@ describe("MainMenu", () => {
 
     const wrapper = shallow(<MainMenu {...props} />);
 
-    const loadGameButton = wrapper.find(".load-game").find(ImageButton);
+    const loadGameButton = wrapper.find(byTestId("load-game")).find(ImageButton);
 
     loadGameButton.props().onClick();
 
@@ -40,7 +41,7 @@ describe("MainMenu", () => {
 
     const wrapper = shallow(<MainMenu {...props} />);
 
-    const viewHighScoresButton = wrapper.find(".view-high-scores").find(ImageButton);
+    const viewHighScoresButton = wrapper.find(byTestId("view-high-scores")).find(ImageButton);
 
     viewHighScoresButton.props().onClick();
 
@@ -54,7 +55,7 @@ describe("MainMenu", () => {
 
     const wrapper = shallow(<MainMenu {...props} />);
 
-    const viewCreditsButton = wrapper.find(".view-credits").find(ImageButton);
+    const viewCreditsButton = wrapper.find(byTestId("view-credits")).find(ImageButton);
 
     viewCreditsButton.props().onClick();
 
@@ -68,7 +69,7 @@ describe("MainMenu", () => {
 
     const wrapper = shallow(<MainMenu {...props} />);
 
-    const quitButton = wrapper.find(".quit").find(ImageButton);
+    const quitButton = wrapper.find(byTestId("quit")).find(ImageButton);
 
     quitButton.props().onClick();
 

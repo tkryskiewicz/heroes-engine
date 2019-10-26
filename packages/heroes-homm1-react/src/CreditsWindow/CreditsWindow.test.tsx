@@ -1,5 +1,6 @@
 import { mount } from "enzyme";
 import React from "react";
+import { byTestId } from "test-helpers";
 
 import { CreditsWindow, CreditsWindowProps } from "./CreditsWindow";
 
@@ -10,7 +11,7 @@ describe("CreditsWindow", () => {
       visible: true,
     };
 
-    const wrapper = mount(<CreditsWindow {...props} />).find(".root");
+    const wrapper = mount(<CreditsWindow {...props} />).find(byTestId("root"));
 
     wrapper.simulate("click");
 

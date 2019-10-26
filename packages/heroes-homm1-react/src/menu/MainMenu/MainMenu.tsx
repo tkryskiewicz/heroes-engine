@@ -27,35 +27,35 @@ export class MainMenu extends React.Component<Props> {
       <Menu>
         <MenuOption>
           <ImageButton
-            className="new-game"
+            data-test-id="new-game"
             images={buttonImages.newGame}
             onClick={this.props.onNewGameClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="load-game"
+            data-test-id="load-game"
             images={buttonImages.loadGame}
             onClick={this.props.onLoadGameClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="view-high-scores"
+            data-test-id="view-high-scores"
             images={buttonImages.viewHighScores}
             onClick={this.props.onViewHighScoresClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="view-credits"
+            data-test-id="view-credits"
             images={buttonImages.viewCredits}
             onClick={this.props.onViewCreditsClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="quit"
+            data-test-id="quit"
             images={buttonImages.quit}
             onClick={this.props.onQuitClick}
           />

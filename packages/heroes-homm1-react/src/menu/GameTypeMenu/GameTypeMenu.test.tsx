@@ -1,5 +1,6 @@
 import { shallow } from "enzyme";
 import React from "react";
+import { byTestId } from "test-helpers";
 
 import { ImageButton } from "../../base";
 import { GameTypeMenu, GameTypeMenuProps } from "./GameTypeMenu";
@@ -12,7 +13,7 @@ describe("GameTypeMenu", () => {
 
     const wrapper = shallow(<GameTypeMenu {...props} />);
 
-    const standardGameButton = wrapper.find(".standard-game").find(ImageButton);
+    const standardGameButton = wrapper.find(byTestId("standard-game")).find(ImageButton);
 
     standardGameButton.props().onClick();
 
@@ -26,7 +27,7 @@ describe("GameTypeMenu", () => {
 
     const wrapper = shallow(<GameTypeMenu {...props} />);
 
-    const campaignGameButton = wrapper.find(".campaign-game").find(ImageButton);
+    const campaignGameButton = wrapper.find(byTestId("campaign-game")).find(ImageButton);
 
     campaignGameButton.props().onClick();
 
@@ -40,7 +41,7 @@ describe("GameTypeMenu", () => {
 
     const wrapper = shallow(<GameTypeMenu {...props} />);
 
-    const multiPlayerGameButton = wrapper.find(".multi-player-game").find(ImageButton);
+    const multiPlayerGameButton = wrapper.find(byTestId("multi-player-game")).find(ImageButton);
 
     multiPlayerGameButton.props().onClick();
 
@@ -54,7 +55,7 @@ describe("GameTypeMenu", () => {
 
     const wrapper = shallow(<GameTypeMenu {...props} />);
 
-    const cancelButton = wrapper.find(".cancel").find(ImageButton);
+    const cancelButton = wrapper.find(byTestId("cancel")).find(ImageButton);
 
     cancelButton.props().onClick();
 

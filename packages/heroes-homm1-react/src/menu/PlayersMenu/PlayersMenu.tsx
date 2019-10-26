@@ -23,21 +23,21 @@ export class PlayersMenu extends React.Component<Props> {
       <Menu>
         <MenuOption>
           <ImageButton
-            className="two-players"
+            data-test-id="two-players"
             images={buttonImages.twoPlayers}
             onClick={this.on2PlayersClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="three-players"
+            data-test-id="three-players"
             images={buttonImages.threePlayers}
             onClick={this.on3PlayersClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="four-players"
+            data-test-id="four-players"
             images={buttonImages.fourPlayers}
             onClick={this.on4PlayersClick}
           />
@@ -45,7 +45,7 @@ export class PlayersMenu extends React.Component<Props> {
         <MenuOption />
         <MenuOption>
           <ImageButton
-            className="cancel"
+            data-test-id="cancel"
             images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />

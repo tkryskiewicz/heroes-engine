@@ -1,5 +1,6 @@
 import { shallow } from "enzyme";
 import React from "react";
+import { byTestId } from "test-helpers";
 
 import { ComPort } from "heroes-homm1";
 
@@ -14,7 +15,7 @@ describe("ComPortMenu", () => {
 
     const wrapper = shallow(<ComPortMenu {...props} />);
 
-    const com1Button = wrapper.find(".com-1").find(ImageButton);
+    const com1Button = wrapper.find(byTestId("com-1")).find(ImageButton);
 
     com1Button.props().onClick();
 
@@ -28,7 +29,7 @@ describe("ComPortMenu", () => {
 
     const wrapper = shallow(<ComPortMenu {...props} />);
 
-    const com2Button = wrapper.find(".com-2").find(ImageButton);
+    const com2Button = wrapper.find(byTestId("com-2")).find(ImageButton);
 
     com2Button.props().onClick();
 
@@ -42,7 +43,7 @@ describe("ComPortMenu", () => {
 
     const wrapper = shallow(<ComPortMenu {...props} />);
 
-    const com3Button = wrapper.find(".com-3").find(ImageButton);
+    const com3Button = wrapper.find(byTestId("com-3")).find(ImageButton);
 
     com3Button.props().onClick();
 
@@ -56,7 +57,7 @@ describe("ComPortMenu", () => {
 
     const wrapper = shallow(<ComPortMenu {...props} />);
 
-    const com4Button = wrapper.find(".com-4").find(ImageButton);
+    const com4Button = wrapper.find(byTestId("com-4")).find(ImageButton);
 
     com4Button.props().onClick();
 
@@ -70,7 +71,7 @@ describe("ComPortMenu", () => {
 
     const wrapper = shallow(<ComPortMenu {...props} />);
 
-    const cancelButton = wrapper.find(".cancel").find(ImageButton);
+    const cancelButton = wrapper.find(byTestId("cancel")).find(ImageButton);
 
     cancelButton.props().onClick();
 

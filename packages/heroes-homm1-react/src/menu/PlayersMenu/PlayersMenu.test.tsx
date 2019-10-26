@@ -1,5 +1,6 @@
 import { shallow } from "enzyme";
 import React from "react";
+import { byTestId } from "test-helpers";
 
 import { ImageButton } from "../../base";
 import { PlayersMenu, PlayersMenuProps } from "./PlayersMenu";
@@ -12,7 +13,7 @@ describe("PlayersMenu", () => {
 
     const wrapper = shallow(<PlayersMenu {...props} />);
 
-    const twoPlayersButton = wrapper.find(".two-players").find(ImageButton);
+    const twoPlayersButton = wrapper.find(byTestId("two-players")).find(ImageButton);
 
     twoPlayersButton.props().onClick();
 
@@ -26,7 +27,7 @@ describe("PlayersMenu", () => {
 
     const wrapper = shallow(<PlayersMenu {...props} />);
 
-    const threePlayersButton = wrapper.find(".three-players").find(ImageButton);
+    const threePlayersButton = wrapper.find(byTestId("three-players")).find(ImageButton);
 
     threePlayersButton.props().onClick();
 
@@ -40,7 +41,7 @@ describe("PlayersMenu", () => {
 
     const wrapper = shallow(<PlayersMenu {...props} />);
 
-    const fourPlayersButton = wrapper.find(".four-players").find(ImageButton);
+    const fourPlayersButton = wrapper.find(byTestId("four-players")).find(ImageButton);
 
     fourPlayersButton.props().onClick();
 
@@ -54,7 +55,7 @@ describe("PlayersMenu", () => {
 
     const wrapper = shallow(<PlayersMenu {...props} />);
 
-    const cancelButton = wrapper.find(".cancel").find(ImageButton);
+    const cancelButton = wrapper.find(byTestId("cancel")).find(ImageButton);
 
     cancelButton.props().onClick();
 

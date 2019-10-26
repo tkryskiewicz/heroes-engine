@@ -19,35 +19,35 @@ export class MultiPlayerGameMenu extends React.Component<MultiPlayerGameMenuProp
       <Menu>
         <MenuOption>
           <ImageButton
-            className="hot-seat"
+            data-test-id="hot-seat"
             images={buttonImages.hotSeat}
             onClick={this.props.onHotSeatClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="direct-connect"
+            data-test-id="direct-connect"
             images={buttonImages.directConnect}
             onClick={this.props.onDirectConnectClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="modem"
+            data-test-id="modem"
             images={buttonImages.modem}
             onClick={this.props.onModemClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="network"
+            data-test-id="network"
             images={buttonImages.network}
             onClick={this.props.onNetworkClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="cancel"
+            data-test-id="cancel"
             images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />

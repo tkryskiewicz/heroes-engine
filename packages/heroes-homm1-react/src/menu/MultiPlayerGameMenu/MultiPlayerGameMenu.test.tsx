@@ -1,5 +1,6 @@
 import { shallow } from "enzyme";
 import React from "react";
+import { byTestId } from "test-helpers";
 
 import { ImageButton } from "../../base";
 import { MultiPlayerGameMenu, MultiPlayerGameMenuProps } from "./MultiPlayerGameMenu";
@@ -12,7 +13,7 @@ describe("MultiPlayerGameMenu", () => {
 
     const wrapper = shallow(<MultiPlayerGameMenu {...props} />);
 
-    const hotSeatButton = wrapper.find(".hot-seat").find(ImageButton);
+    const hotSeatButton = wrapper.find(byTestId("hot-seat")).find(ImageButton);
 
     hotSeatButton.props().onClick();
 
@@ -26,7 +27,7 @@ describe("MultiPlayerGameMenu", () => {
 
     const wrapper = shallow(<MultiPlayerGameMenu {...props} />);
 
-    const directConnectButton = wrapper.find(".direct-connect").find(ImageButton);
+    const directConnectButton = wrapper.find(byTestId("direct-connect")).find(ImageButton);
 
     directConnectButton.props().onClick();
 
@@ -40,7 +41,7 @@ describe("MultiPlayerGameMenu", () => {
 
     const wrapper = shallow(<MultiPlayerGameMenu {...props} />);
 
-    const modemButton = wrapper.find(".modem").find(ImageButton);
+    const modemButton = wrapper.find(byTestId("modem")).find(ImageButton);
 
     modemButton.props().onClick();
 
@@ -54,7 +55,7 @@ describe("MultiPlayerGameMenu", () => {
 
     const wrapper = shallow(<MultiPlayerGameMenu {...props} />);
 
-    const networkButton = wrapper.find(".network").find(ImageButton);
+    const networkButton = wrapper.find(byTestId("network")).find(ImageButton);
 
     networkButton.props().onClick();
 
@@ -68,7 +69,7 @@ describe("MultiPlayerGameMenu", () => {
 
     const wrapper = shallow(<MultiPlayerGameMenu {...props} />);
 
-    const cancelButton = wrapper.find(".cancel").find(ImageButton);
+    const cancelButton = wrapper.find(byTestId("cancel")).find(ImageButton);
 
     cancelButton.props().onClick();
 

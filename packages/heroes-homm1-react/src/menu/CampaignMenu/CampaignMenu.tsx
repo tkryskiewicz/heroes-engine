@@ -25,35 +25,35 @@ export class CampaignMenu extends React.Component<Props> {
       <Menu>
         <MenuOption>
           <ImageButton
-            className="play-lord-ironfist"
+            data-test-id="play-lord-ironfist"
             images={buttonImages.playLordIronfist}
             onClick={this.onPlayLordIronfistClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="play-lord-slayer"
+            data-test-id="play-lord-slayer"
             images={buttonImages.playLordSlayer}
             onClick={this.onPlayLordSlayerClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="play-queen-lamanda"
+            data-test-id="play-queen-lamanda"
             images={buttonImages.playQueenLamanda}
             onClick={this.onPlayQueenLamandaClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="play-lord-alamar"
+            data-test-id="play-lord-alamar"
             images={buttonImages.playLordAlamar}
             onClick={this.onPlayLordAlamar}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="cancel"
+            data-test-id="cancel"
             images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />

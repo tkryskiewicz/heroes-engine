@@ -1,5 +1,6 @@
 import { shallow } from "enzyme";
 import React from "react";
+import { byTestId } from "test-helpers";
 
 import { ImageButton } from "../base";
 import { AdventureButtons, AdventureButtonsProps } from "./AdventureButtons";
@@ -12,7 +13,7 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const nextHeroButton = wrapper.find(".next-hero").find(ImageButton);
+    const nextHeroButton = wrapper.find(byTestId("next-hero")).find(ImageButton);
 
     nextHeroButton.props().onClick();
 
@@ -26,7 +27,7 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const nextHeroButton = wrapper.find(".next-hero").find(ImageButton);
+    const nextHeroButton = wrapper.find(byTestId("next-hero")).find(ImageButton);
 
     expect(nextHeroButton.props().disabled).toBe(true);
   });
@@ -38,7 +39,7 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const moveButton = wrapper.find(".move").find(ImageButton);
+    const moveButton = wrapper.find(byTestId("move")).find(ImageButton);
 
     moveButton.props().onClick();
 
@@ -52,7 +53,7 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const moveButton = wrapper.find(".move").find(ImageButton);
+    const moveButton = wrapper.find(byTestId("move")).find(ImageButton);
 
     expect(moveButton.props().disabled).toBe(true);
   });
@@ -64,7 +65,7 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const kingdomOverviewButton = wrapper.find(".kingdom-overview").find(ImageButton);
+    const kingdomOverviewButton = wrapper.find(byTestId("kingdom-overview")).find(ImageButton);
 
     kingdomOverviewButton.props().onClick();
 
@@ -78,7 +79,7 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const endTurnButton = wrapper.find(".end-turn").find(ImageButton);
+    const endTurnButton = wrapper.find(byTestId("end-turn")).find(ImageButton);
 
     endTurnButton.props().onClick();
 
@@ -93,7 +94,7 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const adventureOptionsButton = wrapper.find(".adventure-options").find(ImageButton);
+    const adventureOptionsButton = wrapper.find(byTestId("adventure-options")).find(ImageButton);
 
     adventureOptionsButton.props().onClick();
 
@@ -108,7 +109,7 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const gameOptionsButton = wrapper.find(".game-options").find(ImageButton);
+    const gameOptionsButton = wrapper.find(byTestId("game-options")).find(ImageButton);
 
     gameOptionsButton.props().onClick();
 

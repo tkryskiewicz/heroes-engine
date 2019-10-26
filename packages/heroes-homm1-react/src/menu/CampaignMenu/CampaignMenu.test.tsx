@@ -1,5 +1,6 @@
 import { shallow } from "enzyme";
 import React from "react";
+import { byTestId } from "test-helpers";
 
 import { CampaignId } from "heroes-homm1";
 
@@ -14,7 +15,7 @@ describe("CampaignMenu", () => {
 
     const wrapper = shallow(<CampaignMenu {...props} />);
 
-    const playLordIronfistButton = wrapper.find(".play-lord-ironfist").find(ImageButton);
+    const playLordIronfistButton = wrapper.find(byTestId("play-lord-ironfist")).find(ImageButton);
 
     playLordIronfistButton.props().onClick();
 
@@ -28,7 +29,7 @@ describe("CampaignMenu", () => {
 
     const wrapper = shallow(<CampaignMenu {...props} />);
 
-    const playLordSlayerButton = wrapper.find(".play-lord-slayer").find(ImageButton);
+    const playLordSlayerButton = wrapper.find(byTestId("play-lord-slayer")).find(ImageButton);
 
     playLordSlayerButton.props().onClick();
 
@@ -42,7 +43,7 @@ describe("CampaignMenu", () => {
 
     const wrapper = shallow(<CampaignMenu {...props} />);
 
-    const playQueenLamandaButton = wrapper.find(".play-queen-lamanda").find(ImageButton);
+    const playQueenLamandaButton = wrapper.find(byTestId("play-queen-lamanda")).find(ImageButton);
 
     playQueenLamandaButton.props().onClick();
 
@@ -56,7 +57,7 @@ describe("CampaignMenu", () => {
 
     const wrapper = shallow(<CampaignMenu {...props} />);
 
-    const playLordAlamar = wrapper.find(".play-lord-alamar").find(ImageButton);
+    const playLordAlamar = wrapper.find(byTestId("play-lord-alamar")).find(ImageButton);
 
     playLordAlamar.props().onClick();
 
@@ -70,7 +71,7 @@ describe("CampaignMenu", () => {
 
     const wrapper = shallow(<CampaignMenu {...props} />);
 
-    const cancelButton = wrapper.find(".cancel").find(ImageButton);
+    const cancelButton = wrapper.find(byTestId("cancel")).find(ImageButton);
 
     cancelButton.props().onClick();
 

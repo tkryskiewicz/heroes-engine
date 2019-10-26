@@ -25,35 +25,35 @@ export class ComPortMenu extends React.Component<Props> {
       <Menu>
         <MenuOption>
           <ImageButton
-            className="com-1"
+            data-test-id="com-1"
             images={buttonImages.com1}
             onClick={this.onCom1Click}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="com-2"
+            data-test-id="com-2"
             images={buttonImages.com2}
             onClick={this.onCom2Click}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="com-3"
+            data-test-id="com-3"
             images={buttonImages.com3}
             onClick={this.onCom3Click}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="com-4"
+            data-test-id="com-4"
             images={buttonImages.com4}
             onClick={this.onCom4Click}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="cancel"
+            data-test-id="cancel"
             images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />

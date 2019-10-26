@@ -44,36 +44,36 @@ export class AdventureButtons extends React.Component<Props> {
       <div className={styles.root}>
         <div>
           <ImageButton
-            className="next-hero"
+            data-test-id="next-hero"
             images={buttonImages.nextHero}
             disabled={this.props.nextHeroDisabled}
             onClick={this.props.onNextHeroClick}
           />
           <ImageButton
-            className="move"
+            data-test-id="move"
             images={buttonImages.move}
             disabled={this.props.moveDisabled}
             onClick={this.props.onMoveClick}
           />
           <ImageButton
-            className="kingdom-overview"
+            data-test-id="kingdom-overview"
             images={buttonImages.kingdomOverview}
             onClick={this.props.onKingdomOverviewClick}
           />
         </div>
         <div>
           <ImageButton
-            className="end-turn"
+            data-test-id="end-turn"
             images={buttonImages.endTurn}
             onClick={this.props.onEndTurnClick}
           />
           <ImageButton
-            className="adventure-options"
+            data-test-id="adventure-options"
             images={buttonImages.adventureOptions}
             onClick={this.props.onAdventureOptionsClick}
           />
           <ImageButton
-            className="game-options"
+            data-test-id="game-options"
             images={buttonImages.gameOptions}
             onClick={this.props.onGameOptionsClick}
           />

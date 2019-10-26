@@ -1,5 +1,6 @@
 import { mount } from "enzyme";
 import React from "react";
+import { byTestId } from "test-helpers";
 
 import { ImageButton } from "../base";
 import { AdventureOptionsWindow, AdventureOptionsWindowProps } from "./AdventureOptionsWindow";
@@ -13,7 +14,7 @@ describe("AdventureOptionsWindow", () => {
 
     const wrapper = mount(<AdventureOptionsWindow {...props} />);
 
-    const viewWorldButton = wrapper.find(".view-world").find(ImageButton);
+    const viewWorldButton = wrapper.find(byTestId("view-world")).find(ImageButton);
 
     viewWorldButton.props().onClick();
 
@@ -28,7 +29,7 @@ describe("AdventureOptionsWindow", () => {
 
     const wrapper = mount(<AdventureOptionsWindow {...props} />);
 
-    const viewPuzzleButton = wrapper.find(".view-puzzle").find(ImageButton);
+    const viewPuzzleButton = wrapper.find(byTestId("view-puzzle")).find(ImageButton);
 
     viewPuzzleButton.props().onClick();
 
@@ -43,7 +44,7 @@ describe("AdventureOptionsWindow", () => {
 
     const wrapper = mount(<AdventureOptionsWindow {...props} />);
 
-    const castSpellButton = wrapper.find(".cast-spell").find(ImageButton);
+    const castSpellButton = wrapper.find(byTestId("cast-spell")).find(ImageButton);
 
     castSpellButton.props().onClick();
 
@@ -58,7 +59,7 @@ describe("AdventureOptionsWindow", () => {
 
     const wrapper = mount(<AdventureOptionsWindow {...props} />);
 
-    const digButton = wrapper.find(".dig").find(ImageButton);
+    const digButton = wrapper.find(byTestId("dig")).find(ImageButton);
 
     digButton.props().onClick();
 
@@ -74,7 +75,7 @@ describe("AdventureOptionsWindow", () => {
 
     const wrapper = mount(<AdventureOptionsWindow {...props} />);
 
-    const okayButton = wrapper.find(".okay").find(ImageButton);
+    const okayButton = wrapper.find(byTestId("okay")).find(ImageButton);
 
     okayButton.props().onClick();
 

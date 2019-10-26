@@ -20,27 +20,32 @@ class AdventureOptionsWindow extends React.Component<Props> {
     return (
       <div className={styles.root}>
         <ImageButton
-          className={`view-world ${styles.viewWorld}`}
+          data-test-id="view-world"
+          className={styles.viewWorld}
           images={buttonImages.viewWorld}
           onClick={this.props.onViewWorldClick}
         />
         <ImageButton
-          className={`view-puzzle ${styles.viewPuzzle}`}
+          data-test-id="view-puzzle"
+          className={styles.viewPuzzle}
           images={buttonImages.viewPuzzle}
           onClick={this.props.onViewPuzzleClick}
         />
         <ImageButton
-          className={`cast-spell ${styles.castSpell}`}
+          data-test-id="cast-spell"
+          className={styles.castSpell}
           images={buttonImages.castSpell}
           onClick={this.props.onCastSpellClick}
         />
         <ImageButton
-          className={`dig ${styles.dig}`}
+          data-test-id="dig"
+          className={styles.dig}
           images={buttonImages.dig}
           onClick={this.props.onDigClick}
         />
         <ImageButton
-          className={`okay ${styles.okay}`}
+          data-test-id="okay"
+          className={styles.okay}
           images={buttonImages.okay}
           onClick={this.props.onOkayClick}
         />

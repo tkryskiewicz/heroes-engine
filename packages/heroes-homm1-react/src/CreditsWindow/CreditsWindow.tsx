@@ -16,7 +16,8 @@ class CreditsWindow extends React.Component<Props> {
   public render() {
     return (
       <div
-        className={`root ${styles.root}`}
+        data-test-id="root"
+        className={styles.root}
         onClick={this.props.onClick}
       />
     );

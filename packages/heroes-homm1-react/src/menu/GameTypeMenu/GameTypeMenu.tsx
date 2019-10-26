@@ -18,21 +18,21 @@ export class GameTypeMenu extends React.Component<GameTypeMenuProps> {
       <Menu>
         <MenuOption>
           <ImageButton
-            className="standard-game"
+            data-test-id="standard-game"
             images={buttonImages.standardGame}
             onClick={this.props.onStandardGameClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="campaign-game"
+            data-test-id="campaign-game"
             images={buttonImages.campaignGame}
             onClick={this.props.onCampaignGameClick}
           />
         </MenuOption>
         <MenuOption>
           <ImageButton
-            className="multi-player-game"
+            data-test-id="multi-player-game"
             images={buttonImages.multiPlayerGame}
             onClick={this.props.onMultiPlayerGameClick}
           />
@@ -40,7 +40,7 @@ export class GameTypeMenu extends React.Component<GameTypeMenuProps> {
         <MenuOption />
         <MenuOption>
           <ImageButton
-            className="cancel"
+            data-test-id="cancel"
             images={buttonImages.cancel}
             onClick={this.props.onCancelClick}
           />
