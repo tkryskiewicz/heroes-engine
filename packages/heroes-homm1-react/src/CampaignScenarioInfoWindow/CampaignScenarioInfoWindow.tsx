@@ -76,7 +76,7 @@ class CampaignScenarioInfoWindow extends React.Component<CampaignScenarioInfoWin
   }
 }
 
-const ComponentWrapped = withGameWindow(480)(CampaignScenarioInfoWindow);
+const ComponentWrapped = withGameWindow(428)(CampaignScenarioInfoWindow);
 
 type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
 
