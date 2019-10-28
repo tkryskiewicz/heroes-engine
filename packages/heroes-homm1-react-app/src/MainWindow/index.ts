@@ -1,1 +1,1 @@
-export { MainWindow } from "./MainWindowContainer.connect";
+export { MainWindowContainer as MainWindow } from "./MainWindowContainer";
