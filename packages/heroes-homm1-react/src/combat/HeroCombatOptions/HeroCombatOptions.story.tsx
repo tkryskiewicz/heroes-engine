@@ -5,8 +5,6 @@ import React from "react";
 
 import { LuckType, MoraleType } from "heroes-homm1";
 
-import Readme = require("./README.md");
-
 import { Placeholder } from "../../Placeholder";
 import { alignment, hero, heroClass } from "../../stories";
 import { HeroCombatOptions, HeroCombatOptionsProps } from "./HeroCombatOptions";
@@ -14,11 +12,6 @@ import { HeroCombatOptions, HeroCombatOptionsProps } from "./HeroCombatOptions";
 const renderHeroPortrait = () => <Placeholder name="Hero Portrait" />;
 
 storiesOf("combat|HeroCombatOptions", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => {
     const h: HeroCombatOptionsProps["hero"] = {
       alignment: alignment("Alignment"),

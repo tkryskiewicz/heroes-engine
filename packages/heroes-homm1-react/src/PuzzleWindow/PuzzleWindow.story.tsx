@@ -5,16 +5,9 @@ import React from "react";
 
 import { PuzzlePieceCount } from "heroes-homm1";
 
-import Readme = require("./README.md");
-
 import { PuzzleWindow } from "./PuzzleWindow";
 
 storiesOf("PuzzleWindow", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => (
     <PuzzleWindow
       discoveredPieces={number("Discovered Pieces", 0, { range: true, min: 0, max: PuzzlePieceCount, step: 1 })}

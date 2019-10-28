@@ -5,17 +5,10 @@ import React from "react";
 
 import { TownLimit } from "heroes-homm1";
 
-import Readme = require("./README.md");
-
 import { town } from "../stories";
 import { TownLocator } from "./TownLocator";
 
 storiesOf("TownLocator", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => (
     <TownLocator
       index={number("Index", 0, { range: true, min: 0, max: TownLimit - 1, step: 1 })}

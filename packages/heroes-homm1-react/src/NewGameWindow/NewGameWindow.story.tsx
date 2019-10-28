@@ -5,17 +5,10 @@ import React from "react";
 
 import { alignments, OpponentSetting } from "heroes-homm1";
 
-import Readme = require("./README.md");
-
 import { alignment, gameDifficulty } from "../stories";
 import { NewGameWindow } from "./NewGameWindow";
 
 storiesOf("NewGameWindow", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => (
     <NewGameWindow
       selectedGameDifficulty={gameDifficulty("Difficulty")}

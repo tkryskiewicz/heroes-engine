@@ -5,8 +5,6 @@ import React from "react";
 
 import { HeroId } from "heroes-homm1";
 
-import Readme = require("./README.md");
-
 import { Placeholder } from "../Placeholder";
 import { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindow";
 
@@ -25,11 +23,6 @@ const renderTroop = (_hero: string, index: number) => <Placeholder name={`T${ind
 const renderArtifact = (_hero: string, index: number) => <Placeholder name={`A${index}`} />;
 
 storiesOf("HeroTradingWindow", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => (
     <HeroTradingWindow
       visible={boolean("Visible", true)}

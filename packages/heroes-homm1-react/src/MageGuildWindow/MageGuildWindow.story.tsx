@@ -5,8 +5,6 @@ import React from "react";
 
 import { SpellId, spells as allSpells } from "heroes-homm1";
 
-import Readme = require("./README.md");
-
 import { spell } from "../stories";
 import { MageGuildWindow, MageGuildWindowProps } from "./MageGuildWindow";
 
@@ -30,11 +28,6 @@ const spells: MageGuildWindowProps["spells"] = allSpells
   }));
 
 storiesOf("MageGuildWindow", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => (
     <MageGuildWindow
       visible={boolean("Visible", true)}

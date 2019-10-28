@@ -1,1 +1,0 @@
-# Mage Guild Window

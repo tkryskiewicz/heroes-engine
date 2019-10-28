@@ -5,8 +5,6 @@ import React from "react";
 
 import { spells as allSpells, SpellType } from "heroes-homm1";
 
-import Readme = require("./README.md");
-
 import { spell, spellType } from "../stories";
 import { SpellBookWindow } from "./SpellBookWindow";
 
@@ -16,11 +14,6 @@ const spells = allSpells.map((s) => ({
 }));
 
 storiesOf("SpellBookWindow", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => (
     <SpellBookWindow
       visible={boolean("Visible", true)}

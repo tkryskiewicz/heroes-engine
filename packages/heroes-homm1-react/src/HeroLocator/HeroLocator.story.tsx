@@ -5,17 +5,10 @@ import React from "react";
 
 import { HeroLimit, MaxMobility } from "heroes-homm1";
 
-import Readme = require("./README.md");
-
 import { hero } from "../stories";
 import { HeroLocator } from "./HeroLocator";
 
 storiesOf("HeroLocator", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => {
     const h = {
       id: hero("Hero"),

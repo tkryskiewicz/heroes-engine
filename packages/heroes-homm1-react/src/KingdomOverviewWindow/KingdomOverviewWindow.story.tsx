@@ -5,8 +5,6 @@ import React from "react";
 
 import { HeroClass, ResourceId, TownId } from "heroes-homm1";
 
-import Readme = require("./README.md");
-
 import { Placeholder } from "../Placeholder";
 import { alignment } from "../stories";
 import { KingdomOverviewWindow } from "./KingdomOverviewWindow";
@@ -20,11 +18,6 @@ const renderMineSummary = (resource: string) => <Placeholder name={resource} />;
 const renderResourceSummary = (resource: string) => <Placeholder name={resource} />;
 
 storiesOf("KingdomOverviewWindow", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => (
     <KingdomOverviewWindow
       visible={boolean("Visible", true)}

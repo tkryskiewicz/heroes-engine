@@ -5,17 +5,10 @@ import React from "react";
 
 import { OpponentSetting } from "heroes-homm1";
 
-import Readme = require("./README.md");
-
 import { alignment, gameDifficulty, scenarioDifficulty, scenarioSize } from "../stories";
 import { StandardGameScenarioInfoWindow } from "./StandardGameScenarioInfoWindow";
 
 storiesOf("StandardGameScenarioInfoWindow", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => (
     <StandardGameScenarioInfoWindow
       visible={boolean("Visible", true)}

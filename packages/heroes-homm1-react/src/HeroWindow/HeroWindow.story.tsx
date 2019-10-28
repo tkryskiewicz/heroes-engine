@@ -3,8 +3,6 @@ import { boolean, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import Readme = require("./README.md");
-
 import { Placeholder } from "../Placeholder";
 import { HeroWindow } from "./HeroWindow";
 
@@ -16,11 +14,6 @@ const renderTroop = (index: number) => <Placeholder name={`Troop ${index}`} />;
 const renderArtifact = (index: number) => <Placeholder name={`Artifact ${index}`} />;
 
 storiesOf("HeroWindow", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => (
     <HeroWindow
       visible={boolean("Visible", true)}

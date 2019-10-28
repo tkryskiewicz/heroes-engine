@@ -5,17 +5,10 @@ import React from "react";
 
 import { ArtifactLimit } from "heroes-homm1";
 
-import Readme = require("./README.md");
-
 import { artifact } from "../../stories";
 import { ArtifactSlot } from "./ArtifactSlot";
 
 storiesOf("base|ArtifactSlot", module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
   .add("default", () => (
     <ArtifactSlot
       index={number("Index", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 })}
