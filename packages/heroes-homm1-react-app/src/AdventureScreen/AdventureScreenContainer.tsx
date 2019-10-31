@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, RouteComponentProps, Switch } from "react-router";
 
 import { AdventureScreen, GameText } from "heroes-homm1-react";
 
@@ -6,19 +7,17 @@ import { AdventureButtons } from "../AdventureButtons";
 import { AdventureOptions } from "../AdventureOptions";
 import { AdventureWindow } from "../AdventureWindow";
 import { CampaignScenarioInfoWindow } from "../CampaignScenarioInfoWindow";
-import { GameOptions } from "../GameOptions";
+import { GameOptionsWindow } from "../GameOptionsWindow";
 import { HeroLocators } from "../HeroLocators";
 import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
 import { PuzzleWindow } from "../PuzzleWindow";
 import { StatusWindow } from "../StatusWindow";
 import { TownLocators } from "../TownLocators";
 
-export interface AdventureScreenContainerProps {
+export interface AdventureScreenContainerProps extends RouteComponentProps {
   readonly kingdomOverviewWindowVisible?: boolean;
   readonly adventureOptionsVisible?: boolean;
-  readonly gameOptionsVisible?: boolean;
   readonly puzzleWindowVisible?: boolean;
-  readonly scenarioInfoWindowVisible?: boolean;
 }
 
 export class AdventureScreenContainer extends React.Component<AdventureScreenContainerProps> {
@@ -35,9 +34,17 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
         />
         {this.props.kingdomOverviewWindowVisible && this.renderKingdomOverviewWindow()}
         {this.props.adventureOptionsVisible && this.renderAdventureOptions()}
-        {this.props.gameOptionsVisible && this.renderGameOptions()}
         {this.props.puzzleWindowVisible && this.renderPuzzleWindow()}
-        {this.props.scenarioInfoWindowVisible && this.renderScenarioInfoWindow()}
+        <Switch>
+          <Route
+            path={`${this.props.match.path}/game-options`}
+            render={this.renderGameOptions}
+          />
+          <Route
+            path={`${this.props.match.path}/scenario-info`}
+            render={this.renderScenarioInfoWindow}
+          />
+        </Switch>
       </div>
     );
   }
@@ -70,8 +77,14 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
 
   private readonly renderAdventureButtons = () => {
     return (
-      <AdventureButtons />
+      <AdventureButtons
+        onGameOptionsClick={this.onGameOptionsClick}
+      />
     );
+  }
+
+  private readonly onGameOptionsClick = () => {
+    this.props.history.push(`${this.props.match.path}/game-options`);
   }
 
   private renderKingdomOverviewWindow() {
@@ -90,12 +103,22 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
     );
   }
 
-  private renderGameOptions() {
+  private readonly renderGameOptions = () => {
     return (
-      <GameOptions
+      <GameOptionsWindow
         visible={true}
+        onOkayClick={this.onGameOptionsOkayClick}
+        onInfoClick={this.onGameOptionsInfoClick}
       />
     );
+  }
+
+  private readonly onGameOptionsOkayClick = () => {
+    this.props.history.push(this.props.match.path);
+  }
+
+  private readonly onGameOptionsInfoClick = () => {
+    this.props.history.push(`${this.props.match.path}/scenario-info`);
   }
 
   private renderPuzzleWindow() {
@@ -106,12 +129,17 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
     );
   }
 
-  private renderScenarioInfoWindow() {
+  private readonly renderScenarioInfoWindow = () => {
     return (
       <CampaignScenarioInfoWindow
         visible={true}
+        onOkayClick={this.onScenarioInfoOkayClick}
       />
     );
+  }
+
+  private readonly onScenarioInfoOkayClick = () => {
+    this.props.history.push(this.props.match.path);
   }
 
   private readonly renderStatusWindow = () => {

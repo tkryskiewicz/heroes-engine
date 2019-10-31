@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { GameOptionsWindow, GameOptionsWindowProps } from "heroes-homm1-react";
 import {
   AppState,
   gameOptionsActions,
   gameSettingsActions,
-  scenarioInforWindowActions,
 } from "heroes-homm1-state";
+
+import { GameOptionsWindowContainer, GameOptionsWindowContainerProps } from "./GameOptionsWindowContainer";
 
 type StateProp =
   "autoSave" |
@@ -15,11 +15,13 @@ type StateProp =
   "movementSpeed" |
   "musicVolume" |
   "showPath" |
-  "viewEnemyMovement";
+  "viewEnemyMovement" |
+  "endGameOption";
 
-const mapStateToProps = (state: AppState): Pick<GameOptionsWindowProps, StateProp> => ({
+const mapStateToProps = (state: AppState): Pick<GameOptionsWindowContainerProps, StateProp> => ({
   autoSave: state.gameSettings.autoSave,
   effectsVolume: state.gameSettings.effectsVolume,
+  endGameOption: state.gameOptions.endGameOption,
   movementSpeed: state.gameSettings.movementSpeed,
   musicVolume: state.gameSettings.musicVolume,
   showPath: state.gameSettings.showPath,
@@ -27,16 +29,22 @@ const mapStateToProps = (state: AppState): Pick<GameOptionsWindowProps, StatePro
 });
 
 type DispatchProp =
+  "onOpenEndGamePromptClick" |
+  "onCloseEndGamePromptClick" |
   "onMusicVolumeChange" |
   "onEffectsVolumeChange" |
   "onMovementSpeedChange" |
   "onAutoSaveChange" |
   "onShowPathChange" |
-  "onViewEnemyMovementChange" |
-  "onOkayClick" |
-  "onInfoClick";
+  "onViewEnemyMovementChange";
 
-const mapDispatchToProps = (dispatch: Dispatch): Pick<GameOptionsWindowProps, DispatchProp> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Pick<GameOptionsWindowContainerProps, DispatchProp> => ({
+  onOpenEndGamePromptClick(option) {
+    dispatch(gameOptionsActions.openEndGamePrompt(option));
+  },
+  onCloseEndGamePromptClick() {
+    dispatch(gameOptionsActions.closeEndGamePrompt());
+  },
   onMusicVolumeChange(volume) {
     dispatch(gameSettingsActions.changeMusicVolume(volume));
   },
@@ -55,20 +63,13 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<GameOptionsWindowProps, Di
   onViewEnemyMovementChange(value) {
     dispatch(gameSettingsActions.changeViewEnemyMovement(value));
   },
-  onOkayClick() {
-    dispatch(gameOptionsActions.close());
-  },
-  onInfoClick() {
-    dispatch(scenarioInforWindowActions.open());
-    dispatch(gameOptionsActions.close());
-  },
 });
 
-const ComponentConnected = connect(mapStateToProps, mapDispatchToProps)(GameOptionsWindow);
+const ComponentConnected = connect(mapStateToProps, mapDispatchToProps)(GameOptionsWindowContainer);
 
 type ComponentConnectedProps = ExtractProps<typeof ComponentConnected>;
 
 export {
-  ComponentConnected as GameOptions,
-  ComponentConnectedProps as GameOptionsProps,
+  ComponentConnected as GameOptionsWindow,
+  ComponentConnectedProps as GameOptionsWindowProps,
 };

@@ -1,3 +1,5 @@
+import { GameOption } from "heroes-homm1";
+
 export interface GameOptionsState {
-  readonly visible: boolean;
+  readonly endGameOption?: GameOption;
 }

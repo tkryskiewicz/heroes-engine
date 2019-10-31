@@ -394,7 +394,7 @@ class MainWindowContainer extends React.Component<RouteComponentProps> {
 
 const ComponentWrapped = withRouter(MainWindowContainer);
 
-export type ComponentWrappedProps = ExtractPublicProps<typeof MainWindowContainer>;
+export type ComponentWrappedProps = ExtractPublicProps<typeof ComponentWrapped>;
 
 export {
   ComponentWrapped as MainWindowContainer,

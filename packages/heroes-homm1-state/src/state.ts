@@ -11,7 +11,6 @@ import { KingdomOverviewWindowState } from "./kingdomOverviewWindow";
 import { LocatorsState } from "./locators";
 import { MageGuildWindowState } from "./mageGuildWindow";
 import { PuzzleWindowState } from "./puzzleWindow";
-import { ScenarioInfoWindowState } from "./scenarioInfoWindow";
 import { SpellBookWindowState } from "./spellBookWindow";
 import { StatusWindowState } from "./statusWindow";
 import { TownWindowState } from "./townWindow";
@@ -30,7 +29,6 @@ export interface AppState {
   readonly adventureOptions: AdventureOptionsState;
   readonly gameOptions: GameOptionsState;
   readonly puzzleWindow: PuzzleWindowState;
-  readonly scenarioInfoWindow: ScenarioInfoWindowState;
   readonly mageGuildWindow: MageGuildWindowState;
   readonly spellBookWindow: SpellBookWindowState;
   readonly statusWindow: StatusWindowState;

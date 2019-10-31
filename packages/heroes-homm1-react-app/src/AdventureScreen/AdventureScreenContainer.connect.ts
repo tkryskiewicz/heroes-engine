@@ -6,17 +6,13 @@ import { AdventureScreenContainer, AdventureScreenContainerProps } from "./Adven
 
 type StateProp =
   "adventureOptionsVisible" |
-  "gameOptionsVisible" |
   "kingdomOverviewWindowVisible" |
-  "puzzleWindowVisible" |
-  "scenarioInfoWindowVisible";
+  "puzzleWindowVisible";
 
 const mapStateToProps = (state: AppState): Pick<AdventureScreenContainerProps, StateProp> => ({
   adventureOptionsVisible: state.adventureOptions.visible,
-  gameOptionsVisible: state.gameOptions.visible,
   kingdomOverviewWindowVisible: state.kingdomOverviewWindow.visible,
   puzzleWindowVisible: state.puzzleWindow.visible,
-  scenarioInfoWindowVisible: state.scenarioInfoWindow.visible,
 });
 
 const ContainerConnected = connect(mapStateToProps)(AdventureScreenContainer);

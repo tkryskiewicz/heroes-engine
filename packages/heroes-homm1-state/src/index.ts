@@ -12,7 +12,6 @@ export { locatorsActions } from "./locators";
 export { mageGuildWindowActions } from "./mageGuildWindow";
 export { puzzleWindowActions } from "./puzzleWindow";
 export { rootReducer } from "./reducers";
-export { scenarioInforWindowActions } from "./scenarioInfoWindow";
 export { spellBookWindowActions } from "./spellBookWindow";
 export { AppState } from "./state";
 export { statusWindowActions, StatusWindowOption } from "./statusWindow";

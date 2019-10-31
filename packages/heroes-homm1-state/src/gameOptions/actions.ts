@@ -1,24 +1,28 @@
+import { GameOption } from "heroes-homm1";
+
 export enum GameOptionsActionType {
-  Open = "gameOptions/open",
-  Close = "gameOptions/close",
+  OpenEndGamePrompt = "gameOptions/openEndGamePrompt",
+  CloseEndGamePrompt = "gameOptions/closeEndGamePrompt",
 }
 
 export type GameOptionsAction =
-  OpenAction |
-  CloseAction;
+  OpenEndGamePromptAction |
+  CloseEndGamePromptAction;
 
-export interface OpenAction {
-  readonly type: GameOptionsActionType.Open;
+export interface OpenEndGamePromptAction {
+  readonly type: GameOptionsActionType.OpenEndGamePrompt;
+  readonly option: GameOption;
 }
 
-export const open = (): OpenAction => ({
-  type: GameOptionsActionType.Open,
+export const openEndGamePrompt = (option: GameOption): OpenEndGamePromptAction => ({
+  option,
+  type: GameOptionsActionType.OpenEndGamePrompt,
 });
 
-export interface CloseAction {
-  readonly type: GameOptionsActionType.Close;
+export interface CloseEndGamePromptAction {
+  readonly type: GameOptionsActionType.CloseEndGamePrompt;
 }
 
-export const close = (): CloseAction => ({
-  type: GameOptionsActionType.Close,
+export const closeEndGamePrompt = (): CloseEndGamePromptAction => ({
+  type: GameOptionsActionType.CloseEndGamePrompt,
 });

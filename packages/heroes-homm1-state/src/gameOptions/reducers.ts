@@ -1,24 +1,20 @@
 import { GameOptionsAction, GameOptionsActionType } from "./actions";
 import { GameOptionsState } from "./state";
 
-const initialState: GameOptionsState = {
-  visible: false,
-};
-
 export const gameOptionsReducer = (
-  state: GameOptionsState = initialState,
+  state: GameOptionsState = {},
   action: GameOptionsAction,
 ): GameOptionsState => {
   switch (action.type) {
-    case GameOptionsActionType.Open:
+    case GameOptionsActionType.OpenEndGamePrompt:
       return {
         ...state,
-        visible: true,
+        endGameOption: action.option,
       };
-    case GameOptionsActionType.Close:
+    case GameOptionsActionType.CloseEndGamePrompt:
       return {
         ...state,
-        visible: false,
+        endGameOption: undefined,
       };
     default:
       return state;
