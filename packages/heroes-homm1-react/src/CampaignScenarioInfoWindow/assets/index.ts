@@ -1,6 +1,6 @@
 import BackgroundImage = require("./background.jpg");
 
-export { scenarioNumberImages } from "./scenarioNumber";
+export { scenarioNumberImages } from "./scenario-number";
 
 const buttonImages = {
   okay: {

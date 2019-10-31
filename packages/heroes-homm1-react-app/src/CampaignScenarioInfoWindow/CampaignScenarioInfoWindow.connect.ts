@@ -4,13 +4,14 @@ import { CampaignScenarioInfoWindow, CampaignScenarioInfoWindowProps } from "her
 import { AppState } from "heroes-homm1-state";
 
 type StateProp =
-  "scenario";
+  "scenarioNumber" |
+  "scenarioName" |
+  "scenarioDescription";
 
 const mapStateToProps = (state: AppState): Pick<CampaignScenarioInfoWindowProps, StateProp> => ({
-  scenario: {
-    ...state.game.scenario,
-    scenarioNumber: 1,
-  },
+  scenarioDescription: state.game.scenario.description,
+  scenarioName: state.game.scenario.name,
+  scenarioNumber: 1,
 });
 
 const ComponentConnected = connect(mapStateToProps)(CampaignScenarioInfoWindow);

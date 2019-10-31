@@ -2,28 +2,38 @@
   position: relative;
   width: 428px;
   height: 287px;
-  padding: 30px;
-  padding-top: 43px;
   background: url("./assets/background.jpg");
 }
 
-.title {
-  margin-bottom: 10px;
+.scenario-number {
+  position: absolute;
+  top: 49px;
+  left: 150px;
 }
 
-.number {
-  text-align: right;
+.scenario-name {
+  position: absolute;
+  top: 46px;
+  left: 183px;
 }
 
-.description {
-  height: 160px;
+.scenario-description {
+  position: absolute;
+  top: 75px;
+  left: 28px;
+  width: 370px;
+  height: 150px;
   text-align: center;
 }
 
 .okay {
-  text-align: left;
+  position: absolute;
+  top: 233px;
+  left: 28px;
 }
 
 .restart {
-  text-align: right;
+  position: absolute;
+  top: 233px;
+  left: 180px;
 }
