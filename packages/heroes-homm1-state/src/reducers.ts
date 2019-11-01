@@ -1,6 +1,5 @@
 import { combineReducers } from "redux";
 
-import { adventureOptionsReducer } from "./adventureOptions";
 import { adventureScreenReducer } from "./adventureScreen";
 import { editorWindowReducer } from "./editorWindow";
 import { gameReducer } from "./game";
@@ -11,7 +10,6 @@ import { heroWindowReducer } from "./heroWindow";
 import { highScoresWindowReducer } from "./highScoresWindow";
 import { locatorsReducer } from "./locators";
 import { mageGuildWindowReducer } from "./mageGuildWindow";
-import { puzzleWindowReducer } from "./puzzleWindow";
 import { spellBookWindowReducer } from "./spellBookWindow";
 import { AppState } from "./state";
 import { statusWindowReducer } from "./statusWindow";
@@ -19,7 +17,6 @@ import { townWindowReducer } from "./townWindow";
 import { troopWindowReducer } from "./troopWindow";
 
 export const rootReducer = combineReducers<AppState>({
-  adventureOptions: adventureOptionsReducer,
   adventureScreen: adventureScreenReducer,
   editorWindow: editorWindowReducer,
   game: gameReducer,
@@ -30,7 +27,6 @@ export const rootReducer = combineReducers<AppState>({
   highScoresWindow: highScoresWindowReducer,
   locators: locatorsReducer,
   mageGuildWindow: mageGuildWindowReducer,
-  puzzleWindow: puzzleWindowReducer,
   spellBookWindow: spellBookWindowReducer,
   statusWindow: statusWindowReducer,
   townWindow: townWindowReducer,

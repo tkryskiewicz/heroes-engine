@@ -1,4 +1,3 @@
-import { AdventureOptionsState } from "./adventureOptions";
 import { AdventureScreenState } from "./adventureScreen";
 import { EditorWindowState } from "./editorWindow";
 import { GameState } from "./game";
@@ -9,7 +8,6 @@ import { HeroWindowState } from "./heroWindow";
 import { HighScoresWindowState } from "./highScoresWindow";
 import { LocatorsState } from "./locators";
 import { MageGuildWindowState } from "./mageGuildWindow";
-import { PuzzleWindowState } from "./puzzleWindow";
 import { SpellBookWindowState } from "./spellBookWindow";
 import { StatusWindowState } from "./statusWindow";
 import { TownWindowState } from "./townWindow";
@@ -24,9 +22,7 @@ export interface AppState {
   readonly heroTradingWindow: HeroTradingWindowState;
   readonly heroWindow: HeroWindowState;
   readonly townWindow: TownWindowState;
-  readonly adventureOptions: AdventureOptionsState;
   readonly gameOptions: GameOptionsState;
-  readonly puzzleWindow: PuzzleWindowState;
   readonly mageGuildWindow: MageGuildWindowState;
   readonly spellBookWindow: SpellBookWindowState;
   readonly statusWindow: StatusWindowState;

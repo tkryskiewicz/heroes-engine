@@ -3,7 +3,6 @@ import { Dispatch } from "redux";
 
 import { getGameHeroes } from "heroes-homm1";
 import {
-  adventureOptionsActions,
   adventureScreenActions,
   AppState,
   gameActions,
@@ -29,8 +28,7 @@ type DispatchProp =
   "onNextHeroClick" |
   "onEndTurnClick" |
   "onConfirmEndTurnClick" |
-  "onCancelEndTurnClick" |
-  "onAdventureOptionsClick";
+  "onCancelEndTurnClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsContainerProps, DispatchProp> => ({
   onNextHeroClick(id) {
@@ -51,9 +49,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsContainerP
   },
   onCancelEndTurnClick() {
     dispatch(adventureScreenActions.changeEndTurnPromptVisible(false));
-  },
-  onAdventureOptionsClick() {
-    dispatch(adventureOptionsActions.open());
   },
 });
 

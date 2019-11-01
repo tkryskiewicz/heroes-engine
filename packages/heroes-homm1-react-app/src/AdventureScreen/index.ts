@@ -1,1 +1,1 @@
-export { AdventureScreen, AdventureScreenProps } from "./AdventureScreenContainer.connect";
+export { AdventureScreenContainer as AdventureScreen } from "./AdventureScreenContainer";

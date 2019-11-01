@@ -1,4 +1,3 @@
-export { adventureOptionsActions } from "./adventureOptions";
 export { adventureScreenActions } from "./adventureScreen";
 export { editorWindowActions } from "./editorWindow";
 export { gameActions } from "./game";
@@ -9,7 +8,6 @@ export { heroWindowActions } from "./heroWindow";
 export { highScoresWindowActions } from "./highScoresWindow";
 export { locatorsActions } from "./locators";
 export { mageGuildWindowActions } from "./mageGuildWindow";
-export { puzzleWindowActions } from "./puzzleWindow";
 export { rootReducer } from "./reducers";
 export { spellBookWindowActions } from "./spellBookWindow";
 export { AppState } from "./state";
