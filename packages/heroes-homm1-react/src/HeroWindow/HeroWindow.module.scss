@@ -15,11 +15,11 @@
 }
 
 .portrait {
+  @include hero-portrait();
+
   position: absolute;
   top: 101px;
   left: 49px;
-
-  @include hero-portrait();
 }
 
 .skills {
@@ -29,26 +29,26 @@
 }
 
 .skill {
+  @include skillSlot();
+
   display: inline-block;
-  width: 82px;
-  height: 93px;
   margin-right: 6px;
 }
 
 .additional-stats {
+  @include skillSlot();
+
   position: absolute;
   top: 101px;
   left: 508px;
-  width: 82px;
-  height: 93px;
 }
 
 .crest {
+  @include crest();
+
   position: absolute;
   top: 200px;
   left: 49px;
-
-  @include crest();
 }
 
 .army {
@@ -58,9 +58,9 @@
 }
 
 .troop {
+  @include troopSlot();
+
   display: inline-block;
-  width: 82px;
-  height: 93px;
   margin-right: 6px;
 }
 

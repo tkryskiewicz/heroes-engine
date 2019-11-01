@@ -1,8 +1,10 @@
+@import "../../style/index";
+
 .root {
+  @include skillSlot();
+
   position: relative;
   display: inline-block;
-  width: 82px;
-  height: 93px;
 }
 
 .background {

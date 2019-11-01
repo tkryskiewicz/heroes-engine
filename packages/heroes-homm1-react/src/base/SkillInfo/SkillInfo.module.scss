@@ -1,6 +1,9 @@
+@import "../../style/index";
+
 .root {
+  @include skillSlot();
+
   position: relative;
-  width: 82px;
 }
 
 .name {

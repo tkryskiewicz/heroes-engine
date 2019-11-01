@@ -11,7 +11,7 @@ const SkillSlotCount = 4;
 const TroopSlotCount = 5;
 const ArtifactSlotCount = 14;
 
-interface HeroWindowProps extends WithGameWindowProps {
+interface Props extends WithGameWindowProps {
   readonly title: string;
   readonly renderHeroPortrait: () => React.ReactNode;
   readonly renderSkill: (index: number) => React.ReactNode;
@@ -32,25 +32,8 @@ interface HeroWindowProps extends WithGameWindowProps {
   readonly statusText: string;
 }
 
-type DefaultProp =
-  "title" |
-  "renderHeroPortrait" |
-  "renderSkill" |
-  "renderAdditionalStats" |
-  "renderCrest" |
-  "renderTroop" |
-  "renderArtifact" |
-  "dismissVisible" |
-  "onDismissMouseEnter" |
-  "onDismissMouseLeave" |
-  "onDismissClick" |
-  "onExitMouseEnter" |
-  "onExitMouseLeave" |
-  "onExitClick" |
-  "statusText";
-
-class HeroWindow extends React.Component<HeroWindowProps> {
-  public static readonly defaultProps: Pick<HeroWindowProps, DefaultProp> = {
+class HeroWindow extends React.Component<Props> {
+  public static readonly defaultProps: Props = {
     dismissVisible: false,
     onDismissClick: () => undefined,
     onDismissMouseEnter: () => undefined,
@@ -71,11 +54,13 @@ class HeroWindow extends React.Component<HeroWindowProps> {
   public render() {
     return (
       <div className={styles.root}>
-        <div className={styles.title}>
-          <GameText size="large">
-            {this.props.title}
-          </GameText>
-        </div>
+        <GameText
+          data-test-id="title"
+          className={styles.title}
+          size="large"
+        >
+          {this.props.title}
+        </GameText>
         <div className={styles.portrait}>
           {this.props.renderHeroPortrait()}
         </div>
@@ -89,19 +74,21 @@ class HeroWindow extends React.Component<HeroWindowProps> {
         {this.renderArmy()}
         {this.renderArtifacts()}
         {this.props.dismissVisible && this.renderDismiss()}
-        <div className={styles.exit}>
-          <ImageButton
-            images={buttonImages.exit}
-            onMouseEnter={this.props.onExitMouseEnter}
-            onMouseLeave={this.props.onExitMouseLeave}
-            onClick={this.props.onExitClick}
-          />
-        </div>
-        <div className={styles.statusText}>
-          <GameText size="large">
-            {this.props.statusText}
-          </GameText>
-        </div>
+        <ImageButton
+          data-test-id="exit"
+          className={styles.exit}
+          images={buttonImages.exit}
+          onMouseEnter={this.props.onExitMouseEnter}
+          onMouseLeave={this.props.onExitMouseLeave}
+          onClick={this.props.onExitClick}
+        />
+        <GameText
+          data-test-id="status-text"
+          className={styles.statusText}
+          size="large"
+        >
+          {this.props.statusText}
+        </GameText>
       </div>
     );
   }
@@ -174,14 +161,14 @@ class HeroWindow extends React.Component<HeroWindowProps> {
 
   private renderDismiss() {
     return (
-      <div className={styles.dismiss}>
-        <ImageButton
-          images={buttonImages.dismiss}
-          onMouseEnter={this.props.onDismissMouseEnter}
-          onMouseLeave={this.props.onDismissMouseLeave}
-          onClick={this.props.onDismissClick}
-        />
-      </div>
+      <ImageButton
+        data-test-id="dismiss"
+        className={styles.dismiss}
+        images={buttonImages.dismiss}
+        onMouseEnter={this.props.onDismissMouseEnter}
+        onMouseLeave={this.props.onDismissMouseLeave}
+        onClick={this.props.onDismissClick}
+      />
     );
   }
 }

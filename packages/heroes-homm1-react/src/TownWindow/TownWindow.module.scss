@@ -35,9 +35,9 @@
 }
 
 .troop {
+  @include troopSlot();
+
   display: inline-block;
-  width: 82px;
-  height: 93px;
   margin-right: 6px;
 }
 
