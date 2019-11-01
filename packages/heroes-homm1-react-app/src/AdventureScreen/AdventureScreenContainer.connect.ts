@@ -6,12 +6,10 @@ import { AdventureScreenContainer, AdventureScreenContainerProps } from "./Adven
 
 type StateProp =
   "adventureOptionsVisible" |
-  "kingdomOverviewWindowVisible" |
   "puzzleWindowVisible";
 
 const mapStateToProps = (state: AppState): Pick<AdventureScreenContainerProps, StateProp> => ({
   adventureOptionsVisible: state.adventureOptions.visible,
-  kingdomOverviewWindowVisible: state.kingdomOverviewWindow.visible,
   puzzleWindowVisible: state.puzzleWindow.visible,
 });
 

@@ -7,7 +7,6 @@ export { gameSettingsActions } from "./gameSettings";
 export { heroTradingWindowActions } from "./heroTradingWindow";
 export { heroWindowActions } from "./heroWindow";
 export { highScoresWindowActions } from "./highScoresWindow";
-export { kingdomOverviewWindowActions } from "./kingdomOverviewWindow";
 export { locatorsActions } from "./locators";
 export { mageGuildWindowActions } from "./mageGuildWindow";
 export { puzzleWindowActions } from "./puzzleWindow";

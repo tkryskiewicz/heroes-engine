@@ -1,5 +1,6 @@
 import React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
+import { Route, RouteComponentProps, Switch, withRouter } from "react-router";
 
 import { GameData, getArmySize, Hero } from "heroes-core";
 import { Artifact, getLuckType, getMoraleType, LuckType, MoraleType } from "heroes-homm1";
@@ -30,10 +31,11 @@ import {
   WithGameWindowProps,
 } from "heroes-homm1-react";
 
+import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
 import { TroopSlot } from "../TroopSlot";
 import { TroopWindow } from "../TroopWindow";
 
-interface HeroWindowContainerProps extends InjectedIntlProps, WithGameWindowProps {
+interface HeroWindowContainerProps extends InjectedIntlProps, RouteComponentProps, WithGameWindowProps {
   readonly data: Pick<GameData, "items">;
   readonly hero: Hero;
   readonly alignment: string;
@@ -42,8 +44,6 @@ interface HeroWindowContainerProps extends InjectedIntlProps, WithGameWindowProp
   readonly onVisibleSkillDetailsChange: (skill?: string) => void;
   readonly visibleAdditionalStatDetails?: string;
   readonly onVisibleAdditionalStatDetailsChange: (type?: string) => void;
-
-  readonly onCrestClick: () => void;
 
   readonly selectedTroopIndex?: number;
   readonly onSelectTroop: (index: number) => void;
@@ -119,6 +119,12 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
         {selectedTroopIndex !== undefined && troopDetailsVisible && this.renderTroopDetails(selectedTroopIndex)}
         {visibleArtifactDetails !== undefined && this.renderArtifactDetails(visibleArtifactDetails)}
         {this.props.dismissible && this.renderDismissHeroPrompt(this.props.dismissHeroPromptVisible)}
+        <Switch>
+          <Route
+            path={`${this.props.match.path}/kingdom-overview`}
+            render={this.renderKingdomOverviewWindow}
+          />
+        </Switch>
       </>
     );
   }
@@ -321,7 +327,20 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 
   private readonly onCrestClick = () => {
-    this.props.onCrestClick();
+    this.props.history.push(`${this.props.match.path}/kingdom-overview`);
+  }
+
+  private readonly renderKingdomOverviewWindow = () => {
+    return (
+      <KingdomOverviewWindow
+        visible={true}
+        onExitClick={this.onExitKingdomOverviewClick}
+      />
+    );
+  }
+
+  private readonly onExitKingdomOverviewClick = () => {
+    this.props.history.push(this.props.match.path);
   }
 
   private readonly renderTroop = (index: number) => {
@@ -532,7 +551,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 }
 
-const ContainerWrapped = injectIntl(HeroWindowContainer);
+const ContainerWrapped = withRouter(injectIntl(HeroWindowContainer));
 
 type ContainerWrappedProps = ExtractProps<typeof ContainerWrapped>;
 

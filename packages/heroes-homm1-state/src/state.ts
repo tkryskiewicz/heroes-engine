@@ -7,7 +7,6 @@ import { GameSettingsState } from "./gameSettings";
 import { HeroTradingWindowState } from "./heroTradingWindow";
 import { HeroWindowState } from "./heroWindow";
 import { HighScoresWindowState } from "./highScoresWindow";
-import { KingdomOverviewWindowState } from "./kingdomOverviewWindow";
 import { LocatorsState } from "./locators";
 import { MageGuildWindowState } from "./mageGuildWindow";
 import { PuzzleWindowState } from "./puzzleWindow";
@@ -24,7 +23,6 @@ export interface AppState {
   readonly locators: LocatorsState;
   readonly heroTradingWindow: HeroTradingWindowState;
   readonly heroWindow: HeroWindowState;
-  readonly kingdomOverviewWindow: KingdomOverviewWindowState;
   readonly townWindow: TownWindowState;
   readonly adventureOptions: AdventureOptionsState;
   readonly gameOptions: GameOptionsState;

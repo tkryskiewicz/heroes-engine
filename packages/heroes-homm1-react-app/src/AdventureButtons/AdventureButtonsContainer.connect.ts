@@ -7,7 +7,6 @@ import {
   adventureScreenActions,
   AppState,
   gameActions,
-  kingdomOverviewWindowActions,
   locatorsActions,
   statusWindowActions,
   StatusWindowOption,
@@ -28,7 +27,6 @@ const mapStateToProps = (state: AppState): Pick<AdventureButtonsContainerProps, 
 
 type DispatchProp =
   "onNextHeroClick" |
-  "onKingdomOverviewClick" |
   "onEndTurnClick" |
   "onConfirmEndTurnClick" |
   "onCancelEndTurnClick" |
@@ -39,9 +37,6 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsContainerP
     dispatch(locatorsActions.selectActiveObject(id));
 
     dispatch(statusWindowActions.changeSelectedOption(StatusWindowOption.HeroStatus));
-  },
-  onKingdomOverviewClick() {
-    dispatch(kingdomOverviewWindowActions.open());
   },
   onEndTurnClick() {
     dispatch(adventureScreenActions.changeEndTurnPromptVisible(true));

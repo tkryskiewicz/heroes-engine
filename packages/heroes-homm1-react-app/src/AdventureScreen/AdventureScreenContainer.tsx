@@ -15,7 +15,6 @@ import { StatusWindow } from "../StatusWindow";
 import { TownLocators } from "../TownLocators";
 
 export interface AdventureScreenContainerProps extends RouteComponentProps {
-  readonly kingdomOverviewWindowVisible?: boolean;
   readonly adventureOptionsVisible?: boolean;
   readonly puzzleWindowVisible?: boolean;
 }
@@ -32,13 +31,16 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
           renderTownLocators={this.renderTownLocators}
           renderStatusWindow={this.renderStatusWindow}
         />
-        {this.props.kingdomOverviewWindowVisible && this.renderKingdomOverviewWindow()}
         {this.props.adventureOptionsVisible && this.renderAdventureOptions()}
         {this.props.puzzleWindowVisible && this.renderPuzzleWindow()}
         <Switch>
           <Route
+            path={`${this.props.match.path}/kingdom-overview`}
+            render={this.renderKingdomOverviewWindow}
+          />
+          <Route
             path={`${this.props.match.path}/game-options`}
-            render={this.renderGameOptions}
+            render={this.renderGameOptionsWindow}
           />
           <Route
             path={`${this.props.match.path}/scenario-info`}
@@ -78,21 +80,31 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
   private readonly renderAdventureButtons = () => {
     return (
       <AdventureButtons
+        onKingdomOverviewClick={this.onKingdomOverviewClick}
         onGameOptionsClick={this.onGameOptionsClick}
       />
     );
   }
 
-  private readonly onGameOptionsClick = () => {
-    this.props.history.push(`${this.props.match.path}/game-options`);
+  private readonly onKingdomOverviewClick = () => {
+    this.props.history.push(`${this.props.match.path}/kingdom-overview`);
   }
 
-  private renderKingdomOverviewWindow() {
+  private readonly renderKingdomOverviewWindow = () => {
     return (
       <KingdomOverviewWindow
         visible={true}
+        onExitClick={this.onExitKingdomOverviewClick}
       />
     );
+  }
+
+  private readonly onExitKingdomOverviewClick = () => {
+    this.props.history.push(this.props.match.path);
+  }
+
+  private readonly onGameOptionsClick = () => {
+    this.props.history.push(`${this.props.match.path}/game-options`);
   }
 
   private renderAdventureOptions() {
@@ -103,7 +115,7 @@ export class AdventureScreenContainer extends React.Component<AdventureScreenCon
     );
   }
 
-  private readonly renderGameOptions = () => {
+  private readonly renderGameOptionsWindow = () => {
     return (
       <GameOptionsWindow
         visible={true}

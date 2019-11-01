@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
 
 import {
   getDate,
@@ -9,7 +8,7 @@ import {
   isStructureBuilt,
 } from "heroes-core";
 import { isHeroMapObject, isTownMapObject, StructureId } from "heroes-homm1";
-import { AppState, kingdomOverviewWindowActions } from "heroes-homm1-state";
+import { AppState } from "heroes-homm1-state";
 
 import { KingdomOverviewWindowContainer, KingdomOverviewWindowContainerProps } from "./KingdomOverviewWindowContainer";
 
@@ -68,16 +67,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
   };
 };
 
-type DispatchProp =
-  "onExitClick";
-
-const mapDispatchToProps = (dispatch: Dispatch): Pick<KingdomOverviewWindowContainerProps, DispatchProp> => ({
-  onExitClick() {
-    dispatch(kingdomOverviewWindowActions.close());
-  },
-});
-
-const ContainerConnected = connect(mapStateToProps, mapDispatchToProps)(KingdomOverviewWindowContainer);
+const ContainerConnected = connect(mapStateToProps)(KingdomOverviewWindowContainer);
 
 type ContainerConnectedProps = ExtractProps<typeof ContainerConnected>;
 

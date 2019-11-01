@@ -1,5 +1,6 @@
 import React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
+import { Route, RouteComponentProps, Switch, withRouter } from "react-router";
 
 import { getArmySize, Hero, Resources, Structure, Town, TroopSelection, TroopSelectionType } from "heroes-core";
 import {
@@ -18,16 +19,15 @@ import {
 } from "heroes-homm1-react";
 
 import { HeroWindow } from "../HeroWindow";
+import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
 import { TroopSlot } from "../TroopSlot";
 import { TroopWindow } from "../TroopWindow";
 
-interface TownWindowContainerProps extends InjectedIntlProps, WithGameWindowProps {
+interface TownWindowContainerProps extends InjectedIntlProps, RouteComponentProps, WithGameWindowProps {
   readonly town: Town;
   readonly alignment: string;
   readonly visitingHero?: Hero;
   readonly resources: Resources;
-
-  readonly onCrestClick: () => void;
 
   readonly visibleStructureDetails?: string;
   readonly getStructureDetails: (
@@ -87,6 +87,12 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
         />
         {selectedTroop && troopDetailsVisible && this.renderTroopDetails(selectedTroop)}
         {visibleStructureDetails && this.renderStructureDetails(town, visibleStructureDetails)}
+        <Switch>
+          <Route
+            path={`${this.props.match.path}/kingdom-overview`}
+            render={this.renderKingdomOverviewWindow}
+          />
+        </Switch>
       </>
     );
   }
@@ -150,7 +156,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
         heroClass={this.props.visitingHero ? this.props.visitingHero.heroClass : undefined}
         onMouseEnter={this.onCrestMouseEnter}
         onMouseLeave={this.onCrestMouseLeave}
-        onClick={this.props.onCrestClick}
+        onClick={this.onCrestClick}
       />
     );
   }
@@ -163,6 +169,23 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
 
   private readonly onCrestMouseLeave = () => {
     this.setDefaultStatusText();
+  }
+
+  private readonly onCrestClick = () => {
+    this.props.history.push(`${this.props.match.path}/kingdom-overview`);
+  }
+
+  private readonly renderKingdomOverviewWindow = () => {
+    return (
+      <KingdomOverviewWindow
+        visible={true}
+        onExitClick={this.onExitKingdomOverviewClick}
+      />
+    );
+  }
+
+  private readonly onExitKingdomOverviewClick = () => {
+    this.props.history.push(this.props.match.path);
   }
 
   private readonly renderGarrisonTroop = (index: number) => {
@@ -424,7 +447,7 @@ class TownWindowContainer extends React.Component<TownWindowContainerProps, Town
   }
 }
 
-const ContainerWrapped = injectIntl(TownWindowContainer);
+const ContainerWrapped = withRouter(injectIntl(TownWindowContainer));
 
 type ContainerWrappedProps = ExtractProps<typeof ContainerWrapped>;
 

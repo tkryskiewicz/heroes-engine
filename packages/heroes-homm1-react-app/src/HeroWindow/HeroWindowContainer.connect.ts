@@ -6,7 +6,6 @@ import {
   AppState,
   gameActions,
   heroWindowActions,
-  kingdomOverviewWindowActions,
   spellBookWindowActions,
   statusWindowActions,
   troopWindowActions,
@@ -41,7 +40,6 @@ const mapStateToProps = (state: AppState): Pick<HeroWindowContainerProps, StateP
 type DispatchProp =
   "onVisibleSkillDetailsChange" |
   "onVisibleAdditionalStatDetailsChange" |
-  "onCrestClick" |
   "onSelectTroop" |
   "onOpenTroopDetailsClick" |
   "onCloseTroopDetailsClick" |
@@ -62,9 +60,6 @@ const mapDispatchToProps = (
   },
   onVisibleAdditionalStatDetailsChange(type) {
     dispatch(heroWindowActions.changeVisibleAdditionalStatDetails(type));
-  },
-  onCrestClick() {
-    dispatch(kingdomOverviewWindowActions.open());
   },
   onSelectTroop(index) {
     dispatch(heroWindowActions.selectTroop(index));

@@ -9,7 +9,6 @@ import { gameSettingsReducer } from "./gameSettings";
 import { heroTradingWindowReducer } from "./heroTradingWindow";
 import { heroWindowReducer } from "./heroWindow";
 import { highScoresWindowReducer } from "./highScoresWindow";
-import { kingdomOverviewWindowReducer } from "./kingdomOverviewWindow";
 import { locatorsReducer } from "./locators";
 import { mageGuildWindowReducer } from "./mageGuildWindow";
 import { puzzleWindowReducer } from "./puzzleWindow";
@@ -29,7 +28,6 @@ export const rootReducer = combineReducers<AppState>({
   heroTradingWindow: heroTradingWindowReducer,
   heroWindow: heroWindowReducer,
   highScoresWindow: highScoresWindowReducer,
-  kingdomOverviewWindow: kingdomOverviewWindowReducer,
   locators: locatorsReducer,
   mageGuildWindow: mageGuildWindowReducer,
   puzzleWindow: puzzleWindowReducer,

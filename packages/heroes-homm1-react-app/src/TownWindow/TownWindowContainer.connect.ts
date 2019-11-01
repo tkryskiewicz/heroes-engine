@@ -5,7 +5,6 @@ import { getGameHeroes, TownId } from "heroes-homm1";
 import {
   AppState,
   gameActions,
-  kingdomOverviewWindowActions,
   townWindowActions,
   troopWindowActions,
 } from "heroes-homm1-state";
@@ -39,7 +38,6 @@ const mapStateToProps = (
 });
 
 type DispatchProp =
-  "onCrestClick" |
   "onSelectTroop" |
   "onSwapTroops" |
   "onOpenTroopDetailsClick" |
@@ -51,9 +49,6 @@ type DispatchProp =
   "onCloseStructureDetailsClick";
 
 const mapDispatchToProps = (dispatch: Dispatch): Pick<Required<TownWindowContainerProps>, DispatchProp> => ({
-  onCrestClick() {
-    dispatch(kingdomOverviewWindowActions.open());
-  },
   onSelectTroop(troop) {
     dispatch(townWindowActions.selectTroop(troop));
   },

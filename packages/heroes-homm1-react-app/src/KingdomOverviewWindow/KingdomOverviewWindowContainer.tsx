@@ -36,7 +36,7 @@ export interface KingdomOverviewWindowContainerProps extends WithGameWindowProps
   readonly mines: ResourceSummary;
   readonly resources: ResourceSummary;
   readonly goldPerDay: number;
-  readonly onExitClick?: () => void;
+  readonly onExitClick: () => void;
 }
 
 export class KingdomOverviewWindowContainer extends React.Component<KingdomOverviewWindowContainerProps> {
