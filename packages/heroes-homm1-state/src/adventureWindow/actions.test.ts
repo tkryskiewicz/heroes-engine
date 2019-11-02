@@ -1,5 +1,5 @@
 import {
-  AdventureScreenActionType,
+  AdventureWindowActionType,
   changeEndTurnPromptVisible,
   ChangeEndTurnPromptVisibleAction,
   closeHeroTradingWindow,
@@ -12,13 +12,13 @@ import {
   OpenMapObjectDetailsAction,
 } from "./actions";
 
-describe("adventureScreenActions", () => {
+describe("adventureWindowActions", () => {
   it("should create an action to open map object details", () => {
     const result = openMapObjectDetails("id");
 
     const expected: OpenMapObjectDetailsAction = {
       id: "id",
-      type: AdventureScreenActionType.OpenMapObjectDetails,
+      type: AdventureWindowActionType.OpenMapObjectDetails,
     };
 
     expect(result).toEqual(expected);
@@ -28,7 +28,7 @@ describe("adventureScreenActions", () => {
     const result = closeMapObjectDetails();
 
     const expected: CloseMapObjectDetailsAction = {
-      type: AdventureScreenActionType.CloseMapObjectDetails,
+      type: AdventureWindowActionType.CloseMapObjectDetails,
     };
 
     expect(result).toEqual(expected);
@@ -38,7 +38,7 @@ describe("adventureScreenActions", () => {
     const result = changeEndTurnPromptVisible(true);
 
     const expected: ChangeEndTurnPromptVisibleAction = {
-      type: AdventureScreenActionType.ChangeEndTurnPromptVisible,
+      type: AdventureWindowActionType.ChangeEndTurnPromptVisible,
       value: true,
     };
 
@@ -51,7 +51,7 @@ describe("adventureScreenActions", () => {
     const expected: OpenHeroTradingWindowAction = {
       hero: "hero",
       otherHero: "otherHero",
-      type: AdventureScreenActionType.OpenHeroTradingScreen,
+      type: AdventureWindowActionType.OpenHeroTradingScreen,
     };
 
     expect(result).toEqual(expected);
@@ -61,7 +61,7 @@ describe("adventureScreenActions", () => {
     const result = closeHeroTradingWindow();
 
     const expected: CloseHeroTradingWindowAction = {
-      type: AdventureScreenActionType.CloseHeroTradingScreen,
+      type: AdventureWindowActionType.CloseHeroTradingScreen,
     };
 
     expect(result).toEqual(expected);

@@ -36,7 +36,7 @@ import {
   TerrainType,
 } from "heroes-homm1";
 import {
-  AdventureWindow,
+  AdventureMapWindow,
   CellNumbers,
   DetailsOptionDetails,
   EditorButtons,
@@ -228,7 +228,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   public render() {
     return (
       <EditorWindow
-        renderAdventureWindow={this.renderAdventureWindow}
+        renderAdventureMap={this.renderAdventureMap}
         onScrollTopLeft={this.onScrollNorthWest}
         onScrollTopRight={this.onScrollNorthEast}
         onScrollBottomLeft={this.onScrollSouthWest}
@@ -245,11 +245,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     );
   }
 
-  private readonly renderAdventureWindow = () => {
+  private readonly renderAdventureMap = () => {
     const size = this.getTileCount();
 
     return (
-      <AdventureWindow
+      <AdventureMapWindow
         width={size}
         height={size}
         renderTile={this.renderTile}
@@ -261,7 +261,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     const { data, scenario, position, selectedOption } = this.props;
     const { activePoint, activeTile } = this.state;
 
-    // FIXME: move some logic to adventure window?
+    // FIXME: move some logic to adventure map?
     const windowPoint = getTilePoint(this.getTileCount(), index);
 
     const tilePoint = translatePoint(position, windowPoint.x, windowPoint.y);

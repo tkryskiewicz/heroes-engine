@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect, Route } from "react-router";
 
-import { AdventureScreen } from "./AdventureScreen";
+import { AdventureWindow } from "./AdventureWindow";
 import { EditorWindow } from "./EditorWindow";
 import { MainWindow } from "./MainWindow";
 
@@ -21,7 +21,7 @@ export class App extends React.Component {
         />
         <Route
           path="/adventure"
-          component={AdventureScreen}
+          component={AdventureWindow}
         />
         <Route
           path="/editor"

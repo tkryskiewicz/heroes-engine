@@ -6,7 +6,7 @@ import React from "react";
 import { Placeholder } from "../../Placeholder";
 import { EditorWindow } from "./EditorWindow";
 
-const renderAdventureWindow = () => <Placeholder name="Adventure Window" />;
+const renderAdventureMap = () => <Placeholder name="Adventure Map" />;
 const renderVerticalCellNumbers = () => <Placeholder name="VC" />;
 const renderHorizontalCellNumbers = () => <Placeholder name="HC" />;
 const renderHorizontalScrollbar = () => <Placeholder name="HS" />;
@@ -19,7 +19,7 @@ const renderButtons = () => <Placeholder name="Buttons" />;
 storiesOf("editor|EditorWindow", module)
   .add("default", () => (
     <EditorWindow
-      renderAdventureWindow={renderAdventureWindow}
+      renderAdventureMap={renderAdventureMap}
       onScrollTopLeft={action("Scroll Top Left")}
       onScrollTopRight={action("Scroll Top Right")}
       onScrollBottomLeft={action("Scroll Bottom Left")}

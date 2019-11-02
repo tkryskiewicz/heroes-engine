@@ -1,41 +1,41 @@
-import { AdventureScreenAction, AdventureScreenActionType } from "./actions";
-import { AdventureScreenState } from "./state";
+import { AdventureWindowAction, AdventureWindowActionType } from "./actions";
+import { AdventureWindowState } from "./state";
 
-const initialState: AdventureScreenState = {
+const initialState: AdventureWindowState = {
   endTurnPromptVisible: false,
   heroTradingWindowVisible: false,
   x: 0,
   y: 0,
 };
 
-export const adventureScreenReducer = (
-  state: AdventureScreenState = initialState,
-  action: AdventureScreenAction,
-): AdventureScreenState => {
+export const adventureWindowReducer = (
+  state: AdventureWindowState = initialState,
+  action: AdventureWindowAction,
+): AdventureWindowState => {
   switch (action.type) {
-    case AdventureScreenActionType.OpenMapObjectDetails:
+    case AdventureWindowActionType.OpenMapObjectDetails:
       return {
         ...state,
         visibleMapObjectDetails: action.id,
       };
-    case AdventureScreenActionType.CloseMapObjectDetails:
+    case AdventureWindowActionType.CloseMapObjectDetails:
       return {
         ...state,
         visibleMapObjectDetails: undefined,
       };
-    case AdventureScreenActionType.ChangeEndTurnPromptVisible:
+    case AdventureWindowActionType.ChangeEndTurnPromptVisible:
       return {
         ...state,
         endTurnPromptVisible: action.value,
       };
-    case AdventureScreenActionType.OpenHeroTradingScreen:
+    case AdventureWindowActionType.OpenHeroTradingScreen:
       return {
         ...state,
         hero: action.hero,
         heroTradingWindowVisible: true,
         otherHero: action.otherHero,
       };
-    case AdventureScreenActionType.CloseHeroTradingScreen:
+    case AdventureWindowActionType.CloseHeroTradingScreen:
       return {
         ...state,
         hero: undefined,

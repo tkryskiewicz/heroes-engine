@@ -1,4 +1,4 @@
-import { AdventureScreenState } from "./adventureScreen";
+import { AdventureWindowState } from "./adventureWindow";
 import { EditorWindowState } from "./editorWindow";
 import { GameState } from "./game";
 import { GameOptionsState } from "./gameOptions";
@@ -16,7 +16,7 @@ import { TroopWindowState } from "./troopWindow";
 export interface AppState {
   readonly highScoresWindow: HighScoresWindowState;
   readonly game: GameState;
-  readonly adventureScreen: AdventureScreenState;
+  readonly adventureWindow: AdventureWindowState;
   readonly gameSettings: GameSettingsState;
   readonly locators: LocatorsState;
   readonly heroTradingWindow: HeroTradingWindowState;

@@ -1,198 +1,166 @@
 import React from "react";
-import { DispatchProp } from "react-redux";
+import { Route, RouteComponentProps, Switch } from "react-router";
 
-import {
-  GameData,
-  getObject,
-  getTilePoint,
-  Map,
-  MapObject,
-} from "heroes-core";
-import { getTerrainTransition, isHeroMapObject, isTownMapObject } from "heroes-homm1";
-import { AdventureWindow, MapTile } from "heroes-homm1-react";
-import { adventureScreenActions, gameActions } from "heroes-homm1-state";
+import { AdventureOptionsWindow, AdventureWindow, GameText } from "heroes-homm1-react";
 
-import { renderObject } from "../config";
-import { HeroTradingWindow } from "../HeroTradingWindow";
-import { onTileClick, renderMapObjectDetails } from "./config";
+import { AdventureButtons } from "../AdventureButtons";
+import { AdventureMapWindow } from "../AdventureMapWindow";
+import { CampaignScenarioInfoWindow } from "../CampaignScenarioInfoWindow";
+import { GameOptionsWindow } from "../GameOptionsWindow";
+import { HeroLocators } from "../HeroLocators";
+import { KingdomOverviewWindow } from "../KingdomOverviewWindow";
+import { PuzzleWindow } from "../PuzzleWindow";
+import { StatusWindow } from "../StatusWindow";
+import { TownLocators } from "../TownLocators";
 
-interface Props extends DispatchProp {
-  readonly data: GameData;
-  readonly alignment: string;
-  readonly map: Map;
-  readonly x: number;
-  readonly y: number;
-  readonly activeObjectId?: string;
-  readonly visibleMapObjectDetails?: string;
-  readonly heroTradingScreenVisible: boolean;
-}
-
-interface State {
-  readonly cursor: string;
-}
-
-class AdventureWindowContainer extends React.Component<Props, State> {
-  public readonly state: State = {
-    cursor: "",
-  };
-
+export class AdventureWindowContainer extends React.Component<RouteComponentProps> {
   public render() {
-    const { cursor } = this.state;
-
     return (
-      <div className={cursor ? `cursor-${cursor}` : undefined}>
+      <div className="cursor-pointer">
         <AdventureWindow
-          width={14}
-          height={14}
-          renderTile={this.renderTile}
-          onTileClick={this.onTileClick}
+          renderAdventureMap={this.renderAdventureMap}
+          renderWorldMap={this.renderWorldMap}
+          renderAdventureButtons={this.renderAdventureButtons}
+          renderHeroLocators={this.renderHeroLocators}
+          renderTownLocators={this.renderTownLocators}
+          renderStatusWindow={this.renderStatusWindow}
         />
-        {this.props.visibleMapObjectDetails && this.renderMapObjectDetails(this.props.visibleMapObjectDetails)}
-        {this.props.heroTradingScreenVisible && this.rendeHeroTradingWindow()}
+        <Switch>
+          <Route
+            path={`${this.props.match.path}/kingdom-overview`}
+            render={this.renderKingdomOverviewWindow}
+          />
+          <Route
+            path={`${this.props.match.path}/adventure-options`}
+            render={this.renderAdventureOptionsWindow}
+          />
+          <Route
+            path={`${this.props.match.path}/puzzle`}
+            render={this.renderPuzzleWindow}
+          />
+          <Route
+            path={`${this.props.match.path}/game-options`}
+            render={this.renderGameOptionsWindow}
+          />
+          <Route
+            path={`${this.props.match.path}/scenario-info`}
+            render={this.renderScenarioInfoWindow}
+          />
+        </Switch>
       </div>
     );
   }
 
-  private readonly renderTile = (index: number) => {
-    const { data, map } = this.props;
-
-    const tile = map.tiles[index];
-
-    const object = tile.object ?
-      this.renderMapObject(tile.object, tile.terrain) :
-      undefined;
-
-    const point = getTilePoint(map.width, index);
-
-    const transition = getTerrainTransition(map, point, data);
-
+  private readonly renderAdventureMap = () => {
     return (
-      <MapTile
-        key={index}
-        index={index}
-        size="large"
-        terrainType={tile.terrain}
-        terrainVariant={0}
-        terrainTransition={transition}
-        onMouseEnter={this.onTileMouseEnter}
-        onMouseLeave={this.onTileMouseLeave}
-        onClick={this.onTileClick}
-      >
-        {object}
-      </MapTile>
+      <AdventureMapWindow />
     );
   }
 
-  private renderMapObject(object: MapObject, terrain: string) {
-    const { data } = this.props;
-
-    const objectData = data.mapObjects[object.dataId];
-
-    return renderObject(object, objectData, terrain, data, "large");
-  }
-
-  private readonly onTileMouseEnter = (index: number) => {
-    const { map, activeObjectId } = this.props;
-
-    const activeObject = activeObjectId !== undefined ?
-      getObject(map, activeObjectId) :
-      undefined;
-
-    const tile = this.props.map.tiles[index];
-
-    const object = tile.object;
-
-    if (object) {
-      if (isHeroMapObject(object)) {
-        if (activeObject !== undefined && activeObject.id !== object.id) {
-          this.setState({
-            cursor: "trade",
-          });
-        } else {
-          this.setState({
-            cursor: "hero",
-          });
-        }
-      } else if (isTownMapObject(object)) {
-        this.setState({
-          cursor: "town",
-        });
-      }
-    } else {
-      this.setState({
-        cursor: "move",
-      });
-    }
-  }
-
-  private readonly onTileMouseLeave = () => {
-    this.setState({
-      cursor: "",
-    });
-  }
-
-  private readonly onTileClick = (index: number) => {
-    const { data, map, alignment, activeObjectId } = this.props;
-
-    const activeObject = activeObjectId !== undefined ?
-      getObject(map, activeObjectId) :
-      undefined;
-
-    const tile = this.props.map.tiles[index];
-
-    const object = tile.object;
-
-    if (object) {
-      const objectData = data.mapObjects[object.dataId];
-
-      onTileClick(alignment, object, objectData, activeObject, data, this.props.dispatch);
-    }
-  }
-
-  private renderMapObjectDetails(id: string) {
-    const { data, map, activeObjectId } = this.props;
-
-    const activeObject = activeObjectId !== undefined ?
-      getObject(map, activeObjectId) :
-      undefined;
-
-    const object = getObject(this.props.map, id)!;
-
-    const objectData = data.mapObjects[object.dataId];
-
-    return renderMapObjectDetails(object, objectData, activeObject, data, {
-      onCloseClick: this.onCloseMapObjectDetailsClick,
-      onConfirmClick: this.onConfirmMapObjectDetailsClick,
-    });
-  }
-
-  private readonly onCloseMapObjectDetailsClick = () => {
-    this.props.dispatch(adventureScreenActions.closeMapObjectDetails());
-  }
-
-  private readonly onConfirmMapObjectDetailsClick = () => {
-    const { activeObjectId, visibleMapObjectDetails } = this.props;
-
-    this.props.dispatch(adventureScreenActions.closeMapObjectDetails());
-
-    this.props.dispatch(gameActions.visitMapObject(visibleMapObjectDetails!, activeObjectId!));
-  }
-
-  private rendeHeroTradingWindow() {
+  private readonly renderWorldMap = () => {
     return (
-      <HeroTradingWindow
-        visible={true}
-        onExitClick={this.onExitHeroTradingWindowClick}
+      <GameText size="normal">
+        World Map
+      </GameText>
+    );
+  }
+
+  private readonly renderHeroLocators = () => {
+    return (
+      <HeroLocators />
+    );
+  }
+
+  private readonly renderTownLocators = () => {
+    return (
+      <TownLocators />
+    );
+  }
+
+  private readonly renderAdventureButtons = () => {
+    return (
+      <AdventureButtons
+        onKingdomOverviewClick={this.onKingdomOverviewClick}
+        onAdventureOptionsClick={this.onAdventureOptionsClick}
+        onGameOptionsClick={this.onGameOptionsClick}
       />
     );
   }
 
-  private readonly onExitHeroTradingWindowClick = () => {
-    this.props.dispatch(adventureScreenActions.closeHeroTradingWindow());
+  private readonly onKingdomOverviewClick = () => {
+    this.props.history.push(`${this.props.match.path}/kingdom-overview`);
+  }
+
+  private readonly renderKingdomOverviewWindow = () => {
+    return (
+      <KingdomOverviewWindow
+        visible={true}
+        onExitClick={this.onBackClick}
+      />
+    );
+  }
+
+  private readonly onAdventureOptionsClick = () => {
+    this.props.history.push(`${this.props.match.path}/adventure-options`);
+  }
+
+  private readonly renderAdventureOptionsWindow = () => {
+    return (
+      <AdventureOptionsWindow
+        visible={true}
+        onViewPuzzleClick={this.onViewPuzzleClick}
+        onOkayClick={this.onBackClick}
+      />
+    );
+  }
+
+  private readonly onViewPuzzleClick = () => {
+    this.props.history.push(`${this.props.match.path}/puzzle`);
+  }
+
+  private readonly renderPuzzleWindow = () => {
+    return (
+      <PuzzleWindow
+        visible={true}
+        onExitClick={this.onBackClick}
+      />
+    );
+  }
+
+  private readonly onGameOptionsClick = () => {
+    this.props.history.push(`${this.props.match.path}/game-options`);
+  }
+
+  private readonly renderGameOptionsWindow = () => {
+    return (
+      <GameOptionsWindow
+        visible={true}
+        onOkayClick={this.onBackClick}
+        onInfoClick={this.onGameOptionsInfoClick}
+      />
+    );
+  }
+
+  private readonly onGameOptionsInfoClick = () => {
+    this.props.history.push(`${this.props.match.path}/scenario-info`);
+  }
+
+  private readonly renderScenarioInfoWindow = () => {
+    return (
+      <CampaignScenarioInfoWindow
+        visible={true}
+        onOkayClick={this.onBackClick}
+      />
+    );
+  }
+
+  private readonly renderStatusWindow = () => {
+    return (
+      <StatusWindow />
+    );
+  }
+
+  private readonly onBackClick = () => {
+    this.props.history.push(this.props.match.path);
   }
 }
-
-export {
-  AdventureWindowContainer as AdventureWindow,
-  Props as AdventureWindowProps,
-};

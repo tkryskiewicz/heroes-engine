@@ -1,4 +1,4 @@
-export interface AdventureScreenState {
+export interface AdventureWindowState {
   readonly x: number;
   readonly y: number;
   readonly visibleMapObjectDetails?: string;

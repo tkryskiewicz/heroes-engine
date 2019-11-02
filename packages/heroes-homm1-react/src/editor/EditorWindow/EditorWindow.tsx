@@ -8,7 +8,7 @@ import { GameText } from "../../core";
 import { EditorScrollButton } from "../EditorScrollButton";
 
 export interface EditorWindowProps {
-  readonly renderAdventureWindow: () => React.ReactNode;
+  readonly renderAdventureMap: () => React.ReactNode;
   readonly onScrollTopLeft: () => void;
   readonly onScrollTopRight: () => void;
   readonly onScrollBottomLeft: () => void;
@@ -31,7 +31,7 @@ export class EditorWindow extends React.Component<EditorWindowProps> {
     onScrollBottomRight: () => undefined,
     onScrollTopLeft: () => undefined,
     onScrollTopRight: () => undefined,
-    renderAdventureWindow: () => undefined,
+    renderAdventureMap: () => undefined,
     renderButtons: () => undefined,
     renderHorizontalCellNumbers: () => undefined,
     renderHorizontalScrollbar: () => undefined,
@@ -45,8 +45,8 @@ export class EditorWindow extends React.Component<EditorWindowProps> {
   public render() {
     return (
       <div className={styles.root}>
-        <div className={styles.adventureWindow}>
-          {this.props.renderAdventureWindow()}
+        <div className={styles.adventureMap}>
+          {this.props.renderAdventureMap()}
         </div>
         <EditorScrollButton
           className={styles.scrollNorthWest}

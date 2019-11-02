@@ -29,7 +29,7 @@ import {
   VisitObeliskPrompt,
 } from "heroes-homm1-react";
 import {
-  adventureScreenActions,
+  adventureWindowActions,
   gameActions,
   locatorsActions,
   statusWindowActions,
@@ -115,7 +115,7 @@ export const onTileClick = (
 
       dispatch(statusWindowActions.changeSelectedOption(StatusWindowOption.HeroStatus));
     } else if (isHeroMapObject(activeObject) && object.id !== activeObject.id) {
-      dispatch(adventureScreenActions.openHeroTradingWindow(activeObject.id, object.id));
+      dispatch(adventureWindowActions.openHeroTradingWindow(activeObject.id, object.id));
     } else {
       dispatch(locatorsActions.openLocatorDetails());
     }
@@ -130,7 +130,7 @@ export const onTileClick = (
       return;
     }
 
-    dispatch(adventureScreenActions.openMapObjectDetails(object.id));
+    dispatch(adventureWindowActions.openMapObjectDetails(object.id));
   } else if (isTreasureMapObject(object)) {
     if (!isHeroMapObject(activeObject)) {
       return;
@@ -142,7 +142,7 @@ export const onTileClick = (
       return;
     }
 
-    dispatch(adventureScreenActions.openMapObjectDetails(object.id));
+    dispatch(adventureWindowActions.openMapObjectDetails(object.id));
   } else if (isArtifactMapObjectData(objectData)) {
     if (!isHeroMapObject(activeObject)) {
       return;
@@ -154,6 +154,6 @@ export const onTileClick = (
       return;
     }
 
-    dispatch(adventureScreenActions.openMapObjectDetails(object.id));
+    dispatch(adventureWindowActions.openMapObjectDetails(object.id));
   }
 };

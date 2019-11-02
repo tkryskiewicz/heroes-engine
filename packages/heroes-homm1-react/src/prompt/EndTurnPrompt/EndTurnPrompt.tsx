@@ -16,7 +16,7 @@ export class EndTurnPrompt extends React.Component<PromptProps> {
         onCancelClick={this.props.onCancelClick}
       >
         <GameText size="large">
-          <FormattedMessage {...messages.endTurnWarning} />
+          <FormattedMessage {...messages.content} />
         </GameText>
       </GameModal>
     );

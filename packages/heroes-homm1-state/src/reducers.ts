@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import { adventureScreenReducer } from "./adventureScreen";
+import { adventureWindowReducer } from "./adventureWindow";
 import { editorWindowReducer } from "./editorWindow";
 import { gameReducer } from "./game";
 import { gameOptionsReducer } from "./gameOptions";
@@ -17,7 +17,7 @@ import { townWindowReducer } from "./townWindow";
 import { troopWindowReducer } from "./troopWindow";
 
 export const rootReducer = combineReducers<AppState>({
-  adventureScreen: adventureScreenReducer,
+  adventureWindow: adventureWindowReducer,
   editorWindow: editorWindowReducer,
   game: gameReducer,
   gameOptions: gameOptionsReducer,

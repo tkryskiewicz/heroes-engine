@@ -5,14 +5,14 @@ import {
   openHeroTradingWindow,
   openMapObjectDetails,
 } from "./actions";
-import { adventureScreenReducer } from "./reducers";
-import { AdventureScreenState } from "./state";
+import { adventureWindowReducer } from "./reducers";
+import { AdventureWindowState } from "./state";
 
-describe("adventureScreenReducer", () => {
+describe("adventureWindowReducer", () => {
   it("should return initial state", () => {
-    const result = adventureScreenReducer(undefined, {} as any);
+    const result = adventureWindowReducer(undefined, {} as any);
 
-    const expected: AdventureScreenState = {
+    const expected: AdventureWindowState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
       x: 0,
@@ -23,16 +23,16 @@ describe("adventureScreenReducer", () => {
   });
 
   it("should handle opening map object details", () => {
-    const state: AdventureScreenState = {
+    const state: AdventureWindowState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
       x: 0,
       y: 0,
     };
 
-    const result = adventureScreenReducer(state, openMapObjectDetails("id"));
+    const result = adventureWindowReducer(state, openMapObjectDetails("id"));
 
-    const expected: AdventureScreenState = {
+    const expected: AdventureWindowState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
       visibleMapObjectDetails: "id",
@@ -44,7 +44,7 @@ describe("adventureScreenReducer", () => {
   });
 
   it("should handle closing map object details", () => {
-    const state: AdventureScreenState = {
+    const state: AdventureWindowState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
       visibleMapObjectDetails: "id",
@@ -52,9 +52,9 @@ describe("adventureScreenReducer", () => {
       y: 0,
     };
 
-    const result = adventureScreenReducer(state, closeMapObjectDetails());
+    const result = adventureWindowReducer(state, closeMapObjectDetails());
 
-    const expected: AdventureScreenState = {
+    const expected: AdventureWindowState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
       x: 0,
@@ -65,16 +65,16 @@ describe("adventureScreenReducer", () => {
   });
 
   it("should handle changing end turn prompt visibility", () => {
-    const state: AdventureScreenState = {
+    const state: AdventureWindowState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
       x: 0,
       y: 0,
     };
 
-    const result = adventureScreenReducer(state, changeEndTurnPromptVisible(true));
+    const result = adventureWindowReducer(state, changeEndTurnPromptVisible(true));
 
-    const expected: AdventureScreenState = {
+    const expected: AdventureWindowState = {
       endTurnPromptVisible: true,
       heroTradingWindowVisible: false,
       x: 0,
@@ -85,16 +85,16 @@ describe("adventureScreenReducer", () => {
   });
 
   it("should handle opening hero trading window", () => {
-    const state: AdventureScreenState = {
+    const state: AdventureWindowState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
       x: 0,
       y: 0,
     };
 
-    const result = adventureScreenReducer(state, openHeroTradingWindow("hero", "otherHero"));
+    const result = adventureWindowReducer(state, openHeroTradingWindow("hero", "otherHero"));
 
-    const expected: AdventureScreenState = {
+    const expected: AdventureWindowState = {
       endTurnPromptVisible: false,
       hero: "hero",
       heroTradingWindowVisible: true,
@@ -107,7 +107,7 @@ describe("adventureScreenReducer", () => {
   });
 
   it("should handle closing hero trading window", () => {
-    const state: AdventureScreenState = {
+    const state: AdventureWindowState = {
       endTurnPromptVisible: false,
       hero: "hero",
       heroTradingWindowVisible: true,
@@ -116,9 +116,9 @@ describe("adventureScreenReducer", () => {
       y: 0,
     };
 
-    const result = adventureScreenReducer(state, closeHeroTradingWindow());
+    const result = adventureWindowReducer(state, closeHeroTradingWindow());
 
-    const expected: AdventureScreenState = {
+    const expected: AdventureWindowState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
       x: 0,

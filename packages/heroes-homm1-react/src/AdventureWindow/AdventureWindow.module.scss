@@ -1,8 +1,62 @@
 @import "../style/index";
 
 .root {
-  display: flex;
-  flex-wrap: wrap;
-  width: 14 * $MAP_TILE_SIZE;
-  height: 14 * $MAP_TILE_SIZE;
+  @include screen();
+
+  position: relative;
+  background: url("./assets/background.jpg");
+}
+
+.adventure-map {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 448px;
+  height: 448px;
+}
+
+.world-map {
+  position: absolute;
+  top: 16px;
+  left: $SCREEN_HEIGHT;
+  width: 144px;
+  height: 144px;
+}
+
+%locators {
+  width: 71px;
+  height: 128px;
+  overflow: hidden;
+}
+
+.hero-locators {
+  @extend %locators;
+
+  position: absolute;
+  top: 176px;
+  left: $SCREEN_HEIGHT;
+}
+
+.town-locators {
+  @extend %locators;
+
+  position: absolute;
+  top: 176px;
+  left: 553px;
+}
+
+.adventure-buttons {
+  position: absolute;
+  top: 320px;
+  left: $SCREEN_HEIGHT;
+  width: 144px;
+  height: 72px;
+}
+
+.status-window {
+  position: absolute;
+  top: 393px;
+  left: $SCREEN_HEIGHT;
+  width: 144px;
+  height: 71px;
 }

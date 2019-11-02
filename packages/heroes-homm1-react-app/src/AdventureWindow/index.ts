@@ -1,1 +1,1 @@
-export { AdventureWindow, AdventureWindowProps } from "./AdventureWindowContainer.connect";
+export { AdventureWindowContainer as AdventureWindow } from "./AdventureWindowContainer";

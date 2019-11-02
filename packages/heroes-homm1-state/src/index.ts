@@ -1,4 +1,4 @@
-export { adventureScreenActions } from "./adventureScreen";
+export { adventureWindowActions } from "./adventureWindow";
 export { editorWindowActions } from "./editorWindow";
 export { gameActions } from "./game";
 export { gameOptionsActions } from "./gameOptions";

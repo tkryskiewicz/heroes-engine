@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 
 import { getGameHeroes } from "heroes-homm1";
 import {
-  adventureScreenActions,
+  adventureWindowActions,
   AppState,
   gameActions,
   locatorsActions,
@@ -20,7 +20,7 @@ type StateProp =
 
 const mapStateToProps = (state: AppState): Pick<AdventureButtonsContainerProps, StateProp> => ({
   activeObjectId: state.locators.activeObjectId,
-  endTurnPromptVisible: state.adventureScreen.endTurnPromptVisible,
+  endTurnPromptVisible: state.adventureWindow.endTurnPromptVisible,
   heroes: getGameHeroes(state.game),
 });
 
@@ -37,10 +37,10 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsContainerP
     dispatch(statusWindowActions.changeSelectedOption(StatusWindowOption.HeroStatus));
   },
   onEndTurnClick() {
-    dispatch(adventureScreenActions.changeEndTurnPromptVisible(true));
+    dispatch(adventureWindowActions.changeEndTurnPromptVisible(true));
   },
   onConfirmEndTurnClick() {
-    dispatch(adventureScreenActions.changeEndTurnPromptVisible(false));
+    dispatch(adventureWindowActions.changeEndTurnPromptVisible(false));
 
     dispatch(gameActions.endTurn());
     dispatch(gameActions.startTurn());
@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<AdventureButtonsContainerP
     dispatch(statusWindowActions.changeSelectedOption(StatusWindowOption.DateInformation));
   },
   onCancelEndTurnClick() {
-    dispatch(adventureScreenActions.changeEndTurnPromptVisible(false));
+    dispatch(adventureWindowActions.changeEndTurnPromptVisible(false));
   },
 });
 

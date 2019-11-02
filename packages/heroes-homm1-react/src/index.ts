@@ -1,6 +1,6 @@
 export * from "./AdventureButtons";
+export * from "./AdventureMapWindow";
 export * from "./AdventureOptionsWindow";
-export * from "./AdventureScreen";
 export * from "./AdventureWindow";
 export * from "./base";
 export * from "./BuildShipWindow";

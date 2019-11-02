@@ -1,27 +1,24 @@
-import { number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Placeholder } from "../Placeholder";
-import { AdventureWindow, AdventureWindowProps } from "./AdventureWindow";
+import { AdventureWindow } from "./AdventureWindow";
 
-// FIXME
-const style: React.CSSProperties = {
-  height: 32,
-  width: 32,
-};
-
-const renderTile: AdventureWindowProps["renderTile"] = (index: number) => (
-  <div style={style}>
-    <Placeholder key={index} name={`${index}`} />
-  </div>
-);
+const renderAdventureMap = () => <Placeholder name="Adventure Map" />;
+const renderWorldMap = () => <Placeholder name="World Map" />;
+const renderAdventureButtons = () => <Placeholder name="Adventure Buttons" />;
+const renderHeroLocators = () => <Placeholder name="Hero Locators" />;
+const renderTownLocators = () => <Placeholder name="Town Locators" />;
+const renderStatusWindow = () => <Placeholder name="Status Window" />;
 
 storiesOf("AdventureWindow", module)
   .add("default", () => (
     <AdventureWindow
-      width={number("Width", 10, { range: true, min: 0, max: 100, step: 1 })}
-      height={number("Height", 10, { range: true, min: 0, max: 100, step: 1 })}
-      renderTile={renderTile}
+      renderAdventureMap={renderAdventureMap}
+      renderWorldMap={renderWorldMap}
+      renderAdventureButtons={renderAdventureButtons}
+      renderHeroLocators={renderHeroLocators}
+      renderTownLocators={renderTownLocators}
+      renderStatusWindow={renderStatusWindow}
     />
   ));
