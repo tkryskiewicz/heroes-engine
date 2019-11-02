@@ -38,6 +38,7 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.9",
     "jest": "^24.8.0",
     "node-sass": "^4.12.0",
     "rimraf": "^3.0.0",
@@ -68,5 +69,11 @@
     "lint": "yarn workspaces run lint",
     "test": "yarn workspaces run test",
     "test:coverage": "yarn workspaces run test:coverage"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint",
+      "pre-push": "yarn test"
+    }
   }
 }
