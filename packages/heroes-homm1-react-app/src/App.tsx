@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 
 import { AdventureWindow } from "./AdventureWindow";
 import { EditorWindow } from "./EditorWindow";
@@ -15,19 +15,21 @@ export class App extends React.Component {
         <p>
           A Heroes of Might and Magic engine written in TypeScript.
         </p>
-        <Route
-          path="/main"
-          component={MainWindow}
-        />
-        <Route
-          path="/adventure"
-          component={AdventureWindow}
-        />
-        <Route
-          path="/editor"
-          component={EditorWindow}
-        />
-        <Redirect to="/main" />
+        <Switch>
+          <Route
+            path="/main"
+            component={MainWindow}
+          />
+          <Route
+            path="/adventure"
+            component={AdventureWindow}
+          />
+          <Route
+            path="/editor"
+            component={EditorWindow}
+          />
+          <Redirect to="/main" />
+        </Switch>
       </>
     );
   }
