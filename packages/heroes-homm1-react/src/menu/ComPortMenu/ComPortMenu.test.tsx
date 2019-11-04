@@ -1,8 +1,8 @@
 import { shallow } from "enzyme";
 import React from "react";
-import { byTestId } from "test-helpers";
 
 import { ComPort } from "heroes-homm1";
+import { byTestId } from "heroes-test-helpers";
 
 import { ImageButton } from "../../base";
 import { ComPortMenu, ComPortMenuProps } from "./ComPortMenu";

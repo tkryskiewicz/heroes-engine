@@ -1,6 +1,7 @@
 import { shallow } from "enzyme";
 import React from "react";
-import { byTestId } from "test-helpers";
+
+import { byTestId } from "heroes-test-helpers";
 
 import { ImageButton } from "../base";
 import { AdventureButtons, AdventureButtonsProps } from "./AdventureButtons";

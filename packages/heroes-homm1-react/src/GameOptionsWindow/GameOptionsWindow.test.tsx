@@ -1,7 +1,7 @@
 import React from "react";
-import { byTestId, mountWithIntl } from "test-helpers";
 
 import { MovementSpeed, SoundVolume } from "heroes-homm1";
+import { byTestId, mountWithIntl } from "heroes-test-helpers";
 
 import { movementSpeed } from "./assets";
 

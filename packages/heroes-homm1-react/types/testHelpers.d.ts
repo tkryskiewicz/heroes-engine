@@ -1,4 +1,4 @@
-declare module "test-helpers" {
+declare module "heroes-test-helpers" {
   import { mount, shallow } from "enzyme";
 
   export const shallowWithIntl: typeof shallow;

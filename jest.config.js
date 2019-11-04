@@ -2,7 +2,7 @@ module.exports = {
   moduleNameMapper: {
     "\\.(scss)$": "<rootDir>/../../tests/styleMock",
     "\\.(jpg|png)$": "<rootDir>/../../tests/fileMock",
-    "test-helpers": "<rootDir>/../../tests/helpers",
+    "heroes-test-helpers": "<rootDir>/../../tests/helpers",
   },
   preset: "ts-jest",
   setupFiles: [

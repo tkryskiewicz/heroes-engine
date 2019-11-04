@@ -1,6 +1,7 @@
 import { mount } from "enzyme";
 import React from "react";
-import { byTestId } from "test-helpers";
+
+import { byTestId } from "heroes-test-helpers";
 
 import { SystemButton } from "../SystemButton";
 import { GameModal, GameModalProps } from "./GameModal";

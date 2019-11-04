@@ -1,7 +1,7 @@
 import React from "react";
-import { byTestId, mountWithIntl } from "test-helpers";
 
 import { HeroClass, HeroId } from "heroes-homm1";
+import { byTestId, mountWithIntl } from "heroes-test-helpers";
 
 import { ResourceCost, SystemButton } from "../base";
 import { RecruitHero } from "./RecruitHero";
