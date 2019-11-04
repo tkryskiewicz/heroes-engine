@@ -20,10 +20,6 @@ storiesOf("editor|EditorWindow", module)
   .add("default", () => (
     <EditorWindow
       renderAdventureMap={renderAdventureMap}
-      onScrollTopLeft={action("Scroll Top Left")}
-      onScrollTopRight={action("Scroll Top Right")}
-      onScrollBottomLeft={action("Scroll Bottom Left")}
-      onScrollBottomRight={action("Scroll Bottom Right")}
       renderVerticalCellNumbers={renderVerticalCellNumbers}
       renderHorizontalCellNumbers={renderHorizontalCellNumbers}
       renderHorizontalScrollbar={renderHorizontalScrollbar}
@@ -32,6 +28,18 @@ storiesOf("editor|EditorWindow", module)
       renderOptions={renderOptions}
       renderOptionDetails={renderOptionDetails}
       renderButtons={renderButtons}
-      message={text("Message", "")}
+    />
+  ))
+  .add("scrolling", () => (
+    <EditorWindow
+      onScrollTopLeft={action("Scroll Top Left")}
+      onScrollTopRight={action("Scroll Top Right")}
+      onScrollBottomLeft={action("Scroll Bottom Left")}
+      onScrollBottomRight={action("Scroll Bottom Right")}
+    />
+  ))
+  .add("message", () => (
+    <EditorWindow
+      message={text("Message", "message")}
     />
   ));
