@@ -8,7 +8,7 @@ import { GameModal, GameModalProps } from "./GameModal";
 
 describe("GameModal", () => {
   describe("yes/no type", () => {
-    it("should render confirm/cancel buttons", () => {
+    it("should render confirm/cancel", () => {
       const props: GameModalProps = {
         type: "yesNo",
         visible: true,
@@ -16,15 +16,15 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const confirmButton = wrapper.find(byTestId("confirm")).find(SystemButton);
+      const confirmControl = wrapper.find(byTestId("confirm")).find(SystemButton);
 
-      const cancelButton = wrapper.find(byTestId("cancel")).find(SystemButton);
+      const cancelControl = wrapper.find(byTestId("cancel")).find(SystemButton);
 
-      expect(confirmButton.exists()).toBe(true);
-      expect(confirmButton.props().type).toBe("yes");
+      expect(confirmControl.exists()).toBe(true);
+      expect(confirmControl.props().type).toBe("yes");
 
-      expect(cancelButton.exists()).toBe(true);
-      expect(cancelButton.props().type).toBe("no");
+      expect(cancelControl.exists()).toBe(true);
+      expect(cancelControl.props().type).toBe("no");
     });
 
     it("should not disable confirm by default", () => {
@@ -35,9 +35,9 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const confirmButton = wrapper.find(byTestId("confirm")).find(SystemButton);
+      const control = wrapper.find(byTestId("confirm")).find(SystemButton);
 
-      expect(confirmButton.props().disabled).toBe(false);
+      expect(control.props().disabled).toBe(false);
     });
 
     it("should disable confirm when set", () => {
@@ -49,9 +49,9 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const confirmButton = wrapper.find(byTestId("confirm")).find(SystemButton);
+      const control = wrapper.find(byTestId("confirm")).find(SystemButton);
 
-      expect(confirmButton.props().disabled).toBe(true);
+      expect(control.props().disabled).toBe(true);
     });
 
     it("should handle confirm click", () => {
@@ -63,9 +63,9 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const confirmButton = wrapper.find(byTestId("confirm")).find(SystemButton);
+      const control = wrapper.find(byTestId("confirm")).find(SystemButton);
 
-      confirmButton.props().onClick();
+      control.simulate("click");
 
       expect(props.onConfirmClick).toHaveBeenCalled();
     });
@@ -79,16 +79,16 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const cancelButton = wrapper.find(byTestId("cancel")).find(SystemButton);
+      const control = wrapper.find(byTestId("cancel")).find(SystemButton);
 
-      cancelButton.props().onClick();
+      control.simulate("click");
 
       expect(props.onCancelClick).toHaveBeenCalled();
     });
   });
 
   describe("okay/cancel type", () => {
-    it("should render okay/cancel buttons", () => {
+    it("should render okay/cancel", () => {
       const props: GameModalProps = {
         type: "okayCancel",
         visible: true,
@@ -96,15 +96,15 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const confirmButton = wrapper.find(byTestId("confirm")).find(SystemButton);
+      const confirmControl = wrapper.find(byTestId("confirm")).find(SystemButton);
 
-      const cancelButton = wrapper.find(byTestId("cancel")).find(SystemButton);
+      const cancelControl = wrapper.find(byTestId("cancel")).find(SystemButton);
 
-      expect(confirmButton.exists()).toBe(true);
-      expect(confirmButton.props().type).toBe("okay");
+      expect(confirmControl.exists()).toBe(true);
+      expect(confirmControl.props().type).toBe("okay");
 
-      expect(cancelButton.exists()).toBe(true);
-      expect(cancelButton.props().type).toBe("cancel");
+      expect(cancelControl.exists()).toBe(true);
+      expect(cancelControl.props().type).toBe("cancel");
     });
 
     it("should not disable confirm by default", () => {
@@ -115,9 +115,9 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const confirmButton = wrapper.find(byTestId("confirm")).find(SystemButton);
+      const control = wrapper.find(byTestId("confirm")).find(SystemButton);
 
-      expect(confirmButton.props().disabled).toBe(false);
+      expect(control.props().disabled).toBe(false);
     });
 
     it("should disable confirm when set", () => {
@@ -129,9 +129,9 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const confirmButton = wrapper.find(byTestId("confirm")).find(SystemButton);
+      const control = wrapper.find(byTestId("confirm")).find(SystemButton);
 
-      expect(confirmButton.props().disabled).toBe(true);
+      expect(control.props().disabled).toBe(true);
     });
 
     it("should handle confirm click", () => {
@@ -143,9 +143,9 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const confirmButton = wrapper.find(byTestId("confirm")).find(SystemButton);
+      const control = wrapper.find(byTestId("confirm")).find(SystemButton);
 
-      confirmButton.props().onClick();
+      control.simulate("click");
 
       expect(props.onConfirmClick).toHaveBeenCalled();
     });
@@ -159,16 +159,16 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const cancelButton = wrapper.find(byTestId("cancel")).find(SystemButton);
+      const control = wrapper.find(byTestId("cancel")).find(SystemButton);
 
-      cancelButton.props().onClick();
+      control.simulate("click");
 
       expect(props.onCancelClick).toHaveBeenCalled();
     });
   });
 
   describe("okay type", () => {
-    it("should render okay button", () => {
+    it("should render okay", () => {
       const props: GameModalProps = {
         type: "okay",
         visible: true,
@@ -176,14 +176,14 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const confirmButton = wrapper.find(byTestId("confirm")).find(SystemButton);
+      const confirmControl = wrapper.find(byTestId("confirm")).find(SystemButton);
 
-      const cancelButton = wrapper.find(byTestId("cancel")).find(SystemButton);
+      const cancelControl = wrapper.find(byTestId("cancel")).find(SystemButton);
 
-      expect(confirmButton.exists()).toBe(true);
-      expect(confirmButton.props().type).toBe("okay");
+      expect(confirmControl.exists()).toBe(true);
+      expect(confirmControl.props().type).toBe("okay");
 
-      expect(cancelButton.exists()).toBe(false);
+      expect(cancelControl.exists()).toBe(false);
     });
 
     it("should not disable confirm by default", () => {
@@ -194,9 +194,9 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const confirmButton = wrapper.find(byTestId("confirm")).find(SystemButton);
+      const control = wrapper.find(byTestId("confirm")).find(SystemButton);
 
-      expect(confirmButton.props().disabled).toBe(false);
+      expect(control.props().disabled).toBe(false);
     });
 
     it("should disable confirm when set", () => {
@@ -208,9 +208,9 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const confirmButton = wrapper.find(byTestId("confirm")).find(SystemButton);
+      const control = wrapper.find(byTestId("confirm")).find(SystemButton);
 
-      expect(confirmButton.props().disabled).toBe(true);
+      expect(control.props().disabled).toBe(true);
     });
 
     it("should handle confirm click", () => {
@@ -222,16 +222,16 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const confirmButton = wrapper.find(byTestId("confirm")).find(SystemButton);
+      const control = wrapper.find(byTestId("confirm"));
 
-      confirmButton.props().onClick();
+      control.simulate("click");
 
       expect(props.onConfirmClick).toHaveBeenCalled();
     });
   });
 
   describe("cancel type", () => {
-    it("should render cancel button", () => {
+    it("should render cancel", () => {
       const props: GameModalProps = {
         type: "cancel",
         visible: true,
@@ -239,14 +239,14 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const cancelButton = wrapper.find(byTestId("cancel")).find(SystemButton);
+      const cancelControl = wrapper.find(byTestId("cancel")).find(SystemButton);
 
-      const confirmButton = wrapper.find(byTestId("confirm")).find(SystemButton);
+      const confirmControl = wrapper.find(byTestId("confirm")).find(SystemButton);
 
-      expect(cancelButton.exists()).toBe(true);
-      expect(cancelButton.props().type).toBe("cancel");
+      expect(cancelControl.exists()).toBe(true);
+      expect(cancelControl.props().type).toBe("cancel");
 
-      expect(confirmButton.exists()).toBe(false);
+      expect(confirmControl.exists()).toBe(false);
     });
 
     it("should handle cancel click", () => {
@@ -258,9 +258,9 @@ describe("GameModal", () => {
 
       const wrapper = mount(<GameModal {...props} />);
 
-      const cancelButton = wrapper.find(byTestId("cancel")).find(SystemButton);
+      const control = wrapper.find(byTestId("cancel"));
 
-      cancelButton.props().onClick();
+      control.simulate("click");
 
       expect(props.onCancelClick).toHaveBeenCalled();
     });

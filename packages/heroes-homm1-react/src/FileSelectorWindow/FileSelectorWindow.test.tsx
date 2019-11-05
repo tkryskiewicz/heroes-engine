@@ -167,9 +167,9 @@ describe("FileSelectorWindow", () => {
 
     const wrapper = mountWithIntl(<FileSelectorWindow {...props} />);
 
-    const control = wrapper.find(byTestId("okay")).find(ImageButton);
+    const control = wrapper.find(byTestId("okay"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onOkayClick).toBeCalled();
   });
@@ -182,9 +182,9 @@ describe("FileSelectorWindow", () => {
 
     const wrapper = mountWithIntl(<FileSelectorWindow {...props} />);
 
-    const control = wrapper.find(byTestId("cancel")).find(ImageButton);
+    const control = wrapper.find(byTestId("cancel"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onCancelClick).toBeCalled();
   });

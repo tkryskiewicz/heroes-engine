@@ -45,7 +45,7 @@ describe("HighScoresWindow", () => {
       expect(score.find(byTestId("score")).text()).toBe("1");
     });
 
-    it("should render button", () => {
+    it("should render control", () => {
       const props: HighScoresWindowProps = {
         ...defaultProps,
         gameType: GameType.Standard,
@@ -86,7 +86,7 @@ describe("HighScoresWindow", () => {
       expect(score.find(byTestId("campaign")).text()).toBe("Queen Lamanda");
     });
 
-    it("should render button", () => {
+    it("should render control", () => {
       const props: HighScoresWindowProps = {
         ...defaultProps,
         gameType: GameType.Campaign,
@@ -108,9 +108,9 @@ describe("HighScoresWindow", () => {
 
     const wrapper = mountWithIntl(<HighScoresWindow {...props} />);
 
-    const control = wrapper.find(byTestId("game-type")).find(ImageButton);
+    const control = wrapper.find(byTestId("game-type"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onGameTypeClick).toHaveBeenCalled();
   });
@@ -123,9 +123,9 @@ describe("HighScoresWindow", () => {
 
     const wrapper = mountWithIntl(<HighScoresWindow {...props} />);
 
-    const control = wrapper.find(byTestId("exit")).find(ImageButton);
+    const control = wrapper.find(byTestId("exit"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onExitClick).toHaveBeenCalled();
   });

@@ -3,7 +3,6 @@ import React from "react";
 
 import { byTestId } from "heroes-test-helpers";
 
-import { ImageButton } from "../../base";
 import { MultiPlayerGameMenu, MultiPlayerGameMenuProps } from "./MultiPlayerGameMenu";
 
 describe("MultiPlayerGameMenu", () => {
@@ -14,9 +13,9 @@ describe("MultiPlayerGameMenu", () => {
 
     const wrapper = shallow(<MultiPlayerGameMenu {...props} />);
 
-    const hotSeatButton = wrapper.find(byTestId("hot-seat")).find(ImageButton);
+    const control = wrapper.find(byTestId("hot-seat"));
 
-    hotSeatButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onHotSeatClick).toHaveBeenCalled();
   });
@@ -28,9 +27,9 @@ describe("MultiPlayerGameMenu", () => {
 
     const wrapper = shallow(<MultiPlayerGameMenu {...props} />);
 
-    const directConnectButton = wrapper.find(byTestId("direct-connect")).find(ImageButton);
+    const control = wrapper.find(byTestId("direct-connect"));
 
-    directConnectButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onDirectConnectClick).toHaveBeenCalled();
   });
@@ -42,9 +41,9 @@ describe("MultiPlayerGameMenu", () => {
 
     const wrapper = shallow(<MultiPlayerGameMenu {...props} />);
 
-    const modemButton = wrapper.find(byTestId("modem")).find(ImageButton);
+    const control = wrapper.find(byTestId("modem"));
 
-    modemButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onModemClick).toHaveBeenCalled();
   });
@@ -56,9 +55,9 @@ describe("MultiPlayerGameMenu", () => {
 
     const wrapper = shallow(<MultiPlayerGameMenu {...props} />);
 
-    const networkButton = wrapper.find(byTestId("network")).find(ImageButton);
+    const control = wrapper.find(byTestId("network"));
 
-    networkButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onNetworkClick).toHaveBeenCalled();
   });
@@ -70,9 +69,9 @@ describe("MultiPlayerGameMenu", () => {
 
     const wrapper = shallow(<MultiPlayerGameMenu {...props} />);
 
-    const cancelButton = wrapper.find(byTestId("cancel")).find(ImageButton);
+    const control = wrapper.find(byTestId("cancel"));
 
-    cancelButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onCancelClick).toHaveBeenCalled();
   });

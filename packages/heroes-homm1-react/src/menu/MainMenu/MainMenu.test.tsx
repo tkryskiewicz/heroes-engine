@@ -3,7 +3,6 @@ import React from "react";
 
 import { byTestId } from "heroes-test-helpers";
 
-import { ImageButton } from "../../base";
 import { MainMenu, MainMenuProps } from "./MainMenu";
 
 describe("MainMenu", () => {
@@ -14,9 +13,9 @@ describe("MainMenu", () => {
 
     const wrapper = shallow(<MainMenu {...props} />);
 
-    const newGameButton = wrapper.find(byTestId("new-game")).find(ImageButton);
+    const control = wrapper.find(byTestId("new-game"));
 
-    newGameButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onNewGameClick).toHaveBeenCalled();
   });
@@ -28,9 +27,9 @@ describe("MainMenu", () => {
 
     const wrapper = shallow(<MainMenu {...props} />);
 
-    const loadGameButton = wrapper.find(byTestId("load-game")).find(ImageButton);
+    const control = wrapper.find(byTestId("load-game"));
 
-    loadGameButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onLoadGameClick).toHaveBeenCalled();
   });
@@ -42,9 +41,9 @@ describe("MainMenu", () => {
 
     const wrapper = shallow(<MainMenu {...props} />);
 
-    const viewHighScoresButton = wrapper.find(byTestId("view-high-scores")).find(ImageButton);
+    const control = wrapper.find(byTestId("view-high-scores"));
 
-    viewHighScoresButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onViewHighScoresClick).toHaveBeenCalled();
   });
@@ -56,9 +55,9 @@ describe("MainMenu", () => {
 
     const wrapper = shallow(<MainMenu {...props} />);
 
-    const viewCreditsButton = wrapper.find(byTestId("view-credits")).find(ImageButton);
+    const control = wrapper.find(byTestId("view-credits"));
 
-    viewCreditsButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onViewCreditsClick).toHaveBeenCalled();
   });
@@ -70,9 +69,9 @@ describe("MainMenu", () => {
 
     const wrapper = shallow(<MainMenu {...props} />);
 
-    const quitButton = wrapper.find(byTestId("quit")).find(ImageButton);
+    const control = wrapper.find(byTestId("quit"));
 
-    quitButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onQuitClick).toHaveBeenCalled();
   });

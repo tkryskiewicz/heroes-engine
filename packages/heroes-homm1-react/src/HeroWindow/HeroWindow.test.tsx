@@ -48,9 +48,9 @@ describe("HeroWindow", () => {
 
     const wrapper = mount(<HeroWindow {...props} />);
 
-    const control = wrapper.find(byTestId("dismiss")).find(ImageButton);
+    const control = wrapper.find(byTestId("dismiss"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onDismissClick).toHaveBeenCalled();
   });
@@ -63,9 +63,9 @@ describe("HeroWindow", () => {
 
     const wrapper = mount(<HeroWindow {...props} />);
 
-    const control = wrapper.find(byTestId("exit")).find(ImageButton);
+    const control = wrapper.find(byTestId("exit"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onExitClick).toHaveBeenCalled();
   });

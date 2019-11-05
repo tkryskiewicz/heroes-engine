@@ -5,7 +5,6 @@ import { byTestId } from "heroes-test-helpers";
 
 import { scenarioNumberImages } from "./assets";
 
-import { ImageButton } from "../base";
 import { CampaignScenarioInfoWindow, CampaignScenarioInfoWindowProps } from "./CampaignScenarioInfoWindow";
 
 describe("CampaignScenarioInfoWindow", () => {
@@ -59,9 +58,9 @@ describe("CampaignScenarioInfoWindow", () => {
 
     const wrapper = mount(<CampaignScenarioInfoWindow {...props} />);
 
-    const control = wrapper.find(byTestId("okay")).find(ImageButton);
+    const control = wrapper.find(byTestId("okay"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onOkayClick).toHaveBeenCalled();
   });
@@ -74,9 +73,9 @@ describe("CampaignScenarioInfoWindow", () => {
 
     const wrapper = mount(<CampaignScenarioInfoWindow {...props} />);
 
-    const control = wrapper.find(byTestId("restart-scenario")).find(ImageButton);
+    const control = wrapper.find(byTestId("restart-scenario"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onRestartScenarioClick).toHaveBeenCalled();
   });

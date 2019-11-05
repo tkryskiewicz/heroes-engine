@@ -14,23 +14,31 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const nextHeroButton = wrapper.find(byTestId("next-hero")).find(ImageButton);
+    const control = wrapper.find(byTestId("next-hero"));
 
-    nextHeroButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onNextHeroClick).toHaveBeenCalled();
   });
 
-  it("should disable next hero", () => {
+  it("should not disable next hero by default", () => {
+    const wrapper = shallow(<AdventureButtons />);
+
+    const control = wrapper.find(byTestId("next-hero")).find(ImageButton);
+
+    expect(control.props().disabled).toBe(false);
+  });
+
+  it("should disable next hero when set", () => {
     const props: AdventureButtonsProps = {
       nextHeroDisabled: true,
     };
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const nextHeroButton = wrapper.find(byTestId("next-hero")).find(ImageButton);
+    const control = wrapper.find(byTestId("next-hero")).find(ImageButton);
 
-    expect(nextHeroButton.props().disabled).toBe(true);
+    expect(control.props().disabled).toBe(true);
   });
 
   it("should handle move click", () => {
@@ -40,23 +48,31 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const moveButton = wrapper.find(byTestId("move")).find(ImageButton);
+    const control = wrapper.find(byTestId("move"));
 
-    moveButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onMoveClick).toHaveBeenCalled();
   });
 
-  it("should disable move", () => {
+  it("should not disable move by default", () => {
+    const wrapper = shallow(<AdventureButtons />);
+
+    const control = wrapper.find(byTestId("move")).find(ImageButton);
+
+    expect(control.props().disabled).toBe(false);
+  });
+
+  it("should disable move when set", () => {
     const props: AdventureButtonsProps = {
       moveDisabled: true,
     };
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const moveButton = wrapper.find(byTestId("move")).find(ImageButton);
+    const control = wrapper.find(byTestId("move")).find(ImageButton);
 
-    expect(moveButton.props().disabled).toBe(true);
+    expect(control.props().disabled).toBe(true);
   });
 
   it("should handle kingdom overview click", () => {
@@ -66,9 +82,9 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const kingdomOverviewButton = wrapper.find(byTestId("kingdom-overview")).find(ImageButton);
+    const control = wrapper.find(byTestId("kingdom-overview"));
 
-    kingdomOverviewButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onKingdomOverviewClick).toHaveBeenCalled();
   });
@@ -80,9 +96,9 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const endTurnButton = wrapper.find(byTestId("end-turn")).find(ImageButton);
+    const control = wrapper.find(byTestId("end-turn"));
 
-    endTurnButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onEndTurnClick).toHaveBeenCalled();
 
@@ -95,9 +111,9 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const adventureOptionsButton = wrapper.find(byTestId("adventure-options")).find(ImageButton);
+    const control = wrapper.find(byTestId("adventure-options"));
 
-    adventureOptionsButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onAdventureOptionsClick).toHaveBeenCalled();
 
@@ -110,9 +126,9 @@ describe("AdventureButtons", () => {
 
     const wrapper = shallow(<AdventureButtons {...props} />);
 
-    const gameOptionsButton = wrapper.find(byTestId("game-options")).find(ImageButton);
+    const control = wrapper.find(byTestId("game-options"));
 
-    gameOptionsButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onGameOptionsClick).toHaveBeenCalled();
   });

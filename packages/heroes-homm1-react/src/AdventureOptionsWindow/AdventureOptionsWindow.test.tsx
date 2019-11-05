@@ -3,7 +3,6 @@ import React from "react";
 
 import { byTestId } from "heroes-test-helpers";
 
-import { ImageButton } from "../base";
 import { AdventureOptionsWindow, AdventureOptionsWindowProps } from "./AdventureOptionsWindow";
 
 describe("AdventureOptionsWindow", () => {
@@ -15,9 +14,9 @@ describe("AdventureOptionsWindow", () => {
 
     const wrapper = mount(<AdventureOptionsWindow {...props} />);
 
-    const viewWorldButton = wrapper.find(byTestId("view-world")).find(ImageButton);
+    const control = wrapper.find(byTestId("view-world"));
 
-    viewWorldButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onViewWorldClick).toHaveBeenCalled();
   });
@@ -30,9 +29,9 @@ describe("AdventureOptionsWindow", () => {
 
     const wrapper = mount(<AdventureOptionsWindow {...props} />);
 
-    const viewPuzzleButton = wrapper.find(byTestId("view-puzzle")).find(ImageButton);
+    const control = wrapper.find(byTestId("view-puzzle"));
 
-    viewPuzzleButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onViewPuzzleClick).toHaveBeenCalled();
   });
@@ -45,9 +44,9 @@ describe("AdventureOptionsWindow", () => {
 
     const wrapper = mount(<AdventureOptionsWindow {...props} />);
 
-    const castSpellButton = wrapper.find(byTestId("cast-spell")).find(ImageButton);
+    const control = wrapper.find(byTestId("cast-spell"));
 
-    castSpellButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onCastSpellClick).toHaveBeenCalled();
   });
@@ -60,9 +59,9 @@ describe("AdventureOptionsWindow", () => {
 
     const wrapper = mount(<AdventureOptionsWindow {...props} />);
 
-    const digButton = wrapper.find(byTestId("dig")).find(ImageButton);
+    const control = wrapper.find(byTestId("dig"));
 
-    digButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onDigClick).toHaveBeenCalled();
 
@@ -76,9 +75,9 @@ describe("AdventureOptionsWindow", () => {
 
     const wrapper = mount(<AdventureOptionsWindow {...props} />);
 
-    const okayButton = wrapper.find(byTestId("okay")).find(ImageButton);
+    const control = wrapper.find(byTestId("okay"));
 
-    okayButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onOkayClick).toHaveBeenCalled();
   });

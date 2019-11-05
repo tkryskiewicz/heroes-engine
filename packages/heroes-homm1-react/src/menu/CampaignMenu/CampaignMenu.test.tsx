@@ -4,7 +4,6 @@ import React from "react";
 import { CampaignId } from "heroes-homm1";
 import { byTestId } from "heroes-test-helpers";
 
-import { ImageButton } from "../../base";
 import { CampaignMenu, CampaignMenuProps } from "./CampaignMenu";
 
 describe("CampaignMenu", () => {
@@ -15,9 +14,9 @@ describe("CampaignMenu", () => {
 
     const wrapper = shallow(<CampaignMenu {...props} />);
 
-    const playLordIronfistButton = wrapper.find(byTestId("play-lord-ironfist")).find(ImageButton);
+    const control = wrapper.find(byTestId("play-lord-ironfist"));
 
-    playLordIronfistButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onOptionClick).toHaveBeenCalledWith(CampaignId.LordIronfist);
   });
@@ -29,9 +28,9 @@ describe("CampaignMenu", () => {
 
     const wrapper = shallow(<CampaignMenu {...props} />);
 
-    const playLordSlayerButton = wrapper.find(byTestId("play-lord-slayer")).find(ImageButton);
+    const control = wrapper.find(byTestId("play-lord-slayer"));
 
-    playLordSlayerButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onOptionClick).toHaveBeenCalledWith(CampaignId.LordSlayer);
   });
@@ -43,9 +42,9 @@ describe("CampaignMenu", () => {
 
     const wrapper = shallow(<CampaignMenu {...props} />);
 
-    const playQueenLamandaButton = wrapper.find(byTestId("play-queen-lamanda")).find(ImageButton);
+    const control = wrapper.find(byTestId("play-queen-lamanda"));
 
-    playQueenLamandaButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onOptionClick).toHaveBeenCalledWith(CampaignId.QueenLamanda);
   });
@@ -57,9 +56,9 @@ describe("CampaignMenu", () => {
 
     const wrapper = shallow(<CampaignMenu {...props} />);
 
-    const playLordAlamar = wrapper.find(byTestId("play-lord-alamar")).find(ImageButton);
+    const control = wrapper.find(byTestId("play-lord-alamar"));
 
-    playLordAlamar.props().onClick();
+    control.simulate("click");
 
     expect(props.onOptionClick).toHaveBeenCalledWith(CampaignId.LordAlamar);
   });
@@ -71,9 +70,9 @@ describe("CampaignMenu", () => {
 
     const wrapper = shallow(<CampaignMenu {...props} />);
 
-    const cancelButton = wrapper.find(byTestId("cancel")).find(ImageButton);
+    const control = wrapper.find(byTestId("cancel"));
 
-    cancelButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onCancelClick).toHaveBeenCalled();
   });

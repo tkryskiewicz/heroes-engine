@@ -3,7 +3,6 @@ import React from "react";
 
 import { byTestId } from "heroes-test-helpers";
 
-import { ImageButton } from "../../base";
 import { GameTypeMenu, GameTypeMenuProps } from "./GameTypeMenu";
 
 describe("GameTypeMenu", () => {
@@ -14,9 +13,9 @@ describe("GameTypeMenu", () => {
 
     const wrapper = shallow(<GameTypeMenu {...props} />);
 
-    const standardGameButton = wrapper.find(byTestId("standard-game")).find(ImageButton);
+    const control = wrapper.find(byTestId("standard-game"));
 
-    standardGameButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onStandardGameClick).toHaveBeenCalled();
   });
@@ -28,9 +27,9 @@ describe("GameTypeMenu", () => {
 
     const wrapper = shallow(<GameTypeMenu {...props} />);
 
-    const campaignGameButton = wrapper.find(byTestId("campaign-game")).find(ImageButton);
+    const control = wrapper.find(byTestId("campaign-game"));
 
-    campaignGameButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onCampaignGameClick).toHaveBeenCalled();
   });
@@ -42,9 +41,9 @@ describe("GameTypeMenu", () => {
 
     const wrapper = shallow(<GameTypeMenu {...props} />);
 
-    const multiPlayerGameButton = wrapper.find(byTestId("multi-player-game")).find(ImageButton);
+    const control = wrapper.find(byTestId("multi-player-game"));
 
-    multiPlayerGameButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onMultiPlayerGameClick).toHaveBeenCalled();
   });
@@ -56,9 +55,9 @@ describe("GameTypeMenu", () => {
 
     const wrapper = shallow(<GameTypeMenu {...props} />);
 
-    const cancelButton = wrapper.find(byTestId("cancel")).find(ImageButton);
+    const control = wrapper.find(byTestId("cancel"));
 
-    cancelButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onCancelClick).toHaveBeenCalled();
   });

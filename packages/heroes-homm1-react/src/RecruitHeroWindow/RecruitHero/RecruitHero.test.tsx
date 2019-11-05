@@ -3,7 +3,7 @@ import React from "react";
 import { HeroClass, HeroId } from "heroes-homm1";
 import { byTestId, mountWithIntl } from "heroes-test-helpers";
 
-import { HeroPortrait, ImageButton } from "../../base";
+import { HeroPortrait } from "../../base";
 import { RecruitHero, RecruitHeroProps } from "./RecruitHero";
 
 describe("RecruitHero", () => {
@@ -45,9 +45,9 @@ describe("RecruitHero", () => {
 
     const wrapper = mountWithIntl(<RecruitHero {...props} />);
 
-    const control = wrapper.find(byTestId("portrait")).find(HeroPortrait);
+    const control = wrapper.find(byTestId("portrait"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onPortraitClick).toHaveBeenCalledWith(HeroId.Maximus);
   });
@@ -61,9 +61,9 @@ describe("RecruitHero", () => {
 
     const wrapper = mountWithIntl(<RecruitHero {...props} />);
 
-    const control = wrapper.find(byTestId("recruit")).find(ImageButton);
+    const control = wrapper.find(byTestId("recruit"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onRecruitClick).toHaveBeenCalledWith(HeroId.Barok);
   });

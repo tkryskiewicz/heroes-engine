@@ -5,7 +5,7 @@ import { byTestId, mountWithIntl } from "heroes-test-helpers";
 
 import { movementSpeed } from "./assets";
 
-import { ImageButton, ImageSwitch } from "../base";
+import { ImageSwitch } from "../base";
 import { GameOptionsWindow, GameOptionsWindowProps } from "./GameOptionsWindow";
 
 describe("GameOptionsWindow", () => {
@@ -17,9 +17,9 @@ describe("GameOptionsWindow", () => {
 
     const wrapper = mountWithIntl(<GameOptionsWindow {...props} />);
 
-    const control = wrapper.find(byTestId("new-game")).find(ImageButton);
+    const control = wrapper.find(byTestId("new-game"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onNewGameClick).toHaveBeenCalled();
   });
@@ -32,9 +32,9 @@ describe("GameOptionsWindow", () => {
 
     const wrapper = mountWithIntl(<GameOptionsWindow {...props} />);
 
-    const control = wrapper.find(byTestId("load-game")).find(ImageButton);
+    const control = wrapper.find(byTestId("load-game"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onLoadGameClick).toHaveBeenCalled();
   });
@@ -47,9 +47,9 @@ describe("GameOptionsWindow", () => {
 
     const wrapper = mountWithIntl(<GameOptionsWindow {...props} />);
 
-    const control = wrapper.find(byTestId("save-game")).find(ImageButton);
+    const control = wrapper.find(byTestId("save-game"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onSaveGameClick).toHaveBeenCalled();
   });
@@ -62,9 +62,9 @@ describe("GameOptionsWindow", () => {
 
     const wrapper = mountWithIntl(<GameOptionsWindow {...props} />);
 
-    const control = wrapper.find(byTestId("quit")).find(ImageButton);
+    const control = wrapper.find(byTestId("quit"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onQuitClick).toHaveBeenCalled();
   });
@@ -137,10 +137,9 @@ describe("GameOptionsWindow", () => {
 
       const wrapper = mountWithIntl(<GameOptionsWindow {...props} />);
 
-      const control = wrapper.find(byTestId("music-volume")).find(ImageSwitch);
+      const control = wrapper.find(byTestId("music-volume"));
 
-      // TODO: interested only in click, value is ignored
-      control.props().onChange(true);
+      control.simulate("click");
 
       expect(props.onMusicVolumeChange).toHaveBeenCalledWith(SoundVolume.On);
     });
@@ -214,10 +213,9 @@ describe("GameOptionsWindow", () => {
 
       const wrapper = mountWithIntl(<GameOptionsWindow {...props} />);
 
-      const control = wrapper.find(byTestId("effects-volume")).find(ImageSwitch);
+      const control = wrapper.find(byTestId("effects-volume"));
 
-      // TODO: interested only in click, value is ignored
-      control.props().onChange(true);
+      control.simulate("click");
 
       expect(props.onEffectsVolumeChange).toHaveBeenCalledWith(SoundVolume.On);
     });
@@ -303,9 +301,9 @@ describe("GameOptionsWindow", () => {
 
       const wrapper = mountWithIntl(<GameOptionsWindow {...props} />);
 
-      const control = wrapper.find(byTestId("auto-save")).find(ImageSwitch);
+      const control = wrapper.find(byTestId("auto-save"));
 
-      control.props().onChange(true);
+      control.simulate("click");
 
       expect(props.onAutoSaveChange).toBeCalledWith(true);
     });
@@ -347,9 +345,9 @@ describe("GameOptionsWindow", () => {
 
       const wrapper = mountWithIntl(<GameOptionsWindow {...props} />);
 
-      const control = wrapper.find(byTestId("show-path")).find(ImageSwitch);
+      const control = wrapper.find(byTestId("show-path"));
 
-      control.props().onChange(true);
+      control.simulate("click");
 
       expect(props.onShowPathChange).toBeCalledWith(true);
     });
@@ -391,9 +389,9 @@ describe("GameOptionsWindow", () => {
 
       const wrapper = mountWithIntl(<GameOptionsWindow {...props} />);
 
-      const control = wrapper.find(byTestId("view-enemy-movement")).find(ImageSwitch);
+      const control = wrapper.find(byTestId("view-enemy-movement"));
 
-      control.props().onChange(true);
+      control.simulate("click");
 
       expect(props.onViewEnemyMovementChange).toBeCalledWith(true);
     });
@@ -407,9 +405,9 @@ describe("GameOptionsWindow", () => {
 
     const wrapper = mountWithIntl(<GameOptionsWindow {...props} />);
 
-    const control = wrapper.find(byTestId("okay")).find(ImageButton);
+    const control = wrapper.find(byTestId("okay"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onOkayClick).toHaveBeenCalled();
   });
@@ -422,9 +420,9 @@ describe("GameOptionsWindow", () => {
 
     const wrapper = mountWithIntl(<GameOptionsWindow {...props} />);
 
-    const control = wrapper.find(byTestId("info")).find(ImageButton);
+    const control = wrapper.find(byTestId("info"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onInfoClick).toHaveBeenCalled();
   });

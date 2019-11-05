@@ -4,7 +4,6 @@ import React from "react";
 import { ComPort } from "heroes-homm1";
 import { byTestId } from "heroes-test-helpers";
 
-import { ImageButton } from "../../base";
 import { ComPortMenu, ComPortMenuProps } from "./ComPortMenu";
 
 describe("ComPortMenu", () => {
@@ -15,9 +14,9 @@ describe("ComPortMenu", () => {
 
     const wrapper = shallow(<ComPortMenu {...props} />);
 
-    const com1Button = wrapper.find(byTestId("com-1")).find(ImageButton);
+    const control = wrapper.find(byTestId("com-1"));
 
-    com1Button.props().onClick();
+    control.simulate("click");
 
     expect(props.onOptionClick).toHaveBeenCalledWith(ComPort.Com1);
   });
@@ -29,9 +28,9 @@ describe("ComPortMenu", () => {
 
     const wrapper = shallow(<ComPortMenu {...props} />);
 
-    const com2Button = wrapper.find(byTestId("com-2")).find(ImageButton);
+    const control = wrapper.find(byTestId("com-2"));
 
-    com2Button.props().onClick();
+    control.simulate("click");
 
     expect(props.onOptionClick).toHaveBeenCalledWith(ComPort.Com2);
   });
@@ -43,9 +42,9 @@ describe("ComPortMenu", () => {
 
     const wrapper = shallow(<ComPortMenu {...props} />);
 
-    const com3Button = wrapper.find(byTestId("com-3")).find(ImageButton);
+    const control = wrapper.find(byTestId("com-3"));
 
-    com3Button.props().onClick();
+    control.simulate("click");
 
     expect(props.onOptionClick).toHaveBeenCalledWith(ComPort.Com3);
   });
@@ -57,9 +56,9 @@ describe("ComPortMenu", () => {
 
     const wrapper = shallow(<ComPortMenu {...props} />);
 
-    const com4Button = wrapper.find(byTestId("com-4")).find(ImageButton);
+    const control = wrapper.find(byTestId("com-4"));
 
-    com4Button.props().onClick();
+    control.simulate("click");
 
     expect(props.onOptionClick).toHaveBeenCalledWith(ComPort.Com4);
   });
@@ -71,9 +70,9 @@ describe("ComPortMenu", () => {
 
     const wrapper = shallow(<ComPortMenu {...props} />);
 
-    const cancelButton = wrapper.find(byTestId("cancel")).find(ImageButton);
+    const control = wrapper.find(byTestId("cancel"));
 
-    cancelButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onCancelClick).toHaveBeenCalled();
   });

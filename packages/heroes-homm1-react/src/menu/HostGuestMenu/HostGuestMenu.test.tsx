@@ -9,7 +9,7 @@ import { ImageButton } from "../../base";
 import { HostGuestMenu, HostGuestMenuProps } from "./HostGuestMenu";
 
 describe("HostGuestMenu", () => {
-  it("should render host button", () => {
+  it("should render host", () => {
     const wrapper = mount(<HostGuestMenu />);
 
     const control = wrapper.find(byTestId("host")).find(ImageButton);
@@ -17,7 +17,7 @@ describe("HostGuestMenu", () => {
     expect(control.props().images).toBe(buttonImages.host);
   });
 
-  it("should render guest button by default", () => {
+  it("should render guest by default", () => {
     const wrapper = mount(<HostGuestMenu />);
 
     const control = wrapper.find(byTestId("guest")).find(ImageButton);
@@ -31,18 +31,18 @@ describe("HostGuestMenu", () => {
     expect(wrapper.props().descriptionVisible).toBe(false);
   });
 
-  it("should render buttons with description when set", () => {
+  it("should render controls with description when set", () => {
     const props: HostGuestMenuProps = {
       descriptionVisible: true,
     };
 
     const wrapper = mount(<HostGuestMenu {...props} />);
 
-    const hostButton = wrapper.find(byTestId("host")).find(ImageButton);
-    const guestButton = wrapper.find(byTestId("guest")).find(ImageButton);
+    const hostControl = wrapper.find(byTestId("host")).find(ImageButton);
+    const guestControl = wrapper.find(byTestId("guest")).find(ImageButton);
 
-    expect(hostButton.props().images).toBe(buttonImages.hostDials);
-    expect(guestButton.props().images).toBe(buttonImages.guestAnswers);
+    expect(hostControl.props().images).toBe(buttonImages.hostDials);
+    expect(guestControl.props().images).toBe(buttonImages.guestAnswers);
   });
 
   it("should handle host click", () => {
@@ -52,9 +52,9 @@ describe("HostGuestMenu", () => {
 
     const wrapper = mount(<HostGuestMenu {...props} />);
 
-    const control = wrapper.find(byTestId("host")).find(ImageButton);
+    const control = wrapper.find(byTestId("host"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onHostClick).toHaveBeenCalled();
   });
@@ -66,9 +66,9 @@ describe("HostGuestMenu", () => {
 
     const wrapper = mount(<HostGuestMenu {...props} />);
 
-    const control = wrapper.find(byTestId("guest")).find(ImageButton);
+    const control = wrapper.find(byTestId("guest"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onGuestClick).toHaveBeenCalled();
   });
@@ -80,9 +80,9 @@ describe("HostGuestMenu", () => {
 
     const wrapper = mount(<HostGuestMenu {...props} />);
 
-    const control = wrapper.find(byTestId("cancel")).find(ImageButton);
+    const control = wrapper.find(byTestId("cancel"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onCancelClick).toHaveBeenCalled();
   });

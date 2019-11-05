@@ -3,7 +3,6 @@ import React from "react";
 
 import { byTestId } from "heroes-test-helpers";
 
-import { ImageButton } from "../../base";
 import { PlayersMenu, PlayersMenuProps } from "./PlayersMenu";
 
 describe("PlayersMenu", () => {
@@ -14,9 +13,9 @@ describe("PlayersMenu", () => {
 
     const wrapper = shallow(<PlayersMenu {...props} />);
 
-    const twoPlayersButton = wrapper.find(byTestId("two-players")).find(ImageButton);
+    const control = wrapper.find(byTestId("two-players"));
 
-    twoPlayersButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onOptionClick).toHaveBeenCalledWith(2);
   });
@@ -28,9 +27,9 @@ describe("PlayersMenu", () => {
 
     const wrapper = shallow(<PlayersMenu {...props} />);
 
-    const threePlayersButton = wrapper.find(byTestId("three-players")).find(ImageButton);
+    const control = wrapper.find(byTestId("three-players"));
 
-    threePlayersButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onOptionClick).toHaveBeenCalledWith(3);
   });
@@ -42,9 +41,9 @@ describe("PlayersMenu", () => {
 
     const wrapper = shallow(<PlayersMenu {...props} />);
 
-    const fourPlayersButton = wrapper.find(byTestId("four-players")).find(ImageButton);
+    const control = wrapper.find(byTestId("four-players"));
 
-    fourPlayersButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onOptionClick).toHaveBeenCalledWith(4);
   });
@@ -56,9 +55,9 @@ describe("PlayersMenu", () => {
 
     const wrapper = shallow(<PlayersMenu {...props} />);
 
-    const cancelButton = wrapper.find(byTestId("cancel")).find(ImageButton);
+    const control = wrapper.find(byTestId("cancel"));
 
-    cancelButton.props().onClick();
+    control.simulate("click");
 
     expect(props.onCancelClick).toHaveBeenCalled();
   });

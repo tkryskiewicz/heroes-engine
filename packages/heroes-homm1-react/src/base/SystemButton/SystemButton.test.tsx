@@ -88,9 +88,7 @@ describe("SystemButton", () => {
 
     const wrapper = mount(<SystemButton {...props} />);
 
-    const control = wrapper.find(ImageButton);
-
-    control.props().onClick();
+    wrapper.simulate("click");
 
     expect(props.onClick).toHaveBeenCalled();
   });

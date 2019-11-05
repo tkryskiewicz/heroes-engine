@@ -3,7 +3,7 @@ import React from "react";
 import { HeroClass, HeroId } from "heroes-homm1";
 import { byTestId, mountWithIntl } from "heroes-test-helpers";
 
-import { ResourceCost, SystemButton } from "../base";
+import { ResourceCost } from "../base";
 import { RecruitHero } from "./RecruitHero";
 import { RecruitHeroWindow, RecruitHeroWindowProps } from "./RecruitHeroWindow";
 
@@ -258,9 +258,9 @@ describe("RecruitHeroWindow", () => {
 
     const wrapper = mountWithIntl(<RecruitHeroWindow {...props} />);
 
-    const control = wrapper.find(byTestId("cancel")).find(SystemButton);
+    const control = wrapper.find(byTestId("cancel"));
 
-    control.props().onClick();
+    control.simulate("click");
 
     expect(props.onCancelClick).toHaveBeenCalled();
   });
