@@ -6,7 +6,7 @@ import { buttonImages } from "./assets";
 
 import { ImageButton } from "../../base";
 
-export interface EditorButtonsProps {
+interface Props {
   readonly onZoomClick: () => void;
   readonly onUndoClick: () => void;
   readonly onSpecsClick: () => void;
@@ -17,8 +17,8 @@ export interface EditorButtonsProps {
   readonly onQuitClick: () => void;
 }
 
-export class EditorButtons extends React.Component<EditorButtonsProps> {
-  public static readonly defaultProps: EditorButtonsProps = {
+export class EditorButtons extends React.Component<Props> {
+  public static readonly defaultProps: Props = {
     onLoadClick: () => undefined,
     onNewClick: () => undefined,
     onQuitClick: () => undefined,
@@ -33,41 +33,49 @@ export class EditorButtons extends React.Component<EditorButtonsProps> {
     return (
       <div className={styles.root}>
         <ImageButton
+          data-test-id="zoom"
           className={styles.button}
           images={buttonImages.zoom}
           onClick={this.props.onZoomClick}
         />
         <ImageButton
+          data-test-id="undo"
           className={styles.button}
           images={buttonImages.undo}
           onClick={this.props.onUndoClick}
         />
         <ImageButton
+          data-test-id="specs"
           className={styles.button}
           images={buttonImages.specs}
           onClick={this.props.onSpecsClick}
         />
         <ImageButton
+          data-test-id="random"
           className={styles.button}
           images={buttonImages.random}
           onClick={this.props.onRandomClick}
         />
         <ImageButton
+          data-test-id="new"
           className={styles.button}
           images={buttonImages.new}
           onClick={this.props.onNewClick}
         />
         <ImageButton
+          data-test-id="load"
           className={styles.button}
           images={buttonImages.load}
           onClick={this.props.onLoadClick}
         />
         <ImageButton
+          data-test-id="save"
           className={styles.button}
           images={buttonImages.save}
           onClick={this.props.onSaveClick}
         />
         <ImageButton
+          data-test-id="quit"
           className={styles.button}
           images={buttonImages.quit}
           onClick={this.props.onQuitClick}
@@ -76,3 +84,5 @@ export class EditorButtons extends React.Component<EditorButtonsProps> {
     );
   }
 }
+
+export type EditorButtonsProps = ExtractPublicProps<typeof EditorButtons>;
