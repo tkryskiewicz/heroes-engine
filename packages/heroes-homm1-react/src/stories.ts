@@ -116,8 +116,8 @@ export const soundVolume = (name: string) =>
 export const movementSpeed = (name: string) =>
   select<MovementSpeed>(name, Object.values(MovementSpeed), MovementSpeed.Walk);
 
-export const opponentSetting = (name: string) =>
-  select<OpponentSetting>(name, Object.values(OpponentSetting), OpponentSetting.Dumb);
+export const opponentSetting = (name: string, value = OpponentSetting.Dumb) =>
+  select<OpponentSetting>(name, Object.values(OpponentSetting), value);
 
 export const artifact = (name: string) =>
   select<ArtifactId>(name, Object.values(ArtifactId), ArtifactId.ThunderMaceOfDominion);

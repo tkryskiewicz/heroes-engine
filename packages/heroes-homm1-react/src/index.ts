@@ -38,7 +38,7 @@ export * from "./RecruitTroopWindow";
 export * from "./ResourcePickupStatus";
 export * from "./ResourceSummary";
 export * from "./SpellBookWindow";
-export * from "./StandardGameScenarioInfoWindow";
+export * from "./StandardScenarioInfoWindow";
 export * from "./StatusWindow";
 export * from "./StructureView";
 export * from "./SurrenderWindow";

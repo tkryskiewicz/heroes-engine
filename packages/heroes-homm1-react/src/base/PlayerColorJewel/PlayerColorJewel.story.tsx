@@ -3,11 +3,11 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { alignment } from "../../stories";
-import { AlignmentJewel } from "./AlignmentJewel";
+import { PlayerColorJewel } from "./PlayerColorJewel";
 
-storiesOf("base|AlignmentJewel", module)
+storiesOf("base|PlayerColorJewel", module)
   .add("default", () => (
-    <AlignmentJewel
+    <PlayerColorJewel
       value={alignment("Value")}
       onClick={action("Click")}
     />

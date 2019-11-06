@@ -1,18 +1,20 @@
 import React from "react";
 
-export interface AlignmentJewelProps {
+interface Props {
+  readonly className?: string;
   readonly value: string;
   readonly onClick: (value: string) => void;
 }
 
-export class AlignmentJewel extends React.Component<AlignmentJewelProps> {
-  public static readonly defaultProps: Pick<AlignmentJewelProps, "onClick"> = {
+export class PlayerColorJewel extends React.Component<Props> {
+  public static readonly defaultProps: Pick<Props, "onClick"> = {
     onClick: () => undefined,
   };
 
   public render() {
     return (
       <img
+        className={this.props.className}
         src={`assets/alignments/${this.props.value}/jewel.png`}
         onClick={this.onClick}
       />
@@ -23,3 +25,5 @@ export class AlignmentJewel extends React.Component<AlignmentJewelProps> {
     this.props.onClick(this.props.value);
   }
 }
+
+export type PlayerColorJewelProps = ExtractPublicProps<typeof PlayerColorJewel>;

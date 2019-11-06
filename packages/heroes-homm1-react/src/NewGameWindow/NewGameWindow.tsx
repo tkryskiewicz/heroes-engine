@@ -13,7 +13,7 @@ import * as styles from "./NewGameWindow.module.scss";
 
 import { buttonImages, switchImages } from "./assets";
 
-import { AlignmentJewel, ImageButton, ImageSwitch } from "../base";
+import { ImageButton, ImageSwitch, PlayerColorJewel } from "../base";
 import { GameText } from "../core";
 import { GameDifficultyBox } from "./GameDifficultyBox";
 import { messages } from "./messages";
@@ -76,7 +76,7 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
             <FormattedMessage {...messages.alignmentTitle} />:
           </GameText>
           <div>
-            <AlignmentJewel
+            <PlayerColorJewel
               value={this.props.selectedAlignment}
               onClick={this.onAlignmentClick}
             />

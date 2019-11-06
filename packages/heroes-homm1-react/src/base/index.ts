@@ -1,5 +1,4 @@
 export * from "./AdditionalStatsInfo";
-export * from "./AlignmentJewel";
 export * from "./ArmyStrip";
 export * from "./ArtifactIcon";
 export * from "./ArtifactSlot";
@@ -20,6 +19,7 @@ export * from "./ImageSwitch";
 export * from "./LuckIcon";
 export * from "./MineOverview";
 export * from "./MoraleIcon";
+export * from "./PlayerColorJewel";
 export * from "./ResourceAmount";
 export * from "./ResourceCost";
 export * from "./ResourceIcon";
