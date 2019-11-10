@@ -60,6 +60,7 @@ export {
   creature,
   editorOption,
   gameDate,
+  gameDifficulty,
   gameType,
   luckType,
   mapObjectType,

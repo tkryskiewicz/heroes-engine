@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, RouteComponentProps, Switch, withRouter } from "react-router";
 
-import { AlignmentId, alignments, CampaignId, GameDifficulty } from "heroes-homm1";
+import { CampaignId } from "heroes-homm1";
 import {
   CampaignMenu,
   CreditsWindow,
@@ -78,11 +78,6 @@ class MainWindowContainer extends React.Component<RouteComponentProps> {
         />
         <Route path={`${props.match.path}/standard`}>
           <NewGameWindow
-            selectedGameDifficulty={GameDifficulty.Easy}
-            alignments={alignments}
-            selectedAlignment={AlignmentId.Red}
-            kingOfTheHill={false}
-            opponentSettings={[]}
             onCancelClick={this.onCancelClick}
           />
         </Route>
@@ -136,11 +131,6 @@ class MainWindowContainer extends React.Component<RouteComponentProps> {
         />
         <Route path={`${props.match.path}/:playerCount`}>
           <NewGameWindow
-            selectedGameDifficulty={GameDifficulty.Easy}
-            alignments={alignments}
-            selectedAlignment={AlignmentId.Red}
-            kingOfTheHill={false}
-            opponentSettings={[]}
             onCancelClick={this.onCancelClick}
           />
         </Route>

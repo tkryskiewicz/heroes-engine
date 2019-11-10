@@ -9,6 +9,7 @@
 .game-difficulties-title {
   position: absolute;
   top: 15px;
+  display: block;
   width: 100%;
 }
 
@@ -20,12 +21,14 @@
 
 .game-difficulty {
   display: inline-block;
-  text-align: center;
+  width: 71px;
+  height: 71px;
 }
 
 .opponent-settings-title {
   position: absolute;
   top: 128px;
+  display: block;
   width: 100%;
 }
 
@@ -37,10 +40,12 @@
 
 .opponent-setting {
   display: inline-block;
+  width: 65px;
+  height: 65px;
   margin-right: 7px;
 }
 
-.alignment {
+.player-color {
   position: absolute;
   top: 249px;
   left: 36px;
@@ -52,15 +57,34 @@
   left: 183px;
 }
 
-.scenario {
+.scenario-title {
   position: absolute;
   top: 331px;
+  display: block;
   width: 100%;
+}
+
+.scenario-name {
+  position: absolute;
+  top: 354px;
+  left: 24px;
+  width: 249px;
+  height: 20px;
+  line-height: 15px;
+  text-align: center;
+  background: url("./assets/scenario-name-background.jpg");
+}
+
+.select-scenario {
+  position: absolute;
+  top: 352px;
+  left: 273px;
 }
 
 .difficulty-rating {
   position: absolute;
   top: 382px;
+  display: block;
   width: 100%;
 }
 

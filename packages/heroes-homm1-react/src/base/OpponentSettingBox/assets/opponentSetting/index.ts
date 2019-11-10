@@ -1,10 +1,10 @@
 import { OpponentSetting } from "heroes-homm1";
 
-import average = require("./opponent-average.jpg");
-import dumb = require("./opponent-dumb.jpg");
-import genius = require("./opponent-genius.jpg");
-import none = require("./opponent-none.jpg");
-import smart = require("./opponent-smart.jpg");
+import average = require("./average.jpg");
+import dumb = require("./dumb.jpg");
+import genius = require("./genius.jpg");
+import none = require("./none.jpg");
+import smart = require("./smart.jpg");
 
 export const opponentSettingImages = {
   [OpponentSetting.None]: none,

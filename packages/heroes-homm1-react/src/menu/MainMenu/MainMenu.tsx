@@ -5,7 +5,7 @@ import { buttonImages } from "./assets";
 import { ImageButton } from "../../base";
 import { Menu, MenuOption } from "../Menu";
 
-export interface Props {
+interface Props {
   readonly onNewGameClick: () => void;
   readonly onLoadGameClick: () => void;
   readonly onViewHighScoresClick: () => void;

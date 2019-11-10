@@ -52,7 +52,7 @@ export class ImageButton extends React.Component<ImageButtonProps, ImageButtonSt
         onMouseLeave={this.props.onMouseLeave}
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseUp}
-        onClick={this.props.onClick}
+        onClick={this.onClick}
       >
         <img src={renderEnabled ? images.enabled : images.disabled} />
       </button>
@@ -69,5 +69,9 @@ export class ImageButton extends React.Component<ImageButtonProps, ImageButtonSt
     this.setState({
       pressed: false,
     });
+  }
+
+  private readonly onClick = () => {
+    this.props.onClick();
   }
 }

@@ -1,84 +1,76 @@
 import React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
-import { nextOption } from "heroes-core";
-import {
-  GameDifficulty,
-  getGameDifficultyRating,
-  getOpponentSettingRating,
-  OpponentSetting,
-} from "heroes-homm1";
-
 import * as styles from "./NewGameWindow.module.scss";
 
 import { buttonImages, switchImages } from "./assets";
 
 import { ImageButton, ImageSwitch, PlayerColorJewel } from "../base";
 import { GameText } from "../core";
-import { GameDifficultyBox } from "./GameDifficultyBox";
 import { messages } from "./messages";
-import { OpponentSettingBox } from "./OpponentSettingBox";
 
-export interface NewGameWindowProps {
-  readonly selectedGameDifficulty: GameDifficulty;
-  readonly onGameDifficultyChange: (value: GameDifficulty) => void;
-  readonly opponentSettings: OpponentSetting[];
-  readonly onOpponentSettingsChange: (settings: OpponentSetting[]) => void;
-  readonly alignments: string[];
-  readonly selectedAlignment: string;
-  readonly onAlignmentChange: (value: string) => void;
+const GameDifficultySlotCount = 4;
+const OpponentSettingSlotCount = 3;
+
+interface Props {
+  readonly renderGameDifficulty: (index: number) => React.ReactNode;
+  readonly renderOpponentSetting: (index: number) => React.ReactNode;
+  readonly playerColor: string;
+  readonly onPlayerColorClick: () => void;
   readonly kingOfTheHill: boolean;
   readonly onKingOfTheHillChange: (value: boolean) => void;
+  readonly scenarioName: string;
+  readonly onSelectScenarioClick: () => void;
+  readonly difficultyRating: number;
   readonly onOkayClick: () => void;
   readonly onCancelClick: () => void;
 }
 
-type DefaultProp =
-  "onGameDifficultyChange" |
-  "onOpponentSettingsChange" |
-  "onAlignmentChange" |
-  "onKingOfTheHillChange" |
-  "onOkayClick" |
-  "onCancelClick";
-
-export class NewGameWindow extends React.Component<NewGameWindowProps> {
-  public static readonly defaultProps: Pick<NewGameWindowProps, DefaultProp> = {
-    onAlignmentChange: () => undefined,
+export class NewGameWindow extends React.Component<Props> {
+  public static readonly defaultProps: Props = {
+    difficultyRating: 0,
+    kingOfTheHill: false,
     onCancelClick: () => undefined,
-    onGameDifficultyChange: () => undefined,
     onKingOfTheHillChange: () => undefined,
     onOkayClick: () => undefined,
-    onOpponentSettingsChange: () => undefined,
+    onPlayerColorClick: () => undefined,
+    onSelectScenarioClick: () => undefined,
+    playerColor: "",
+    renderGameDifficulty: () => undefined,
+    renderOpponentSetting: () => undefined,
+    scenarioName: "",
   };
 
   public render() {
-    const difficultyRating = getGameDifficultyRating(this.props.selectedGameDifficulty) +
-      this.props.opponentSettings.reduce((p, c) => p + getOpponentSettingRating(c), 0);
-
     return (
       <div className={styles.root}>
-        <div className={styles.gameDifficultiesTitle}>
-          <GameText size="large">
-            <FormattedMessage {...messages.difficultyTitle} />:
-          </GameText>
+        <GameText
+          className={styles.gameDifficultiesTitle}
+          size="large"
+        >
+          <FormattedMessage {...messages.difficultyTitle} />:
+        </GameText>
+        <div className={styles.gameDifficulties}>
+          {[...new Array(GameDifficultySlotCount).keys()].map(this.renderGameDifficulty)}
         </div>
-        {this.renderDifficulties()}
-        <div className={styles.opponentSettingsTitle}>
-          <GameText size="large">
-            <FormattedMessage {...messages.opponentsTitle} />:
-          </GameText>
-        </div>
+        <GameText
+          className={styles.opponentSettingsTitle}
+          size="large"
+        >
+          <FormattedMessage {...messages.opponentsTitle} />:
+        </GameText>
         <div className={styles.opponentSettings}>
-          {this.renderOpponentSettings(this.props.opponentSettings)}
+          {[...new Array(OpponentSettingSlotCount).keys()].map(this.renderOpponentSetting)}
         </div>
-        <div className={styles.alignment}>
+        <div className={styles.playerColor}>
           <GameText size="large">
-            <FormattedMessage {...messages.alignmentTitle} />:
+            <FormattedMessage {...messages.playerColorTitle} />:
           </GameText>
           <div>
             <PlayerColorJewel
-              value={this.props.selectedAlignment}
-              onClick={this.onAlignmentClick}
+              data-test-id="player-color"
+              value={this.props.playerColor}
+              onClick={this.props.onPlayerColorClick}
             />
           </div>
         </div>
@@ -88,108 +80,83 @@ export class NewGameWindow extends React.Component<NewGameWindowProps> {
           </GameText>
           <div>
             <ImageSwitch
+              data-test-id="king-of-the-hill"
               images={switchImages.checkbox}
               checked={this.props.kingOfTheHill}
               onChange={this.props.onKingOfTheHillChange}
             />
           </div>
         </div>
-        <div className={styles.scenario}>
-          <GameText size="large">
-            <FormattedMessage {...messages.scenarioTitle} />:
-          </GameText>
-        </div>
-        <div>
-          {/* TODO: implement scenario selection */}
-        </div>
-        <div className={styles.difficultyRating}>
-          <GameText size="large">
-            <FormattedMessage {...messages.difficultyRatingTitle} />:
-            {" "}
-            <FormattedNumber
-              style="percent"
-              value={difficultyRating / 100}
-            />
-          </GameText>
-        </div>
-        <div className={styles.okay}>
-          <ImageButton
-            images={buttonImages.okay}
-            onClick={this.props.onOkayClick}
+        <GameText
+          className={styles.scenarioTitle}
+          size="large"
+        >
+          <FormattedMessage {...messages.scenarioTitle} />:
+        </GameText>
+        <GameText
+          data-test-id="scenario-name"
+          className={styles.scenarioName}
+          size="normal"
+        >
+          {this.props.scenarioName}
+        </GameText>
+        <ImageButton
+          data-test-id="select-scenario"
+          className={styles.selectScenario}
+          images={buttonImages.select}
+          onClick={this.props.onSelectScenarioClick}
+        />
+        <GameText
+          data-test-id="difficulty-rating"
+          className={styles.difficultyRating}
+          size="large"
+        >
+          <FormattedMessage {...messages.difficultyRatingTitle} />:
+          {" "}
+          <FormattedNumber
+            style="percent"
+            value={this.props.difficultyRating / 100}
           />
-        </div>
-        <div className={styles.cancel}>
-          <ImageButton
-            images={buttonImages.cancel}
-            onClick={this.props.onCancelClick}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  private renderDifficulties() {
-    const difficulties = [
-      GameDifficulty.Easy,
-      GameDifficulty.Normal,
-      GameDifficulty.Hard,
-      GameDifficulty.Expert,
-    ];
-
-    return (
-      <div className={styles.gameDifficulties}>
-        {difficulties.map((d) => this.renderDifficulty(d, this.props.selectedGameDifficulty))}
-      </div>
-    );
-  }
-
-  private renderDifficulty(difficulty: GameDifficulty, selectedDifficulty?: GameDifficulty) {
-    return (
-      <div
-        className={styles.gameDifficulty}
-        key={difficulty}
-      >
-        <GameDifficultyBox
-          value={difficulty}
-          selected={difficulty === selectedDifficulty}
-          onClick={this.onGameDifficultyClick}
+        </GameText>
+        <ImageButton
+          data-test-id="okay"
+          className={styles.okay}
+          images={buttonImages.okay}
+          onClick={this.props.onOkayClick}
+        />
+        <ImageButton
+          data-test-id="cancel"
+          className={styles.cancel}
+          images={buttonImages.cancel}
+          onClick={this.props.onCancelClick}
         />
       </div>
     );
   }
 
-  private readonly onGameDifficultyClick = (value: GameDifficulty) => {
-    if (value !== this.props.selectedGameDifficulty) {
-      this.props.onGameDifficultyChange(value);
-    }
+  private readonly renderGameDifficulty = (index: number) => {
+    return (
+      <div
+        data-test-id={`game-difficulty-${index}`}
+        key={index}
+        className={styles.gameDifficulty}
+      >
+        {this.props.renderGameDifficulty(index)}
+      </div>
+    );
   }
 
-  private renderOpponentSettings(settings: OpponentSetting[]) {
-    return settings.map((s, i) => (
+  private readonly renderOpponentSetting = (index: number) => {
+    return (
       <div
-        key={i}
+        data-test-id={`opponent-setting-${index}`}
+        key={index}
         className={styles.opponentSetting}
       >
-        <OpponentSettingBox
-          index={i}
-          value={s}
-          onChange={this.onOpponentSettingChange}
-        />
+        {this.props.renderOpponentSetting(index)}
       </div>
-    ));
-  }
-
-  private readonly onOpponentSettingChange = (index: number, setting: OpponentSetting) => {
-    const settings = [...this.props.opponentSettings];
-
-    settings[index] = setting;
-
-    this.props.onOpponentSettingsChange(settings);
-  }
-
-  private readonly onAlignmentClick = () => {
-    const value = nextOption(this.props.alignments, this.props.selectedAlignment);
-
-    this.props.onAlignmentChange(value);
+    );
   }
 }
+
+export type NewGameWindowProps = ExtractPublicProps<typeof NewGameWindow>;

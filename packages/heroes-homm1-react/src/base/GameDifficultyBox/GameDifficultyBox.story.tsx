@@ -6,10 +6,10 @@ import React from "react";
 import { gameDifficulty } from "../../stories";
 import { GameDifficultyBox } from "./GameDifficultyBox";
 
-storiesOf("NewGameWindow/GameDifficultyBox", module)
+storiesOf("base|GameDifficultyBox", module)
   .add("default", () => (
     <GameDifficultyBox
-      value={gameDifficulty("Difficulty")}
+      value={gameDifficulty("Value")}
       selected={boolean("Selected", false)}
       onClick={action("Click")}
     />

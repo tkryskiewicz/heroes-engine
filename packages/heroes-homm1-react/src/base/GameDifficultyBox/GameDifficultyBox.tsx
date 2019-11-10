@@ -1,5 +1,4 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
 
 import { GameDifficulty } from "heroes-homm1";
 
@@ -7,33 +6,27 @@ import * as styles from "./GameDifficultyBox.module.scss";
 
 import { difficultyImages, SelectionImage } from "./assets";
 
-import { GameText } from "../../core";
-import { getGameDifficultyMessage } from "../../messages";
-
-export interface GameDifficultyBoxProps {
+interface Props {
   readonly value: GameDifficulty;
   readonly selected: boolean;
   readonly onClick: (value: GameDifficulty) => void;
 }
 
-export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
-  public static readonly defaultProps: Pick<GameDifficultyBoxProps, "selected" | "onClick"> = {
+export class GameDifficultyBox extends React.Component<Props> {
+  public static readonly defaultProps: Props = {
     onClick: () => undefined,
     selected: false,
+    value: GameDifficulty.Easy,
   };
 
   public render() {
     return (
       <div
         className={styles.root}
+        onClick={this.onClick}
       >
-        <div className={styles.image}>
-          {this.renderIcon(this.props.value)}
-          {this.props.selected && this.renderSelection()}
-        </div>
-        <GameText size="normal">
-          <FormattedMessage {...getGameDifficultyMessage(this.props.value)} />
-        </GameText>
+        {this.renderIcon(this.props.value)}
+        {this.props.selected && this.renderSelection()}
       </div>
     );
   }
@@ -43,7 +36,6 @@ export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
       <img
         className={styles.icon}
         src={difficultyImages[difficulty]}
-        onClick={this.onClick}
       />
     );
   }
@@ -51,6 +43,7 @@ export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
   private renderSelection() {
     return (
       <img
+        data-test-id="selection"
         className={styles.selection}
         src={SelectionImage}
       />
@@ -61,3 +54,5 @@ export class GameDifficultyBox extends React.Component<GameDifficultyBoxProps> {
     this.props.onClick(this.props.value);
   }
 }
+
+export type GameDifficultyBoxProps = ExtractPublicProps<typeof GameDifficultyBox>;

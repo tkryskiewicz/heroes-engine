@@ -1,25 +1,21 @@
 import BackgroundImage = require("./background.jpg");
+import { cancel } from "./cancel";
+import { checkbox } from "./checkbox";
+import { okay } from "./okay";
+import ScenarioNameBackgroundImage = require("./scenario-name-background.jpg");
+import { select } from "./select";
 
-const buttonImages = {
-  cancel: {
-    disabled: require("./cancel/disabled.png"),
-    enabled: require("./cancel/enabled.png"),
-  },
-  okay: {
-    disabled: require("./okay/disabled.png"),
-    enabled: require("./okay/enabled.png"),
-  },
+export const buttonImages = {
+  cancel,
+  okay,
+  select,
 };
 
-const switchImages = {
-  checkbox: {
-    checked: require("./checkbox/checked.jpg"),
-    unchecked: require("./checkbox/unchecked.jpg"),
-  },
+export const switchImages = {
+  checkbox,
 };
 
 export {
   BackgroundImage,
-  buttonImages,
-  switchImages,
+  ScenarioNameBackgroundImage,
 };

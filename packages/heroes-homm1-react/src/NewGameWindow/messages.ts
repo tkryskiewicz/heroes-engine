@@ -1,10 +1,6 @@
 import { defineMessages } from "react-intl";
 
 export const messages = defineMessages({
-  alignmentTitle: {
-    defaultMessage: "Choose Color",
-    id: "ui.newGameWindow.alignmentTitle",
-  },
   difficultyRatingTitle: {
     defaultMessage: "Difficulty Rating",
     id: "ui.newGameWindow.difficultyRatingTitle",
@@ -20,6 +16,10 @@ export const messages = defineMessages({
   opponentsTitle: {
     defaultMessage: "Customize Opponents",
     id: "ui.newGameWindow.opponentsTitle",
+  },
+  playerColorTitle: {
+    defaultMessage: "Choose Color",
+    id: "ui.newGameWindow.playerColorTitle",
   },
   scenarioTitle: {
     defaultMessage: "Choose Scenario",
