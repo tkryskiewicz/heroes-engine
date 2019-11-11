@@ -50,6 +50,8 @@ import {
   editorWindowMessages,
   EraseOptionDetails,
   EraseOptionSettingsWindow,
+  MapCellSize,
+  MapSize,
   MapTile,
   ObjectDetailsUnavailablePrompt,
   ObjectsOptionDetails,
@@ -253,19 +255,17 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       <AdventureMapWindow
         width={size}
         height={size}
-        renderTile={this.renderTile}
+        cellSize={this.props.zoomed ? MapCellSize : MapCellSize / 2}
+        renderCell={this.renderTile}
       />
     );
   }
 
-  private readonly renderTile = (index: number) => {
+  private readonly renderTile = (index: number, point: MapPoint) => {
     const { data, scenario, position, selectedOption } = this.props;
     const { activePoint, activeTile } = this.state;
 
-    // FIXME: move some logic to adventure map?
-    const windowPoint = getTilePoint(this.getTileCount(), index);
-
-    const tilePoint = translatePoint(position, windowPoint.x, windowPoint.y);
+    const tilePoint = translatePoint(position, point.x, point.y);
 
     const tileIndex = getTileIndex(scenario.map.width, tilePoint);
 
@@ -757,7 +757,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private getTileCount() {
-    return this.props.zoomed ? 14 : 28;
+    return this.props.zoomed ? MapSize : MapSize * 2;
   }
 
   private readonly onScroll = (direction: MapObjectOrientation) => {

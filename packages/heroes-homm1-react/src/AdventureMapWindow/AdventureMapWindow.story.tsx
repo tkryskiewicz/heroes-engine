@@ -3,25 +3,16 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Placeholder } from "../Placeholder";
-import { AdventureMapWindow, AdventureMapWindowProps } from "./AdventureMapWindow";
+import { AdventureMapWindow } from "./AdventureMapWindow";
 
-// FIXME
-const style: React.CSSProperties = {
-  height: 32,
-  width: 32,
-};
-
-const renderTile: AdventureMapWindowProps["renderTile"] = (index: number) => (
-  <div style={style}>
-    <Placeholder key={index} name={`${index}`} />
-  </div>
-);
+const renderCell = (index: number) => <Placeholder key={index} name={`${index}`} />;
 
 storiesOf("AdventureMapWindow", module)
   .add("default", () => (
     <AdventureMapWindow
-      width={number("Width", 10, { range: true, min: 0, max: 100, step: 1 })}
-      height={number("Height", 10, { range: true, min: 0, max: 100, step: 1 })}
-      renderTile={renderTile}
+      width={number("Width", 10, { range: true, min: 0, max: 50, step: 1 })}
+      height={number("Height", 10, { range: true, min: 0, max: 50, step: 1 })}
+      cellSize={number("Cell Size", 32, { range: true, min: 16, max: 48, step: 8 })}
+      renderCell={renderCell}
     />
   ));

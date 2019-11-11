@@ -4,12 +4,12 @@ import { DispatchProp } from "react-redux";
 import {
   GameData,
   getObject,
-  getTilePoint,
   Map,
   MapObject,
+  MapPoint,
 } from "heroes-core";
 import { getTerrainTransition, isHeroMapObject, isTownMapObject } from "heroes-homm1";
-import { AdventureMapWindow, MapTile } from "heroes-homm1-react";
+import { AdventureMapWindow, MapCellSize, MapSize, MapTile } from "heroes-homm1-react";
 import { adventureWindowActions, gameActions } from "heroes-homm1-state";
 
 import { renderObject } from "../config";
@@ -42,10 +42,10 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     return (
       <div className={cursor ? `cursor-${cursor}` : undefined}>
         <AdventureMapWindow
-          width={14}
-          height={14}
-          renderTile={this.renderTile}
-          onTileClick={this.onTileClick}
+          width={MapSize}
+          height={MapSize}
+          cellSize={MapCellSize}
+          renderCell={this.renderTile}
         />
         {this.props.visibleMapObjectDetails && this.renderMapObjectDetails(this.props.visibleMapObjectDetails)}
         {this.props.heroTradingScreenVisible && this.rendeHeroTradingWindow()}
@@ -53,7 +53,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     );
   }
 
-  private readonly renderTile = (index: number) => {
+  private readonly renderTile = (index: number, point: MapPoint) => {
     const { data, map } = this.props;
 
     const tile = map.tiles[index];
@@ -61,8 +61,6 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     const object = tile.object ?
       this.renderMapObject(tile.object, tile.terrain) :
       undefined;
-
-    const point = getTilePoint(map.width, index);
 
     const transition = getTerrainTransition(map, point, data);
 

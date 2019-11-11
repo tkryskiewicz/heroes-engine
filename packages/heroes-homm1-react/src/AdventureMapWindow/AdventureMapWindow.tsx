@@ -1,6 +1,6 @@
 import React from "react";
 
-import { createPoint, getTileIndex } from "heroes-core";
+import { createPoint, getTileIndex, MapPoint } from "heroes-core";
 import { noop } from "heroes-helpers";
 
 import * as styles from "./AdventureMapWindow.module.scss";
@@ -8,37 +8,58 @@ import * as styles from "./AdventureMapWindow.module.scss";
 interface Props {
   readonly width: number;
   readonly height: number;
-  readonly renderTile: (index: number) => React.ReactNode;
-  readonly onTileClick: (index: number) => void;
+  readonly cellSize: number;
+  readonly renderCell: (index: number, point: MapPoint) => React.ReactNode;
 }
 
 type DefaultProp =
-  "renderTile" |
-  "onTileClick";
+  "renderCell";
 
 export class AdventureMapWindow extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
-    onTileClick: noop,
-    renderTile: noop,
+    renderCell: noop,
   };
 
   public render() {
-    const { width, height } = this.props;
+    const { width, height, cellSize } = this.props;
 
-    const tiles = [...new Array(height).keys()]
+    const style: React.CSSProperties = {
+      height: height * cellSize,
+      width: width * cellSize,
+    };
+
+    const cells = [...new Array(height).keys()]
       .map((i) => [...new Array(width).keys()]
-        .map((j) => this.props.renderTile(getTileIndex(width, createPoint(j, i)))));
+        .map((j) => this.renderCell(createPoint(j, i))));
 
     return (
-      <div className={styles.root}>
-        {tiles}
+      <div
+        style={style}
+        className={styles.root}
+      >
+        {cells}
+      </div>
+    );
+  }
+
+  private renderCell(point: MapPoint) {
+    const style: React.CSSProperties = {
+      height: this.props.cellSize,
+      width: this.props.cellSize,
+    };
+
+    const index = getTileIndex(this.props.width, point);
+
+    return (
+      <div
+        data-test-id={`cell-${index}`}
+        key={index}
+        style={style}
+      >
+        {this.props.renderCell(index, point)}
       </div>
     );
   }
 }
 
-type ComponentProps = ExtractProps<typeof AdventureMapWindow>;
-
-export {
-  ComponentProps as AdventureMapWindowProps,
-};
+export type AdventureMapWindowProps = ExtractPublicProps<typeof AdventureMapWindow>;

@@ -3,6 +3,5 @@
 .root {
   display: flex;
   flex-wrap: wrap;
-  width: 14 * $MAP_TILE_SIZE;
-  height: 14 * $MAP_TILE_SIZE;
+  overflow: hidden;
 }
