@@ -1,6 +1,8 @@
 import React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./SkillInfo.module.scss";
 
 import { images } from "./assets";
@@ -18,9 +20,9 @@ export interface SkillInfoProps {
 
 export class SkillInfo extends React.Component<SkillInfoProps> {
   public static readonly defaultProps: Pick<SkillInfoProps, "onMouseEnter" | "onMouseLeave" | "onClick"> = {
-    onClick: () => undefined,
-    onMouseEnter: () => undefined,
-    onMouseLeave: () => undefined,
+    onClick: noop,
+    onMouseEnter: noop,
+    onMouseLeave: noop,
   };
 
   public render() {

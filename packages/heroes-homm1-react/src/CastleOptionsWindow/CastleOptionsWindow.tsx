@@ -3,6 +3,7 @@ import React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Resources, Structure } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { CastleOptionStatus, getCastleOptionStatus, StructureId } from "heroes-homm1";
 
 import * as styles from "./CastleOptionsWindow.module.scss";
@@ -40,9 +41,9 @@ type DefaultProp =
 
 class CastleOptionsWindow extends React.Component<CastleOptionsWindowProps> implements WithTownDetailWindowRef {
   public static readonly defaultProps: Pick<CastleOptionsWindowProps, DefaultProp> = {
-    getOptionDetails: () => undefined,
-    onCloseOptionDetailsClick: () => undefined,
-    onOpenOptionDetailsClick: () => undefined,
+    getOptionDetails: noop,
+    onCloseOptionDetailsClick: noop,
+    onOpenOptionDetailsClick: noop,
   };
 
   public componentDidMount() {

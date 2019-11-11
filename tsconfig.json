@@ -8,6 +8,14 @@
     ],
     "module": "commonjs",
     "moduleResolution": "node",
+    "paths": {
+      "heroes-helpers": [
+        "./helpers"
+      ],
+      "heroes-test-helpers": [
+        "./tests/helpers"
+      ]
+    },
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,

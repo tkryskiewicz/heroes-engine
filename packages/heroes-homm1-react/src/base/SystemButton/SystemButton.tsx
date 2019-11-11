@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import { buttonImages } from "./assets";
 
 import { ImageButton } from "../ImageButton";
@@ -17,7 +19,7 @@ type DefaultProp =
 export class SystemButton extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
     disabled: false,
-    onClick: () => undefined,
+    onClick: noop,
   };
 
   public render() {

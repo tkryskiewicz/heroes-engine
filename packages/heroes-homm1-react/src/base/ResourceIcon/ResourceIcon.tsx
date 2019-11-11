@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 export interface ResourceIconProps {
   readonly resource: string;
   readonly onClick: (resource: string) => void;
@@ -7,7 +9,7 @@ export interface ResourceIconProps {
 
 export class ResourceIcon extends React.Component<ResourceIconProps> {
   public static readonly defaultProps: Pick<ResourceIconProps, "onClick"> = {
-    onClick: () => undefined,
+    onClick: noop,
   };
 
   public render() {

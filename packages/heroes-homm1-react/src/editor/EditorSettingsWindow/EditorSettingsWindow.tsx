@@ -1,6 +1,8 @@
 import { Col, Row } from "antd";
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./EditorSettingsWindow.module.scss";
 
 import { SystemButton } from "../../base";
@@ -11,14 +13,10 @@ interface EditorSettingsWindowProps {
   readonly onCancelClick: () => void;
 }
 
-type DefaultProp =
-  "onConfirmClick" |
-  "onCancelClick";
-
 class EditorSettingsWindow extends React.Component<EditorSettingsWindowProps> {
-  public static readonly defaultProps: Pick<EditorSettingsWindowProps, DefaultProp> = {
-    onCancelClick: () => undefined,
-    onConfirmClick: () => undefined,
+  public static readonly defaultProps: EditorSettingsWindowProps = {
+    onCancelClick: noop,
+    onConfirmClick: noop,
   };
 
   public render() {

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { MapObjectOrientation } from "heroes-core";
+import { noop } from "heroes-helpers";
 
 import * as styles from "./EditorWindow.module.scss";
 
@@ -27,19 +28,19 @@ interface Props {
 export class EditorWindow extends React.Component<Props> {
   public static readonly defaultProps: Props = {
     message: "",
-    onScrollBottomLeft: () => undefined,
-    onScrollBottomRight: () => undefined,
-    onScrollTopLeft: () => undefined,
-    onScrollTopRight: () => undefined,
-    renderAdventureMap: () => undefined,
-    renderButtons: () => undefined,
-    renderHorizontalCellNumbers: () => undefined,
-    renderHorizontalScrollbar: () => undefined,
-    renderOptionDetails: () => undefined,
-    renderOptions: () => undefined,
-    renderVerticalCellNumbers: () => undefined,
-    renderVerticalScrollbar: () => undefined,
-    renderWorldMap: () => undefined,
+    onScrollBottomLeft: noop,
+    onScrollBottomRight: noop,
+    onScrollTopLeft: noop,
+    onScrollTopRight: noop,
+    renderAdventureMap: noop,
+    renderButtons: noop,
+    renderHorizontalCellNumbers: noop,
+    renderHorizontalScrollbar: noop,
+    renderOptionDetails: noop,
+    renderOptions: noop,
+    renderVerticalCellNumbers: noop,
+    renderVerticalScrollbar: noop,
+    renderWorldMap: noop,
   };
 
   public render() {

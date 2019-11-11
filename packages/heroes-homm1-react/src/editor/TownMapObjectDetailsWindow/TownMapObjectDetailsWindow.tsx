@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Army, GameData, Troop } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { TownMapObjectDetails } from "heroes-homm1";
 
 import * as styles from "./TownMapObjectDetailsWindow.module.scss";
@@ -29,7 +30,7 @@ type DefaultProp =
 
 export class TownMapObjectDetailsWindow extends React.Component<TownMapObjectDetailsWindowProps, State> {
   public static readonly defaultProps: Pick<TownMapObjectDetailsWindowProps, DefaultProp> = {
-    onValueChange: () => undefined,
+    onValueChange: noop,
   };
 
   public readonly state: State = {

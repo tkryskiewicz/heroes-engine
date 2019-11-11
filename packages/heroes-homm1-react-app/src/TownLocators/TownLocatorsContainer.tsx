@@ -1,6 +1,7 @@
 import React from "react";
 
 import { isStructureBuilt, Town } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { StructureId } from "heroes-homm1";
 import { TownLocators, TownLocatorsProps } from "heroes-homm1-react";
 
@@ -24,9 +25,9 @@ type DefaultProp =
 export class TownLocatorsContainer extends React.Component<TownLocatorsContainerProps> {
   public static readonly defaultProps: Pick<TownLocatorsContainerProps, DefaultProp> = {
     locatorDetailsVisible: false,
-    onCloseLocatorDetailsClick: () => undefined,
-    onOpenLocatorDetailsClick: () => undefined,
-    onSelectLocatorClick: () => undefined,
+    onCloseLocatorDetailsClick: noop,
+    onOpenLocatorDetailsClick: noop,
+    onSelectLocatorClick: noop,
   };
 
   public render() {

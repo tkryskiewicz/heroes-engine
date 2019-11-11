@@ -3,6 +3,7 @@ import Classnames from "classnames";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
+import { noop } from "heroes-helpers";
 import { ScenarioDifficulty, ScenarioSize } from "heroes-homm1";
 
 import * as styles from "./FileSelectorWindow.module.scss";
@@ -42,10 +43,10 @@ class FileSelectorWindow extends React.Component<Props> {
   public static readonly defaultProps: Props = {
     confirmDisabled: false,
     files: [],
-    onCancelClick: () => undefined,
-    onFileClick: () => undefined,
-    onOkayClick: () => undefined,
-    onValueChange: () => undefined,
+    onCancelClick: noop,
+    onFileClick: noop,
+    onOkayClick: noop,
+    onValueChange: noop,
     type: "save",
     value: "",
   };

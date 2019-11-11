@@ -1,6 +1,7 @@
 import React from "react";
 
 import { CombatSide } from "heroes-core";
+import { noop } from "heroes-helpers";
 
 import * as styles from "./CombatTent.module.scss";
 
@@ -20,9 +21,9 @@ type DefaultProp =
 
 export class CombatTent extends React.Component<CombatTentProps> {
   public static readonly defaultProps: Pick<CombatTentProps, DefaultProp> = {
-    onClick: () => undefined,
-    onMouseEnter: () => undefined,
-    onMouseLeave: () => undefined,
+    onClick: noop,
+    onMouseEnter: noop,
+    onMouseLeave: noop,
   };
 
   public render() {

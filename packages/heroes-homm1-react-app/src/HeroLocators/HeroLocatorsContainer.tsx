@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Hero } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { HeroLocators } from "heroes-homm1-react";
 
 import { HeroWindow } from "../HeroWindow";
@@ -23,10 +24,10 @@ type DefaultProp =
 
 export class HeroLocatorsContainer extends React.Component<HeroLocatorsContainerProps> {
   public static readonly defaultProps: Pick<HeroLocatorsContainerProps, DefaultProp> = {
-    onCloseLocatorDetailsClick: () => undefined,
-    onConfirmDismissHeroClick: () => undefined,
-    onOpenLocatorDetailsClick: () => undefined,
-    onSelectLocatorClick: () => undefined,
+    onCloseLocatorDetailsClick: noop,
+    onConfirmDismissHeroClick: noop,
+    onOpenLocatorDetailsClick: noop,
+    onSelectLocatorClick: noop,
   };
 
   public render() {

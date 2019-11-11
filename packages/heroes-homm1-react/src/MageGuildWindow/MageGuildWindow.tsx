@@ -1,6 +1,7 @@
 import React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
+import { noop } from "heroes-helpers";
 import { StructureId } from "heroes-homm1";
 
 import * as styles from "./MageGuildWindow.module.scss";
@@ -32,7 +33,7 @@ interface MageGuildWindowProps extends
 
 class MageGuildWindow extends React.Component<MageGuildWindowProps> {
   public static readonly defaultProps: Pick<MageGuildWindowProps, "onVisibleSpellDetailChange"> = {
-    onVisibleSpellDetailChange: () => undefined,
+    onVisibleSpellDetailChange: noop,
   };
 
   public componentDidMount() {

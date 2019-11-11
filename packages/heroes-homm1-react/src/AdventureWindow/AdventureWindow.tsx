@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./AdventureWindow.module.scss";
 
 interface Props {
@@ -13,12 +15,12 @@ interface Props {
 
 export class AdventureWindow extends React.Component<Props> {
   public static readonly defaultProps: Props = {
-    renderAdventureButtons: () => undefined,
-    renderAdventureMap: () => undefined,
-    renderHeroLocators: () => undefined,
-    renderStatusWindow: () => undefined,
-    renderTownLocators: () => undefined,
-    renderWorldMap: () => undefined,
+    renderAdventureButtons: noop,
+    renderAdventureMap: noop,
+    renderHeroLocators: noop,
+    renderStatusWindow: noop,
+    renderTownLocators: noop,
+    renderWorldMap: noop,
   };
 
   public render() {

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
 import { ComPort } from "heroes-homm1";
 
 import { buttonImages } from "./assets";
@@ -9,15 +10,13 @@ import { Menu, MenuOption } from "../Menu";
 
 interface Props {
   readonly onOptionClick: (value: ComPort) => void;
-  readonly onCancelClick?: () => void;
+  readonly onCancelClick: () => void;
 }
 
-type DefaultProp =
-  "onOptionClick";
-
 export class ComPortMenu extends React.Component<Props> {
-  public static readonly defaultProps: Pick<Props, DefaultProp> = {
-    onOptionClick: () => undefined,
+  public static readonly defaultProps: Props = {
+    onCancelClick: noop,
+    onOptionClick: noop,
   };
 
   public render() {

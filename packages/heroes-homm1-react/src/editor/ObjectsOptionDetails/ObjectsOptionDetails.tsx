@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { MapObjectOrientation } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { MapObjectType } from "heroes-homm1";
 
 import * as styles from "./ObjectsOptionDetails.module.scss";
@@ -26,9 +27,9 @@ type DefaultProp =
 
 class ObjectsOptionDetails extends React.Component<ObjectsOptionDetailsProps> {
   public static readonly defaultProps: Pick<ObjectsOptionDetailsProps, DefaultProp> = {
-    onNextTypeClick: () => undefined,
-    onPreviousTypeClick: () => undefined,
-    onSlotClick: () => undefined,
+    onNextTypeClick: noop,
+    onPreviousTypeClick: noop,
+    onSlotClick: noop,
   };
 
   public render() {

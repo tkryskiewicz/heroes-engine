@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./HeroWindow.module.scss";
 
 import { buttonImages } from "./assets";
@@ -35,18 +37,18 @@ interface Props extends WithGameWindowProps {
 class HeroWindow extends React.Component<Props> {
   public static readonly defaultProps: Props = {
     dismissVisible: false,
-    onDismissClick: () => undefined,
-    onDismissMouseEnter: () => undefined,
-    onDismissMouseLeave: () => undefined,
-    onExitClick: () => undefined,
-    onExitMouseEnter: () => undefined,
-    onExitMouseLeave: () => undefined,
-    renderAdditionalStats: () => undefined,
-    renderArtifact: () => undefined,
-    renderCrest: () => undefined,
-    renderHeroPortrait: () => undefined,
-    renderSkill: () => undefined,
-    renderTroop: () => undefined,
+    onDismissClick: noop,
+    onDismissMouseEnter: noop,
+    onDismissMouseLeave: noop,
+    onExitClick: noop,
+    onExitMouseEnter: noop,
+    onExitMouseLeave: noop,
+    renderAdditionalStats: noop,
+    renderArtifact: noop,
+    renderCrest: noop,
+    renderHeroPortrait: noop,
+    renderSkill: noop,
+    renderTroop: noop,
     statusText: "",
     title: "",
   };

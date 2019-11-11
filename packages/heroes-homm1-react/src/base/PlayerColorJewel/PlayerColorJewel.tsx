@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 interface Props {
   readonly className?: string;
   readonly value: string;
@@ -8,7 +10,7 @@ interface Props {
 
 export class PlayerColorJewel extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, "onClick"> = {
-    onClick: () => undefined,
+    onClick: noop,
   };
 
   public render() {

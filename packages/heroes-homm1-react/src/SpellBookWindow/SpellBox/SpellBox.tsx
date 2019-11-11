@@ -1,6 +1,8 @@
 import React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./SpellBox.module.scss";
 
 import { SpellIcon } from "../../base";
@@ -15,7 +17,7 @@ export interface SpellBoxProps {
 
 export class SpellBox extends React.Component<SpellBoxProps> {
   public static readonly defaultProps: Pick<SpellBoxProps, "onClick"> = {
-    onClick: () => undefined,
+    onClick: noop,
   };
 
   public render() {

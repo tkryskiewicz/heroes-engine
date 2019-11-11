@@ -1,6 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
+import { noop } from "heroes-helpers";
 import { EraseObjectsSettings, MapObjectType } from "heroes-homm1";
 
 import * as styles from "./EraseOptionSettingsWindow.module.scss";
@@ -21,7 +22,7 @@ type DefaultProp =
 
 export class EraseOptionSettingsWindow extends React.Component<EraseOptionSettingsWindowProps> {
   public static readonly defaultProps: Pick<EraseOptionSettingsWindowProps, DefaultProp> = {
-    onValueChange: () => undefined,
+    onValueChange: noop,
   };
 
   public render() {

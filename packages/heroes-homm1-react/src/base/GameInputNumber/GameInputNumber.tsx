@@ -1,6 +1,8 @@
 import InputNumber from "antd/lib/input-number";
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./GameInputNumber.module.scss";
 
 export interface GameInputNumberProps {
@@ -18,7 +20,7 @@ type DefaultProp =
 export class GameInputNumber extends React.Component<GameInputNumberProps> {
   public static readonly defaultProps: Pick<GameInputNumberProps, DefaultProp> = {
     disabled: false,
-    onChange: () => undefined,
+    onChange: noop,
   };
 
   public render() {

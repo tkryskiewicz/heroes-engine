@@ -1,5 +1,6 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
 import { isCommonStructure } from "heroes-homm1";
 
 export interface StructureViewProps {
@@ -19,9 +20,9 @@ type DefaultProp =
 
 export class StructureView extends React.Component<StructureViewProps> {
   public static readonly defaultProps: Pick<StructureViewProps, DefaultProp> = {
-    onClick: () => undefined,
-    onMouseEnter: () => undefined,
-    onMouseLeave: () => undefined,
+    onClick: noop,
+    onMouseEnter: noop,
+    onMouseLeave: noop,
     placeholder: false,
   };
 

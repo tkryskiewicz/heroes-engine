@@ -3,6 +3,7 @@ import React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { HeroSkills } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { SkillIds } from "heroes-homm1";
 
 import * as styles from "./HeroTradingWindow.module.scss";
@@ -40,10 +41,10 @@ type DefaultProp =
 
 class HeroTradingWindow extends React.Component<HeroTradingWindowProps> {
   public static readonly defaultProps: Pick<HeroTradingWindowProps, DefaultProp> = {
-    onExitClick: () => undefined,
-    renderArtifact: () => undefined,
-    renderHeroPortrait: () => undefined,
-    renderTroop: () => undefined,
+    onExitClick: noop,
+    renderArtifact: noop,
+    renderHeroPortrait: noop,
+    renderTroop: noop,
     title: "",
   };
 

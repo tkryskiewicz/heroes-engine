@@ -1,6 +1,8 @@
 import Classnames from "classnames";
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./EditorObjectSlot.module.scss";
 
 export interface EditorObjectSlotProps {
@@ -10,7 +12,7 @@ export interface EditorObjectSlotProps {
 
 export class EditorObjectSlot extends React.Component<EditorObjectSlotProps> {
   public static readonly defaultProps: Pick<EditorObjectSlotProps, "onClick"> = {
-    onClick: () => undefined,
+    onClick: noop,
   };
 
   public render() {

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
 import { CastleOptionStatus } from "heroes-homm1";
 
 import * as styles from "./CastleOption.module.scss";
@@ -24,9 +25,9 @@ type DefaultProp =
 
 export class CastleOption extends React.Component<CastleOptionProps> {
   public static readonly defaultProps: Pick<CastleOptionProps, DefaultProp> = {
-    onClick: () => undefined,
-    onMouseEnter: () => undefined,
-    onMouseLeave: () => undefined,
+    onClick: noop,
+    onMouseEnter: noop,
+    onMouseLeave: noop,
   };
 
   public render() {

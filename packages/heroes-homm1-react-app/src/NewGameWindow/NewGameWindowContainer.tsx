@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { GameData, nextOption } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { GameDifficulty, getGameDifficultyRating, getOpponentSettingRating, OpponentSetting } from "heroes-homm1";
 import {
   GameDifficultyBox,
@@ -41,13 +42,13 @@ type DefaultProp =
 
 export class NewGameWindowContainer extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
-    onCancelClick: () => undefined,
-    onGameDifficultyChange: () => undefined,
-    onKingOfTheHillChange: () => undefined,
-    onOkayClick: () => undefined,
-    onOpponentSettingsChange: () => undefined,
-    onPlayerColorChange: () => undefined,
-    onSelectScenarioClick: () => undefined,
+    onCancelClick: noop,
+    onGameDifficultyChange: noop,
+    onKingOfTheHillChange: noop,
+    onOkayClick: noop,
+    onOpponentSettingsChange: noop,
+    onPlayerColorChange: noop,
+    onSelectScenarioClick: noop,
   };
 
   public render() {

@@ -3,6 +3,7 @@ import { InjectedIntlProps, injectIntl } from "react-intl";
 import { Route, RouteComponentProps, Switch, withRouter } from "react-router";
 
 import { GameData, getArmySize, Hero } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { Artifact, getLuckType, getMoraleType, LuckType, MoraleType } from "heroes-homm1";
 import {
   AdditionalStatsInfo,
@@ -81,7 +82,7 @@ interface HeroWindowContainerState {
 class HeroWindowContainer extends React.Component<HeroWindowContainerProps, HeroWindowContainerState> {
   public static readonly defaultProps: Pick<HeroWindowContainerProps, DefaultProp> = {
     dismissible: false,
-    onConfirmDismissHeroClick: () => undefined,
+    onConfirmDismissHeroClick: noop,
   };
 
   public readonly state: HeroWindowContainerState = {

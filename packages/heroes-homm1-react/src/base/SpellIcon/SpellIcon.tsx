@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 export interface SpellIconProps {
   readonly spell: string;
   readonly onClick: (spell: string) => void;
@@ -7,7 +9,7 @@ export interface SpellIconProps {
 
 export class SpellIcon extends React.Component<SpellIconProps> {
   public static readonly defaultProps: Pick<SpellIconProps, "onClick"> = {
-    onClick: () => undefined,
+    onClick: noop,
   };
 
   public render() {

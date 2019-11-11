@@ -1,6 +1,7 @@
 import React from "react";
 
 import { createPoint, getTileIndex } from "heroes-core";
+import { noop } from "heroes-helpers";
 
 import * as styles from "./AdventureMapWindow.module.scss";
 
@@ -17,8 +18,8 @@ type DefaultProp =
 
 export class AdventureMapWindow extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
-    onTileClick: () => undefined,
-    renderTile: () => undefined,
+    onTileClick: noop,
+    renderTile: noop,
   };
 
   public render() {

@@ -1,6 +1,8 @@
 import Classnames from "classnames";
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./ImageButton.module.scss";
 
 export interface ButtonImages {
@@ -30,9 +32,9 @@ type DefaultProp =
 export class ImageButton extends React.Component<ImageButtonProps, ImageButtonState> {
   public static readonly defaultProps: Pick<ImageButtonProps, DefaultProp> = {
     disabled: false,
-    onClick: () => undefined,
-    onMouseEnter: () => undefined,
-    onMouseLeave: () => undefined,
+    onClick: noop,
+    onMouseEnter: noop,
+    onMouseLeave: noop,
   };
 
   public readonly state: ImageButtonState = {

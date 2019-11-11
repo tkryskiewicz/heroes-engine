@@ -2,6 +2,7 @@ import { Col, Row } from "antd";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
+import { noop } from "heroes-helpers";
 import { ScenarioDifficulty, ScenarioSize, ScenarioSpecification } from "heroes-homm1";
 
 import * as styles from "./ScenarioSpecificationWindow.module.scss";
@@ -22,7 +23,7 @@ type DefaultProp =
 
 export class ScenarioSpecificationWindow extends React.Component<ScenarioSpecificationWindowProps> {
   public static readonly defaultProps: Pick<ScenarioSpecificationWindowProps, DefaultProp> = {
-    onValueChange: () => undefined,
+    onValueChange: noop,
   };
 
   public render() {

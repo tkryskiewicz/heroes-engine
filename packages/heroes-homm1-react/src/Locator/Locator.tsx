@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./Locator.module.scss";
 
 import { backgroundImages, SelectionImage } from "./assets";
@@ -13,7 +15,7 @@ export interface LocatorProps {
 // TODO: town locators have borders, without them we could limit locator size and center content
 export class Locator extends React.Component<LocatorProps> {
   public static readonly defaultProps: Pick<LocatorProps, "selected" | "onClick"> = {
-    onClick: () => undefined,
+    onClick: noop,
     selected: false,
   };
 

@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { GameData } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { CreatureMapObjectDetails } from "heroes-homm1";
 
 import * as styles from "./CreatureMapObjectDetailsWindow.module.scss";
@@ -27,7 +28,7 @@ type DefaultProp =
 
 export class CreatureMapObjectDetailsWindow extends React.Component<CreatureMapObjectDetailsWindowProps, State> {
   public static readonly defaultProps: Pick<CreatureMapObjectDetailsWindowProps, DefaultProp> = {
-    onValueChange: () => undefined,
+    onValueChange: noop,
   };
 
   public readonly state: State = {

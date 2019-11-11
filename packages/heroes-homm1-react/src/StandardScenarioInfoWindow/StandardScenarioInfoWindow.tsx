@@ -1,6 +1,7 @@
 import React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
+import { noop } from "heroes-helpers";
 import {
   GameDifficulty,
   OpponentSetting,
@@ -40,7 +41,7 @@ class StandardScenarioInfoWindow extends React.Component<Props> {
     difficultyRating: 0,
     gameDifficulty: GameDifficulty.Easy,
     kingOfTheHill: false,
-    onOkayClick: () => undefined,
+    onOkayClick: noop,
     opponentSettings: [],
     playerColor: "",
     scenarioDescription: "",

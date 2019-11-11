@@ -3,6 +3,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Army, GameData, Troop } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { ArtifactId, HeroMapObjectDetails } from "heroes-homm1";
 
 import * as styles from "./HeroMapObjectDetailsWindow.module.scss";
@@ -31,7 +32,7 @@ type DefaultProp =
 
 export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDetailsWindowProps, State> {
   public static readonly defaultProps: Pick<HeroMapObjectDetailsWindowProps, DefaultProp> = {
-    onValueChange: () => undefined,
+    onValueChange: noop,
   };
 
   public readonly state: State = {

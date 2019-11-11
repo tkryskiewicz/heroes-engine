@@ -1,5 +1,6 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
 import { EditorOption } from "heroes-homm1";
 
 import * as styles from "./EditorOptions.module.scss";
@@ -15,7 +16,7 @@ export interface EditorOptionsProps {
 
 export class EditorOptions extends React.Component<EditorOptionsProps> {
   public static readonly defaultProps: Pick<EditorOptionsProps, "onSelectedOptionChange"> = {
-    onSelectedOptionChange: () => undefined,
+    onSelectedOptionChange: noop,
   };
 
   public render() {

@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./TradingSlot.module.scss";
 
 import { SelectionImage } from "./assets";
@@ -12,7 +14,7 @@ export interface TradingSlotProps {
 
 export class TradingSlot extends React.Component<TradingSlotProps> {
   public static readonly defaultProps: Pick<TradingSlotProps, "selected" | "onClick"> = {
-    onClick: () => undefined,
+    onClick: noop,
     selected: false,
   };
 

@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./TroopSlot.module.scss";
 
 import { EmptyImage, SelectionImage } from "./assets";
@@ -24,9 +26,9 @@ export interface TroopSlotProps {
 
 export class TroopSlot extends React.Component<TroopSlotProps> {
   public static readonly defaultProps: Pick<TroopSlotProps, "onMouseEnter" | "onMouseLeave" | "onClick"> = {
-    onClick: () => undefined,
-    onMouseEnter: () => undefined,
-    onMouseLeave: () => undefined,
+    onClick: noop,
+    onMouseEnter: noop,
+    onMouseLeave: noop,
   };
 
   public render() {

@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { nextOption, previousOption } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { isSoundEnabled, MovementSpeed, SoundVolume } from "heroes-homm1";
 
 import * as styles from "./GameOptionsWindow.module.scss";
@@ -50,9 +51,9 @@ class GameOptionsWindow extends React.Component<Props> {
     effectsVolume: SoundVolume.Off,
     movementSpeed: MovementSpeed.Walk,
     musicVolume: SoundVolume.Off,
-    onEffectsVolumeChange: () => undefined,
-    onMovementSpeedChange: () => undefined,
-    onMusicVolumeChange: () => undefined,
+    onEffectsVolumeChange: noop,
+    onMovementSpeedChange: noop,
+    onMusicVolumeChange: noop,
     showPath: false,
     viewEnemyMovement: false,
   };

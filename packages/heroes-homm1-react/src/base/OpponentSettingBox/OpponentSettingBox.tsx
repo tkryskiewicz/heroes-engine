@@ -1,5 +1,6 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
 import { OpponentSetting } from "heroes-homm1";
 
 import { opponentSettingImages } from "./assets";
@@ -13,7 +14,7 @@ interface Props {
 export class OpponentSettingBox extends React.Component<Props> {
   public static readonly defaultProps: Props = {
     index: 0,
-    onClick: () => undefined,
+    onClick: noop,
     value: OpponentSetting.None,
   };
 

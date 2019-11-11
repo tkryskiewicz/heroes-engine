@@ -2,6 +2,8 @@ import { Col, Row } from "antd";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./AlignmentDetails.module.scss";
 
 import { GameCheckbox } from "../../base";
@@ -22,7 +24,7 @@ type DefaultProp =
 export class AlignmentDetails extends React.Component<AlignmentDetailsProps> {
   public static readonly defaultProps: Pick<AlignmentDetailsProps, DefaultProp> = {
     allowNeutral: false,
-    onValueChange: () => undefined,
+    onValueChange: noop,
   };
 
   public render() {

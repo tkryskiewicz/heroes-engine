@@ -1,9 +1,11 @@
 import React from "react";
 
+import { nextOption } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { GameType, HighScores } from "heroes-homm1";
 import { HighScoresWindow } from "heroes-homm1-react";
 
-export interface HighScoresWindowContainerProps {
+interface Props {
   readonly visible: boolean;
   readonly scores: HighScores;
   readonly gameType: GameType;
@@ -11,7 +13,16 @@ export interface HighScoresWindowContainerProps {
   readonly onExitClick: () => void;
 }
 
-export class HighScoresWindowContainer extends React.Component<HighScoresWindowContainerProps> {
+type DefaultProp =
+  "onGameTypeChange" |
+  "onExitClick";
+
+export class HighScoresWindowContainer extends React.Component<Props> {
+  public static readonly defaultProps: Pick<Props, DefaultProp> = {
+    onExitClick: noop,
+    onGameTypeChange: noop,
+  };
+
   public componentDidMount() {
     this.props.onGameTypeChange(GameType.Standard);
   }
@@ -29,10 +40,15 @@ export class HighScoresWindowContainer extends React.Component<HighScoresWindowC
   }
 
   private readonly onGameTypeClick = () => {
-    const value = this.props.gameType === GameType.Standard ?
-      GameType.Campaign :
-      GameType.Standard;
+    const gameTypes = [
+      GameType.Standard,
+      GameType.Campaign,
+    ];
+
+    const value = nextOption(gameTypes, this.props.gameType);
 
     this.props.onGameTypeChange(value);
   }
 }
+
+export type HighScoresWindowContainerProps = ExtractPublicProps<typeof HighScoresWindowContainer>;

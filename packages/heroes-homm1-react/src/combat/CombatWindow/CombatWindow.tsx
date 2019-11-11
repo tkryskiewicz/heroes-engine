@@ -2,6 +2,7 @@ import React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Battlefield, CombatSide, HeroSkills } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { getLuckType, getMoraleType } from "heroes-homm1";
 
 import * as styles from "./CombatWindow.module.scss";
@@ -46,7 +47,7 @@ type DefaultProp =
 
 class CombatWindow extends React.Component<CombatWindowProps, CombatWindowState> {
   public static readonly defaultProps: Pick<CombatWindowProps, DefaultProp> = {
-    onVisibleHeroCombatOptionsChange: () => undefined,
+    onVisibleHeroCombatOptionsChange: noop,
   };
 
   public readonly state: CombatWindowState = {

@@ -2,6 +2,7 @@ import React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import { getArmySize, Hero, TroopSelection, TroopSelectionType } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { ArtifactData, ArtifactSelection } from "heroes-homm1";
 import {
   ArtifactDetailsPrompt,
@@ -64,17 +65,17 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
     artifactDetailsVisible: false,
     artifactNotTradablePromptVisible: false,
-    onCloseArtifactDetailsClick: () => undefined,
-    onCloseArtifactNotTradablePrompt: () => undefined,
-    onCloseHeroDetailsClick: () => undefined,
-    onExitClick: () => undefined,
-    onOpenArtifactDetailsClick: () => undefined,
-    onOpenArtifactNotTradablePrompt: () => undefined,
-    onOpenHeroDetailsClick: () => undefined,
-    onSelectArtifactClick: () => undefined,
-    onSelectTroop: () => undefined,
-    onSwapTroops: () => undefined,
-    onTradeArtifactsClick: () => undefined,
+    onCloseArtifactDetailsClick: noop,
+    onCloseArtifactNotTradablePrompt: noop,
+    onCloseHeroDetailsClick: noop,
+    onExitClick: noop,
+    onOpenArtifactDetailsClick: noop,
+    onOpenArtifactNotTradablePrompt: noop,
+    onOpenHeroDetailsClick: noop,
+    onSelectArtifactClick: noop,
+    onSelectTroop: noop,
+    onSwapTroops: noop,
+    onTradeArtifactsClick: noop,
   };
 
   public render() {

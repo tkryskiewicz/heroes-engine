@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./TownDetailWindow.module.scss";
 
 // FIXME: find right assets
@@ -24,9 +26,9 @@ type DefaultProp =
 
 class TownDetailWindow extends React.Component<TownDetailWindowProps> {
   public static readonly defaultProps: Pick<TownDetailWindowProps, DefaultProp> = {
-    onExitClick: () => undefined,
-    onExitMouseEnter: () => undefined,
-    onExitMouseLeave: () => undefined,
+    onExitClick: noop,
+    onExitMouseEnter: noop,
+    onExitMouseLeave: noop,
     statusText: "",
   };
 

@@ -6,6 +6,7 @@ import {
   BattlefieldObstacleObject,
   BattlefieldTroopObject,
 } from "heroes-core";
+import { noop } from "heroes-helpers";
 
 import * as styles from "./CombatCell.module.scss";
 
@@ -21,7 +22,7 @@ export interface CombatCellProps {
 
 export class CombatCell extends React.Component<CombatCellProps> {
   public static readonly defaultProps: Pick<CombatCellProps, "onClick"> = {
-    onClick: () => undefined,
+    onClick: noop,
   };
 
   public render() {

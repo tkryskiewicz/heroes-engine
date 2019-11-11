@@ -1,6 +1,8 @@
 import React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./KingdomOverviewWindow.module.scss";
 
 import { buttonImages } from "./assets";
@@ -37,13 +39,13 @@ type DefaultProp =
 
 class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> {
   public static readonly defaultProps: Pick<KingdomOverviewWindowProps, DefaultProp> = {
-    renderCastleSummary: () => undefined,
-    renderDate: () => undefined,
-    renderHeroClassSummary: () => undefined,
-    renderMineSummary: () => undefined,
-    renderResourceSummary: () => undefined,
-    renderTitle: () => undefined,
-    renderTownSummary: () => undefined,
+    renderCastleSummary: noop,
+    renderDate: noop,
+    renderHeroClassSummary: noop,
+    renderMineSummary: noop,
+    renderResourceSummary: noop,
+    renderTitle: noop,
+    renderTownSummary: noop,
   };
 
   public render() {

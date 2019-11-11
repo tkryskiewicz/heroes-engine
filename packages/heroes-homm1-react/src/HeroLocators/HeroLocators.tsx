@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Hero } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { HeroLimit } from "heroes-homm1";
 
 import { HeroLocator } from "../HeroLocator";
@@ -17,7 +18,7 @@ type DefaultProp =
 // TODO: unify hero and town locators?
 export class HeroLocators extends React.Component<HeroLocatorsProps> {
   public static readonly defaultProps: Pick<HeroLocatorsProps, DefaultProp> = {
-    onLocatorClick: () => undefined,
+    onLocatorClick: noop,
   };
 
   public render() {

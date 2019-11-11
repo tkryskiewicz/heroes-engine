@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./AdventureButtons.module.scss";
 
 import { buttonImages } from "./assets";
@@ -17,26 +19,16 @@ interface Props {
   readonly onGameOptionsClick: () => void;
 }
 
-type DefaultProp =
-  "nextHeroDisabled" |
-  "onNextHeroClick" |
-  "moveDisabled" |
-  "onMoveClick" |
-  "onKingdomOverviewClick" |
-  "onEndTurnClick" |
-  "onAdventureOptionsClick" |
-  "onGameOptionsClick";
-
 export class AdventureButtons extends React.Component<Props> {
-  public static readonly defaultProps: Pick<Props, DefaultProp> = {
+  public static readonly defaultProps: Props = {
     moveDisabled: false,
     nextHeroDisabled: false,
-    onAdventureOptionsClick: () => undefined,
-    onEndTurnClick: () => undefined,
-    onGameOptionsClick: () => undefined,
-    onKingdomOverviewClick: () => undefined,
-    onMoveClick: () => undefined,
-    onNextHeroClick: () => undefined,
+    onAdventureOptionsClick: noop,
+    onEndTurnClick: noop,
+    onGameOptionsClick: noop,
+    onKingdomOverviewClick: noop,
+    onMoveClick: noop,
+    onNextHeroClick: noop,
   };
 
   public render() {

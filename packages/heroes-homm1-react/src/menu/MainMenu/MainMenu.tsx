@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import { buttonImages } from "./assets";
 
 import { ImageButton } from "../../base";
@@ -15,11 +17,11 @@ interface Props {
 
 export class MainMenu extends React.Component<Props> {
   public static readonly defaultProps: Props = {
-    onLoadGameClick: () => undefined,
-    onNewGameClick: () => undefined,
-    onQuitClick: () => undefined,
-    onViewCreditsClick: () => undefined,
-    onViewHighScoresClick: () => undefined,
+    onLoadGameClick: noop,
+    onNewGameClick: noop,
+    onQuitClick: noop,
+    onViewCreditsClick: noop,
+    onViewHighScoresClick: noop,
   };
 
   public render() {

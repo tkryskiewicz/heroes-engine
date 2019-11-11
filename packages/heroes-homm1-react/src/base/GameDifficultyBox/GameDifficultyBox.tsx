@@ -1,5 +1,6 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
 import { GameDifficulty } from "heroes-homm1";
 
 import * as styles from "./GameDifficultyBox.module.scss";
@@ -14,7 +15,7 @@ interface Props {
 
 export class GameDifficultyBox extends React.Component<Props> {
   public static readonly defaultProps: Props = {
-    onClick: () => undefined,
+    onClick: noop,
     selected: false,
     value: GameDifficulty.Easy,
   };

@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./TerrainsOptionDetails.module.scss";
 
 import { SelectionImage } from "./assets";
@@ -12,7 +14,7 @@ export interface TerrainsOptionDetailsProps {
 
 export class TerrainsOptionDetails extends React.Component<TerrainsOptionDetailsProps> {
   public static readonly defaultProps: Pick<TerrainsOptionDetailsProps, "onSelectedOptionChange"> = {
-    onSelectedOptionChange: () => undefined,
+    onSelectedOptionChange: noop,
   };
 
   public render() {

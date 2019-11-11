@@ -3,6 +3,7 @@ import { InjectedIntlProps, injectIntl } from "react-intl";
 import { Route, RouteComponentProps, Switch, withRouter } from "react-router";
 
 import { getArmySize, Hero, Resources, Structure, Town, TroopSelection, TroopSelectionType } from "heroes-core";
+import { noop } from "heroes-helpers";
 import {
   Crest,
   getArmyStripStatusTextMessage,
@@ -62,7 +63,7 @@ interface TownWindowContainerState {
 
 class TownWindowContainer extends React.Component<TownWindowContainerProps, TownWindowContainerState> {
   public static readonly defaultProps: Pick<TownWindowContainerProps, DefaultProp> = {
-    onExitClick: () => undefined,
+    onExitClick: noop,
   };
 
   public readonly state: TownWindowContainerState = {

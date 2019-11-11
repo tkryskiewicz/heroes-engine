@@ -1,6 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
+import { noop } from "heroes-helpers";
 import { isCommonStructure } from "heroes-homm1";
 
 import * as styles from "./CastleOptionIcon.module.scss";
@@ -23,9 +24,9 @@ type DefaultProp =
 
 export class CastleOptionIcon extends React.Component<CastleOptionIconProps> {
   public static readonly defaultProps: Pick<CastleOptionIconProps, DefaultProp> = {
-    onClick: () => undefined,
-    onMouseEnter: () => undefined,
-    onMouseLeave: () => undefined,
+    onClick: noop,
+    onMouseEnter: noop,
+    onMouseLeave: noop,
   };
 
   public render() {

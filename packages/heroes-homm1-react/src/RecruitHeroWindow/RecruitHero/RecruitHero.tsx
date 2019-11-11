@@ -2,6 +2,7 @@ import { Row } from "antd";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
+import { noop } from "heroes-helpers";
 import { HeroClass } from "heroes-homm1";
 
 import * as styles from "./RecruitHero.module.scss";
@@ -28,8 +29,8 @@ type DefaultProp =
 export class RecruitHero extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
     disabled: false,
-    onPortraitClick: () => undefined,
-    onRecruitClick: () => undefined,
+    onPortraitClick: noop,
+    onRecruitClick: noop,
   };
 
   public render() {

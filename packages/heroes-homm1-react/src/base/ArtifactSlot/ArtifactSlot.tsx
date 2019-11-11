@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./ArtifactSlot.module.scss";
 
 import { BorderImage, EmptyImage, UltimateBorderImage } from "./assets";
@@ -24,9 +26,9 @@ type DefaultProp =
 export class ArtifactSlot extends React.Component<ArtifactSlotProps> {
   public static readonly defaultProps: Pick<ArtifactSlotProps, DefaultProp> = {
     isUltimate: false,
-    onClick: () => undefined,
-    onMouseEnter: () => undefined,
-    onMouseLeave: () => undefined,
+    onClick: noop,
+    onMouseEnter: noop,
+    onMouseLeave: noop,
   };
 
   public render() {

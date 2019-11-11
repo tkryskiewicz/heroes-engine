@@ -1,6 +1,8 @@
 import React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./NewGameWindow.module.scss";
 
 import { buttonImages, switchImages } from "./assets";
@@ -30,14 +32,14 @@ export class NewGameWindow extends React.Component<Props> {
   public static readonly defaultProps: Props = {
     difficultyRating: 0,
     kingOfTheHill: false,
-    onCancelClick: () => undefined,
-    onKingOfTheHillChange: () => undefined,
-    onOkayClick: () => undefined,
-    onPlayerColorClick: () => undefined,
-    onSelectScenarioClick: () => undefined,
+    onCancelClick: noop,
+    onKingOfTheHillChange: noop,
+    onOkayClick: noop,
+    onPlayerColorClick: noop,
+    onSelectScenarioClick: noop,
     playerColor: "",
-    renderGameDifficulty: () => undefined,
-    renderOpponentSetting: () => undefined,
+    renderGameDifficulty: noop,
+    renderOpponentSetting: noop,
     scenarioName: "",
   };
 

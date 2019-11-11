@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./EditorButtons.module.scss";
 
 import { buttonImages } from "./assets";
@@ -19,14 +21,14 @@ interface Props {
 
 export class EditorButtons extends React.Component<Props> {
   public static readonly defaultProps: Props = {
-    onLoadClick: () => undefined,
-    onNewClick: () => undefined,
-    onQuitClick: () => undefined,
-    onRandomClick: () => undefined,
-    onSaveClick: () => undefined,
-    onSpecsClick: () => undefined,
-    onUndoClick: () => undefined,
-    onZoomClick: () => undefined,
+    onLoadClick: noop,
+    onNewClick: noop,
+    onQuitClick: noop,
+    onRandomClick: noop,
+    onSaveClick: noop,
+    onSpecsClick: noop,
+    onUndoClick: noop,
+    onZoomClick: noop,
   };
 
   public render() {

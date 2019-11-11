@@ -1,6 +1,7 @@
 import Classnames from "classnames";
 import React from "react";
 
+import { noop } from "heroes-helpers";
 import { TerrainTransition } from "heroes-homm1";
 
 import * as styles from "./MapTile.module.scss";
@@ -58,9 +59,9 @@ type DefaultProp =
 export class MapTile extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
     active: false,
-    onClick: () => undefined,
-    onMouseEnter: () => undefined,
-    onMouseLeave: () => undefined,
+    onClick: noop,
+    onMouseEnter: noop,
+    onMouseLeave: noop,
   };
 
   public render() {

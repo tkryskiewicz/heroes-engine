@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage, FormattedNumber, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { HeroSkills } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { LuckType, MoraleType, SkillIds } from "heroes-homm1";
 
 import * as styles from "./HeroCombatOptions.module.scss";
@@ -66,19 +67,19 @@ type DefaultProp =
 
 class HeroCombatOptions extends React.Component<HeroCombatOptionsProps> {
   public static readonly defaultProps: Pick<HeroCombatOptionsProps, DefaultProp> = {
-    onCancelClick: () => undefined,
-    onCancelMouseEnter: () => undefined,
-    onCancelMouseLeave: () => undefined,
-    onCastSpellClick: () => undefined,
-    onCastSpellMouseEnter: () => undefined,
-    onCastSpellMouseLeave: () => undefined,
-    onRetreatClick: () => undefined,
-    onRetreatMouseEnter: () => undefined,
-    onRetreatMouseLeave: () => undefined,
-    onSurrenderClick: () => undefined,
-    onSurrenderMouseEnter: () => undefined,
-    onSurrenderMouseLeave: () => undefined,
-    renderHeroPortrait: () => undefined,
+    onCancelClick: noop,
+    onCancelMouseEnter: noop,
+    onCancelMouseLeave: noop,
+    onCastSpellClick: noop,
+    onCastSpellMouseEnter: noop,
+    onCastSpellMouseLeave: noop,
+    onRetreatClick: noop,
+    onRetreatMouseEnter: noop,
+    onRetreatMouseLeave: noop,
+    onSurrenderClick: noop,
+    onSurrenderMouseEnter: noop,
+    onSurrenderMouseLeave: noop,
+    renderHeroPortrait: noop,
   };
 
   public render() {

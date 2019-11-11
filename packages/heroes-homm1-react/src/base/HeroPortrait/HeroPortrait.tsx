@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./HeroPortrait.module.scss";
 
 export interface HeroPortraitProps {
@@ -11,9 +13,9 @@ export interface HeroPortraitProps {
 
 export class HeroPortrait extends React.Component<HeroPortraitProps> {
   public static readonly defaultProps: Pick<HeroPortraitProps, "onMouseEnter" | "onMouseLeave" | "onClick"> = {
-    onClick: () => undefined,
-    onMouseEnter: () => undefined,
-    onMouseLeave: () => undefined,
+    onClick: noop,
+    onMouseEnter: noop,
+    onMouseLeave: noop,
   };
 
   public render() {

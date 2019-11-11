@@ -1,6 +1,7 @@
 import React from "react";
 
 import { nextOption } from "heroes-core";
+import { noop } from "heroes-helpers";
 import {
   DateInformation,
   DateInformationProps,
@@ -25,7 +26,7 @@ interface StatusWindowContainerProps {
 
 class StatusWindowContainer extends React.Component<StatusWindowContainerProps> {
   public static readonly defaultProps: Pick<StatusWindowContainerProps, "onSelectedOptionChange"> = {
-    onSelectedOptionChange: () => undefined,
+    onSelectedOptionChange: noop,
   };
 
   public render() {

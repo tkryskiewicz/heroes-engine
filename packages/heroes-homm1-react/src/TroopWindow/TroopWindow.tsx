@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import { CreatureData, Damage, HeroSkills } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { LuckType, MoraleType, Skill } from "heroes-homm1";
 
 import * as styles from "./TroopWindow.module.scss";
@@ -43,9 +44,9 @@ type DefaultProp =
 class TroopWindow extends React.Component<TroopWindowProps> {
   public static readonly defaultProps: Pick<TroopWindowProps, DefaultProp> = {
     dismissVisible: false,
-    onDismissClick: () => undefined,
-    onExitClick: () => undefined,
-    renderCreature: () => undefined,
+    onDismissClick: noop,
+    onExitClick: noop,
+    renderCreature: noop,
     skillEnhancements: {},
   };
 

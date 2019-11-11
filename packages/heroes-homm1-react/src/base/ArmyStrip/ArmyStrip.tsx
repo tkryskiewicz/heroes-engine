@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Army, Troop } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { ArmySize } from "heroes-homm1";
 
 import * as styles from "./ArmyStrip.module.scss";
@@ -22,9 +23,9 @@ type DefaultProp =
 
 export class ArmyStrip extends React.Component<ArmyStripProps> {
   public static readonly defaultProps: Pick<ArmyStripProps, DefaultProp> = {
-    onTroopClick: () => undefined,
-    onTroopMouseEnter: () => undefined,
-    onTroopMouseLeave: () => undefined,
+    onTroopClick: noop,
+    onTroopMouseEnter: noop,
+    onTroopMouseLeave: noop,
   };
 
   public render() {

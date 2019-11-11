@@ -3,6 +3,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Resources } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { HeroClass } from "heroes-homm1";
 
 import { GameModal, ResourceCost } from "../base";
@@ -34,9 +35,9 @@ export type DefaultProp =
 export class RecruitHeroWindow extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
     disabled: false,
-    onCancelClick: () => undefined,
-    onHeroPortraitClick: () => undefined,
-    onRecruitHeroClick: () => undefined,
+    onCancelClick: noop,
+    onHeroPortraitClick: noop,
+    onRecruitHeroClick: noop,
   };
 
   public render() {

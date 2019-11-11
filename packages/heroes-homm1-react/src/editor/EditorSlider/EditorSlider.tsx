@@ -1,6 +1,7 @@
 import React from "react";
 
 import { MapObjectOrientation } from "heroes-core";
+import { noop } from "heroes-helpers";
 
 import * as styles from "./EditorSlider.module.scss";
 
@@ -20,7 +21,7 @@ type DefaultProp =
 
 export class EditorSlider extends React.Component<EditorSliderProps> {
   public static readonly defaultProps: Pick<EditorSliderProps, DefaultProp> = {
-    onValueChange: () => undefined,
+    onValueChange: noop,
   };
 
   public render() {

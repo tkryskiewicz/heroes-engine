@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { TroopSelectionType } from "heroes-core";
+import { noop } from "heroes-helpers";
 
 import { GameInputNumber, GameModal } from "../../base";
 import { GameParagraph } from "../../core";
@@ -23,7 +24,7 @@ type DefaultProp =
 
 class RedistributeArmyPrompt extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
-    onCountChange: () => undefined,
+    onCountChange: noop,
   };
 
   public render() {

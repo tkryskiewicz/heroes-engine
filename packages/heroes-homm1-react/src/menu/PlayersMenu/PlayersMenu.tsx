@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import { buttonImages } from "./assets";
 
 import { ImageButton } from "../../base";
@@ -7,15 +9,13 @@ import { Menu, MenuOption } from "../Menu";
 
 interface Props {
   readonly onOptionClick: (value: number) => void;
-  readonly onCancelClick?: () => void;
+  readonly onCancelClick: () => void;
 }
 
-type DefaultProp =
-  "onOptionClick";
-
 export class PlayersMenu extends React.Component<Props> {
-  public static readonly defaultProps: Pick<Props, DefaultProp> = {
-    onOptionClick: () => undefined,
+  public static readonly defaultProps: Props = {
+    onCancelClick: noop,
+    onOptionClick: noop,
   };
 
   public render() {

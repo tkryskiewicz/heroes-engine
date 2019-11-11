@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Resources } from "heroes-core";
+import { noop } from "heroes-helpers";
 
 import * as styles from "./BuildShipWindow.module.scss";
 
@@ -25,8 +26,8 @@ type DefaultProp =
 
 export class BuildShipWindow extends React.Component<BuildShipWindowProps> {
   public static readonly defaultProps: Pick<BuildShipWindowProps, DefaultProp> = {
-    onCancelClick: () => undefined,
-    onOkayClick: () => undefined,
+    onCancelClick: noop,
+    onOkayClick: noop,
   };
 
   public render() {

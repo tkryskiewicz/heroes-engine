@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 export interface CrestProps {
   readonly alignment: string;
   readonly heroClass?: string;
@@ -15,9 +17,9 @@ type DefaultProp =
 
 export class Crest extends React.Component<CrestProps> {
   public static readonly defaultProps: Pick<CrestProps, DefaultProp> = {
-    onClick: () => undefined,
-    onMouseEnter: () => undefined,
-    onMouseLeave: () => undefined,
+    onClick: noop,
+    onMouseEnter: noop,
+    onMouseLeave: noop,
   };
 
   public render() {

@@ -1,6 +1,8 @@
 import { Col, Row } from "antd";
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./GameModal.module.scss";
 
 import { withGameWindow } from "../../core";
@@ -29,8 +31,8 @@ type DefaultProp =
 class GameModal extends React.Component<GameModalProps> {
   public static readonly defaultProps: Pick<GameModalProps, DefaultProp> = {
     confirmDisabled: false,
-    onCancelClick: () => undefined,
-    onConfirmClick: () => undefined,
+    onCancelClick: noop,
+    onConfirmClick: noop,
     size: 1,
   };
 

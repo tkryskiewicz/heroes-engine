@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./CombatBar.module.scss";
 
 import { buttonImages } from "./assets";
@@ -13,15 +15,10 @@ export interface CombatBarProps {
   readonly onSkipClick: () => void;
 }
 
-type DefaultProp =
-  "statusText" |
-  "onAutoClick" |
-  "onSkipClick";
-
 export class CombatBar extends React.Component<CombatBarProps> {
-  public static readonly defaultProps: Pick<CombatBarProps, DefaultProp> = {
-    onAutoClick: () => undefined,
-    onSkipClick: () => undefined,
+  public static readonly defaultProps: CombatBarProps = {
+    onAutoClick: noop,
+    onSkipClick: noop,
     statusText: "",
   };
 

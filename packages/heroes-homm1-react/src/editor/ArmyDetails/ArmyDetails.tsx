@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Troop } from "heroes-core";
+import { noop } from "heroes-helpers";
 
 import * as styles from "./ArmyDetails.module.scss";
 
@@ -27,8 +28,8 @@ type DefaultProp =
 
 export class ArmyDetails extends React.Component<ArmyDetailsProps> {
   public static readonly defaultProps: Pick<ArmyDetailsProps, DefaultProp> = {
-    onOpenCreatureValueRangePrompt: () => undefined,
-    onValueChange: () => undefined,
+    onOpenCreatureValueRangePrompt: noop,
+    onValueChange: noop,
   };
 
   public render() {

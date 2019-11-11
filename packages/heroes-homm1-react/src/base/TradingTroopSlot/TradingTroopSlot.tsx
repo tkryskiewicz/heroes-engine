@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedNumber } from "react-intl";
 
 import { Troop } from "heroes-core";
+import { noop } from "heroes-helpers";
 
 import * as styles from "./TradingTroopSlot.module.scss";
 
@@ -21,7 +22,7 @@ export interface TradingTroopSlotProps {
 
 export class TradingTroopSlot extends React.Component<TradingTroopSlotProps> {
   public static readonly defaultProps: Pick<TradingTroopSlotProps, "selected" | "onClick"> = {
-    onClick: () => undefined,
+    onClick: noop,
     selected: false,
   };
 

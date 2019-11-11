@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./CampaignScenarioInfoWindow.module.scss";
 
 import { buttonImages, scenarioNumberImages } from "./assets";
@@ -21,8 +23,8 @@ type DefaultProp =
 
 class CampaignScenarioInfoWindow extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
-    onOkayClick: () => undefined,
-    onRestartScenarioClick: () => undefined,
+    onOkayClick: noop,
+    onRestartScenarioClick: noop,
   };
 
   public render() {

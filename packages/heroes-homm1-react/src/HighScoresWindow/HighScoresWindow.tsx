@@ -1,6 +1,7 @@
 import React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
+import { noop } from "heroes-helpers";
 import {
   CampaignGameScore,
   GameType,
@@ -31,8 +32,8 @@ type DefaultProp =
 
 class HighScoresWindow extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
-    onExitClick: () => undefined,
-    onGameTypeClick: () => undefined,
+    onExitClick: noop,
+    onGameTypeClick: noop,
   };
 
   public render() {

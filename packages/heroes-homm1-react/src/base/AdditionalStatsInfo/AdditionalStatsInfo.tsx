@@ -2,6 +2,7 @@ import { Row } from "antd";
 import React from "react";
 import { FormattedNumber } from "react-intl";
 
+import { noop } from "heroes-helpers";
 import { LuckType, MoraleType } from "heroes-homm1";
 
 import * as styles from "./AdditionalStatsInfo.module.scss";
@@ -43,11 +44,11 @@ type DefaultProp =
 
 export class AdditionalStatsInfo extends React.Component<AdditionalStatsInfoProps> {
   public static readonly defaultProps: Pick<AdditionalStatsInfoProps, DefaultProp> = {
-    onInfoClick: () => undefined,
-    onInfoMouseEnter: () => undefined,
-    onInfoMouseLeave: () => undefined,
-    onMouseEnter: () => undefined,
-    onMouseLeave: () => undefined,
+    onInfoClick: noop,
+    onInfoMouseEnter: noop,
+    onInfoMouseLeave: noop,
+    onMouseEnter: noop,
+    onMouseLeave: noop,
   };
 
   public render() {

@@ -1,6 +1,8 @@
 import React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./SurrenderWindow.module.scss";
 
 import { buttonImages } from "./assets";
@@ -25,9 +27,9 @@ type DefaultProp =
 
 class SurrenderWindow extends React.Component<SurrenderWindowProps> {
   public static readonly defaultProps: Pick<SurrenderWindowProps, DefaultProp> = {
-    onAcceptClick: () => undefined,
-    onDeclineClick: () => undefined,
-    renderHeroPortrait: () => undefined,
+    onAcceptClick: noop,
+    onDeclineClick: noop,
+    renderHeroPortrait: noop,
   };
 
   public render() {

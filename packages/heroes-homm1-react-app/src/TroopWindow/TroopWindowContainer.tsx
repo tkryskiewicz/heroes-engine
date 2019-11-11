@@ -1,6 +1,7 @@
 import React from "react";
 
 import { GameData, HeroSkills } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { LuckType, MoraleType } from "heroes-homm1";
 import { CreatureIcon, DismissTroopPrompt, TroopWindow, WithGameWindowProps } from "heroes-homm1-react";
 
@@ -32,10 +33,10 @@ export class TroopWindowContainer extends React.Component<TroopWindowContainerPr
   public static readonly defaultProps: Pick<TroopWindowContainerProps, DefaultProp> = {
     dismissPromptVisible: false,
     dismissible: false,
-    onCancelDismissClick: () => undefined,
-    onConfirmDismissClick: () => undefined,
-    onDismissClick: () => undefined,
-    onExitClick: () => undefined,
+    onCancelDismissClick: noop,
+    onConfirmDismissClick: noop,
+    onDismissClick: noop,
+    onExitClick: noop,
   };
 
   public render() {

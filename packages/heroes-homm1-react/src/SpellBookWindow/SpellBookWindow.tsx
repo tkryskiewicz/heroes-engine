@@ -1,6 +1,7 @@
 import React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
+import { noop } from "heroes-helpers";
 import { SpellType } from "heroes-homm1";
 
 import * as styles from "./SpellBookWindow.module.scss";
@@ -44,12 +45,12 @@ type DefaultProp =
 
 class SpellBookWindow extends React.Component<SpellBookWindowProps> {
   public static readonly defaultProps: Pick<SpellBookWindowProps, DefaultProp> = {
-    onCloseSpellDetailsClick: () => undefined,
-    onExitClick: () => undefined,
-    onPageChange: () => undefined,
-    onSpellClick: () => undefined,
-    onSpellTypeChange: () => undefined,
-    onStatusTextChange: () => undefined,
+    onCloseSpellDetailsClick: noop,
+    onExitClick: noop,
+    onPageChange: noop,
+    onSpellClick: noop,
+    onSpellTypeChange: noop,
+    onStatusTextChange: noop,
   };
 
   public componentDidMount() {

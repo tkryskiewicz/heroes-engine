@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import { buttonImages } from "./assets";
 
 import { ImageButton } from "../../base";
@@ -15,9 +17,9 @@ interface Props {
 export class HostGuestMenu extends React.Component<Props> {
   public static readonly defaultProps: Props = {
     descriptionVisible: false,
-    onCancelClick: () => undefined,
-    onGuestClick: () => undefined,
-    onHostClick: () => undefined,
+    onCancelClick: noop,
+    onGuestClick: noop,
+    onHostClick: noop,
   };
 
   public render() {

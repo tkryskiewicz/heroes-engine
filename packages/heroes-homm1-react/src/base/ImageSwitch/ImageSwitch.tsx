@@ -1,6 +1,8 @@
 import Classnames from "classnames";
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./ImageSwitch.module.scss";
 
 export interface SwitchImages {
@@ -18,7 +20,7 @@ export interface ImageSwitchProps {
 export class ImageSwitch extends React.Component<ImageSwitchProps> {
   public static readonly defaultProps: Pick<ImageSwitchProps, "checked" | "onChange"> = {
     checked: false,
-    onChange: () => undefined,
+    onChange: noop,
   };
 
   public render() {

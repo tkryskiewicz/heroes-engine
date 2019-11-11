@@ -3,6 +3,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { GameData } from "heroes-core";
+import { noop } from "heroes-helpers";
 import { LandMassSetting, RandomMapSettings } from "heroes-homm1";
 
 import * as styles from "./RandomMapSettingsWindow.module.scss";
@@ -25,7 +26,7 @@ type DefaultProp =
 
 export class RandomMapSettingsWindow extends React.Component<RandomMapSettingsWindowProps> {
   public static readonly defaultProps: Pick<RandomMapSettingsWindowProps, DefaultProp> = {
-    onValueChange: () => undefined,
+    onValueChange: noop,
   };
 
   public render() {

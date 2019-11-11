@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./EditorObjectsWindow.module.scss";
 
 import { ScreenWidth, withGameWindow, WithGameWindowProps } from "../../core";
@@ -20,8 +22,8 @@ type DefaultProp =
 
 class EditorObjectsWindow extends React.Component<EditorObjectsWindowProps> {
   public static readonly defaultProps: Pick<EditorObjectsWindowProps, DefaultProp> = {
-    onObjectClick: () => undefined,
-    renderObject: () => undefined,
+    onObjectClick: noop,
+    renderObject: noop,
   };
 
   public render() {

@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Resources } from "heroes-core";
+import { noop } from "heroes-helpers";
 
 import { GameModal, ResourceCost } from "../base";
 import { CastleOptionIcon } from "../CastleOptionIcon";
@@ -27,8 +28,8 @@ type DefaultProp =
 
 class BuildStructureWindow extends React.Component<BuildStructureWindowProps> {
   public static readonly defaultProps: Pick<BuildStructureWindowProps, DefaultProp> = {
-    onCancelClick: () => undefined,
-    onOkayClick: () => undefined,
+    onCancelClick: noop,
+    onOkayClick: noop,
   };
 
   public render() {

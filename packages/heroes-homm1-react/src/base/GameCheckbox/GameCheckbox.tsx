@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./GameCheckbox.module.scss";
 
 import { CheckboxImage } from "./assets";
@@ -16,7 +18,7 @@ type DefaultProp =
 export class GameCheckbox extends React.Component<GameCheckboxProps> {
   public static readonly defaultProps: Pick<GameCheckboxProps, DefaultProp> = {
     checked: false,
-    onClick: () => undefined,
+    onClick: noop,
   };
 
   public render() {

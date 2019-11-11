@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import { buttonImages } from "./assets";
 
 import { ImageButton } from "../../base";
@@ -11,9 +13,9 @@ export interface BaudMenuProps {
 }
 
 export class BaudMenu extends React.Component<BaudMenuProps> {
-  public static readonly defaultProps: Pick<BaudMenuProps, "onOptionClick" | "onCancelClick"> = {
-    onCancelClick: () => undefined,
-    onOptionClick: () => undefined,
+  public static readonly defaultProps: BaudMenuProps = {
+    onCancelClick: noop,
+    onOptionClick: noop,
   };
 
   public render() {

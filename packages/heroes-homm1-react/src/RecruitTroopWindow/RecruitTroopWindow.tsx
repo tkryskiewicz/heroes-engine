@@ -3,6 +3,7 @@ import React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import { divideResources, multiplyResources, Resources } from "heroes-core";
+import { noop } from "heroes-helpers";
 
 import * as styles from "./RecruitTroopWindow.module.scss";
 
@@ -31,9 +32,9 @@ type DefaultProp =
 
 class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
   public static readonly defaultProps: Pick<RecruitTroopWindowProps, DefaultProp> = {
-    onCancelClick: () => undefined,
-    onCountChange: () => undefined,
-    onOkayClick: () => undefined,
+    onCancelClick: noop,
+    onCountChange: noop,
+    onOkayClick: noop,
   };
 
   public render() {

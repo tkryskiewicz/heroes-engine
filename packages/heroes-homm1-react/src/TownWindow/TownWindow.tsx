@@ -1,5 +1,7 @@
 import React from "react";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./TownWindow.module.scss";
 
 import { BigBar } from "../base";
@@ -30,12 +32,12 @@ type DefaultProp =
 
 class TownWindow extends React.Component<TownWindowProps> {
   public static readonly defaultProps: Pick<TownWindowProps, DefaultProp> = {
-    renderCrest: () => undefined,
-    renderGarrisonTroop: () => undefined,
-    renderHeroPortrait: () => undefined,
-    renderHeroTroop: () => undefined,
-    renderTownView: () => undefined,
-    renderTreasury: () => undefined,
+    renderCrest: noop,
+    renderGarrisonTroop: noop,
+    renderHeroPortrait: noop,
+    renderHeroTroop: noop,
+    renderTownView: noop,
+    renderTreasury: noop,
     statusText: "",
     townName: "",
   };

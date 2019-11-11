@@ -1,6 +1,7 @@
 import React from "react";
 
 import { MapObjectOrientation } from "heroes-core";
+import { noop } from "heroes-helpers";
 
 import { buttonImages } from "./assets";
 
@@ -14,7 +15,7 @@ export interface EditorScrollButtonProps {
 
 export class EditorScrollButton extends React.Component<EditorScrollButtonProps> {
   public static readonly defaultProps: Pick<EditorScrollButtonProps, "onClick"> = {
-    onClick: () => undefined,
+    onClick: noop,
   };
 
   public render() {

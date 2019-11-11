@@ -1,6 +1,8 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
+import { noop } from "heroes-helpers";
+
 import * as styles from "./SpellScroll.module.scss";
 
 import { SpellIcon } from "../../base";
@@ -15,7 +17,7 @@ export interface SpellScrollProps {
 
 export class SpellScroll extends React.Component<SpellScrollProps> {
   public static readonly defaultProps: Pick<SpellScrollProps, "onClick"> = {
-    onClick: () => undefined,
+    onClick: noop,
   };
 
   public render() {
