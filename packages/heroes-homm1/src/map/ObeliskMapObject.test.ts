@@ -9,7 +9,7 @@ describe("isObeliskMapObjectData", () => {
       grid: [],
       height: 1,
       id: MapObjectId.Obelisk,
-      interactionLimit: InteractionLimitType.OncePerAlignment,
+      interactionLimit: InteractionLimitType.OncePerPlayer,
       type: "type",
       uncoversPuzzlePiece: true,
       width: 1,

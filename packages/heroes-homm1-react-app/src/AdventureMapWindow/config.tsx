@@ -102,7 +102,7 @@ export const renderMapObjectDetails = (
 };
 
 export const onTileClick = (
-  alignment: string,
+  player: string,
   object: MapObject,
   objectData: MapObjectData,
   activeObject: MapObject | undefined,
@@ -138,7 +138,7 @@ export const onTileClick = (
 
     dispatch(gameActions.visitMapObject(object.id, activeObject.id));
   } else if (isMineMapObject(object, data)) {
-    if (!isHeroMapObject(activeObject) || isObjectOwnedBy(object, alignment)) {
+    if (!isHeroMapObject(activeObject) || isObjectOwnedBy(object, player)) {
       return;
     }
 

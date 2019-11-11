@@ -18,7 +18,7 @@ import { onTileClick, renderMapObjectDetails } from "./config";
 
 interface Props extends DispatchProp {
   readonly data: GameData;
-  readonly alignment: string;
+  readonly player: string;
   readonly map: Map;
   readonly x: number;
   readonly y: number;
@@ -130,7 +130,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
   }
 
   private readonly onTileClick = (index: number) => {
-    const { data, map, alignment, activeObjectId } = this.props;
+    const { data, map, player, activeObjectId } = this.props;
 
     const activeObject = activeObjectId !== undefined ?
       getObject(map, activeObjectId) :
@@ -143,7 +143,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     if (object) {
       const objectData = data.mapObjects[object.dataId];
 
-      onTileClick(alignment, object, objectData, activeObject, data, this.props.dispatch);
+      onTileClick(player, object, objectData, activeObject, data, this.props.dispatch);
     }
   }
 

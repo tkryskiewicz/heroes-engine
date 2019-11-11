@@ -85,7 +85,7 @@ export const renderObject = (
         size={size}
         resource={objectData.resourceGenerator.resource}
         variant={variant}
-        alignment={object.owner}
+        playerColor={object.owner}
       />
     );
   }
@@ -94,7 +94,7 @@ export const renderObject = (
     return (
       <HeroMapObject
         heroClass={object.heroClass}
-        alignment={object.owner}
+        playerColor={object.owner}
         orientation={object.orientation}
       />
     );
@@ -106,7 +106,7 @@ export const renderObject = (
         size="large"
         town={object.id}
         isCastleBuilt={isStructureBuilt(object, StructureId.Castle)}
-        alignment={object.owner}
+        playerColor={object.owner}
       />
     );
   }

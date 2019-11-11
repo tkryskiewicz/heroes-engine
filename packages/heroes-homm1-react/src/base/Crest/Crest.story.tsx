@@ -2,13 +2,13 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { alignment, heroClass } from "../../stories";
+import { heroClass, playerColor } from "../../stories";
 import { Crest } from "./Crest";
 
 storiesOf("base|Crest", module)
   .add("default", () => (
     <Crest
-      alignment={alignment("Alignment")}
+      playerColor={playerColor("Player Color")}
       onMouseEnter={action("Mouse Enter")}
       onMouseLeave={action("Mouse Leave")}
       onClick={action("Click")}
@@ -16,7 +16,7 @@ storiesOf("base|Crest", module)
   ))
   .add("hero crest", () => (
     <Crest
-      alignment={alignment("Alignment")}
+      playerColor={playerColor("Player Color")}
       heroClass={heroClass("Hero Class")}
       onClick={action("Click")}
     />

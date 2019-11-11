@@ -12,7 +12,7 @@ import { getHeroNameMessage } from "../messages";
 import { StatusWindow } from "../StatusWindow";
 
 export interface HeroStatusProps {
-  readonly alignment: string;
+  readonly playerColor: string;
   readonly heroClass: string;
   readonly hero: string;
   readonly army: Army;
@@ -20,26 +20,26 @@ export interface HeroStatusProps {
 
 export class HeroStatus extends React.Component<HeroStatusProps> {
   public render() {
-    const { alignment, heroClass, hero } = this.props;
+    const { playerColor, heroClass, hero } = this.props;
 
     const army = this.props.army.filter((t) => t !== undefined);
 
     return (
       <StatusWindow>
         <div className={styles.root}>
-          {this.renderCrest(alignment, heroClass, hero)}
+          {this.renderCrest(playerColor, heroClass, hero)}
           {[...new Array(ArmySize).keys()].map((i) => this.renderTroopSlot(i, army[ArmySize - i - 1]))}
         </div>
       </StatusWindow>
     );
   }
 
-  private renderCrest(alignment: string, heroClass: string, hero: string) {
+  private renderCrest(playerColor: string, heroClass: string, hero: string) {
     return (
       <div className={styles.crest}>
         <div>
           <SmallCrest
-            alignment={alignment}
+            playerColor={playerColor}
             heroClass={heroClass}
           />
         </div>

@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { heroClasses, resources, towns } from "heroes-homm1";
-import { alignment, gameDate, resourceAmounts } from "heroes-homm1-react";
+import { gameDate, playerColor, resourceAmounts } from "heroes-homm1-react";
 
 import { KingdomOverviewWindowContainer, KingdomOverviewWindowContainerProps } from "./KingdomOverviewWindowContainer";
 
@@ -28,7 +28,7 @@ storiesOf("KingdomOverviewWindowContainer", module)
     <KingdomOverviewWindowContainer
       visible={boolean("Visible", true)}
       data={data}
-      alignment={alignment("Alignment")}
+      playerColor={playerColor("Player Color")}
       date={gameDate("Date")}
       heroClasses={{}}
       castles={{}}

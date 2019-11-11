@@ -4,16 +4,16 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Troop } from "heroes-core";
-import { alignments, CreatureId, creatures, TownMapObjectDetails } from "heroes-homm1";
+import { CreatureId, creatures, playerColors, TownMapObjectDetails } from "heroes-homm1";
 
 import { TownMapObjectDetailsWindow, TownMapObjectDetailsWindowProps } from "./TownMapObjectDetailsWindow";
 
 const data: TownMapObjectDetailsWindowProps["data"] = {
-  alignments,
   creatures: creatures.reduce((p, c) => ({
     ...p,
     [c.id]: c,
   }), {}),
+  playerColors,
 };
 
 storiesOf("editor|TownMapObjectDetailsWindow", module)

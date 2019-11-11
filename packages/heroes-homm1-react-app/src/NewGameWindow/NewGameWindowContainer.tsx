@@ -16,7 +16,7 @@ import {
 import * as styles from "./NewGameWindowContainer.module.scss";
 
 interface Props {
-  readonly data: Pick<GameData, "alignments">;
+  readonly data: Pick<GameData, "playerColors">;
   readonly gameDifficulty: GameDifficulty;
   readonly onGameDifficultyChange: (value: GameDifficulty) => void;
   readonly opponentSettings: OpponentSetting[];
@@ -128,7 +128,7 @@ export class NewGameWindowContainer extends React.Component<Props> {
   }
 
   private readonly onPlayerColorClick = () => {
-    const value = nextOption(this.props.data.alignments, this.props.playerColor);
+    const value = nextOption(this.props.data.playerColors, this.props.playerColor);
 
     this.props.onPlayerColorChange(value);
   }

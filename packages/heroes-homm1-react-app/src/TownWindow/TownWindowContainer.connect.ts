@@ -13,7 +13,7 @@ import { getStructureDetails } from "./config";
 import { TownWindowContainer, TownWindowContainerProps } from "./TownWindowContainer";
 
 type StateProp =
-  "alignment" |
+  "playerColor" |
   "visitingHero" |
   "resources" |
   "selectedTroop" |
@@ -26,8 +26,8 @@ const mapStateToProps = (
   state: AppState,
   ownProps: Pick<TownWindowContainerProps, "town">,
 ): Pick<TownWindowContainerProps, StateProp> => ({
-  alignment: state.game.alignment,
   getStructureDetails,
+  playerColor: state.game.activePlayer,
   resources: state.game.resources,
   selectedTroop: state.townWindow.selectedTroop,
   troopDetailsVisible: state.townWindow.troopDetailsVisible,

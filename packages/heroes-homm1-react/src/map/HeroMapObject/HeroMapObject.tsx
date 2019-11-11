@@ -8,7 +8,7 @@ import { withOrientableMapObject } from "../OrientableMapObject";
 
 interface HeroMapObjectProps {
   readonly heroClass: string;
-  readonly alignment?: string;
+  readonly playerColor?: string;
   readonly orientation: MapObjectOrientation;
   readonly onClick?: () => void;
 }
@@ -16,7 +16,7 @@ interface HeroMapObjectProps {
 // FIXME: barbarian assets have green flag embeded
 class HeroMapObject extends React.Component<HeroMapObjectProps> {
   public render() {
-    const { heroClass, alignment, orientation } = this.props;
+    const { heroClass, playerColor, orientation } = this.props;
 
     return (
       <div
@@ -24,16 +24,16 @@ class HeroMapObject extends React.Component<HeroMapObjectProps> {
         onClick={this.props.onClick}
       >
         <img src={`/assets/heroClasses/${heroClass}/mapObject/${orientation}.png`} />
-        {alignment && this.renderFlag(alignment, orientation)}
+        {playerColor && this.renderFlag(playerColor, orientation)}
       </div>
     );
   }
 
-  private renderFlag(alignment: string, orientation: MapObjectOrientation) {
+  private renderFlag(playerColor: string, orientation: MapObjectOrientation) {
     return (
       <img
         className={styles.flag}
-        src={`/assets/alignments/${alignment}/flag/${orientation}.png`}
+        src={`/assets/playerColors/${playerColor}/flag/${orientation}.png`}
       />
     );
   }

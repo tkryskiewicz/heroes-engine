@@ -1,5 +1,3 @@
-export { AlignmentId } from "./AlignmentId";
-export { alignments } from "./alignments";
 export { Artifact, ArtifactData, ArtifactSelection } from "./Artifact";
 export { ArtifactId } from "./ArtifactId";
 export { artifacts, constructArtifact } from "./artifacts";
@@ -53,6 +51,8 @@ export {
 } from "./morale";
 export { MovementSpeed } from "./MovementSpeed";
 export { OpponentSetting, getOpponentSettingRating } from "./OpponentSetting";
+export { PlayerColorId } from "./PlayerColorId";
+export { playerColors } from "./playerColors";
 export { ResourceId } from "./ResourceId";
 export { resources } from "./resources";
 export { Scenario } from "./Scenario";

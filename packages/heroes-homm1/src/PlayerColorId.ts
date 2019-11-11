@@ -1,4 +1,4 @@
-export enum AlignmentId {
+export enum PlayerColorId {
   Blue = "blue",
   Green = "green",
   Red = "red",

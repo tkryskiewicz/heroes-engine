@@ -56,7 +56,6 @@ export * from "./ViewWindow";
 export * from "./WorldWindow";
 
 export {
-  alignment,
   creature,
   editorOption,
   gameDate,
@@ -65,6 +64,7 @@ export {
   luckType,
   mapObjectType,
   moraleType,
+  playerColor,
   resourceAmounts,
   skills,
   terrainType,

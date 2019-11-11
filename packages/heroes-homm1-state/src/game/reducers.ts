@@ -24,8 +24,6 @@ import {
   visitGameMapObject,
 } from "heroes-core";
 import {
-  AlignmentId,
-  alignments,
   ArmySize,
   ArtifactId,
   artifacts,
@@ -51,6 +49,8 @@ import {
   MapObjectId,
   mapObjects,
   MaxMobility,
+  PlayerColorId,
+  playerColors,
   PuzzlePieceCount,
   recruitGameTroop,
   ResourceId,
@@ -71,7 +71,6 @@ import { GameAction, GameActionType } from "./actions";
 import { GameState } from "./state";
 
 const data: GameData = {
-  alignments,
   armySize: ArmySize,
   creatures: creatures.reduce((p, c) => ({
     ...p,
@@ -98,6 +97,7 @@ const data: GameData = {
     ...p,
     [c.id]: c,
   }), {}),
+  playerColors,
   resources: resources.reduce((p, c) => ({
     ...p,
     [c.id]: c,
@@ -182,7 +182,7 @@ const towns: TownMapObject[] = [
         ...farmTown,
         structures: farmTown.structures.map(buildStructure),
       },
-      AlignmentId.Red,
+      PlayerColorId.Red,
     ),
     army: [
       {
@@ -198,7 +198,7 @@ const towns: TownMapObject[] = [
       ...plainsTown,
       structures: plainsTown.structures.map((s) => s.id === StructureId.Castle ? buildStructure(s) : s),
     },
-    AlignmentId.Red,
+    PlayerColorId.Red,
   ),
   createTownMapObject(
     TownId.Forest,
@@ -208,7 +208,7 @@ const towns: TownMapObject[] = [
       "Forest Town",
       data,
     ),
-    AlignmentId.Red,
+    PlayerColorId.Red,
   ),
   createTownMapObject(
     TownId.Mountains,
@@ -218,7 +218,7 @@ const towns: TownMapObject[] = [
       "Mountains Town",
       data,
     ),
-    AlignmentId.Red,
+    PlayerColorId.Red,
   ),
 ];
 
@@ -227,7 +227,7 @@ let map: Map = createMap(14, 14, TerrainType.Grass);
 const heroData = mapObjects.find((o) => o.id === MapObjectId.Hero)! as HeroMapObjectData;
 
 [lordKilburn, antoine, ariel, agar].forEach((h, i) => {
-  map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h.id, heroData, h, AlignmentId.Red));
+  map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h.id, heroData, h, PlayerColorId.Red));
 });
 
 towns.forEach((t, i) => {
@@ -263,7 +263,7 @@ const peasantData = mapObjects.find((o) => o.id === CreatureId.Peasant)!;
 map = placeObject(map, { x: 2, y: 0 }, createMapObject("creature/1", peasantData));
 
 const initialState: GameState = {
-  alignment: AlignmentId.Red,
+  activePlayer: PlayerColorId.Red,
   data,
   map,
   puzzle: {

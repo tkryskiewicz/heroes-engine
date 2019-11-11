@@ -5,13 +5,13 @@ import { RandomTownMapObject } from "../map";
 export interface TownMapObjectDetails {
   readonly customized: boolean;
   readonly army: Army;
-  readonly alignment?: string;
+  readonly owner?: string;
 }
 
 export const getTownMapObjectDetails = (object: RandomTownMapObject): TownMapObjectDetails => ({
-  alignment: object.owner,
   army: object.army,
   customized: object.customized,
+  owner: object.owner,
 });
 
 export const setTownMapObjectDetails = (
@@ -21,5 +21,5 @@ export const setTownMapObjectDetails = (
   ...object,
   army: details.army,
   customized: details.customized,
-  owner: details.alignment,
+  owner: details.owner,
 });

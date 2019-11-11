@@ -7,7 +7,7 @@ import { GrainsImage, SandImage } from "./assets";
 import { StatusWindow } from "../StatusWindow";
 
 export interface TurnStatusProps {
-  readonly alignment: string;
+  readonly playerColor: string;
 }
 
 export class TurnStatus extends React.Component<TurnStatusProps> {
@@ -17,7 +17,7 @@ export class TurnStatus extends React.Component<TurnStatusProps> {
         <div className={styles.root}>
           <img
             className={styles.crest}
-            src={`/assets/alignments/${this.props.alignment}/turn-crest.jpg`}
+            src={`/assets/playerColors/${this.props.playerColor}/turn-crest.jpg`}
           />
           <div className={styles.sand}>
             <img src={SandImage} />

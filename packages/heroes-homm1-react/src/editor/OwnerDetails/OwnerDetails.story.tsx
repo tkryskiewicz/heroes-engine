@@ -3,17 +3,17 @@ import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { alignments } from "heroes-homm1";
+import { playerColors } from "heroes-homm1";
 
-import { alignment } from "../../stories";
-import { AlignmentDetails } from "./AlignmentDetails";
+import { playerColor } from "../../stories";
+import { OwnerDetails } from "./OwnerDetails";
 
-storiesOf("editor|AlignmentDetails", module)
+storiesOf("editor|OwnerDetails", module)
   .add("default", () => (
-    <AlignmentDetails
-      alignments={alignments}
+    <OwnerDetails
+      playerColors={playerColors}
       allowNeutral={boolean("Allow Netural", false)}
-      value={alignment("Alignment")}
+      value={playerColor("Value")}
       onValueChange={action("Value Change")}
     />
   ));

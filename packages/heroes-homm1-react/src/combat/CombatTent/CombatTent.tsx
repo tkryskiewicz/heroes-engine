@@ -7,7 +7,7 @@ import * as styles from "./CombatTent.module.scss";
 
 export interface CombatTentProps {
   readonly side: CombatSide;
-  readonly alignment: string;
+  readonly playerColor: string;
   readonly heroClass: string;
   readonly onMouseEnter: (side: CombatSide) => void;
   readonly onMouseLeave: (side: CombatSide) => void;
@@ -38,16 +38,16 @@ export class CombatTent extends React.Component<CombatTentProps> {
           className={styles.background}
           src={`/assets/heroClasses/${this.props.heroClass}/tent.png`}
         />
-        {this.renderBanner(this.props.alignment, this.props.heroClass)}
+        {this.renderBanner(this.props.playerColor, this.props.heroClass)}
       </div>
     );
   }
 
-  private renderBanner(alignment: string, heroClass: string) {
+  private renderBanner(playerColor: string, heroClass: string) {
     return (
       <div className={styles.banner}>
         <div className={styles.bannerContainer}>
-          <img src={`/assets/alignments/${alignment}/combat-banner.png`} />
+          <img src={`/assets/playerColors/${playerColor}/combat-banner.png`} />
           <div className={styles.bannerLetter}>
             <img
               src={`/assets/heroClasses/${heroClass}/letter.png`}

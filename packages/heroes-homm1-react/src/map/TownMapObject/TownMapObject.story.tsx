@@ -3,7 +3,7 @@ import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { alignment, mapObjectSize, town } from "../../stories";
+import { mapObjectSize, playerColor, town } from "../../stories";
 import { TownMapObject } from "./TownMapObject";
 
 storiesOf("map|TownMapObject", module)
@@ -12,7 +12,7 @@ storiesOf("map|TownMapObject", module)
       size={mapObjectSize("Size")}
       town={town("Town")}
       isCastleBuilt={boolean("Is Castle Built?", false)}
-      alignment={boolean("Aligned?", true) ? alignment("Alignment") : undefined}
+      playerColor={boolean("Owner?", true) ? playerColor("Player Color") : undefined}
       onClick={action("Click")}
     />
   ));

@@ -146,16 +146,16 @@ class ThievesGuildWindow extends React.Component<ThievesGuildWindowProps> {
   private renderRanking(ranking: string[], index: number) {
     return (
       <div key={index}>
-        {ranking.map((a) => this.renderAlignment(a))}
+        {ranking.map((v) => this.renderPlayerColor(v))}
       </div>
     );
   }
 
-  private renderAlignment(alignment: string) {
+  private renderPlayerColor(playerColor: string) {
     return (
       <img
-        key={alignment}
-        src={`assets/alignments/${alignment}/flag.png`}
+        key={playerColor}
+        src={`assets/playerColors/${playerColor}/flag.png`}
       />
     );
   }

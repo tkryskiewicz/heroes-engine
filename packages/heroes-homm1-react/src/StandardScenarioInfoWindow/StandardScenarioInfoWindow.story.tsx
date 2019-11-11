@@ -5,7 +5,7 @@ import React from "react";
 
 import { OpponentSetting } from "heroes-homm1";
 
-import { alignment, gameDifficulty, opponentSetting, scenarioDifficulty, scenarioSize } from "../stories";
+import { gameDifficulty, opponentSetting, playerColor, scenarioDifficulty, scenarioSize } from "../stories";
 import { StandardScenarioInfoWindow } from "./StandardScenarioInfoWindow";
 
 const getOpponentSettings = () => [
@@ -21,7 +21,7 @@ storiesOf("StandardScenarioInfoWindow", module)
       scenarioName={text("Scenario Name", "Scenario")}
       gameDifficulty={gameDifficulty("Game Difficulty")}
       opponentSettings={getOpponentSettings()}
-      playerColor={alignment("Player Color")}
+      playerColor={playerColor("Player Color")}
       kingOfTheHill={boolean("King of the Hill", false)}
       difficultyRating={number("Difficulty Rating", 75)}
       scenarioSize={scenarioSize("Scenario Size")}

@@ -23,7 +23,7 @@ import {
 
 interface Hero {
   readonly id: string;
-  readonly alignment: string;
+  readonly playerColor: string;
   readonly heroClass: string;
   readonly skills: HeroSkills;
   readonly morale: MoraleType;
@@ -95,7 +95,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps> {
         <div className={styles.portrait}>
           {this.props.renderHeroPortrait()}
         </div>
-        {this.renderCharacteristics(hero.alignment, hero.skills, hero.morale, hero.luck)}
+        {this.renderCharacteristics(hero.playerColor, hero.skills, hero.morale, hero.luck)}
         <div className={styles.castSpell}>
           <ImageButton
             images={buttonImages.castSpell}
@@ -143,7 +143,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps> {
     return formatMessage(getHeroClassTitleMessage(this.props.hero.heroClass), { heroName });
   }
 
-  private renderCharacteristics(alignment: string, skills: HeroSkills, morale: MoraleType, luck: LuckType) {
+  private renderCharacteristics(playerColor: string, skills: HeroSkills, morale: MoraleType, luck: LuckType) {
     const content = SkillIds.map((s) => (
       <span key={s}>
         <FormattedMessage {...getSkillNameMessage(s)} />:
@@ -155,7 +155,7 @@ class HeroCombatOptions extends React.Component<HeroCombatOptionsProps> {
 
     return (
       <div className={styles.characteristics}>
-        <img src={`assets/alignments/${alignment}/combat-options-background.jpg`} />
+        <img src={`assets/playerColors/${playerColor}/combat-options-background.jpg`} />
         <GameParagraph textSize="small">
           {content}
           <FormattedMessage {...moraleMessages.title} />

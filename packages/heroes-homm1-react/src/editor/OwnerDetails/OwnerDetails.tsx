@@ -4,14 +4,14 @@ import { FormattedMessage } from "react-intl";
 
 import { noop } from "heroes-helpers";
 
-import * as styles from "./AlignmentDetails.module.scss";
+import * as styles from "./OwnerDetails.module.scss";
 
 import { GameCheckbox } from "../../base";
 import { GameText } from "../../core";
 import { messages } from "./messages";
 
-export interface AlignmentDetailsProps {
-  readonly alignments: string[];
+export interface OwnerDetailsProps {
+  readonly playerColors: string[];
   readonly allowNeutral: boolean;
   readonly value?: string;
   readonly onValueChange: (value?: string) => void;
@@ -21,14 +21,14 @@ type DefaultProp =
   "allowNeutral" |
   "onValueChange";
 
-export class AlignmentDetails extends React.Component<AlignmentDetailsProps> {
-  public static readonly defaultProps: Pick<AlignmentDetailsProps, DefaultProp> = {
+export class OwnerDetails extends React.Component<OwnerDetailsProps> {
+  public static readonly defaultProps: Pick<OwnerDetailsProps, DefaultProp> = {
     allowNeutral: false,
     onValueChange: noop,
   };
 
   public render() {
-    const { alignments, value } = this.props;
+    const { playerColors, value } = this.props;
 
     return (
       <Row className={styles.title}>
@@ -42,7 +42,7 @@ export class AlignmentDetails extends React.Component<AlignmentDetailsProps> {
           span={14}
         >
           {this.props.allowNeutral && this.renderNeutral(value)}
-          {alignments.map((a, i) => this.renderValue(i, a, value))}
+          {playerColors.map((v, i) => this.renderValue(i, v, value))}
         </Col>
       </Row>
     );
@@ -88,7 +88,7 @@ export class AlignmentDetails extends React.Component<AlignmentDetailsProps> {
   }
 
   private readonly onValueChange = (index: number) => {
-    const value = this.props.alignments[index];
+    const value = this.props.playerColors[index];
 
     this.props.onValueChange(value);
   }

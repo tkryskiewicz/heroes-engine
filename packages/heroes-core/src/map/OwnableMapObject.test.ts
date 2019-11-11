@@ -150,11 +150,11 @@ describe("changeOwnableMapObjectOwner", () => {
       id: "id",
     };
 
-    const result = changeOwnableMapObjectOwner(object, "alignment");
+    const result = changeOwnableMapObjectOwner(object, "player");
 
     const expected: OwnableMapObject = {
       ...object,
-      owner: "alignment",
+      owner: "player",
     };
 
     expect(result).toEqual(expected);
@@ -164,7 +164,7 @@ describe("changeOwnableMapObjectOwner", () => {
     const object: OwnableMapObject = {
       dataId: "dataId",
       id: "id",
-      owner: "alignment",
+      owner: "player",
     };
 
     const result = changeOwnableMapObjectOwner(object, undefined);

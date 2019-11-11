@@ -3,7 +3,7 @@ import { OwnableMapObject } from "./OwnableMapObject";
 
 export enum InteractionLimitType {
   OncePerObject = "oncePerObject",
-  OncePerAlignment = "oncePerAlignment",
+  OncePerPlayer = "oncePerPlayer",
 }
 
 export interface LimitedInteractionMapObjectData extends MapObjectData {
@@ -34,7 +34,7 @@ export const getVisitor = (objectData: LimitedInteractionMapObjectData, object: 
     throw new Error(`${object.id} is not owned by anyone`);
   }
 
-  return objectData.interactionLimit === InteractionLimitType.OncePerAlignment ?
+  return objectData.interactionLimit === InteractionLimitType.OncePerPlayer ?
     object.owner :
     object.id;
 };

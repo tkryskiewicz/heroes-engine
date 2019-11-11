@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Placeholder } from "../Placeholder";
-import { alignment } from "../stories";
+import { playerColor } from "../stories";
 import { NewGameWindow } from "./NewGameWindow";
 
 const renderGameDifficulty = (i: number) => <Placeholder name={`Game Difficulty ${i}`} />;
@@ -15,7 +15,7 @@ storiesOf("NewGameWindow", module)
     <NewGameWindow
       renderGameDifficulty={renderGameDifficulty}
       renderOpponentSetting={renderOpponentSetting}
-      playerColor={alignment("Player Color")}
+      playerColor={playerColor("Player Color")}
       onPlayerColorClick={action("Player Color Click")}
       kingOfTheHill={boolean("King of the Hill", false)}
       onKingOfTheHillChange={action("King of the Hill Change")}

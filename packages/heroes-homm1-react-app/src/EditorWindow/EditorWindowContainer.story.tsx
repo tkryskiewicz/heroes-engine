@@ -20,7 +20,6 @@ import { editorOption, mapObjectType, terrainType } from "heroes-homm1-react";
 import { EditorWindow } from "./EditorWindowContainer";
 
 const data: GameData = {
-  alignments: [],
   armySize: 0,
   creatures: {},
   editor: {
@@ -32,6 +31,7 @@ const data: GameData = {
   heroes: {},
   items: {},
   mapObjects: {},
+  playerColors: [],
   resources: {},
   spells: {},
   terrains: terrains.reduce((p, c) => ({

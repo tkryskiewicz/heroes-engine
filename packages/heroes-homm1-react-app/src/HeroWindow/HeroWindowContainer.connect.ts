@@ -16,7 +16,7 @@ import { HeroWindowContainer, HeroWindowContainerProps } from "./HeroWindowConta
 
 type StateProp =
   "data" |
-  "alignment" |
+  "playerColor" |
   "visibleSkillDetails" |
   "visibleAdditionalStatDetails" |
   "selectedTroopIndex" |
@@ -26,10 +26,10 @@ type StateProp =
   "dismissHeroPromptVisible";
 
 const mapStateToProps = (state: AppState): Pick<HeroWindowContainerProps, StateProp> => ({
-  alignment: state.game.alignment,
   data: state.game.data,
   dismissHeroPromptVisible: state.heroWindow.dismissHeroPromptVisible,
   getArtifactDetails,
+  playerColor: state.game.activePlayer,
   selectedTroopIndex: state.heroWindow.selectedTroopIndex,
   troopDetailsVisible: state.heroWindow.troopDetailsVisible,
   visibleAdditionalStatDetails: state.heroWindow.visibleAdditionalStatDetails,

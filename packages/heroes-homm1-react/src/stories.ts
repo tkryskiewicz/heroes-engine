@@ -2,7 +2,6 @@ import { number, select } from "@storybook/addon-knobs";
 
 import { CombatSide, GameDate, MapObjectOrientation, Resources } from "heroes-core";
 import {
-  AlignmentId,
   ArmySize,
   ArtifactId,
   CastleOptionStatus,
@@ -23,6 +22,7 @@ import {
   MovementSpeed,
   OpponentSetting,
   PlainsStructureId,
+  PlayerColorId,
   ResourceId,
   resources,
   ScenarioDifficulty,
@@ -46,8 +46,8 @@ export const gameType = (name: string) =>
 export const gameDifficulty = (name: string) =>
   select<GameDifficulty>(name, Object.values(GameDifficulty), GameDifficulty.Easy);
 
-export const alignment = (name: string) =>
-  select<AlignmentId>(name, Object.values(AlignmentId), AlignmentId.Red);
+export const playerColor = (name: string) =>
+  select<PlayerColorId>(name, Object.values(PlayerColorId), PlayerColorId.Red);
 
 export const resource = (name: string) =>
   select<ResourceId>(name, Object.values(ResourceId), ResourceId.Gold);

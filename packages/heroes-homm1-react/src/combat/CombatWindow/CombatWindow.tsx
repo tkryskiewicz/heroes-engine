@@ -18,7 +18,7 @@ import { messages } from "./messages";
 
 interface Hero {
   readonly id: string;
-  readonly alignment: string;
+  readonly playerColor: string;
   readonly heroClass: string;
   readonly skills: HeroSkills;
   readonly morale: number;
@@ -142,7 +142,7 @@ class CombatWindow extends React.Component<CombatWindowProps, CombatWindowState>
       <div className={side === CombatSide.Attacker ? styles.tentAttacker : styles.tentDefender}>
         <CombatTent
           side={side}
-          alignment={hero.alignment}
+          playerColor={hero.playerColor}
           heroClass={hero.heroClass}
           onMouseEnter={this.onTentMouseEnter}
           onMouseLeave={this.onTentMouseLeave}

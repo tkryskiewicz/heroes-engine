@@ -27,7 +27,7 @@ export interface RandomTownMapObject extends OwnableMapObject {
 export const createRandomTownMapObject = (
   id: string,
   objectData: RandomTownMapObjectData,
-  data: Pick<GameData, "alignments" | "armySize" | "creatures">,
+  data: Pick<GameData, "armySize" | "creatures">,
 ): RandomTownMapObject => ({
   ...createMapObject(id, objectData),
   army: [...new Array(data.armySize).keys()].map<Troop>(() => ({
@@ -37,7 +37,6 @@ export const createRandomTownMapObject = (
   customized: false,
   // FIXME: this is already set by createMapObject but doesn't preserve type
   dataId: objectData.id,
-  owner: data.alignments[0],
 });
 
 export const isRandomTownMapObject = (object: MapObject | undefined): object is RandomTownMapObject =>

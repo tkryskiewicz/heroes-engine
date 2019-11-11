@@ -9,14 +9,14 @@ import * as styles from "./TownMapObjectDetailsWindow.module.scss";
 
 import { GameCheckbox } from "../../base";
 import { GameText } from "../../core";
-import { AlignmentDetails } from "../AlignmentDetails";
 import { ArmyDetails } from "../ArmyDetails";
 import { EditorSettingsWindow, EditorSettingsWindowProps } from "../EditorSettingsWindow";
+import { OwnerDetails } from "../OwnerDetails";
 import { ValueRangePrompt } from "../ValueRangePrompt";
 import { messages } from "./messages";
 
 export interface TownMapObjectDetailsWindowProps extends EditorSettingsWindowProps {
-  readonly data: Pick<GameData, "alignments" | "creatures">;
+  readonly data: Pick<GameData, "playerColors" | "creatures">;
   readonly value: TownMapObjectDetails;
   readonly onValueChange: (value: TownMapObjectDetails) => void;
 }
@@ -95,11 +95,11 @@ export class TownMapObjectDetailsWindow extends React.Component<TownMapObjectDet
         />
         {this.state.creatureValueRangePromptVisible && this.renderCreatureValueRangePrompt()}
         <div>
-          <AlignmentDetails
-            alignments={this.props.data.alignments}
+          <OwnerDetails
+            playerColors={this.props.data.playerColors}
             allowNeutral={true}
-            value={value.alignment}
-            onValueChange={this.onAlignmentChange}
+            value={value.owner}
+            onValueChange={this.onOwnerChange}
           />
         </div>
         <div>
@@ -147,10 +147,10 @@ export class TownMapObjectDetailsWindow extends React.Component<TownMapObjectDet
     return Object.keys(this.props.data.creatures);
   }
 
-  private readonly onAlignmentChange = (value?: string) => {
+  private readonly onOwnerChange = (value?: string) => {
     const newValue: TownMapObjectDetails = {
       ...this.props.value,
-      alignment: value,
+      owner: value,
     };
 
     this.props.onValueChange(newValue);

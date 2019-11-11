@@ -9,7 +9,7 @@ import { NewGameWindowContainer, NewGameWindowContainerProps } from "./NewGameWi
 describe("NewGameWindowContainer", () => {
   const defaultProps: NewGameWindowContainerProps = {
     data: {
-      alignments: [],
+      playerColors: [],
     },
     gameDifficulty: GameDifficulty.Easy,
     kingOfTheHill: false,
@@ -92,7 +92,7 @@ describe("NewGameWindowContainer", () => {
     const props: NewGameWindowContainerProps = {
       ...defaultProps,
       data: {
-        alignments: [],
+        playerColors: [],
       },
       playerColor: "color",
     };
@@ -106,7 +106,7 @@ describe("NewGameWindowContainer", () => {
     const props: NewGameWindowContainerProps = {
       ...defaultProps,
       data: {
-        alignments: [
+        playerColors: [
           "colorA",
           "colorB",
         ],

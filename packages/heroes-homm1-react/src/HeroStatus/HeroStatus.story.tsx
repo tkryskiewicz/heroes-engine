@@ -4,7 +4,7 @@ import React from "react";
 import { Army } from "heroes-core";
 import { CreatureId } from "heroes-homm1";
 
-import { alignment, hero, heroClass } from "../stories";
+import { hero, heroClass, playerColor } from "../stories";
 import { HeroStatus } from "./HeroStatus";
 
 const army: Army = [
@@ -18,7 +18,7 @@ const army: Army = [
 storiesOf("HeroStatus", module)
   .add("default", () => (
     <HeroStatus
-      alignment={alignment("Alignment")}
+      playerColor={playerColor("Player Color")}
       heroClass={heroClass("Hero Class")}
       hero={hero("Hero")}
       army={army}

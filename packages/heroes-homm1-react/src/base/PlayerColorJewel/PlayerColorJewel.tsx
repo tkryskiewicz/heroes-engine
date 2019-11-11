@@ -17,7 +17,7 @@ export class PlayerColorJewel extends React.Component<Props> {
     return (
       <img
         className={this.props.className}
-        src={`assets/alignments/${this.props.value}/jewel.png`}
+        src={`assets/playerColors/${this.props.value}/jewel.png`}
         onClick={this.onClick}
       />
     );

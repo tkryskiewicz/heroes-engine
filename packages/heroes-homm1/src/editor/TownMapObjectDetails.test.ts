@@ -13,13 +13,12 @@ describe("getTownMapObjectDetails", () => {
       customized: false,
       dataId: MapObjectId.RandomTown,
       id: "dataId",
-      owner: "alignment",
+      owner: "player",
     };
 
     const result = getTownMapObjectDetails(object);
 
     const expected: TownMapObjectDetails = {
-      alignment: "alignment",
       army: [
         {
           count: 1,
@@ -27,6 +26,7 @@ describe("getTownMapObjectDetails", () => {
         },
       ],
       customized: false,
+      owner: "player",
     };
 
     expect(result).toEqual(expected);
@@ -43,7 +43,6 @@ describe("setTownMapObjectDetails", () => {
     };
 
     const value: TownMapObjectDetails = {
-      alignment: "alignment",
       army: [
         {
           count: 1,
@@ -51,6 +50,7 @@ describe("setTownMapObjectDetails", () => {
         },
       ],
       customized: true,
+      owner: "player",
     };
 
     const result = setTownMapObjectDetails(object, value);
@@ -64,7 +64,7 @@ describe("setTownMapObjectDetails", () => {
         },
       ],
       customized: true,
-      owner: "alignment",
+      owner: "player",
     };
 
     expect(result).toEqual(expected);

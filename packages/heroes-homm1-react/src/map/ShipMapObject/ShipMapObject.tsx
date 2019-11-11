@@ -7,14 +7,14 @@ import * as styles from "./ShipMapObject.module.scss";
 import { withOrientableMapObject } from "../OrientableMapObject";
 
 interface ShipMapObjectProps {
-  readonly alignment?: string;
+  readonly playerColor?: string;
   readonly orientation: MapObjectOrientation;
   readonly onClick?: () => void;
 }
 
 class ShipMapObject extends React.Component<ShipMapObjectProps> {
   public render() {
-    const { alignment, orientation } = this.props;
+    const { playerColor, orientation } = this.props;
 
     return (
       <div
@@ -22,16 +22,16 @@ class ShipMapObject extends React.Component<ShipMapObjectProps> {
         onClick={this.props.onClick}
       >
         <img src={`/assets/ship/${orientation}.png`} />
-        {alignment && this.renderFlag(alignment, orientation)}
+        {playerColor && this.renderFlag(playerColor, orientation)}
       </div>
     );
   }
 
-  private renderFlag(alignment: string, orientation: MapObjectOrientation) {
+  private renderFlag(playerColor: string, orientation: MapObjectOrientation) {
     return (
       <img
         className={styles.flag}
-        src={`/assets/alignments/${alignment}/ship-flag/${orientation}.png`}
+        src={`/assets/playerColors/${playerColor}/ship-flag/${orientation}.png`}
       />
     );
   }

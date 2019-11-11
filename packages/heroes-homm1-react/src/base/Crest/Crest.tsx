@@ -3,11 +3,11 @@ import React from "react";
 import { noop } from "heroes-helpers";
 
 export interface CrestProps {
-  readonly alignment: string;
+  readonly playerColor: string;
   readonly heroClass?: string;
   readonly onMouseEnter: () => void;
   readonly onMouseLeave: () => void;
-  readonly onClick: (alignment: string, heroClass?: string) => void;
+  readonly onClick: (playerColor: string, heroClass?: string) => void;
 }
 
 type DefaultProp =
@@ -23,11 +23,11 @@ export class Crest extends React.Component<CrestProps> {
   };
 
   public render() {
-    const { alignment, heroClass } = this.props;
+    const { playerColor, heroClass } = this.props;
 
     const path = heroClass ?
-      `assets/heroClasses/${heroClass}/crests/${alignment}/large.jpg` :
-      `assets/alignments/${alignment}/crest.jpg`;
+      `assets/heroClasses/${heroClass}/crests/${playerColor}/large.jpg` :
+      `assets/playerColors/${playerColor}/crest.jpg`;
 
     return (
       <img
@@ -40,6 +40,6 @@ export class Crest extends React.Component<CrestProps> {
   }
 
   private readonly onClick = () => {
-    this.props.onClick(this.props.alignment, this.props.heroClass);
+    this.props.onClick(this.props.playerColor, this.props.heroClass);
   }
 }

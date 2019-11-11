@@ -15,7 +15,7 @@ import { KingdomOverviewWindowContainer, KingdomOverviewWindowContainerProps } f
 type StateProp =
   "data" |
   "date" |
-  "alignment" |
+  "playerColor" |
   "heroClasses" |
   "castles" |
   "towns" |
@@ -27,7 +27,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
   const ownedObjects = state.game.map.tiles
     .map((t) => t.object)
     .filter(isOwnableMapObject)
-    .filter((o) => isObjectOwnedBy(o, state.game.alignment));
+    .filter((o) => isObjectOwnedBy(o, state.game.activePlayer));
 
   const heroes = ownedObjects
     .filter(isHeroMapObject);
@@ -43,7 +43,6 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
     });
 
   return {
-    alignment: state.game.alignment,
     castles: Object.keys(state.game.data.towns).reduce((p, c) => ({
       ...p,
       [c]: towns.filter((t) => t.id === c && isStructureBuilt(t, StructureId.Castle)).length,
@@ -59,6 +58,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
       ...p,
       [c]: mines.filter((m) => m.dataId === state.game.data.resources[c].mine).length,
     }), {}),
+    playerColor: state.game.activePlayer,
     resources: state.game.resources,
     towns: Object.keys(state.game.data.towns).reduce((p, c) => ({
       ...p,

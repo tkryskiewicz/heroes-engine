@@ -2,7 +2,7 @@ import { select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { alignment, mapObjectSize, resource } from "../../stories";
+import { mapObjectSize, playerColor, resource } from "../../stories";
 import { MineMapObject, MineMapObjectProps } from "./MineMapObject";
 
 const variantOptions: MineMapObjectProps["variant"][] = [
@@ -21,11 +21,11 @@ storiesOf("map|MineMapObject", module)
       variant={select("Variant", variantOptions, "grass")}
     />
   ))
-  .add("aligned", () => (
+  .add("owned", () => (
     <MineMapObject
       size={mapObjectSize("Size")}
       resource={resource("Resource")}
       variant={select("Variant", variantOptions, "grass")}
-      alignment={alignment("Alignment")}
+      playerColor={playerColor("Player Color")}
     />
   ));

@@ -49,7 +49,7 @@ describe("buyMageGuildSpellBook", () => {
       width: 1,
     };
 
-    const heroObject = createHeroMapObject("hero", heroObjectData, hero, "alignment");
+    const heroObject = createHeroMapObject("hero", heroObjectData, hero, "player");
 
     const mageGuild: MageGuild = {
       cost: {},
@@ -88,12 +88,11 @@ describe("buyMageGuildSpellBook", () => {
       width: 1,
     };
 
-    const townObject = createTownMapObject("town", townObjectData, town, "alignment");
+    const townObject = createTownMapObject("town", townObjectData, town, "player");
 
     const game: Game = {
-      alignment: "alignment",
+      activePlayer: "player",
       data: {
-        alignments: [],
         armySize: 0,
         creatures: {},
         editor: {
@@ -105,6 +104,7 @@ describe("buyMageGuildSpellBook", () => {
         heroes: {},
         items: {},
         mapObjects: {},
+        playerColors: [],
         resources: {},
         spells: {},
         terrains: {},

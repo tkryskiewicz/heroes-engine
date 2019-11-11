@@ -42,12 +42,11 @@ describe("getHeroMapObjectDetails", () => {
       skills: {},
     };
 
-    const object = createHeroMapObject("id", objectData, hero, "alignment");
+    const object = createHeroMapObject("id", objectData, hero, "player");
 
     const result = getHeroMapObjectDetails(object);
 
     const expected: HeroMapObjectDetails = {
-      alignment: "alignment",
       army: [
         {
           count: 1,
@@ -60,6 +59,7 @@ describe("getHeroMapObjectDetails", () => {
       ],
       experience: 1,
       heroId: "heroId",
+      owner: "player",
     };
 
     expect(result).toEqual(expected);
@@ -80,12 +80,11 @@ describe("setHeroMapObjectDetails", () => {
       mobility: 0,
       morale: 0,
       orientation: MapObjectOrientation.North,
-      owner: "alignment",
+      owner: "player",
       skills: {},
     };
 
     const value: HeroMapObjectDetails = {
-      alignment: "otherAlignment",
       army: [
         {
           count: 1,
@@ -98,6 +97,7 @@ describe("setHeroMapObjectDetails", () => {
       ],
       experience: 1,
       heroId: "otherHeroId",
+      owner: "otherPlayer",
     };
 
     const data: Parameters<typeof setHeroMapObjectDetails>[2] = {
@@ -130,7 +130,7 @@ describe("setHeroMapObjectDetails", () => {
       heroClass: "otherHeroClass",
       heroId: "otherHeroId",
       id: "id",
-      owner: "otherAlignment",
+      owner: "otherPlayer",
     };
 
     expect(result).toEqual(expected);

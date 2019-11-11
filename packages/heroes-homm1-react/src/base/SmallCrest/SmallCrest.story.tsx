@@ -1,13 +1,13 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { alignment, heroClass } from "../../stories";
+import { heroClass, playerColor } from "../../stories";
 import { SmallCrest } from "./SmallCrest";
 
 storiesOf("base|SmallCrest", module)
   .add("default", () => (
     <SmallCrest
-      alignment={alignment("Alignment")}
+      playerColor={playerColor("Player Color")}
       heroClass={heroClass("Hero Class")}
     />
   ));

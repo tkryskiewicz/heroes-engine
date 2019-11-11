@@ -6,7 +6,7 @@ import React from "react";
 import { HeroClass, ResourceId, TownId } from "heroes-homm1";
 
 import { Placeholder } from "../Placeholder";
-import { alignment } from "../stories";
+import { playerColor } from "../stories";
 import { KingdomOverviewWindow } from "./KingdomOverviewWindow";
 
 const renderTitle = () => <Placeholder name="Title" />;
@@ -21,7 +21,7 @@ storiesOf("KingdomOverviewWindow", module)
   .add("default", () => (
     <KingdomOverviewWindow
       visible={boolean("Visible", true)}
-      alignment={alignment("Alignment")}
+      playerColor={playerColor("Player Color")}
       renderTitle={renderTitle}
       renderDate={renderDate}
       heroClasses={Object.values(HeroClass)}

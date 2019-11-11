@@ -62,9 +62,6 @@ describe("createRandomTownMapObject", () => {
     };
 
     const data: Parameters<typeof createRandomTownMapObject>[2] = {
-      alignments: [
-        "alignment",
-      ],
       armySize: 1,
       creatures: {
         [creature.id]: creature,
@@ -83,7 +80,6 @@ describe("createRandomTownMapObject", () => {
       customized: false,
       dataId: MapObjectId.RandomTown,
       id: "id",
-      owner: "alignment",
     };
 
     expect(result).toEqual(expected);
@@ -101,7 +97,6 @@ describe("isRandomTownMapObject", () => {
     };
 
     const data: Parameters<typeof createRandomTownMapObject>[2] = {
-      alignments: [],
       armySize: 0,
       creatures: {},
     };
@@ -123,7 +118,6 @@ describe("isRandomTownMapObject", () => {
     };
 
     const data: Parameters<typeof createRandomTownMapObject>[2] = {
-      alignments: [],
       armySize: 0,
       creatures: {},
     };

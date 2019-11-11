@@ -29,7 +29,7 @@ export interface ResourceSummary {
 export interface KingdomOverviewWindowContainerProps extends WithGameWindowProps {
   readonly data: Pick<GameData, "heroClasses" | "resources" | "towns">;
   readonly date: GameDate;
-  readonly alignment: string;
+  readonly playerColor: string;
   readonly heroClasses: HeroClassSummary;
   readonly castles: TownSummary;
   readonly towns: TownSummary;
@@ -46,7 +46,7 @@ export class KingdomOverviewWindowContainer extends React.Component<KingdomOverv
     return (
       <KingdomOverviewWindow
         visible={this.props.visible}
-        alignment={this.props.alignment}
+        playerColor={this.props.playerColor}
         renderTitle={this.renderTitle}
         renderDate={this.renderDate}
         heroClasses={Object.keys(data.heroClasses)}

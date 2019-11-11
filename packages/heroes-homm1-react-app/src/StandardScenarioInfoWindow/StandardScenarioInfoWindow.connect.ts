@@ -32,7 +32,7 @@ const mapStateToProps = (state: AppState): Required<Pick<StandardScenarioInfoWin
   gameDifficulty: GameDifficulty.Easy,
   kingOfTheHill: false,
   opponentSettings: [],
-  playerColor: state.game.alignment,
+  playerColor: state.game.activePlayer,
   scenarioDescription: state.game.scenario.description,
   scenarioDifficulty: ScenarioDifficulty.Easy,
   scenarioName: state.game.scenario.name,

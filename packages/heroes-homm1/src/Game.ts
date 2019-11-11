@@ -55,7 +55,7 @@ export const getGameHeroes = (game: Game): Hero[] =>
   game.map.tiles
     .map((t) => t.object)
     .filter(isHeroMapObject)
-    .filter((o) => isObjectOwnedBy(o, game.alignment));
+    .filter((o) => isObjectOwnedBy(o, game.activePlayer));
 
 export const getGameHero = (game: Game, hero: string): Hero | undefined =>
   getGameHeroes(game).find((h) => h.id === hero);
@@ -64,7 +64,7 @@ export const getGameTowns = (game: Game): Town[] =>
   game.map.tiles
     .map((o) => o.object)
     .filter(isTownMapObject)
-    .filter((o) => isObjectOwnedBy(o, game.alignment));
+    .filter((o) => isObjectOwnedBy(o, game.activePlayer));
 
 export const getGameTown = (game: Game, town: string): Town | undefined =>
   getGameTowns(game).find((t) => t.id === town);

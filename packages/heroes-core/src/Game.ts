@@ -45,7 +45,7 @@ import { TownData } from "./Town";
 import { TroopSelection } from "./Troop";
 
 export interface GameData {
-  readonly alignments: string[];
+  readonly playerColors: string[];
   readonly resources: { readonly [id: string]: ResourceData; };
   readonly items: { readonly [id: string]: ItemData; };
   readonly creatures: { readonly [id: string]: CreatureData; };
@@ -68,7 +68,7 @@ export interface Game {
   readonly scenario: Scenario;
   readonly map: Map;
   readonly turn: number;
-  readonly alignment: string;
+  readonly activePlayer: string;
   readonly resources: Resources;
   readonly puzzle: Puzzle;
 }
@@ -155,7 +155,7 @@ export const startGameTurn = (game: Game): Game => {
   const objects = game.map.tiles
     .map((t) => t.object)
     .filter((o): o is MapObject => o !== undefined)
-    .filter((o) => isOwnableMapObject(o) && isObjectOwnedBy(o, game.alignment));
+    .filter((o) => isOwnableMapObject(o) && isObjectOwnedBy(o, game.activePlayer));
 
   objects
     .forEach((o) => {

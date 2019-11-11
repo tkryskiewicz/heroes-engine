@@ -17,7 +17,7 @@ const mapStateToProps = (state: AppState): Pick<StatusWindowProps, StateProp> =>
   const ownedTowns = state.game.map.tiles
     .map((t) => t.object)
     .filter(isOwnableMapObject)
-    .filter((o) => isObjectOwnedBy(o, state.game.alignment))
+    .filter((o) => isObjectOwnedBy(o, state.game.activePlayer))
     .filter(isTownMapObject);
 
   const activeObject = state.locators.activeObjectId ?
@@ -28,11 +28,11 @@ const mapStateToProps = (state: AppState): Pick<StatusWindowProps, StateProp> =>
     dateInformation: getDate(state.game.turn),
     heroStatus: isHeroMapObject(activeObject) ?
       {
-        // FIXME
-        alignment: activeObject.owner || state.game.alignment,
         army: activeObject.army,
         hero: activeObject.heroId,
         heroClass: activeObject.heroClass,
+        // FIXME
+        playerColor: activeObject.owner || state.game.activePlayer,
       } :
       undefined,
     resourceSummary: {

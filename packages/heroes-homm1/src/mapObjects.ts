@@ -740,7 +740,7 @@ const obelisk: ObeliskMapObjectData & TerrainRestrictedMapObjectData & VariantMa
   ],
   height: 1,
   id: MapObjectId.Obelisk,
-  interactionLimit: InteractionLimitType.OncePerAlignment,
+  interactionLimit: InteractionLimitType.OncePerPlayer,
   restrictedTerrains: nonWaterTerrains,
   type: nonWaterTerrainTypes,
   uncoversPuzzlePiece: true,
@@ -2573,7 +2573,7 @@ export const createMapObject = (id: string, objectData: MapObjectData, data: Gam
       skills: {},
     };
 
-    return createHeroMapObject(id, objectData, hero, data.alignments[0]);
+    return createHeroMapObject(id, objectData, hero, data.playerColors[0]);
   }
 
   if (isRandomTownMapObjectData(objectData)) {

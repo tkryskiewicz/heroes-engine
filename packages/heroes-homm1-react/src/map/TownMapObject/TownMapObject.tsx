@@ -6,13 +6,13 @@ export interface TownMapObjectProps {
   readonly size: "large" | "small";
   readonly town: string;
   readonly isCastleBuilt: boolean;
-  readonly alignment?: string;
+  readonly playerColor?: string;
   readonly onClick?: () => void;
 }
 
 export class TownMapObject extends React.Component<TownMapObjectProps> {
   public render() {
-    const { town, isCastleBuilt, alignment } = this.props;
+    const { town, isCastleBuilt, playerColor } = this.props;
 
     return (
       <div
@@ -20,21 +20,21 @@ export class TownMapObject extends React.Component<TownMapObjectProps> {
         onClick={this.props.onClick}
       >
         <img src={`/assets/towns/${town}/mapObject/${isCastleBuilt ? "castle" : "town"}/${this.props.size}.png`} />
-        {this.props.size === "large" && alignment && this.renderFlags(alignment)}
+        {this.props.size === "large" && playerColor && this.renderFlags(playerColor)}
       </div>
     );
   }
 
-  private renderFlags(alignment: string) {
+  private renderFlags(playerColor: string) {
     return (
       <>
         <img
           className={styles.flagWest}
-          src={`/assets/alignments/${alignment}/town-flag/west.png`}
+          src={`/assets/playerColors/${playerColor}/town-flag/west.png`}
         />
         <img
           className={styles.flagEast}
-          src={`/assets/alignments/${alignment}/town-flag/east.png`}
+          src={`/assets/playerColors/${playerColor}/town-flag/east.png`}
         />
       </>
     );

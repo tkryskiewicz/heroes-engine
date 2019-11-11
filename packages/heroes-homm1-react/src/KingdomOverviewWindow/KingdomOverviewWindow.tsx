@@ -12,7 +12,7 @@ import { GameText, ScreenWidth, withGameWindow } from "../core";
 import { messages } from "./messages";
 
 interface KingdomOverviewWindowProps {
-  readonly alignment: string;
+  readonly playerColor: string;
   // TODO: combine title and date into just title
   readonly renderTitle: () => React.ReactNode;
   readonly renderDate: () => React.ReactNode;
@@ -51,7 +51,7 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
   public render() {
     return (
       <div className={styles.root}>
-        {this.renderBanner(this.props.alignment)}
+        {this.renderBanner(this.props.playerColor)}
         <div className={styles.titleContainer}>
           <div className={styles.title}>
             {this.props.renderTitle()}
@@ -121,11 +121,11 @@ class KingdomOverviewWindow extends React.Component<KingdomOverviewWindowProps> 
     );
   }
 
-  private renderBanner(alignment: string) {
+  private renderBanner(playerColor: string) {
     return (
       <img
         className={styles.banner}
-        src={`assets/alignments/${alignment}/banner.jpg`}
+        src={`assets/playerColors/${playerColor}/banner.jpg`}
       />
     );
   }

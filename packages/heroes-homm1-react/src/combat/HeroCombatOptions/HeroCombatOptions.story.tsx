@@ -6,7 +6,7 @@ import React from "react";
 import { LuckType, MoraleType } from "heroes-homm1";
 
 import { Placeholder } from "../../Placeholder";
-import { alignment, hero, heroClass } from "../../stories";
+import { hero, heroClass, playerColor } from "../../stories";
 import { HeroCombatOptions, HeroCombatOptionsProps } from "./HeroCombatOptions";
 
 const renderHeroPortrait = () => <Placeholder name="Hero Portrait" />;
@@ -14,11 +14,11 @@ const renderHeroPortrait = () => <Placeholder name="Hero Portrait" />;
 storiesOf("combat|HeroCombatOptions", module)
   .add("default", () => {
     const h: HeroCombatOptionsProps["hero"] = {
-      alignment: alignment("Alignment"),
       heroClass: heroClass("Hero Class"),
       id: hero("Hero"),
       luck: LuckType.Good,
       morale: MoraleType.Bad,
+      playerColor: playerColor("Player Color"),
       skills: {},
     };
 

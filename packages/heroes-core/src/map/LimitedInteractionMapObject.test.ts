@@ -18,7 +18,7 @@ describe("isLimitedInteractionMapObjectData", () => {
       grid: [],
       height: 1,
       id: "dataId",
-      interactionLimit: InteractionLimitType.OncePerAlignment,
+      interactionLimit: InteractionLimitType.OncePerPlayer,
       width: 1,
     };
 
@@ -72,7 +72,7 @@ describe("createLimitedInteractionMapObject", () => {
       grid: [],
       height: 1,
       id: "dataId",
-      interactionLimit: InteractionLimitType.OncePerAlignment,
+      interactionLimit: InteractionLimitType.OncePerPlayer,
       width: 1,
     };
 
@@ -89,24 +89,24 @@ describe("createLimitedInteractionMapObject", () => {
 });
 
 describe("getVisitor", () => {
-  it("should return alignment when once per alignment", () => {
+  it("should return player when once per player", () => {
     const objectData: LimitedInteractionMapObjectData = {
       grid: [],
       height: 1,
       id: "dataId",
-      interactionLimit: InteractionLimitType.OncePerAlignment,
+      interactionLimit: InteractionLimitType.OncePerPlayer,
       width: 1,
     };
 
     const object: OwnableMapObject = {
       dataId: "otherDataId",
       id: "id",
-      owner: "alignment",
+      owner: "player",
     };
 
     const result = getVisitor(objectData, object);
 
-    expect(result).toBe("alignment");
+    expect(result).toBe("player");
   });
 
   it("should return object id when once per hero", () => {
@@ -121,7 +121,7 @@ describe("getVisitor", () => {
     const object: OwnableMapObject = {
       dataId: "otherDataId",
       id: "id",
-      owner: "alignment",
+      owner: "player",
     };
 
     const result = getVisitor(objectData, object);
@@ -134,7 +134,7 @@ describe("getVisitor", () => {
       grid: [],
       height: 1,
       id: "dataId",
-      interactionLimit: InteractionLimitType.OncePerAlignment,
+      interactionLimit: InteractionLimitType.OncePerPlayer,
       width: 1,
     };
 

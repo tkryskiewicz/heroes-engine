@@ -3,14 +3,14 @@ import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { alignment, heroClass, mapObjectOrientation } from "../../stories";
+import { heroClass, mapObjectOrientation, playerColor } from "../../stories";
 import { HeroMapObject } from "./HeroMapObject";
 
 storiesOf("map|HeroMapObject", module)
   .add("default", () => (
     <HeroMapObject
       heroClass={heroClass("Hero Class")}
-      alignment={boolean("Aligned?", true) ? alignment("Alignment") : undefined}
+      playerColor={boolean("Owned?", true) ? playerColor("Player Color") : undefined}
       orientation={mapObjectOrientation("Orientation")}
       onClick={action("Click")}
     />

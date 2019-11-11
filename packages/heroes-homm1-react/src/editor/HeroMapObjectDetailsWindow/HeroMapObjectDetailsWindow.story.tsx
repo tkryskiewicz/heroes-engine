@@ -4,7 +4,6 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import {
-  alignments,
   artifacts,
   CreatureId,
   creatures,
@@ -13,13 +12,13 @@ import {
   EditorMaxHeroExperience,
   heroes,
   HeroMapObjectDetails,
+  playerColors,
 } from "heroes-homm1";
 
-import { alignment, hero } from "../../stories";
+import { hero, playerColor } from "../../stories";
 import { HeroMapObjectDetailsWindow, HeroMapObjectDetailsWindowProps } from "./HeroMapObjectDetailsWindow";
 
 const data: HeroMapObjectDetailsWindowProps["data"] = {
-  alignments,
   creatures: creatures.reduce((p, c) => ({
     ...p,
     [c.id]: c,
@@ -37,6 +36,7 @@ const data: HeroMapObjectDetailsWindowProps["data"] = {
     ...p,
     [c.id]: c,
   }), {}),
+  playerColors,
 };
 
 storiesOf("editor|HeroMapObjectDetailsWindow", module)
@@ -44,12 +44,12 @@ storiesOf("editor|HeroMapObjectDetailsWindow", module)
     const armySize = number("Army Size", 5, { range: true, min: 1, max: 5, step: 1 });
 
     const value: HeroMapObjectDetails = {
-      alignment: alignment("Alignment"),
       army: [...new Array(armySize).keys()]
-        .map(() => ({ creature: CreatureId.Peasant, count: 0 })),
+      .map(() => ({ creature: CreatureId.Peasant, count: 0 })),
       artifacts: [],
       experience: number("Experience", 0, { range: true, min: 0, max: 99999, step: 1 }),
       heroId: hero("Hero"),
+      owner: playerColor("Owner"),
     };
 
     return (

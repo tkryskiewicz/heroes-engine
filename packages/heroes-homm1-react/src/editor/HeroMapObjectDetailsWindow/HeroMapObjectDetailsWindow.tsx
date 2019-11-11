@@ -11,14 +11,14 @@ import * as styles from "./HeroMapObjectDetailsWindow.module.scss";
 import { GameInputNumber } from "../../base";
 import { GameParagraph, GameText } from "../../core";
 import { getArtifactNameMessage, getHeroNameMessage } from "../../messages";
-import { AlignmentDetails } from "../AlignmentDetails";
 import { ArmyDetails } from "../ArmyDetails";
 import { EditorSettingsWindow, EditorSettingsWindowProps } from "../EditorSettingsWindow";
+import { OwnerDetails } from "../OwnerDetails";
 import { ValueRangePrompt } from "../ValueRangePrompt";
 import { messages } from "./messages";
 
 export interface HeroMapObjectDetailsWindowProps extends EditorSettingsWindowProps {
-  readonly data: Pick<GameData, "alignments" | "creatures" | "editor" | "heroes" | "items">;
+  readonly data: Pick<GameData, "playerColors" | "creatures" | "editor" | "heroes" | "items">;
   readonly value: HeroMapObjectDetails;
   readonly onValueChange: (value: HeroMapObjectDetails) => void;
 }
@@ -64,10 +64,10 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
             onValueChange={this.onArmyChange}
             onOpenCreatureValueRangePrompt={this.onOpenCreatureValueRangePrompt}
           />
-          <AlignmentDetails
-            alignments={data.alignments}
-            value={value.alignment}
-            onValueChange={this.onAlignmentChange}
+          <OwnerDetails
+            playerColors={data.playerColors}
+            value={value.owner}
+            onValueChange={this.onOwnerChange}
           />
           <Row>
             <Col
@@ -162,10 +162,10 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
     return Object.keys(this.props.data.creatures);
   }
 
-  private readonly onAlignmentChange = (value?: string) => {
+  private readonly onOwnerChange = (value?: string) => {
     const newValue: HeroMapObjectDetails = {
       ...this.props.value,
-      alignment: value!,
+      owner: value!,
     };
 
     this.props.onValueChange(newValue);

@@ -11,12 +11,12 @@ export interface MineMapObjectProps {
   readonly size: "large" | "small";
   readonly resource: string;
   readonly variant: string;
-  readonly alignment?: string;
+  readonly playerColor?: string;
 }
 
 export class MineMapObject extends React.Component<MineMapObjectProps> {
   public render() {
-    const { size, resource, variant, alignment } = this.props;
+    const { size, resource, variant, playerColor } = this.props;
 
     return (
       <div className={Classnames(styles.root, styles[resource])}>
@@ -26,7 +26,7 @@ export class MineMapObject extends React.Component<MineMapObjectProps> {
           variant={variant}
         />
         {this.renderWagon(size, resource)}
-        {alignment && this.renderFlag(resource, alignment)}
+        {playerColor && this.renderFlag(resource, playerColor)}
       </div>
     );
   }
@@ -55,7 +55,7 @@ export class MineMapObject extends React.Component<MineMapObjectProps> {
     );
   }
 
-  private renderFlag(resource: string, alignment: string) {
+  private renderFlag(resource: string, playerColor: string) {
     const flag = resource !== ResourceId.Mercury ?
       "mine-flag" :
       "mine-flag-2";
@@ -63,7 +63,7 @@ export class MineMapObject extends React.Component<MineMapObjectProps> {
     return (
       <img
         className={styles.flag}
-        src={`/assets/alignments/${alignment}/${flag}.png`}
+        src={`/assets/playerColors/${playerColor}/${flag}.png`}
       />
     );
   }
