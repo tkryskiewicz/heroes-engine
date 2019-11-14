@@ -1,11 +1,89 @@
 .root {
   width: 320px;
   height: 294px;
-  padding: 20px;
   background: url("./assets/background.jpg");
+}
 
-  > div {
-    margin-bottom: 8px;
-    text-align: center;
-  }
+.title {
+  position: absolute;
+  top: 17px;
+  width: 100%;
+  text-align: center;
+}
+
+.creature {
+  position: absolute;
+  top: 45px;
+  left: 45px;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+}
+
+.available-count {
+  position: absolute;
+  top: 115px;
+  left: 10px;
+  width: 145px;
+  text-align: center;
+}
+
+.cost {
+  position: absolute;
+  top: 49px;
+  left: 140px;
+  width: 132px;
+  height: 68px;
+  text-align: center;
+  background: url("./assets/cost-background.png");
+}
+
+.cost-title {
+  display: block;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.count {
+  position: absolute;
+  top: 145px;
+  width: 205px;
+  text-align: right;
+}
+
+.increment-count {
+  position: absolute;
+  top: 135px;
+  left: 210px;
+}
+
+.decrement-count {
+  position: absolute;
+  top: 150px;
+  left: 210px;
+}
+
+.max {
+  position: absolute;
+  top: 142px;
+  left: 236px;
+}
+
+.total-cost {
+  position: absolute;
+  top: 177px;
+  width: 100%;
+  text-align: center;
+}
+
+.okay {
+  position: absolute;
+  top: 245px;
+  left: 36px;
+}
+
+.cancel {
+  position: absolute;
+  top: 245px;
+  left: 189px;
 }

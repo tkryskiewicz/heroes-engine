@@ -1,149 +1,151 @@
-import { Col, Row } from "antd";
 import React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
-import { divideResources, multiplyResources, Resources } from "heroes-core";
+import { multiplyResources, Resources } from "heroes-core";
 import { noop } from "heroes-helpers";
 
 import * as styles from "./RecruitTroopWindow.module.scss";
 
 import { buttonImages } from "./assets";
 
-import { CreatureIcon, GameInputNumber, ImageButton, ResourceCost } from "../base";
+import { GameInputNumber, ImageButton, ResourceCost } from "../base";
 import { GameText, withGameWindow } from "../core";
-import { getCreatureNameMessage } from "../messages";
 import { messages } from "./messages";
 
 interface RecruitTroopWindowProps {
-  readonly resources: Resources;
-  readonly creature: string;
+  readonly title: string;
+  readonly renderCreature: () => React.ReactNode;
   readonly cost: Resources;
   readonly availableCount: number;
   readonly count: number;
   readonly onCountChange: (value: number) => void;
-  readonly onOkayClick: (count: number) => void;
+  readonly onIncrementClick: () => void;
+  readonly onDecrementClick: () => void;
+  readonly onMaxClick: () => void;
+  readonly okayDisabled: boolean;
+  readonly onOkayClick: () => void;
   readonly onCancelClick: () => void;
 }
 
 type DefaultProp =
+  "renderCreature" |
   "onCountChange" |
+  "onIncrementClick" |
+  "onDecrementClick" |
+  "onMaxClick" |
+  "okayDisabled" |
   "onOkayClick" |
   "onCancelClick";
 
 class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
   public static readonly defaultProps: Pick<RecruitTroopWindowProps, DefaultProp> = {
+    okayDisabled: false,
     onCancelClick: noop,
     onCountChange: noop,
+    onDecrementClick: noop,
+    onIncrementClick: noop,
+    onMaxClick: noop,
     onOkayClick: noop,
+    renderCreature: noop,
   };
 
   public render() {
     return (
       <div className={styles.root}>
-        <Row>
-          <GameText size="large">
-            <FormattedMessage {...getCreatureNameMessage(this.props.creature)}>
-              {(creature) => (<FormattedMessage {...messages.title} values={{ creature }} />)}
-            </FormattedMessage>
-          </GameText>
-        </Row>
-        <Row>
-          <Col span={8}>
-            <CreatureIcon
-              size="medium"
-              creature={this.props.creature}
-            />
-            <GameText size="normal">
-              <FormattedMessage {...messages.available} />:
-              {" "}
-              <FormattedNumber value={this.props.availableCount} />
-            </GameText>
-          </Col>
-          <Col span={16}>
-            {this.renderCostPerTroop()}
-          </Col>
-        </Row>
-        <Row>
-          <Col span={8}>
-            <GameText size="normal">
-              <FormattedMessage {...messages.count} />:
-          </GameText>
-          </Col>
-          <Col span={16}>
-            <GameInputNumber
-              min={0}
-              max={this.props.availableCount}
-              disabled={!this.props.availableCount}
-              value={this.props.count}
-              onChange={this.props.onCountChange}
-            />
-            <ImageButton
-              images={buttonImages.max}
-              onClick={this.onMaxClick}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <GameText size="large">
-            <FormattedMessage {...messages.totalCost} />:
-          </GameText>
-          <ResourceCost
-            cost={multiplyResources(this.props.cost, this.props.count)}
-          />
-        </Row>
-        <Row>
-          <Col span={12}>
-            <ImageButton
-              images={buttonImages.okay}
-              disabled={this.props.availableCount === 0}
-              onClick={this.onOkayClick}
-            />
-          </Col>
-          <Col span={12}>
-            <ImageButton
-              images={buttonImages.cancel}
-              onClick={this.onCancelClick}
-            />
-          </Col>
-        </Row>
-      </div>
-    );
-  }
-
-  private renderCostPerTroop() {
-    return (
-      <div>
-        <GameText size="normal">
-          <FormattedMessage {...messages.costPerTroop} />:
+        <GameText
+          data-test-id="title"
+          className={styles.title}
+          size="large"
+        >
+          {this.props.title}
         </GameText>
-        <div>
+        <div
+          data-test-id="creature"
+          className={styles.creature}
+        >
+          {this.props.renderCreature()}
+        </div>
+        <div className={styles.availableCount}>
+          <GameText
+            data-test-id="available-count"
+            size="normal"
+          >
+            <FormattedMessage {...messages.available} />:
+            {" "}
+            <FormattedNumber value={this.props.availableCount} />
+          </GameText>
+        </div>
+        <div className={styles.cost}>
+          <GameText
+            className={styles.costTitle}
+            size="small"
+          >
+            <FormattedMessage {...messages.cost} />:
+          </GameText>
           <ResourceCost
+            data-test-id="cost"
+            textSize="small"
             cost={this.props.cost}
           />
         </div>
+        <div className={styles.count}>
+          <GameText size="normal">
+            <FormattedMessage {...messages.count} />:
+          </GameText>
+          {" "}
+          <GameInputNumber
+            data-test-id="count"
+            min={0}
+            max={this.props.availableCount}
+            value={this.props.count}
+            onChange={this.props.onCountChange}
+          />
+        </div>
+        <ImageButton
+          data-test-id="increment"
+          className={styles.incrementCount}
+          images={buttonImages.increment}
+          onClick={this.props.onIncrementClick}
+        />
+        <br/>
+        <ImageButton
+          data-test-id="decrement"
+          className={styles.decrementCount}
+          images={buttonImages.decrement}
+          onClick={this.props.onDecrementClick}
+        />
+        <ImageButton
+          data-test-id="max"
+          className={styles.max}
+          images={buttonImages.max}
+          onClick={this.props.onMaxClick}
+        />
+        <div className={styles.totalCost}>
+          <GameText size="large">
+            <FormattedMessage {...messages.totalCost} />:
+          </GameText>
+          <br/>
+          <ResourceCost
+            data-test-id="total-cost"
+            textSize="small"
+            cost={multiplyResources(this.props.cost, this.props.count)}
+          />
+        </div>
+        <ImageButton
+          data-test-id="okay"
+          className={styles.okay}
+          images={buttonImages.okay}
+          disabled={this.props.okayDisabled}
+          onClick={this.props.onOkayClick}
+        />
+        <ImageButton
+          data-test-id="cancel"
+          className={styles.cancel}
+          images={buttonImages.cancel}
+          onClick={this.props.onCancelClick}
+        />
       </div>
     );
-  }
-
-  private readonly onMaxClick = () => {
-    const count = Math.min(divideResources(this.props.resources, this.props.cost), this.props.availableCount);
-
-    this.props.onCountChange(count);
-  }
-
-  private readonly onOkayClick = () => {
-    // FIXME: should this be handled here?
-    if (this.props.count === 0) {
-      this.onCancelClick();
-
-      return;
-    }
-
-    this.props.onOkayClick(this.props.count);
-  }
-
-  private readonly onCancelClick = () => {
-    this.props.onCancelClick();
   }
 }
 

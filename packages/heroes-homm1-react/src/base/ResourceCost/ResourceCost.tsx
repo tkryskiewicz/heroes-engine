@@ -5,14 +5,19 @@ import { Resources } from "heroes-core";
 
 import * as styles from "./ResourceCost.module.scss";
 
-import { GameText } from "../../core";
+import { GameText, GameTextProps } from "../../core";
 import { ResourceIcon } from "../ResourceIcon";
 
 export interface ResourceCostProps {
+  readonly textSize: GameTextProps["size"];
   readonly cost: Resources;
 }
 
 export class ResourceCost extends React.Component<ResourceCostProps> {
+  public static readonly defaultProps: Pick<ResourceCostProps, "textSize"> = {
+    textSize: "normal",
+  };
+
   public render() {
     // TODO: reflect order of resources
     const resources = Object.keys(this.props.cost)
@@ -35,7 +40,7 @@ export class ResourceCost extends React.Component<ResourceCostProps> {
           resource={resource}
         />
         <div className={styles.resourceAmount}>
-          <GameText size="normal">
+          <GameText size={this.props.textSize}>
             <FormattedNumber value={amount} />
           </GameText>
         </div>

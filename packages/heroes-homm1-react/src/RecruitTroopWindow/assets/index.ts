@@ -1,21 +1,20 @@
 import BackgroundImage = require("./background.jpg");
+import { cancel } from "./cancel";
+import CostBackgroundImage = require("./cost-background.png");
+import { decrement } from "./decrement";
+import { increment } from "./increment";
+import { max } from "./max";
+import { okay } from "./okay";
 
-const buttonImages = {
-  cancel: {
-    disabled: require("./cancel/disabled.png"),
-    enabled: require("./cancel/enabled.png"),
-  },
-  max: {
-    disabled: require("./max/disabled.png"),
-    enabled: require("./max/enabled.png"),
-  },
-  okay: {
-    disabled: require("./okay/disabled.png"),
-    enabled: require("./okay/enabled.png"),
-  },
+export const buttonImages = {
+  cancel,
+  decrement,
+  increment,
+  max,
+  okay,
 };
 
 export {
   BackgroundImage,
-  buttonImages,
+  CostBackgroundImage,
 };

@@ -5,9 +5,9 @@ export const messages = defineMessages({
     defaultMessage: "Available",
     id: "game.ui.recruitTroop.available",
   },
-  costPerTroop: {
+  cost: {
     defaultMessage: "Cost per troop",
-    id: "game.ui.recruitTroop.costPerTroop",
+    id: "game.ui.recruitTroop.cost",
   },
   count: {
     defaultMessage: "Number to buy",
