@@ -19,7 +19,6 @@ storiesOf("RecruitTroopWindow", module)
       cost={{ [ResourceId.Gold]: 1000 }}
       availableCount={number("Available Count", 0, { range: true, min: 0, max: 99, step: 1 })}
       count={number("Count", 0, { range: true, min: 0, max: 99, step: 1 })}
-      countDisabled={boolean("Count Disabled", false)}
       onCountChange={action("Count Change")}
       onIncrementClick={action("Increment Click")}
       onDecrementClick={action("Decrement Click")}
