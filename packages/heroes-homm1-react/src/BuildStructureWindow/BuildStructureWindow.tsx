@@ -68,7 +68,7 @@ class BuildStructureWindow extends React.Component<BuildStructureWindowProps> {
         </div>
         <div>
           <ResourceCost
-            cost={this.props.cost}
+            value={this.props.cost}
           />
         </div>
       </GameModal>

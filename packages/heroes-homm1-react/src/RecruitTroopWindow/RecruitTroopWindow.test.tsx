@@ -59,7 +59,7 @@ describe("RecruitTroopWindow", () => {
 
     const control = wrapper.find(byTestId("cost")).find(ResourceCost);
 
-    expect(control.props().cost).toEqual({
+    expect(control.props().value).toEqual({
       resource: 1,
     });
   });
@@ -172,7 +172,7 @@ describe("RecruitTroopWindow", () => {
 
     const control = wrapper.find(byTestId("total-cost")).find(ResourceCost);
 
-    expect(control.props().cost).toEqual({
+    expect(control.props().value).toEqual({
       resource: 2,
     });
   });

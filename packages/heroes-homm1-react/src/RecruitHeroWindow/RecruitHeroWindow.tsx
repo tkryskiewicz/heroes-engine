@@ -58,7 +58,7 @@ export class RecruitHeroWindow extends React.Component<Props> {
         </Row>
         <Row className="recruit-hero-window-cost">
           <ResourceCost
-            cost={this.props.cost}
+            value={this.props.cost}
           />
         </Row>
       </GameModal>

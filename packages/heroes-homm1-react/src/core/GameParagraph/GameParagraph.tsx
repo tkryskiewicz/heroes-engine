@@ -2,10 +2,10 @@ import React from "react";
 
 import * as styles from "./GameParagraph.module.scss";
 
-import { GameText, GameTextProps } from "../GameText";
+import { GameText, GameTextSize } from "../GameText";
 
 export interface GameParagraphProps {
-  readonly textSize: GameTextProps["size"];
+  readonly textSize: GameTextSize;
 }
 
 export class GameParagraph extends React.Component<GameParagraphProps> {

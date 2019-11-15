@@ -3,9 +3,15 @@ import React from "react";
 
 import * as styles from "./GameText.module.scss";
 
+export type GameTextSize =
+  "large" |
+  "normal" |
+  "small" |
+  "tiny";
+
 export interface GameTextProps {
   readonly className?: string;
-  readonly size: "large" | "normal" | "small" | "tiny";
+  readonly size: GameTextSize;
   readonly selected?: boolean;
 }
 

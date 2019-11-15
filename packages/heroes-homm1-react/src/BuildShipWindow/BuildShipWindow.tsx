@@ -50,7 +50,7 @@ export class BuildShipWindow extends React.Component<BuildShipWindowProps> {
           <FormattedMessage {...messages.costTitle} />:
         </GameParagraph>
         <ResourceCost
-          cost={this.props.cost}
+          value={this.props.cost}
         />
       </GameModal>
     );

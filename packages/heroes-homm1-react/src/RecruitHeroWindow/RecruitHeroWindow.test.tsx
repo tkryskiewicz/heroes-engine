@@ -236,7 +236,7 @@ describe("RecruitHeroWindow", () => {
 
     const cost = wrapper.find(ResourceCost);
 
-    expect(cost.props().cost).toEqual(props.cost);
+    expect(cost.props().value).toEqual(props.cost);
   });
 
   it("should handle cancel click", () => {

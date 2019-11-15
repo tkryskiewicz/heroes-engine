@@ -37,6 +37,11 @@ import {
   TownId,
 } from "heroes-homm1";
 
+import { GameTextSize } from "./core";
+
+export const textSize = (name: string) =>
+  select<GameTextSize>(name, ["tiny", "small", "normal", "large"], "normal");
+
 export const gameOption = (name: string) =>
   select<GameOption>(name, Object.values(GameOption), GameOption.NewGame);
 
@@ -176,12 +181,21 @@ export const gameDate = (name: string): GameDate => ({
 const resourceAmount = (res: ResourceId, name: string, value: number = 0) =>
   number(name, value, { range: true, min: 0, max: res !== ResourceId.Gold ? 999 : 999999, step: 1 });
 
-export const resourceAmounts = (name: string, value: Resources = {}): Resources => ({
-  [ResourceId.Wood]: resourceAmount(ResourceId.Wood, `${name} / Wood`, value[ResourceId.Wood]),
-  [ResourceId.Mercury]: resourceAmount(ResourceId.Mercury, `${name} / Mercury`, value[ResourceId.Mercury]),
-  [ResourceId.Ore]: resourceAmount(ResourceId.Ore, `${name} / Ore`, value[ResourceId.Ore]),
-  [ResourceId.Sulfur]: resourceAmount(ResourceId.Sulfur, `${name} / Sulfur`, value[ResourceId.Sulfur]),
-  [ResourceId.Crystal]: resourceAmount(ResourceId.Crystal, `${name} / Crystal`, value[ResourceId.Crystal]),
-  [ResourceId.Gems]: resourceAmount(ResourceId.Gems, `${name} / Gems`, value[ResourceId.Gems]),
-  [ResourceId.Gold]: resourceAmount(ResourceId.Gold, `${name} / Gold`, value[ResourceId.Gold]),
-});
+export const resourceAmounts = (name: string, value: Resources = {}): Resources => {
+  const v: Resources = {
+    [ResourceId.Wood]: resourceAmount(ResourceId.Wood, `${name} / Wood`, value[ResourceId.Wood]),
+    [ResourceId.Mercury]: resourceAmount(ResourceId.Mercury, `${name} / Mercury`, value[ResourceId.Mercury]),
+    [ResourceId.Ore]: resourceAmount(ResourceId.Ore, `${name} / Ore`, value[ResourceId.Ore]),
+    [ResourceId.Sulfur]: resourceAmount(ResourceId.Sulfur, `${name} / Sulfur`, value[ResourceId.Sulfur]),
+    [ResourceId.Crystal]: resourceAmount(ResourceId.Crystal, `${name} / Crystal`, value[ResourceId.Crystal]),
+    [ResourceId.Gems]: resourceAmount(ResourceId.Gems, `${name} / Gems`, value[ResourceId.Gems]),
+    [ResourceId.Gold]: resourceAmount(ResourceId.Gold, `${name} / Gold`, value[ResourceId.Gold]),
+  };
+
+  return Object.keys(v)
+    .filter((r) => v[r])
+    .reduce((p, c) => ({
+      ...p,
+      [c]: v[c],
+    }), {});
+};

@@ -41,7 +41,7 @@ export class BuySpellBookWindow extends React.Component<BuySpellBookWindowProps>
         </GameText>
         <br />
         <ResourceCost
-          cost={this.props.cost}
+          value={this.props.cost}
         />
       </GameModal>
     );

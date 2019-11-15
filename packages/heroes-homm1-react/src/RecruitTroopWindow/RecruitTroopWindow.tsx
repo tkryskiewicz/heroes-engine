@@ -85,7 +85,7 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
           <ResourceCost
             data-test-id="cost"
             textSize="small"
-            cost={this.props.cost}
+            value={this.props.cost}
           />
         </div>
         <div className={styles.count}>
@@ -128,7 +128,7 @@ class RecruitTroopWindow extends React.Component<RecruitTroopWindowProps> {
           <ResourceCost
             data-test-id="total-cost"
             textSize="small"
-            cost={multiplyResources(this.props.cost, this.props.count)}
+            value={multiplyResources(this.props.cost, this.props.count)}
           />
         </div>
         <ImageButton

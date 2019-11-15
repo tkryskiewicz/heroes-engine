@@ -31,7 +31,7 @@ export class TreasureChestPrompt extends React.Component<TreasureChestPromptProp
         </GameText>
         <div>
           <ResourceCost
-            cost={this.props.resources}
+            value={this.props.resources}
           />
           <GameText size="large">
             <FormattedMessage {...messages.alertnative} />

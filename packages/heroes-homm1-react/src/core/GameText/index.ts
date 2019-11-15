@@ -1,1 +1,1 @@
-export { GameText, GameTextProps } from "./GameText";
+export { GameText, GameTextProps, GameTextSize } from "./GameText";
