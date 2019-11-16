@@ -12,7 +12,7 @@ import {
 import { EditorWindowAction, EditorWindowActionType } from "./actions";
 import { EditorWindowState } from "./state";
 
-const map = createMap(50, 50, TerrainType.Water);
+const map = createMap(50, 50, TerrainType.Water, 4);
 
 const initialState: EditorWindowState = {
   eraseObejctsSettingsVisible: false,

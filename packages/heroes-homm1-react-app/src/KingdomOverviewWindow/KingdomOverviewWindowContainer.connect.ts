@@ -24,8 +24,8 @@ type StateProp =
   "goldPerDay";
 
 const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerProps, StateProp> => {
-  const ownedObjects = state.game.map.tiles
-    .map((t) => t.object)
+  const ownedObjects = state.game.map.cells
+    .map((c) => c.object)
     .filter(isOwnableMapObject)
     .filter((o) => isObjectOwnedBy(o, state.game.activePlayer));
 

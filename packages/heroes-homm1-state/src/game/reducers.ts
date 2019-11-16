@@ -1,42 +1,21 @@
 import {
-  ArtifactMapObjectData,
-  buildStructure,
-  createDwellingMapObject,
-  createLimitedInteractionMapObject,
   createMap,
-  createMapObject,
-  createResourceGeneratorMapObject,
-  createTreasureMapObject,
   dismissGameHero,
   dismissGameTroop,
-  DwellingMapObjectData,
   GameData,
-  Hero,
   ItemSelection,
-  LimitedInteractionMapObjectData,
   Map,
-  placeObject,
-  ResourceGeneratorMapObjectData,
   startGameTurn,
   swapGameTroops,
   tradeGameArtifacts,
-  TreasureMapObjectData,
   visitGameMapObject,
 } from "heroes-core";
 import {
   ArmySize,
-  ArtifactId,
   artifacts,
   buildGameStructure,
   buyMageGuildSpellBook,
   campaignScenarios,
-  constructArtifact,
-  constructGameHero,
-  constructSpellBook,
-  constructTown,
-  createHeroMapObject,
-  createTownMapObject,
-  CreatureId,
   creatures,
   EditorHeroArtifactCount,
   EditorMaxCreatureCount,
@@ -44,27 +23,17 @@ import {
   endGameTurn,
   heroClasses,
   heroes,
-  HeroId,
-  HeroMapObjectData,
-  MapObjectId,
   mapObjects,
-  MaxMobility,
   PlayerColorId,
   playerColors,
   PuzzlePieceCount,
   recruitGameTroop,
   ResourceId,
   resources,
-  SpellId,
   spells,
-  StructureId,
   terrains,
   TerrainType,
-  TownId,
-  TownMapObject,
-  TownMapObjectData,
-  // FIXME
-  towns as homm1Towns,
+  towns,
 } from "heroes-homm1";
 
 import { GameAction, GameActionType } from "./actions";
@@ -110,157 +79,13 @@ const data: GameData = {
     ...p,
     [c.id]: c,
   }), {}),
-  towns: homm1Towns.reduce((p, c) => ({
+  towns: towns.reduce((p, c) => ({
     ...p,
     [c.id]: c,
   }), {}),
 };
 
-const lordKilburn: Hero = {
-  ...constructGameHero("hero/1", HeroId.LordKilburn, data),
-  artifacts: [
-    constructArtifact(ArtifactId.ThunderMaceOfDominion),
-    constructArtifact(ArtifactId.UltimateSwordOfDominion),
-  ],
-  mobility: MaxMobility,
-};
-
-const antoine: Hero = {
-  ...constructGameHero("hero/2", HeroId.Antoine, data),
-  luck: 3,
-  mobility: MaxMobility,
-  morale: 1,
-};
-
-const ariel: Hero = {
-  ...constructGameHero("hero/3", HeroId.Ariel, data),
-  artifacts: [
-    constructSpellBook([]),
-  ],
-  luck: -1,
-  mobility: 0,
-  morale: -1,
-};
-
-const agar: Hero = {
-  ...constructGameHero("hero/4", HeroId.Agar, data),
-  artifacts: [
-    {
-      ...constructSpellBook([
-        {
-          charges: 2,
-          id: SpellId.Bless,
-        },
-      ]),
-    },
-  ],
-  luck: 3,
-  mobility: 10,
-  morale: 3,
-};
-
-const farmTown = constructTown(
-  TownId.Farm,
-  "Farm Town",
-  data,
-);
-
-const plainsTown = constructTown(
-  TownId.Plains,
-  "Plains Town",
-  data,
-);
-
-const townData = mapObjects.find((o) => o.id === MapObjectId.Town)! as TownMapObjectData;
-
-const towns: TownMapObject[] = [
-  {
-    ...createTownMapObject(
-      TownId.Farm,
-      townData,
-      {
-        ...farmTown,
-        structures: farmTown.structures.map(buildStructure),
-      },
-      PlayerColorId.Red,
-    ),
-    army: [
-      {
-        count: 1,
-        creature: CreatureId.Peasant,
-      },
-    ],
-  },
-  createTownMapObject(
-    TownId.Plains,
-    townData,
-    {
-      ...plainsTown,
-      structures: plainsTown.structures.map((s) => s.id === StructureId.Castle ? buildStructure(s) : s),
-    },
-    PlayerColorId.Red,
-  ),
-  createTownMapObject(
-    TownId.Forest,
-    townData,
-    constructTown(
-      TownId.Forest,
-      "Forest Town",
-      data,
-    ),
-    PlayerColorId.Red,
-  ),
-  createTownMapObject(
-    TownId.Mountains,
-    townData,
-    constructTown(
-      TownId.Mountains,
-      "Mountains Town",
-      data,
-    ),
-    PlayerColorId.Red,
-  ),
-];
-
-let map: Map = createMap(14, 14, TerrainType.Grass);
-
-const heroData = mapObjects.find((o) => o.id === MapObjectId.Hero)! as HeroMapObjectData;
-
-[lordKilburn, antoine, ariel, agar].forEach((h, i) => {
-  map = placeObject(map, { x: 1 + 2 * i, y: 6 }, createHeroMapObject(h.id, heroData, h, PlayerColorId.Red));
-});
-
-towns.forEach((t, i) => {
-  map = placeObject(map, { x: 8, y: 1 + 3 * i }, t);
-});
-
-const thatchedHutData = mapObjects.find((o) => o.id === MapObjectId.ThatchedHut)! as DwellingMapObjectData;
-
-map = placeObject(map, { x: 2, y: 1 }, createDwellingMapObject("thatchedHut/1", thatchedHutData));
-map = placeObject(map, { x: 3, y: 1 }, createDwellingMapObject("thatchedHut/2", thatchedHutData));
-
-const woodData = mapObjects.find((o) => o.id === MapObjectId.Wood)! as TreasureMapObjectData;
-
-map = placeObject(map, { x: 4, y: 1 }, createTreasureMapObject("wood/1", woodData));
-map = placeObject(map, { x: 5, y: 1 }, createTreasureMapObject("wood/2", woodData));
-
-const obeliskData = mapObjects.find((o) => o.id === MapObjectId.Obelisk)! as LimitedInteractionMapObjectData;
-
-map = placeObject(map, { x: 6, y: 1 }, createLimitedInteractionMapObject("obelisk/1", obeliskData));
-map = placeObject(map, { x: 7, y: 1 }, createLimitedInteractionMapObject("obelisk/2", obeliskData));
-
-const mineData = mapObjects.find((o) => o.id === MapObjectId.OreMine)! as ResourceGeneratorMapObjectData;
-
-map = placeObject(map, { x: 2, y: 3 }, createResourceGeneratorMapObject("ore-mine/1", mineData));
-map = placeObject(map, { x: 4, y: 3 }, createResourceGeneratorMapObject("ore-mine/2", mineData));
-
-const fourLeafCloverData = mapObjects.find((o) => o.id === ArtifactId.FourLeafClover)! as ArtifactMapObjectData;
-
-map = placeObject(map, { x: 0, y: 0 }, createMapObject("artifact/1", fourLeafCloverData));
-
-const peasantData = mapObjects.find((o) => o.id === CreatureId.Peasant)!;
-
-map = placeObject(map, { x: 2, y: 0 }, createMapObject("creature/1", peasantData));
+const map: Map = createMap(14, 14, TerrainType.Water, 4);
 
 const initialState: GameState = {
   activePlayer: PlayerColorId.Red,

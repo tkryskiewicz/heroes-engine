@@ -10,7 +10,7 @@ const baseScenario: Scenario = {
   description: "",
   difficulty: ScenarioDifficulty.Normal,
   filePrefix: "",
-  map: createMap(1, 1, TerrainType.Water),
+  map: createMap(1, 1, TerrainType.Water, 4),
   name: "",
   size: ScenarioSize.Medium,
 };

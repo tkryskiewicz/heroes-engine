@@ -1,4 +1,4 @@
-import { GameData, getTileIndex, isPointValid, Map, MapPoint, MapTile, translatePoint } from "heroes-core";
+import { GameData, getCellIndex, isPointValid, Map, MapCell, MapPoint, translatePoint } from "heroes-core";
 
 export enum TerrainTransition {
   None = "none",
@@ -16,34 +16,34 @@ export enum TerrainTransition {
   NorthWestOut = "north-west-out",
 }
 
-const getMapTile = (map: Map, point: MapPoint): MapTile | undefined => {
+const getMapCell = (map: Map, point: MapPoint): MapCell | undefined => {
   if (!isPointValid(map, point)) {
     return undefined;
   }
 
-  return map.tiles[getTileIndex(map.width, point)];
+  return map.cells[getCellIndex(map.width, point)];
 };
 
-const isDifferentTerrain = (tileA: MapTile | undefined, tileB: MapTile | undefined): boolean =>
-  tileA !== undefined && tileB !== undefined && tileA.terrain !== tileB.terrain;
+const isDifferentTerrain = (cellA: MapCell | undefined, cellB: MapCell | undefined): boolean =>
+  cellA !== undefined && cellB !== undefined && cellA.terrain !== cellB.terrain;
 
 export const getTerrainTransition = (
   map: Map,
   point: MapPoint,
   data: Pick<GameData, "terrains">,
 ): TerrainTransition => {
-  const tile = getMapTile(map, point)!;
+  const cell = getMapCell(map, point)!;
 
-  const terrainData = data.terrains[tile.terrain];
+  const terrainData = data.terrains[cell.terrain];
 
   if (!terrainData.hasTransitions) {
     return TerrainTransition.None;
   }
 
-  const northTerrainDifferent = isDifferentTerrain(getMapTile(map, translatePoint(point, 0, -1)), tile);
-  const eastTerrainDifferent = isDifferentTerrain(getMapTile(map, translatePoint(point, 1, 0)), tile);
-  const southTerrainDifferent = isDifferentTerrain(getMapTile(map, translatePoint(point, 0, 1)), tile);
-  const westTerrainDifferent = isDifferentTerrain(getMapTile(map, translatePoint(point, -1, 0)), tile);
+  const northTerrainDifferent = isDifferentTerrain(getMapCell(map, translatePoint(point, 0, -1)), cell);
+  const eastTerrainDifferent = isDifferentTerrain(getMapCell(map, translatePoint(point, 1, 0)), cell);
+  const southTerrainDifferent = isDifferentTerrain(getMapCell(map, translatePoint(point, 0, 1)), cell);
+  const westTerrainDifferent = isDifferentTerrain(getMapCell(map, translatePoint(point, -1, 0)), cell);
 
   // out
   if (northTerrainDifferent && westTerrainDifferent) {
@@ -80,25 +80,25 @@ export const getTerrainTransition = (
   }
 
   // in
-  const northWestTerrainDifferent = isDifferentTerrain(getMapTile(map, translatePoint(point, -1, -1)), tile);
+  const northWestTerrainDifferent = isDifferentTerrain(getMapCell(map, translatePoint(point, -1, -1)), cell);
 
   if (northWestTerrainDifferent) {
     return TerrainTransition.NorthWestIn;
   }
 
-  const southEastTerrainDifferent = isDifferentTerrain(getMapTile(map, translatePoint(point, 1, 1)), tile);
+  const southEastTerrainDifferent = isDifferentTerrain(getMapCell(map, translatePoint(point, 1, 1)), cell);
 
   if (southEastTerrainDifferent) {
     return TerrainTransition.SouthEastIn;
   }
 
-  const southWestTerrainDifferent = isDifferentTerrain(getMapTile(map, translatePoint(point, -1, 1)), tile);
+  const southWestTerrainDifferent = isDifferentTerrain(getMapCell(map, translatePoint(point, -1, 1)), cell);
 
   if (southWestTerrainDifferent) {
     return TerrainTransition.SouthWestIn;
   }
 
-  const northEastTerrainDifferent = isDifferentTerrain(getMapTile(map, translatePoint(point, 1, -1)), tile);
+  const northEastTerrainDifferent = isDifferentTerrain(getMapCell(map, translatePoint(point, 1, -1)), cell);
 
   if (northEastTerrainDifferent) {
     return TerrainTransition.NorthEastIn;

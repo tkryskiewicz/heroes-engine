@@ -4,11 +4,11 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { mapObjectSize, terrainTransition, terrainType } from "../../stories";
-import { MapTile } from "./MapTile";
+import { MapCell } from "./MapCell";
 
-storiesOf("map|MapTile", module)
+storiesOf("map|MapCell", module)
   .add("default", () => (
-    <MapTile
+    <MapCell
       index={number("Index", 0, { range: true, min: 0, max: 100, step: 1 })}
       size={mapObjectSize("Size")}
       terrainType={terrainType("Terrain Type")}
@@ -20,5 +20,5 @@ storiesOf("map|MapTile", module)
       onClick={action("Click")}
     >
       CONTENT
-    </MapTile>
+    </MapCell>
   ));

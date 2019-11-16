@@ -6,12 +6,12 @@
 
 .flag-west {
   position: absolute;
-  top: 2 * $MAP_TILE_SIZE;
-  left: $MAP_TILE_SIZE;
+  top: 2 * $MAP_CELL_SIZE;
+  left: $MAP_CELL_SIZE;
 }
 
 .flag-east {
   position: absolute;
-  top: 2 * $MAP_TILE_SIZE;
-  left: 3 * $MAP_TILE_SIZE;
+  top: 2 * $MAP_CELL_SIZE;
+  left: 3 * $MAP_CELL_SIZE;
 }

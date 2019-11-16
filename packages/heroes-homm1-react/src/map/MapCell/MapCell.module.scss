@@ -10,13 +10,13 @@
 }
 
 .large {
-  width: $MAP_TILE_SIZE;
-  height: $MAP_TILE_SIZE;
+  width: $MAP_CELL_SIZE;
+  height: $MAP_CELL_SIZE;
 }
 
 .small {
-  width: $MAP_TILE_SIZE / 2;
-  height: $MAP_TILE_SIZE / 2;
+  width: $MAP_CELL_SIZE / 2;
+  height: $MAP_CELL_SIZE / 2;
 }
 
 .terrain {

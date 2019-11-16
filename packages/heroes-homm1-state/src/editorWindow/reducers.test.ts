@@ -60,7 +60,7 @@ const defaultState: EditorWindowState = {
     description: "No Description",
     difficulty: ScenarioDifficulty.Normal,
     filePrefix: "VJVF",
-    map: createMap(50, 50, TerrainType.Water),
+    map: createMap(50, 50, TerrainType.Water, 0),
     name: "No Name",
     size: ScenarioSize.Medium,
   },
@@ -78,6 +78,11 @@ describe("editorWindowReducer", () => {
 
     const expected: EditorWindowState = {
       ...defaultState,
+      scenario: {
+        ...defaultState.scenario,
+        // FIXME
+        map: expect.any(Object),
+      },
     };
 
     expect(result).toEqual(expected);

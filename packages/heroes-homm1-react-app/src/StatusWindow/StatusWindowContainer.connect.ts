@@ -14,8 +14,8 @@ type StateProp =
   "selectedOption";
 
 const mapStateToProps = (state: AppState): Pick<StatusWindowProps, StateProp> => {
-  const ownedTowns = state.game.map.tiles
-    .map((t) => t.object)
+  const ownedTowns = state.game.map.cells
+    .map((c) => c.object)
     .filter(isOwnableMapObject)
     .filter((o) => isObjectOwnedBy(o, state.game.activePlayer))
     .filter(isTownMapObject);

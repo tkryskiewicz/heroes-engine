@@ -1,6 +1,6 @@
 import React from "react";
 
-import { createPoint, getTileIndex, MapPoint } from "heroes-core";
+import { createPoint, getCellIndex, MapPoint } from "heroes-core";
 import { noop } from "heroes-helpers";
 
 import * as styles from "./AdventureMapWindow.module.scss";
@@ -48,7 +48,7 @@ export class AdventureMapWindow extends React.Component<Props> {
       width: this.props.cellSize,
     };
 
-    const index = getTileIndex(this.props.width, point);
+    const index = getCellIndex(this.props.width, point);
 
     return (
       <div

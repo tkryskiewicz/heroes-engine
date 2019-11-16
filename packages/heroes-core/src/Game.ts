@@ -152,8 +152,8 @@ export const dismissGameTroop = (game: Game, troop: TroopSelection): Game => {
 };
 
 export const startGameTurn = (game: Game): Game => {
-  const objects = game.map.tiles
-    .map((t) => t.object)
+  const objects = game.map.cells
+    .map((c) => c.object)
     .filter((o): o is MapObject => o !== undefined)
     .filter((o) => isOwnableMapObject(o) && isObjectOwnedBy(o, game.activePlayer));
 

@@ -2,7 +2,7 @@ import {
   canPlaceObject as canPlaceObjectCore,
   everyMapObjectPoint,
   GameData,
-  getTileIndex,
+  getCellIndex,
   Map,
   MapObjectData,
   MapPoint,
@@ -18,9 +18,9 @@ export const canPlaceObject = (map: Map, point: MapPoint, objectData: MapObjectD
 
   if (isTerrainRestrictedMapObjectData(objectData)) {
     const isTerrainValid = everyMapObjectPoint(objectData, (obstaclePoint) => {
-      const mapTile = map.tiles[getTileIndex(map.width, translatePoint(point, obstaclePoint.x, -obstaclePoint.y))];
+      const mapCell = map.cells[getCellIndex(map.width, translatePoint(point, obstaclePoint.x, -obstaclePoint.y))];
 
-      return objectData.restrictedTerrains.includes(mapTile.terrain);
+      return objectData.restrictedTerrains.includes(mapCell.terrain);
     });
 
     if (!isTerrainValid) {

@@ -41,7 +41,7 @@ const data: GameData = {
   towns: {},
 };
 
-const map = createMap(38, 38, TerrainType.Water);
+const map = createMap(38, 38, TerrainType.Water, 4);
 
 const scenario: Scenario = {
   description: "No Description",

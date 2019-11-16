@@ -5,9 +5,9 @@ import {
   changeTerrain,
   CreatureMapObject,
   GameData,
+  getCellIndex,
+  getCellPoint,
   getObject,
-  getTileIndex,
-  getTilePoint,
   isSamePoint,
   MapObject,
   MapObjectOrientation,
@@ -50,9 +50,9 @@ import {
   editorWindowMessages,
   EraseOptionDetails,
   EraseOptionSettingsWindow,
+  MapCell,
   MapCellSize,
   MapSize,
-  MapTile,
   ObjectDetailsUnavailablePrompt,
   ObjectsOptionDetails,
   RandomMapSettingsWindow,
@@ -122,7 +122,7 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
 
 interface EditorWindowContainerState {
   readonly activePoint?: MapPoint;
-  readonly activeTile: boolean;
+  readonly activeCell: boolean;
   readonly message: string;
   readonly objectId: number;
   readonly eraseObjectsSettings: EraseObjectsSettings;
@@ -208,7 +208,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   };
 
   public readonly state: EditorWindowContainerState = {
-    activeTile: false,
+    activeCell: false,
     eraseObjectsSettings: {
       allOverlays: false,
       clearEntire: false,
@@ -249,70 +249,70 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly renderAdventureMap = () => {
-    const size = this.getTileCount();
+    const size = this.getCellCount();
 
     return (
       <AdventureMapWindow
         width={size}
         height={size}
         cellSize={this.props.zoomed ? MapCellSize : MapCellSize / 2}
-        renderCell={this.renderTile}
+        renderCell={this.renderCell}
       />
     );
   }
 
-  private readonly renderTile = (index: number, point: MapPoint) => {
+  private readonly renderCell = (index: number, point: MapPoint) => {
     const { data, scenario, position, selectedOption } = this.props;
-    const { activePoint, activeTile } = this.state;
+    const { activePoint, activeCell } = this.state;
 
-    const tilePoint = translatePoint(position, point.x, point.y);
+    const cellPoint = translatePoint(position, point.x, point.y);
 
-    const tileIndex = getTileIndex(scenario.map.width, tilePoint);
+    const cellIndex = getCellIndex(scenario.map.width, cellPoint);
 
     const size = this.props.zoomed ? "large" : "small";
 
-    const tile = scenario.map.tiles[tileIndex];
+    const cell = scenario.map.cells[cellIndex];
 
-    const object = tile.object ?
-      renderEditorObject(tile.object, data.mapObjects[tile.object.dataId], tile.terrain, data, size) :
+    const object = cell.object ?
+      renderEditorObject(cell.object, data.mapObjects[cell.object.dataId], cell.terrain, data, size) :
       undefined;
 
-    const transition = getTerrainTransition(scenario.map, tilePoint, data);
+    const transition = getTerrainTransition(scenario.map, cellPoint, data);
 
-    const active = activeTile && activePoint && isSamePoint(activePoint, tilePoint) &&
+    const active = activeCell && activePoint && isSamePoint(activePoint, cellPoint) &&
       selectedOption === EditorOption.Details;
 
     return (
-      <MapTile
+      <MapCell
         key={index}
-        index={tileIndex}
+        index={cellIndex}
         size={size}
-        terrainType={tile.terrain}
+        terrainType={cell.terrain}
         terrainTransition={transition}
-        terrainVariant={0}
+        terrainVariant={cell.terrainVariant}
         active={active}
-        onMouseEnter={this.onTileMouseEnter}
-        onClick={this.onTileClick}
+        onMouseEnter={this.onCellMouseEnter}
+        onClick={this.onCellClick}
       >
         {object}
-      </MapTile>
+      </MapCell>
     );
   }
 
-  private readonly onTileMouseEnter = (index: number) => {
-    const point = getTilePoint(this.props.scenario.map.width, index);
+  private readonly onCellMouseEnter = (index: number) => {
+    const point = getCellPoint(this.props.scenario.map.width, index);
 
     this.setState({
+      activeCell: this.props.selectedOption === EditorOption.Details,
       activePoint: point,
-      activeTile: this.props.selectedOption === EditorOption.Details,
     });
   }
 
-  private readonly onTileClick = (index: number) => {
+  private readonly onCellClick = (index: number) => {
     const { data, scenario, selectedOption, selectedObject } = this.props;
     const { formatMessage } = this.props.intl;
 
-    const point = getTilePoint(scenario.map.width, index);
+    const point = getCellPoint(scenario.map.width, index);
 
     if (selectedOption === EditorOption.Terrains) {
       const newScenario: Scenario = {
@@ -346,9 +346,9 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         });
       }
     } else if (selectedOption === EditorOption.Details) {
-      const tile = scenario.map.tiles[getTileIndex(scenario.map.width, point)];
+      const cell = scenario.map.cells[getCellIndex(scenario.map.width, point)];
 
-      const object = tile.object;
+      const object = cell.object;
 
       if (object === undefined) {
         this.props.onOpenObjectDetailsUnavailablePromptClick();
@@ -362,13 +362,13 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         }
       }
     } else if (selectedOption === EditorOption.Erase) {
-      const tile = scenario.map.tiles[getTileIndex(scenario.map.width, point)];
+      const cell = scenario.map.cells[getCellIndex(scenario.map.width, point)];
 
       // TODO: implement erase options
-      if (tile.object) {
+      if (cell.object) {
         const newScenario: Scenario = {
           ...scenario,
-          map: removeObject(scenario.map, tile.object.id),
+          map: removeObject(scenario.map, cell.object.id),
         };
 
         this.props.onScenarioChange(newScenario);
@@ -401,7 +401,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         orientation="vertical"
         size={this.props.zoomed ? "large" : "small"}
         from={position.y}
-        to={position.y + this.getTileCount() - 1}
+        to={position.y + this.getCellCount() - 1}
         active={activePoint ? activePoint.y : undefined}
       />
     );
@@ -416,14 +416,14 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
         orientation="horizontal"
         size={this.props.zoomed ? "large" : "small"}
         from={position.x}
-        to={position.x + this.getTileCount() - 1}
+        to={position.x + this.getCellCount() - 1}
         active={activePoint ? activePoint.x : undefined}
       />
     );
   }
 
   private readonly renderHorizontalScrollbar = () => {
-    const progress = this.props.position.x / (this.props.scenario.map.width - this.getTileCount());
+    const progress = this.props.position.x / (this.props.scenario.map.width - this.getCellCount());
 
     return (
       <EditorHorizontalScrollbar
@@ -443,7 +443,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly renderVerticalScrollbar = () => {
-    const progress = this.props.position.y / (this.props.scenario.map.height - this.getTileCount());
+    const progress = this.props.position.y / (this.props.scenario.map.height - this.getCellCount());
 
     return (
       <EditorVerticalScrollbar
@@ -744,7 +744,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     // NOTE: randomizing also resets scenario specification
     const newScenario = {
       ...this.props.scenario,
-      map: createRandomMap(this.props.data, randomMapSettings),
+      map: createRandomMap(this.props.data, randomMapSettings, 4),
     };
 
     this.props.onScenarioChange(newScenario);
@@ -756,7 +756,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     }
   }
 
-  private getTileCount() {
+  private getCellCount() {
     return this.props.zoomed ? MapSize : MapSize * 2;
   }
 
@@ -770,7 +770,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       .includes(direction) && position.y > 0) {
       point = translatePoint(point, 0, -1);
     } else if ([MapObjectOrientation.SouthWest, MapObjectOrientation.South, MapObjectOrientation.SouthEast]
-      .includes(direction) && position.y < scenario.map.height - this.getTileCount()) {
+      .includes(direction) && position.y < scenario.map.height - this.getCellCount()) {
       point = translatePoint(point, 0, 1);
     }
 
@@ -778,7 +778,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       .includes(direction) && position.x > 0) {
       point = translatePoint(point, -1, 0);
     } else if ([MapObjectOrientation.NorthEast, MapObjectOrientation.East, MapObjectOrientation.SouthEast]
-      .includes(direction) && position.x < scenario.map.width - this.getTileCount()) {
+      .includes(direction) && position.x < scenario.map.width - this.getCellCount()) {
       point = translatePoint(point, 1, 0);
     }
 

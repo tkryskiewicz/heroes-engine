@@ -9,12 +9,12 @@ import {
   MapPoint,
 } from "heroes-core";
 import { getTerrainTransition, isHeroMapObject, isTownMapObject } from "heroes-homm1";
-import { AdventureMapWindow, MapCellSize, MapSize, MapTile } from "heroes-homm1-react";
+import { AdventureMapWindow, MapCell, MapCellSize, MapSize } from "heroes-homm1-react";
 import { adventureWindowActions, gameActions } from "heroes-homm1-state";
 
 import { renderObject } from "../config";
 import { HeroTradingWindow } from "../HeroTradingWindow";
-import { onTileClick, renderMapObjectDetails } from "./config";
+import { onCellClick, renderMapObjectDetails } from "./config";
 
 interface Props extends DispatchProp {
   readonly data: GameData;
@@ -45,7 +45,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
           width={MapSize}
           height={MapSize}
           cellSize={MapCellSize}
-          renderCell={this.renderTile}
+          renderCell={this.renderCell}
         />
         {this.props.visibleMapObjectDetails && this.renderMapObjectDetails(this.props.visibleMapObjectDetails)}
         {this.props.heroTradingScreenVisible && this.rendeHeroTradingWindow()}
@@ -53,31 +53,31 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     );
   }
 
-  private readonly renderTile = (index: number, point: MapPoint) => {
+  private readonly renderCell = (index: number, point: MapPoint) => {
     const { data, map } = this.props;
 
-    const tile = map.tiles[index];
+    const cell = map.cells[index];
 
-    const object = tile.object ?
-      this.renderMapObject(tile.object, tile.terrain) :
+    const object = cell.object ?
+      this.renderMapObject(cell.object, cell.terrain) :
       undefined;
 
     const transition = getTerrainTransition(map, point, data);
 
     return (
-      <MapTile
+      <MapCell
         key={index}
         index={index}
         size="large"
-        terrainType={tile.terrain}
-        terrainVariant={0}
+        terrainType={cell.terrain}
+        terrainVariant={cell.terrainVariant}
         terrainTransition={transition}
-        onMouseEnter={this.onTileMouseEnter}
-        onMouseLeave={this.onTileMouseLeave}
-        onClick={this.onTileClick}
+        onMouseEnter={this.onCellMouseEnter}
+        onMouseLeave={this.onCellMouseLeave}
+        onClick={this.onCellClick}
       >
         {object}
-      </MapTile>
+      </MapCell>
     );
   }
 
@@ -89,16 +89,16 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     return renderObject(object, objectData, terrain, data, "large");
   }
 
-  private readonly onTileMouseEnter = (index: number) => {
+  private readonly onCellMouseEnter = (index: number) => {
     const { map, activeObjectId } = this.props;
 
     const activeObject = activeObjectId !== undefined ?
       getObject(map, activeObjectId) :
       undefined;
 
-    const tile = this.props.map.tiles[index];
+    const cell = this.props.map.cells[index];
 
-    const object = tile.object;
+    const object = cell.object;
 
     if (object) {
       if (isHeroMapObject(object)) {
@@ -118,32 +118,32 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
       }
     } else {
       this.setState({
-        cursor: "move",
+        cursor: "",
       });
     }
   }
 
-  private readonly onTileMouseLeave = () => {
+  private readonly onCellMouseLeave = () => {
     this.setState({
       cursor: "",
     });
   }
 
-  private readonly onTileClick = (index: number) => {
+  private readonly onCellClick = (index: number) => {
     const { data, map, player, activeObjectId } = this.props;
 
     const activeObject = activeObjectId !== undefined ?
       getObject(map, activeObjectId) :
       undefined;
 
-    const tile = this.props.map.tiles[index];
+    const cell = this.props.map.cells[index];
 
-    const object = tile.object;
+    const object = cell.object;
 
     if (object) {
       const objectData = data.mapObjects[object.dataId];
 
-      onTileClick(player, object, objectData, activeObject, data, this.props.dispatch);
+      onCellClick(player, object, objectData, activeObject, data, this.props.dispatch);
     }
   }
 

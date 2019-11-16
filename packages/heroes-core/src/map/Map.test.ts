@@ -3,9 +3,9 @@ import {
   createMap,
   everyMapObjectPoint,
   forEachMapObjectPoint,
+  getCellIndex,
+  getCellPoint,
   getObject,
-  getTileIndex,
-  getTilePoint,
   isPointTaken,
   isPointValid,
   Map,
@@ -37,16 +37,16 @@ describe("createMap", () => {
     }).toThrow();
   });
 
-  it("should initialize correct amount of tiles", () => {
+  it("should initialize correct amount of cells", () => {
     const result = createMap(10, 15, "terrain");
 
-    expect(result.tiles.length).toBe(150);
+    expect(result.cells.length).toBe(150);
   });
 
-  it("should fill tiles with initial terrain", () => {
+  it("should fill cells with initial terrain", () => {
     const result = createMap(10, 15, "terrain");
 
-    expect(result.tiles.every((t) => t.terrain === "terrain")).toBe(true);
+    expect(result.cells.every((c) => c.terrain === "terrain")).toBe(true);
   });
 
   it("should throw when no initial terrain is specified", () => {
@@ -108,29 +108,29 @@ describe("isPointValid", () => {
   });
 });
 
-describe("getTileIndex", () => {
-  it("should return 0 for first tile", () => {
-    const result = getTileIndex(1, createPoint(0, 0));
+describe("getCellIndex", () => {
+  it("should return 0 for first cell", () => {
+    const result = getCellIndex(1, createPoint(0, 0));
 
     expect(result).toBe(0);
   });
 
   it("should take x into account", () => {
-    const result = getTileIndex(2, createPoint(1, 0));
+    const result = getCellIndex(2, createPoint(1, 0));
 
     expect(result).toBe(1);
   });
 
   it("should take y into account", () => {
-    const result = getTileIndex(1, createPoint(0, 1));
+    const result = getCellIndex(1, createPoint(0, 1));
 
     expect(result).toBe(1);
   });
 });
 
-describe("getTilePoint", () => {
+describe("getCellPoint", () => {
   it("should return (0,0) for index 0", () => {
-    const result = getTilePoint(1, 0);
+    const result = getCellPoint(1, 0);
 
     const expected = createPoint(0, 0);
 
@@ -138,7 +138,7 @@ describe("getTilePoint", () => {
   });
 
   it("should correctly resolve y", () => {
-    const result = getTilePoint(1, 1);
+    const result = getCellPoint(1, 1);
 
     const expected = createPoint(0, 1);
 
@@ -146,7 +146,7 @@ describe("getTilePoint", () => {
   });
 
   it("should correctly resolve x", () => {
-    const result = getTilePoint(2, 1);
+    const result = getCellPoint(2, 1);
 
     const expected = createPoint(1, 0);
 
@@ -160,7 +160,7 @@ describe("changeTerrain", () => {
 
     const result = changeTerrain(map, createPoint(0, 0), "otherTerrain");
 
-    expect(result.tiles[getTileIndex(map.width, createPoint(0, 0))].terrain).toBe("otherTerrain");
+    expect(result.cells[getCellIndex(map.width, createPoint(0, 0))].terrain).toBe("otherTerrain");
   });
 
   it("should throw when point is invalid", () => {
@@ -310,7 +310,7 @@ describe("placeObject", () => {
 
     const result = placeObject(map, createPoint(0, 0), object);
 
-    expect(result.tiles[0].object).toEqual(object);
+    expect(result.cells[0].object).toEqual(object);
   });
 
   it("should throw when point is invalid", () => {
@@ -385,7 +385,7 @@ describe("moveObject", () => {
 
     const result = moveObject(map, createPoint(0, 0), createPoint(1, 0));
 
-    expect(result.tiles[1].object).toEqual(object);
+    expect(result.cells[1].object).toEqual(object);
   });
 
   it("should throw when from is not a valid map point", () => {
@@ -418,7 +418,7 @@ describe("moveObject", () => {
     }).toThrow();
   });
 
-  it("should throw when tile doesn't contain an object", () => {
+  it("should throw when cell doesn't contain an object", () => {
     const map = createMap(2, 1, "terrain");
 
     expect(() => {
@@ -426,7 +426,7 @@ describe("moveObject", () => {
     }).toThrow();
   });
 
-  it("should throw when target tile already contains an object", () => {
+  it("should throw when target cell already contains an object", () => {
     const objectA: MapObject = {
       dataId: "dataId",
       id: "idA",
@@ -461,12 +461,14 @@ describe("removeObject", () => {
     const result = removeObject(map, "id");
 
     const expected: Map = {
-      height: 1,
-      tiles: [
+      cells: [
         {
           terrain: "terrain",
+          terrainVariant: 0,
         },
       ],
+      height: 1,
+      terrainVariants: 0,
       width: 1,
     };
 
@@ -514,14 +516,16 @@ describe("replaceObject", () => {
 
     const expected: Map = {
       ...map,
-      tiles: [
+      cells: [
         {
           object: updatedObject,
           terrain: "terrain",
+          terrainVariant: 0,
         },
         {
           object: otherObject,
           terrain: "terrain",
+          terrainVariant: 0,
         },
       ],
     };

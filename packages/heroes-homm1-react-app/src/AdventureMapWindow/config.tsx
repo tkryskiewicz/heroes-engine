@@ -101,7 +101,7 @@ export const renderMapObjectDetails = (
   }
 };
 
-export const onTileClick = (
+export const onCellClick = (
   player: string,
   object: MapObject,
   objectData: MapObjectData,

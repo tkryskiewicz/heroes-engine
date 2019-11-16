@@ -1,16 +1,17 @@
 // tslint:disable: no-loop-statement
 
+import { MapCell } from "./MapCell";
 import { MapObject, MapObjectData } from "./MapObject";
 import { createPoint, MapPoint, translatePoint } from "./MapPoint";
-import { MapTile } from "./MapTile";
 
 export interface Map {
   readonly width: number;
   readonly height: number;
-  readonly tiles: MapTile[];
+  readonly terrainVariants: number;
+  readonly cells: MapCell[];
 }
 
-export const createMap = (width: number, height: number, initialTerrain: string): Map => {
+export const createMap = (width: number, height: number, initialTerrain: string, terrainVariants: number = 0): Map => {
   if (width <= 0) {
     throw new Error("width must be a positive value");
   }
@@ -24,10 +25,12 @@ export const createMap = (width: number, height: number, initialTerrain: string)
   }
 
   return {
-    height,
-    tiles: new Array<MapTile>(width * height).fill({
+    cells: [...new Array(width * height).keys()].map(() => ({
       terrain: initialTerrain,
-    }),
+      terrainVariant: Math.floor(Math.random() * terrainVariants),
+    })),
+    height,
+    terrainVariants,
     width,
   };
 };
@@ -35,10 +38,10 @@ export const createMap = (width: number, height: number, initialTerrain: string)
 export const isPointValid = (map: Map, point: MapPoint): boolean =>
   point.x >= 0 && point.x < map.width && point.y >= 0 && point.y < map.height;
 
-export const getTileIndex = (width: number, point: MapPoint): number =>
+export const getCellIndex = (width: number, point: MapPoint): number =>
   point.y * width + point.x;
 
-export const getTilePoint = (width: number, index: number): MapPoint => ({
+export const getCellPoint = (width: number, index: number): MapPoint => ({
   x: index % width,
   y: Math.floor(index / width),
 });
@@ -48,31 +51,32 @@ export const changeTerrain = (map: Map, point: MapPoint, terrain: string): Map =
     throw new Error(`Point {${point.x},${point.y}} is outside a ${map.width}x${map.height} map`);
   }
 
-  const index = getTileIndex(map.width, point);
+  const index = getCellIndex(map.width, point);
 
   return {
     ...map,
-    tiles: map.tiles.map((t, i) => i === index ?
+    cells: map.cells.map((c, i) => i === index ?
       {
-        ...t,
+        ...c,
         terrain,
+        terrainVariant: Math.floor(Math.random() * map.terrainVariants),
       } :
-      t,
+      c,
     ),
   };
 };
 
 export const isPointTaken = (map: Map, point: MapPoint): boolean =>
-  map.tiles[getTileIndex(map.width, point)].object !== undefined;
+  map.cells[getCellIndex(map.width, point)].object !== undefined;
 
 export const forEachMapObjectPoint = (objectData: MapObjectData, callbackfn: (point: MapPoint) => void): void => {
   for (let h = 0; h < objectData.height; h++) {
     for (let w = 0; w < objectData.width; w++) {
       const point = createPoint(w, h);
 
-      const objectTile = objectData.grid[getTileIndex(objectData.width, point)];
+      const objectCell = objectData.grid[getCellIndex(objectData.width, point)];
 
-      if (objectTile) {
+      if (objectCell) {
         callbackfn(point);
       }
     }
@@ -98,34 +102,34 @@ export const canPlaceObject = (
   }
 
   // FIXME
-  const TileFree = false;
-  const TileTaken = true;
+  const CellFree = false;
+  const CellTaken = true;
 
   // TODO: reduce size
-  const obstacleMap = new Array<boolean>(map.width * map.height).fill(TileFree);
+  const obstacleMap = new Array<boolean>(map.width * map.height).fill(CellFree);
 
   for (let y = 0; y < map.height; y++) {
     for (let x = 0; x < map.width; x++) {
       const mapPoint = createPoint(x, y);
 
-      const tile = map.tiles[getTileIndex(map.width, mapPoint)];
+      const cell = map.cells[getCellIndex(map.width, mapPoint)];
 
-      if (tile.object) {
-        const obj = tile.object;
+      if (cell.object) {
+        const obj = cell.object;
 
         const objData = data.mapObjects[obj.dataId];
 
         forEachMapObjectPoint(objData, (objectPoint) => {
-          obstacleMap[getTileIndex(map.width, translatePoint(mapPoint, objectPoint.x, -objectPoint.y))] = TileTaken;
+          obstacleMap[getCellIndex(map.width, translatePoint(mapPoint, objectPoint.x, -objectPoint.y))] = CellTaken;
         });
       }
     }
   }
 
   return everyMapObjectPoint(objectData, (objectPoint) => {
-    const mapTile = obstacleMap[getTileIndex(map.width, translatePoint(point, objectPoint.x, -objectPoint.y))];
+    const mapCell = obstacleMap[getCellIndex(map.width, translatePoint(point, objectPoint.x, -objectPoint.y))];
 
-    return mapTile !== TileTaken;
+    return mapCell !== CellTaken;
   });
 };
 
@@ -134,24 +138,24 @@ export const placeObject = (map: Map, point: MapPoint, object: MapObject): Map =
     throw new Error(`Point {${point.x},${point.y}} is outside a ${map.width}x${map.height} map`);
   }
 
-  const index = getTileIndex(map.width, point);
+  const index = getCellIndex(map.width, point);
 
-  if (map.tiles[index].object !== undefined) {
+  if (map.cells[index].object !== undefined) {
     throw new Error("an object is already placed");
   }
 
-  const tiles = [...map.tiles];
+  const cells = [...map.cells];
 
-  const tile = tiles[index];
+  const cell = cells[index];
 
-  tiles[index] = {
-    ...tile,
+  cells[index] = {
+    ...cell,
     object,
   };
 
   return {
     ...map,
-    tiles,
+    cells,
   };
 };
 
@@ -164,62 +168,62 @@ export const moveObject = (map: Map, from: MapPoint, to: MapPoint): Map => {
     throw new Error("to must be a valid map point");
   }
 
-  const fromIndex = getTileIndex(map.width, from);
+  const fromIndex = getCellIndex(map.width, from);
 
-  const fromTile = map.tiles[fromIndex];
+  const fromCell = map.cells[fromIndex];
 
-  if (fromTile.object === undefined) {
+  if (fromCell.object === undefined) {
     throw new Error("an object to move is required");
   }
 
-  const toIndex = getTileIndex(map.width, to);
+  const toIndex = getCellIndex(map.width, to);
 
-  const toTile = map.tiles[toIndex];
+  const toCell = map.cells[toIndex];
 
-  if (toTile.object !== undefined) {
-    throw new Error("target tile already contains an object");
+  if (toCell.object !== undefined) {
+    throw new Error("target cell already contains an object");
   }
 
-  const tiles = [...map.tiles];
+  const cells = [...map.cells];
 
-  tiles[fromIndex] = {
-    ...fromTile,
+  cells[fromIndex] = {
+    ...fromCell,
     object: undefined,
   };
 
-  tiles[toIndex] = {
-    ...toTile,
-    object: fromTile.object,
+  cells[toIndex] = {
+    ...toCell,
+    object: fromCell.object,
   };
 
   return {
     ...map,
-    tiles,
+    cells,
   };
 };
 
 export const getObject = (map: Map, id: string): MapObject | undefined =>
-  map.tiles
+  map.cells
     .reduce<MapObject | undefined>((p, c) => p || (c.object && c.object.id === id ? c.object : undefined), undefined);
 
 export const removeObject = (map: Map, id: string): Map => ({
   ...map,
-  tiles: map.tiles.map((t) => t.object && t.object.id === id ?
+  cells: map.cells.map((c) => c.object && c.object.id === id ?
     {
-      ...t,
+      ...c,
       object: undefined,
     } :
-    t,
+    c,
   ),
 });
 
 export const replaceObject = (map: Map, object: MapObject): Map => ({
   ...map,
-  tiles: map.tiles.map((t) => t.object && t.object.id === object.id ?
+  cells: map.cells.map((c) => c.object && c.object.id === object.id ?
     {
-      ...t,
+      ...c,
       object,
     } :
-    t,
+    c,
   ),
 });

@@ -4,7 +4,7 @@ import React from "react";
 import { noop } from "heroes-helpers";
 import { TerrainTransition } from "heroes-homm1";
 
-import * as styles from "./MapTile.module.scss";
+import * as styles from "./MapCell.module.scss";
 
 const imageMap = {
   [TerrainTransition.None]: "none",
@@ -46,7 +46,7 @@ interface Props {
   readonly terrainVariant: number;
   readonly active: boolean;
   readonly onMouseEnter: (index: number) => void;
-  readonly onMouseLeave: () => void;
+  readonly onMouseLeave: (index: number) => void;
   readonly onClick: (index: number) => void;
 }
 
@@ -56,7 +56,7 @@ type DefaultProp =
   "onMouseLeave" |
   "onClick";
 
-export class MapTile extends React.Component<Props> {
+export class MapCell extends React.Component<Props> {
   public static readonly defaultProps: Pick<Props, DefaultProp> = {
     active: false,
     onClick: noop,
@@ -69,7 +69,7 @@ export class MapTile extends React.Component<Props> {
       <div
         className={Classnames(styles.root, styles[this.props.size])}
         onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.props.onMouseLeave}
+        onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}
       >
         {this.renderTerrain()}
@@ -95,7 +95,7 @@ export class MapTile extends React.Component<Props> {
       <img
         className={styles.terrain}
         style={style}
-        src={`/assets/terrains/${terrainType}/tiles/${size}/${imageMap[terrainTransition]}-${terrainVariant}.jpg`}
+        src={`/assets/terrains/${terrainType}/cells/${size}/${imageMap[terrainTransition]}-${terrainVariant}.jpg`}
       />
     );
   }
@@ -110,11 +110,13 @@ export class MapTile extends React.Component<Props> {
     this.props.onMouseEnter(this.props.index);
   }
 
+  private readonly onMouseLeave = () => {
+    this.props.onMouseLeave(this.props.index);
+  }
+
   private readonly onClick = () => {
     this.props.onClick(this.props.index);
   }
 }
 
-export {
-  Props as MapTileProps,
-};
+export type MapCellProps = ExtractPublicProps<typeof MapCell>;
