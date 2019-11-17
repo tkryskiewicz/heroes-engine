@@ -12,6 +12,8 @@ storiesOf("StructureView", module)
       town={town("Town")}
       structure={structure("Structure")}
       placeholder={boolean("Placeholder", false)}
+      onMouseEnter={action("Mouse Enter")}
+      onMouseLeave={action("Mouse Leave")}
       onClick={action("Click")}
     />
   ));

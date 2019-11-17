@@ -6,8 +6,8 @@ import { StructureId } from "heroes-homm1";
 
 import * as styles from "./MageGuildWindow.module.scss";
 
+import { MageGuildView } from "../MageGuildView";
 import { SpellDetailsPrompt } from "../prompt";
-import { StructureView } from "../StructureView";
 import {
   withTownDetailWindow,
   WithTownDetailWindowInjectedProps,
@@ -49,9 +49,9 @@ class MageGuildWindow extends React.Component<MageGuildWindowProps> {
     return (
       <div className={styles.root}>
         <div className={styles.structure}>
-          <StructureView
+          <MageGuildView
             structure={StructureId.MageGuild}
-            town={""}
+            level={this.props.levelBuilt}
           />
         </div>
         <div className={styles.spells}>
