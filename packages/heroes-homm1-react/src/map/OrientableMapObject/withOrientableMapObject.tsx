@@ -20,16 +20,18 @@ export interface WithOrientableMapObjectProps {
 }
 
 export const withOrientableMapObject = () =>
-  <P extends WithOrientableMapObjectProps>(WrappedComponent: React.ComponentType<P>) => {
-    return class WithOrientableMapObject extends React.Component<P> {
+  <C extends React.ComponentType<ExtractProps<C>>>(WrappedComponent: C) => {
+    type PP = ExtractPublicProps<C>;
+
+    return class WithOrientableMapObject extends React.Component<PP & WithOrientableMapObjectProps> {
       public render() {
-        const { orientation } = this.props;
+        const { orientation, ...rest } = this.props;
 
         return (
           <OrientableMapObject
             invert={orientationMap[orientation] !== orientation}
           >
-            <WrappedComponent {...this.props} orientation={orientationMap[orientation]} />
+            <WrappedComponent {...rest as PP} orientation={orientationMap[orientation]} />
           </OrientableMapObject>
         );
       }

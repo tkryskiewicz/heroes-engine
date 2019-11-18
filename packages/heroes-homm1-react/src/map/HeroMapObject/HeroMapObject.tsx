@@ -1,25 +1,30 @@
 import React from "react";
 
 import { MapObjectOrientation } from "heroes-core";
+import { noop } from "heroes-helpers";
 
 import * as styles from "./HeroMapObject.module.scss";
 
 import { withOrientableMapObject } from "../OrientableMapObject";
 
-interface HeroMapObjectProps {
+interface Props {
   readonly heroClass: string;
   readonly playerColor?: string;
   readonly orientation: MapObjectOrientation;
-  readonly onClick?: () => void;
+  readonly onClick: () => void;
 }
 
-// FIXME: barbarian assets have green flag embeded
-class HeroMapObject extends React.Component<HeroMapObjectProps> {
+class HeroMapObject extends React.Component<Props> {
+  public static readonly defaultProps: Pick<Props, "onClick"> = {
+    onClick: noop,
+  };
+
   public render() {
     const { heroClass, playerColor, orientation } = this.props;
 
     return (
       <div
+        data-test-id="root"
         className={styles.root}
         onClick={this.props.onClick}
       >
@@ -41,7 +46,7 @@ class HeroMapObject extends React.Component<HeroMapObjectProps> {
 
 const ComponentWrapped = withOrientableMapObject()(HeroMapObject);
 
-type ComponentWrappedProps = ExtractProps<typeof ComponentWrapped>;
+type ComponentWrappedProps = ExtractPublicProps<typeof ComponentWrapped>;
 
 export {
   ComponentWrapped as HeroMapObject,
