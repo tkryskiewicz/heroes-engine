@@ -91,12 +91,21 @@ export const renderObject = (
   }
 
   if (isHeroMapObject(object)) {
+    // FIXME: ??
+    const style: React.CSSProperties = {
+      left: -9,
+      position: "relative",
+      top: -1,
+    };
+
     return (
-      <HeroMapObject
-        heroClass={object.heroClass}
-        playerColor={object.owner}
-        orientation={object.orientation}
-      />
+      <div style={style}>
+        <HeroMapObject
+          heroClass={object.heroClass}
+          playerColor={object.owner}
+          orientation={object.orientation}
+        />
+      </div>
     );
   }
 
