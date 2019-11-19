@@ -58,6 +58,7 @@ const heroObjects: HeroMapObjectData[] = [
     army: {
       preventMovingLastTroop: true,
     },
+    baseMobility: 20,
     grid: [
       true,
     ],
@@ -2568,7 +2569,7 @@ export const createMapObject = (id: string, objectData: MapObjectData, data: Gam
       heroId,
       id,
       luck: 0,
-      mobility: 0,
+      mobility: objectData.baseMobility,
       morale: 0,
       skills: {},
     };

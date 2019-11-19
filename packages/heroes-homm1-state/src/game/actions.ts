@@ -1,4 +1,4 @@
-import { Resources, TroopSelection } from "heroes-core";
+import { MapObjectOrientation, Resources, TroopSelection } from "heroes-core";
 import { ArtifactSelection } from "heroes-homm1";
 
 export enum GameActionType {
@@ -12,6 +12,7 @@ export enum GameActionType {
   StartTurn = "game/startTurn",
   EndTurn = "game/endTurn",
   VisitMapObject = "game/visitMapObject",
+  MoveObject = "game/moveObject",
 }
 
 export type GameAction =
@@ -24,7 +25,8 @@ export type GameAction =
   BuyMageGuildSpellBookAction |
   StartTurnAction |
   EndTurnAction |
-  VisitMapObjectAction;
+  VisitMapObjectAction |
+  MoveObjectAction;
 
 export interface SwapTroopsAction {
   readonly type: GameActionType.SwapTroops;
@@ -136,4 +138,16 @@ export const visitMapObject = (id: string, hero: string): VisitMapObjectAction =
   hero,
   id,
   type: GameActionType.VisitMapObject,
+});
+
+export interface MoveObjectAction {
+  readonly type: GameActionType.MoveObject;
+  readonly id: string;
+  readonly direction: MapObjectOrientation;
+}
+
+export const moveObject = (id: string, direction: MapObjectOrientation): MoveObjectAction => ({
+  direction,
+  id,
+  type: GameActionType.MoveObject,
 });

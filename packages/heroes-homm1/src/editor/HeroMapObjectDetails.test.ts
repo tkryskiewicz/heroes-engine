@@ -9,6 +9,7 @@ describe("getHeroMapObjectDetails", () => {
       army: {
         preventMovingLastTroop: true,
       },
+      baseMobility: 0,
       grid: [],
       height: 1,
       id: MapObjectId.Hero,

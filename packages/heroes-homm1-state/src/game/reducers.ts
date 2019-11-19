@@ -1,10 +1,13 @@
 import {
   createMap,
+  createPoint,
   dismissGameHero,
   dismissGameTroop,
   GameData,
   ItemSelection,
   Map,
+  moveGameObject,
+  placeObject,
   startGameTurn,
   swapGameTroops,
   tradeGameArtifacts,
@@ -16,6 +19,8 @@ import {
   buildGameStructure,
   buyMageGuildSpellBook,
   campaignScenarios,
+  constructGameHero,
+  createHeroMapObject,
   creatures,
   EditorHeroArtifactCount,
   EditorMaxCreatureCount,
@@ -23,6 +28,9 @@ import {
   endGameTurn,
   heroClasses,
   heroes,
+  HeroId,
+  HeroMapObjectData,
+  MapObjectId,
   mapObjects,
   PlayerColorId,
   playerColors,
@@ -85,7 +93,51 @@ const data: GameData = {
   }), {}),
 };
 
-const map: Map = createMap(14, 14, TerrainType.Water, 4);
+let map: Map = createMap(14, 14, TerrainType.Grass, 4);
+
+const knightHero = constructGameHero("hero/1", HeroId.LordKilburn, data);
+
+const knightHeroMapObject = createHeroMapObject(
+  "hero/1",
+  data.mapObjects[MapObjectId.Hero] as HeroMapObjectData,
+  knightHero,
+  PlayerColorId.Red,
+);
+
+map = placeObject(map, createPoint(5, 7), knightHeroMapObject);
+
+const barbarianHero = constructGameHero("hero/2", HeroId.Thundax, data);
+
+const barbarianHeroMapObject = createHeroMapObject(
+  "hero/1",
+  data.mapObjects[MapObjectId.Hero] as HeroMapObjectData,
+  barbarianHero,
+  PlayerColorId.Red,
+);
+
+map = placeObject(map, createPoint(7, 7), barbarianHeroMapObject);
+
+const sorceressHero = constructGameHero("hero/3", HeroId.Ariel, data);
+
+const sorceressHeroMapObject = createHeroMapObject(
+  "hero/3",
+  data.mapObjects[MapObjectId.Hero] as HeroMapObjectData,
+  sorceressHero,
+  PlayerColorId.Red,
+);
+
+map = placeObject(map, createPoint(9, 7), sorceressHeroMapObject);
+
+const warlockHero = constructGameHero("hero/4", HeroId.Agar, data);
+
+const warlockHeroMapObject = createHeroMapObject(
+  "hero/4",
+  data.mapObjects[MapObjectId.Hero] as HeroMapObjectData,
+  warlockHero,
+  PlayerColorId.Red,
+);
+
+map = placeObject(map, createPoint(11, 7), warlockHeroMapObject);
 
 const initialState: GameState = {
   activePlayer: PlayerColorId.Red,
@@ -161,6 +213,10 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
     case GameActionType.VisitMapObject:
       return {
         ...visitGameMapObject(state, action.id, action.hero),
+      };
+    case GameActionType.MoveObject:
+      return {
+        ...moveGameObject(state, action.id, action.direction),
       };
     default:
       return state;

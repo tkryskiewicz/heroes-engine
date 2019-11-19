@@ -19,6 +19,7 @@ export {
   dismissGameHero,
   startGameTurn,
   visitGameMapObject,
+  moveGameObject,
 } from "./Game";
 export { GameDate, getDate } from "./GameDate";
 export { HeroClassData } from "./HeroClass";

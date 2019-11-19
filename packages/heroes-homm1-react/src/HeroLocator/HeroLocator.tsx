@@ -40,7 +40,7 @@ export class HeroLocator extends React.Component<HeroLocatorProps> {
         />
         <img
           className={styles.mobility}
-          src={mobilityImages[mobility]}
+          src={mobilityImages[Math.min(mobility, mobilityImages.length - 1)]}
         />
         <div className={styles.portrait}>
           <img

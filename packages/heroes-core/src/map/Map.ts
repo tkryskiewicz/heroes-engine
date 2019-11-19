@@ -227,3 +227,6 @@ export const replaceObject = (map: Map, object: MapObject): Map => ({
     c,
   ),
 });
+
+export const getObjectPosition = (map: Map, id: string): MapPoint | undefined =>
+  getCellPoint(map.width, map.cells.findIndex((c) => c.object && c.object.id === id));

@@ -9,7 +9,6 @@ import {
   Hero,
   isDwellingStructure,
   isObjectOwnedBy,
-  Map,
   multiplyResources,
   replaceObject,
   Resources,
@@ -18,7 +17,15 @@ import {
 } from "heroes-core";
 
 import { constructHero } from "./heroes";
-import { isHeroMapObject, isTownMapObject, recruitTownMapObjectTroop, TownMapObject } from "./map";
+import {
+  HeroMapObjectData,
+  isHeroMapObject,
+  isHeroMapObjectData,
+  isTownMapObject,
+  MapObjectId,
+  recruitTownMapObjectTroop,
+  TownMapObject,
+} from "./map";
 import { Skill } from "./Skill";
 import { constructSpellBook, SpellBookSpell } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";
@@ -48,7 +55,13 @@ export const constructGameHero = (id: string, heroId: string, data: GameData) =>
     throw new Error(`${hero.heroClass} is not a valid hero class`);
   }
 
-  return constructHero(id, hero.id, heroClass);
+  // FIXME
+  const objectData = data.mapObjects[MapObjectId.Hero] as HeroMapObjectData;
+
+  return {
+    ...constructHero(id, hero.id, heroClass),
+    mobility: objectData.baseMobility,
+  };
 };
 
 export const getGameHeroes = (game: Game): Hero[] =>
@@ -148,19 +161,37 @@ export const buyMageGuildSpellBook = (game: Game, heroId: string, townId: string
 
 export const endGameTurn = (game: Game): Game => ({
   ...game,
-  map: getGameTowns(game).reduce<Map>((p, c) => {
-    const object = getObject(p, c.id);
+  map: {
+    ...game.map,
+    cells: game.map.cells.map((c) => {
+      if (!c.object) {
+        return c;
+      }
 
-    if (!isTownMapObject(object)) {
-      throw new Error(`${c.id} is not a town`);
-    }
+      const objectData = game.data.mapObjects[c.object.dataId];
 
-    const objectResult: TownMapObject = {
-      ...object,
-      ...endTownTurn(c),
-    };
+      if (isTownMapObject(c.object)) {
+        return {
+          ...c,
+          object: {
+            ...c.object,
+            ...endTownTurn(c.object),
+          },
+        };
+      }
 
-    return replaceObject(p, objectResult);
-  }, game.map),
+      if (isHeroMapObject(c.object) && isHeroMapObjectData(objectData)) {
+        return {
+          ...c,
+          object: {
+            ...c.object,
+            mobility: objectData.baseMobility,
+          },
+        };
+      }
+
+      return c;
+    }),
+  },
   turn: game.turn + 1,
 });

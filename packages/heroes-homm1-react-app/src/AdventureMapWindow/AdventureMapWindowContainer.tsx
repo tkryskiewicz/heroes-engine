@@ -14,7 +14,7 @@ import { adventureWindowActions, gameActions } from "heroes-homm1-state";
 
 import { renderObject } from "../config";
 import { HeroTradingWindow } from "../HeroTradingWindow";
-import { onCellClick, renderMapObjectDetails } from "./config";
+import { onCellClick, onKeyDown, renderMapObjectDetails } from "./config";
 
 interface Props extends DispatchProp {
   readonly data: GameData;
@@ -40,7 +40,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     const { cursor } = this.state;
 
     return (
-      <div className={cursor ? `cursor-${cursor}` : undefined}>
+      <div className={cursor ? `cursor-${cursor}` : undefined} onKeyDown={this.onKeyDown} tabIndex={0}>
         <AdventureMapWindow
           width={MapSize}
           height={MapSize}
@@ -89,6 +89,16 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     return renderObject(object, objectData, terrain, data, "large");
   }
 
+  private readonly onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const { map, activeObjectId } = this.props;
+
+    const activeObject = activeObjectId ?
+      getObject(map, activeObjectId) :
+      undefined;
+
+    onKeyDown(event, activeObject, this.props.dispatch);
+  }
+
   private readonly onCellMouseEnter = (index: number) => {
     const { map, activeObjectId } = this.props;
 
@@ -117,9 +127,15 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
         });
       }
     } else {
-      this.setState({
-        cursor: "",
-      });
+      if (isHeroMapObject(activeObject)) {
+        this.setState({
+          cursor: "move",
+        });
+      } else {
+        this.setState({
+          cursor: "",
+        });
+      }
     }
   }
 

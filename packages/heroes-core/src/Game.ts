@@ -5,12 +5,14 @@ import { ItemData, ItemSelection } from "./Item";
 import {
   addEquipableMapObjectItem,
   appendArmedMapObjectTroop,
+  canMobileMapObjectMove,
   changeOwnableMapObjectOwner,
   constructArtifactMapObjectArtifact,
   dismissArmedMapObjectTroop,
   generateResourceGeneratorMapObjectResources,
   generateTreasureMapObjectResources,
   getObject,
+  getObjectPosition,
   getVisitor,
   isArmedMapObject,
   isArmedMapObjectData,
@@ -20,21 +22,28 @@ import {
   isEquipableMapObject,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
+  isMobileMapObject,
   isObjectOwnedBy,
   isOwnableMapObject,
   isOwnableMapObjectData,
   isPickableMapObjectData,
+  isPointTaken,
+  isPointValid,
   isPuzzleMapObjectData,
   isResourceGeneratorMapObjectData,
   isTreasureMapObject,
   Map,
   MapObject,
   MapObjectData,
+  MapObjectOrientation,
+  moveMobileMapObject,
+  moveObject,
   recruitDwellingMapObjectCreatures,
   removeObject,
   replaceObject,
   swapArmedMapObjectTroops,
   tradeEquipableMapObjectItems,
+  translatePointDirection,
   visitLimitedInteractionMapObject,
 } from "./map";
 import { addResources, ResourceData, Resources } from "./Resource";
@@ -274,5 +283,33 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
 
   return {
     ...game,
+  };
+};
+
+export const moveGameObject = (game: Game, id: string, direction: MapObjectOrientation) => {
+  const object = getObject(game.map, id);
+
+  if (!isMobileMapObject(object)) {
+    throw new Error(`${id} is not a mobile object`);
+  }
+
+  if (!canMobileMapObjectMove(object)) {
+    return game;
+  }
+
+  const position = getObjectPosition(game.map, object.id)!;
+
+  const targetPosition = translatePointDirection(position, direction);
+
+  if (!isPointValid(game.map, targetPosition) || isPointTaken(game.map, targetPosition)) {
+    return {
+      ...game,
+      map: replaceObject(game.map, moveMobileMapObject(object, direction, 0)),
+    };
+  }
+
+  return {
+    ...game,
+    map: replaceObject(moveObject(game.map, position, targetPosition), moveMobileMapObject(object, direction, 1)),
   };
 };

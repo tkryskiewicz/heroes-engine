@@ -9,13 +9,14 @@ import {
   MapObjectData,
   MapObjectOrientation,
   MobileMapObject,
+  MobileMapObjectData,
   OwnableMapObject,
   OwnableMapObjectData,
 } from "heroes-core";
 
 import { MapObjectId } from "./MapObjectId";
 
-export interface HeroMapObjectData extends ArmedMapObjectData, OwnableMapObjectData {
+export interface HeroMapObjectData extends ArmedMapObjectData, OwnableMapObjectData, MobileMapObjectData {
   readonly id: MapObjectId.Hero;
 }
 

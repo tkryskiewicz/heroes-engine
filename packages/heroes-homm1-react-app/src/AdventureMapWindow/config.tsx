@@ -11,6 +11,7 @@ import {
   isTreasureMapObject,
   MapObject,
   MapObjectData,
+  MapObjectOrientation,
   wasVisitedBy,
 } from "heroes-core";
 import {
@@ -97,6 +98,33 @@ export const renderMapObjectDetails = (
           onCancelClick={props.onCloseClick}
         />
       );
+    }
+  }
+};
+
+export const onKeyDown = (
+  event: React.KeyboardEvent<HTMLDivElement>,
+  activeObject: MapObject | undefined,
+  dispatch: Dispatch,
+) => {
+  if (isHeroMapObject(activeObject)) {
+    switch (event.keyCode) {
+      case 37:
+        dispatch(gameActions.moveObject(activeObject.id, MapObjectOrientation.West));
+
+        break;
+      case 38:
+        dispatch(gameActions.moveObject(activeObject.id, MapObjectOrientation.North));
+
+        break;
+      case 39:
+        dispatch(gameActions.moveObject(activeObject.id, MapObjectOrientation.East));
+
+        break;
+      case 40:
+        dispatch(gameActions.moveObject(activeObject.id, MapObjectOrientation.South));
+
+        break;
     }
   }
 };

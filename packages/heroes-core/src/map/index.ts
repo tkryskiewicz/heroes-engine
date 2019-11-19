@@ -61,14 +61,14 @@ export {
   replaceObject,
   everyMapObjectPoint,
   forEachMapObjectPoint,
+  getObjectPosition,
+  isPointTaken,
 } from "./Map";
 export { MapCell } from "./MapCell";
 export { MapObject, MapObjectData, MapObjectGridCell, isMapObject, createMapObject } from "./MapObject";
-export { MapObjectOrientation } from "./MapObjectOrientation";
+export { MapObjectOrientation, translatePointDirection } from "./MapObjectOrientation";
 export { MapPoint, createPoint, isSamePoint, translatePoint } from "./MapPoint";
-export {
-  MobileMapObject,
-} from "./MobileMapObject";
+export { MobileMapObject, isMobileMapObject, moveMobileMapObject, canMobileMapObjectMove, MobileMapObjectData } from "./MobileMapObject";
 export {
   OwnableMapObject,
   OwnableMapObjectData,
