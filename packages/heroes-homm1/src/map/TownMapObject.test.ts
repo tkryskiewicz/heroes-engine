@@ -151,6 +151,7 @@ describe("recruitTownMapObjectTroop", () => {
       heroClass: "heroClass",
       id: "id",
       name: "Name",
+      owner: undefined,
       structures: [
         structure,
         otherStructure,
@@ -190,6 +191,7 @@ describe("recruitTownMapObjectTroop", () => {
       heroClass: "heroClass",
       id: "id",
       name: "Name",
+      owner: undefined,
       structures: [],
     };
 

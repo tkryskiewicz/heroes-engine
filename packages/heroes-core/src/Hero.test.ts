@@ -2,12 +2,12 @@ import { canSelectNextHero, getNextHero, Hero } from "./Hero";
 
 const getHero = (id: string, mobility: number = 1): Hero => ({
   army: [],
-  artifacts: [],
   dataId: "hero",
   experience: 0,
   heroClass: "heroClass",
   heroId: "heroId",
   id,
+  items: [],
   luck: 0,
   mobility,
   morale: 0,

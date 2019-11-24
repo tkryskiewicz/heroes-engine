@@ -1,11 +1,16 @@
 import React from "react";
 
 import {
+  changeArmedMapObjectArmy,
+  changeOwnableMapObjectOwner,
   GameData,
   isCreatureMapObject,
   MapObject,
+  Troop,
 } from "heroes-core";
 import {
+  changeHeroMapObjectHero,
+  createGameMapObject,
   CreatureMapObjectDetails,
   getCreatureMapObjectDetails,
   getHeroMapObjectDetails,
@@ -219,6 +224,32 @@ export const getObjects = (type: MapObjectType, data: GameData): string[] =>
     .filter((o) => o.type === type || (Array.isArray(o.type) && o.type.includes(type)))
     .map((o) => o.id)
     .sort((a, b) => objectOrder.indexOf(a) - objectOrder.indexOf(b));
+
+export const createEditorMapObject = (id: string, objectDataId: string, data: GameData): MapObject => {
+  const object = createGameMapObject(id, objectDataId, data);
+
+  // FIXME
+  if (isHeroMapObject(object)) {
+    const hero = changeHeroMapObjectHero(object, Object.keys(data.heroes)[0], data);
+
+    // tslint:disable-next-line: no-unnecessary-local-variable
+    const obj = {
+      ...object,
+      ...changeArmedMapObjectArmy(object, [...new Array(data.armySize).keys()].map((): Troop => ({
+        count: 0,
+        creature: Object.keys(data.creatures)[0],
+      }))),
+      heroClass: hero.heroClass,
+      heroId: hero.heroId,
+      owner: changeOwnableMapObjectOwner(object, data.playerColors[0]).owner,
+      skills: hero.skills,
+    };
+
+    return obj;
+  }
+
+  return object;
+};
 
 export const getObjectDetails = (object: MapObject, data: GameData): MapObjectDetails | undefined => {
   if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {

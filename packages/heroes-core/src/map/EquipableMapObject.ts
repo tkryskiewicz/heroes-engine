@@ -1,26 +1,38 @@
 import { Item } from "../Item";
-import { isMapObject, MapObject } from "./MapObject";
+import { isMapObject, MapObject, MapObjectData } from "./MapObject";
+
+export interface EquipableMapObjectData extends MapObjectData {
+  readonly equipable: boolean;
+}
+
+export const isEquipableMapObjectData = (objectData: MapObjectData): objectData is EquipableMapObjectData =>
+  (objectData as EquipableMapObjectData).equipable === true;
 
 export type ItemSlot = Item | undefined;
 
 export interface EquipableMapObject extends MapObject {
-  readonly artifacts: ItemSlot[];
+  readonly items: ItemSlot[];
 }
 
+export const initializeEquipableMapObject = (object: MapObject): EquipableMapObject => ({
+  ...object,
+  items: [],
+});
+
 export const isEquipableMapObject = (object: MapObject | undefined): object is EquipableMapObject =>
-  isMapObject(object) && (object as EquipableMapObject).artifacts !== undefined;
+  isMapObject(object) && (object as EquipableMapObject).items !== undefined;
 
 // TODO: handle no free slot
 export const addEquipableMapObjectItem = (object: EquipableMapObject, item: Item): EquipableMapObject => ({
   ...object,
-  artifacts: [
-    ...object.artifacts,
+  items: [
+    ...object.items,
     item,
   ],
 });
 
 export const hasEquipableMapObjectItem = (object: EquipableMapObject, item: string): boolean =>
-  object.artifacts.some((a) => a !== undefined && a.id === item);
+  object.items.some((a) => a !== undefined && a.id === item);
 
 export const tradeEquipableMapObjectItems = (
   object: EquipableMapObject,
@@ -28,23 +40,23 @@ export const tradeEquipableMapObjectItems = (
   withObject: EquipableMapObject,
   withIndex: number,
 ): [EquipableMapObject, EquipableMapObject] => {
-  const artifacts = [...object.artifacts];
+  const items = [...object.items];
 
-  const withArtifacts = object.id === withObject.id ?
-    artifacts :
-    [...withObject.artifacts];
+  const withItems = object.id === withObject.id ?
+    items :
+    [...withObject.items];
 
-  artifacts[index] = withObject.artifacts[withIndex];
-  withArtifacts[withIndex] = object.artifacts[index];
+  items[index] = withObject.items[withIndex];
+  withItems[withIndex] = object.items[index];
 
   const objectResult: EquipableMapObject = {
     ...object,
-    artifacts,
+    items,
   };
 
   const withObjectResult: EquipableMapObject = {
     ...withObject,
-    artifacts: withArtifacts,
+    items: withItems,
   };
 
   return [

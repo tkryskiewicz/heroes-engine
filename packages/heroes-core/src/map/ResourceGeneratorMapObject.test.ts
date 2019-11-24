@@ -1,8 +1,8 @@
 import { Resources } from "../Resource";
-import { MapObjectData } from "./MapObject";
+import { createMapObject, MapObjectData } from "./MapObject";
 import {
-  createResourceGeneratorMapObject,
   generateResourceGeneratorMapObjectResources,
+  initializeResourceGeneratorMapObject,
   isResourceGeneratorMapObjectData,
   ResourceGeneratorMapObject,
   ResourceGeneratorMapObjectData,
@@ -41,8 +41,8 @@ describe("isResourceGeneratorMapObjectData", () => {
   });
 });
 
-describe("createResourceGeneratorMapObject", () => {
-  it("should create object", () => {
+describe("initializeResourceGeneratorMapObject", () => {
+  it("should initialize object", () => {
     const objectData: ResourceGeneratorMapObjectData = {
       grid: [],
       height: 1,
@@ -55,35 +55,14 @@ describe("createResourceGeneratorMapObject", () => {
       width: 1,
     };
 
-    const result = createResourceGeneratorMapObject("id", objectData);
+    const object = createMapObject("id", objectData);
+
+    const result = initializeResourceGeneratorMapObject(object);
 
     const expected: ResourceGeneratorMapObject = {
       dataId: "dataId",
       id: "id",
-    };
-
-    expect(result).toEqual(expected);
-  });
-
-  it("should create object with initial owner", () => {
-    const objectData: ResourceGeneratorMapObjectData = {
-      grid: [],
-      height: 1,
-      id: "dataId",
-      ownable: true,
-      resourceGenerator: {
-        amount: 1,
-        resource: "resource",
-      },
-      width: 1,
-    };
-
-    const result = createResourceGeneratorMapObject("id", objectData, "owner");
-
-    const expected: ResourceGeneratorMapObject = {
-      dataId: "dataId",
-      id: "id",
-      owner: "owner",
+      owner: undefined,
     };
 
     expect(result).toEqual(expected);

@@ -3,7 +3,7 @@ import { DispatchProp } from "react-redux";
 
 import {
   GameData,
-  getObject,
+  getObjectById,
   Map,
   MapObject,
   MapPoint,
@@ -93,7 +93,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     const { map, activeObjectId } = this.props;
 
     const activeObject = activeObjectId ?
-      getObject(map, activeObjectId) :
+      getObjectById(map, activeObjectId) :
       undefined;
 
     onKeyDown(event, activeObject, this.props.dispatch);
@@ -103,7 +103,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     const { map, activeObjectId } = this.props;
 
     const activeObject = activeObjectId !== undefined ?
-      getObject(map, activeObjectId) :
+      getObjectById(map, activeObjectId) :
       undefined;
 
     const cell = this.props.map.cells[index];
@@ -149,7 +149,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     const { data, map, player, activeObjectId } = this.props;
 
     const activeObject = activeObjectId !== undefined ?
-      getObject(map, activeObjectId) :
+      getObjectById(map, activeObjectId) :
       undefined;
 
     const cell = this.props.map.cells[index];
@@ -167,10 +167,10 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     const { data, map, activeObjectId } = this.props;
 
     const activeObject = activeObjectId !== undefined ?
-      getObject(map, activeObjectId) :
+      getObjectById(map, activeObjectId) :
       undefined;
 
-    const object = getObject(this.props.map, id)!;
+    const object = getObjectById(this.props.map, id)!;
 
     const objectData = data.mapObjects[object.dataId];
 

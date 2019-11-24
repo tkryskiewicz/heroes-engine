@@ -1,6 +1,6 @@
 import { Resources } from "../Resource";
 import { random } from "../util";
-import { createMapObject, isMapObject, MapObject, MapObjectData } from "./MapObject";
+import { isMapObject, MapObject, MapObjectData } from "./MapObject";
 
 export interface TreasureMapObjectData extends MapObjectData {
   readonly treasure: {
@@ -18,8 +18,11 @@ export interface TreasureMapObject extends MapObject {
   readonly treasure: Resources;
 }
 
-export const createTreasureMapObject = (id: string, objectData: TreasureMapObjectData): TreasureMapObject => ({
-  ...createMapObject(id, objectData),
+export const initializeTreasureMapObject = (
+  object: MapObject,
+  objectData: TreasureMapObjectData,
+): TreasureMapObject => ({
+  ...object,
   treasure: Object.keys(objectData.treasure).reduce((p, c) => ({
     ...p,
     [c]: random(objectData.treasure[c].min, objectData.treasure[c].max),

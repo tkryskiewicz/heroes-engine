@@ -13,6 +13,12 @@ export interface MobileMapObject extends MapObject {
   readonly orientation: MapObjectOrientation;
 }
 
+export const initializeMobileMapObject = (object: MapObject, objectData: MobileMapObjectData): MobileMapObject => ({
+  ...object,
+  mobility: objectData.baseMobility,
+  orientation: MapObjectOrientation.North,
+});
+
 export const isMobileMapObject = (object: MapObject | undefined): object is MobileMapObject =>
   isMapObject(object) &&
   (object as MobileMapObject).mobility !== undefined &&

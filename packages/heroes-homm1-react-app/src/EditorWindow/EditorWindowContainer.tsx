@@ -7,7 +7,7 @@ import {
   GameData,
   getCellIndex,
   getCellPoint,
-  getObject,
+  getObjectById,
   isSamePoint,
   MapObject,
   MapObjectOrientation,
@@ -22,7 +22,6 @@ import {
 import { noop } from "heroes-helpers";
 import {
   canPlaceObject,
-  createMapObject,
   createRandomMap,
   EditorOption,
   EraseObjectsSettings,
@@ -61,7 +60,7 @@ import {
 } from "heroes-homm1-react";
 
 import { renderEditorObject } from "../config";
-import { getObjectDetails, getObjects, renderObjectDetails, setObjectDetails } from "./config";
+import { createEditorMapObject, getObjectDetails, getObjects, renderObjectDetails, setObjectDetails } from "./config";
 
 interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly data: GameData;
@@ -332,7 +331,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
           setTimeout(() => this.setState({ message: "" }), 1000);
         });
       } else {
-        const object = createMapObject(this.state.objectId.toString(), objectData, data);
+        const object = createEditorMapObject(this.state.objectId.toString(), objectData.id, data);
 
         const newScenario: Scenario = {
           ...scenario,
@@ -600,7 +599,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   private renderObjectDetails(id: string) {
     const { data, selectedObjectDetails } = this.props;
 
-    const object = getObject(this.props.scenario.map, id);
+    const object = getObjectById(this.props.scenario.map, id);
 
     if (object === undefined || selectedObjectDetails === undefined) {
       return;
@@ -616,7 +615,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   private readonly onConfirmObjectDetailsClick = () => {
     const { data, scenario, visibleObjectDetails, selectedObjectDetails } = this.props;
 
-    const object = getObject(scenario.map, visibleObjectDetails!) as CreatureMapObject;
+    const object = getObjectById(scenario.map, visibleObjectDetails!) as CreatureMapObject;
 
     const newObject = setObjectDetails(object, selectedObjectDetails!, data);
 

@@ -13,7 +13,7 @@ export interface HeroMapObjectDetails {
 
 export const getHeroMapObjectDetails = (object: HeroMapObject): HeroMapObjectDetails => ({
   army: object.army,
-  artifacts: object.artifacts.map((a) => a ? a.id : undefined),
+  artifacts: object.items.map((a) => a ? a.id : undefined),
   experience: object.experience,
   heroId: object.heroId,
   owner: object.owner!,
@@ -26,9 +26,9 @@ export const setHeroMapObjectDetails = (
 ): HeroMapObject => ({
   ...object,
   army: details.army,
-  artifacts: details.artifacts.map((a) => a ? constructArtifact(a) : undefined),
   experience: details.experience,
   heroClass: data.heroes[details.heroId].heroClass,
   heroId: details.heroId,
+  items: details.artifacts.map((a) => a ? constructArtifact(a) : undefined),
   owner: details.owner,
 });

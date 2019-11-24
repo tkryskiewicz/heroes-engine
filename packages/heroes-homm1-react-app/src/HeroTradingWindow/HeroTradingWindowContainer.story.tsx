@@ -15,12 +15,12 @@ const hero: Hero = {
       creature: CreatureId.Peasant,
     },
   ],
-  artifacts: [],
   dataId: "",
   experience: 0,
   heroClass: HeroClass.Knight,
   heroId: HeroId.LordKilburn,
   id: "hero",
+  items: [],
   luck: 0,
   mobility: 0,
   morale: 0,
@@ -29,12 +29,12 @@ const hero: Hero = {
 
 const otherHero: Hero = {
   army: [],
-  artifacts: [],
   dataId: "",
   experience: 0,
   heroClass: HeroClass.Knight,
   heroId: HeroId.Antoine,
   id: "otherHero",
+  items: [],
   luck: 0,
   mobility: 0,
   morale: 0,
@@ -53,14 +53,14 @@ storiesOf("HeroTradingWindowContainer", module)
   .add("artifacts", () => {
     const h: Hero = {
       ...hero,
-      artifacts: [
+      items: [
         constructArtifact(ArtifactId.ThunderMaceOfDominion),
       ],
     };
 
     const oh: Hero = {
       ...otherHero,
-      artifacts: [
+      items: [
         constructArtifact(ArtifactId.GiantFlailOfDominion),
       ],
     };
@@ -93,7 +93,7 @@ storiesOf("HeroTradingWindowContainer", module)
 
     const h: Hero = {
       ...hero,
-      artifacts: [
+      items: [
         constructArtifact(ArtifactId.Spellbook, {}),
       ],
     };

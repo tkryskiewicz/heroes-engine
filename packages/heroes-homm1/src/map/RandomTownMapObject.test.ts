@@ -1,8 +1,8 @@
-import { CreatureData } from "heroes-core";
+import { createMapObject, CreatureData } from "heroes-core";
 
 import { MapObjectId } from "./MapObjectId";
 import {
-  createRandomTownMapObject,
+  initializeRandomTownMapObject,
   isRandomTownMapObject,
   isRandomTownMapObjectData,
   RandomTownMapObject,
@@ -39,7 +39,7 @@ describe("isRandomTownMapObjectData", () => {
   });
 });
 
-describe("createRandomTownMapObject", () => {
+describe("initializeRandomTownMapObject", () => {
   it("should create a random town object", () => {
     const objectData: RandomTownMapObjectData = {
       grid: [],
@@ -61,14 +61,14 @@ describe("createRandomTownMapObject", () => {
       speed: 0,
     };
 
-    const data: Parameters<typeof createRandomTownMapObject>[2] = {
+    const data: Parameters<typeof initializeRandomTownMapObject>[2] = {
       armySize: 1,
       creatures: {
         [creature.id]: creature,
       },
     };
 
-    const result = createRandomTownMapObject("id", objectData, data);
+    const result = initializeRandomTownMapObject(createMapObject("id", objectData), objectData, data);
 
     const expected: RandomTownMapObject = {
       army: [
@@ -80,6 +80,7 @@ describe("createRandomTownMapObject", () => {
       customized: false,
       dataId: MapObjectId.RandomTown,
       id: "id",
+      owner: undefined,
     };
 
     expect(result).toEqual(expected);
@@ -96,12 +97,12 @@ describe("isRandomTownMapObject", () => {
       width: 1,
     };
 
-    const data: Parameters<typeof createRandomTownMapObject>[2] = {
+    const data: Parameters<typeof initializeRandomTownMapObject>[2] = {
       armySize: 0,
       creatures: {},
     };
 
-    const object = createRandomTownMapObject("id", objectData, data);
+    const object = initializeRandomTownMapObject(createMapObject("id", objectData), objectData, data);
 
     const result = isRandomTownMapObject(object);
 
@@ -117,12 +118,12 @@ describe("isRandomTownMapObject", () => {
       width: 1,
     };
 
-    const data: Parameters<typeof createRandomTownMapObject>[2] = {
+    const data: Parameters<typeof initializeRandomTownMapObject>[2] = {
       armySize: 0,
       creatures: {},
     };
 
-    const object = createRandomTownMapObject("id", objectData, data);
+    const object = initializeRandomTownMapObject(createMapObject("id", objectData), objectData, data);
 
     const result = isRandomTownMapObject(object);
 

@@ -9,7 +9,7 @@ export { CreatureSpeed } from "./CreatureSpeed";
 export * from "./editor";
 export { getCurrentLevel, getNextLevelExperience } from "./experience";
 export {
-  constructGameHero,
+  createGameMapObject,
   getGameHero,
   getGameHeroes,
   getGameTown,
@@ -35,7 +35,7 @@ export {
   StructureVisitedLuckModifier,
 } from "./luck";
 export * from "./map";
-export { mapObjects, createMapObject } from "./mapObjects";
+export { mapObjects } from "./mapObjects";
 export {
   MoraleType,
   getMoraleType,

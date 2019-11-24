@@ -1,5 +1,7 @@
+import { createMapObject } from "heroes-core";
+
 import {
-  createRandomCreatureMapObject,
+  initializeRandomCreatureMapObject,
   isRandomCreatureMapObject,
   isRandomCreatureMapObjectData,
   RandomCreatureMapObject,
@@ -23,8 +25,8 @@ describe("isRandomCreatureMapObjectData", () => {
   });
 });
 
-describe("createRandomCreatureMapObject", () => {
-  it("should create object", () => {
+describe("initializeRandomCreatureMapObject", () => {
+  it("should initialize count", () => {
     const objectData: RandomCreatureMapObjectData = {
       grid: [],
       height: 1,
@@ -34,12 +36,13 @@ describe("createRandomCreatureMapObject", () => {
       width: 1,
     };
 
-    const result = createRandomCreatureMapObject("id", objectData);
+    const object = createMapObject("id", objectData);
+
+    const result = initializeRandomCreatureMapObject(object);
 
     const expected: RandomCreatureMapObject = {
+      ...object,
       count: 0,
-      dataId: "dataId",
-      id: "id",
     };
 
     expect(result).toEqual(expected);
@@ -57,7 +60,7 @@ describe("isRandomCreatureMapObject", () => {
       width: 1,
     };
 
-    const object = createRandomCreatureMapObject("id", objectData);
+    const object = initializeRandomCreatureMapObject(createMapObject("id", objectData));
 
     const data: Parameters<typeof isRandomCreatureMapObject>[1] = {
       mapObjects: {

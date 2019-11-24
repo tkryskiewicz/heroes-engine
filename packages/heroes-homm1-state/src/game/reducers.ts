@@ -1,4 +1,5 @@
 import {
+  changeOwnableMapObjectOwner,
   createMap,
   createPoint,
   dismissGameHero,
@@ -10,7 +11,7 @@ import {
   placeObject,
   startGameTurn,
   swapGameTroops,
-  tradeGameArtifacts,
+  tradeGameItems,
   visitGameMapObject,
 } from "heroes-core";
 import {
@@ -19,8 +20,8 @@ import {
   buildGameStructure,
   buyMageGuildSpellBook,
   campaignScenarios,
-  constructGameHero,
-  createHeroMapObject,
+  changeHeroMapObjectHero,
+  createGameMapObject,
   creatures,
   EditorHeroArtifactCount,
   EditorMaxCreatureCount,
@@ -28,8 +29,7 @@ import {
   endGameTurn,
   heroClasses,
   heroes,
-  HeroId,
-  HeroMapObjectData,
+  HeroMapObject,
   MapObjectId,
   mapObjects,
   PlayerColorId,
@@ -95,49 +95,25 @@ const data: GameData = {
 
 let map: Map = createMap(14, 14, TerrainType.Grass, 4);
 
-const knightHero = constructGameHero("hero/1", HeroId.LordKilburn, data);
+Object.keys(data.heroClasses).forEach((hc, i) => {
+  const heroId = Object.values(data.heroes).filter((h) => h.heroClass === hc)[0].id;
 
-const knightHeroMapObject = createHeroMapObject(
-  "hero/1",
-  data.mapObjects[MapObjectId.Hero] as HeroMapObjectData,
-  knightHero,
-  PlayerColorId.Red,
-);
+  const object = changeOwnableMapObjectOwner(
+    changeHeroMapObjectHero(
+      createGameMapObject(`hero/${i}`, MapObjectId.Hero, data) as HeroMapObject,
+      heroId,
+      data,
+    ),
+    PlayerColorId.Red);
 
-map = placeObject(map, createPoint(5, 7), knightHeroMapObject);
+  map = placeObject(map, createPoint(3 + 2 * i, 7), object);
+});
 
-const barbarianHero = constructGameHero("hero/2", HeroId.Thundax, data);
+Object.keys(data.resources).forEach((r, i) => {
+  const object = createGameMapObject(`treasure/${i}`, r, data);
 
-const barbarianHeroMapObject = createHeroMapObject(
-  "hero/1",
-  data.mapObjects[MapObjectId.Hero] as HeroMapObjectData,
-  barbarianHero,
-  PlayerColorId.Red,
-);
-
-map = placeObject(map, createPoint(7, 7), barbarianHeroMapObject);
-
-const sorceressHero = constructGameHero("hero/3", HeroId.Ariel, data);
-
-const sorceressHeroMapObject = createHeroMapObject(
-  "hero/3",
-  data.mapObjects[MapObjectId.Hero] as HeroMapObjectData,
-  sorceressHero,
-  PlayerColorId.Red,
-);
-
-map = placeObject(map, createPoint(9, 7), sorceressHeroMapObject);
-
-const warlockHero = constructGameHero("hero/4", HeroId.Agar, data);
-
-const warlockHeroMapObject = createHeroMapObject(
-  "hero/4",
-  data.mapObjects[MapObjectId.Hero] as HeroMapObjectData,
-  warlockHero,
-  PlayerColorId.Red,
-);
-
-map = placeObject(map, createPoint(11, 7), warlockHeroMapObject);
+  map = placeObject(map, createPoint(1 + i, 1), object);
+});
 
 const initialState: GameState = {
   activePlayer: PlayerColorId.Red,
@@ -184,7 +160,7 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
       };
 
       return {
-        ...tradeGameArtifacts(state, item, withItem),
+        ...tradeGameItems(state, item, withItem),
       };
     case GameActionType.DismissHero:
       return {

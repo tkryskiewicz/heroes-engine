@@ -446,7 +446,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 
   private readonly renderArtifact = (index: number) => {
-    const artifact = this.props.hero.artifacts[index];
+    const artifact = this.props.hero.items[index];
 
     const artifactData = artifact ?
       this.props.data.items[artifact.id] :
@@ -465,7 +465,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 
   private readonly onArtifactMouseEnter = (index: number) => {
-    const artifact = this.props.hero.artifacts[index];
+    const artifact = this.props.hero.items[index];
 
     const message = artifact ?
       getArtifactNameMessage(artifact.id) :
@@ -481,13 +481,13 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
   }
 
   private readonly onArtifactClick = (index: number) => {
-    if (this.props.hero.artifacts[index]) {
+    if (this.props.hero.items[index]) {
       this.props.onVisibleArtifactDetailsChange(index);
     }
   }
 
   private renderArtifactDetails(visibleArtifactDetails: number) {
-    const artifact = this.props.hero.artifacts[visibleArtifactDetails]!;
+    const artifact = this.props.hero.items[visibleArtifactDetails]!;
 
     return this.props.getArtifactDetails(artifact, {
       onCloseClick: this.onCloseArtifactDetailsClick,

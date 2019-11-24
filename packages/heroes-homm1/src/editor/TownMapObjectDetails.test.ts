@@ -40,6 +40,7 @@ describe("setTownMapObjectDetails", () => {
       customized: false,
       dataId: MapObjectId.RandomTown,
       id: "id",
+      owner: undefined,
     };
 
     const value: TownMapObjectDetails = {

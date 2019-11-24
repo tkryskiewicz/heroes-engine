@@ -1,9 +1,9 @@
-import { Hero, MapObject, MapObjectOrientation } from "heroes-core";
+import { createMapObject, MapObject, MapObjectOrientation } from "heroes-core";
 
 import {
-  createHeroMapObject,
   HeroMapObject,
   HeroMapObjectData,
+  initializeHeroMapObject,
   isHeroMapObject,
   isHeroMapObjectData,
 } from "./HeroMapObject";
@@ -30,8 +30,8 @@ describe("isHeroMapObjectData", () => {
   });
 });
 
-describe("createHeroMapObject", () => {
-  it("should create object", () => {
+describe("initializeHeroMapObject", () => {
+  it("should initialize object", () => {
     const objectData: HeroMapObjectData = {
       army: {
         preventMovingLastTroop: true,
@@ -45,69 +45,24 @@ describe("createHeroMapObject", () => {
       width: 1,
     };
 
-    const hero: Hero = {
+    const object = createMapObject("id", objectData);
+
+    const result = initializeHeroMapObject(object, objectData);
+
+    const expected: HeroMapObject = {
+      ...object,
       army: [],
-      artifacts: [],
-      dataId: "hero",
+      dataId: MapObjectId.Hero,
       experience: 0,
-      heroClass: "heroClass",
-      heroId: "heroId",
-      id: "id",
+      heroClass: "",
+      heroId: "",
+      items: [],
       luck: 0,
       mobility: 0,
       morale: 0,
-      skills: {},
-    };
-
-    const result = createHeroMapObject("id", objectData, hero);
-
-    const expected: HeroMapObject = {
-      ...hero,
-      dataId: MapObjectId.Hero,
-      id: "id",
       orientation: MapObjectOrientation.North,
       owner: undefined,
-    };
-
-    expect(result).toEqual(expected);
-  });
-
-  it("should create object with initial owner", () => {
-    const objectData: HeroMapObjectData = {
-      army: {
-        preventMovingLastTroop: true,
-      },
-      baseMobility: 0,
-      grid: [],
-      height: 1,
-      id: MapObjectId.Hero,
-      ownable: true,
-      type: "type",
-      width: 1,
-    };
-
-    const hero: Hero = {
-      army: [],
-      artifacts: [],
-      dataId: "hero",
-      experience: 0,
-      heroClass: "heroClass",
-      heroId: "heroId",
-      id: "id",
-      luck: 0,
-      mobility: 0,
-      morale: 0,
       skills: {},
-    };
-
-    const result = createHeroMapObject("id", objectData, hero, "owner");
-
-    const expected: HeroMapObject = {
-      ...hero,
-      dataId: MapObjectId.Hero,
-      id: "id",
-      orientation: MapObjectOrientation.North,
-      owner: "owner",
     };
 
     expect(result).toEqual(expected);
@@ -129,21 +84,7 @@ describe("isHeroMapObject", () => {
       width: 1,
     };
 
-    const hero: Hero = {
-      army: [],
-      artifacts: [],
-      dataId: "hero",
-      experience: 0,
-      heroClass: "heroClass",
-      heroId: "heroId",
-      id: "id",
-      luck: 0,
-      mobility: 0,
-      morale: 0,
-      skills: {},
-    };
-
-    const object = createHeroMapObject("id", objectData, hero);
+    const object = initializeHeroMapObject(createMapObject("id", objectData), objectData);
 
     const result = isHeroMapObject(object);
 

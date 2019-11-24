@@ -1,13 +1,13 @@
 import { Troop } from "../Troop";
 import {
-  createDwellingMapObject,
   DwellingMapObject,
   DwellingMapObjectData,
+  initializeDwellingMapObject,
   isDwellingMapObject,
   isDwellingMapObjectData,
   recruitDwellingMapObjectCreatures,
 } from "./DwellingMapObject";
-import { MapObject, MapObjectData } from "./MapObject";
+import { createMapObject, MapObject, MapObjectData } from "./MapObject";
 
 describe("isDwellingMapObjectData", () => {
   it("should return true when object data is dwelling object data", () => {
@@ -41,8 +41,8 @@ describe("isDwellingMapObjectData", () => {
   });
 });
 
-describe("createDwellingMapObject", () => {
-  it("should create object", () => {
+describe("initializeDwellingMapObject", () => {
+  it("should initialize available count", () => {
     const objectData: DwellingMapObjectData = {
       dwelling: {
         creature: "creature",
@@ -54,12 +54,13 @@ describe("createDwellingMapObject", () => {
       width: 1,
     };
 
-    const result = createDwellingMapObject("id", objectData);
+    const object = createMapObject("id", objectData);
+
+    const result = initializeDwellingMapObject(object, objectData);
 
     const expected: DwellingMapObject = {
+      ...object,
       availableCount: 1,
-      dataId: "dataId",
-      id: "id",
     };
 
     expect(result).toEqual(expected);
@@ -68,18 +69,11 @@ describe("createDwellingMapObject", () => {
 
 describe("isDwellingMapObject", () => {
   it("should return true when dwelling map object", () => {
-    const objectData: DwellingMapObjectData = {
-      dwelling: {
-        creature: "creature",
-        initialCount: 1,
-      },
-      grid: [],
-      height: 1,
+    const object: DwellingMapObject = {
+      availableCount: 0,
+      dataId: "dataId",
       id: "dataId",
-      width: 1,
     };
-
-    const object = createDwellingMapObject("id", objectData);
 
     const result = isDwellingMapObject(object);
 
@@ -111,7 +105,7 @@ describe("recruitDwellingMapObjectCreatures", () => {
       width: 1,
     };
 
-    const object = createDwellingMapObject("id", objectData);
+    const object = initializeDwellingMapObject(createMapObject("id", objectData), objectData);
 
     const [result] = recruitDwellingMapObjectCreatures(object, objectData);
 
@@ -135,7 +129,7 @@ describe("recruitDwellingMapObjectCreatures", () => {
       width: 1,
     };
 
-    const object = createDwellingMapObject("id", objectData);
+    const object = initializeDwellingMapObject(createMapObject("id", objectData), objectData);
 
     const [, result] = recruitDwellingMapObjectCreatures(object, objectData);
 

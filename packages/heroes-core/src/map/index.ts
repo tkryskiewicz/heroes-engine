@@ -1,51 +1,9 @@
-export {
-  ArmedMapObject,
-  ArmedMapObjectData,
-  isArmedMapObject,
-  isArmedMapObjectData,
-  appendArmedMapObjectTroop,
-  dismissArmedMapObjectTroop,
-  swapArmedMapObjectTroops,
-} from "./ArmedMapObject";
-export {
-  ArtifactMapObjectData,
-  isArtifactMapObjectData,
-  constructArtifactMapObjectArtifact,
-} from "./ArtifactMapObject";
-export {
-  CreatureMapObjectData,
-  isCreatureMapObjectData,
-  CreatureMapObject,
-  isCreatureMapObject,
-  createCreatureMapObject,
-} from "./CreatureMapObject";
-export {
-  DwellingMapObject,
-  DwellingMapObjectData,
-  createDwellingMapObject,
-  isDwellingMapObject,
-  isDwellingMapObjectData,
-  recruitDwellingMapObjectCreatures,
-} from "./DwellingMapObject";
-export {
-  ItemSlot,
-  EquipableMapObject,
-  isEquipableMapObject,
-  addEquipableMapObjectItem,
-  hasEquipableMapObjectItem,
-  tradeEquipableMapObjectItems,
-} from "./EquipableMapObject";
-export {
-  InteractionLimitType,
-  LimitedInteractionMapObject,
-  isLimitedInteractionMapObject,
-  LimitedInteractionMapObjectData,
-  isLimitedInteractionMapObjectData,
-  createLimitedInteractionMapObject,
-  getVisitor,
-  wasVisitedBy,
-  visitLimitedInteractionMapObject,
-} from "./LimitedInteractionMapObject";
+export * from "./ArmedMapObject";
+export * from "./CreatureMapObject";
+export * from "./DwellingMapObject";
+export * from "./EquipableMapObject";
+export * from "./ItemMapObject";
+export * from "./LimitedInteractionMapObject";
 export {
   Map,
   createMap,
@@ -53,7 +11,7 @@ export {
   getCellIndex,
   getCellPoint,
   changeTerrain,
-  getObject,
+  getObjectById,
   canPlaceObject,
   placeObject,
   moveObject,
@@ -63,35 +21,15 @@ export {
   forEachMapObjectPoint,
   getObjectPosition,
   isPointTaken,
+  getObjectByPoint,
 } from "./Map";
 export { MapCell } from "./MapCell";
 export { MapObject, MapObjectData, MapObjectGridCell, isMapObject, createMapObject } from "./MapObject";
 export { MapObjectOrientation, translatePointDirection } from "./MapObjectOrientation";
 export { MapPoint, createPoint, isSamePoint, translatePoint } from "./MapPoint";
-export { MobileMapObject, isMobileMapObject, moveMobileMapObject, canMobileMapObjectMove, MobileMapObjectData } from "./MobileMapObject";
-export {
-  OwnableMapObject,
-  OwnableMapObjectData,
-  createOwnableMapObject,
-  isOwnableMapObject,
-  isOwnableMapObjectData,
-  isObjectOwnedBy,
-  changeOwnableMapObjectOwner,
-} from "./OwnableMapObject";
-export { PickableMapObjectData, isPickableMapObjectData } from "./PickableMapObject";
-export { PuzzleMapObjectData, isPuzzleMapObjectData } from "./PuzzleMapObject";
-export {
-  ResourceGeneratorMapObject,
-  ResourceGeneratorMapObjectData,
-  isResourceGeneratorMapObjectData,
-  createResourceGeneratorMapObject,
-  generateResourceGeneratorMapObjectResources,
-} from "./ResourceGeneratorMapObject";
-export {
-  TreasureMapObject,
-  TreasureMapObjectData,
-  isTreasureMapObjectData,
-  isTreasureMapObject,
-  createTreasureMapObject,
-  generateTreasureMapObjectResources,
-} from "./TreasureMapObject";
+export * from "./MobileMapObject";
+export * from "./OwnableMapObject";
+export * from "./PickableMapObject";
+export * from "./PuzzleMapObject";
+export * from "./ResourceGeneratorMapObject";
+export * from "./TreasureMapObject";

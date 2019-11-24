@@ -3,12 +3,14 @@ import {
   appendArmedMapObjectTroop,
   ArmedMapObject,
   ArmedMapObjectData,
+  changeArmedMapObjectArmy,
   dismissArmedMapObjectTroop,
+  initializeArmedMapObject,
   isArmedMapObject,
   isArmedMapObjectData,
   swapArmedMapObjectTroops,
 } from "./ArmedMapObject";
-import { MapObject, MapObjectData } from "./MapObject";
+import { createMapObject, MapObject, MapObjectData } from "./MapObject";
 
 describe("isArmedMapObjectData", () => {
   it("should return true when armed object data", () => {
@@ -41,6 +43,31 @@ describe("isArmedMapObjectData", () => {
   });
 });
 
+describe("initializeArmedMapObject", () => {
+  it("should initialize army", () => {
+    const objectData: ArmedMapObjectData = {
+      army: {
+        preventMovingLastTroop: false,
+      },
+      grid: [],
+      height: 1,
+      id: "dataId",
+      width: 1,
+    };
+
+    const object = createMapObject("id", objectData);
+
+    const result = initializeArmedMapObject(object);
+
+    const expected: ArmedMapObject = {
+      ...object,
+      army: [],
+    };
+
+    expect(result).toEqual(expected);
+  });
+});
+
 describe("isArmedMapObject", () => {
   it("should return when armed object", () => {
     const object: ArmedMapObject = {
@@ -63,6 +90,35 @@ describe("isArmedMapObject", () => {
     const result = isArmedMapObject(object);
 
     expect(result).toBe(false);
+  });
+});
+
+describe("changeArmedMapObjectArmy", () => {
+  it("should set army", () => {
+    const object: ArmedMapObject = {
+      army: [],
+      dataId: "dataId",
+      id: "id",
+    };
+
+    const result = changeArmedMapObjectArmy(object, [
+      {
+        count: 1,
+        creature: "creature",
+      },
+    ]);
+
+    const expected: ArmedMapObject = {
+      ...object,
+      army: [
+        {
+          count: 1,
+          creature: "creature",
+        },
+      ],
+    };
+
+    expect(result).toEqual(expected);
   });
 });
 

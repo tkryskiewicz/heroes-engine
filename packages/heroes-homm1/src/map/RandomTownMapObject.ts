@@ -1,7 +1,7 @@
 import {
   Army,
-  createMapObject,
   GameData,
+  initializeOwnableMapObject,
   isMapObject,
   MapObject,
   MapObjectData,
@@ -24,12 +24,13 @@ export interface RandomTownMapObject extends OwnableMapObject {
   readonly army: Army;
 }
 
-export const createRandomTownMapObject = (
-  id: string,
+export const initializeRandomTownMapObject = (
+  object: MapObject,
   objectData: RandomTownMapObjectData,
   data: Pick<GameData, "armySize" | "creatures">,
 ): RandomTownMapObject => ({
-  ...createMapObject(id, objectData),
+  ...object,
+  ...initializeOwnableMapObject(object),
   army: [...new Array(data.armySize).keys()].map<Troop>(() => ({
     count: 0,
     creature: Object.keys(data.creatures)[0],

@@ -13,13 +13,9 @@ export interface RandomCreatureMapObject extends MapObject {
   readonly count: number;
 }
 
-export const createRandomCreatureMapObject = (
-  id: string,
-  objectData: RandomCreatureMapObjectData,
-): RandomCreatureMapObject => ({
+export const initializeRandomCreatureMapObject = (object: MapObject): RandomCreatureMapObject => ({
+  ...object,
   count: 0,
-  dataId: objectData.id,
-  id,
 });
 
 export const isRandomCreatureMapObject = (

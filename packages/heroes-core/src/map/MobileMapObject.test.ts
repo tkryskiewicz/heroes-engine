@@ -1,7 +1,8 @@
-import { MapObject, MapObjectData } from "./MapObject";
+import { createMapObject, MapObject, MapObjectData } from "./MapObject";
 import { MapObjectOrientation } from "./MapObjectOrientation";
 import {
   canMobileMapObjectMove,
+  initializeMobileMapObject,
   isMobileMapObject,
   isMobileMapObjectData,
   MobileMapObject,
@@ -35,6 +36,30 @@ describe("isMobileMapObjectData", () => {
     const result = isMobileMapObjectData(objectData);
 
     expect(result).toBe(false);
+  });
+});
+
+describe("initializeMobileMapObject", () => {
+  it("should initialize mobility and orientation", () => {
+    const objectData: MobileMapObjectData = {
+      baseMobility: 1,
+      grid: [],
+      height: 1,
+      id: "dataId",
+      width: 1,
+    };
+
+    const object = createMapObject("id", objectData);
+
+    const result = initializeMobileMapObject(object, objectData);
+
+    const expected: MobileMapObject = {
+      ...object,
+      mobility: 1,
+      orientation: MapObjectOrientation.North,
+    };
+
+    expect(result).toEqual(expected);
   });
 });
 

@@ -1,59 +1,14 @@
-export {
-  HeroMapObject,
-  HeroMapObjectData,
-  createHeroMapObject,
-  isHeroMapObject,
-  isHeroMapObjectData,
-} from "./HeroMapObject";
+export * from "./HeroMapObject";
 export * from "./map";
 export { MapObjectData } from "./MapObject";
 export { MapObjectId } from "./MapObjectId";
 export { MapObjectType } from "./MapObjectType";
-export {
-  MineMapObject,
-  MineMapObjectData,
-  isMineMapObject,
-  isMineMapObjectData,
-} from "./MineMapObject";
-export {
-  ObeliskMapObject,
-  ObeliskMapObjectData,
-  isObeliskMapObject,
-  isObeliskMapObjectData,
-} from "./ObeliskMapObject";
-export {
-  RandomCreatureMapObject,
-  RandomCreatureMapObjectData,
-  isRandomCreatureMapObject,
-  isRandomCreatureMapObjectData,
-  createRandomCreatureMapObject,
-} from "./RandomCreatureMapObject";
-export {
-  RandomTownMapObject,
-  RandomTownMapObjectData,
-  createRandomTownMapObject,
-  isRandomTownMapObject,
-  isRandomTownMapObjectData,
-} from "./RandomTownMapObject";
-export {
-  ResourceMapObject,
-  ResourceMapObjectData,
-  isResourceMapObject,
-  isResourceMapObjectData,
-} from "./ResourceMapObject";
-export {
-  TerrainRestrictedMapObjectData,
-  isTerrainRestrictedMapObjectData,
-} from "./TerrainRestrictedMapObject";
+export * from "./MineMapObject";
+export * from "./ObeliskMapObject";
+export * from "./RandomCreatureMapObject";
+export * from "./RandomTownMapObject";
+export * from "./ResourceMapObject";
+export * from "./TerrainRestrictedMapObject";
 export { TerrainTransition, getTerrainTransition } from "./TerrainTransition";
-export {
-  TownMapObject,
-  TownMapObjectData,
-  createTownMapObject,
-  isTownMapObject,
-  recruitTownMapObjectTroop,
-} from "./TownMapObject";
-export {
-  VariantMapObjectData,
-  isVariantMapObjectData,
-} from "./VariantMapObject";
+export * from "./TownMapObject";
+export * from "./VariantMapObject";

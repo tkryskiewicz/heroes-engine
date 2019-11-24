@@ -1,14 +1,8 @@
 import {
-  ArtifactMapObjectData,
-  createCreatureMapObject,
-  createMapObject as createMapObjectCore,
   CreatureMapObjectData,
   DwellingMapObjectData,
-  GameData,
-  Hero,
   InteractionLimitType,
-  isCreatureMapObjectData,
-  MapObject,
+  ItemMapObjectData,
   MapObjectData,
   PickableMapObjectData,
   TreasureMapObjectData,
@@ -18,13 +12,7 @@ import { ArtifactId } from "./ArtifactId";
 import { artifacts } from "./artifacts";
 import { CreatureId, creatures } from "./creatures";
 import {
-  createHeroMapObject,
-  createRandomCreatureMapObject,
-  createRandomTownMapObject,
   HeroMapObjectData,
-  isHeroMapObjectData,
-  isRandomCreatureMapObjectData,
-  isRandomTownMapObjectData,
   MapObjectId,
   MapObjectType,
   MineMapObjectData,
@@ -196,7 +184,7 @@ const randomCreatureObjects: (RandomCreatureMapObjectData & TerrainRestrictedMap
   },
 ];
 
-type ArtifactObjectData = ArtifactMapObjectData & PickableMapObjectData & TerrainRestrictedMapObjectData;
+type ArtifactObjectData = ItemMapObjectData & PickableMapObjectData & TerrainRestrictedMapObjectData;
 
 const artifactObjectOrder: string[] = [
   ArtifactId.ArcaneNecklaceOfMagic,
@@ -245,12 +233,12 @@ const artifactObjects: ArtifactObjectData[] = artifacts
   .filter((a) => a.id !== ArtifactId.Spellbook && !a.isUltimate)
   .sort((a, b) => artifactObjectOrder.indexOf(a.id) - artifactObjectOrder.indexOf(b.id))
   .map<ArtifactObjectData>((a) => ({
-    artifact: a.id,
     grid: [
       true,
     ],
     height: 1,
     id: a.id,
+    item: a.id,
     pickable: true,
     restrictedTerrains: nonWaterTerrains,
     type: MapObjectType.Artifact,
@@ -2546,40 +2534,3 @@ export const mapObjects: MapObjectData[] = [
   ...terrainMountainObjects,
   ...treesObjects,
 ];
-
-export const createMapObject = (id: string, objectData: MapObjectData, data: GameData): MapObject => {
-  if (isCreatureMapObjectData(objectData)) {
-    return createCreatureMapObject(id, objectData);
-  }
-
-  if (isRandomCreatureMapObjectData(objectData)) {
-    return createRandomCreatureMapObject(id, objectData);
-  }
-
-  if (isHeroMapObjectData(objectData)) {
-    const heroId = Object.keys(data.heroes)[0];
-
-    const hero: Hero = {
-      army: [...new Array(data.armySize).keys()]
-        .map(() => ({ creature: Object.keys(data.creatures)[0], count: 0 })),
-      artifacts: [],
-      dataId: MapObjectId.Hero,
-      experience: 0,
-      heroClass: data.heroes[heroId].heroClass,
-      heroId,
-      id,
-      luck: 0,
-      mobility: objectData.baseMobility,
-      morale: 0,
-      skills: {},
-    };
-
-    return createHeroMapObject(id, objectData, hero, data.playerColors[0]);
-  }
-
-  if (isRandomTownMapObjectData(objectData)) {
-    return createRandomTownMapObject(id, objectData, data);
-  }
-
-  return createMapObjectCore(id, objectData);
-};

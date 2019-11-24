@@ -1,8 +1,8 @@
 import {
   createMap,
+  createMapObject,
   createPoint,
   Game,
-  Hero,
   placeObject,
   replaceObject,
   Town,
@@ -10,10 +10,10 @@ import {
 
 import { buyMageGuildSpellBook } from "./Game";
 import {
-  createHeroMapObject,
   createTownMapObject,
   HeroMapObject,
   HeroMapObjectData,
+  initializeHeroMapObject,
   MapObjectId,
   TownMapObjectData,
 } from "./map";
@@ -23,20 +23,6 @@ import { MageGuild, StructureId } from "./structures";
 describe("buyMageGuildSpellBook", () => {
   // TODO: split into multiple tests
   it("should buy spell book from mage guild", () => {
-    const hero: Hero = {
-      army: [],
-      artifacts: [],
-      dataId: "hero",
-      experience: 0,
-      heroClass: "heroClass",
-      heroId: "heroId",
-      id: "hero",
-      luck: 0,
-      mobility: 0,
-      morale: 0,
-      skills: {},
-    };
-
     const heroObjectData: HeroMapObjectData = {
       army: {
         preventMovingLastTroop: true,
@@ -50,7 +36,7 @@ describe("buyMageGuildSpellBook", () => {
       width: 1,
     };
 
-    const heroObject = createHeroMapObject("hero", heroObjectData, hero, "player");
+    const heroObject = initializeHeroMapObject(createMapObject("hero", heroObjectData), heroObjectData);
 
     const mageGuild: MageGuild = {
       cost: {},
@@ -135,7 +121,7 @@ describe("buyMageGuildSpellBook", () => {
 
     const expectedHero: HeroMapObject = {
       ...heroObject,
-      artifacts: [
+      items: [
         constructSpellBook([
           {
             charges: 0,

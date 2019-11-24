@@ -5,7 +5,7 @@ import {
   forEachMapObjectPoint,
   getCellIndex,
   getCellPoint,
-  getObject,
+  getObjectById,
   isPointTaken,
   isPointValid,
   Map,
@@ -358,7 +358,7 @@ describe("getObject", () => {
 
     map = placeObject(map, createPoint(0, 0), object);
 
-    const result = getObject(map, "id");
+    const result = getObjectById(map, "id");
 
     expect(result).toEqual(object);
   });
@@ -366,7 +366,7 @@ describe("getObject", () => {
   it("should return undefined when no object", () => {
     const map = createMap(1, 1, "terrain");
 
-    const result = getObject(map, "id");
+    const result = getObjectById(map, "id");
 
     expect(result).toBeUndefined();
   });

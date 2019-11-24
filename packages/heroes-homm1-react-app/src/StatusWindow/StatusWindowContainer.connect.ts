@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { getDate, getObject, isObjectOwnedBy, isOwnableMapObject, isStructureBuilt } from "heroes-core";
+import { getDate, getObjectById, isObjectOwnedBy, isOwnableMapObject, isStructureBuilt } from "heroes-core";
 import { isHeroMapObject, isTownMapObject, StructureId } from "heroes-homm1";
 import { AppState, statusWindowActions } from "heroes-homm1-state";
 
@@ -21,7 +21,7 @@ const mapStateToProps = (state: AppState): Pick<StatusWindowProps, StateProp> =>
     .filter(isTownMapObject);
 
   const activeObject = state.locators.activeObjectId ?
-    getObject(state.game.map, state.locators.activeObjectId) :
+    getObjectById(state.game.map, state.locators.activeObjectId) :
     undefined;
 
   return {

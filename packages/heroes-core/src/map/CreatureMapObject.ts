@@ -11,10 +11,9 @@ export interface CreatureMapObject extends MapObject {
   readonly count: number;
 }
 
-export const createCreatureMapObject = (id: string, objectData: CreatureMapObjectData): CreatureMapObject => ({
+export const initializeCreatureMapObject = (object: MapObject): CreatureMapObject => ({
+  ...object,
   count: 0,
-  dataId: objectData.id,
-  id,
 });
 
 export const isCreatureMapObject = (

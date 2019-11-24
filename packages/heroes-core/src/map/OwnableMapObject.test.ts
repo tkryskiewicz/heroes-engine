@@ -1,7 +1,7 @@
-import { MapObject, MapObjectData } from "./MapObject";
+import { createMapObject, MapObject, MapObjectData } from "./MapObject";
 import {
   changeOwnableMapObjectOwner,
-  createOwnableMapObject,
+  initializeOwnableMapObject,
   isObjectOwnedBy,
   isOwnableMapObject,
   isOwnableMapObjectData,
@@ -38,8 +38,8 @@ describe("isOwnableMapObjectData", () => {
   });
 });
 
-describe("createOwnableMapObject", () => {
-  it("should create ownable map object", () => {
+describe("initializeOwnableMapObject", () => {
+  it("should initialize owner", () => {
     const objectData: OwnableMapObjectData = {
       grid: [],
       height: 1,
@@ -48,32 +48,13 @@ describe("createOwnableMapObject", () => {
       width: 1,
     };
 
-    const result = createOwnableMapObject("id", objectData);
+    const object = createMapObject("id", objectData);
+
+    const result = initializeOwnableMapObject(object);
 
     const expected: OwnableMapObject = {
-      dataId: "dataId",
-      id: "id",
+      ...object,
       owner: undefined,
-    };
-
-    expect(result).toEqual(expected);
-  });
-
-  it("should create with initial owner", () => {
-    const objectData: OwnableMapObjectData = {
-      grid: [],
-      height: 1,
-      id: "dataId",
-      ownable: true,
-      width: 1,
-    };
-
-    const result = createOwnableMapObject("id", objectData, "owner");
-
-    const expected: OwnableMapObject = {
-      dataId: "dataId",
-      id: "id",
-      owner: "owner",
     };
 
     expect(result).toEqual(expected);
@@ -90,7 +71,7 @@ describe("isOwnableMapObject", () => {
       width: 1,
     };
 
-    const object = createOwnableMapObject("id", objectData);
+    const object = initializeOwnableMapObject(createMapObject("id", objectData));
 
     const result = isOwnableMapObject(object);
 
@@ -119,7 +100,7 @@ describe("isObjectOwnedBy", () => {
       width: 1,
     };
 
-    const object = createOwnableMapObject("id", objectData, "owner");
+    const object = changeOwnableMapObjectOwner(initializeOwnableMapObject(createMapObject("id", objectData)), "owner");
 
     const result = isObjectOwnedBy(object, "owner");
 
@@ -135,7 +116,7 @@ describe("isObjectOwnedBy", () => {
       width: 1,
     };
 
-    const object = createOwnableMapObject("id", objectData, "otherOwner");
+    const object = changeOwnableMapObjectOwner(initializeOwnableMapObject(createMapObject("id", objectData)), "otherOwner");
 
     const result = isObjectOwnedBy(object, "owner");
 
@@ -148,6 +129,7 @@ describe("changeOwnableMapObjectOwner", () => {
     const object: OwnableMapObject = {
       dataId: "dataId",
       id: "id",
+      owner: undefined,
     };
 
     const result = changeOwnableMapObjectOwner(object, "player");

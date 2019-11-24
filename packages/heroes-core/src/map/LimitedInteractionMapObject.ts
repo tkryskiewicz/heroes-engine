@@ -1,4 +1,4 @@
-import { createMapObject, isMapObject, MapObject, MapObjectData } from "./MapObject";
+import { isMapObject, MapObject, MapObjectData } from "./MapObject";
 import { OwnableMapObject } from "./OwnableMapObject";
 
 export enum InteractionLimitType {
@@ -21,11 +21,8 @@ export interface LimitedInteractionMapObject extends MapObject {
 export const isLimitedInteractionMapObject = (object: MapObject | undefined): object is LimitedInteractionMapObject =>
   isMapObject(object) && (object as LimitedInteractionMapObject).visitedBy !== undefined;
 
-export const createLimitedInteractionMapObject = (
-  id: string,
-  objectData: LimitedInteractionMapObjectData,
-): LimitedInteractionMapObject => ({
-  ...createMapObject(id, objectData),
+export const initializeLimitedInteractionMapObject = (object: MapObject): LimitedInteractionMapObject => ({
+  ...object,
   visitedBy: [],
 });
 

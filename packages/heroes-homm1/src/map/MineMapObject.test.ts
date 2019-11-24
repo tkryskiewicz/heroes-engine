@@ -35,6 +35,7 @@ describe("isMineMapObject", () => {
     const object: MineMapObject = {
       dataId: "dataId",
       id: "id",
+      owner: undefined,
     };
 
     const data: Parameters<typeof isMineMapObject>[1] = {

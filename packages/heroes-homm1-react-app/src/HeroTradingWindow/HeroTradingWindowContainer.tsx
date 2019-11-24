@@ -171,7 +171,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
 
     const h = this.getHero(hero);
 
-    const artifact = h.artifacts[index];
+    const artifact = h.items[index];
 
     return (
       <TradingArtifactSlot
@@ -189,7 +189,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
 
     const h = this.getHero(hero);
 
-    const artifact = h.artifacts[index];
+    const artifact = h.items[index];
 
     const artifactData = artifact && artifacts[artifact.id] ?
       artifacts[artifact.id] :
@@ -217,7 +217,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   private renderArtifactDetails(artifact: ArtifactSelection) {
     const h = this.getHero(artifact.hero);
 
-    const a = h.artifacts[artifact.index]!;
+    const a = h.items[artifact.index]!;
 
     return (
       <ArtifactDetailsPrompt

@@ -1,6 +1,4 @@
-import { MapObjectData as MapObjectDataCore } from "heroes-core";
-
-import { MapObjectType } from "./MapObjectType";
+import { MapObjectData } from "heroes-core";
 
 declare module "heroes-core/src/map/MapObject" {
   interface MapObjectData {
@@ -8,6 +6,6 @@ declare module "heroes-core/src/map/MapObject" {
   }
 }
 
-export interface MapObjectData extends MapObjectDataCore {
-  readonly type: MapObjectType | MapObjectType[];
-}
+export {
+  MapObjectData,
+};

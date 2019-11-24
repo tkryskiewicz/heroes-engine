@@ -202,9 +202,12 @@ export const moveObject = (map: Map, from: MapPoint, to: MapPoint): Map => {
   };
 };
 
-export const getObject = (map: Map, id: string): MapObject | undefined =>
+export const getObjectById = (map: Map, id: string): MapObject | undefined =>
   map.cells
     .reduce<MapObject | undefined>((p, c) => p || (c.object && c.object.id === id ? c.object : undefined), undefined);
+
+export const getObjectByPoint = (map: Map, point: MapPoint): MapObject | undefined =>
+  map.cells[getCellIndex(map.width, point)].object;
 
 export const removeObject = (map: Map, id: string): Map => ({
   ...map,

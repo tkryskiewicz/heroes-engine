@@ -1,8 +1,8 @@
 import { Resources } from "../Resource";
-import { MapObject, MapObjectData } from "./MapObject";
+import { createMapObject, MapObject, MapObjectData } from "./MapObject";
 import {
-  createTreasureMapObject,
   generateTreasureMapObjectResources,
+  initializeTreasureMapObject,
   isTreasureMapObject,
   isTreasureMapObjectData,
   TreasureMapObject,
@@ -38,8 +38,8 @@ describe("isTreasureMapObjectData", () => {
   });
 });
 
-describe("createTreasureMapObject", () => {
-  it("should create treasure map object", () => {
+describe("initializeTreasureMapObject", () => {
+  it("should initialize treasure", () => {
     const objectData: TreasureMapObjectData = {
       grid: [],
       height: 1,
@@ -48,7 +48,9 @@ describe("createTreasureMapObject", () => {
       width: 1,
     };
 
-    const result = createTreasureMapObject("id", objectData);
+    const object = createMapObject("id", objectData);
+
+    const result = initializeTreasureMapObject(object, objectData);
 
     const expected: TreasureMapObject = {
       dataId: "dataId",
@@ -73,7 +75,9 @@ describe("createTreasureMapObject", () => {
       width: 1,
     };
 
-    const result = createTreasureMapObject("id", objectData);
+    const object = createMapObject("id", objectData);
+
+    const result = initializeTreasureMapObject(object, objectData);
 
     expect(result.treasure.resource).toBeGreaterThanOrEqual(0);
     expect(result.treasure.resource).toBeLessThanOrEqual(1);
@@ -90,7 +94,7 @@ describe("isTreasureMapObject", () => {
       width: 1,
     };
 
-    const object = createTreasureMapObject("id", objectData);
+    const object = initializeTreasureMapObject(createMapObject("id", objectData), objectData);
 
     const result = isTreasureMapObject(object);
 

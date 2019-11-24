@@ -7,19 +7,20 @@ import {
   appendArmedMapObjectTroop,
   canMobileMapObjectMove,
   changeOwnableMapObjectOwner,
-  constructArtifactMapObjectArtifact,
+  constructItemMapObjectItem,
   dismissArmedMapObjectTroop,
   generateResourceGeneratorMapObjectResources,
   generateTreasureMapObjectResources,
-  getObject,
+  getObjectById,
+  getObjectByPoint,
   getObjectPosition,
   getVisitor,
   isArmedMapObject,
   isArmedMapObjectData,
-  isArtifactMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
   isEquipableMapObject,
+  isItemMapObjectData,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
   isMobileMapObject,
@@ -89,7 +90,7 @@ export const swapGameTroops = (
   // TODO: extract to config
   autoCombine: boolean = true,
 ): Game => {
-  const object = getObject(game.map, troop.id);
+  const object = getObjectById(game.map, troop.id);
 
   if (!isArmedMapObject(object)) {
     throw new Error(`${troop.id} is not an armed object`);
@@ -101,7 +102,7 @@ export const swapGameTroops = (
     throw new Error(`no armed object data for ${object.id}`);
   }
 
-  const withObject = getObject(game.map, withTroop.id);
+  const withObject = getObjectById(game.map, withTroop.id);
 
   if (!isArmedMapObject(withObject)) {
     throw new Error(`${withTroop.id} is not an armed object`);
@@ -118,14 +119,14 @@ export const swapGameTroops = (
   };
 };
 
-export const tradeGameArtifacts = (game: Game, item: ItemSelection, withItem: ItemSelection): Game => {
-  const object = getObject(game.map, item.objectId);
+export const tradeGameItems = (game: Game, item: ItemSelection, withItem: ItemSelection): Game => {
+  const object = getObjectById(game.map, item.objectId);
 
   if (!isEquipableMapObject(object)) {
     throw new Error(`${item.objectId} is not an equipable object`);
   }
 
-  const withObject = getObject(game.map, withItem.objectId);
+  const withObject = getObjectById(game.map, withItem.objectId);
 
   if (!isEquipableMapObject(withObject)) {
     throw new Error(`${withItem.objectId} is not an equipable object`);
@@ -146,7 +147,7 @@ export const dismissGameHero = (game: Game, hero: string): Game => ({
 });
 
 export const dismissGameTroop = (game: Game, troop: TroopSelection): Game => {
-  const object = getObject(game.map, troop.id);
+  const object = getObjectById(game.map, troop.id);
 
   if (!isArmedMapObject(object)) {
     throw new Error(`${troop.id} is not an armed object`);
@@ -186,7 +187,7 @@ export const startGameTurn = (game: Game): Game => {
 };
 
 export const visitGameMapObject = (game: Game, id: string, activeObjectId: string): Game => {
-  const object = getObject(game.map, id);
+  const object = getObjectById(game.map, id);
 
   if (!object) {
     throw new Error("Invalid object");
@@ -194,7 +195,7 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
 
   const objectData = game.data.mapObjects[object.dataId];
 
-  const activeObject = getObject(game.map, activeObjectId);
+  const activeObject = getObjectById(game.map, activeObjectId);
 
   if (!activeObject) {
     throw new Error("Invalid active object");
@@ -222,14 +223,14 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
     };
   }
 
-  if (isArtifactMapObjectData(objectData)) {
+  if (isItemMapObjectData(objectData)) {
     if (!isEquipableMapObject(activeObject)) {
       throw new Error(`${activeObjectId} is not an equipable object`);
     }
 
-    const artifact = constructArtifactMapObjectArtifact(objectData);
+    const item = constructItemMapObjectItem(objectData);
 
-    const activeObjectResult = addEquipableMapObjectItem(activeObject, artifact);
+    const activeObjectResult = addEquipableMapObjectItem(activeObject, item);
 
     game = {
       ...game,
@@ -287,7 +288,7 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
 };
 
 export const moveGameObject = (game: Game, id: string, direction: MapObjectOrientation) => {
-  const object = getObject(game.map, id);
+  const object = getObjectById(game.map, id);
 
   if (!isMobileMapObject(object)) {
     throw new Error(`${id} is not a mobile object`);
@@ -300,6 +301,17 @@ export const moveGameObject = (game: Game, id: string, direction: MapObjectOrien
   const position = getObjectPosition(game.map, object.id)!;
 
   const targetPosition = translatePointDirection(position, direction);
+
+  const targetObject = getObjectByPoint(game.map, targetPosition);
+
+  if (targetObject) {
+    const g = visitGameMapObject(game, targetObject.id, id);
+
+    return {
+      ...g,
+      map: replaceObject(g.map, moveMobileMapObject(object, direction, 0)),
+    };
+  }
 
   if (!isPointValid(game.map, targetPosition) || isPointTaken(game.map, targetPosition)) {
     return {

@@ -4,10 +4,11 @@ import { Dispatch } from "redux";
 import {
   GameData,
   getVisitor,
-  isArtifactMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
+  isItemMapObjectData,
   isObjectOwnedBy,
+  isOwnableMapObject,
   isTreasureMapObject,
   MapObject,
   MapObjectData,
@@ -47,7 +48,8 @@ export const renderMapObjectDetails = (
     readonly onCloseClick: () => void;
   },
 ) => {
-  if (activeObject && isObeliskMapObject(object) && isObeliskMapObjectData(objectData)) {
+  if (activeObject && isOwnableMapObject(activeObject) && isObeliskMapObject(object) &&
+    isObeliskMapObjectData(objectData)) {
     const visitor = getVisitor(objectData, activeObject);
 
     if (wasVisitedBy(object, visitor)) {
@@ -171,7 +173,7 @@ export const onCellClick = (
     }
 
     dispatch(adventureWindowActions.openMapObjectDetails(object.id));
-  } else if (isArtifactMapObjectData(objectData)) {
+  } else if (isItemMapObjectData(objectData)) {
     if (!isHeroMapObject(activeObject)) {
       return;
     }

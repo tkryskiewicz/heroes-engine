@@ -15,8 +15,20 @@ export interface ArmedMapObject extends MapObject {
   readonly army: Army;
 }
 
+export const initializeArmedMapObject = (object: MapObject): ArmedMapObject => ({
+  ...object,
+  army: [],
+});
+
 export const isArmedMapObject = (object: MapObject | undefined): object is ArmedMapObject =>
   isMapObject(object) && (object as ArmedMapObject).army !== undefined;
+
+export const changeArmedMapObjectArmy = (object: ArmedMapObject, army: Army): ArmedMapObject => ({
+  ...object,
+  army: [
+    ...army,
+  ],
+});
 
 export const appendArmedMapObjectTroop = (object: ArmedMapObject, troop: Troop): ArmedMapObject => ({
   ...object,

@@ -2,8 +2,8 @@ import React from "react";
 
 import {
   GameData,
-  isArtifactMapObjectData,
   isCreatureMapObjectData,
+  isItemMapObjectData,
   isStructureBuilt,
   MapObject,
   MapObjectData,
@@ -60,11 +60,11 @@ export const renderObject = (
     );
   }
 
-  if (isArtifactMapObjectData(objectData)) {
+  if (isItemMapObjectData(objectData)) {
     return (
       <ArtifactMapObject
         size={size}
-        artifact={objectData.artifact}
+        artifact={objectData.item}
       />
     );
   }

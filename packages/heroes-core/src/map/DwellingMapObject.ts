@@ -1,5 +1,5 @@
 import { Troop } from "../Troop";
-import { createMapObject, isMapObject, MapObject, MapObjectData } from "./MapObject";
+import { isMapObject, MapObject, MapObjectData } from "./MapObject";
 
 export interface DwellingMapObjectData extends MapObjectData {
   readonly dwelling: {
@@ -16,8 +16,11 @@ export interface DwellingMapObject extends MapObject {
   readonly availableCount: number;
 }
 
-export const createDwellingMapObject = (id: string, objectData: DwellingMapObjectData): DwellingMapObject => ({
-  ...createMapObject(id, objectData),
+export const initializeDwellingMapObject = (
+  object: MapObject,
+  objectData: DwellingMapObjectData,
+): DwellingMapObject => ({
+  ...object,
   availableCount: objectData.dwelling.initialCount,
 });
 

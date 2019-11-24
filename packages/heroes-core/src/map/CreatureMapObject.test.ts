@@ -1,12 +1,12 @@
 import { CreatureData } from "../Creature";
 import {
-  createCreatureMapObject,
   CreatureMapObject,
   CreatureMapObjectData,
+  initializeCreatureMapObject,
   isCreatureMapObject,
   isCreatureMapObjectData,
 } from "./CreatureMapObject";
-import { MapObject, MapObjectData } from "./MapObject";
+import { createMapObject, MapObject, MapObjectData } from "./MapObject";
 
 describe("isCreatureMapObjectData", () => {
   it("should return true when creature object data", () => {
@@ -37,8 +37,8 @@ describe("isCreatureMapObjectData", () => {
   });
 });
 
-describe("createCreatureMapObject", () => {
-  it("should create creature map object with count 0", () => {
+describe("initializeCreatureMapObject", () => {
+  it("should initialize count", () => {
     const objectData: CreatureMapObjectData = {
       creature: "creature",
       grid: [],
@@ -47,12 +47,13 @@ describe("createCreatureMapObject", () => {
       width: 1,
     };
 
-    const result = createCreatureMapObject("id", objectData);
+    const object = createMapObject("id", objectData);
+
+    const result = initializeCreatureMapObject(object);
 
     const expected: CreatureMapObject = {
+      ...object,
       count: 0,
-      dataId: "dataId",
-      id: "id",
     };
 
     expect(result).toEqual(expected);

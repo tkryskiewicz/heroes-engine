@@ -22,7 +22,7 @@ export interface Hero {
   readonly morale: number;
   readonly luck: number;
   readonly experience: number;
-  readonly artifacts: ItemSlot[];
+  readonly items: ItemSlot[];
 }
 
 // TODO: does this belong to core???

@@ -14,7 +14,7 @@ export {
   Game,
   GameData,
   swapGameTroops,
-  tradeGameArtifacts,
+  tradeGameItems,
   dismissGameTroop,
   dismissGameHero,
   startGameTurn,

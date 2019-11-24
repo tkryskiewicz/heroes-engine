@@ -1,6 +1,6 @@
 import {
-  createLimitedInteractionMapObject,
   getVisitor,
+  initializeLimitedInteractionMapObject,
   InteractionLimitType,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
@@ -9,7 +9,7 @@ import {
   visitLimitedInteractionMapObject,
   wasVisitedBy,
 } from "./LimitedInteractionMapObject";
-import { MapObject, MapObjectData } from "./MapObject";
+import { createMapObject, MapObject, MapObjectData } from "./MapObject";
 import { OwnableMapObject } from "./OwnableMapObject";
 
 describe("isLimitedInteractionMapObjectData", () => {
@@ -66,8 +66,8 @@ describe("isLimitedInteractionMapObject", () => {
   });
 });
 
-describe("createLimitedInteractionMapObject", () => {
-  it("should create object", () => {
+describe("initializeLimitedInteractionMapObject", () => {
+  it("should initialize visted by", () => {
     const objectData: LimitedInteractionMapObjectData = {
       grid: [],
       height: 1,
@@ -76,11 +76,12 @@ describe("createLimitedInteractionMapObject", () => {
       width: 1,
     };
 
-    const result = createLimitedInteractionMapObject("id", objectData);
+    const object = createMapObject("id", objectData);
+
+    const result = initializeLimitedInteractionMapObject(object);
 
     const expected: LimitedInteractionMapObject = {
-      dataId: "dataId",
-      id: "id",
+      ...object,
       visitedBy: [],
     };
 
@@ -141,6 +142,7 @@ describe("getVisitor", () => {
     const object: OwnableMapObject = {
       dataId: "otherDataId",
       id: "id",
+      owner: undefined,
     };
 
     expect(() => {

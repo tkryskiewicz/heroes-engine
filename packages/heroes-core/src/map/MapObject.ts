@@ -12,8 +12,8 @@ export interface MapObject {
   readonly dataId: string;
 }
 
-export const createMapObject = (id: string, data: MapObjectData): MapObject => ({
-  dataId: data.id,
+export const createMapObject = (id: string, objectData: MapObjectData): MapObject => ({
+  dataId: objectData.id,
   id,
 });
 

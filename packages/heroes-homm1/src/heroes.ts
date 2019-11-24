@@ -222,12 +222,12 @@ export const constructHero = (id: string, heroId: string, heroClass: HeroClassDa
 
   return {
     army,
-    artifacts: [],
     dataId: MapObjectId.Hero,
     experience: 0,
     heroClass: heroClass.id,
     heroId,
     id,
+    items: [],
     luck: 0,
     mobility: 0,
     morale: 0,

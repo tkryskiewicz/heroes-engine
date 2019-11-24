@@ -1,49 +1,37 @@
-import { Hero, MapObjectOrientation } from "heroes-core";
+import { MapObjectOrientation } from "heroes-core";
 
-import { createHeroMapObject, HeroMapObject, HeroMapObjectData, MapObjectId } from "../map";
+import { HeroMapObject, MapObjectId } from "../map";
 import { getHeroMapObjectDetails, HeroMapObjectDetails, setHeroMapObjectDetails } from "./HeroMapObjectDetails";
 
 describe("getHeroMapObjectDetails", () => {
   it("should return object details", () => {
-    const objectData: HeroMapObjectData = {
-      army: {
-        preventMovingLastTroop: true,
-      },
-      baseMobility: 0,
-      grid: [],
-      height: 1,
-      id: MapObjectId.Hero,
-      ownable: true,
-      type: "type",
-      width: 1,
-    };
-
-    const hero: Hero = {
+    const object: HeroMapObject = {
       army: [
         {
           count: 1,
           creature: "creature",
         },
       ],
-      artifacts: [
-        {
-          data: {},
-          id: "artifact",
-        },
-        undefined,
-      ],
-      dataId: "dataId",
+      dataId: MapObjectId.Hero,
       experience: 1,
       heroClass: "heroClass",
       heroId: "heroId",
       id: "id",
+      items: [
+      {
+          data: {},
+          id: "artifact",
+        },
+      ],
       luck: 0,
       mobility: 0,
       morale: 0,
+      orientation: MapObjectOrientation.North,
+      owner: "player",
       skills: {},
     };
 
-    const object = createHeroMapObject("id", objectData, hero, "player");
+    // const object = initializeHeroMapObject(createMapObject("id", objectData), objectData);
 
     const result = getHeroMapObjectDetails(object);
 
@@ -56,7 +44,6 @@ describe("getHeroMapObjectDetails", () => {
       ],
       artifacts: [
         "artifact",
-        undefined,
       ],
       experience: 1,
       heroId: "heroId",
@@ -71,12 +58,12 @@ describe("setHeroMapObjectDetails", () => {
   it("should set object details", () => {
     const object: HeroMapObject = {
       army: [],
-      artifacts: [],
       dataId: MapObjectId.Hero,
       experience: 0,
       heroClass: "heroClass",
       heroId: "heroId",
       id: "id",
+      items: [],
       luck: 0,
       mobility: 0,
       morale: 0,
@@ -120,17 +107,17 @@ describe("setHeroMapObjectDetails", () => {
           creature: "creature",
         },
       ],
-      artifacts: [
+      experience: 1,
+      heroClass: "otherHeroClass",
+      heroId: "otherHeroId",
+      id: "id",
+      items: [
         {
           data: {},
           id: "artifact",
         },
         undefined,
       ],
-      experience: 1,
-      heroClass: "otherHeroClass",
-      heroId: "otherHeroId",
-      id: "id",
       owner: "otherPlayer",
     };
 
