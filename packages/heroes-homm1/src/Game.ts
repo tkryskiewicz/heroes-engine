@@ -1,5 +1,5 @@
 import {
-  addEquipableMapObjectItem,
+  addObjectItem,
   addResources,
   ArmedMapObjectData,
   buildTownStructure,
@@ -8,7 +8,7 @@ import {
   CreatureMapObjectData,
   DwellingMapObjectData,
   endTownTurn,
-  EquipableMapObjectData,
+  EquipableObjectData,
   Game,
   GameData,
   GameObject,
@@ -23,7 +23,7 @@ import {
   initializeArmedMapObject,
   initializeCreatureMapObject,
   initializeDwellingMapObject,
-  initializeEquipableMapObject,
+  initializeEquipableObject,
   initializeLimitedInteractionMapObject,
   initializeMobileMapObject,
   initializeOwnableObject,
@@ -33,7 +33,7 @@ import {
   isCreatureMapObjectData,
   isDwellingMapObjectData,
   isDwellingStructure,
-  isEquipableMapObjectData,
+  isEquipableObjectData,
   isLimitedInteractionMapObjectData,
   isMobileMapObject,
   isMobileMapObjectData,
@@ -126,10 +126,10 @@ const dwellingObjectHandler: Handler<DwellingMapObjectData> = {
   objectDataTest: isDwellingMapObjectData,
 };
 
-const equipableObjectHandler: Handler<EquipableMapObjectData> = {
-  initialize: initializeEquipableMapObject,
+const equipableObjectHandler: Handler<EquipableObjectData> = {
+  initialize: initializeEquipableObject,
   // @ts-ignore
-  objectDataTest: isEquipableMapObjectData,
+  objectDataTest: isEquipableObjectData,
 };
 
 const limitedInteractionObjectHandler: Handler<LimitedInteractionMapObjectData> = {
@@ -328,7 +328,7 @@ export const buyMageGuildSpellBook = (game: Game, heroId: string, townId: string
 
   return {
     ...game,
-    map: replaceObject(game.map, addEquipableMapObjectItem(object, spellBook)),
+    map: replaceObject(game.map, addObjectItem(object, spellBook)),
     resources: subtractResources(game.resources, cost),
   };
 };

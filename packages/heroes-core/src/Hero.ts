@@ -1,5 +1,5 @@
 import { Army } from "./Army";
-import { ItemSlot } from "./map";
+import { ItemSlot } from "./objects";
 
 export interface HeroData {
   readonly id: string;

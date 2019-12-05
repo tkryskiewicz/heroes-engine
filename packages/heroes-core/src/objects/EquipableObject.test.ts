@@ -1,60 +1,49 @@
+import { GameObject, GameObjectData } from "../GameObject";
 import { Item } from "../Item";
 import {
-  addEquipableMapObjectItem,
-  EquipableMapObject,
-  EquipableMapObjectData,
-  hasEquipableMapObjectItem,
-  initializeEquipableMapObject,
-  isEquipableMapObject,
-  isEquipableMapObjectData,
-  tradeEquipableMapObjectItems,
-} from "./EquipableMapObject";
-import { createMapObject, MapObject, MapObjectData } from "./MapObject";
+  addObjectItem,
+  EquipableObject,
+  EquipableObjectData,
+  hasObjectItem,
+  initializeEquipableObject,
+  isEquipableObject,
+  isEquipableObjectData,
+  tradeObjectItems,
+} from "./EquipableObject";
 
-describe("isEquipableMapObjectData", () => {
+describe("isEquipableObjectData", () => {
   it("should return true when equipable object data", () => {
-    const objectData: EquipableMapObjectData = {
+    const objectData: EquipableObjectData = {
       equipable: true,
-      grid: [],
-      height: 1,
       id: "dataId",
-      width: 1,
     };
 
-    const result = isEquipableMapObjectData(objectData);
+    const result = isEquipableObjectData(objectData);
 
     expect(result).toBe(true);
   });
 
   it("should return false when not equipable object data", () => {
-    const objectData: MapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: GameObjectData = {
       id: "dataId",
-      width: 1,
     };
 
-    const result = isEquipableMapObjectData(objectData);
+    const result = isEquipableObjectData(objectData);
 
     expect(result).toBe(false);
   });
 });
 
-describe("initializeEquipableMapObject", () => {
+describe("initializeEquipableObject", () => {
   it("should initialize items", () => {
-    const objectData: EquipableMapObjectData = {
-      equipable: true,
-      grid: [],
-      height: 1,
-      id: "dataId",
-      width: 1,
+    const object: GameObject = {
+      dataId: "dataId",
+      id: "id",
     };
 
-    const object = createMapObject("id", objectData);
+    const result = initializeEquipableObject(object);
 
-    const result = initializeEquipableMapObject(object);
-
-    const expected: EquipableMapObject = {
+    const expected: EquipableObject = {
       ...object,
       items: [],
     };
@@ -63,47 +52,47 @@ describe("initializeEquipableMapObject", () => {
   });
 });
 
-describe("isEquipableMapObject", () => {
+describe("isEquipableObject", () => {
   it("should return true when equipable object", () => {
-    const object: EquipableMapObject = {
+    const object: EquipableObject = {
       dataId: "dataId",
       id: "id",
       items: [],
     };
 
-    const result = isEquipableMapObject(object);
+    const result = isEquipableObject(object);
 
     expect(result).toBe(true);
   });
 
   it("should return false when not equipable object", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
 
-    const result = isEquipableMapObject(object);
+    const result = isEquipableObject(object);
 
     expect(result).toBe(false);
   });
 });
 
-describe("addEquipableMapObjectItem", () => {
+describe("addObjectItem", () => {
   it("should add item to inventory", () => {
     const item: Item = {
       data: "dataId",
       id: "id",
     };
 
-    const object: EquipableMapObject = {
+    const object: EquipableObject = {
       dataId: "dataId",
       id: "id",
       items: [],
     };
 
-    const result = addEquipableMapObjectItem(object, item);
+    const result = addObjectItem(object, item);
 
-    const expected: EquipableMapObject = {
+    const expected: EquipableObject = {
       ...object,
       items: [
         item,
@@ -114,14 +103,14 @@ describe("addEquipableMapObjectItem", () => {
   });
 });
 
-describe("hasEquipableMapObjectItem", () => {
+describe("hasObjectItem", () => {
   it("should return true when item is in inventory", () => {
     const item: Item = {
       data: {},
       id: "item",
     };
 
-    const object: EquipableMapObject = {
+    const object: EquipableObject = {
       dataId: "dataId",
       id: "id",
       items: [
@@ -129,32 +118,32 @@ describe("hasEquipableMapObjectItem", () => {
       ],
     };
 
-    const result = hasEquipableMapObjectItem(object, "item");
+    const result = hasObjectItem(object, "item");
 
     expect(result).toBe(true);
   });
 
   it("should return false when item not in inventory", () => {
-    const object: EquipableMapObject = {
+    const object: EquipableObject = {
       dataId: "dataId",
       id: "id",
       items: [],
     };
 
-    const result = hasEquipableMapObjectItem(object, "item");
+    const result = hasObjectItem(object, "item");
 
     expect(result).toBe(false);
   });
 });
 
-describe("tradeEquipableMapObjectItems", () => {
+describe("tradeObjectItems", () => {
   it("should trade items between objects", () => {
     const item: Item = {
       data: {},
       id: "item",
     };
 
-    const object: EquipableMapObject = {
+    const object: EquipableObject = {
       dataId: "dataId",
       id: "id",
       items: [
@@ -162,22 +151,22 @@ describe("tradeEquipableMapObjectItems", () => {
       ],
     };
 
-    const withObject: EquipableMapObject = {
+    const withObject: EquipableObject = {
       dataId: "dataId",
       id: "otherId",
       items: [],
     };
 
-    const [objectResult, withObjectResult] = tradeEquipableMapObjectItems(object, 0, withObject, 0);
+    const [objectResult, withObjectResult] = tradeObjectItems(object, 0, withObject, 0);
 
-    const expectedObject: EquipableMapObject = {
+    const expectedObject: EquipableObject = {
       ...object,
       items: [
         undefined,
       ],
     };
 
-    const expectedWithObject: EquipableMapObject = {
+    const expectedWithObject: EquipableObject = {
       ...withObject,
       items: [
         item,
@@ -199,7 +188,7 @@ describe("tradeEquipableMapObjectItems", () => {
       id: "otherItem",
     };
 
-    const object: EquipableMapObject = {
+    const object: EquipableObject = {
       dataId: "dataId",
       id: "id",
       items: [
@@ -208,9 +197,9 @@ describe("tradeEquipableMapObjectItems", () => {
       ],
     };
 
-    const [objectResult] = tradeEquipableMapObjectItems(object, 0, object, 1);
+    const [objectResult] = tradeObjectItems(object, 0, object, 1);
 
-    const expected: EquipableMapObject = {
+    const expected: EquipableObject = {
       dataId: "dataId",
       id: "id",
       items: [

@@ -2,11 +2,11 @@ import {
   ArmedMapObject,
   ArmedMapObjectData,
   Army,
-  EquipableMapObject,
+  EquipableObject,
   GameData,
   Hero,
   initializeArmedMapObject,
-  initializeEquipableMapObject,
+  initializeEquipableObject,
   initializeMobileMapObject,
   initializeOwnableObject,
   isMapObject,
@@ -29,7 +29,7 @@ export interface HeroMapObjectData extends ArmedMapObjectData, OwnableObjectData
 export const isHeroMapObjectData = (objectData: MapObjectData): objectData is HeroMapObjectData =>
   objectData.id === MapObjectId.Hero;
 
-export interface HeroMapObject extends Hero, ArmedMapObject, EquipableMapObject, OwnableObject, MobileMapObject {
+export interface HeroMapObject extends Hero, ArmedMapObject, EquipableObject, OwnableObject, MobileMapObject {
   readonly dataId: MapObjectId.Hero;
 }
 
@@ -39,7 +39,7 @@ export const isHeroMapObject = (object: MapObject | undefined): object is HeroMa
 export const initializeHeroMapObject = (object: MapObject, objectData: HeroMapObjectData): HeroMapObject => ({
   ...object,
   ...initializeArmedMapObject(object),
-  ...initializeEquipableMapObject(object),
+  ...initializeEquipableObject(object),
   ...initializeOwnableObject(object),
   ...initializeMobileMapObject(object, objectData),
   dataId: MapObjectId.Hero,

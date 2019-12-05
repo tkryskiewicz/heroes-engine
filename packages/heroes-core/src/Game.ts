@@ -3,7 +3,6 @@ import { HeroData } from "./Hero";
 import { HeroClassData } from "./HeroClass";
 import { ItemData, ItemSelection } from "./Item";
 import {
-  addEquipableMapObjectItem,
   appendArmedMapObjectTroop,
   constructItemMapObjectItem,
   dismissArmedMapObjectTroop,
@@ -14,7 +13,6 @@ import {
   isArmedMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
-  isEquipableMapObject,
   isItemMapObjectData,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
@@ -26,11 +24,18 @@ import {
   removeObject,
   replaceObject,
   swapArmedMapObjectTroops,
-  tradeEquipableMapObjectItems,
   visitLimitedInteractionMapObject,
 } from "./map";
 import { Modifier } from "./Modifier";
-import { changeObjectOwner, isOwnableObject, isOwnableObjectData, isPickableObjectData } from "./objects";
+import {
+  addObjectItem,
+  changeObjectOwner,
+  isEquipableObject,
+  isOwnableObject,
+  isOwnableObjectData,
+  isPickableObjectData,
+  tradeObjectItems,
+} from "./objects";
 import { addResources, ResourceData, Resources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
@@ -108,18 +113,18 @@ export const swapGameTroops = (
 export const tradeGameItems = (game: Game, item: ItemSelection, withItem: ItemSelection): Game => {
   const object = getObjectById(game.map, item.objectId);
 
-  if (!isEquipableMapObject(object)) {
+  if (!object || !isEquipableObject(object)) {
     throw new Error(`${item.objectId} is not an equipable object`);
   }
 
   const withObject = getObjectById(game.map, withItem.objectId);
 
-  if (!isEquipableMapObject(withObject)) {
+  if (!withObject || !isEquipableObject(withObject)) {
     throw new Error(`${withItem.objectId} is not an equipable object`);
   }
 
   const [objectResult, withObjectResult] =
-    tradeEquipableMapObjectItems(object, item.index, withObject, withItem.index);
+    tradeObjectItems(object, item.index, withObject, withItem.index);
 
   return {
     ...game,
@@ -185,13 +190,13 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
   }
 
   if (isItemMapObjectData(objectData)) {
-    if (!isEquipableMapObject(activeObject)) {
+    if (!isEquipableObject(activeObject)) {
       throw new Error(`${activeObjectId} is not an equipable object`);
     }
 
     const item = constructItemMapObjectItem(objectData);
 
-    const activeObjectResult = addEquipableMapObjectItem(activeObject, item);
+    const activeObjectResult = addObjectItem(activeObject, item);
 
     game = {
       ...game,
