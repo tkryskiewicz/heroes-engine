@@ -6,7 +6,7 @@ import {
   MapObjectData,
   MobilityModifierObjectData,
   OwnableObjectData,
-  PickableMapObjectData,
+  PickableObjectData,
   TreasureMapObjectData,
 } from "heroes-core";
 
@@ -186,7 +186,7 @@ const randomCreatureObjects: (RandomCreatureMapObjectData & TerrainRestrictedMap
   },
 ];
 
-type ArtifactObjectData = ItemMapObjectData & PickableMapObjectData & TerrainRestrictedMapObjectData;
+type ArtifactObjectData = ItemMapObjectData & PickableObjectData & TerrainRestrictedMapObjectData;
 
 const artifactObjectOrder: string[] = [
   ArtifactId.ArcaneNecklaceOfMagic,
@@ -408,7 +408,7 @@ const randomResourceObject: MapObjectData & TerrainRestrictedMapObjectData = {
   width: 1,
 };
 
-type TreasureObjectData = TreasureMapObjectData & PickableMapObjectData & TerrainRestrictedMapObjectData;
+type TreasureObjectData = TreasureMapObjectData & PickableObjectData & TerrainRestrictedMapObjectData;
 
 const fireplace: TreasureObjectData = {
   grid: [

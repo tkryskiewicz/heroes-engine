@@ -10,7 +10,7 @@ import {
 } from "./OwnableObject";
 
 describe("isOwnableObjectData", () => {
-  it("should return true when ownable map object data", () => {
+  it("should return true when ownable object data", () => {
     const objectData: OwnableObjectData = {
       id: "dataId",
       ownable: true,
@@ -21,7 +21,7 @@ describe("isOwnableObjectData", () => {
     expect(result).toBe(true);
   });
 
-  it("should return false when not ownable map object data", () => {
+  it("should return false when not ownable object data", () => {
     const objectData: GameObjectData = {
       id: "dataId",
     };
@@ -51,7 +51,7 @@ describe("initializeOwnableObject", () => {
 });
 
 describe("isOwnableObject", () => {
-  it("should return true when ownable map object", () => {
+  it("should return true when ownable object", () => {
     const object: OwnableObject = {
       dataId: "dataId",
       id: "id",
@@ -63,7 +63,7 @@ describe("isOwnableObject", () => {
     expect(result).toBe(true);
   });
 
-  it("should return false when not ownable map object", () => {
+  it("should return false when not ownable object", () => {
     const object: GameObject = {
       dataId: "dataId",
       id: "id",

@@ -2,12 +2,12 @@ import {
   GameData,
   MapObject,
   MapObjectData,
-  PickableMapObjectData,
+  PickableObjectData,
   TreasureMapObject,
   TreasureMapObjectData,
 } from "heroes-core";
 
-export interface ResourceMapObjectData extends TreasureMapObjectData, PickableMapObjectData {
+export interface ResourceMapObjectData extends TreasureMapObjectData, PickableObjectData {
 }
 
 export const isResourceMapObjectData = (

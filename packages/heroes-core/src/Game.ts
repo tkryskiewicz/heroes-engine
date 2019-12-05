@@ -18,7 +18,6 @@ import {
   isItemMapObjectData,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
-  isPickableMapObjectData,
   isPuzzleMapObjectData,
   isTreasureMapObject,
   Map,
@@ -31,7 +30,7 @@ import {
   visitLimitedInteractionMapObject,
 } from "./map";
 import { Modifier } from "./Modifier";
-import { changeObjectOwner, isOwnableObject, isOwnableObjectData } from "./objects";
+import { changeObjectOwner, isOwnableObject, isOwnableObjectData, isPickableObjectData } from "./objects";
 import { addResources, ResourceData, Resources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
@@ -226,7 +225,7 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
     };
   }
 
-  if (isPickableMapObjectData(objectData)) {
+  if (isPickableObjectData(objectData)) {
     game = {
       ...game,
       map: removeObject(game.map, object.id),
