@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   changeArmedMapObjectArmy,
-  changeOwnableMapObjectOwner,
+  changeObjectOwner,
   GameData,
   isCreatureMapObject,
   MapObject,
@@ -241,7 +241,7 @@ export const createEditorMapObject = (id: string, objectDataId: string, data: Ga
       }))),
       heroClass: hero.heroClass,
       heroId: hero.heroId,
-      owner: changeOwnableMapObjectOwner(object, data.playerColors[0]).owner,
+      owner: changeObjectOwner(object, data.playerColors[0]).owner,
       skills: hero.skills,
     };
 

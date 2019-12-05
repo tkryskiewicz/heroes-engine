@@ -2,12 +2,12 @@ import {
   GameData,
   MapObject,
   MapObjectData,
-  OwnableMapObject,
-  OwnableMapObjectData,
+  OwnableObject,
+  OwnableObjectData,
   ResourceGeneratorMapObjectData,
 } from "heroes-core";
 
-export interface MineMapObjectData extends ResourceGeneratorMapObjectData, OwnableMapObjectData {
+export interface MineMapObjectData extends ResourceGeneratorMapObjectData, OwnableObjectData {
 }
 
 const isMine = (id: string, data: Pick<GameData, "resources">): boolean =>
@@ -19,7 +19,7 @@ export const isMineMapObjectData = (
 ): objectData is MineMapObjectData =>
   isMine(objectData.id, data);
 
-export type MineMapObject = OwnableMapObject;
+export type MineMapObject = OwnableObject;
 
 export const isMineMapObject = (object: MapObject, data: Pick<GameData, "resources">): object is MineMapObject =>
   isMine(object.dataId, data);

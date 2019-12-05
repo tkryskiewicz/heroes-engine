@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import {
   getDate,
   isObjectOwnedBy,
-  isOwnableMapObject,
+  isOwnableObject,
   isResourceGeneratorMapObjectData,
   isStructureBuilt,
 } from "heroes-core";
+import { isDefined } from "heroes-helpers";
 import { isHeroMapObject, isTownMapObject, StructureId } from "heroes-homm1";
 import { AppState } from "heroes-homm1-state";
 
@@ -26,7 +27,8 @@ type StateProp =
 const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerProps, StateProp> => {
   const ownedObjects = state.game.map.cells
     .map((c) => c.object)
-    .filter(isOwnableMapObject)
+    .filter(isDefined)
+    .filter(isOwnableObject)
     .filter((o) => isObjectOwnedBy(o, state.game.activePlayer));
 
   const heroes = ownedObjects

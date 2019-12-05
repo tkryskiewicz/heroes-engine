@@ -6,18 +6,18 @@ import {
   getTroop,
   isMapObject,
   MapObject,
-  OwnableMapObject,
-  OwnableMapObjectData,
+  OwnableObject,
+  OwnableObjectData,
   recruitTroop,
   Town,
 } from "heroes-core";
 
 import { MapObjectId } from "./MapObjectId";
 
-export interface TownMapObjectData extends ArmedMapObjectData, OwnableMapObjectData {
+export interface TownMapObjectData extends ArmedMapObjectData, OwnableObjectData {
 }
 
-export interface TownMapObject extends Town, ArmedMapObject, OwnableMapObject {
+export interface TownMapObject extends Town, ArmedMapObject, OwnableObject {
 }
 
 export const createTownMapObject = (

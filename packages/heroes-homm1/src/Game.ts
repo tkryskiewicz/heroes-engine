@@ -11,6 +11,8 @@ import {
   EquipableMapObjectData,
   Game,
   GameData,
+  GameObject,
+  GameObjectData,
   generateResourceGeneratorMapObjectResources,
   getCellIndex,
   getObjectById,
@@ -24,7 +26,7 @@ import {
   initializeEquipableMapObject,
   initializeLimitedInteractionMapObject,
   initializeMobileMapObject,
-  initializeOwnableMapObject,
+  initializeOwnableObject,
   initializeResourceGeneratorMapObject,
   initializeTreasureMapObject,
   isArmedMapObjectData,
@@ -36,8 +38,8 @@ import {
   isMobileMapObject,
   isMobileMapObjectData,
   isObjectOwnedBy,
-  isOwnableMapObject,
-  isOwnableMapObjectData,
+  isOwnableObject,
+  isOwnableObjectData,
   isPointTaken,
   isPointValid,
   isResourceGeneratorMapObjectData,
@@ -49,7 +51,7 @@ import {
   moveMobileMapObject,
   moveObject,
   multiplyResources,
-  OwnableMapObjectData,
+  OwnableObjectData,
   replaceObject,
   resetMobileMapObjectMobility,
   ResourceGeneratorMapObjectData,
@@ -74,7 +76,6 @@ import {
   isRandomCreatureMapObjectData,
   isRandomTownMapObjectData,
   isTownMapObject,
-  MapObjectData,
   RandomCreatureMapObjectData,
   RandomTownMapObjectData,
   recruitTownMapObjectTroop,
@@ -98,8 +99,8 @@ declare module "heroes-core/src/Game" {
   }
 }
 
-interface Handler<TObjectData extends MapObjectData, TObject extends MapObject = MapObject> {
-  readonly objectDataTest?: (objectData: MapObjectData) => objectData is TObjectData;
+interface Handler<TObjectData extends GameObjectData, TObject extends GameObject = GameObject> {
+  readonly objectDataTest?: (objectData: GameObjectData) => objectData is TObjectData;
   readonly objectTest?: (object: MapObject) => object is TObject;
   readonly initialize: (object: MapObject, objectData: TObjectData, data: GameData) => MapObject;
   readonly turnStart?: (object: TObject, objectData: TObjectData, game: Game) => TObject;
@@ -109,52 +110,61 @@ interface Handler<TObjectData extends MapObjectData, TObject extends MapObject =
 // core
 const armedObjectHandler: Handler<ArmedMapObjectData> = {
   initialize: initializeArmedMapObject,
+  // @ts-ignore
   objectDataTest: isArmedMapObjectData,
 };
 
 const creatureObjectHandler: Handler<CreatureMapObjectData> = {
   initialize: initializeCreatureMapObject,
+  // @ts-ignore
   objectDataTest: isCreatureMapObjectData,
 };
 
 const dwellingObjectHandler: Handler<DwellingMapObjectData> = {
   initialize: initializeDwellingMapObject,
+  // @ts-ignore
   objectDataTest: isDwellingMapObjectData,
 };
 
 const equipableObjectHandler: Handler<EquipableMapObjectData> = {
   initialize: initializeEquipableMapObject,
+  // @ts-ignore
   objectDataTest: isEquipableMapObjectData,
 };
 
 const limitedInteractionObjectHandler: Handler<LimitedInteractionMapObjectData> = {
   initialize: initializeLimitedInteractionMapObject,
+  // @ts-ignore
   objectDataTest: isLimitedInteractionMapObjectData,
 };
 
 const mobileObjectHandler: Handler<MobileMapObjectData> = {
   initialize: initializeMobileMapObject,
+  // @ts-ignore
   objectDataTest: isMobileMapObjectData,
 };
 
-const ownableObjectHandler: Handler<OwnableMapObjectData> = {
-  initialize: initializeOwnableMapObject,
-  objectDataTest: isOwnableMapObjectData,
+const ownableObjectHandler: Handler<OwnableObjectData> = {
+  initialize: initializeOwnableObject,
+  objectDataTest: isOwnableObjectData,
 };
 
 const resourceGeneratorObjectHandler: Handler<ResourceGeneratorMapObjectData> = {
   initialize: initializeResourceGeneratorMapObject,
+  // @ts-ignore
   objectDataTest: isResourceGeneratorMapObjectData,
 };
 
 const treasureObjectHandler: Handler<TreasureMapObjectData> = {
   initialize: initializeTreasureMapObject,
+  // @ts-ignore
   objectDataTest: isTreasureMapObjectData,
 };
 
 // homm1
 const randomCreatureObjectHandler: Handler<RandomCreatureMapObjectData> = {
   initialize: initializeRandomCreatureMapObject,
+  // @ts-ignore
   objectDataTest: isRandomCreatureMapObjectData,
 };
 
@@ -170,11 +180,13 @@ const townObjectHandler: Handler<TownMapObjectData, TownMapObject> = {
 
 const randomTownObjectHandler: Handler<RandomTownMapObjectData> = {
   initialize: initializeRandomTownMapObject,
+  // @ts-ignore
   objectDataTest: isRandomTownMapObjectData,
 };
 
 const heroObjectHandler: Handler<HeroMapObjectData, HeroMapObject> = {
   initialize: initializeHeroMapObject,
+  // @ts-ignore
   objectDataTest: isHeroMapObjectData,
   objectTest: isHeroMapObject,
   turnStart: (object, objectData, game) => {
@@ -184,7 +196,8 @@ const heroObjectHandler: Handler<HeroMapObjectData, HeroMapObject> = {
 
     const ownedObjects = game.map.cells
       .map((c) => c.object)
-      .filter(isOwnableMapObject)
+      .filter(isDefined)
+      .filter(isOwnableObject)
       .filter((o) => isObjectOwnedBy(o, game.activePlayer));
 
     const mobility = getInitialMobility(object, objectData, cell.terrain, ownedObjects, game.data);
@@ -324,7 +337,7 @@ export const startGameTurn = (game: Game): Game => {
   const objects = game.map.cells
     .map((c) => c.object)
     .filter(isDefined)
-    .filter((o) => isOwnableMapObject(o) && isObjectOwnedBy(o, game.activePlayer));
+    .filter((o) => isOwnableObject(o) && isObjectOwnedBy(o, game.activePlayer));
 
   objects
     .forEach((o) => {

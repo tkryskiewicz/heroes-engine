@@ -5,7 +5,7 @@ import {
   ItemMapObjectData,
   MapObjectData,
   MobilityModifierObjectData,
-  OwnableMapObjectData,
+  OwnableObjectData,
   PickableMapObjectData,
   TreasureMapObjectData,
 } from "heroes-core";
@@ -951,7 +951,7 @@ const travelGate2: typeof travelGate & VariantMapObjectData = {
   },
 };
 
-const lighthouse: TerrainRestrictedMapObjectData & OwnableMapObjectData & MobilityModifierObjectData = {
+const lighthouse: TerrainRestrictedMapObjectData & OwnableObjectData & MobilityModifierObjectData = {
   grid: [
     true, true, true,
     undefined, false, undefined,

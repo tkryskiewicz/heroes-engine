@@ -1,11 +1,11 @@
 import {
   Army,
   GameData,
-  initializeOwnableMapObject,
+  initializeOwnableObject,
   isMapObject,
   MapObject,
   MapObjectData,
-  OwnableMapObject,
+  OwnableObject,
   Troop,
 } from "heroes-core";
 
@@ -18,7 +18,7 @@ export interface RandomTownMapObjectData extends MapObjectData {
 export const isRandomTownMapObjectData = (objectData: MapObjectData): objectData is RandomTownMapObjectData =>
   objectData.id === MapObjectId.RandomTown || objectData.id === MapObjectId.RandomCastle;
 
-export interface RandomTownMapObject extends OwnableMapObject {
+export interface RandomTownMapObject extends OwnableObject {
   readonly dataId: MapObjectId.RandomTown | MapObjectId.RandomCastle;
   readonly customized: boolean;
   readonly army: Army;
@@ -30,7 +30,7 @@ export const initializeRandomTownMapObject = (
   data: Pick<GameData, "armySize" | "creatures">,
 ): RandomTownMapObject => ({
   ...object,
-  ...initializeOwnableMapObject(object),
+  ...initializeOwnableObject(object),
   army: [...new Array(data.armySize).keys()].map<Troop>(() => ({
     count: 0,
     creature: Object.keys(data.creatures)[0],

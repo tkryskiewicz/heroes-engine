@@ -8,28 +8,28 @@ import {
   initializeArmedMapObject,
   initializeEquipableMapObject,
   initializeMobileMapObject,
-  initializeOwnableMapObject,
+  initializeOwnableObject,
   isMapObject,
   MapObject,
   MapObjectData,
   MobileMapObject,
   MobileMapObjectData,
-  OwnableMapObject,
-  OwnableMapObjectData,
+  OwnableObject,
+  OwnableObjectData,
   random,
   Troop,
 } from "heroes-core";
 
 import { MapObjectId } from "./MapObjectId";
 
-export interface HeroMapObjectData extends ArmedMapObjectData, OwnableMapObjectData, MobileMapObjectData {
+export interface HeroMapObjectData extends ArmedMapObjectData, OwnableObjectData, MobileMapObjectData {
   readonly id: MapObjectId.Hero;
 }
 
 export const isHeroMapObjectData = (objectData: MapObjectData): objectData is HeroMapObjectData =>
   objectData.id === MapObjectId.Hero;
 
-export interface HeroMapObject extends Hero, ArmedMapObject, EquipableMapObject, OwnableMapObject, MobileMapObject {
+export interface HeroMapObject extends Hero, ArmedMapObject, EquipableMapObject, OwnableObject, MobileMapObject {
   readonly dataId: MapObjectId.Hero;
 }
 
@@ -40,7 +40,7 @@ export const initializeHeroMapObject = (object: MapObject, objectData: HeroMapOb
   ...object,
   ...initializeArmedMapObject(object),
   ...initializeEquipableMapObject(object),
-  ...initializeOwnableMapObject(object),
+  ...initializeOwnableObject(object),
   ...initializeMobileMapObject(object, objectData),
   dataId: MapObjectId.Hero,
   experience: 0,

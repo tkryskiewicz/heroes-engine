@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { getDate, getObjectById, isObjectOwnedBy, isOwnableMapObject, isStructureBuilt } from "heroes-core";
+import { getDate, getObjectById, isObjectOwnedBy, isOwnableObject, isStructureBuilt } from "heroes-core";
+import { isDefined } from "heroes-helpers";
 import { isHeroMapObject, isTownMapObject, StructureId } from "heroes-homm1";
 import { AppState, statusWindowActions } from "heroes-homm1-state";
 
@@ -16,7 +17,8 @@ type StateProp =
 const mapStateToProps = (state: AppState): Pick<StatusWindowProps, StateProp> => {
   const ownedTowns = state.game.map.cells
     .map((c) => c.object)
-    .filter(isOwnableMapObject)
+    .filter(isDefined)
+    .filter(isOwnableObject)
     .filter((o) => isObjectOwnedBy(o, state.game.activePlayer))
     .filter(isTownMapObject);
 

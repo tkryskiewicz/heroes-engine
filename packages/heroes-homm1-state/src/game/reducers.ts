@@ -1,5 +1,5 @@
 import {
-  changeOwnableMapObjectOwner,
+  changeObjectOwner,
   changeTerrain,
   createMap,
   createPoint,
@@ -107,7 +107,7 @@ Object.keys(data.terrains).forEach((t, i) => {
 Object.keys(data.heroClasses).forEach((hc, i) => {
   const heroId = Object.values(data.heroes).filter((h) => h.heroClass === hc)[0].id;
 
-  const object = changeOwnableMapObjectOwner(
+  const object = changeObjectOwner(
     changeHeroMapObjectHero(
       createGameMapObject(`hero/${i}`, MapObjectId.Hero, data) as HeroMapObject,
       heroId,

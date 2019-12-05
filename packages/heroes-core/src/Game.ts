@@ -5,7 +5,6 @@ import { ItemData, ItemSelection } from "./Item";
 import {
   addEquipableMapObjectItem,
   appendArmedMapObjectTroop,
-  changeOwnableMapObjectOwner,
   constructItemMapObjectItem,
   dismissArmedMapObjectTroop,
   generateTreasureMapObjectResources,
@@ -19,8 +18,6 @@ import {
   isItemMapObjectData,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
-  isOwnableMapObject,
-  isOwnableMapObjectData,
   isPickableMapObjectData,
   isPuzzleMapObjectData,
   isTreasureMapObject,
@@ -34,6 +31,7 @@ import {
   visitLimitedInteractionMapObject,
 } from "./map";
 import { Modifier } from "./Modifier";
+import { changeObjectOwner, isOwnableObject, isOwnableObjectData } from "./objects";
 import { addResources, ResourceData, Resources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
@@ -166,7 +164,7 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
   }
 
   if (isLimitedInteractionMapObjectData(objectData) && isLimitedInteractionMapObject(object)) {
-    if (!isOwnableMapObject(activeObject)) {
+    if (!isOwnableObject(activeObject)) {
       throw new Error(`${activeObjectId} is not an ownable object`);
     }
 
@@ -235,14 +233,14 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
     };
   }
 
-  if (isOwnableMapObjectData(objectData) && isOwnableMapObject(object)) {
-    if (!isOwnableMapObject(activeObject)) {
+  if (isOwnableObjectData(objectData) && isOwnableObject(object)) {
+    if (!isOwnableObject(activeObject)) {
       throw new Error(`${activeObjectId} is not an ownable object`);
     }
 
     game = {
       ...game,
-      map: replaceObject(game.map, changeOwnableMapObjectOwner(object, activeObject.owner)),
+      map: replaceObject(game.map, changeObjectOwner(object, activeObject.owner)),
     };
   }
 

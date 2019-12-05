@@ -8,8 +8,8 @@ import {
   isDwellingMapObjectData,
   isItemMapObjectData,
   isObjectOwnedBy,
-  isOwnableMapObject,
-  isOwnableMapObjectData,
+  isOwnableObject,
+  isOwnableObjectData,
   isTreasureMapObject,
   MapObject,
   MapObjectData,
@@ -49,7 +49,7 @@ export const renderMapObjectDetails = (
     readonly onCloseClick: () => void;
   },
 ) => {
-  if (activeObject && isOwnableMapObject(activeObject) && isObeliskMapObject(object) &&
+  if (activeObject && isOwnableObject(activeObject) && isObeliskMapObject(object) &&
     isObeliskMapObjectData(objectData)) {
     const visitor = getVisitor(objectData, activeObject);
 
@@ -180,7 +180,7 @@ export const onCellClick = (
     }
 
     dispatch(gameActions.visitMapObject(object.id, activeObject.id));
-  } else if (isOwnableMapObjectData(objectData)) {
+  } else if (isOwnableObjectData(objectData)) {
     if (!isHeroMapObject(activeObject)) {
       return;
     }

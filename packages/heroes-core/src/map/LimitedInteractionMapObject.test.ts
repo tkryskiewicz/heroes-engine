@@ -1,3 +1,4 @@
+import { OwnableObject } from "../objects";
 import {
   getVisitor,
   initializeLimitedInteractionMapObject,
@@ -10,7 +11,6 @@ import {
   wasVisitedBy,
 } from "./LimitedInteractionMapObject";
 import { createMapObject, MapObject, MapObjectData } from "./MapObject";
-import { OwnableMapObject } from "./OwnableMapObject";
 
 describe("isLimitedInteractionMapObjectData", () => {
   it("should return true when limited interaction object data", () => {
@@ -99,7 +99,7 @@ describe("getVisitor", () => {
       width: 1,
     };
 
-    const object: OwnableMapObject = {
+    const object: OwnableObject = {
       dataId: "otherDataId",
       id: "id",
       owner: "player",
@@ -119,7 +119,7 @@ describe("getVisitor", () => {
       width: 1,
     };
 
-    const object: OwnableMapObject = {
+    const object: OwnableObject = {
       dataId: "otherDataId",
       id: "id",
       owner: "player",
@@ -139,7 +139,7 @@ describe("getVisitor", () => {
       width: 1,
     };
 
-    const object: OwnableMapObject = {
+    const object: OwnableObject = {
       dataId: "otherDataId",
       id: "id",
       owner: undefined,

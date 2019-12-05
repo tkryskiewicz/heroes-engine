@@ -1,5 +1,5 @@
+import { OwnableObject } from "../objects";
 import { isMapObject, MapObject, MapObjectData } from "./MapObject";
-import { OwnableMapObject } from "./OwnableMapObject";
 
 export enum InteractionLimitType {
   OncePerObject = "oncePerObject",
@@ -26,7 +26,7 @@ export const initializeLimitedInteractionMapObject = (object: MapObject): Limite
   visitedBy: [],
 });
 
-export const getVisitor = (objectData: LimitedInteractionMapObjectData, object: OwnableMapObject): string => {
+export const getVisitor = (objectData: LimitedInteractionMapObjectData, object: OwnableObject): string => {
   if (!object.owner) {
     throw new Error(`${object.id} is not owned by anyone`);
   }

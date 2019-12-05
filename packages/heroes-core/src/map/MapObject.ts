@@ -1,13 +1,15 @@
+import { GameObject, GameObjectData } from "../GameObject";
+
 export type MapObjectGridCell = boolean | undefined;
 
-export interface MapObjectData {
+export interface MapObjectData extends GameObjectData {
   readonly id: string;
   readonly width: number;
   readonly height: number;
   readonly grid: MapObjectGridCell[];
 }
 
-export interface MapObject {
+export interface MapObject extends GameObject {
   readonly id: string;
   readonly dataId: string;
 }
