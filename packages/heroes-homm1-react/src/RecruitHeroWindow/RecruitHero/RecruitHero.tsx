@@ -3,7 +3,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { noop } from "heroes-helpers";
-import { HeroClass } from "heroes-homm1";
+import { HeroClassId } from "heroes-homm1";
 
 import * as styles from "./RecruitHero.module.scss";
 
@@ -15,7 +15,7 @@ import { getHeroClassNameMessage } from "../../messages";
 
 interface Props {
   readonly heroId: string;
-  readonly heroClass: HeroClass;
+  readonly heroClass: HeroClassId;
   readonly disabled: boolean;
   readonly onPortraitClick: (id: string) => void;
   readonly onRecruitClick: (id: string) => void;

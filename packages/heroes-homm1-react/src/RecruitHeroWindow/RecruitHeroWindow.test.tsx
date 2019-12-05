@@ -1,6 +1,6 @@
 import React from "react";
 
-import { HeroClass, HeroId } from "heroes-homm1";
+import { HeroClassId, HeroId } from "heroes-homm1";
 import { byTestId, mountWithIntl } from "heroes-test-helpers";
 
 import { ResourceCost } from "../base";
@@ -12,11 +12,11 @@ describe("RecruitHeroWindow", () => {
     cost: {},
     heroes: [
         {
-          heroClass: HeroClass.Knight,
+          heroClass: HeroClassId.Knight,
           id: HeroId.LordKilburn,
         },
         {
-          heroClass: HeroClass.Barbarian,
+          heroClass: HeroClassId.Barbarian,
           id: HeroId.Thundax,
         },
     ],
@@ -28,7 +28,7 @@ describe("RecruitHeroWindow", () => {
         ...defaultProps,
         heroes: [
           {
-            heroClass: HeroClass.Knight,
+            heroClass: HeroClassId.Knight,
             id: HeroId.LordKilburn,
           },
           defaultProps.heroes[1],
@@ -41,7 +41,7 @@ describe("RecruitHeroWindow", () => {
       const control = wrapper.find(byTestId("hero0")).find(RecruitHero);
 
       expect(control.props().heroId).toBe(HeroId.LordKilburn);
-      expect(control.props().heroClass).toBe(HeroClass.Knight);
+      expect(control.props().heroClass).toBe(HeroClassId.Knight);
     });
 
     it("should not be disabled by default", () => {
@@ -76,7 +76,7 @@ describe("RecruitHeroWindow", () => {
         ...defaultProps,
         heroes: [
           {
-            heroClass: HeroClass.Knight,
+            heroClass: HeroClassId.Knight,
             id: HeroId.LordKilburn,
           },
           defaultProps.heroes[1],
@@ -99,7 +99,7 @@ describe("RecruitHeroWindow", () => {
         ...defaultProps,
         heroes: [
           {
-            heroClass: HeroClass.Knight,
+            heroClass: HeroClassId.Knight,
             id: HeroId.LordKilburn,
           },
           defaultProps.heroes[1],
@@ -125,7 +125,7 @@ describe("RecruitHeroWindow", () => {
         heroes: [
           defaultProps.heroes[0],
           {
-            heroClass: HeroClass.Barbarian,
+            heroClass: HeroClassId.Barbarian,
             id: HeroId.Thundax,
           },
         ],
@@ -137,7 +137,7 @@ describe("RecruitHeroWindow", () => {
       const control = wrapper.find(byTestId("hero1")).find(RecruitHero);
 
       expect(control.props().heroId).toBe(HeroId.Thundax);
-      expect(control.props().heroClass).toBe(HeroClass.Barbarian);
+      expect(control.props().heroClass).toBe(HeroClassId.Barbarian);
     });
 
    it("should not be disabled by default", () => {
@@ -173,7 +173,7 @@ describe("RecruitHeroWindow", () => {
         heroes: [
           defaultProps.heroes[0],
           {
-            heroClass: HeroClass.Barbarian,
+            heroClass: HeroClassId.Barbarian,
             id: HeroId.Thundax,
           },
         ],
@@ -196,7 +196,7 @@ describe("RecruitHeroWindow", () => {
         heroes: [
           defaultProps.heroes[0],
           {
-            heroClass: HeroClass.Barbarian,
+            heroClass: HeroClassId.Barbarian,
             id: HeroId.Thundax,
           },
         ],
@@ -221,11 +221,11 @@ describe("RecruitHeroWindow", () => {
       },
       heroes: [
         {
-          heroClass: HeroClass.Knight,
+          heroClass: HeroClassId.Knight,
           id: HeroId.LordKilburn,
         },
         {
-          heroClass: HeroClass.Barbarian,
+          heroClass: HeroClassId.Barbarian,
           id: HeroId.Thundax,
         },
       ],
@@ -244,11 +244,11 @@ describe("RecruitHeroWindow", () => {
       cost: {},
       heroes: [
         {
-          heroClass: HeroClass.Knight,
+          heroClass: HeroClassId.Knight,
           id: HeroId.LordKilburn,
         },
         {
-          heroClass: HeroClass.Barbarian,
+          heroClass: HeroClassId.Barbarian,
           id: HeroId.Thundax,
         },
       ],

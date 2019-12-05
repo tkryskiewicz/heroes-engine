@@ -4,6 +4,8 @@ import {
   InteractionLimitType,
   ItemMapObjectData,
   MapObjectData,
+  MobilityModifierObjectData,
+  OwnableMapObjectData,
   PickableMapObjectData,
   TreasureMapObjectData,
 } from "heroes-core";
@@ -46,7 +48,7 @@ const heroObjects: HeroMapObjectData[] = [
     army: {
       preventMovingLastTroop: true,
     },
-    baseMobility: 20,
+    baseMobility: 60,
     grid: [
       true,
     ],
@@ -949,6 +951,33 @@ const travelGate2: typeof travelGate & VariantMapObjectData = {
   },
 };
 
+const lighthouse: TerrainRestrictedMapObjectData & OwnableMapObjectData & MobilityModifierObjectData = {
+  grid: [
+    true, true, true,
+    undefined, false, undefined,
+  ],
+  height: 2,
+  id: MapObjectId.Lighthouse,
+  mobilityModifier: {
+    [TerrainType.Water]: {
+      type: "add",
+      value: 20,
+    },
+  },
+  ownable: true,
+  restrictedTerrains: [
+    TerrainType.Grass,
+    TerrainType.Swamp,
+    TerrainType.Dirt,
+  ],
+  type: [
+    MapObjectType.Grass,
+    MapObjectType.Swamp,
+    MapObjectType.Dirt,
+  ],
+  width: 3,
+};
+
 const otherObjects: TerrainRestrictedMapObjectData[] = [
   cave,
   faerieRing,
@@ -1032,25 +1061,7 @@ const otherObjects: TerrainRestrictedMapObjectData[] = [
     ],
     width: 1,
   },
-  {
-    grid: [
-      true, true, true,
-      undefined, false, undefined,
-    ],
-    height: 2,
-    id: MapObjectId.Lighthouse,
-    restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Swamp,
-      TerrainType.Dirt,
-    ],
-    type: [
-      MapObjectType.Grass,
-      MapObjectType.Swamp,
-      MapObjectType.Dirt,
-    ],
-    width: 3,
-  },
+  lighthouse,
   {
     grid: [
       true, true,

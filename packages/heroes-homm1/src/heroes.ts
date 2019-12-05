@@ -1,6 +1,6 @@
 import { Army, Hero, HeroClassData, HeroData, random, Troop } from "heroes-core";
 
-import { HeroClass } from "./HeroClass";
+import { HeroClassId } from "./HeroClassId";
 import { MapObjectId } from "./map";
 
 export enum HeroId {
@@ -51,156 +51,156 @@ export enum HeroId {
 
 const knightHeroes: HeroData[] = [
   {
-    heroClass: HeroClass.Knight,
+    heroClass: HeroClassId.Knight,
     id: HeroId.LordKilburn,
   },
   {
-    heroClass: HeroClass.Knight,
+    heroClass: HeroClassId.Knight,
     id: HeroId.LordHaart,
   },
   {
-    heroClass: HeroClass.Knight,
+    heroClass: HeroClassId.Knight,
     id: HeroId.SirGallant,
   },
   {
-    heroClass: HeroClass.Knight,
+    heroClass: HeroClassId.Knight,
     id: HeroId.Arturius,
   },
   {
-    heroClass: HeroClass.Knight,
+    heroClass: HeroClassId.Knight,
     id: HeroId.Tyro,
   },
   {
-    heroClass: HeroClass.Knight,
+    heroClass: HeroClassId.Knight,
     id: HeroId.Maximus,
   },
   {
-    heroClass: HeroClass.Knight,
+    heroClass: HeroClassId.Knight,
     id: HeroId.Ector,
   },
   {
-    heroClass: HeroClass.Knight,
+    heroClass: HeroClassId.Knight,
     id: HeroId.Dimitri,
   },
   {
-    heroClass: HeroClass.Knight,
+    heroClass: HeroClassId.Knight,
     id: HeroId.Ambrose,
   },
 ];
 
 const barbarianHeroes: HeroData[] = [
   {
-    heroClass: HeroClass.Barbarian,
+    heroClass: HeroClassId.Barbarian,
     id: HeroId.Thundax,
   },
   {
-    heroClass: HeroClass.Barbarian,
+    heroClass: HeroClassId.Barbarian,
     id: HeroId.Ergon,
   },
   {
-    heroClass: HeroClass.Barbarian,
+    heroClass: HeroClassId.Barbarian,
     id: HeroId.Kelzen,
   },
   {
-    heroClass: HeroClass.Barbarian,
+    heroClass: HeroClassId.Barbarian,
     id: HeroId.Tsabu,
   },
   {
-    heroClass: HeroClass.Barbarian,
+    heroClass: HeroClassId.Barbarian,
     id: HeroId.CragHack,
   },
   {
-    heroClass: HeroClass.Barbarian,
+    heroClass: HeroClassId.Barbarian,
     id: HeroId.JoJosh,
   },
   {
-    heroClass: HeroClass.Barbarian,
+    heroClass: HeroClassId.Barbarian,
     id: HeroId.Atlas,
   },
   {
-    heroClass: HeroClass.Barbarian,
+    heroClass: HeroClassId.Barbarian,
     id: HeroId.Yog,
   },
   {
-    heroClass: HeroClass.Barbarian,
+    heroClass: HeroClassId.Barbarian,
     id: HeroId.Antoine,
   },
 ];
 
 const sorceressHeroes: HeroData[] = [
   {
-    heroClass: HeroClass.Sorceress,
+    heroClass: HeroClassId.Sorceress,
     id: HeroId.Ariel,
   },
   {
-    heroClass: HeroClass.Sorceress,
+    heroClass: HeroClassId.Sorceress,
     id: HeroId.Vatawna,
   },
   {
-    heroClass: HeroClass.Sorceress,
+    heroClass: HeroClassId.Sorceress,
     id: HeroId.Carlawn,
   },
   {
-    heroClass: HeroClass.Sorceress,
+    heroClass: HeroClassId.Sorceress,
     id: HeroId.Rebecca,
   },
   {
-    heroClass: HeroClass.Sorceress,
+    heroClass: HeroClassId.Sorceress,
     id: HeroId.Luna,
   },
   {
-    heroClass: HeroClass.Sorceress,
+    heroClass: HeroClassId.Sorceress,
     id: HeroId.Astra,
   },
   {
-    heroClass: HeroClass.Sorceress,
+    heroClass: HeroClassId.Sorceress,
     id: HeroId.Natasha,
   },
   {
-    heroClass: HeroClass.Sorceress,
+    heroClass: HeroClassId.Sorceress,
     id: HeroId.Gem,
   },
   {
-    heroClass: HeroClass.Sorceress,
+    heroClass: HeroClassId.Sorceress,
     id: HeroId.Troyan,
   },
 ];
 
 const warlockHeroes: HeroData[] = [
   {
-    heroClass: HeroClass.Warlock,
+    heroClass: HeroClassId.Warlock,
     id: HeroId.Agar,
   },
   {
-    heroClass: HeroClass.Warlock,
+    heroClass: HeroClassId.Warlock,
     id: HeroId.Crodo,
   },
   {
-    heroClass: HeroClass.Warlock,
+    heroClass: HeroClassId.Warlock,
     id: HeroId.Falagar,
   },
   {
-    heroClass: HeroClass.Warlock,
+    heroClass: HeroClassId.Warlock,
     id: HeroId.Barok,
   },
   {
-    heroClass: HeroClass.Warlock,
+    heroClass: HeroClassId.Warlock,
     id: HeroId.Arie,
   },
   {
-    heroClass: HeroClass.Warlock,
+    heroClass: HeroClassId.Warlock,
     id: HeroId.Kastore,
   },
   {
-    heroClass: HeroClass.Warlock,
+    heroClass: HeroClassId.Warlock,
     id: HeroId.Sandro,
   },
   {
-    heroClass: HeroClass.Warlock,
+    heroClass: HeroClassId.Warlock,
     id: HeroId.Wrathmont,
   },
   {
-    heroClass: HeroClass.Warlock,
+    heroClass: HeroClassId.Warlock,
     id: HeroId.Vesper,
   },
 ];

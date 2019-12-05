@@ -17,11 +17,10 @@ export {
   tradeGameItems,
   dismissGameTroop,
   dismissGameHero,
-  startGameTurn,
   visitGameMapObject,
-  moveGameObject,
 } from "./Game";
 export { GameDate, getDate } from "./GameDate";
+export { GameObject, GameObjectData } from "./GameObject";
 export { HeroClassData } from "./HeroClass";
 export {
   Hero,
@@ -32,6 +31,8 @@ export {
 } from "./Hero";
 export { Item, ItemData, ItemSelection } from "./Item";
 export * from "./map";
+export * from "./Modifier";
+export * from "./objects";
 export {
   ResourceData,
   Resources,

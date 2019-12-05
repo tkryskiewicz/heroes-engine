@@ -1,3 +1,4 @@
+export * from "./ArmedMapObject";
 export * from "./HeroMapObject";
 export * from "./map";
 export { MapObjectData } from "./MapObject";

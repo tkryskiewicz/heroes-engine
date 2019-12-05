@@ -12,7 +12,7 @@ import {
   GameDifficulty,
   GameOption,
   GameType,
-  HeroClass,
+  HeroClassId,
   HeroId,
   LuckType,
   MapObjectId,
@@ -61,7 +61,7 @@ export const mine = (name: string) =>
   select<MapObjectId>(name, Object.values(resources).map((r) => r.mine) as MapObjectId[], MapObjectId.OreMine);
 
 export const heroClass = (name: string) =>
-  select<HeroClass>(name, Object.values(HeroClass), HeroClass.Knight);
+  select<HeroClassId>(name, Object.values(HeroClassId), HeroClassId.Knight);
 
 export const skill = (name: string) =>
   select<Skill>(name, Object.values(Skill), Skill.Attack);

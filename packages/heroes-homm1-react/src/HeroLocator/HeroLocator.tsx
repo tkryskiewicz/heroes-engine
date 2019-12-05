@@ -40,7 +40,7 @@ export class HeroLocator extends React.Component<HeroLocatorProps> {
         />
         <img
           className={styles.mobility}
-          src={mobilityImages[Math.min(mobility, mobilityImages.length - 1)]}
+          src={this.getMobilityImage(mobility)}
         />
         <div className={styles.portrait}>
           <img
@@ -49,5 +49,21 @@ export class HeroLocator extends React.Component<HeroLocatorProps> {
         </div>
       </div>
     );
+  }
+
+  private getMobilityImage(mobility: number) {
+    if (mobility >= 85) {
+      return mobilityImages[mobilityImages.length - 1];
+    }
+
+    if (mobility >= 74) {
+      return mobilityImages[mobilityImages.length - 2];
+    }
+
+    if (mobility >= 63) {
+      return mobilityImages[mobilityImages.length - 3];
+    }
+
+    return mobilityImages[Math.floor((mobility / 62) * (mobilityImages.length - 4))];
   }
 }

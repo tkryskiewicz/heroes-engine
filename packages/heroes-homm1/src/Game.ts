@@ -1,7 +1,9 @@
 import {
   addEquipableMapObjectItem,
+  addResources,
   ArmedMapObjectData,
   buildTownStructure,
+  canMobileMapObjectMove,
   createMapObject,
   CreatureMapObjectData,
   DwellingMapObjectData,
@@ -9,7 +11,11 @@ import {
   EquipableMapObjectData,
   Game,
   GameData,
+  generateResourceGeneratorMapObjectResources,
+  getCellIndex,
   getObjectById,
+  getObjectByPoint,
+  getObjectPosition,
   getTownStructure,
   Hero,
   initializeArmedMapObject,
@@ -27,25 +33,38 @@ import {
   isDwellingStructure,
   isEquipableMapObjectData,
   isLimitedInteractionMapObjectData,
+  isMobileMapObject,
   isMobileMapObjectData,
   isObjectOwnedBy,
+  isOwnableMapObject,
   isOwnableMapObjectData,
+  isPointTaken,
+  isPointValid,
   isResourceGeneratorMapObjectData,
   isTreasureMapObjectData,
   LimitedInteractionMapObjectData,
   MapObject,
+  MapObjectOrientation,
   MobileMapObjectData,
+  moveMobileMapObject,
+  moveObject,
   multiplyResources,
   OwnableMapObjectData,
   replaceObject,
+  resetMobileMapObjectMobility,
   ResourceGeneratorMapObjectData,
   Resources,
   subtractResources,
   Town,
+  translatePointDirection,
   TreasureMapObjectData,
+  visitGameMapObject,
 } from "heroes-core";
+import { isDefined } from "heroes-helpers";
 
 import {
+  createTownMapObject,
+  HeroMapObject,
   HeroMapObjectData,
   initializeHeroMapObject,
   initializeRandomCreatureMapObject,
@@ -60,7 +79,9 @@ import {
   RandomTownMapObjectData,
   recruitTownMapObjectTroop,
   TownMapObject,
+  TownMapObjectData,
 } from "./map";
+import { getInitialMobility, getMovementCost } from "./objects";
 import { Skill } from "./Skill";
 import { constructSpellBook, SpellBookSpell } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";
@@ -77,95 +98,128 @@ declare module "heroes-core/src/Game" {
   }
 }
 
+interface Handler<TObjectData extends MapObjectData, TObject extends MapObject = MapObject> {
+  readonly objectDataTest?: (objectData: MapObjectData) => objectData is TObjectData;
+  readonly objectTest?: (object: MapObject) => object is TObject;
+  readonly initialize: (object: MapObject, objectData: TObjectData, data: GameData) => MapObject;
+  readonly turnStart?: (object: TObject, objectData: TObjectData, game: Game) => TObject;
+  readonly turnEnd?: (object: TObject, objectData: TObjectData, data: GameData) => TObject;
+}
+
+// core
+const armedObjectHandler: Handler<ArmedMapObjectData> = {
+  initialize: initializeArmedMapObject,
+  objectDataTest: isArmedMapObjectData,
+};
+
+const creatureObjectHandler: Handler<CreatureMapObjectData> = {
+  initialize: initializeCreatureMapObject,
+  objectDataTest: isCreatureMapObjectData,
+};
+
+const dwellingObjectHandler: Handler<DwellingMapObjectData> = {
+  initialize: initializeDwellingMapObject,
+  objectDataTest: isDwellingMapObjectData,
+};
+
+const equipableObjectHandler: Handler<EquipableMapObjectData> = {
+  initialize: initializeEquipableMapObject,
+  objectDataTest: isEquipableMapObjectData,
+};
+
+const limitedInteractionObjectHandler: Handler<LimitedInteractionMapObjectData> = {
+  initialize: initializeLimitedInteractionMapObject,
+  objectDataTest: isLimitedInteractionMapObjectData,
+};
+
+const mobileObjectHandler: Handler<MobileMapObjectData> = {
+  initialize: initializeMobileMapObject,
+  objectDataTest: isMobileMapObjectData,
+};
+
+const ownableObjectHandler: Handler<OwnableMapObjectData> = {
+  initialize: initializeOwnableMapObject,
+  objectDataTest: isOwnableMapObjectData,
+};
+
+const resourceGeneratorObjectHandler: Handler<ResourceGeneratorMapObjectData> = {
+  initialize: initializeResourceGeneratorMapObject,
+  objectDataTest: isResourceGeneratorMapObjectData,
+};
+
+const treasureObjectHandler: Handler<TreasureMapObjectData> = {
+  initialize: initializeTreasureMapObject,
+  objectDataTest: isTreasureMapObjectData,
+};
+
+// homm1
+const randomCreatureObjectHandler: Handler<RandomCreatureMapObjectData> = {
+  initialize: initializeRandomCreatureMapObject,
+  objectDataTest: isRandomCreatureMapObjectData,
+};
+
+const townObjectHandler: Handler<TownMapObjectData, TownMapObject> = {
+  // @ts-ignore
+  initialize: createTownMapObject,
+  objectTest: isTownMapObject,
+  turnEnd: (object) => ({
+    ...object,
+    ...endTownTurn(object),
+  }),
+};
+
+const randomTownObjectHandler: Handler<RandomTownMapObjectData> = {
+  initialize: initializeRandomTownMapObject,
+  objectDataTest: isRandomTownMapObjectData,
+};
+
+const heroObjectHandler: Handler<HeroMapObjectData, HeroMapObject> = {
+  initialize: initializeHeroMapObject,
+  objectDataTest: isHeroMapObjectData,
+  objectTest: isHeroMapObject,
+  turnStart: (object, objectData, game) => {
+    const position = getObjectPosition(game.map, object.id)!;
+
+    const cell = game.map.cells[getCellIndex(game.map.width, position)];
+
+    const ownedObjects = game.map.cells
+      .map((c) => c.object)
+      .filter(isOwnableMapObject)
+      .filter((o) => isObjectOwnedBy(o, game.activePlayer));
+
+    const mobility = getInitialMobility(object, objectData, cell.terrain, ownedObjects, game.data);
+
+    return {
+      ...object,
+      mobility,
+    };
+  },
+};
+
+const objectHandlers = [
+  armedObjectHandler,
+  creatureObjectHandler,
+  dwellingObjectHandler,
+  equipableObjectHandler,
+  limitedInteractionObjectHandler,
+  mobileObjectHandler,
+  ownableObjectHandler,
+  resourceGeneratorObjectHandler,
+  treasureObjectHandler,
+  townObjectHandler,
+  heroObjectHandler,
+  randomCreatureObjectHandler,
+  randomTownObjectHandler,
+];
+
 export const createGameMapObject = (id: string, dataId: string, data: GameData): MapObject => {
-  interface Handler<TData extends MapObjectData> {
-    readonly test: (objectData: MapObjectData) => objectData is TData;
-    readonly initialize: (object: MapObject, objectData: TData, data: GameData) => MapObject;
-  }
-
-  // core
-  const armedObjectHandler: Handler<ArmedMapObjectData> = {
-    initialize: initializeArmedMapObject,
-    test: isArmedMapObjectData,
-  };
-
-  const creatureObjectHandler: Handler<CreatureMapObjectData> = {
-    initialize: initializeCreatureMapObject,
-    test: isCreatureMapObjectData,
-  };
-
-  const dwellingObjectHandler: Handler<DwellingMapObjectData> = {
-    initialize: initializeDwellingMapObject,
-    test: isDwellingMapObjectData,
-  };
-
-  const equipableObjectHandler: Handler<EquipableMapObjectData> = {
-    initialize: initializeEquipableMapObject,
-    test: isEquipableMapObjectData,
-  };
-
-  const limitedInteractionObjectHandler: Handler<LimitedInteractionMapObjectData> = {
-    initialize: initializeLimitedInteractionMapObject,
-    test: isLimitedInteractionMapObjectData,
-  };
-
-  const mobileObjectHandler: Handler<MobileMapObjectData> = {
-    initialize: initializeMobileMapObject,
-    test: isMobileMapObjectData,
-  };
-
-  const ownableObjectHandler: Handler<OwnableMapObjectData> = {
-    initialize: initializeOwnableMapObject,
-    test: isOwnableMapObjectData,
-  };
-
-  const resourceGeneratorObjectHandler: Handler<ResourceGeneratorMapObjectData> = {
-    initialize: initializeResourceGeneratorMapObject,
-    test: isResourceGeneratorMapObjectData,
-  };
-
-  const treasureObjectHandler: Handler<TreasureMapObjectData> = {
-    initialize: initializeTreasureMapObject,
-    test: isTreasureMapObjectData,
-  };
-
-  // homm1
-  const randomCreatureObjectHandler: Handler<RandomCreatureMapObjectData> = {
-    initialize: initializeRandomCreatureMapObject,
-    test: isRandomCreatureMapObjectData,
-  };
-
-  const randomTownObjectHandler: Handler<RandomTownMapObjectData> = {
-    initialize: initializeRandomTownMapObject,
-    test: isRandomTownMapObjectData,
-  };
-
-  const heroObjectHandler: Handler<HeroMapObjectData> = {
-    initialize: initializeHeroMapObject,
-    test: isHeroMapObjectData,
-  };
-
-  const handlers = [
-    armedObjectHandler,
-    creatureObjectHandler,
-    dwellingObjectHandler,
-    equipableObjectHandler,
-    limitedInteractionObjectHandler,
-    mobileObjectHandler,
-    ownableObjectHandler,
-    resourceGeneratorObjectHandler,
-    treasureObjectHandler,
-    heroObjectHandler,
-    randomCreatureObjectHandler,
-    randomTownObjectHandler,
-  ];
-
   const objectData = data.mapObjects[dataId];
 
-  return handlers.reduce((o, h) => {
+  return objectHandlers.reduce((o, h) => {
     return {
-      ...h.test(objectData) ?
-      h.initialize(o, objectData as any, data) :
+      ...h.objectDataTest && h.objectDataTest(objectData) ?
+      // @ts-ignore
+      h.initialize(o, objectData, data) :
       o,
     };
   }, createMapObject(id, objectData));
@@ -266,6 +320,57 @@ export const buyMageGuildSpellBook = (game: Game, heroId: string, townId: string
   };
 };
 
+export const startGameTurn = (game: Game): Game => {
+  const objects = game.map.cells
+    .map((c) => c.object)
+    .filter(isDefined)
+    .filter((o) => isOwnableMapObject(o) && isObjectOwnedBy(o, game.activePlayer));
+
+  objects
+    .forEach((o) => {
+      const objectData = game.data.mapObjects[o.dataId];
+
+      if (isResourceGeneratorMapObjectData(objectData)) {
+        const resources = generateResourceGeneratorMapObjectResources(objectData);
+
+        game = {
+          ...game,
+          resources: addResources(game.resources, resources),
+        };
+      }
+    });
+
+  return {
+    ...game,
+    map: {
+      ...game.map,
+      cells: game.map.cells.map((c) => {
+        if (!c.object) {
+          return c;
+        }
+
+        const object = c.object;
+
+        const objectData = game.data.mapObjects[object.dataId];
+
+        const newObject = objectHandlers.reduce((o, h) => {
+          if (h.objectTest && h.objectTest(o) && h.objectDataTest && h.objectDataTest(objectData) && h.turnStart) {
+            // @ts-ignore
+            return h.turnStart(o, objectData, game);
+          }
+
+          return o;
+        }, object);
+
+        return {
+          ...c,
+          object: newObject,
+        };
+      }),
+    },
+  };
+};
+
 export const endGameTurn = (game: Game): Game => ({
   ...game,
   map: {
@@ -275,30 +380,74 @@ export const endGameTurn = (game: Game): Game => ({
         return c;
       }
 
-      const objectData = game.data.mapObjects[c.object.dataId];
+      const object = c.object;
 
-      if (isTownMapObject(c.object)) {
-        return {
-          ...c,
-          object: {
-            ...c.object,
-            ...endTownTurn(c.object),
-          },
-        };
-      }
+      const objectData = game.data.mapObjects[object.dataId];
 
-      if (isHeroMapObject(c.object) && isHeroMapObjectData(objectData)) {
-        return {
-          ...c,
-          object: {
-            ...c.object,
-            mobility: objectData.baseMobility,
-          },
-        };
-      }
+      const newObject = objectHandlers.reduce((o, h) => {
+        if (h.objectTest && h.objectTest(o) && h.objectDataTest && h.objectDataTest(objectData) && h.turnEnd) {
+          // @ts-ignore
+          return h.turnEnd(o, objectData, game.data);
+        }
 
-      return c;
+        return o;
+      }, object);
+
+      return {
+        ...c,
+        object: newObject,
+      };
     }),
   },
   turn: game.turn + 1,
 });
+
+export const moveGameObject = (game: Game, id: string, direction: MapObjectOrientation) => {
+  const object = getObjectById(game.map, id);
+
+  if (!isMobileMapObject(object)) {
+    throw new Error(`${id} is not a mobile object`);
+  }
+
+  if (!canMobileMapObjectMove(object)) {
+    return game;
+  }
+
+  const position = getObjectPosition(game.map, object.id)!;
+
+  const targetPosition = translatePointDirection(position, direction);
+
+  const targetObject = getObjectByPoint(game.map, targetPosition);
+
+  if (targetObject) {
+    const g = visitGameMapObject(game, targetObject.id, id);
+
+    return {
+      ...g,
+      map: replaceObject(g.map, moveMobileMapObject(object, direction, 0)),
+    };
+  }
+
+  if (!isPointValid(game.map, targetPosition) || isPointTaken(game.map, targetPosition)) {
+    return {
+      ...game,
+      map: replaceObject(game.map, moveMobileMapObject(object, direction, 0)),
+    };
+  }
+
+  const cell = game.map.cells[getCellIndex(game.map.width, position)];
+
+  const cost = getMovementCost(object, direction, cell.terrain, game.data);
+
+  if (cost > object.mobility) {
+    return {
+      ...game,
+      map: replaceObject(game.map, resetMobileMapObjectMobility(object)),
+    };
+  }
+
+  return {
+    ...game,
+    map: replaceObject(moveObject(game.map, position, targetPosition), moveMobileMapObject(object, direction, cost)),
+  };
+};

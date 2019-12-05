@@ -9,6 +9,7 @@ import {
   isItemMapObjectData,
   isObjectOwnedBy,
   isOwnableMapObject,
+  isOwnableMapObjectData,
   isTreasureMapObject,
   MapObject,
   MapObjectData,
@@ -174,6 +175,12 @@ export const onCellClick = (
 
     dispatch(adventureWindowActions.openMapObjectDetails(object.id));
   } else if (isItemMapObjectData(objectData)) {
+    if (!isHeroMapObject(activeObject)) {
+      return;
+    }
+
+    dispatch(gameActions.visitMapObject(object.id, activeObject.id));
+  } else if (isOwnableMapObjectData(objectData)) {
     if (!isHeroMapObject(activeObject)) {
       return;
     }

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { HeroClass, HeroId } from "heroes-homm1";
+import { HeroClassId, HeroId } from "heroes-homm1";
 import { byTestId, mountWithIntl } from "heroes-test-helpers";
 
 import { HeroPortrait } from "../../base";
@@ -8,7 +8,7 @@ import { RecruitHero, RecruitHeroProps } from "./RecruitHero";
 
 describe("RecruitHero", () => {
   const defaultProps: RecruitHeroProps = {
-    heroClass: HeroClass.Knight,
+    heroClass: HeroClassId.Knight,
     heroId: HeroId.LordKilburn,
   };
 
@@ -28,7 +28,7 @@ describe("RecruitHero", () => {
   it("should render hero class", () => {
     const props: RecruitHeroProps = {
       ...defaultProps,
-      heroClass: HeroClass.Sorceress,
+      heroClass: HeroClassId.Sorceress,
     };
 
     const wrapper = mountWithIntl(<RecruitHero {...props} />);

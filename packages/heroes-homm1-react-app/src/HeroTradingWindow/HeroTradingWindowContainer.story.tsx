@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Hero } from "heroes-core";
-import { ArtifactId, ArtifactLimit, constructArtifact, CreatureId, HeroClass, HeroId } from "heroes-homm1";
+import { ArtifactId, ArtifactLimit, constructArtifact, CreatureId, HeroClassId, HeroId } from "heroes-homm1";
 
 import { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindowContainer";
 
@@ -17,7 +17,7 @@ const hero: Hero = {
   ],
   dataId: "",
   experience: 0,
-  heroClass: HeroClass.Knight,
+  heroClass: HeroClassId.Knight,
   heroId: HeroId.LordKilburn,
   id: "hero",
   items: [],
@@ -31,7 +31,7 @@ const otherHero: Hero = {
   army: [],
   dataId: "",
   experience: 0,
-  heroClass: HeroClass.Knight,
+  heroClass: HeroClassId.Knight,
   heroId: HeroId.Antoine,
   id: "otherHero",
   items: [],

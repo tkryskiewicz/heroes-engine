@@ -1,6 +1,6 @@
 import { defineMessages } from "react-intl";
 
-import { HeroClass } from "heroes-homm1";
+import { HeroClassId } from "heroes-homm1";
 
 import { convertValue, unknownMessage } from "./util";
 
@@ -11,35 +11,35 @@ const getTitleKey = (heroClass: string) =>
   `${convertValue(heroClass)}Title`;
 
 const heroClassMessages = defineMessages({
-  [getKey(HeroClass.Knight)]: {
+  [getKey(HeroClassId.Knight)]: {
     defaultMessage: "Knight",
     id: "game.heroClass.knight",
   },
-  [getTitleKey(HeroClass.Knight)]: {
+  [getTitleKey(HeroClassId.Knight)]: {
     defaultMessage: "{heroName} the Knight",
     id: "game.heroClass.knight.title",
   },
-  [getKey(HeroClass.Barbarian)]: {
+  [getKey(HeroClassId.Barbarian)]: {
     defaultMessage: "Barbarian",
     id: "game.heroClass.barbarian",
   },
-  [getTitleKey(HeroClass.Barbarian)]: {
+  [getTitleKey(HeroClassId.Barbarian)]: {
     defaultMessage: "{heroName} the Barbarian",
     id: "game.heroClass.barbarian.title",
   },
-  [getKey(HeroClass.Sorceress)]: {
+  [getKey(HeroClassId.Sorceress)]: {
     defaultMessage: "Sorceress",
     id: "game.heroClass.sorceress",
   },
-  [getTitleKey(HeroClass.Sorceress)]: {
+  [getTitleKey(HeroClassId.Sorceress)]: {
     defaultMessage: "{heroName} the Sorceress",
     id: "game.heroClass.sorceress.title",
   },
-  [getKey(HeroClass.Warlock)]: {
+  [getKey(HeroClassId.Warlock)]: {
     defaultMessage: "Warlock",
     id: "game.heroClass.warlock",
   },
-  [getTitleKey(HeroClass.Warlock)]: {
+  [getTitleKey(HeroClassId.Warlock)]: {
     defaultMessage: "{heroName} the Warlock",
     id: "game.heroClass.warlock.title",
   },

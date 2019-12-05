@@ -176,6 +176,20 @@ describe("divideResources", () => {
 
     expect(result).toBe(1);
   });
+
+  it("should return divide by one when amount is zero", () => {
+    const resources: Resources = {
+      resource: 1,
+    };
+
+    const amount: Resources = {
+      resource: 0,
+    };
+
+    const result = divideResources(resources, amount);
+
+    expect(result).toBe(1);
+  });
 });
 
 describe("enoughResources", () => {

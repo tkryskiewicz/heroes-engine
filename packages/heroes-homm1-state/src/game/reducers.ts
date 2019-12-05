@@ -1,5 +1,6 @@
 import {
   changeOwnableMapObjectOwner,
+  changeTerrain,
   createMap,
   createPoint,
   dismissGameHero,
@@ -7,9 +8,7 @@ import {
   GameData,
   ItemSelection,
   Map,
-  moveGameObject,
   placeObject,
-  startGameTurn,
   swapGameTroops,
   tradeGameItems,
   visitGameMapObject,
@@ -17,12 +16,14 @@ import {
 import {
   ArmySize,
   artifacts,
+  BaseMovementCost,
   buildGameStructure,
   buyMageGuildSpellBook,
   campaignScenarios,
   changeHeroMapObjectHero,
   createGameMapObject,
   creatures,
+  DiagonalMovementCostModifier,
   EditorHeroArtifactCount,
   EditorMaxCreatureCount,
   EditorMaxHeroExperience,
@@ -32,6 +33,7 @@ import {
   HeroMapObject,
   MapObjectId,
   mapObjects,
+  moveGameObject,
   PlayerColorId,
   playerColors,
   PuzzlePieceCount,
@@ -39,6 +41,7 @@ import {
   ResourceId,
   resources,
   spells,
+  startGameTurn,
   terrains,
   TerrainType,
   towns,
@@ -49,10 +52,12 @@ import { GameState } from "./state";
 
 const data: GameData = {
   armySize: ArmySize,
+  baseMovementCost: BaseMovementCost,
   creatures: creatures.reduce((p, c) => ({
     ...p,
     [c.id]: c,
   }), {}),
+  diagonalMovementCostModifier: DiagonalMovementCostModifier,
   editor: {
     heroArtifactCount: EditorHeroArtifactCount,
     maxCreatureCount: EditorMaxCreatureCount,
@@ -94,6 +99,10 @@ const data: GameData = {
 };
 
 let map: Map = createMap(14, 14, TerrainType.Grass, 4);
+
+Object.keys(data.terrains).forEach((t, i) => {
+  map = changeTerrain(map, createPoint(3 + i, 4), t);
+});
 
 Object.keys(data.heroClasses).forEach((hc, i) => {
   const heroId = Object.values(data.heroes).filter((h) => h.heroClass === hc)[0].id;

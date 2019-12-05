@@ -81,6 +81,7 @@ describe("buyMageGuildSpellBook", () => {
       activePlayer: "player",
       data: {
         armySize: 0,
+        baseMovementCost: 0,
         creatures: {},
         editor: {
           heroArtifactCount: 0,

@@ -1,6 +1,6 @@
 import { TownData } from "heroes-core";
 
-import { HeroClass } from "./HeroClass";
+import { HeroClassId } from "./HeroClassId";
 import {
   commonStructures,
   coreStructures,
@@ -13,7 +13,7 @@ import { TownId } from "./TownId";
 
 export const towns: TownData[] = [
   {
-    heroClass: HeroClass.Knight,
+    heroClass: HeroClassId.Knight,
     id: TownId.Farm,
     structures: [
       ...coreStructures,
@@ -22,7 +22,7 @@ export const towns: TownData[] = [
     ],
   },
   {
-    heroClass: HeroClass.Barbarian,
+    heroClass: HeroClassId.Barbarian,
     id: TownId.Plains,
     structures: [
       ...coreStructures,
@@ -31,7 +31,7 @@ export const towns: TownData[] = [
     ],
   },
   {
-    heroClass: HeroClass.Sorceress,
+    heroClass: HeroClassId.Sorceress,
     id: TownId.Forest,
     structures: [
       ...coreStructures,
@@ -40,7 +40,7 @@ export const towns: TownData[] = [
     ],
   },
   {
-    heroClass: HeroClass.Warlock,
+    heroClass: HeroClassId.Warlock,
     id: TownId.Mountains,
     structures: [
       ...coreStructures,

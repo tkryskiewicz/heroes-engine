@@ -1,4 +1,4 @@
-export enum HeroClass {
+export enum HeroClassId {
   Knight = "knight",
   Barbarian = "barbarian",
   Sorceress = "sorceress",

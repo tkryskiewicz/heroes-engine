@@ -5,15 +5,11 @@ import { ItemData, ItemSelection } from "./Item";
 import {
   addEquipableMapObjectItem,
   appendArmedMapObjectTroop,
-  canMobileMapObjectMove,
   changeOwnableMapObjectOwner,
   constructItemMapObjectItem,
   dismissArmedMapObjectTroop,
-  generateResourceGeneratorMapObjectResources,
   generateTreasureMapObjectResources,
   getObjectById,
-  getObjectByPoint,
-  getObjectPosition,
   getVisitor,
   isArmedMapObject,
   isArmedMapObjectData,
@@ -23,30 +19,21 @@ import {
   isItemMapObjectData,
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
-  isMobileMapObject,
-  isObjectOwnedBy,
   isOwnableMapObject,
   isOwnableMapObjectData,
   isPickableMapObjectData,
-  isPointTaken,
-  isPointValid,
   isPuzzleMapObjectData,
-  isResourceGeneratorMapObjectData,
   isTreasureMapObject,
   Map,
-  MapObject,
   MapObjectData,
-  MapObjectOrientation,
-  moveMobileMapObject,
-  moveObject,
   recruitDwellingMapObjectCreatures,
   removeObject,
   replaceObject,
   swapArmedMapObjectTroops,
   tradeEquipableMapObjectItems,
-  translatePointDirection,
   visitLimitedInteractionMapObject,
 } from "./map";
+import { Modifier } from "./Modifier";
 import { addResources, ResourceData, Resources } from "./Resource";
 import { Scenario } from "./Scenario";
 import { Spell } from "./Spell";
@@ -64,6 +51,8 @@ export interface GameData {
   readonly heroes: { readonly [id: string]: HeroData; };
   readonly terrains: { readonly [id: string]: TerrainData; };
   readonly mapObjects: { readonly [id: string]: MapObjectData; };
+  readonly baseMovementCost: number;
+  readonly diagonalMovementCostModifier?: Modifier;
   readonly armySize: number;
   readonly towns: { readonly [id: string]: TownData; };
 }
@@ -158,31 +147,6 @@ export const dismissGameTroop = (game: Game, troop: TroopSelection): Game => {
   return {
     ...game,
     map: replaceObject(game.map, objectResult),
-  };
-};
-
-export const startGameTurn = (game: Game): Game => {
-  const objects = game.map.cells
-    .map((c) => c.object)
-    .filter((o): o is MapObject => o !== undefined)
-    .filter((o) => isOwnableMapObject(o) && isObjectOwnedBy(o, game.activePlayer));
-
-  objects
-    .forEach((o) => {
-      const objectData = game.data.mapObjects[o.dataId];
-
-      if (isResourceGeneratorMapObjectData(objectData)) {
-        const resources = generateResourceGeneratorMapObjectResources(objectData);
-
-        game = {
-          ...game,
-          resources: addResources(game.resources, resources),
-        };
-      }
-    });
-
-  return {
-    ...game,
   };
 };
 
@@ -284,44 +248,5 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
 
   return {
     ...game,
-  };
-};
-
-export const moveGameObject = (game: Game, id: string, direction: MapObjectOrientation) => {
-  const object = getObjectById(game.map, id);
-
-  if (!isMobileMapObject(object)) {
-    throw new Error(`${id} is not a mobile object`);
-  }
-
-  if (!canMobileMapObjectMove(object)) {
-    return game;
-  }
-
-  const position = getObjectPosition(game.map, object.id)!;
-
-  const targetPosition = translatePointDirection(position, direction);
-
-  const targetObject = getObjectByPoint(game.map, targetPosition);
-
-  if (targetObject) {
-    const g = visitGameMapObject(game, targetObject.id, id);
-
-    return {
-      ...g,
-      map: replaceObject(g.map, moveMobileMapObject(object, direction, 0)),
-    };
-  }
-
-  if (!isPointValid(game.map, targetPosition) || isPointTaken(game.map, targetPosition)) {
-    return {
-      ...game,
-      map: replaceObject(game.map, moveMobileMapObject(object, direction, 0)),
-    };
-  }
-
-  return {
-    ...game,
-    map: replaceObject(moveObject(game.map, position, targetPosition), moveMobileMapObject(object, direction, 1)),
   };
 };

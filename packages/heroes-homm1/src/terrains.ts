@@ -14,10 +14,18 @@ export const terrains: TerrainData[] = [
   {
     hasTransitions: true,
     id: TerrainType.Snow,
+    movementCostModifier: {
+      type: "multiply",
+      value: 1.5,
+    },
   },
   {
     hasTransitions: true,
     id: TerrainType.Swamp,
+    movementCostModifier: {
+      type: "multiply",
+      value: 1.5,
+    },
   },
   {
     hasTransitions: true,
@@ -26,9 +34,17 @@ export const terrains: TerrainData[] = [
   {
     hasTransitions: true,
     id: TerrainType.Desert,
+    movementCostModifier: {
+      type: "multiply",
+      value: 2,
+    },
   },
   {
     hasTransitions: false,
     id: TerrainType.Dirt,
   },
 ];
+
+export const landTerrains = terrains
+  .filter((t) => t.id !== TerrainType.Water)
+  .map((t) => t.id);

@@ -36,3 +36,8 @@ export const moveMobileMapObject = (
   mobility: Math.max(object.mobility - cost, 0),
   orientation: direction,
 });
+
+export const resetMobileMapObjectMobility = (object: MobileMapObject): MobileMapObject => ({
+  ...object,
+  mobility: 0,
+});

@@ -1,5 +1,9 @@
+import { MobilityModifierObjectData } from "heroes-core";
+
 import { Artifact, ArtifactData } from "./Artifact";
 import { ArtifactId } from "./ArtifactId";
+import { landTerrains } from "./terrains";
+import { TerrainType } from "./TerrainType";
 
 const attackArtifacts: ArtifactData[] = [
   {
@@ -157,25 +161,43 @@ const incomeArtifacts: ArtifactData[] = [
   },
 ];
 
-const mobilityArtifacts: ArtifactData[] = [
+const mobilityArtifacts: (ArtifactData & MobilityModifierObjectData)[] = [
   {
     id: ArtifactId.TravelersBootsOfMobility,
     isUltimate: false,
+    mobilityModifier: landTerrains.reduce((b, t) => ({
+      ...b,
+      [t]: 12,
+    }), {}),
     tradable: true,
   },
   {
     id: ArtifactId.NomadBootsOfMobility,
     isUltimate: false,
+    mobilityModifier: landTerrains.reduce((b, t) => ({
+      ...b,
+      [t]: 24,
+    }), {}),
     tradable: true,
   },
   {
     id: ArtifactId.SailorsAstrolabeOfMobility,
     isUltimate: false,
+    mobilityModifier: {
+      type: "add",
+      value: 20,
+    },
     tradable: true,
   },
   {
     id: ArtifactId.TrueCompassOfMobility,
     isUltimate: false,
+    mobilityModifier: {
+      [TerrainType.Water]: {
+        type: "add",
+        value: 40,
+      },
+    },
     tradable: true,
   },
 ];

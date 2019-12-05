@@ -8,6 +8,7 @@ import {
   MobileMapObject,
   MobileMapObjectData,
   moveMobileMapObject,
+  resetMobileMapObjectMobility,
 } from "./MobileMapObject";
 
 describe("isMobileMapObjectData", () => {
@@ -152,5 +153,20 @@ describe("moveMobileMapObject", () => {
     };
 
     expect(result).toEqual(expected);
+  });
+});
+
+describe("resetMobileMapObjectMobility", () => {
+  it("should set mobility to zero", () => {
+    const object: MobileMapObject = {
+      dataId: "dataId",
+      id: "id",
+      mobility: 1,
+      orientation: MapObjectOrientation.North,
+    };
+
+    const result = resetMobileMapObjectMobility(object);
+
+    expect(result.mobility).toBe(0);
   });
 });

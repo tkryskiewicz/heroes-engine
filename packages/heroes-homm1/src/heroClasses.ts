@@ -1,8 +1,9 @@
 import { HeroClassData } from "heroes-core";
 
 import { CreatureId } from "./creatures";
-import { HeroClass } from "./HeroClass";
+import { HeroClassId } from "./HeroClassId";
 import { Skill } from "./Skill";
+import { TerrainType } from "./TerrainType";
 
 export const heroClasses: HeroClassData[] = [
   {
@@ -18,7 +19,7 @@ export const heroClasses: HeroClassData[] = [
         min: 0,
       },
     ],
-    id: HeroClass.Knight,
+    id: HeroClassId.Knight,
     skills: {
       [Skill.Attack]: 1,
       [Skill.Defense]: 2,
@@ -39,12 +40,16 @@ export const heroClasses: HeroClassData[] = [
         min: 0,
       },
     ],
-    id: HeroClass.Barbarian,
+    id: HeroClassId.Barbarian,
     skills: {
       [Skill.Attack]: 2,
       [Skill.Defense]: 1,
       [Skill.SpellPower]: 1,
       [Skill.Knowledge]: 1,
+    },
+    terrainMovementCostModifier: {
+      type: "multiply",
+      value: 1,
     },
   },
   {
@@ -60,12 +65,18 @@ export const heroClasses: HeroClassData[] = [
         min: 0,
       },
     ],
-    id: HeroClass.Sorceress,
+    id: HeroClassId.Sorceress,
     skills: {
       [Skill.Attack]: 0,
       [Skill.Defense]: 0,
       [Skill.SpellPower]: 2,
       [Skill.Knowledge]: 3,
+    },
+    terrainMobilityModifier: {
+      [TerrainType.Water]: {
+        type: "multiply",
+        value: 2,
+      },
     },
   },
   {
@@ -81,7 +92,7 @@ export const heroClasses: HeroClassData[] = [
         min: 0,
       },
     ],
-    id: HeroClass.Warlock,
+    id: HeroClassId.Warlock,
     skills: {
       [Skill.Attack]: 0,
       [Skill.Defense]: 0,

@@ -1,5 +1,6 @@
+// FIXME: refactor to a mobility prop?
 export enum CreatureSpeed {
-  Slow = 1,
-  Medium = 2,
-  Fast = 3,
+  Slow = 40,
+  Medium = 50,
+  Fast = 60,
 }

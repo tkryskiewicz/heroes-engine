@@ -21,6 +21,7 @@ import { EditorWindow } from "./EditorWindowContainer";
 
 const data: GameData = {
   armySize: 0,
+  baseMovementCost: 0,
   creatures: {},
   editor: {
     heroArtifactCount: 0,

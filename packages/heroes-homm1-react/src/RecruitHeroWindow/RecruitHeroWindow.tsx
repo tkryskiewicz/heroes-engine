@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 
 import { Resources } from "heroes-core";
 import { noop } from "heroes-helpers";
-import { HeroClass } from "heroes-homm1";
+import { HeroClassId } from "heroes-homm1";
 
 import { GameModal, ResourceCost } from "../base";
 import { GameText } from "../core";
@@ -13,7 +13,7 @@ import { RecruitHero } from "./RecruitHero";
 
 export interface Hero {
   readonly id: string;
-  readonly heroClass: HeroClass;
+  readonly heroClass: HeroClassId;
 }
 
 interface Props {

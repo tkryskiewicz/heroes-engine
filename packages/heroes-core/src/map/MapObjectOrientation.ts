@@ -29,7 +29,13 @@ export const translatePointDirection = (point: MapPoint, direction: MapObjectOri
       return translatePoint(point, -1, 0);
     case MapObjectOrientation.NorthWest:
       return translatePoint(point, -1, -1);
-    default:
-      return point;
   }
 };
+
+export const isDiagonalDirection = (direction: MapObjectOrientation): boolean =>
+  [
+    MapObjectOrientation.NorthEast,
+    MapObjectOrientation.SouthEast,
+    MapObjectOrientation.SouthWest,
+    MapObjectOrientation.NorthWest,
+  ].includes(direction);

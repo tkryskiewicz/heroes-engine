@@ -1,3 +1,5 @@
+import { Modifier } from "heroes-core";
+
 export { Artifact, ArtifactData, ArtifactSelection } from "./Artifact";
 export { ArtifactId } from "./ArtifactId";
 export { artifacts, constructArtifact } from "./artifacts";
@@ -17,13 +19,15 @@ export {
   buildGameStructure,
   recruitGameTroop,
   buyMageGuildSpellBook,
+  startGameTurn,
   endGameTurn,
+  moveGameObject,
 } from "./Game";
 export { GameDifficulty, getGameDifficultyRating } from "./GameDifficulty";
 export { GameOption } from "./GameOption";
 export { GameSettings } from "./GameSettings";
 export { GameType } from "./GameType";
-export { HeroClass } from "./HeroClass";
+export { HeroClassId } from "./HeroClassId";
 export { heroClasses } from "./heroClasses";
 export { HeroId, heroes, constructHero } from "./heroes";
 export {
@@ -95,7 +99,11 @@ export { towns } from "./towns";
 
 export const MaxPlayers = 4;
 export const HeroLimit = 8;
-export const MaxMobility = 25;
+export const BaseMovementCost = 4;
+export const DiagonalMovementCostModifier: Modifier = {
+  type: "multiply",
+  value: 1.5,
+};
 export const ArmySize = 5;
 export const ArtifactLimit = 14;
 export const TownLimit = 8; // TODO: is this true?
