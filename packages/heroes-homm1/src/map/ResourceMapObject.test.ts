@@ -8,13 +8,9 @@ import {
 describe("isResourceMapObjectData", () => {
   it("should return true when resource object", () => {
     const objectData: ResourceMapObjectData = {
-      grid: [],
-      height: 1,
       id: "dataId",
       pickable: true,
       treasure: {},
-      type: "type",
-      width: 1,
     };
 
     const data: Parameters<typeof isResourceMapObjectData>[1] = {

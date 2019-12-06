@@ -6,7 +6,6 @@ import {
   appendArmedMapObjectTroop,
   constructItemMapObjectItem,
   dismissArmedMapObjectTroop,
-  generateTreasureMapObjectResources,
   getObjectById,
   getVisitor,
   isArmedMapObject,
@@ -17,7 +16,6 @@ import {
   isLimitedInteractionMapObject,
   isLimitedInteractionMapObjectData,
   isPuzzleMapObjectData,
-  isTreasureMapObject,
   Map,
   MapObjectData,
   recruitDwellingMapObjectCreatures,
@@ -30,10 +28,12 @@ import { Modifier } from "./Modifier";
 import {
   addObjectItem,
   changeObjectOwner,
+  generateTreasureObjectResources,
   isEquipableObject,
   isOwnableObject,
   isOwnableObjectData,
   isPickableObjectData,
+  isTreasureObject,
   tradeObjectItems,
 } from "./objects";
 import { addResources, ResourceData, Resources } from "./Resource";
@@ -180,8 +180,8 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
     };
   }
 
-  if (isTreasureMapObject(object)) {
-    const resources = generateTreasureMapObjectResources(object);
+  if (isTreasureObject(object)) {
+    const resources = generateTreasureObjectResources(object);
 
     game = {
       ...game,

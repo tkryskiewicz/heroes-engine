@@ -28,7 +28,7 @@ import {
   initializeMobileMapObject,
   initializeOwnableObject,
   initializeResourceGeneratorMapObject,
-  initializeTreasureMapObject,
+  initializeTreasureObject,
   isArmedMapObjectData,
   isCreatureMapObjectData,
   isDwellingMapObjectData,
@@ -43,7 +43,7 @@ import {
   isPointTaken,
   isPointValid,
   isResourceGeneratorMapObjectData,
-  isTreasureMapObjectData,
+  isTreasureObjectData,
   LimitedInteractionMapObjectData,
   MapObject,
   MapObjectOrientation,
@@ -59,7 +59,7 @@ import {
   subtractResources,
   Town,
   translatePointDirection,
-  TreasureMapObjectData,
+  TreasureObjectData,
   visitGameMapObject,
 } from "heroes-core";
 import { isDefined } from "heroes-helpers";
@@ -155,10 +155,10 @@ const resourceGeneratorObjectHandler: Handler<ResourceGeneratorMapObjectData> = 
   objectDataTest: isResourceGeneratorMapObjectData,
 };
 
-const treasureObjectHandler: Handler<TreasureMapObjectData> = {
-  initialize: initializeTreasureMapObject,
+const treasureObjectHandler: Handler<TreasureObjectData> = {
+  initialize: initializeTreasureObject,
   // @ts-ignore
-  objectDataTest: isTreasureMapObjectData,
+  objectDataTest: isTreasureObjectData,
 };
 
 // homm1

@@ -7,7 +7,7 @@ import {
   MobilityModifierObjectData,
   OwnableObjectData,
   PickableObjectData,
-  TreasureMapObjectData,
+  TreasureObjectData,
 } from "heroes-core";
 
 import { ArtifactId } from "./ArtifactId";
@@ -408,9 +408,9 @@ const randomResourceObject: MapObjectData & TerrainRestrictedMapObjectData = {
   width: 1,
 };
 
-type TreasureObjectData = TreasureMapObjectData & PickableObjectData & TerrainRestrictedMapObjectData;
+type TreasureMapObjectData = TreasureObjectData & PickableObjectData & TerrainRestrictedMapObjectData;
 
-const fireplace: TreasureObjectData = {
+const fireplace: TreasureMapObjectData = {
   grid: [
     true,
   ],
@@ -450,7 +450,7 @@ const fireplace2: typeof fireplace & VariantMapObjectData = {
   },
 };
 
-const treasureChestObject: TreasureObjectData = {
+const treasureChestObject: TreasureMapObjectData = {
   grid: [
     true,
   ],
@@ -463,7 +463,7 @@ const treasureChestObject: TreasureObjectData = {
   width: 1,
 };
 
-const lampObject: TreasureObjectData = {
+const lampObject: TreasureMapObjectData = {
   grid: [
     true,
   ],
@@ -476,7 +476,7 @@ const lampObject: TreasureObjectData = {
   width: 1,
 };
 
-const treasureObjects: TreasureObjectData[] = [
+const treasureObjects: TreasureMapObjectData[] = [
   treasureChestObject,
   fireplace,
   fireplace2,

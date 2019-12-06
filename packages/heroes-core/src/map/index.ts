@@ -29,4 +29,3 @@ export { MapPoint, createPoint, isSamePoint, translatePoint } from "./MapPoint";
 export * from "./MobileMapObject";
 export * from "./PuzzleMapObject";
 export * from "./ResourceGeneratorMapObject";
-export * from "./TreasureMapObject";
