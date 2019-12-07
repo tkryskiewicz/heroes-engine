@@ -10,7 +10,7 @@ import {
   isArmedMapObject,
   isArmedMapObjectData,
   swapArmedMapObjectTroops,
-} from "./ArmedMapObject";
+} from "./ArmedObject";
 
 describe("isArmedMapObjectData", () => {
   it("should return true when armed object data", () => {
