@@ -1,4 +1,4 @@
-import { HeroClassData, MapObjectOrientation, MobileMapObject, TerrainData } from "heroes-core";
+import { HeroClassData, MapObjectOrientation, MobileObject, TerrainData } from "heroes-core";
 
 import { HeroMapObject, MapObjectId } from "../map";
 import { getMovementCost } from "./MobileObject";
@@ -23,7 +23,7 @@ describe("getMovementCost", () => {
     },
   };
 
-  const defaultObject: MobileMapObject = {
+  const defaultObject: MobileObject = {
       dataId: "",
       id: "",
       mobility: 0,

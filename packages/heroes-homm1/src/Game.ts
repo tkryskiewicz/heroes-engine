@@ -3,7 +3,7 @@ import {
   addResources,
   ArmedMapObjectData,
   buildTownStructure,
-  canMobileMapObjectMove,
+  canMobileObjectMove,
   createMapObject,
   CreatureMapObjectData,
   DwellingMapObjectData,
@@ -25,7 +25,7 @@ import {
   initializeDwellingMapObject,
   initializeEquipableObject,
   initializeLimitedInteractionMapObject,
-  initializeMobileMapObject,
+  initializeMobileObject,
   initializeOwnableObject,
   initializeResourceGeneratorMapObject,
   initializeTreasureObject,
@@ -35,8 +35,8 @@ import {
   isDwellingStructure,
   isEquipableObjectData,
   isLimitedInteractionMapObjectData,
-  isMobileMapObject,
-  isMobileMapObjectData,
+  isMobileObject,
+  isMobileObjectData,
   isObjectOwnedBy,
   isOwnableObject,
   isOwnableObjectData,
@@ -47,13 +47,13 @@ import {
   LimitedInteractionMapObjectData,
   MapObject,
   MapObjectOrientation,
-  MobileMapObjectData,
-  moveMobileMapObject,
+  MobileObjectData,
+  moveMobileObject,
   moveObject,
   multiplyResources,
   OwnableObjectData,
   replaceObject,
-  resetMobileMapObjectMobility,
+  resetMobileObjectMobility,
   ResourceGeneratorMapObjectData,
   Resources,
   subtractResources,
@@ -138,10 +138,10 @@ const limitedInteractionObjectHandler: Handler<LimitedInteractionMapObjectData> 
   objectDataTest: isLimitedInteractionMapObjectData,
 };
 
-const mobileObjectHandler: Handler<MobileMapObjectData> = {
-  initialize: initializeMobileMapObject,
+const mobileObjectHandler: Handler<MobileObjectData> = {
+  initialize: initializeMobileObject,
   // @ts-ignore
-  objectDataTest: isMobileMapObjectData,
+  objectDataTest: isMobileObjectData,
 };
 
 const ownableObjectHandler: Handler<OwnableObjectData> = {
@@ -418,11 +418,11 @@ export const endGameTurn = (game: Game): Game => ({
 export const moveGameObject = (game: Game, id: string, direction: MapObjectOrientation) => {
   const object = getObjectById(game.map, id);
 
-  if (!isMobileMapObject(object)) {
+  if (!object || !isMobileObject(object)) {
     throw new Error(`${id} is not a mobile object`);
   }
 
-  if (!canMobileMapObjectMove(object)) {
+  if (!canMobileObjectMove(object)) {
     return game;
   }
 
@@ -437,14 +437,14 @@ export const moveGameObject = (game: Game, id: string, direction: MapObjectOrien
 
     return {
       ...g,
-      map: replaceObject(g.map, moveMobileMapObject(object, direction, 0)),
+      map: replaceObject(g.map, moveMobileObject(object, direction, 0)),
     };
   }
 
   if (!isPointValid(game.map, targetPosition) || isPointTaken(game.map, targetPosition)) {
     return {
       ...game,
-      map: replaceObject(game.map, moveMobileMapObject(object, direction, 0)),
+      map: replaceObject(game.map, moveMobileObject(object, direction, 0)),
     };
   }
 
@@ -455,12 +455,12 @@ export const moveGameObject = (game: Game, id: string, direction: MapObjectOrien
   if (cost > object.mobility) {
     return {
       ...game,
-      map: replaceObject(game.map, resetMobileMapObjectMobility(object)),
+      map: replaceObject(game.map, resetMobileObjectMobility(object)),
     };
   }
 
   return {
     ...game,
-    map: replaceObject(moveObject(game.map, position, targetPosition), moveMobileMapObject(object, direction, cost)),
+    map: replaceObject(moveObject(game.map, position, targetPosition), moveMobileObject(object, direction, cost)),
   };
 };
