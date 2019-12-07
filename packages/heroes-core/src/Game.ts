@@ -3,12 +3,8 @@ import { HeroData } from "./Hero";
 import { HeroClassData } from "./HeroClass";
 import { ItemData, ItemSelection } from "./Item";
 import {
-  appendArmedMapObjectTroop,
   constructItemMapObjectItem,
-  dismissArmedMapObjectTroop,
   getObjectById,
-  isArmedMapObject,
-  isArmedMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
   isItemMapObjectData,
@@ -18,14 +14,17 @@ import {
   recruitDwellingMapObjectCreatures,
   removeObject,
   replaceObject,
-  swapArmedMapObjectTroops,
 } from "./map";
 import { Modifier } from "./Modifier";
 import {
   addObjectItem,
+  appendArmedMapObjectTroop,
   changeObjectOwner,
+  dismissArmedMapObjectTroop,
   generateTreasureObjectResources,
   getVisitor,
+  isArmedMapObject,
+  isArmedMapObjectData,
   isEquipableObject,
   isLimitedInteractionObject,
   isLimitedInteractionObjectData,
@@ -33,6 +32,7 @@ import {
   isOwnableObjectData,
   isPickableObjectData,
   isTreasureObject,
+  swapArmedMapObjectTroops,
   tradeObjectItems,
   visitObject,
 } from "./objects";

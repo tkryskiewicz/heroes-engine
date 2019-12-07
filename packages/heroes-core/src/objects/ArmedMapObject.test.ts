@@ -1,3 +1,4 @@
+import { createMapObject, MapObject, MapObjectData } from "../map";
 import { Troop } from "../Troop";
 import {
   appendArmedMapObjectTroop,
@@ -10,7 +11,6 @@ import {
   isArmedMapObjectData,
   swapArmedMapObjectTroops,
 } from "./ArmedMapObject";
-import { createMapObject, MapObject, MapObjectData } from "./MapObject";
 
 describe("isArmedMapObjectData", () => {
   it("should return true when armed object data", () => {

@@ -1,3 +1,4 @@
+export * from "./ArmedMapObject";
 export * from "./EquipableObject";
 export * from "./LimitedInteractionObject";
 export * from "./MobileObject";

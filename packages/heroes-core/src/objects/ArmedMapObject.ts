@@ -1,6 +1,6 @@
 import { appendArmyTroop, Army, dismissArmyTroop, swapArmyTroops } from "../Army";
+import { isMapObject, MapObject, MapObjectData } from "../map";
 import { Troop } from "../Troop";
-import { isMapObject, MapObject, MapObjectData } from "./MapObject";
 
 export interface ArmedMapObjectData extends MapObjectData {
   readonly army: {
