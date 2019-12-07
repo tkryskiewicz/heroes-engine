@@ -7,14 +7,11 @@ import {
   constructItemMapObjectItem,
   dismissArmedMapObjectTroop,
   getObjectById,
-  getVisitor,
   isArmedMapObject,
   isArmedMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
   isItemMapObjectData,
-  isLimitedInteractionMapObject,
-  isLimitedInteractionMapObjectData,
   isPuzzleMapObjectData,
   Map,
   MapObjectData,
@@ -22,19 +19,22 @@ import {
   removeObject,
   replaceObject,
   swapArmedMapObjectTroops,
-  visitLimitedInteractionMapObject,
 } from "./map";
 import { Modifier } from "./Modifier";
 import {
   addObjectItem,
   changeObjectOwner,
   generateTreasureObjectResources,
+  getVisitor,
   isEquipableObject,
+  isLimitedInteractionObject,
+  isLimitedInteractionObjectData,
   isOwnableObject,
   isOwnableObjectData,
   isPickableObjectData,
   isTreasureObject,
   tradeObjectItems,
+  visitObject,
 } from "./objects";
 import { addResources, ResourceData, Resources } from "./Resource";
 import { Scenario } from "./Scenario";
@@ -167,7 +167,7 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
     throw new Error("Invalid active object");
   }
 
-  if (isLimitedInteractionMapObjectData(objectData) && isLimitedInteractionMapObject(object)) {
+  if (isLimitedInteractionObjectData(objectData) && isLimitedInteractionObject(object)) {
     if (!isOwnableObject(activeObject)) {
       throw new Error(`${activeObjectId} is not an ownable object`);
     }
@@ -176,7 +176,7 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
 
     game = {
       ...game,
-      map: replaceObject(game.map, visitLimitedInteractionMapObject(object, visitor)),
+      map: replaceObject(game.map, visitObject(object, visitor)),
     };
   }
 

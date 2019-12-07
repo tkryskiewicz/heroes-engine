@@ -1,4 +1,5 @@
 export * from "./EquipableObject";
+export * from "./LimitedInteractionObject";
 export * from "./MobileObject";
 export * from "./MobilityModifierObject";
 export * from "./OwnableObject";

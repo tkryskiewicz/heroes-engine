@@ -1,6 +1,6 @@
 import {
-  LimitedInteractionMapObject,
-  LimitedInteractionMapObjectData,
+  LimitedInteractionObject,
+  LimitedInteractionObjectData,
   MapObject,
   MapObjectData,
   PuzzleMapObjectData,
@@ -8,13 +8,13 @@ import {
 
 import { MapObjectId } from "./MapObjectId";
 
-export interface ObeliskMapObjectData extends PuzzleMapObjectData, LimitedInteractionMapObjectData {
+export interface ObeliskMapObjectData extends PuzzleMapObjectData, LimitedInteractionObjectData {
 }
 
 export const isObeliskMapObjectData = (objectData: MapObjectData): objectData is ObeliskMapObjectData =>
   objectData.id === MapObjectId.Obelisk;
 
-export type ObeliskMapObject = LimitedInteractionMapObject;
+export type ObeliskMapObject = LimitedInteractionObject;
 
 export const isObeliskMapObject = (object: MapObject): object is ObeliskMapObject =>
   object.dataId === MapObjectId.Obelisk;

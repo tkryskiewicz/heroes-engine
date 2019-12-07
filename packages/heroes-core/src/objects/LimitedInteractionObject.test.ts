@@ -1,86 +1,75 @@
-import { OwnableObject } from "../objects";
+import { GameObject, GameObjectData } from "../GameObject";
 import {
   getVisitor,
-  initializeLimitedInteractionMapObject,
+  initializeLimitedInteractionObject,
   InteractionLimitType,
-  isLimitedInteractionMapObject,
-  isLimitedInteractionMapObjectData,
-  LimitedInteractionMapObject,
-  LimitedInteractionMapObjectData,
-  visitLimitedInteractionMapObject,
+  isLimitedInteractionObject,
+  isLimitedInteractionObjectData,
+  LimitedInteractionObject,
+  LimitedInteractionObjectData,
+  visitObject,
   wasVisitedBy,
-} from "./LimitedInteractionMapObject";
-import { createMapObject, MapObject, MapObjectData } from "./MapObject";
+} from "./LimitedInteractionObject";
+import { OwnableObject } from "./OwnableObject";
 
-describe("isLimitedInteractionMapObjectData", () => {
+describe("isLimitedInteractionObjectData", () => {
   it("should return true when limited interaction object data", () => {
-    const objectData: LimitedInteractionMapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: LimitedInteractionObjectData = {
       id: "dataId",
       interactionLimit: InteractionLimitType.OncePerPlayer,
-      width: 1,
     };
 
-    const result = isLimitedInteractionMapObjectData(objectData);
+    const result = isLimitedInteractionObjectData(objectData);
 
     expect(result).toBe(true);
   });
 
   it("should return false when not limited interaction object data", () => {
-    const objectData: MapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: GameObjectData = {
       id: "dataId",
-      width: 1,
     };
 
-    const result = isLimitedInteractionMapObjectData(objectData);
+    const result = isLimitedInteractionObjectData(objectData);
 
     expect(result).toBe(false);
   });
 });
 
-describe("isLimitedInteractionMapObject", () => {
+describe("isLimitedInteractionObject", () => {
   it("should return true when limited interaction object", () => {
-    const object: LimitedInteractionMapObject = {
+    const object: LimitedInteractionObject = {
       dataId: "dataId",
       id: "id",
       visitedBy: [],
     };
 
-    const result = isLimitedInteractionMapObject(object);
+    const result = isLimitedInteractionObject(object);
 
     expect(result).toBe(true);
   });
 
   it("should return false when not limited interaction object", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
 
-    const result = isLimitedInteractionMapObject(object);
+    const result = isLimitedInteractionObject(object);
 
     expect(result).toBe(false);
   });
 });
 
-describe("initializeLimitedInteractionMapObject", () => {
+describe("initializeLimitedInteractionObject", () => {
   it("should initialize visted by", () => {
-    const objectData: LimitedInteractionMapObjectData = {
-      grid: [],
-      height: 1,
-      id: "dataId",
-      interactionLimit: InteractionLimitType.OncePerPlayer,
-      width: 1,
+    const object: GameObject = {
+      dataId: "dataId",
+      id: "id",
     };
 
-    const object = createMapObject("id", objectData);
+    const result = initializeLimitedInteractionObject(object);
 
-    const result = initializeLimitedInteractionMapObject(object);
-
-    const expected: LimitedInteractionMapObject = {
+    const expected: LimitedInteractionObject = {
       ...object,
       visitedBy: [],
     };
@@ -91,12 +80,9 @@ describe("initializeLimitedInteractionMapObject", () => {
 
 describe("getVisitor", () => {
   it("should return player when once per player", () => {
-    const objectData: LimitedInteractionMapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: LimitedInteractionObjectData = {
       id: "dataId",
       interactionLimit: InteractionLimitType.OncePerPlayer,
-      width: 1,
     };
 
     const object: OwnableObject = {
@@ -111,12 +97,9 @@ describe("getVisitor", () => {
   });
 
   it("should return object id when once per hero", () => {
-    const objectData: LimitedInteractionMapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: LimitedInteractionObjectData = {
       id: "dataId",
       interactionLimit: InteractionLimitType.OncePerObject,
-      width: 1,
     };
 
     const object: OwnableObject = {
@@ -131,12 +114,9 @@ describe("getVisitor", () => {
   });
 
   it("should throw when object is not owned", () => {
-    const objectData: LimitedInteractionMapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: LimitedInteractionObjectData = {
       id: "dataId",
       interactionLimit: InteractionLimitType.OncePerPlayer,
-      width: 1,
     };
 
     const object: OwnableObject = {
@@ -153,7 +133,7 @@ describe("getVisitor", () => {
 
 describe("wasVisitedBy", () => {
   it("should return true when object was visited", () => {
-    const object: LimitedInteractionMapObject = {
+    const object: LimitedInteractionObject = {
       dataId: "dataId",
       id: "id",
       visitedBy: [
@@ -167,7 +147,7 @@ describe("wasVisitedBy", () => {
   });
 
   it("should return false when object was not visited", () => {
-    const object: LimitedInteractionMapObject = {
+    const object: LimitedInteractionObject = {
       dataId: "dataId",
       id: "id",
       visitedBy: [],
@@ -179,17 +159,17 @@ describe("wasVisitedBy", () => {
   });
 });
 
-describe("visitLimitedInteractionMapObject", () => {
+describe("visitObject", () => {
   it("should add visitor", () => {
-    const object: LimitedInteractionMapObject = {
+    const object: LimitedInteractionObject = {
       dataId: "dataId",
       id: "id",
       visitedBy: [],
     };
 
-    const result = visitLimitedInteractionMapObject(object, "visitor");
+    const result = visitObject(object, "visitor");
 
-    const expected: LimitedInteractionMapObject = {
+    const expected: LimitedInteractionObject = {
       ...object,
       visitedBy: [
         "visitor",
@@ -200,7 +180,7 @@ describe("visitLimitedInteractionMapObject", () => {
   });
 
   it("should throw when already visited", () => {
-    const object: LimitedInteractionMapObject = {
+    const object: LimitedInteractionObject = {
       dataId: "dataId",
       id: "id",
       visitedBy: [
@@ -209,7 +189,7 @@ describe("visitLimitedInteractionMapObject", () => {
     };
 
     expect(() => {
-      visitLimitedInteractionMapObject(object, "visitor");
+      visitObject(object, "visitor");
     }).toThrow();
   });
 });

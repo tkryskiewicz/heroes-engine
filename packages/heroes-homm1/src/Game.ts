@@ -24,7 +24,7 @@ import {
   initializeCreatureMapObject,
   initializeDwellingMapObject,
   initializeEquipableObject,
-  initializeLimitedInteractionMapObject,
+  initializeLimitedInteractionObject,
   initializeMobileObject,
   initializeOwnableObject,
   initializeResourceGeneratorMapObject,
@@ -34,7 +34,7 @@ import {
   isDwellingMapObjectData,
   isDwellingStructure,
   isEquipableObjectData,
-  isLimitedInteractionMapObjectData,
+  isLimitedInteractionObjectData,
   isMobileObject,
   isMobileObjectData,
   isObjectOwnedBy,
@@ -44,7 +44,7 @@ import {
   isPointValid,
   isResourceGeneratorMapObjectData,
   isTreasureObjectData,
-  LimitedInteractionMapObjectData,
+  LimitedInteractionObjectData,
   MapObject,
   MapObjectOrientation,
   MobileObjectData,
@@ -132,10 +132,10 @@ const equipableObjectHandler: Handler<EquipableObjectData> = {
   objectDataTest: isEquipableObjectData,
 };
 
-const limitedInteractionObjectHandler: Handler<LimitedInteractionMapObjectData> = {
-  initialize: initializeLimitedInteractionMapObject,
+const limitedInteractionObjectHandler: Handler<LimitedInteractionObjectData> = {
+  initialize: initializeLimitedInteractionObject,
   // @ts-ignore
-  objectDataTest: isLimitedInteractionMapObjectData,
+  objectDataTest: isLimitedInteractionObjectData,
 };
 
 const mobileObjectHandler: Handler<MobileObjectData> = {
