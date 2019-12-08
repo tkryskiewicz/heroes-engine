@@ -1,4 +1,5 @@
 export * from "./ArmedObject";
+export * from "./CreatureObject";
 export * from "./EquipableObject";
 export * from "./LimitedInteractionObject";
 export * from "./MobileObject";

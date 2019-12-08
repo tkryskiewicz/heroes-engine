@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   GameData,
-  isCreatureMapObjectData,
+  isCreatureObjectData,
   isItemMapObjectData,
   isStructureBuilt,
   MapObject,
@@ -51,7 +51,7 @@ export const renderObject = (
     );
   }
 
-  if (isCreatureMapObjectData(objectData)) {
+  if (isCreatureObjectData(objectData)) {
     return (
       <CreatureMapObject
         size={size}

@@ -1,14 +1,14 @@
-import { CreatureMapObject } from "heroes-core";
+import { CreatureObject } from "heroes-core";
 
 export type CreatureMapObjectDetails = number;
 
-export const getCreatureMapObjectDetails = (object: CreatureMapObject): CreatureMapObjectDetails =>
+export const getCreatureMapObjectDetails = (object: CreatureObject): CreatureMapObjectDetails =>
   object.count;
 
 export const setCreatureMapObjectDetails = (
-  object: CreatureMapObject,
+  object: CreatureObject,
   details: CreatureMapObjectDetails,
-): CreatureMapObject => ({
+): CreatureObject => ({
   ...object,
   count: details,
 });

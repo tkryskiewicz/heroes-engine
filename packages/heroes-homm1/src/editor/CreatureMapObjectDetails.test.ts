@@ -1,4 +1,4 @@
-import { CreatureMapObject } from "heroes-core";
+import { CreatureObject } from "heroes-core";
 
 import {
   CreatureMapObjectDetails,
@@ -8,7 +8,7 @@ import {
 
 describe("getCreatureMapObjectDetails", () => {
   it("should return object details", () => {
-    const object: CreatureMapObject = {
+    const object: CreatureObject = {
       count: 1,
       dataId: "dataId",
       id: "id",
@@ -24,7 +24,7 @@ describe("getCreatureMapObjectDetails", () => {
 
 describe("setCreatureMapObjectDetails", () => {
   it("should set object details", () => {
-    const object: CreatureMapObject = {
+    const object: CreatureObject = {
       count: 0,
       dataId: "dataId",
       id: "id",
@@ -34,7 +34,7 @@ describe("setCreatureMapObjectDetails", () => {
 
     const result = setCreatureMapObjectDetails(object, value);
 
-    const expected: CreatureMapObject = {
+    const expected: CreatureObject = {
       ...object,
       count: 1,
     };

@@ -3,7 +3,7 @@ import { InjectedIntlProps, injectIntl } from "react-intl";
 
 import {
   changeTerrain,
-  CreatureMapObject,
+  CreatureObject,
   GameData,
   getCellIndex,
   getCellPoint,
@@ -615,7 +615,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   private readonly onConfirmObjectDetailsClick = () => {
     const { data, scenario, visibleObjectDetails, selectedObjectDetails } = this.props;
 
-    const object = getObjectById(scenario.map, visibleObjectDetails!) as CreatureMapObject;
+    const object = getObjectById(scenario.map, visibleObjectDetails!) as CreatureObject;
 
     const newObject = setObjectDetails(object, selectedObjectDetails!, data);
 
