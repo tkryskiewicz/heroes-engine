@@ -1,21 +1,21 @@
 import { CreatureData } from "../Creature";
 import { GameObject, GameObjectData } from "../GameObject";
 import {
-  CreatureMapObject,
-  CreatureMapObjectData,
-  initializeCreatureMapObject,
-  isCreatureMapObject,
-  isCreatureMapObjectData,
+  CreatureObject,
+  CreatureObjectData,
+  initializeCreatureObject,
+  isCreatureObject,
+  isCreatureObjectData,
 } from "./CreatureObject";
 
-describe("isCreatureMapObjectData", () => {
+describe("isCreatureObjectData", () => {
   it("should return true when creature object data", () => {
-    const objectData: CreatureMapObjectData = {
+    const objectData: CreatureObjectData = {
       creature: "creature",
       id: "dataId",
     };
 
-    const result = isCreatureMapObjectData(objectData);
+    const result = isCreatureObjectData(objectData);
 
     expect(result).toBe(true);
   });
@@ -25,22 +25,22 @@ describe("isCreatureMapObjectData", () => {
       id: "dataId",
     };
 
-    const result = isCreatureMapObjectData(objectData);
+    const result = isCreatureObjectData(objectData);
 
     expect(result).toBe(false);
   });
 });
 
-describe("initializeCreatureMapObject", () => {
+describe("initializeCreatureObject", () => {
   it("should initialize count", () => {
     const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
 
-    const result = initializeCreatureMapObject(object);
+    const result = initializeCreatureObject(object);
 
-    const expected: CreatureMapObject = {
+    const expected: CreatureObject = {
       ...object,
       count: 0,
     };
@@ -49,7 +49,7 @@ describe("initializeCreatureMapObject", () => {
   });
 });
 
-describe("isCreatureMapObject", () => {
+describe("isCreatureObject", () => {
   it("should return true when creature map object", () => {
     const creature: CreatureData = {
       attack: 0,
@@ -63,19 +63,19 @@ describe("isCreatureMapObject", () => {
       speed: 0,
     };
 
-    const object: CreatureMapObject = {
+    const object: CreatureObject = {
       count: 0,
       dataId: creature.id,
       id: "id",
     };
 
-    const data: Parameters<typeof isCreatureMapObject>[1] = {
+    const data: Parameters<typeof isCreatureObject>[1] = {
       creatures: {
         [creature.id]: creature,
       },
     };
 
-    const result = isCreatureMapObject(object, data);
+    const result = isCreatureObject(object, data);
 
     expect(result).toBe(true);
   });
@@ -86,11 +86,11 @@ describe("isCreatureMapObject", () => {
       id: "id",
     };
 
-    const data: Parameters<typeof isCreatureMapObject>[1] = {
+    const data: Parameters<typeof isCreatureObject>[1] = {
       creatures: {},
     };
 
-    const result = isCreatureMapObject(object, data);
+    const result = isCreatureObject(object, data);
 
     expect(result).toBe(false);
   });

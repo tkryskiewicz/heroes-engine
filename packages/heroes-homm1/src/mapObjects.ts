@@ -1,5 +1,5 @@
 import {
-  CreatureMapObjectData,
+  CreatureObjectData,
   DwellingMapObjectData,
   InteractionLimitType,
   ItemMapObjectData,
@@ -105,10 +105,10 @@ const randomCastle: MapObjectData & TerrainRestrictedMapObjectData = {
   width: 4,
 };
 
-type CreatureObjectData = CreatureMapObjectData & TerrainRestrictedMapObjectData;
+type CreatureMapObjectData = CreatureObjectData & TerrainRestrictedMapObjectData;
 
-const creatureObjects: CreatureObjectData[] = creatures
-  .map<CreatureObjectData>((c) => ({
+const creatureObjects: CreatureMapObjectData[] = creatures
+  .map<CreatureMapObjectData>((c) => ({
     creature: c.id,
     grid: [
       true,

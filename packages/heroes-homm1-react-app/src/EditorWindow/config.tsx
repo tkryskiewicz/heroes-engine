@@ -4,7 +4,7 @@ import {
   changeArmedObjectArmy,
   changeObjectOwner,
   GameData,
-  isCreatureMapObject,
+  isCreatureObject,
   MapObject,
   Troop,
 } from "heroes-core";
@@ -252,7 +252,7 @@ export const createEditorMapObject = (id: string, objectDataId: string, data: Ga
 };
 
 export const getObjectDetails = (object: MapObject, data: GameData): MapObjectDetails | undefined => {
-  if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
+  if (isCreatureObject(object, data) || isRandomCreatureMapObject(object, data)) {
     return getCreatureMapObjectDetails(object);
   }
 
@@ -275,7 +275,7 @@ export const renderObjectDetails = (
     readonly onCloseClick: () => void;
   },
 ) => {
-  if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
+  if (isCreatureObject(object, data) || isRandomCreatureMapObject(object, data)) {
     return (
       <CreatureMapObjectDetailsWindow
         visible={true}
@@ -316,7 +316,7 @@ export const renderObjectDetails = (
 };
 
 export const setObjectDetails = (object: MapObject, value: MapObjectDetails, data: GameData): MapObject => {
-  if (isCreatureMapObject(object, data) || isRandomCreatureMapObject(object, data)) {
+  if (isCreatureObject(object, data) || isRandomCreatureMapObject(object, data)) {
     return setCreatureMapObjectDetails(object, value as CreatureMapObjectDetails);
   }
 

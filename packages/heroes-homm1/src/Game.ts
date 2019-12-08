@@ -5,7 +5,7 @@ import {
   buildTownStructure,
   canMobileObjectMove,
   createMapObject,
-  CreatureMapObjectData,
+  CreatureObjectData,
   DwellingMapObjectData,
   endTownTurn,
   EquipableObjectData,
@@ -21,7 +21,7 @@ import {
   getTownStructure,
   Hero,
   initializeArmedObject,
-  initializeCreatureMapObject,
+  initializeCreatureObject,
   initializeDwellingMapObject,
   initializeEquipableObject,
   initializeLimitedInteractionObject,
@@ -29,7 +29,7 @@ import {
   initializeOwnableObject,
   initializeTreasureObject,
   isArmedObjectData,
-  isCreatureMapObjectData,
+  isCreatureObjectData,
   isDwellingMapObjectData,
   isDwellingStructure,
   isEquipableObjectData,
@@ -113,10 +113,10 @@ const armedObjectHandler: Handler<ArmedObjectData> = {
   objectDataTest: isArmedObjectData,
 };
 
-const creatureObjectHandler: Handler<CreatureMapObjectData> = {
-  initialize: initializeCreatureMapObject,
+const creatureObjectHandler: Handler<CreatureObjectData> = {
+  initialize: initializeCreatureObject,
   // @ts-ignore
-  objectDataTest: isCreatureMapObjectData,
+  objectDataTest: isCreatureObjectData,
 };
 
 const dwellingObjectHandler: Handler<DwellingMapObjectData> = {

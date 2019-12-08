@@ -1,24 +1,24 @@
 import { GameData } from "../Game";
 import { GameObject, GameObjectData } from "../GameObject";
 
-export interface CreatureMapObjectData extends GameObjectData {
+export interface CreatureObjectData extends GameObjectData {
   readonly creature: string;
 }
 
-export const isCreatureMapObjectData = (objectData: GameObjectData): objectData is CreatureMapObjectData =>
-  (objectData as CreatureMapObjectData).creature !== undefined;
+export const isCreatureObjectData = (objectData: GameObjectData): objectData is CreatureObjectData =>
+  (objectData as CreatureObjectData).creature !== undefined;
 
-export interface CreatureMapObject extends GameObject {
+export interface CreatureObject extends GameObject {
   readonly count: number;
 }
 
-export const initializeCreatureMapObject = (object: GameObject): CreatureMapObject => ({
+export const initializeCreatureObject = (object: GameObject): CreatureObject => ({
   ...object,
   count: 0,
 });
 
-export const isCreatureMapObject = (
+export const isCreatureObject = (
   object: GameObject,
   data: Pick<GameData, "creatures">,
-): object is CreatureMapObject =>
+): object is CreatureObject =>
   data.creatures[object.dataId] !== undefined;
