@@ -1,5 +1,5 @@
+import { createMapObject, MapObjectData } from "../map";
 import { Resources } from "../Resource";
-import { createMapObject, MapObjectData } from "./MapObject";
 import {
   generateResourceGeneratorMapObjectResources,
   initializeResourceGeneratorMapObject,

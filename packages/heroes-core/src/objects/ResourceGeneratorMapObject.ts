@@ -1,6 +1,6 @@
-import { initializeOwnableObject, OwnableObject, OwnableObjectData } from "../objects";
+import { MapObject, MapObjectData } from "../map";
 import { Resources } from "../Resource";
-import { MapObject, MapObjectData } from "./MapObject";
+import { initializeOwnableObject, OwnableObject, OwnableObjectData } from "./OwnableObject";
 
 export interface ResourceGeneratorMapObjectData extends MapObjectData, OwnableObjectData {
   readonly resourceGenerator: {
