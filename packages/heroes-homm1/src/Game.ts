@@ -13,7 +13,7 @@ import {
   GameData,
   GameObject,
   GameObjectData,
-  generateResourceGeneratorMapObjectResources,
+  generateObjectResources,
   getCellIndex,
   getObjectById,
   getObjectByPoint,
@@ -27,7 +27,6 @@ import {
   initializeLimitedInteractionObject,
   initializeMobileObject,
   initializeOwnableObject,
-  initializeResourceGeneratorMapObject,
   initializeTreasureObject,
   isArmedObjectData,
   isCreatureMapObjectData,
@@ -42,7 +41,7 @@ import {
   isOwnableObjectData,
   isPointTaken,
   isPointValid,
-  isResourceGeneratorMapObjectData,
+  isResourceGeneratorObjectData,
   isTreasureObjectData,
   LimitedInteractionObjectData,
   MapObject,
@@ -54,7 +53,7 @@ import {
   OwnableObjectData,
   replaceObject,
   resetMobileObjectMobility,
-  ResourceGeneratorMapObjectData,
+  ResourceGeneratorObjectData,
   Resources,
   subtractResources,
   Town,
@@ -149,10 +148,10 @@ const ownableObjectHandler: Handler<OwnableObjectData> = {
   objectDataTest: isOwnableObjectData,
 };
 
-const resourceGeneratorObjectHandler: Handler<ResourceGeneratorMapObjectData> = {
-  initialize: initializeResourceGeneratorMapObject,
+const resourceGeneratorObjectHandler: Handler<ResourceGeneratorObjectData> = {
+  initialize: (object) => object,
   // @ts-ignore
-  objectDataTest: isResourceGeneratorMapObjectData,
+  objectDataTest: isResourceGeneratorObjectData,
 };
 
 const treasureObjectHandler: Handler<TreasureObjectData> = {
@@ -343,8 +342,8 @@ export const startGameTurn = (game: Game): Game => {
     .forEach((o) => {
       const objectData = game.data.mapObjects[o.dataId];
 
-      if (isResourceGeneratorMapObjectData(objectData)) {
-        const resources = generateResourceGeneratorMapObjectResources(objectData);
+      if (isResourceGeneratorObjectData(objectData)) {
+        const resources = generateObjectResources(objectData);
 
         game = {
           ...game,

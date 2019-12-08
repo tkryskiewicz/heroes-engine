@@ -25,4 +25,3 @@ export { MapObject, MapObjectData, MapObjectGridCell, isMapObject, createMapObje
 export { MapObjectOrientation, translatePointDirection, isDiagonalDirection } from "./MapObjectOrientation";
 export { MapPoint, createPoint, isSamePoint, translatePoint } from "./MapPoint";
 export * from "./PuzzleMapObject";
-export * from "./ResourceGeneratorMapObject";
