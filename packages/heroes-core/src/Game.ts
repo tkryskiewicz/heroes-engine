@@ -83,7 +83,7 @@ export const swapGameTroops = (
 ): Game => {
   const object = getObjectById(game.map, troop.id);
 
-  if (!isArmedObject(object)) {
+  if (!object || !isArmedObject(object)) {
     throw new Error(`${troop.id} is not an armed object`);
   }
 
@@ -95,7 +95,7 @@ export const swapGameTroops = (
 
   const withObject = getObjectById(game.map, withTroop.id);
 
-  if (!isArmedObject(withObject)) {
+  if (!withObject || !isArmedObject(withObject)) {
     throw new Error(`${withTroop.id} is not an armed object`);
   }
 
@@ -140,7 +140,7 @@ export const dismissGameHero = (game: Game, hero: string): Game => ({
 export const dismissGameTroop = (game: Game, troop: TroopSelection): Game => {
   const object = getObjectById(game.map, troop.id);
 
-  if (!isArmedObject(object)) {
+  if (!object || !isArmedObject(object)) {
     throw new Error(`${troop.id} is not an armed object`);
   }
 

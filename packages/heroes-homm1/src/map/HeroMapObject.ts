@@ -22,7 +22,7 @@ import {
 
 import { MapObjectId } from "./MapObjectId";
 
-export interface HeroMapObjectData extends ArmedObjectData, OwnableObjectData, MobileObjectData {
+export interface HeroMapObjectData extends MapObjectData, ArmedObjectData, OwnableObjectData, MobileObjectData {
   readonly id: MapObjectId.Hero;
 }
 

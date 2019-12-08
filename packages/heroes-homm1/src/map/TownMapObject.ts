@@ -6,6 +6,7 @@ import {
   getTroop,
   isMapObject,
   MapObject,
+  MapObjectData,
   OwnableObject,
   OwnableObjectData,
   recruitTroop,
@@ -14,7 +15,7 @@ import {
 
 import { MapObjectId } from "./MapObjectId";
 
-export interface TownMapObjectData extends ArmedObjectData, OwnableObjectData {
+export interface TownMapObjectData extends MapObjectData, ArmedObjectData, OwnableObjectData {
 }
 
 export interface TownMapObject extends Town, ArmedObject, OwnableObject {

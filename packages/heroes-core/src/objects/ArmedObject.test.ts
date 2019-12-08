@@ -1,4 +1,4 @@
-import { createMapObject, MapObject, MapObjectData } from "../map";
+import { GameObject, GameObjectData } from "../GameObject";
 import { Troop } from "../Troop";
 import {
   appendArmedObjectTroop,
@@ -19,10 +19,7 @@ describe("isArmedObjectData", () => {
       army: {
         preventMovingLastTroop: false,
       },
-      grid: [],
-      height: 1,
       id: "dataId",
-      width: 1,
     };
 
     const result = isArmedObjectData(objectData);
@@ -31,11 +28,8 @@ describe("isArmedObjectData", () => {
   });
 
   it("should return false when not armed object data", () => {
-    const objectData: MapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: GameObjectData = {
       id: "dataId",
-      width: 1,
     };
 
     const result = isArmedObjectData(objectData);
@@ -46,17 +40,10 @@ describe("isArmedObjectData", () => {
 
 describe("initializeArmedObject", () => {
   it("should initialize army", () => {
-    const objectData: ArmedObjectData = {
-      army: {
-        preventMovingLastTroop: false,
-      },
-      grid: [],
-      height: 1,
-      id: "dataId",
-      width: 1,
+    const object: GameObject = {
+      dataId: "dataId",
+      id: "id",
     };
-
-    const object = createMapObject("id", objectData);
 
     const result = initializeArmedObject(object);
 
@@ -83,7 +70,7 @@ describe("isArmedObject", () => {
   });
 
   it("should return false when not armed object", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };

@@ -2,29 +2,29 @@ import { isDefined } from "heroes-helpers";
 
 import { appendArmyTroop, Army, dismissArmyTroop, swapArmyTroops } from "../Army";
 import { GameData } from "../Game";
-import { isMapObject, MapObject, MapObjectData } from "../map";
+import { GameObject, GameObjectData } from "../GameObject";
 import { Troop } from "../Troop";
 
-export interface ArmedObjectData extends MapObjectData {
+export interface ArmedObjectData extends GameObjectData {
   readonly army: {
     readonly preventMovingLastTroop: boolean;
   };
 }
 
-export const isArmedObjectData = (objectData: MapObjectData): objectData is ArmedObjectData =>
+export const isArmedObjectData = (objectData: GameObjectData): objectData is ArmedObjectData =>
   (objectData as ArmedObjectData).army !== undefined;
 
-export interface ArmedObject extends MapObject {
+export interface ArmedObject extends GameObject {
   readonly army: Army;
 }
 
-export const initializeArmedObject = (object: MapObject): ArmedObject => ({
+export const initializeArmedObject = (object: GameObject): ArmedObject => ({
   ...object,
   army: [],
 });
 
-export const isArmedObject = (object: MapObject | undefined): object is ArmedObject =>
-  isMapObject(object) && (object as ArmedObject).army !== undefined;
+export const isArmedObject = (object: GameObject): object is ArmedObject =>
+  (object as ArmedObject).army !== undefined;
 
 export const changeArmedObjectArmy = (object: ArmedObject, army: Army): ArmedObject => ({
   ...object,
