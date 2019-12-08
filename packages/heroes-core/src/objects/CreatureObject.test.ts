@@ -6,7 +6,7 @@ import {
   initializeCreatureMapObject,
   isCreatureMapObject,
   isCreatureMapObjectData,
-} from "./CreatureMapObject";
+} from "./CreatureObject";
 
 describe("isCreatureMapObjectData", () => {
   it("should return true when creature object data", () => {
