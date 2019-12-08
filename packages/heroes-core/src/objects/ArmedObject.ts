@@ -1,4 +1,7 @@
+import { isDefined } from "heroes-helpers";
+
 import { appendArmyTroop, Army, dismissArmyTroop, swapArmyTroops } from "../Army";
+import { GameData } from "../Game";
 import { isMapObject, MapObject, MapObjectData } from "../map";
 import { Troop } from "../Troop";
 
@@ -63,3 +66,15 @@ export const swapArmedObjectTroops = (
     },
   ];
 };
+
+export const getArmedObjectArmyMobility = (
+  object: ArmedObject,
+  data: Pick<GameData, "creatures">,
+): number =>
+  Math.min(...object.army
+    .filter(isDefined)
+    .map((t) => {
+      const creatureData = data.creatures[t.creature];
+
+      return creatureData.speed;
+    }));

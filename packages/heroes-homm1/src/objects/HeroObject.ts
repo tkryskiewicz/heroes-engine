@@ -2,6 +2,7 @@ import {
   applyModifier,
   GameData,
   GameObjectData,
+  getArmedObjectArmyMobility,
   hasModifierFor,
   isMobilityModifierObjectData,
   MapObject,
@@ -9,7 +10,6 @@ import {
 import { isDefined } from "heroes-helpers";
 
 import { HeroMapObject, HeroMapObjectData } from "../map";
-import { getArmedObjectArmyMobility } from "./ArmedObject";
 
 export const getInitialMobility = (
   object: HeroMapObject,
