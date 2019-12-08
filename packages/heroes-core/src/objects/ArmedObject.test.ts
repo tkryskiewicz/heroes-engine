@@ -1,20 +1,20 @@
 import { createMapObject, MapObject, MapObjectData } from "../map";
 import { Troop } from "../Troop";
 import {
-  appendArmedMapObjectTroop,
-  ArmedMapObject,
-  ArmedMapObjectData,
-  changeArmedMapObjectArmy,
-  dismissArmedMapObjectTroop,
-  initializeArmedMapObject,
-  isArmedMapObject,
-  isArmedMapObjectData,
-  swapArmedMapObjectTroops,
+  appendArmedObjectTroop,
+  ArmedObject,
+  ArmedObjectData,
+  changeArmedObjectArmy,
+  dismissArmedObjectTroop,
+  initializeArmedObject,
+  isArmedObject,
+  isArmedObjectData,
+  swapArmedObjectTroops,
 } from "./ArmedObject";
 
-describe("isArmedMapObjectData", () => {
+describe("isArmedObjectData", () => {
   it("should return true when armed object data", () => {
-    const objectData: ArmedMapObjectData = {
+    const objectData: ArmedObjectData = {
       army: {
         preventMovingLastTroop: false,
       },
@@ -24,7 +24,7 @@ describe("isArmedMapObjectData", () => {
       width: 1,
     };
 
-    const result = isArmedMapObjectData(objectData);
+    const result = isArmedObjectData(objectData);
 
     expect(result).toBe(true);
   });
@@ -37,15 +37,15 @@ describe("isArmedMapObjectData", () => {
       width: 1,
     };
 
-    const result = isArmedMapObjectData(objectData);
+    const result = isArmedObjectData(objectData);
 
     expect(result).toBe(false);
   });
 });
 
-describe("initializeArmedMapObject", () => {
+describe("initializeArmedObject", () => {
   it("should initialize army", () => {
-    const objectData: ArmedMapObjectData = {
+    const objectData: ArmedObjectData = {
       army: {
         preventMovingLastTroop: false,
       },
@@ -57,9 +57,9 @@ describe("initializeArmedMapObject", () => {
 
     const object = createMapObject("id", objectData);
 
-    const result = initializeArmedMapObject(object);
+    const result = initializeArmedObject(object);
 
-    const expected: ArmedMapObject = {
+    const expected: ArmedObject = {
       ...object,
       army: [],
     };
@@ -68,15 +68,15 @@ describe("initializeArmedMapObject", () => {
   });
 });
 
-describe("isArmedMapObject", () => {
+describe("isArmedObject", () => {
   it("should return when armed object", () => {
-    const object: ArmedMapObject = {
+    const object: ArmedObject = {
       army: [],
       dataId: "dataId",
       id: "id",
     };
 
-    const result = isArmedMapObject(object);
+    const result = isArmedObject(object);
 
     expect(result).toBe(true);
   });
@@ -87,28 +87,28 @@ describe("isArmedMapObject", () => {
       id: "id",
     };
 
-    const result = isArmedMapObject(object);
+    const result = isArmedObject(object);
 
     expect(result).toBe(false);
   });
 });
 
-describe("changeArmedMapObjectArmy", () => {
+describe("changeArmedObjectArmy", () => {
   it("should set army", () => {
-    const object: ArmedMapObject = {
+    const object: ArmedObject = {
       army: [],
       dataId: "dataId",
       id: "id",
     };
 
-    const result = changeArmedMapObjectArmy(object, [
+    const result = changeArmedObjectArmy(object, [
       {
         count: 1,
         creature: "creature",
       },
     ]);
 
-    const expected: ArmedMapObject = {
+    const expected: ArmedObject = {
       ...object,
       army: [
         {
@@ -122,9 +122,9 @@ describe("changeArmedMapObjectArmy", () => {
   });
 });
 
-describe("appendArmedMapObjectTroop", () => {
+describe("appendArmedObjectTroop", () => {
   it("should append troop to army", () => {
-    const object: ArmedMapObject = {
+    const object: ArmedObject = {
       army: [],
       dataId: "dataId",
       id: "id",
@@ -135,9 +135,9 @@ describe("appendArmedMapObjectTroop", () => {
       creature: "creature",
     };
 
-    const result = appendArmedMapObjectTroop(object, troop);
+    const result = appendArmedObjectTroop(object, troop);
 
-    const expected: ArmedMapObject = {
+    const expected: ArmedObject = {
       ...object,
       army: [
         troop,
@@ -148,14 +148,14 @@ describe("appendArmedMapObjectTroop", () => {
   });
 });
 
-describe("dismissArmedMapObjectTroop", () => {
+describe("dismissArmedObjectTroop", () => {
   it("should dismiss troop", () => {
     const troop: Troop = {
       count: 1,
       creature: "creature",
     };
 
-    const object: ArmedMapObject = {
+    const object: ArmedObject = {
       army: [
         troop,
       ],
@@ -163,9 +163,9 @@ describe("dismissArmedMapObjectTroop", () => {
       id: "id",
     };
 
-    const result = dismissArmedMapObjectTroop(object, 0);
+    const result = dismissArmedObjectTroop(object, 0);
 
-    const expected: ArmedMapObject = {
+    const expected: ArmedObject = {
       ...object,
       army: [
         undefined,
@@ -176,14 +176,14 @@ describe("dismissArmedMapObjectTroop", () => {
   });
 });
 
-describe("swapArmedMapObjectTroops", () => {
+describe("swapArmedObjectTroops", () => {
   it("should swap troops", () => {
     const troop: Troop = {
       count: 1,
       creature: "creatureA",
     };
 
-    const object: ArmedMapObject = {
+    const object: ArmedObject = {
       army: [
         troop,
       ],
@@ -196,7 +196,7 @@ describe("swapArmedMapObjectTroops", () => {
       creature: "creatureB",
     };
 
-    const withObject: ArmedMapObject = {
+    const withObject: ArmedObject = {
       army: [
         withTroop,
       ],
@@ -204,19 +204,19 @@ describe("swapArmedMapObjectTroops", () => {
       id: "withId",
     };
 
-    const [objectResult, withObjectResult] = swapArmedMapObjectTroops(object, 0, withObject, 0, {
+    const [objectResult, withObjectResult] = swapArmedObjectTroops(object, 0, withObject, 0, {
       autoCombineTroops: true,
       preventMovingLastTroop: false,
     });
 
-    const expectedObject: ArmedMapObject = {
+    const expectedObject: ArmedObject = {
       ...object,
       army: [
         withTroop,
       ],
     };
 
-    const expectedWithObject: ArmedMapObject = {
+    const expectedWithObject: ArmedObject = {
       ...withObject,
       army: [
         troop,

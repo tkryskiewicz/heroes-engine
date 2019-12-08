@@ -1,27 +1,27 @@
-import { ArmedMapObject } from "heroes-core";
+import { ArmedObject } from "heroes-core";
 
 import { CreatureSpeed } from "../CreatureSpeed";
-import { getArmedMapObjectArmyMobility } from "./ArmedMapObject";
+import { getArmedObjectArmyMobility } from "./ArmedMapObject";
 
-describe("getArmedMapObjectArmyMobility", () => {
+describe("getArmedObjectArmyMobility", () => {
   it("should return infinity when no army", () => {
-    const data: Parameters<typeof getArmedMapObjectArmyMobility>[1] = {
+    const data: Parameters<typeof getArmedObjectArmyMobility>[1] = {
       creatures: {},
     };
 
-    const object: ArmedMapObject = {
+    const object: ArmedObject = {
       army: [],
       dataId: "dataId",
       id: "id",
     };
 
-    const result = getArmedMapObjectArmyMobility(object, data);
+    const result = getArmedObjectArmyMobility(object, data);
 
     expect(result).toBe(Infinity);
   });
 
   it("should return troop mobility when one troop", () => {
-    const data: Parameters<typeof getArmedMapObjectArmyMobility>[1] = {
+    const data: Parameters<typeof getArmedObjectArmyMobility>[1] = {
       creatures: {
         creatureA: {
           attack: 0,
@@ -37,7 +37,7 @@ describe("getArmedMapObjectArmyMobility", () => {
       },
     };
 
-    const object: ArmedMapObject = {
+    const object: ArmedObject = {
       army: [
         {
           count: 1,
@@ -48,13 +48,13 @@ describe("getArmedMapObjectArmyMobility", () => {
       id: "id",
     };
 
-    const result = getArmedMapObjectArmyMobility(object, data);
+    const result = getArmedObjectArmyMobility(object, data);
 
     expect(result).toBe(60);
   });
 
   it("should return slowest troop mobility", () => {
-    const data: Parameters<typeof getArmedMapObjectArmyMobility>[1] = {
+    const data: Parameters<typeof getArmedObjectArmyMobility>[1] = {
       creatures: {
         creatureA: {
           attack: 0,
@@ -81,7 +81,7 @@ describe("getArmedMapObjectArmyMobility", () => {
       },
     };
 
-    const object: ArmedMapObject = {
+    const object: ArmedObject = {
       army: [
         {
           count: 1,
@@ -96,7 +96,7 @@ describe("getArmedMapObjectArmyMobility", () => {
       id: "id",
     };
 
-    const result = getArmedMapObjectArmyMobility(object, data);
+    const result = getArmedObjectArmyMobility(object, data);
 
     expect(result).toBe(40);
   });

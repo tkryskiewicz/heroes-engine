@@ -1,7 +1,7 @@
 import React from "react";
 
 import {
-  changeArmedMapObjectArmy,
+  changeArmedObjectArmy,
   changeObjectOwner,
   GameData,
   isCreatureMapObject,
@@ -235,7 +235,7 @@ export const createEditorMapObject = (id: string, objectDataId: string, data: Ga
     // tslint:disable-next-line: no-unnecessary-local-variable
     const obj = {
       ...object,
-      ...changeArmedMapObjectArmy(object, [...new Array(data.armySize).keys()].map((): Troop => ({
+      ...changeArmedObjectArmy(object, [...new Array(data.armySize).keys()].map((): Troop => ({
         count: 0,
         creature: Object.keys(data.creatures)[0],
       }))),

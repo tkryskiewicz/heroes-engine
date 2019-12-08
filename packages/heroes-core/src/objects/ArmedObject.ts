@@ -2,54 +2,54 @@ import { appendArmyTroop, Army, dismissArmyTroop, swapArmyTroops } from "../Army
 import { isMapObject, MapObject, MapObjectData } from "../map";
 import { Troop } from "../Troop";
 
-export interface ArmedMapObjectData extends MapObjectData {
+export interface ArmedObjectData extends MapObjectData {
   readonly army: {
     readonly preventMovingLastTroop: boolean;
   };
 }
 
-export const isArmedMapObjectData = (objectData: MapObjectData): objectData is ArmedMapObjectData =>
-  (objectData as ArmedMapObjectData).army !== undefined;
+export const isArmedObjectData = (objectData: MapObjectData): objectData is ArmedObjectData =>
+  (objectData as ArmedObjectData).army !== undefined;
 
-export interface ArmedMapObject extends MapObject {
+export interface ArmedObject extends MapObject {
   readonly army: Army;
 }
 
-export const initializeArmedMapObject = (object: MapObject): ArmedMapObject => ({
+export const initializeArmedObject = (object: MapObject): ArmedObject => ({
   ...object,
   army: [],
 });
 
-export const isArmedMapObject = (object: MapObject | undefined): object is ArmedMapObject =>
-  isMapObject(object) && (object as ArmedMapObject).army !== undefined;
+export const isArmedObject = (object: MapObject | undefined): object is ArmedObject =>
+  isMapObject(object) && (object as ArmedObject).army !== undefined;
 
-export const changeArmedMapObjectArmy = (object: ArmedMapObject, army: Army): ArmedMapObject => ({
+export const changeArmedObjectArmy = (object: ArmedObject, army: Army): ArmedObject => ({
   ...object,
   army: [
     ...army,
   ],
 });
 
-export const appendArmedMapObjectTroop = (object: ArmedMapObject, troop: Troop): ArmedMapObject => ({
+export const appendArmedObjectTroop = (object: ArmedObject, troop: Troop): ArmedObject => ({
   ...object,
   army: appendArmyTroop(object.army, troop),
 });
 
-export const dismissArmedMapObjectTroop = (object: ArmedMapObject, index: number): ArmedMapObject => ({
+export const dismissArmedObjectTroop = (object: ArmedObject, index: number): ArmedObject => ({
   ...object,
   army: dismissArmyTroop(object.army, index),
 });
 
-export const swapArmedMapObjectTroops = (
-  object: ArmedMapObject,
+export const swapArmedObjectTroops = (
+  object: ArmedObject,
   index: number,
-  withObject: ArmedMapObject,
+  withObject: ArmedObject,
   withIndex: number,
   options: {
     readonly autoCombineTroops: boolean;
     readonly preventMovingLastTroop: boolean;
   },
-): [ArmedMapObject, ArmedMapObject] => {
+): [ArmedObject, ArmedObject] => {
   const [armyResult, withArmyResult] = swapArmyTroops(object.army, index, withObject.army, withIndex, options);
 
   return [

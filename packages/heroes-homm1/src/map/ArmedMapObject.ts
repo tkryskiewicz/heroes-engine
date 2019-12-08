@@ -1,8 +1,8 @@
-import { ArmedMapObject, GameData } from "heroes-core";
+import { ArmedObject, GameData } from "heroes-core";
 import { isDefined } from "heroes-helpers";
 
-export const getArmedMapObjectArmyMobility = (
-  object: ArmedMapObject,
+export const getArmedObjectArmyMobility = (
+  object: ArmedObject,
   data: Pick<GameData, "creatures">,
 ): number =>
   Math.min(...object.army

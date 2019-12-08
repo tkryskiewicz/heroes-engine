@@ -1,7 +1,7 @@
 import {
   addObjectItem,
   addResources,
-  ArmedMapObjectData,
+  ArmedObjectData,
   buildTownStructure,
   canMobileObjectMove,
   createMapObject,
@@ -20,7 +20,7 @@ import {
   getObjectPosition,
   getTownStructure,
   Hero,
-  initializeArmedMapObject,
+  initializeArmedObject,
   initializeCreatureMapObject,
   initializeDwellingMapObject,
   initializeEquipableObject,
@@ -29,7 +29,7 @@ import {
   initializeOwnableObject,
   initializeResourceGeneratorMapObject,
   initializeTreasureObject,
-  isArmedMapObjectData,
+  isArmedObjectData,
   isCreatureMapObjectData,
   isDwellingMapObjectData,
   isDwellingStructure,
@@ -108,10 +108,10 @@ interface Handler<TObjectData extends GameObjectData, TObject extends GameObject
 }
 
 // core
-const armedObjectHandler: Handler<ArmedMapObjectData> = {
-  initialize: initializeArmedMapObject,
+const armedObjectHandler: Handler<ArmedObjectData> = {
+  initialize: initializeArmedObject,
   // @ts-ignore
-  objectDataTest: isArmedMapObjectData,
+  objectDataTest: isArmedObjectData,
 };
 
 const creatureObjectHandler: Handler<CreatureMapObjectData> = {
