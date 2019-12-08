@@ -1,4 +1,3 @@
-export * from "./CreatureMapObject";
 export * from "./DwellingMapObject";
 export * from "./ItemMapObject";
 export {

@@ -1,4 +1,4 @@
-import { isMapObject, MapObject, MapObjectData } from "./MapObject";
+import { isMapObject, MapObject, MapObjectData } from "../map";
 
 export interface CreatureMapObjectData extends MapObjectData {
   readonly creature: string;

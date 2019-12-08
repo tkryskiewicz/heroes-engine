@@ -1,4 +1,5 @@
 import { CreatureData } from "../Creature";
+import { createMapObject, MapObject, MapObjectData } from "../map";
 import {
   CreatureMapObject,
   CreatureMapObjectData,
@@ -6,7 +7,6 @@ import {
   isCreatureMapObject,
   isCreatureMapObjectData,
 } from "./CreatureMapObject";
-import { createMapObject, MapObject, MapObjectData } from "./MapObject";
 
 describe("isCreatureMapObjectData", () => {
   it("should return true when creature object data", () => {
