@@ -7,7 +7,7 @@ import {
   ResourceGeneratorMapObjectData,
 } from "heroes-core";
 
-export interface MineMapObjectData extends ResourceGeneratorMapObjectData, OwnableObjectData {
+export interface MineMapObjectData extends MapObjectData, ResourceGeneratorMapObjectData, OwnableObjectData {
 }
 
 const isMine = (id: string, data: Pick<GameData, "resources">): boolean =>
