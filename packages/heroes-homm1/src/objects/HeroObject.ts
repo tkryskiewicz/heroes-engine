@@ -8,7 +8,8 @@ import {
 } from "heroes-core";
 import { isDefined } from "heroes-helpers";
 
-import { getArmedObjectArmyMobility, HeroMapObject, HeroMapObjectData } from "../map";
+import { HeroMapObject, HeroMapObjectData } from "../map";
+import { getArmedObjectArmyMobility } from "./ArmedObject";
 
 export const getInitialMobility = (
   object: HeroMapObject,

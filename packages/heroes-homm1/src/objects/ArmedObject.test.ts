@@ -1,7 +1,7 @@
 import { ArmedObject } from "heroes-core";
 
 import { CreatureSpeed } from "../CreatureSpeed";
-import { getArmedObjectArmyMobility } from "./ArmedMapObject";
+import { getArmedObjectArmyMobility } from "./ArmedObject";
 
 describe("getArmedObjectArmyMobility", () => {
   it("should return infinity when no army", () => {
