@@ -3,12 +3,8 @@ import { HeroData } from "./Hero";
 import { HeroClassData } from "./HeroClass";
 import { ItemData, ItemSelection } from "./Item";
 import {
-  appendArmedMapObjectTroop,
   constructItemMapObjectItem,
-  dismissArmedMapObjectTroop,
   getObjectById,
-  isArmedMapObject,
-  isArmedMapObjectData,
   isDwellingMapObject,
   isDwellingMapObjectData,
   isItemMapObjectData,
@@ -18,14 +14,17 @@ import {
   recruitDwellingMapObjectCreatures,
   removeObject,
   replaceObject,
-  swapArmedMapObjectTroops,
 } from "./map";
 import { Modifier } from "./Modifier";
 import {
   addObjectItem,
+  appendArmedObjectTroop,
   changeObjectOwner,
+  dismissArmedObjectTroop,
   generateTreasureObjectResources,
   getVisitor,
+  isArmedObject,
+  isArmedObjectData,
   isEquipableObject,
   isLimitedInteractionObject,
   isLimitedInteractionObjectData,
@@ -33,6 +32,7 @@ import {
   isOwnableObjectData,
   isPickableObjectData,
   isTreasureObject,
+  swapArmedObjectTroops,
   tradeObjectItems,
   visitObject,
 } from "./objects";
@@ -83,23 +83,23 @@ export const swapGameTroops = (
 ): Game => {
   const object = getObjectById(game.map, troop.id);
 
-  if (!isArmedMapObject(object)) {
+  if (!object || !isArmedObject(object)) {
     throw new Error(`${troop.id} is not an armed object`);
   }
 
   const objectData = game.data.mapObjects[object.dataId];
 
-  if (!isArmedMapObjectData(objectData)) {
+  if (!isArmedObjectData(objectData)) {
     throw new Error(`no armed object data for ${object.id}`);
   }
 
   const withObject = getObjectById(game.map, withTroop.id);
 
-  if (!isArmedMapObject(withObject)) {
+  if (!withObject || !isArmedObject(withObject)) {
     throw new Error(`${withTroop.id} is not an armed object`);
   }
 
-  const [objectResult, withObjectResult] = swapArmedMapObjectTroops(object, troop.index, withObject, withTroop.index, {
+  const [objectResult, withObjectResult] = swapArmedObjectTroops(object, troop.index, withObject, withTroop.index, {
     autoCombineTroops: autoCombine,
     preventMovingLastTroop: objectData.army.preventMovingLastTroop,
   });
@@ -140,11 +140,11 @@ export const dismissGameHero = (game: Game, hero: string): Game => ({
 export const dismissGameTroop = (game: Game, troop: TroopSelection): Game => {
   const object = getObjectById(game.map, troop.id);
 
-  if (!isArmedMapObject(object)) {
+  if (!object || !isArmedObject(object)) {
     throw new Error(`${troop.id} is not an armed object`);
   }
 
-  const objectResult = dismissArmedMapObjectTroop(object, troop.index);
+  const objectResult = dismissArmedObjectTroop(object, troop.index);
 
   return {
     ...game,
@@ -205,13 +205,13 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
   }
 
   if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {
-    if (!isArmedMapObject(activeObject)) {
+    if (!isArmedObject(activeObject)) {
       throw new Error(`${activeObjectId} is not an armed object`);
     }
 
     const [objectResult, troop] = recruitDwellingMapObjectCreatures(object, objectData);
 
-    const activeObjectResult = appendArmedMapObjectTroop(activeObject, troop);
+    const activeObjectResult = appendArmedObjectTroop(activeObject, troop);
 
     game = {
       ...game,

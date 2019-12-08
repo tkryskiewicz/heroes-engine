@@ -1,11 +1,12 @@
 import {
   appendArmyTroop,
-  ArmedMapObject,
-  ArmedMapObjectData,
+  ArmedObject,
+  ArmedObjectData,
   createMapObject,
   getTroop,
   isMapObject,
   MapObject,
+  MapObjectData,
   OwnableObject,
   OwnableObjectData,
   recruitTroop,
@@ -14,10 +15,10 @@ import {
 
 import { MapObjectId } from "./MapObjectId";
 
-export interface TownMapObjectData extends ArmedMapObjectData, OwnableObjectData {
+export interface TownMapObjectData extends MapObjectData, ArmedObjectData, OwnableObjectData {
 }
 
-export interface TownMapObject extends Town, ArmedMapObject, OwnableObject {
+export interface TownMapObject extends Town, ArmedObject, OwnableObject {
 }
 
 export const createTownMapObject = (

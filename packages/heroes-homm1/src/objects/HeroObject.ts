@@ -2,13 +2,14 @@ import {
   applyModifier,
   GameData,
   GameObjectData,
+  getArmedObjectMobility,
   hasModifierFor,
   isMobilityModifierObjectData,
   MapObject,
 } from "heroes-core";
 import { isDefined } from "heroes-helpers";
 
-import { getArmedMapObjectArmyMobility, HeroMapObject, HeroMapObjectData } from "../map";
+import { HeroMapObject, HeroMapObjectData } from "../map";
 
 export const getInitialMobility = (
   object: HeroMapObject,
@@ -17,7 +18,7 @@ export const getInitialMobility = (
   ownedObjects: MapObject[],
   data: Pick<GameData, "mapObjects" | "creatures" | "heroClasses" | "items">,
 ): number => {
-  const armyMobility = getArmedMapObjectArmyMobility(object, data);
+  const armyMobility = getArmedObjectMobility(object, data);
 
   const itemModifier = object.items
     .filter(isDefined)
