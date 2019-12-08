@@ -1,24 +1,18 @@
-import { GameObject, GameObjectData } from "../GameObject";
+import { GameObjectData } from "../GameObject";
 import { Resources } from "../Resource";
-import { initializeOwnableObject, OwnableObject, OwnableObjectData } from "./OwnableObject";
 
-export interface ResourceGeneratorMapObjectData extends GameObjectData, OwnableObjectData {
+export interface ResourceGeneratorObjectData extends GameObjectData {
   readonly resourceGenerator: {
     readonly resource: string;
     readonly amount: number;
   };
 }
 
-export const isResourceGeneratorMapObjectData = (
+export const isResourceGeneratorObjectData = (
   objectData: GameObjectData,
-): objectData is ResourceGeneratorMapObjectData =>
-  (objectData as ResourceGeneratorMapObjectData).resourceGenerator !== undefined;
+): objectData is ResourceGeneratorObjectData =>
+  (objectData as ResourceGeneratorObjectData).resourceGenerator !== undefined;
 
-export type ResourceGeneratorMapObject = OwnableObject;
-
-export const initializeResourceGeneratorMapObject = (object: GameObject): ResourceGeneratorMapObject =>
-  initializeOwnableObject(object);
-
-export const generateResourceGeneratorMapObjectResources = (objectData: ResourceGeneratorMapObjectData): Resources => ({
+export const generateObjectResources = (objectData: ResourceGeneratorObjectData): Resources => ({
   [objectData.resourceGenerator.resource]: objectData.resourceGenerator.amount,
 });

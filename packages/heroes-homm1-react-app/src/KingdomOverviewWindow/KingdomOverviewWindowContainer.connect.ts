@@ -4,7 +4,7 @@ import {
   getDate,
   isObjectOwnedBy,
   isOwnableObject,
-  isResourceGeneratorMapObjectData,
+  isResourceGeneratorObjectData,
   isStructureBuilt,
 } from "heroes-core";
 import { isDefined } from "heroes-helpers";
@@ -41,7 +41,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
     .filter((o) => {
       const objectData = state.game.data.mapObjects[o.dataId];
 
-      return isResourceGeneratorMapObjectData(objectData);
+      return isResourceGeneratorObjectData(objectData);
     });
 
   return {
