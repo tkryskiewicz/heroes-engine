@@ -1,4 +1,4 @@
-import { createMapObject, MapObjectData } from "../map";
+import { GameObject, GameObjectData } from "../GameObject";
 import { Resources } from "../Resource";
 import {
   generateResourceGeneratorMapObjectResources,
@@ -11,15 +11,12 @@ import {
 describe("isResourceGeneratorMapObjectData", () => {
   it("should return true when resource generator map object data", () => {
     const objectData: ResourceGeneratorMapObjectData = {
-      grid: [],
-      height: 1,
       id: "dataId",
       ownable: true,
       resourceGenerator: {
         amount: 1,
         resource: "resource",
       },
-      width: 1,
     };
 
     const result = isResourceGeneratorMapObjectData(objectData);
@@ -28,11 +25,8 @@ describe("isResourceGeneratorMapObjectData", () => {
   });
 
   it("should return false when not resource generator map object data", () => {
-    const objectData: MapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: GameObjectData = {
       id: "dataId",
-      width: 1,
     };
 
     const result = isResourceGeneratorMapObjectData(objectData);
@@ -43,19 +37,10 @@ describe("isResourceGeneratorMapObjectData", () => {
 
 describe("initializeResourceGeneratorMapObject", () => {
   it("should initialize object", () => {
-    const objectData: ResourceGeneratorMapObjectData = {
-      grid: [],
-      height: 1,
-      id: "dataId",
-      ownable: true,
-      resourceGenerator: {
-        amount: 1,
-        resource: "resource",
-      },
-      width: 1,
+    const object: GameObject = {
+      dataId: "dataId",
+      id: "id",
     };
-
-    const object = createMapObject("id", objectData);
 
     const result = initializeResourceGeneratorMapObject(object);
 
@@ -72,15 +57,12 @@ describe("initializeResourceGeneratorMapObject", () => {
 describe("generateResourceGeneratorMapObjectResources", () => {
   it("should generate resources", () => {
     const objectData: ResourceGeneratorMapObjectData = {
-      grid: [],
-      height: 1,
       id: "dataId",
       ownable: true,
       resourceGenerator: {
         amount: 1,
         resource: "resource",
       },
-      width: 1,
     };
 
     const result = generateResourceGeneratorMapObjectResources(objectData);
