@@ -50,7 +50,7 @@ describe("initializeCreatureObject", () => {
 });
 
 describe("isCreatureObject", () => {
-  it("should return true when creature map object", () => {
+  it("should return true when creature object", () => {
     const creature: CreatureData = {
       attack: 0,
       damage: {
@@ -80,7 +80,7 @@ describe("isCreatureObject", () => {
     expect(result).toBe(true);
   });
 
-  it("should return false when not creature map object", () => {
+  it("should return false when not creature object", () => {
     const object: GameObject = {
       dataId: "dataId",
       id: "id",
