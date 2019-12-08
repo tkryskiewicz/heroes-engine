@@ -1,24 +1,24 @@
-import { isMapObject, MapObject, MapObjectData } from "../map";
+import { GameData } from "../Game";
+import { GameObject, GameObjectData } from "../GameObject";
 
-export interface CreatureMapObjectData extends MapObjectData {
+export interface CreatureMapObjectData extends GameObjectData {
   readonly creature: string;
 }
 
-export const isCreatureMapObjectData = (objectData: MapObjectData): objectData is CreatureMapObjectData =>
+export const isCreatureMapObjectData = (objectData: GameObjectData): objectData is CreatureMapObjectData =>
   (objectData as CreatureMapObjectData).creature !== undefined;
 
-export interface CreatureMapObject extends MapObject {
+export interface CreatureMapObject extends GameObject {
   readonly count: number;
 }
 
-export const initializeCreatureMapObject = (object: MapObject): CreatureMapObject => ({
+export const initializeCreatureMapObject = (object: GameObject): CreatureMapObject => ({
   ...object,
   count: 0,
 });
 
 export const isCreatureMapObject = (
-  object: MapObject | undefined,
-  // FIXME
-  data: Pick<import("../Game").GameData, "creatures">,
+  object: GameObject,
+  data: Pick<GameData, "creatures">,
 ): object is CreatureMapObject =>
-  isMapObject(object) && data.creatures[object.dataId] !== undefined;
+  data.creatures[object.dataId] !== undefined;

@@ -1,5 +1,5 @@
 import { CreatureData } from "../Creature";
-import { createMapObject, MapObject, MapObjectData } from "../map";
+import { GameObject, GameObjectData } from "../GameObject";
 import {
   CreatureMapObject,
   CreatureMapObjectData,
@@ -12,10 +12,7 @@ describe("isCreatureMapObjectData", () => {
   it("should return true when creature object data", () => {
     const objectData: CreatureMapObjectData = {
       creature: "creature",
-      grid: [],
-      height: 1,
       id: "dataId",
-      width: 1,
     };
 
     const result = isCreatureMapObjectData(objectData);
@@ -24,11 +21,8 @@ describe("isCreatureMapObjectData", () => {
   });
 
   it("should return false when not creature object data", () => {
-    const objectData: MapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: GameObjectData = {
       id: "dataId",
-      width: 1,
     };
 
     const result = isCreatureMapObjectData(objectData);
@@ -39,15 +33,10 @@ describe("isCreatureMapObjectData", () => {
 
 describe("initializeCreatureMapObject", () => {
   it("should initialize count", () => {
-    const objectData: CreatureMapObjectData = {
-      creature: "creature",
-      grid: [],
-      height: 1,
-      id: "dataId",
-      width: 1,
+    const object: GameObject = {
+      dataId: "dataId",
+      id: "id",
     };
-
-    const object = createMapObject("id", objectData);
 
     const result = initializeCreatureMapObject(object);
 
@@ -92,7 +81,7 @@ describe("isCreatureMapObject", () => {
   });
 
   it("should return false when not creature map object", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
