@@ -1,5 +1,5 @@
-export * from "./DwellingMapObject";
-export * from "./ItemMapObject";
+export * from "./DwellingObject";
+export * from "./ItemObject";
 export {
   Map,
   createMap,
@@ -23,4 +23,4 @@ export { MapCell } from "./MapCell";
 export { MapObject, MapObjectData, MapObjectGridCell, isMapObject, createMapObject } from "./MapObject";
 export { MapObjectOrientation, translatePointDirection, isDiagonalDirection } from "./MapObjectOrientation";
 export { MapPoint, createPoint, isSamePoint, translatePoint } from "./MapPoint";
-export * from "./PuzzleMapObject";
+export * from "./PuzzleObject";

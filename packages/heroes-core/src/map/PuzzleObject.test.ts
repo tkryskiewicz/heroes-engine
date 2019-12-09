@@ -1,5 +1,5 @@
 import { MapObjectData } from "./MapObject";
-import { isPuzzleMapObjectData, PuzzleMapObjectData } from "./PuzzleMapObject";
+import { isPuzzleMapObjectData, PuzzleMapObjectData } from "./PuzzleObject";
 
 describe("isPuzzleMapObjectData", () => {
   it("should return true if puzzle map object", () => {

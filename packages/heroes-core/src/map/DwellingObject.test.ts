@@ -6,7 +6,7 @@ import {
   isDwellingMapObject,
   isDwellingMapObjectData,
   recruitDwellingMapObjectCreatures,
-} from "./DwellingMapObject";
+} from "./DwellingObject";
 import { createMapObject, MapObject, MapObjectData } from "./MapObject";
 
 describe("isDwellingMapObjectData", () => {

@@ -3,7 +3,7 @@ import {
   constructItemMapObjectItem,
   isItemMapObjectData,
   ItemMapObjectData,
-} from "./ItemMapObject";
+} from "./ItemObject";
 import { MapObjectData } from "./MapObject";
 
 describe("isItemMapObjectData", () => {
