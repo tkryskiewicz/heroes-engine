@@ -1,14 +1,14 @@
+import { GameObjectData } from "../GameObject";
 import { Item } from "../Item";
-import { MapObjectData } from "../map";
 
-export interface ItemMapObjectData extends MapObjectData {
+export interface ItemObjectData extends GameObjectData {
   readonly item: string;
 }
 
-export const isItemMapObjectData = (objectData: MapObjectData): objectData is ItemMapObjectData =>
-  (objectData as ItemMapObjectData).item !== undefined;
+export const isItemObjectData = (objectData: GameObjectData): objectData is ItemObjectData =>
+  (objectData as ItemObjectData).item !== undefined;
 
-export const constructItemMapObjectItem = (objectData: ItemMapObjectData): Item => ({
+export const constructItemObjectItem = (objectData: ItemObjectData): Item => ({
   data: {},
   id: objectData.item,
 });

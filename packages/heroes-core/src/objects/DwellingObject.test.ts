@@ -1,64 +1,58 @@
-import { createMapObject, MapObject, MapObjectData } from "../map";
+import { GameObject, GameObjectData } from "../GameObject";
 import { Troop } from "../Troop";
 import {
-  DwellingMapObject,
-  DwellingMapObjectData,
-  initializeDwellingMapObject,
-  isDwellingMapObject,
-  isDwellingMapObjectData,
-  recruitDwellingMapObjectCreatures,
+  DwellingObject,
+  DwellingObjectData,
+  initializeDwellingObject,
+  isDwellingObject,
+  isDwellingObjectData,
+  recruitDwellingObjectCreatures,
 } from "./DwellingObject";
 
-describe("isDwellingMapObjectData", () => {
+describe("isDwellingObjectData", () => {
   it("should return true when object data is dwelling object data", () => {
-    const objectData: DwellingMapObjectData = {
+    const objectData: DwellingObjectData = {
       dwelling: {
         creature: "creature",
         initialCount: 1,
       },
-      grid: [],
-      height: 1,
       id: "dataId",
-      width: 1,
     };
 
-    const result = isDwellingMapObjectData(objectData);
+    const result = isDwellingObjectData(objectData);
 
     expect(result).toBe(true);
   });
 
   it("should return false when object data is not dwelling object data", () => {
-    const objectData: MapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: GameObjectData = {
       id: "dataId",
-      width: 1,
     };
 
-    const result = isDwellingMapObjectData(objectData);
+    const result = isDwellingObjectData(objectData);
 
     expect(result).toBe(false);
   });
 });
 
-describe("initializeDwellingMapObject", () => {
+describe("initializeDwellingObject", () => {
   it("should initialize available count", () => {
-    const objectData: DwellingMapObjectData = {
+    const objectData: DwellingObjectData = {
       dwelling: {
         creature: "creature",
         initialCount: 1,
       },
-      grid: [],
-      height: 1,
       id: "dataId",
-      width: 1,
     };
 
-    const object = createMapObject("id", objectData);
+    const object: GameObject = {
+      dataId: "dataId",
+      id: "id",
+    };
 
-    const result = initializeDwellingMapObject(object, objectData);
+    const result = initializeDwellingObject(object, objectData);
 
-    const expected: DwellingMapObject = {
+    const expected: DwellingObject = {
       ...object,
       availableCount: 1,
     };
@@ -67,49 +61,50 @@ describe("initializeDwellingMapObject", () => {
   });
 });
 
-describe("isDwellingMapObject", () => {
-  it("should return true when dwelling map object", () => {
-    const object: DwellingMapObject = {
+describe("isDwellingObject", () => {
+  it("should return true when dwelling object", () => {
+    const object: DwellingObject = {
       availableCount: 0,
       dataId: "dataId",
       id: "dataId",
     };
 
-    const result = isDwellingMapObject(object);
+    const result = isDwellingObject(object);
 
     expect(result).toBe(true);
   });
 
-  it("should return false when not dwelling map object", () => {
-    const object: MapObject = {
+  it("should return false when not dwelling object", () => {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
 
-    const result = isDwellingMapObject(object);
+    const result = isDwellingObject(object);
 
     expect(result).toBe(false);
   });
 });
 
-describe("recruitDwellingMapObjectCreatures", () => {
+describe("recruitDwellingObjectCreatures", () => {
   it("should set available count to zero", () => {
-    const objectData: DwellingMapObjectData = {
+    const objectData: DwellingObjectData = {
       dwelling: {
         creature: "creature",
         initialCount: 1,
       },
-      grid: [],
-      height: 1,
       id: "dataId",
-      width: 1,
     };
 
-    const object = initializeDwellingMapObject(createMapObject("id", objectData), objectData);
+    const object: DwellingObject = {
+      availableCount: 1,
+      dataId: "dataId",
+      id: "id",
+    };
 
-    const [result] = recruitDwellingMapObjectCreatures(object, objectData);
+    const [result] = recruitDwellingObjectCreatures(object, objectData);
 
-    const expected: DwellingMapObject = {
+    const expected: DwellingObject = {
       ...object,
       availableCount: 0,
     };
@@ -118,20 +113,21 @@ describe("recruitDwellingMapObjectCreatures", () => {
   });
 
   it("should return troop with count equal to available count", () => {
-    const objectData: DwellingMapObjectData = {
+    const objectData: DwellingObjectData = {
       dwelling: {
         creature: "creature",
         initialCount: 1,
       },
-      grid: [],
-      height: 1,
       id: "dataId",
-      width: 1,
     };
 
-    const object = initializeDwellingMapObject(createMapObject("id", objectData), objectData);
+    const object: DwellingObject = {
+      availableCount: 1,
+      dataId: "dataId",
+      id: "id",
+    };
 
-    const [, result] = recruitDwellingMapObjectCreatures(object, objectData);
+    const [, result] = recruitDwellingObjectCreatures(object, objectData);
 
     const expected: Troop = {
       count: 1,

@@ -3,7 +3,7 @@ import React from "react";
 import {
   GameData,
   isCreatureObjectData,
-  isItemMapObjectData,
+  isItemObjectData,
   isStructureBuilt,
   MapObject,
   MapObjectData,
@@ -60,7 +60,7 @@ export const renderObject = (
     );
   }
 
-  if (isItemMapObjectData(objectData)) {
+  if (isItemObjectData(objectData)) {
     return (
       <ArtifactMapObject
         size={size}

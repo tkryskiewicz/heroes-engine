@@ -1,51 +1,42 @@
+import { GameObjectData } from "../GameObject";
 import { Item } from "../Item";
-import { MapObjectData } from "../map";
 import {
-  constructItemMapObjectItem,
-  isItemMapObjectData,
-  ItemMapObjectData,
+  constructItemObjectItem,
+  isItemObjectData,
+  ItemObjectData,
 } from "./ItemObject";
 
-describe("isItemMapObjectData", () => {
+describe("isItemObjectData", () => {
   it("should return true when item object data", () => {
-    const objectData: ItemMapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: ItemObjectData = {
       id: "dataId",
       item: "item",
-      width: 1,
     };
 
-    const result = isItemMapObjectData(objectData);
+    const result = isItemObjectData(objectData);
 
     expect(result).toBe(true);
   });
 
   it("should return false when not item object data", () => {
-    const objectData: MapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: GameObjectData = {
       id: "dataId",
-      width: 1,
     };
 
-    const result = isItemMapObjectData(objectData);
+    const result = isItemObjectData(objectData);
 
     expect(result).toBe(false);
   });
 });
 
-describe("constructItemMapObjectItem", () => {
+describe("constructItemObjectItem", () => {
   it("should construct item", () => {
-    const objectData: ItemMapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: ItemObjectData = {
       id: "dataId",
       item: "item",
-      width: 1,
     };
 
-    const result = constructItemMapObjectItem(objectData);
+    const result = constructItemObjectItem(objectData);
 
     const expected: Item = {
       data: {},

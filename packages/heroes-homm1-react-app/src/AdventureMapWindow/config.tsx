@@ -4,9 +4,9 @@ import { Dispatch } from "redux";
 import {
   GameData,
   getVisitor,
-  isDwellingMapObject,
-  isDwellingMapObjectData,
-  isItemMapObjectData,
+  isDwellingObject,
+  isDwellingObjectData,
+  isItemObjectData,
   isObjectOwnedBy,
   isOwnableObject,
   isOwnableObjectData,
@@ -82,7 +82,7 @@ export const renderMapObjectDetails = (
     );
   }
 
-  if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {
+  if (isDwellingObjectData(objectData) && isDwellingObject(object)) {
     if (object.availableCount === 0) {
       return (
         <DwellingEmptyPrompt
@@ -156,7 +156,7 @@ export const onCellClick = (
     } else {
       dispatch(locatorsActions.openLocatorDetails());
     }
-  } else if (isDwellingMapObject(object)) {
+  } else if (isDwellingObject(object)) {
     if (!isHeroMapObject(activeObject)) {
       return;
     }
@@ -174,7 +174,7 @@ export const onCellClick = (
     }
 
     dispatch(adventureWindowActions.openMapObjectDetails(object.id));
-  } else if (isItemMapObjectData(objectData)) {
+  } else if (isItemObjectData(objectData)) {
     if (!isHeroMapObject(activeObject)) {
       return;
     }

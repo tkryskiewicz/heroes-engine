@@ -1,30 +1,24 @@
-import { MapObjectData } from "../map";
-import { isPuzzleMapObjectData, PuzzleMapObjectData } from "./PuzzleObject";
+import { GameObjectData } from "../GameObject";
+import { isPuzzleObjectData, PuzzleObjectData } from "./PuzzleObject";
 
-describe("isPuzzleMapObjectData", () => {
-  it("should return true if puzzle map object", () => {
-    const objectData: PuzzleMapObjectData = {
-      grid: [],
-      height: 1,
+describe("isPuzzleObjectData", () => {
+  it("should return true if puzzle object", () => {
+    const objectData: PuzzleObjectData = {
       id: "id",
       uncoversPuzzlePiece: true,
-      width: 1,
     };
 
-    const result = isPuzzleMapObjectData(objectData);
+    const result = isPuzzleObjectData(objectData);
 
     expect(result).toBe(true);
   });
 
-  it("should return false when not puzzle map object", () => {
-    const objectData: MapObjectData = {
-      grid: [],
-      height: 1,
+  it("should return false when not puzzle object", () => {
+    const objectData: GameObjectData = {
       id: "id",
-      width: 1,
     };
 
-    const result = isPuzzleMapObjectData(objectData);
+    const result = isPuzzleObjectData(objectData);
 
     expect(result).toBe(false);
   });

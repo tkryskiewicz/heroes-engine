@@ -1,7 +1,7 @@
-import { isMapObject, MapObject, MapObjectData } from "../map";
+import { GameObject, GameObjectData } from "../GameObject";
 import { Troop } from "../Troop";
 
-export interface DwellingMapObjectData extends MapObjectData {
+export interface DwellingObjectData extends GameObjectData {
   readonly dwelling: {
     readonly creature: string;
     // TODO: initial count is random within a range
@@ -9,28 +9,28 @@ export interface DwellingMapObjectData extends MapObjectData {
   };
 }
 
-export const isDwellingMapObjectData = (object: MapObjectData): object is DwellingMapObjectData =>
-  (object as DwellingMapObjectData).dwelling !== undefined;
+export const isDwellingObjectData = (object: GameObjectData): object is DwellingObjectData =>
+  (object as DwellingObjectData).dwelling !== undefined;
 
-export interface DwellingMapObject extends MapObject {
+export interface DwellingObject extends GameObject {
   readonly availableCount: number;
 }
 
-export const initializeDwellingMapObject = (
-  object: MapObject,
-  objectData: DwellingMapObjectData,
-): DwellingMapObject => ({
+export const initializeDwellingObject = (
+  object: GameObject,
+  objectData: DwellingObjectData,
+): DwellingObject => ({
   ...object,
   availableCount: objectData.dwelling.initialCount,
 });
 
-export const isDwellingMapObject = (object: MapObject | undefined): object is DwellingMapObject =>
-  isMapObject(object) && (object as DwellingMapObject).availableCount !== undefined;
+export const isDwellingObject = (object: GameObject): object is DwellingObject =>
+  (object as DwellingObject).availableCount !== undefined;
 
-export const recruitDwellingMapObjectCreatures = (
-  object: DwellingMapObject,
-  objectData: DwellingMapObjectData,
-): [DwellingMapObject, Troop] => [
+export const recruitDwellingObjectCreatures = (
+  object: DwellingObject,
+  objectData: DwellingObjectData,
+): [DwellingObject, Troop] => [
     {
       ...object,
       availableCount: 0,
