@@ -1,3 +1,4 @@
+import { createMapObject, MapObject, MapObjectData } from "../map";
 import { Troop } from "../Troop";
 import {
   DwellingMapObject,
@@ -7,7 +8,6 @@ import {
   isDwellingMapObjectData,
   recruitDwellingMapObjectCreatures,
 } from "./DwellingObject";
-import { createMapObject, MapObject, MapObjectData } from "./MapObject";
 
 describe("isDwellingMapObjectData", () => {
   it("should return true when object data is dwelling object data", () => {

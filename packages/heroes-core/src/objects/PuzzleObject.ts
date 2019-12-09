@@ -1,4 +1,4 @@
-import { MapObjectData } from "./MapObject";
+import { MapObjectData } from "../map";
 
 // TODO: should this be in core??
 export interface PuzzleMapObjectData extends MapObjectData {

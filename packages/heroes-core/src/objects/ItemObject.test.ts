@@ -1,10 +1,10 @@
 import { Item } from "../Item";
+import { MapObjectData } from "../map";
 import {
   constructItemMapObjectItem,
   isItemMapObjectData,
   ItemMapObjectData,
 } from "./ItemObject";
-import { MapObjectData } from "./MapObject";
 
 describe("isItemMapObjectData", () => {
   it("should return true when item object data", () => {

@@ -1,5 +1,5 @@
+import { isMapObject, MapObject, MapObjectData } from "../map";
 import { Troop } from "../Troop";
-import { isMapObject, MapObject, MapObjectData } from "./MapObject";
 
 export interface DwellingMapObjectData extends MapObjectData {
   readonly dwelling: {

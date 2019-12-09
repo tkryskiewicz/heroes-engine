@@ -1,5 +1,5 @@
 import { Item } from "../Item";
-import { MapObjectData } from "./MapObject";
+import { MapObjectData } from "../map";
 
 export interface ItemMapObjectData extends MapObjectData {
   readonly item: string;

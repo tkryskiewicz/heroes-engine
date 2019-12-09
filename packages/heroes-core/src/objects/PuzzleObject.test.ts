@@ -1,4 +1,4 @@
-import { MapObjectData } from "./MapObject";
+import { MapObjectData } from "../map";
 import { isPuzzleMapObjectData, PuzzleMapObjectData } from "./PuzzleObject";
 
 describe("isPuzzleMapObjectData", () => {
