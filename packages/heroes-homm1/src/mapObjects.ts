@@ -1,8 +1,8 @@
 import {
   CreatureObjectData,
-  DwellingMapObjectData,
+  DwellingObjectData,
   InteractionLimitType,
-  ItemMapObjectData,
+  ItemObjectData,
   MapObjectData,
   MobilityModifierObjectData,
   OwnableObjectData,
@@ -186,7 +186,7 @@ const randomCreatureObjects: (RandomCreatureMapObjectData & TerrainRestrictedMap
   },
 ];
 
-type ArtifactObjectData = ItemMapObjectData & PickableObjectData & TerrainRestrictedMapObjectData;
+type ArtifactObjectData = ItemObjectData & PickableObjectData & TerrainRestrictedMapObjectData;
 
 const artifactObjectOrder: string[] = [
   ArtifactId.ArcaneNecklaceOfMagic,
@@ -595,7 +595,7 @@ const sawmill: MineObjectData = {
   width: 2,
 };
 
-const cottage: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
+const cottage: DwellingObjectData & TerrainRestrictedMapObjectData = {
   dwelling: {
     creature: CreatureId.Archer,
     initialCount: 1, // 1-4
@@ -612,7 +612,7 @@ const cottage: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
   width: 1,
 };
 
-const cottageSnow: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
+const cottageSnow: DwellingObjectData & TerrainRestrictedMapObjectData = {
   dwelling: {
     creature: CreatureId.Peasant,
     initialCount: 20, // 20-50
@@ -630,7 +630,7 @@ const cottageSnow: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
   width: 1,
 };
 
-const desertTent: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
+const desertTent: DwellingObjectData & TerrainRestrictedMapObjectData = {
   dwelling: {
     creature: CreatureId.Nomad,
     initialCount: 10, // 10-20
@@ -648,7 +648,7 @@ const desertTent: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
   width: 3,
 };
 
-const hut: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
+const hut: DwellingObjectData & TerrainRestrictedMapObjectData = {
   dwelling: {
     creature: CreatureId.Goblin,
     initialCount: 10, // 10-20
@@ -665,7 +665,7 @@ const hut: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
   width: 1,
 };
 
-const thatchedHut: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
+const thatchedHut: DwellingObjectData & TerrainRestrictedMapObjectData = {
   dwelling: {
     creature: CreatureId.Peasant,
     initialCount: 20, // 20-50
@@ -682,7 +682,7 @@ const thatchedHut: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
   width: 1,
 };
 
-const thatchedHutSnow: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
+const thatchedHutSnow: DwellingObjectData & TerrainRestrictedMapObjectData = {
   dwelling: {
     creature: CreatureId.Dwarf,
     initialCount: 1, // 1-3
@@ -699,7 +699,7 @@ const thatchedHutSnow: DwellingMapObjectData & TerrainRestrictedMapObjectData = 
   width: 1,
 };
 
-const wagonCamp: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
+const wagonCamp: DwellingObjectData & TerrainRestrictedMapObjectData = {
   dwelling: {
     creature: CreatureId.Rogue,
     initialCount: 30, // 30-50
@@ -715,7 +715,7 @@ const wagonCamp: DwellingMapObjectData & TerrainRestrictedMapObjectData = {
   width: 3,
 };
 
-const dwellingObjects: (DwellingMapObjectData & TerrainRestrictedMapObjectData)[] = [
+const dwellingObjects: (DwellingObjectData & TerrainRestrictedMapObjectData)[] = [
   cottage,
   cottageSnow,
   desertTent,

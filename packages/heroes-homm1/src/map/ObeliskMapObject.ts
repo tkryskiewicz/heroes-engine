@@ -3,12 +3,12 @@ import {
   LimitedInteractionObjectData,
   MapObject,
   MapObjectData,
-  PuzzleMapObjectData,
+  PuzzleObjectData,
 } from "heroes-core";
 
 import { MapObjectId } from "./MapObjectId";
 
-export interface ObeliskMapObjectData extends PuzzleMapObjectData, LimitedInteractionObjectData {
+export interface ObeliskMapObjectData extends MapObjectData, PuzzleObjectData, LimitedInteractionObjectData {
 }
 
 export const isObeliskMapObjectData = (objectData: MapObjectData): objectData is ObeliskMapObjectData =>

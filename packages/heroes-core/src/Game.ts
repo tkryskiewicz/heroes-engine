@@ -3,15 +3,9 @@ import { HeroData } from "./Hero";
 import { HeroClassData } from "./HeroClass";
 import { ItemData, ItemSelection } from "./Item";
 import {
-  constructItemMapObjectItem,
   getObjectById,
-  isDwellingMapObject,
-  isDwellingMapObjectData,
-  isItemMapObjectData,
-  isPuzzleMapObjectData,
   Map,
   MapObjectData,
-  recruitDwellingMapObjectCreatures,
   removeObject,
   replaceObject,
 } from "./map";
@@ -20,18 +14,24 @@ import {
   addObjectItem,
   appendArmedObjectTroop,
   changeObjectOwner,
+  constructItemObjectItem,
   dismissArmedObjectTroop,
   generateTreasureObjectResources,
   getVisitor,
   isArmedObject,
   isArmedObjectData,
+  isDwellingObject,
+  isDwellingObjectData,
   isEquipableObject,
+  isItemObjectData,
   isLimitedInteractionObject,
   isLimitedInteractionObjectData,
   isOwnableObject,
   isOwnableObjectData,
   isPickableObjectData,
+  isPuzzleObjectData,
   isTreasureObject,
+  recruitDwellingObjectCreatures,
   swapArmedObjectTroops,
   tradeObjectItems,
   visitObject,
@@ -189,12 +189,12 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
     };
   }
 
-  if (isItemMapObjectData(objectData)) {
+  if (isItemObjectData(objectData)) {
     if (!isEquipableObject(activeObject)) {
       throw new Error(`${activeObjectId} is not an equipable object`);
     }
 
-    const item = constructItemMapObjectItem(objectData);
+    const item = constructItemObjectItem(objectData);
 
     const activeObjectResult = addObjectItem(activeObject, item);
 
@@ -204,12 +204,12 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
     };
   }
 
-  if (isDwellingMapObjectData(objectData) && isDwellingMapObject(object)) {
+  if (isDwellingObjectData(objectData) && isDwellingObject(object)) {
     if (!isArmedObject(activeObject)) {
       throw new Error(`${activeObjectId} is not an armed object`);
     }
 
-    const [objectResult, troop] = recruitDwellingMapObjectCreatures(object, objectData);
+    const [objectResult, troop] = recruitDwellingObjectCreatures(object, objectData);
 
     const activeObjectResult = appendArmedObjectTroop(activeObject, troop);
 
@@ -219,7 +219,7 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
     };
   }
 
-  if (isPuzzleMapObjectData(objectData)) {
+  if (isPuzzleObjectData(objectData)) {
     game = {
       ...game,
       puzzle: {

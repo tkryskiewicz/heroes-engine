@@ -6,7 +6,7 @@ import {
   canMobileObjectMove,
   createMapObject,
   CreatureObjectData,
-  DwellingMapObjectData,
+  DwellingObjectData,
   endTownTurn,
   EquipableObjectData,
   Game,
@@ -22,7 +22,7 @@ import {
   Hero,
   initializeArmedObject,
   initializeCreatureObject,
-  initializeDwellingMapObject,
+  initializeDwellingObject,
   initializeEquipableObject,
   initializeLimitedInteractionObject,
   initializeMobileObject,
@@ -30,7 +30,7 @@ import {
   initializeTreasureObject,
   isArmedObjectData,
   isCreatureObjectData,
-  isDwellingMapObjectData,
+  isDwellingObjectData,
   isDwellingStructure,
   isEquipableObjectData,
   isLimitedInteractionObjectData,
@@ -109,37 +109,31 @@ interface Handler<TObjectData extends GameObjectData, TObject extends GameObject
 // core
 const armedObjectHandler: Handler<ArmedObjectData> = {
   initialize: initializeArmedObject,
-  // @ts-ignore
   objectDataTest: isArmedObjectData,
 };
 
 const creatureObjectHandler: Handler<CreatureObjectData> = {
   initialize: initializeCreatureObject,
-  // @ts-ignore
   objectDataTest: isCreatureObjectData,
 };
 
-const dwellingObjectHandler: Handler<DwellingMapObjectData> = {
-  initialize: initializeDwellingMapObject,
-  // @ts-ignore
-  objectDataTest: isDwellingMapObjectData,
+const dwellingObjectHandler: Handler<DwellingObjectData> = {
+  initialize: initializeDwellingObject,
+  objectDataTest: isDwellingObjectData,
 };
 
 const equipableObjectHandler: Handler<EquipableObjectData> = {
   initialize: initializeEquipableObject,
-  // @ts-ignore
   objectDataTest: isEquipableObjectData,
 };
 
 const limitedInteractionObjectHandler: Handler<LimitedInteractionObjectData> = {
   initialize: initializeLimitedInteractionObject,
-  // @ts-ignore
   objectDataTest: isLimitedInteractionObjectData,
 };
 
 const mobileObjectHandler: Handler<MobileObjectData> = {
   initialize: initializeMobileObject,
-  // @ts-ignore
   objectDataTest: isMobileObjectData,
 };
 
@@ -150,13 +144,11 @@ const ownableObjectHandler: Handler<OwnableObjectData> = {
 
 const resourceGeneratorObjectHandler: Handler<ResourceGeneratorObjectData> = {
   initialize: (object) => object,
-  // @ts-ignore
   objectDataTest: isResourceGeneratorObjectData,
 };
 
 const treasureObjectHandler: Handler<TreasureObjectData> = {
   initialize: initializeTreasureObject,
-  // @ts-ignore
   objectDataTest: isTreasureObjectData,
 };
 
