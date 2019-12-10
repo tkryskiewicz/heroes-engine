@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 import { Army, GameData, Troop } from "heroes-core";
 import { noop } from "heroes-helpers";
-import { TownMapObjectDetails } from "heroes-homm1";
+import { TownObjectDetails } from "heroes-homm1";
 
 import * as styles from "./TownMapObjectDetailsWindow.module.scss";
 
@@ -17,8 +17,8 @@ import { messages } from "./messages";
 
 export interface TownMapObjectDetailsWindowProps extends EditorSettingsWindowProps {
   readonly data: Pick<GameData, "playerColors" | "creatures">;
-  readonly value: TownMapObjectDetails;
-  readonly onValueChange: (value: TownMapObjectDetails) => void;
+  readonly value: TownObjectDetails;
+  readonly onValueChange: (value: TownObjectDetails) => void;
 }
 
 interface State {
@@ -69,7 +69,7 @@ export class TownMapObjectDetailsWindow extends React.Component<TownMapObjectDet
   }
 
   private readonly onCustomizedChange = (value: boolean) => {
-    const newValue: TownMapObjectDetails = {
+    const newValue: TownObjectDetails = {
       ...this.props.value,
       customized: value,
     };
@@ -110,7 +110,7 @@ export class TownMapObjectDetailsWindow extends React.Component<TownMapObjectDet
   }
 
   private readonly onArmyChange = (value: Army) => {
-    const newValue: TownMapObjectDetails = {
+    const newValue: TownObjectDetails = {
       ...this.props.value,
       army: value,
     };
@@ -148,7 +148,7 @@ export class TownMapObjectDetailsWindow extends React.Component<TownMapObjectDet
   }
 
   private readonly onOwnerChange = (value?: string) => {
-    const newValue: TownMapObjectDetails = {
+    const newValue: TownObjectDetails = {
       ...this.props.value,
       owner: value,
     };

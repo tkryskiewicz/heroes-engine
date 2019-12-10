@@ -39,7 +39,7 @@ import {
   StatusWindowOption,
 } from "heroes-homm1-state";
 
-export const renderMapObjectDetails = (
+export const renderObjectDetails = (
   object: MapObject,
   objectData: MapObjectData,
   activeObject: MapObject | undefined,
@@ -161,7 +161,7 @@ export const onCellClick = (
       return;
     }
 
-    dispatch(adventureWindowActions.openMapObjectDetails(object.id));
+    dispatch(adventureWindowActions.openObjectDetails(object.id));
   } else if (isTreasureObject(object)) {
     if (!activeObject || !isHeroObject(activeObject)) {
       return;
@@ -173,7 +173,7 @@ export const onCellClick = (
       return;
     }
 
-    dispatch(adventureWindowActions.openMapObjectDetails(object.id));
+    dispatch(adventureWindowActions.openObjectDetails(object.id));
   } else if (isItemObjectData(objectData)) {
     if (!activeObject || !isHeroObject(activeObject)) {
       return;
@@ -191,6 +191,6 @@ export const onCellClick = (
       return;
     }
 
-    dispatch(adventureWindowActions.openMapObjectDetails(object.id));
+    dispatch(adventureWindowActions.openObjectDetails(object.id));
   }
 };

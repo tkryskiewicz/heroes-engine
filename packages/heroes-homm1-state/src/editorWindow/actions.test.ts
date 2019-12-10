@@ -1,6 +1,6 @@
 import { createMap, createPoint } from "heroes-core";
 import {
-  CreatureMapObjectDetails,
+  CreatureObjectDetails,
   EditorOption,
   EraseObjectsSettings,
   LandMassSetting,
@@ -163,7 +163,7 @@ describe("editorWindowActions", () => {
   });
 
   it("should create an action to open object details", () => {
-    const value: CreatureMapObjectDetails = 1;
+    const value: CreatureObjectDetails = 1;
 
     const result = openObjectDetails("id", value);
 
@@ -187,7 +187,7 @@ describe("editorWindowActions", () => {
   });
 
   it("should create an action to change selected object details", () => {
-    const value: CreatureMapObjectDetails = 1;
+    const value: CreatureObjectDetails = 1;
 
     const result = changeSelectedObjectDetails(value);
 

@@ -11,7 +11,7 @@ type StateProp =
   "x" |
   "y" |
   "activeObjectId" |
-  "visibleMapObjectDetails" |
+  "visibleObjectDetails" |
   "heroTradingScreenVisible";
 
 const mapStateToProps = (state: AppState): Pick<AdventureMapWindowProps, StateProp> => ({
@@ -20,7 +20,7 @@ const mapStateToProps = (state: AppState): Pick<AdventureMapWindowProps, StatePr
   heroTradingScreenVisible: state.adventureWindow.heroTradingWindowVisible,
   map: state.game.map,
   player: state.game.activePlayer,
-  visibleMapObjectDetails: state.adventureWindow.visibleMapObjectDetails,
+  visibleObjectDetails: state.adventureWindow.visibleObjectDetails,
   x: state.adventureWindow.x,
   y: state.adventureWindow.y,
 });

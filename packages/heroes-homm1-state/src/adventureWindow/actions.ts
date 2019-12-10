@@ -1,34 +1,34 @@
 export enum AdventureWindowActionType {
-  OpenMapObjectDetails = "adventureWindow/openMapObjectDetails",
-  CloseMapObjectDetails = "adventureWindow/closeMapObjectDetails",
+  OpenObjectDetails = "adventureWindow/openObjectDetails",
+  CloseObjectDetails = "adventureWindow/closeObjectDetails",
   ChangeEndTurnPromptVisible = "adventureWindow/changeEndTurnPromptVisible",
   OpenHeroTradingScreen = "adventureWindow/openHeroTradingWindow",
   CloseHeroTradingScreen = "adventureWindow/closeHeroTradingWindow",
 }
 
 export type AdventureWindowAction =
-  OpenMapObjectDetailsAction |
-  CloseMapObjectDetailsAction |
+  OpenObjectDetailsAction |
+  CloseObjectDetailsAction |
   ChangeEndTurnPromptVisibleAction |
   OpenHeroTradingWindowAction |
   CloseHeroTradingWindowAction;
 
-export interface OpenMapObjectDetailsAction {
-  readonly type: AdventureWindowActionType.OpenMapObjectDetails;
+export interface OpenObjectDetailsAction {
+  readonly type: AdventureWindowActionType.OpenObjectDetails;
   readonly id: string;
 }
 
-export const openMapObjectDetails = (id: string): OpenMapObjectDetailsAction => ({
+export const openObjectDetails = (id: string): OpenObjectDetailsAction => ({
   id,
-  type: AdventureWindowActionType.OpenMapObjectDetails,
+  type: AdventureWindowActionType.OpenObjectDetails,
 });
 
-export interface CloseMapObjectDetailsAction {
-  readonly type: AdventureWindowActionType.CloseMapObjectDetails;
+export interface CloseObjectDetailsAction {
+  readonly type: AdventureWindowActionType.CloseObjectDetails;
 }
 
-export const closeMapObjectDetails = (): CloseMapObjectDetailsAction => ({
-  type: AdventureWindowActionType.CloseMapObjectDetails,
+export const closeObjectDetails = (): CloseObjectDetailsAction => ({
+  type: AdventureWindowActionType.CloseObjectDetails,
 });
 
 export interface ChangeEndTurnPromptVisibleAction {

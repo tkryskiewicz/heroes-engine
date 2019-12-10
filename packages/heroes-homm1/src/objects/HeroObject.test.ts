@@ -126,6 +126,7 @@ describe("getInitialMobility", () => {
     grid: [],
     height: 1,
     id: "mapObject",
+    // @ts-ignore
     type: [],
     width: 1,
   };

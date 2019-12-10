@@ -27,8 +27,8 @@ import {
   EraseObjectsSettings,
   getScenarioSpecification,
   getTerrainTransition,
-  MapObjectDetails,
   MapObjectType,
+  ObjectDetails,
   RandomMapSettings,
   Scenario,
   ScenarioSpecification,
@@ -82,14 +82,14 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly onCloseObjectsWindowClick: () => void;
 
   readonly visibleObjectDetails?: string;
-  readonly onOpenObjectDetailsClick: (id: string, details: MapObjectDetails) => void;
+  readonly onOpenObjectDetailsClick: (id: string, details: ObjectDetails) => void;
   readonly onCloseObjectDetailsClick: () => void;
   readonly objectDetailsUnavailablePromptVisible: boolean;
   readonly onOpenObjectDetailsUnavailablePromptClick: () => void;
   readonly onCloseObjectDetailsUnavailablePromptClick: () => void;
 
-  readonly selectedObjectDetails?: MapObjectDetails;
-  readonly onSelectedObjectDetailsChange: (value: MapObjectDetails) => void;
+  readonly selectedObjectDetails?: ObjectDetails;
+  readonly onSelectedObjectDetailsChange: (value: ObjectDetails) => void;
 
   readonly eraseObjectsSettings: EraseObjectsSettings;
   readonly eraseObjectsSettingsVisible: boolean;

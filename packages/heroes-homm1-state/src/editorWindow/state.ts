@@ -2,8 +2,8 @@ import { MapPoint } from "heroes-core";
 import {
   EditorOption,
   EraseObjectsSettings,
-  MapObjectDetails,
   MapObjectType,
+  ObjectDetails,
   RandomMapSettings,
   Scenario,
   ScenarioSpecification,
@@ -18,7 +18,7 @@ export interface EditorWindowState {
   readonly selectedObject?: string;
   readonly objectsWindowVisible: boolean;
   readonly visibleObjectDetails?: string;
-  readonly selectedObjectDetails?: MapObjectDetails;
+  readonly selectedObjectDetails?: ObjectDetails;
   readonly objectDetailsUnavailablePromptVisible: boolean;
   readonly eraseObjectsSettings: EraseObjectsSettings;
   readonly eraseObejctsSettingsVisible: boolean;

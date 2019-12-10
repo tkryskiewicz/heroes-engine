@@ -2,8 +2,8 @@ import { MapPoint } from "heroes-core";
 import {
   EditorOption,
   EraseObjectsSettings,
-  MapObjectDetails,
   MapObjectType,
+  ObjectDetails,
   RandomMapSettings,
   Scenario,
   ScenarioSpecification,
@@ -141,10 +141,10 @@ export const closeObjectsWindow = (): CloseObjectsWindowAction => ({
 
 export interface ChangeSelectedObjectDetailsAction {
   readonly type: EditorWindowActionType.ChangeSelectedObjectDetails;
-  readonly value: MapObjectDetails;
+  readonly value: ObjectDetails;
 }
 
-export const changeSelectedObjectDetails = (value: MapObjectDetails): ChangeSelectedObjectDetailsAction => ({
+export const changeSelectedObjectDetails = (value: ObjectDetails): ChangeSelectedObjectDetailsAction => ({
   type: EditorWindowActionType.ChangeSelectedObjectDetails,
   value,
 });
@@ -152,10 +152,10 @@ export const changeSelectedObjectDetails = (value: MapObjectDetails): ChangeSele
 export interface OpenObjectDetailsAction {
   readonly type: EditorWindowActionType.OpenObjectDetails;
   readonly id: string;
-  readonly value: MapObjectDetails;
+  readonly value: ObjectDetails;
 }
 
-export const openObjectDetails = (id: string, value: MapObjectDetails): OpenObjectDetailsAction => ({
+export const openObjectDetails = (id: string, value: ObjectDetails): OpenObjectDetailsAction => ({
   id,
   type: EditorWindowActionType.OpenObjectDetails,
   value,

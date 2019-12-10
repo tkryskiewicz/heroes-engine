@@ -1,9 +1,9 @@
 import {
   changeEndTurnPromptVisible,
   closeHeroTradingWindow,
-  closeMapObjectDetails,
+  closeObjectDetails,
   openHeroTradingWindow,
-  openMapObjectDetails,
+  openObjectDetails,
 } from "./actions";
 import { adventureWindowReducer } from "./reducers";
 import { AdventureWindowState } from "./state";
@@ -22,7 +22,7 @@ describe("adventureWindowReducer", () => {
     expect(result).toEqual(expected);
   });
 
-  it("should handle opening map object details", () => {
+  it("should handle opening object details", () => {
     const state: AdventureWindowState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
@@ -30,12 +30,12 @@ describe("adventureWindowReducer", () => {
       y: 0,
     };
 
-    const result = adventureWindowReducer(state, openMapObjectDetails("id"));
+    const result = adventureWindowReducer(state, openObjectDetails("id"));
 
     const expected: AdventureWindowState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
-      visibleMapObjectDetails: "id",
+      visibleObjectDetails: "id",
       x: 0,
       y: 0,
     };
@@ -43,16 +43,16 @@ describe("adventureWindowReducer", () => {
     expect(result).toEqual(expected);
   });
 
-  it("should handle closing map object details", () => {
+  it("should handle closing object details", () => {
     const state: AdventureWindowState = {
       endTurnPromptVisible: false,
       heroTradingWindowVisible: false,
-      visibleMapObjectDetails: "id",
+      visibleObjectDetails: "id",
       x: 0,
       y: 0,
     };
 
-    const result = adventureWindowReducer(state, closeMapObjectDetails());
+    const result = adventureWindowReducer(state, closeObjectDetails());
 
     const expected: AdventureWindowState = {
       endTurnPromptVisible: false,

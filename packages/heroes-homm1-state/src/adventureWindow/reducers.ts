@@ -13,15 +13,15 @@ export const adventureWindowReducer = (
   action: AdventureWindowAction,
 ): AdventureWindowState => {
   switch (action.type) {
-    case AdventureWindowActionType.OpenMapObjectDetails:
+    case AdventureWindowActionType.OpenObjectDetails:
       return {
         ...state,
-        visibleMapObjectDetails: action.id,
+        visibleObjectDetails: action.id,
       };
-    case AdventureWindowActionType.CloseMapObjectDetails:
+    case AdventureWindowActionType.CloseObjectDetails:
       return {
         ...state,
-        visibleMapObjectDetails: undefined,
+        visibleObjectDetails: undefined,
       };
     case AdventureWindowActionType.ChangeEndTurnPromptVisible:
       return {

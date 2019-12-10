@@ -14,7 +14,7 @@ import { adventureWindowActions, gameActions } from "heroes-homm1-state";
 
 import { renderObject } from "../config";
 import { HeroTradingWindow } from "../HeroTradingWindow";
-import { onCellClick, onKeyDown, renderMapObjectDetails } from "./config";
+import { onCellClick, onKeyDown, renderObjectDetails } from "./config";
 
 interface Props extends DispatchProp {
   readonly data: GameData;
@@ -23,7 +23,7 @@ interface Props extends DispatchProp {
   readonly x: number;
   readonly y: number;
   readonly activeObjectId?: string;
-  readonly visibleMapObjectDetails?: string;
+  readonly visibleObjectDetails?: string;
   readonly heroTradingScreenVisible: boolean;
 }
 
@@ -47,7 +47,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
           cellSize={MapCellSize}
           renderCell={this.renderCell}
         />
-        {this.props.visibleMapObjectDetails && this.renderMapObjectDetails(this.props.visibleMapObjectDetails)}
+        {this.props.visibleObjectDetails && this.renderObjectDetails(this.props.visibleObjectDetails)}
         {this.props.heroTradingScreenVisible && this.rendeHeroTradingWindow()}
       </div>
     );
@@ -163,7 +163,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     }
   }
 
-  private renderMapObjectDetails(id: string) {
+  private renderObjectDetails(id: string) {
     const { data, map, activeObjectId } = this.props;
 
     const activeObject = activeObjectId !== undefined ?
@@ -174,22 +174,22 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
 
     const objectData = data.mapObjects[object.dataId];
 
-    return renderMapObjectDetails(object, objectData, activeObject, data, {
-      onCloseClick: this.onCloseMapObjectDetailsClick,
-      onConfirmClick: this.onConfirmMapObjectDetailsClick,
+    return renderObjectDetails(object, objectData, activeObject, data, {
+      onCloseClick: this.onCloseObjectDetailsClick,
+      onConfirmClick: this.onConfirmObjectDetailsClick,
     });
   }
 
-  private readonly onCloseMapObjectDetailsClick = () => {
-    this.props.dispatch(adventureWindowActions.closeMapObjectDetails());
+  private readonly onCloseObjectDetailsClick = () => {
+    this.props.dispatch(adventureWindowActions.closeObjectDetails());
   }
 
-  private readonly onConfirmMapObjectDetailsClick = () => {
-    const { activeObjectId, visibleMapObjectDetails } = this.props;
+  private readonly onConfirmObjectDetailsClick = () => {
+    const { activeObjectId, visibleObjectDetails } = this.props;
 
-    this.props.dispatch(adventureWindowActions.closeMapObjectDetails());
+    this.props.dispatch(adventureWindowActions.closeObjectDetails());
 
-    this.props.dispatch(gameActions.visitMapObject(visibleMapObjectDetails!, activeObjectId!));
+    this.props.dispatch(gameActions.visitMapObject(visibleObjectDetails!, activeObjectId!));
   }
 
   private rendeHeroTradingWindow() {

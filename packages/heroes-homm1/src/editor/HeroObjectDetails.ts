@@ -3,7 +3,7 @@ import { Army, GameData } from "heroes-core";
 import { constructArtifact } from "../artifacts";
 import { HeroObject } from "../objects";
 
-export interface HeroMapObjectDetails {
+export interface HeroObjectDetails {
   readonly heroId: string;
   readonly owner: string;
   readonly army: Army;
@@ -11,7 +11,7 @@ export interface HeroMapObjectDetails {
   readonly experience: number;
 }
 
-export const getHeroMapObjectDetails = (object: HeroObject): HeroMapObjectDetails => ({
+export const getHeroObjectDetails = (object: HeroObject): HeroObjectDetails => ({
   army: object.army,
   artifacts: object.items.map((a) => a ? a.id : undefined),
   experience: object.experience,
@@ -19,9 +19,9 @@ export const getHeroMapObjectDetails = (object: HeroObject): HeroMapObjectDetail
   owner: object.owner!,
 });
 
-export const setHeroMapObjectDetails = (
+export const setHeroObjectDetails = (
   object: HeroObject,
-  details: HeroMapObjectDetails,
+  details: HeroObjectDetails,
   data: Pick<GameData, "heroes">,
 ): HeroObject => ({
   ...object,

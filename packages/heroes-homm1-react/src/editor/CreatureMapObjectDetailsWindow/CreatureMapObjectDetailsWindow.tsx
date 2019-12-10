@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 import { GameData } from "heroes-core";
 import { noop } from "heroes-helpers";
-import { CreatureMapObjectDetails } from "heroes-homm1";
+import { CreatureObjectDetails } from "heroes-homm1";
 
 import * as styles from "./CreatureMapObjectDetailsWindow.module.scss";
 
@@ -15,7 +15,7 @@ import { messages } from "./messages";
 
 export interface CreatureMapObjectDetailsWindowProps extends EditorSettingsWindowProps {
   readonly data: Pick<GameData, "editor">;
-  readonly value: CreatureMapObjectDetails;
+  readonly value: CreatureObjectDetails;
   readonly onValueChange: (value: number) => void;
 }
 

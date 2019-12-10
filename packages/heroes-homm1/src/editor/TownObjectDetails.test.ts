@@ -1,8 +1,8 @@
 import { ObjectId } from "../ObjectId";
 import { RandomTownObject } from "../objects";
-import { getTownMapObjectDetails, setTownMapObjectDetails, TownMapObjectDetails } from "./TownMapObjectDetails";
+import { getTownObjectDetails, setTownObjectDetails, TownObjectDetails } from "./TownObjectDetails";
 
-describe("getTownMapObjectDetails", () => {
+describe("getTownObjectDetails", () => {
   it("should return object details", () => {
     const object: RandomTownObject = {
       army: [
@@ -17,9 +17,9 @@ describe("getTownMapObjectDetails", () => {
       owner: "player",
     };
 
-    const result = getTownMapObjectDetails(object);
+    const result = getTownObjectDetails(object);
 
-    const expected: TownMapObjectDetails = {
+    const expected: TownObjectDetails = {
       army: [
         {
           count: 1,
@@ -34,7 +34,7 @@ describe("getTownMapObjectDetails", () => {
   });
 });
 
-describe("setTownMapObjectDetails", () => {
+describe("setTownObjectDetails", () => {
   it("should set object details", () => {
     const object: RandomTownObject = {
       army: [],
@@ -44,7 +44,7 @@ describe("setTownMapObjectDetails", () => {
       owner: undefined,
     };
 
-    const value: TownMapObjectDetails = {
+    const value: TownObjectDetails = {
       army: [
         {
           count: 1,
@@ -55,7 +55,7 @@ describe("setTownMapObjectDetails", () => {
       owner: "player",
     };
 
-    const result = setTownMapObjectDetails(object, value);
+    const result = setTownObjectDetails(object, value);
 
     const expected: RandomTownObject = {
       ...object,

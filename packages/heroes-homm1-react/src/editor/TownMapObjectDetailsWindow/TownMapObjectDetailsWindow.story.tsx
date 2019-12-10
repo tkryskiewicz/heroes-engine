@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Troop } from "heroes-core";
-import { CreatureId, creatures, playerColors, TownMapObjectDetails } from "heroes-homm1";
+import { CreatureId, creatures, playerColors, TownObjectDetails } from "heroes-homm1";
 
 import { TownMapObjectDetailsWindow, TownMapObjectDetailsWindowProps } from "./TownMapObjectDetailsWindow";
 
@@ -20,7 +20,7 @@ storiesOf("editor|TownMapObjectDetailsWindow", module)
   .add("default", () => {
     const armySize = number("Army Size", 5, { range: true, min: 1, max: 5, step: 1 });
 
-    const value: TownMapObjectDetails = {
+    const value: TownObjectDetails = {
       army: [...new Array(armySize).keys()].map<Troop>(() => ({
         count: 0,
         creature: CreatureId.Peasant,

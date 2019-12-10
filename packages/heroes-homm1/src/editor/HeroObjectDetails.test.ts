@@ -2,9 +2,9 @@ import { MapObjectOrientation } from "heroes-core";
 
 import { ObjectId } from "../ObjectId";
 import { HeroObject } from "../objects";
-import { getHeroMapObjectDetails, HeroMapObjectDetails, setHeroMapObjectDetails } from "./HeroMapObjectDetails";
+import { getHeroObjectDetails, HeroObjectDetails, setHeroObjectDetails } from "./HeroObjectDetails";
 
-describe("getHeroMapObjectDetails", () => {
+describe("getHeroObjectDetails", () => {
   it("should return object details", () => {
     const object: HeroObject = {
       army: [
@@ -32,11 +32,9 @@ describe("getHeroMapObjectDetails", () => {
       skills: {},
     };
 
-    // const object = initializeHeroMapObject(createMapObject("id", objectData), objectData);
+    const result = getHeroObjectDetails(object);
 
-    const result = getHeroMapObjectDetails(object);
-
-    const expected: HeroMapObjectDetails = {
+    const expected: HeroObjectDetails = {
       army: [
         {
           count: 1,
@@ -55,7 +53,7 @@ describe("getHeroMapObjectDetails", () => {
   });
 });
 
-describe("setHeroMapObjectDetails", () => {
+describe("setHeroObjectDetails", () => {
   it("should set object details", () => {
     const object: HeroObject = {
       army: [],
@@ -73,7 +71,7 @@ describe("setHeroMapObjectDetails", () => {
       skills: {},
     };
 
-    const value: HeroMapObjectDetails = {
+    const value: HeroObjectDetails = {
       army: [
         {
           count: 1,
@@ -89,7 +87,7 @@ describe("setHeroMapObjectDetails", () => {
       owner: "otherPlayer",
     };
 
-    const data: Parameters<typeof setHeroMapObjectDetails>[2] = {
+    const data: Parameters<typeof setHeroObjectDetails>[2] = {
       heroes: {
         otherHeroId: {
           heroClass: "otherHeroClass",
@@ -98,7 +96,7 @@ describe("setHeroMapObjectDetails", () => {
       },
     };
 
-    const result = setHeroMapObjectDetails(object, value, data);
+    const result = setHeroObjectDetails(object, value, data);
 
     const expected: HeroObject = {
       ...object,

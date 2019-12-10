@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 
 import { Army, GameData, Troop } from "heroes-core";
 import { noop } from "heroes-helpers";
-import { ArtifactId, HeroMapObjectDetails } from "heroes-homm1";
+import { ArtifactId, HeroObjectDetails } from "heroes-homm1";
 
 import * as styles from "./HeroMapObjectDetailsWindow.module.scss";
 
@@ -19,8 +19,8 @@ import { messages } from "./messages";
 
 export interface HeroMapObjectDetailsWindowProps extends EditorSettingsWindowProps {
   readonly data: Pick<GameData, "playerColors" | "creatures" | "editor" | "heroes" | "items">;
-  readonly value: HeroMapObjectDetails;
-  readonly onValueChange: (value: HeroMapObjectDetails) => void;
+  readonly value: HeroObjectDetails;
+  readonly onValueChange: (value: HeroObjectDetails) => void;
 }
 
 interface State {
@@ -125,7 +125,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
   }
 
   private readonly onArmyChange = (value: Army) => {
-    const newValue: HeroMapObjectDetails = {
+    const newValue: HeroObjectDetails = {
       ...this.props.value,
       army: value,
     };
@@ -163,7 +163,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
   }
 
   private readonly onOwnerChange = (value?: string) => {
-    const newValue: HeroMapObjectDetails = {
+    const newValue: HeroObjectDetails = {
       ...this.props.value,
       owner: value!,
     };
@@ -180,7 +180,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
       return;
     }
 
-    const newValue: HeroMapObjectDetails = {
+    const newValue: HeroObjectDetails = {
       ...this.props.value,
       heroId: hero,
     };
@@ -244,7 +244,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
 
     const artifact = artifacts[v - 1];
 
-    const newValue: HeroMapObjectDetails = {
+    const newValue: HeroObjectDetails = {
       ...value,
       artifacts: [...new Array(data.editor.heroArtifactCount).keys()]
         .map((i) => i === index ? artifact : value.artifacts[i]),
@@ -260,7 +260,7 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
   }
 
   private readonly onExperienceChange = (value: number) => {
-    const newValue: HeroMapObjectDetails = {
+    const newValue: HeroObjectDetails = {
       ...this.props.value,
       experience: value,
     };

@@ -1,19 +1,19 @@
-import { CreatureMapObjectDetails } from "./CreatureMapObjectDetails";
-import { HeroMapObjectDetails } from "./HeroMapObjectDetails";
-import { TownMapObjectDetails } from "./TownMapObjectDetails";
+import { CreatureObjectDetails } from "./CreatureObjectDetails";
+import { HeroObjectDetails } from "./HeroObjectDetails";
+import { TownObjectDetails } from "./TownObjectDetails";
 
 export {
-  CreatureMapObjectDetails,
-  getCreatureMapObjectDetails,
-  setCreatureMapObjectDetails,
-} from "./CreatureMapObjectDetails";
+  CreatureObjectDetails,
+  getCreatureObjectDetails,
+  setCreatureObjectDetails,
+} from "./CreatureObjectDetails";
 export { EditorOption } from "./EditorOption";
 export { EraseObjectsSettings } from "./EraseObjectsSettings";
 export {
-  HeroMapObjectDetails,
-  getHeroMapObjectDetails,
-  setHeroMapObjectDetails,
-} from "./HeroMapObjectDetails";
+  HeroObjectDetails,
+  getHeroObjectDetails,
+  setHeroObjectDetails,
+} from "./HeroObjectDetails";
 export { createRandomMap } from "./randomMap";
 export { LandMassSetting, RandomMapSettings, createDefaultRandomMapSettings } from "./RandomMapSettings";
 export {
@@ -23,15 +23,15 @@ export {
   setScenarioSpecification,
 } from "./ScenarioSpecification";
 export {
-  TownMapObjectDetails,
-  getTownMapObjectDetails,
-  setTownMapObjectDetails,
-} from "./TownMapObjectDetails";
+  TownObjectDetails,
+  getTownObjectDetails,
+  setTownObjectDetails,
+} from "./TownObjectDetails";
 
-export type MapObjectDetails =
-  CreatureMapObjectDetails |
-  HeroMapObjectDetails |
-  TownMapObjectDetails;
+export type ObjectDetails =
+  CreatureObjectDetails |
+  HeroObjectDetails |
+  TownObjectDetails;
 
 export const EditorMaxCreatureCount = 127;
 export const EditorHeroArtifactCount = 4;

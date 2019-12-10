@@ -4,31 +4,31 @@ import {
   ChangeEndTurnPromptVisibleAction,
   closeHeroTradingWindow,
   CloseHeroTradingWindowAction,
-  closeMapObjectDetails,
-  CloseMapObjectDetailsAction,
+  closeObjectDetails,
+  CloseObjectDetailsAction,
   openHeroTradingWindow,
   OpenHeroTradingWindowAction,
-  openMapObjectDetails,
-  OpenMapObjectDetailsAction,
+  openObjectDetails,
+  OpenObjectDetailsAction,
 } from "./actions";
 
 describe("adventureWindowActions", () => {
   it("should create an action to open map object details", () => {
-    const result = openMapObjectDetails("id");
+    const result = openObjectDetails("id");
 
-    const expected: OpenMapObjectDetailsAction = {
+    const expected: OpenObjectDetailsAction = {
       id: "id",
-      type: AdventureWindowActionType.OpenMapObjectDetails,
+      type: AdventureWindowActionType.OpenObjectDetails,
     };
 
     expect(result).toEqual(expected);
   });
 
   it("should create an action to close map object details", () => {
-    const result = closeMapObjectDetails();
+    const result = closeObjectDetails();
 
-    const expected: CloseMapObjectDetailsAction = {
-      type: AdventureWindowActionType.CloseMapObjectDetails,
+    const expected: CloseObjectDetailsAction = {
+      type: AdventureWindowActionType.CloseObjectDetails,
     };
 
     expect(result).toEqual(expected);

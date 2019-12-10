@@ -11,21 +11,21 @@ import {
 import {
   changeHeroObjectHero,
   createGameMapObject,
-  CreatureMapObjectDetails,
-  getCreatureMapObjectDetails,
-  getHeroMapObjectDetails,
-  getTownMapObjectDetails,
-  HeroMapObjectDetails,
+  CreatureObjectDetails,
+  getCreatureObjectDetails,
+  getHeroObjectDetails,
+  getTownObjectDetails,
+  HeroObjectDetails,
   isHeroObject,
   isRandomCreatureObject,
   isRandomTownObject,
-  MapObjectDetails,
   MapObjectType,
+  ObjectDetails,
   ObjectId,
-  setCreatureMapObjectDetails,
-  setHeroMapObjectDetails,
-  setTownMapObjectDetails,
-  TownMapObjectDetails,
+  setCreatureObjectDetails,
+  setHeroObjectDetails,
+  setTownObjectDetails,
+  TownObjectDetails,
 } from "heroes-homm1";
 import {
   CreatureMapObjectDetailsWindow,
@@ -251,26 +251,26 @@ export const createEditorMapObject = (id: string, objectDataId: string, data: Ga
   return object;
 };
 
-export const getObjectDetails = (object: MapObject, data: GameData): MapObjectDetails | undefined => {
+export const getObjectDetails = (object: MapObject, data: GameData): ObjectDetails | undefined => {
   if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.mapObjects[object.dataId])) {
-    return getCreatureMapObjectDetails(object);
+    return getCreatureObjectDetails(object);
   }
 
   if (isHeroObject(object)) {
-    return getHeroMapObjectDetails(object);
+    return getHeroObjectDetails(object);
   }
 
   if (isRandomTownObject(object)) {
-    return getTownMapObjectDetails(object);
+    return getTownObjectDetails(object);
   }
 };
 
 export const renderObjectDetails = (
   object: MapObject,
-  value: MapObjectDetails,
+  value: ObjectDetails,
   data: GameData,
   props: {
-    readonly onValueChange: (value: MapObjectDetails) => void;
+    readonly onValueChange: (value: ObjectDetails) => void;
     readonly onConfirmClick: () => void;
     readonly onCloseClick: () => void;
   },
@@ -280,7 +280,7 @@ export const renderObjectDetails = (
       <CreatureMapObjectDetailsWindow
         visible={true}
         data={data}
-        value={value as CreatureMapObjectDetails}
+        value={value as CreatureObjectDetails}
         onValueChange={props.onValueChange}
         onConfirmClick={props.onConfirmClick}
         onCancelClick={props.onCloseClick}
@@ -293,7 +293,7 @@ export const renderObjectDetails = (
       <HeroMapObjectDetailsWindow
         visible={true}
         data={data}
-        value={value as HeroMapObjectDetails}
+        value={value as HeroObjectDetails}
         onValueChange={props.onValueChange}
         onConfirmClick={props.onConfirmClick}
         onCancelClick={props.onCloseClick}
@@ -306,7 +306,7 @@ export const renderObjectDetails = (
       <TownMapObjectDetailsWindow
         visible={true}
         data={data}
-        value={value as TownMapObjectDetails}
+        value={value as TownObjectDetails}
         onValueChange={props.onValueChange}
         onConfirmClick={props.onConfirmClick}
         onCancelClick={props.onCloseClick}
@@ -315,17 +315,17 @@ export const renderObjectDetails = (
   }
 };
 
-export const setObjectDetails = (object: MapObject, value: MapObjectDetails, data: GameData): MapObject => {
+export const setObjectDetails = (object: MapObject, value: ObjectDetails, data: GameData): MapObject => {
   if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.mapObjects[object.dataId])) {
-    return setCreatureMapObjectDetails(object, value as CreatureMapObjectDetails);
+    return setCreatureObjectDetails(object, value as CreatureObjectDetails);
   }
 
   if (isHeroObject(object)) {
-    return setHeroMapObjectDetails(object, value as HeroMapObjectDetails, data);
+    return setHeroObjectDetails(object, value as HeroObjectDetails, data);
   }
 
   if (isRandomTownObject(object)) {
-    return setTownMapObjectDetails(object, value as TownMapObjectDetails);
+    return setTownObjectDetails(object, value as TownObjectDetails);
   }
 
   return object;

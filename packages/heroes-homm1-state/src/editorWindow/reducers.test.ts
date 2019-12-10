@@ -2,7 +2,7 @@ import { createMap, createPoint } from "heroes-core";
 import {
   createDefaultRandomMapSettings,
   createDefaultScenarioSpecification,
-  CreatureMapObjectDetails,
+  CreatureObjectDetails,
   EditorOption,
   EraseObjectsSettings,
   LandMassSetting,
@@ -239,7 +239,7 @@ describe("editorWindowReducer", () => {
       visibleObjectDetails: undefined,
     };
 
-    const value: CreatureMapObjectDetails = 1;
+    const value: CreatureObjectDetails = 1;
 
     const result = editorWindowReducer(state, openObjectDetails("id", value));
 
@@ -274,7 +274,7 @@ describe("editorWindowReducer", () => {
       selectedObjectDetails: 0,
     };
 
-    const value: CreatureMapObjectDetails = 1;
+    const value: CreatureObjectDetails = 1;
 
     const result = editorWindowReducer(state, changeSelectedObjectDetails(value));
 

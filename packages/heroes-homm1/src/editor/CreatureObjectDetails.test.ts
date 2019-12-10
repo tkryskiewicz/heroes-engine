@@ -1,12 +1,12 @@
 import { CreatureObject } from "heroes-core";
 
 import {
-  CreatureMapObjectDetails,
-  getCreatureMapObjectDetails,
-  setCreatureMapObjectDetails,
-} from "./CreatureMapObjectDetails";
+  CreatureObjectDetails,
+  getCreatureObjectDetails,
+  setCreatureObjectDetails,
+} from "./CreatureObjectDetails";
 
-describe("getCreatureMapObjectDetails", () => {
+describe("getCreatureObjectDetails", () => {
   it("should return object details", () => {
     const object: CreatureObject = {
       count: 1,
@@ -14,15 +14,15 @@ describe("getCreatureMapObjectDetails", () => {
       id: "id",
     };
 
-    const result = getCreatureMapObjectDetails(object);
+    const result = getCreatureObjectDetails(object);
 
-    const expected: CreatureMapObjectDetails = 1;
+    const expected: CreatureObjectDetails = 1;
 
     expect(result).toEqual(expected);
   });
 });
 
-describe("setCreatureMapObjectDetails", () => {
+describe("setCreatureObjectDetails", () => {
   it("should set object details", () => {
     const object: CreatureObject = {
       count: 0,
@@ -30,9 +30,9 @@ describe("setCreatureMapObjectDetails", () => {
       id: "id",
     };
 
-    const value: CreatureMapObjectDetails = 1;
+    const value: CreatureObjectDetails = 1;
 
-    const result = setCreatureMapObjectDetails(object, value);
+    const result = setCreatureObjectDetails(object, value);
 
     const expected: CreatureObject = {
       ...object,
