@@ -311,7 +311,6 @@ describe("getInitialMobility", () => {
         type: "add",
         value: 1,
       },
-      tradable: false,
     };
 
     const data: Parameters<typeof getInitialMobility>[4] = {
