@@ -8,7 +8,7 @@ import {
   MapObject,
   MapPoint,
 } from "heroes-core";
-import { getTerrainTransition, isHeroMapObject, isTownMapObject } from "heroes-homm1";
+import { getTerrainTransition, isHeroObject, isTownObject } from "heroes-homm1";
 import { AdventureMapWindow, MapCell, MapCellSize, MapSize } from "heroes-homm1-react";
 import { adventureWindowActions, gameActions } from "heroes-homm1-state";
 
@@ -111,7 +111,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     const object = cell.object;
 
     if (object) {
-      if (isHeroMapObject(object)) {
+      if (isHeroObject(object)) {
         if (activeObject !== undefined && activeObject.id !== object.id) {
           this.setState({
             cursor: "trade",
@@ -121,13 +121,13 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
             cursor: "hero",
           });
         }
-      } else if (isTownMapObject(object)) {
+      } else if (isTownObject(object)) {
         this.setState({
           cursor: "town",
         });
       }
     } else {
-      if (isHeroMapObject(activeObject)) {
+      if (activeObject && isHeroObject(activeObject)) {
         this.setState({
           cursor: "move",
         });

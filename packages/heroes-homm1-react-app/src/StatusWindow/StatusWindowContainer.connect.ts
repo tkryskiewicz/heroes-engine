@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 
 import { getDate, getObjectById, isObjectOwnedBy, isOwnableObject, isStructureBuilt } from "heroes-core";
 import { isDefined } from "heroes-helpers";
-import { isHeroMapObject, isTownMapObject, StructureId } from "heroes-homm1";
+import { isHeroObject, isTownObject, StructureId } from "heroes-homm1";
 import { AppState, statusWindowActions } from "heroes-homm1-state";
 
 import { StatusWindow, StatusWindowProps } from "./StatusWindowContainer";
@@ -20,7 +20,7 @@ const mapStateToProps = (state: AppState): Pick<StatusWindowProps, StateProp> =>
     .filter(isDefined)
     .filter(isOwnableObject)
     .filter((o) => isObjectOwnedBy(o, state.game.activePlayer))
-    .filter(isTownMapObject);
+    .filter(isTownObject);
 
   const activeObject = state.locators.activeObjectId ?
     getObjectById(state.game.map, state.locators.activeObjectId) :
@@ -28,7 +28,7 @@ const mapStateToProps = (state: AppState): Pick<StatusWindowProps, StateProp> =>
 
   return {
     dateInformation: getDate(state.game.turn),
-    heroStatus: isHeroMapObject(activeObject) ?
+    heroStatus: activeObject && isHeroObject(activeObject) ?
       {
         army: activeObject.army,
         hero: activeObject.heroId,

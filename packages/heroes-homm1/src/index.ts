@@ -54,6 +54,8 @@ export {
   BattleCowardiceMoraleModifier,
 } from "./morale";
 export { MovementSpeed } from "./MovementSpeed";
+export * from "./ObjectId";
+export * from "./objects";
 export { OpponentSetting, getOpponentSettingRating } from "./OpponentSetting";
 export { PlayerColorId } from "./PlayerColorId";
 export { playerColors } from "./playerColors";

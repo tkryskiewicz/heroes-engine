@@ -1,42 +1,41 @@
 import {
   createMap,
-  createMapObject,
   createPoint,
   Game,
+  GameObject,
   placeObject,
   replaceObject,
-  Town,
 } from "heroes-core";
 
 import { buyMageGuildSpellBook } from "./Game";
+import { ObjectId } from "./ObjectId";
 import {
-  createTownMapObject,
-  HeroMapObject,
-  HeroMapObjectData,
-  initializeHeroMapObject,
-  MapObjectId,
-  TownMapObjectData,
-} from "./map";
+  HeroObject,
+  HeroObjectData,
+  initializeHeroObject,
+  TownObject,
+} from "./objects";
 import { constructSpellBook } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";
 
 describe("buyMageGuildSpellBook", () => {
   // TODO: split into multiple tests
   it("should buy spell book from mage guild", () => {
-    const heroObjectData: HeroMapObjectData = {
+    const heroObjectData: HeroObjectData = {
       army: {
         preventMovingLastTroop: true,
       },
       baseMobility: 0,
-      grid: [],
-      height: 1,
-      id: MapObjectId.Hero,
+      id: ObjectId.Hero,
       ownable: true,
-      type: "type",
-      width: 1,
     };
 
-    const heroObject = initializeHeroMapObject(createMapObject("hero", heroObjectData), heroObjectData);
+    const object: GameObject = {
+      dataId: ObjectId.Hero,
+      id: "hero",
+    };
+
+    const heroObject = initializeHeroObject(object, heroObjectData);
 
     const mageGuild: MageGuild = {
       cost: {},
@@ -52,30 +51,18 @@ describe("buyMageGuildSpellBook", () => {
       isBuilt: true,
     };
 
-    const town: Town = {
+    const townObject: TownObject = {
       army: [],
       canConstructStructures: true,
+      dataId: ObjectId.Town,
       heroClass: "heroClass",
       id: "town",
       name: "Name",
+      owner: "player",
       structures: [
         mageGuild,
       ],
     };
-
-    const townObjectData: TownMapObjectData = {
-      army: {
-        preventMovingLastTroop: false,
-      },
-      grid: [],
-      height: 1,
-      id: "town",
-      ownable: true,
-      type: "type",
-      width: 1,
-    };
-
-    const townObject = createTownMapObject("town", townObjectData, town, "player");
 
     const game: Game = {
       activePlayer: "player",
@@ -120,7 +107,7 @@ describe("buyMageGuildSpellBook", () => {
 
     const result = buyMageGuildSpellBook(game, "hero", "town", mageGuild.data.spellBookCost);
 
-    const expectedHero: HeroMapObject = {
+    const expectedHero: HeroObject = {
       ...heroObject,
       items: [
         constructSpellBook([

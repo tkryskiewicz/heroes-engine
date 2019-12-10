@@ -1,35 +1,35 @@
 import { ResourceData } from "heroes-core";
 
-import { MapObjectId } from "./map";
+import { ObjectId } from "./ObjectId";
 import { ResourceId } from "./ResourceId";
 
 export const resources: ResourceData[] = [
   {
     id: ResourceId.Wood,
-    mine: MapObjectId.Sawmill,
+    mine: ObjectId.Sawmill,
   },
   {
     id: ResourceId.Mercury,
-    mine: MapObjectId.Alchemist,
+    mine: ObjectId.Alchemist,
   },
   {
     id: ResourceId.Ore,
-    mine: MapObjectId.OreMine,
+    mine: ObjectId.OreMine,
   },
   {
     id: ResourceId.Sulfur,
-    mine: MapObjectId.SulfurMine,
+    mine: ObjectId.SulfurMine,
   },
   {
     id: ResourceId.Crystal,
-    mine: MapObjectId.CrystalMine,
+    mine: ObjectId.CrystalMine,
   },
   {
     id: ResourceId.Gems,
-    mine: MapObjectId.GemsMine,
+    mine: ObjectId.GemsMine,
   },
   {
     id: ResourceId.Gold,
-    mine: MapObjectId.GoldMine,
+    mine: ObjectId.GoldMine,
   },
 ];

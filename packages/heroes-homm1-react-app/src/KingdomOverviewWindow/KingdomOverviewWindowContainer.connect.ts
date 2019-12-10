@@ -8,7 +8,7 @@ import {
   isStructureBuilt,
 } from "heroes-core";
 import { isDefined } from "heroes-helpers";
-import { isHeroMapObject, isTownMapObject, StructureId } from "heroes-homm1";
+import { isHeroObject, isTownObject, StructureId } from "heroes-homm1";
 import { AppState } from "heroes-homm1-state";
 
 import { KingdomOverviewWindowContainer, KingdomOverviewWindowContainerProps } from "./KingdomOverviewWindowContainer";
@@ -32,10 +32,10 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
     .filter((o) => isObjectOwnedBy(o, state.game.activePlayer));
 
   const heroes = ownedObjects
-    .filter(isHeroMapObject);
+    .filter(isHeroObject);
 
   const towns = ownedObjects
-    .filter(isTownMapObject);
+    .filter(isTownObject);
 
   const mines = ownedObjects
     .filter((o) => {

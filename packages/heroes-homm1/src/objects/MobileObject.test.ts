@@ -1,6 +1,7 @@
 import { HeroClassData, MapObjectOrientation, MobileObject, TerrainData } from "heroes-core";
 
-import { HeroMapObject, MapObjectId } from "../map";
+import { ObjectId } from "../ObjectId";
+import { HeroObject } from "../objects";
 import { getMovementCost } from "./MobileObject";
 
 describe("getMovementCost", () => {
@@ -30,9 +31,9 @@ describe("getMovementCost", () => {
       orientation: MapObjectOrientation.North,
   };
 
-  const defaultHeroObject: HeroMapObject = {
+  const defaultHeroObject: HeroObject = {
       army: [],
-      dataId: MapObjectId.Hero,
+      dataId: ObjectId.Hero,
       experience: 0,
       heroClass: "",
       heroId: "",
@@ -111,7 +112,7 @@ describe("getMovementCost", () => {
       },
     };
 
-    const object: HeroMapObject = {
+    const object: HeroObject = {
       ...defaultHeroObject,
       heroClass: heroClassData.id,
     };
@@ -148,7 +149,7 @@ describe("getMovementCost", () => {
       },
     };
 
-    const object: HeroMapObject = {
+    const object: HeroObject = {
       ...defaultHeroObject,
       heroClass: heroClassData.id,
     };
@@ -182,7 +183,7 @@ describe("getMovementCost", () => {
       },
     };
 
-    const object: HeroMapObject = {
+    const object: HeroObject = {
       ...defaultHeroObject,
       heroClass: defaultHeroClassData.id,
     };

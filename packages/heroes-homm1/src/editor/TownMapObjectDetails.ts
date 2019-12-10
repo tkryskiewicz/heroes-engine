@@ -1,6 +1,6 @@
 import { Army } from "heroes-core";
 
-import { RandomTownMapObject } from "../map";
+import { RandomTownObject } from "../objects";
 
 export interface TownMapObjectDetails {
   readonly customized: boolean;
@@ -8,16 +8,16 @@ export interface TownMapObjectDetails {
   readonly owner?: string;
 }
 
-export const getTownMapObjectDetails = (object: RandomTownMapObject): TownMapObjectDetails => ({
+export const getTownMapObjectDetails = (object: RandomTownObject): TownMapObjectDetails => ({
   army: object.army,
   customized: object.customized,
   owner: object.owner,
 });
 
 export const setTownMapObjectDetails = (
-  object: RandomTownMapObject,
+  object: RandomTownObject,
   details: TownMapObjectDetails,
-): RandomTownMapObject => ({
+): RandomTownObject => ({
   ...object,
   army: details.army,
   customized: details.customized,

@@ -1,7 +1,7 @@
 import Classnames from "classnames";
 import React from "react";
 
-import { MapObjectId, ResourceId } from "heroes-homm1";
+import { ObjectId, ResourceId } from "heroes-homm1";
 
 import * as styles from "./MineMapObject.module.scss";
 
@@ -34,9 +34,9 @@ export class MineMapObject extends React.Component<MineMapObjectProps> {
   private getObjectType(resource: string) {
     switch (resource) {
       case ResourceId.Wood:
-        return MapObjectId.Sawmill;
+        return ObjectId.Sawmill;
       case ResourceId.Mercury:
-        return MapObjectId.Alchemist;
+        return ObjectId.Alchemist;
       default:
         return "mine";
     }

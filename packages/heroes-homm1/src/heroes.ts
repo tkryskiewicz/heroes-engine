@@ -1,7 +1,7 @@
 import { Army, Hero, HeroClassData, HeroData, random, Troop } from "heroes-core";
 
 import { HeroClassId } from "./HeroClassId";
-import { MapObjectId } from "./map";
+import { ObjectId } from "./ObjectId";
 
 export enum HeroId {
   // Knights
@@ -222,7 +222,7 @@ export const constructHero = (id: string, heroId: string, heroClass: HeroClassDa
 
   return {
     army,
-    dataId: MapObjectId.Hero,
+    dataId: ObjectId.Hero,
     experience: 0,
     heroClass: heroClass.id,
     heroId,

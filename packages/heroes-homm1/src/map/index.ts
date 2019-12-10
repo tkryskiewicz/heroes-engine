@@ -1,14 +1,4 @@
-export * from "./HeroMapObject";
 export * from "./map";
 export { MapObjectData } from "./MapObject";
-export { MapObjectId } from "./MapObjectId";
 export { MapObjectType } from "./MapObjectType";
-export * from "./MineMapObject";
-export * from "./ObeliskMapObject";
-export * from "./RandomCreatureMapObject";
-export * from "./RandomTownMapObject";
-export * from "./ResourceMapObject";
-export * from "./TerrainRestrictedMapObject";
 export { TerrainTransition, getTerrainTransition } from "./TerrainTransition";
-export * from "./TownMapObject";
-export * from "./VariantMapObject";

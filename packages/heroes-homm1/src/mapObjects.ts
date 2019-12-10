@@ -13,18 +13,18 @@ import {
 import { ArtifactId } from "./ArtifactId";
 import { artifacts } from "./artifacts";
 import { CreatureId, creatures } from "./creatures";
+import { MapObjectType } from "./map";
+import { ObjectId } from "./ObjectId";
 import {
-  HeroMapObjectData,
-  MapObjectId,
-  MapObjectType,
-  MineMapObjectData,
-  ObeliskMapObjectData,
-  RandomCreatureMapObjectData,
-  ResourceMapObjectData,
-  TerrainRestrictedMapObjectData,
-  TownMapObjectData,
-  VariantMapObjectData,
-} from "./map";
+  HeroObjectData,
+  MineObjectData,
+  ObeliskObjectData,
+  RandomCreatureObjectData,
+  ResourceObjectData,
+  TerrainRestrictedObjectData,
+  TownObjectData,
+  VariantObjectData,
+} from "./objects";
 import { ResourceId } from "./ResourceId";
 import { TerrainType } from "./TerrainType";
 
@@ -43,7 +43,7 @@ const allTerrainTypes = [
 const nonWaterTerrainTypes = allTerrainTypes
   .filter((t) => t !== MapObjectType.Water);
 
-const heroObjects: HeroMapObjectData[] = [
+const heroObjects: (MapObjectData & HeroObjectData)[] = [
   {
     army: {
       preventMovingLastTroop: true,
@@ -53,14 +53,14 @@ const heroObjects: HeroMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Hero,
+    id: ObjectId.Hero,
     ownable: true,
     type: MapObjectType.Monster,
     width: 1,
   },
 ];
 
-const townObjects: TownMapObjectData[] = [
+const townObjects: (MapObjectData & TownObjectData)[] = [
   {
     army: {
       preventMovingLastTroop: false,
@@ -71,7 +71,7 @@ const townObjects: TownMapObjectData[] = [
       false, false, false, false,
     ],
     height: 3,
-    id: MapObjectId.Town,
+    id: ObjectId.Town,
     ownable: true,
     // FIXME: make town objects work
     type: "other",
@@ -79,36 +79,36 @@ const townObjects: TownMapObjectData[] = [
   },
 ];
 
-const randomTown: MapObjectData & TerrainRestrictedMapObjectData = {
+const randomTown: MapObjectData & TerrainRestrictedObjectData = {
   grid: [
     true, true, true, true,
     true, true, true, true,
     false, false, false, false,
   ],
   height: 3,
-  id: MapObjectId.RandomTown,
+  id: ObjectId.RandomTown,
   restrictedTerrains: nonWaterTerrains,
   type: MapObjectType.Town,
   width: 4,
 };
 
-const randomCastle: MapObjectData & TerrainRestrictedMapObjectData = {
+const randomCastle: MapObjectData & TerrainRestrictedObjectData = {
   grid: [
     true, true, true, true,
     true, true, true, true,
     false, false, false, false,
   ],
   height: 3,
-  id: MapObjectId.RandomCastle,
+  id: ObjectId.RandomCastle,
   restrictedTerrains: nonWaterTerrains,
   type: MapObjectType.Town,
   width: 4,
 };
 
-type CreatureMapObjectData = CreatureObjectData & TerrainRestrictedMapObjectData;
+type CreatureMapObjectData = CreatureObjectData & TerrainRestrictedObjectData;
 
-const creatureObjects: CreatureMapObjectData[] = creatures
-  .map<CreatureMapObjectData>((c) => ({
+const creatureObjects: (MapObjectData & CreatureMapObjectData)[] = creatures
+  .map<MapObjectData & CreatureMapObjectData>((c) => ({
     creature: c.id,
     grid: [
       true,
@@ -120,13 +120,13 @@ const creatureObjects: CreatureMapObjectData[] = creatures
     width: 1,
   }));
 
-const randomCreatureObjects: (RandomCreatureMapObjectData & TerrainRestrictedMapObjectData)[] = [
+const randomCreatureObjects: (MapObjectData & RandomCreatureObjectData & TerrainRestrictedObjectData)[] = [
   {
     grid: [
       true,
     ],
     height: 1,
-    id: MapObjectId.RandomCreature,
+    id: ObjectId.RandomCreature,
     randomCreature: {},
     restrictedTerrains: nonWaterTerrains,
     type: MapObjectType.Monster,
@@ -137,7 +137,7 @@ const randomCreatureObjects: (RandomCreatureMapObjectData & TerrainRestrictedMap
       true,
     ],
     height: 1,
-    id: MapObjectId.RandomCreature1,
+    id: ObjectId.RandomCreature1,
     randomCreature: {
       level: 1,
     },
@@ -150,7 +150,7 @@ const randomCreatureObjects: (RandomCreatureMapObjectData & TerrainRestrictedMap
       true,
     ],
     height: 1,
-    id: MapObjectId.RandomCreature2,
+    id: ObjectId.RandomCreature2,
     randomCreature: {
       level: 2,
     },
@@ -163,7 +163,7 @@ const randomCreatureObjects: (RandomCreatureMapObjectData & TerrainRestrictedMap
       true,
     ],
     height: 1,
-    id: MapObjectId.RandomCreature3,
+    id: ObjectId.RandomCreature3,
     randomCreature: {
       level: 3,
     },
@@ -176,7 +176,7 @@ const randomCreatureObjects: (RandomCreatureMapObjectData & TerrainRestrictedMap
       true,
     ],
     height: 1,
-    id: MapObjectId.RandomCreature4,
+    id: ObjectId.RandomCreature4,
     randomCreature: {
       level: 4,
     },
@@ -186,7 +186,7 @@ const randomCreatureObjects: (RandomCreatureMapObjectData & TerrainRestrictedMap
   },
 ];
 
-type ArtifactObjectData = ItemObjectData & PickableObjectData & TerrainRestrictedMapObjectData;
+type ArtifactObjectData = ItemObjectData & PickableObjectData & TerrainRestrictedObjectData;
 
 const artifactObjectOrder: string[] = [
   ArtifactId.ArcaneNecklaceOfMagic,
@@ -231,10 +231,10 @@ const artifactObjectOrder: string[] = [
   ArtifactId.SailorsAstrolabeOfMobility,
 ];
 
-const artifactObjects: ArtifactObjectData[] = artifacts
+const artifactObjects: (MapObjectData & ArtifactObjectData)[] = artifacts
   .filter((a) => a.id !== ArtifactId.Spellbook && !a.isUltimate)
   .sort((a, b) => artifactObjectOrder.indexOf(a.id) - artifactObjectOrder.indexOf(b.id))
-  .map<ArtifactObjectData>((a) => ({
+  .map<MapObjectData & ArtifactObjectData>((a) => ({
     grid: [
       true,
     ],
@@ -247,25 +247,25 @@ const artifactObjects: ArtifactObjectData[] = artifacts
     width: 1,
   }));
 
-const randomArtifactObject: TerrainRestrictedMapObjectData = {
+const randomArtifactObject: MapObjectData & TerrainRestrictedObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.RandomArtifact,
+  id: ObjectId.RandomArtifact,
   restrictedTerrains: nonWaterTerrains,
   type: MapObjectType.Artifact,
   width: 1,
 };
 
-type ResourceObjectData = ResourceMapObjectData & TerrainRestrictedMapObjectData;
+type ResourceMapObjectData = MapObjectData & ResourceObjectData & TerrainRestrictedObjectData;
 
-const goldObject: ResourceObjectData = {
+const goldObject: ResourceMapObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Gold,
+  id: ObjectId.Gold,
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
@@ -279,12 +279,12 @@ const goldObject: ResourceObjectData = {
   width: 1,
 };
 
-const woodObject: ResourceObjectData = {
+const woodObject: ResourceMapObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Wood,
+  id: ObjectId.Wood,
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
@@ -297,12 +297,12 @@ const woodObject: ResourceObjectData = {
   width: 1,
 };
 
-const oreObject: ResourceObjectData = {
+const oreObject: ResourceMapObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Ore,
+  id: ObjectId.Ore,
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
@@ -315,12 +315,12 @@ const oreObject: ResourceObjectData = {
   width: 1,
 };
 
-const crystalObject: ResourceObjectData = {
+const crystalObject: ResourceMapObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Crystal,
+  id: ObjectId.Crystal,
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
@@ -333,12 +333,12 @@ const crystalObject: ResourceObjectData = {
   width: 1,
 };
 
-const sulfurObject: ResourceObjectData = {
+const sulfurObject: ResourceMapObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Sulfur,
+  id: ObjectId.Sulfur,
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
@@ -351,12 +351,12 @@ const sulfurObject: ResourceObjectData = {
   width: 1,
 };
 
-const gemsObject: ResourceObjectData = {
+const gemsObject: ResourceMapObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Gems,
+  id: ObjectId.Gems,
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
@@ -369,12 +369,12 @@ const gemsObject: ResourceObjectData = {
   width: 1,
 };
 
-const mercuryObject: ResourceObjectData = {
+const mercuryObject: ResourceMapObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Mercury,
+  id: ObjectId.Mercury,
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
@@ -387,7 +387,7 @@ const mercuryObject: ResourceObjectData = {
   width: 1,
 };
 
-const resourceObjects: ResourceObjectData[] = [
+const resourceObjects: ResourceMapObjectData[] = [
   woodObject,
   mercuryObject,
   oreObject,
@@ -397,25 +397,25 @@ const resourceObjects: ResourceObjectData[] = [
   goldObject,
 ];
 
-const randomResourceObject: MapObjectData & TerrainRestrictedMapObjectData = {
+const randomResourceObject: MapObjectData & TerrainRestrictedObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.RandomResource,
+  id: ObjectId.RandomResource,
   restrictedTerrains: nonWaterTerrains,
   type: MapObjectType.Treasure,
   width: 1,
 };
 
-type TreasureMapObjectData = TreasureObjectData & PickableObjectData & TerrainRestrictedMapObjectData;
+type TreasureMapObjectData = TreasureObjectData & PickableObjectData & TerrainRestrictedObjectData;
 
-const fireplace: TreasureMapObjectData = {
+const fireplace: MapObjectData & TreasureMapObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Fireplace,
+  id: ObjectId.Fireplace,
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {
@@ -433,9 +433,9 @@ const fireplace: TreasureMapObjectData = {
   width: 1,
 };
 
-const fireplace2: typeof fireplace & VariantMapObjectData = {
+const fireplace2: typeof fireplace & VariantObjectData = {
   ...fireplace,
-  id: MapObjectId.Fireplace2,
+  id: ObjectId.Fireplace2,
   restrictedTerrains: [
     TerrainType.Snow,
     // TODO: assets are available, but can't place on desert, remove?
@@ -450,12 +450,12 @@ const fireplace2: typeof fireplace & VariantMapObjectData = {
   },
 };
 
-const treasureChestObject: TreasureMapObjectData = {
+const treasureChestObject: MapObjectData & TreasureMapObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.TreasureChest,
+  id: ObjectId.TreasureChest,
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {},
@@ -463,12 +463,12 @@ const treasureChestObject: TreasureMapObjectData = {
   width: 1,
 };
 
-const lampObject: TreasureMapObjectData = {
+const lampObject: MapObjectData & TreasureMapObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Lamp,
+  id: ObjectId.Lamp,
   pickable: true,
   restrictedTerrains: nonWaterTerrains,
   treasure: {},
@@ -476,16 +476,16 @@ const lampObject: TreasureMapObjectData = {
   width: 1,
 };
 
-const treasureObjects: TreasureMapObjectData[] = [
+const treasureObjects: (MapObjectData & TreasureMapObjectData)[] = [
   treasureChestObject,
   fireplace,
   fireplace2,
   lampObject,
 ];
 
-type MineObjectData = MineMapObjectData & TerrainRestrictedMapObjectData;
+type MineMapObjectData = MapObjectData & MineObjectData & TerrainRestrictedObjectData;
 
-const mineObjectBase: MineObjectData & VariantMapObjectData = {
+const mineObjectBase: MineMapObjectData & VariantObjectData = {
   grid: [
     true, true,
     false, false,
@@ -510,10 +510,10 @@ const mineObjectBase: MineObjectData & VariantMapObjectData = {
   width: 2,
 };
 
-const mineObjects: (MineObjectData & VariantMapObjectData)[] = [
+const mineObjects: (MineMapObjectData & VariantObjectData)[] = [
   {
     ...mineObjectBase,
-    id: MapObjectId.CrystalMine,
+    id: ObjectId.CrystalMine,
     resourceGenerator: {
       amount: 1,
       resource: ResourceId.Crystal,
@@ -521,7 +521,7 @@ const mineObjects: (MineObjectData & VariantMapObjectData)[] = [
   },
   {
     ...mineObjectBase,
-    id: MapObjectId.GemsMine,
+    id: ObjectId.GemsMine,
     resourceGenerator: {
       amount: 1,
       resource: ResourceId.Gems,
@@ -529,7 +529,7 @@ const mineObjects: (MineObjectData & VariantMapObjectData)[] = [
   },
   {
     ...mineObjectBase,
-    id: MapObjectId.GoldMine,
+    id: ObjectId.GoldMine,
     resourceGenerator: {
       amount: 1000,
       resource: ResourceId.Gold,
@@ -537,7 +537,7 @@ const mineObjects: (MineObjectData & VariantMapObjectData)[] = [
   },
   {
     ...mineObjectBase,
-    id: MapObjectId.OreMine,
+    id: ObjectId.OreMine,
     resourceGenerator: {
       amount: 2,
       resource: ResourceId.Ore,
@@ -545,7 +545,7 @@ const mineObjects: (MineObjectData & VariantMapObjectData)[] = [
   },
   {
     ...mineObjectBase,
-    id: MapObjectId.SulfurMine,
+    id: ObjectId.SulfurMine,
     resourceGenerator: {
       amount: 1,
       resource: ResourceId.Sulfur,
@@ -553,13 +553,13 @@ const mineObjects: (MineObjectData & VariantMapObjectData)[] = [
   },
 ];
 
-const alchemist: MineObjectData & VariantMapObjectData = {
+const alchemist: MineMapObjectData & VariantObjectData = {
   grid: [
     true, true,
     false, false,
   ],
   height: 2,
-  id: MapObjectId.Alchemist,
+  id: ObjectId.Alchemist,
   ownable: true,
   resourceGenerator: {
     amount: 2,
@@ -578,13 +578,13 @@ const alchemist: MineObjectData & VariantMapObjectData = {
   width: 2,
 };
 
-const sawmill: MineObjectData = {
+const sawmill: MineMapObjectData = {
   grid: [
     true, true,
     false, false,
   ],
   height: 2,
-  id: MapObjectId.Sawmill,
+  id: ObjectId.Sawmill,
   ownable: true,
   resourceGenerator: {
     amount: 2,
@@ -595,7 +595,7 @@ const sawmill: MineObjectData = {
   width: 2,
 };
 
-const cottage: DwellingObjectData & TerrainRestrictedMapObjectData = {
+const cottage: MapObjectData & DwellingObjectData & TerrainRestrictedObjectData = {
   dwelling: {
     creature: CreatureId.Archer,
     initialCount: 1, // 1-4
@@ -604,7 +604,7 @@ const cottage: DwellingObjectData & TerrainRestrictedMapObjectData = {
     true,
   ],
   height: 1,
-  id: MapObjectId.Cottage,
+  id: ObjectId.Cottage,
   restrictedTerrains: [
     TerrainType.Grass,
   ],
@@ -612,7 +612,7 @@ const cottage: DwellingObjectData & TerrainRestrictedMapObjectData = {
   width: 1,
 };
 
-const cottageSnow: DwellingObjectData & TerrainRestrictedMapObjectData = {
+const cottageSnow: MapObjectData & DwellingObjectData & TerrainRestrictedObjectData = {
   dwelling: {
     creature: CreatureId.Peasant,
     initialCount: 20, // 20-50
@@ -622,7 +622,7 @@ const cottageSnow: DwellingObjectData & TerrainRestrictedMapObjectData = {
     false,
   ],
   height: 2,
-  id: MapObjectId.CottageSnow,
+  id: ObjectId.CottageSnow,
   restrictedTerrains: [
     TerrainType.Snow,
   ],
@@ -630,7 +630,7 @@ const cottageSnow: DwellingObjectData & TerrainRestrictedMapObjectData = {
   width: 1,
 };
 
-const desertTent: DwellingObjectData & TerrainRestrictedMapObjectData = {
+const desertTent: MapObjectData & DwellingObjectData & TerrainRestrictedObjectData = {
   dwelling: {
     creature: CreatureId.Nomad,
     initialCount: 10, // 10-20
@@ -640,7 +640,7 @@ const desertTent: DwellingObjectData & TerrainRestrictedMapObjectData = {
     false, false, false,
   ],
   height: 2,
-  id: MapObjectId.DesertTent,
+  id: ObjectId.DesertTent,
   restrictedTerrains: [
     TerrainType.Desert,
   ],
@@ -648,7 +648,7 @@ const desertTent: DwellingObjectData & TerrainRestrictedMapObjectData = {
   width: 3,
 };
 
-const hut: DwellingObjectData & TerrainRestrictedMapObjectData = {
+const hut: MapObjectData & DwellingObjectData & TerrainRestrictedObjectData = {
   dwelling: {
     creature: CreatureId.Goblin,
     initialCount: 10, // 10-20
@@ -657,7 +657,7 @@ const hut: DwellingObjectData & TerrainRestrictedMapObjectData = {
     true,
   ],
   height: 1,
-  id: MapObjectId.Hut,
+  id: ObjectId.Hut,
   restrictedTerrains: [
     TerrainType.Grass,
   ],
@@ -665,7 +665,7 @@ const hut: DwellingObjectData & TerrainRestrictedMapObjectData = {
   width: 1,
 };
 
-const thatchedHut: DwellingObjectData & TerrainRestrictedMapObjectData = {
+const thatchedHut: MapObjectData & DwellingObjectData & TerrainRestrictedObjectData = {
   dwelling: {
     creature: CreatureId.Peasant,
     initialCount: 20, // 20-50
@@ -674,7 +674,7 @@ const thatchedHut: DwellingObjectData & TerrainRestrictedMapObjectData = {
     true,
   ],
   height: 1,
-  id: MapObjectId.ThatchedHut,
+  id: ObjectId.ThatchedHut,
   restrictedTerrains: [
     TerrainType.Grass,
   ],
@@ -682,7 +682,7 @@ const thatchedHut: DwellingObjectData & TerrainRestrictedMapObjectData = {
   width: 1,
 };
 
-const thatchedHutSnow: DwellingObjectData & TerrainRestrictedMapObjectData = {
+const thatchedHutSnow: MapObjectData & DwellingObjectData & TerrainRestrictedObjectData = {
   dwelling: {
     creature: CreatureId.Dwarf,
     initialCount: 1, // 1-3
@@ -691,7 +691,7 @@ const thatchedHutSnow: DwellingObjectData & TerrainRestrictedMapObjectData = {
     true,
   ],
   height: 1,
-  id: MapObjectId.ThatchedHutSnow,
+  id: ObjectId.ThatchedHutSnow,
   restrictedTerrains: [
     TerrainType.Snow,
   ],
@@ -699,7 +699,7 @@ const thatchedHutSnow: DwellingObjectData & TerrainRestrictedMapObjectData = {
   width: 1,
 };
 
-const wagonCamp: DwellingObjectData & TerrainRestrictedMapObjectData = {
+const wagonCamp: MapObjectData & DwellingObjectData & TerrainRestrictedObjectData = {
   dwelling: {
     creature: CreatureId.Rogue,
     initialCount: 30, // 30-50
@@ -709,13 +709,13 @@ const wagonCamp: DwellingObjectData & TerrainRestrictedMapObjectData = {
     false, true, true,
   ],
   height: 2,
-  id: MapObjectId.WagonCamp,
+  id: ObjectId.WagonCamp,
   restrictedTerrains: nonWaterTerrains,
   type: nonWaterTerrainTypes,
   width: 3,
 };
 
-const dwellingObjects: (DwellingObjectData & TerrainRestrictedMapObjectData)[] = [
+const dwellingObjects: (MapObjectData & DwellingObjectData & TerrainRestrictedObjectData)[] = [
   cottage,
   cottageSnow,
   desertTent,
@@ -725,12 +725,12 @@ const dwellingObjects: (DwellingObjectData & TerrainRestrictedMapObjectData)[] =
   wagonCamp,
 ];
 
-const obelisk: ObeliskMapObjectData & TerrainRestrictedMapObjectData & VariantMapObjectData = {
+const obelisk: MapObjectData & ObeliskObjectData & TerrainRestrictedObjectData & VariantObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Obelisk,
+  id: ObjectId.Obelisk,
   interactionLimit: InteractionLimitType.OncePerPlayer,
   restrictedTerrains: nonWaterTerrains,
   type: nonWaterTerrainTypes,
@@ -746,13 +746,13 @@ const obelisk: ObeliskMapObjectData & TerrainRestrictedMapObjectData & VariantMa
   width: 1,
 };
 
-const cave: TerrainRestrictedMapObjectData & VariantMapObjectData = {
+const cave: MapObjectData & TerrainRestrictedObjectData & VariantObjectData = {
   grid: [
     true, true,
     false, false,
   ],
   height: 2,
-  id: MapObjectId.Cave,
+  id: ObjectId.Cave,
   restrictedTerrains: [
     TerrainType.Swamp,
     TerrainType.Lava,
@@ -771,12 +771,12 @@ const cave: TerrainRestrictedMapObjectData & VariantMapObjectData = {
   width: 2,
 };
 
-const faerieRing: TerrainRestrictedMapObjectData & VariantMapObjectData = {
+const faerieRing: MapObjectData & TerrainRestrictedObjectData & VariantObjectData = {
   grid: [
     true, true,
   ],
   height: 1,
-  id: MapObjectId.FaerieRing,
+  id: ObjectId.FaerieRing,
   restrictedTerrains: [
     TerrainType.Grass,
     TerrainType.Swamp,
@@ -795,12 +795,12 @@ const faerieRing: TerrainRestrictedMapObjectData & VariantMapObjectData = {
   width: 2,
 };
 
-const gazebo: TerrainRestrictedMapObjectData & VariantMapObjectData = {
+const gazebo: MapObjectData & TerrainRestrictedObjectData & VariantObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Gazebo,
+  id: ObjectId.Gazebo,
   restrictedTerrains: [
     TerrainType.Grass,
     TerrainType.Dirt,
@@ -816,12 +816,12 @@ const gazebo: TerrainRestrictedMapObjectData & VariantMapObjectData = {
   width: 1,
 };
 
-const roseBush: TerrainRestrictedMapObjectData & VariantMapObjectData = {
+const roseBush: MapObjectData & TerrainRestrictedObjectData & VariantObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Rosebush,
+  id: ObjectId.Rosebush,
   restrictedTerrains: [
     TerrainType.Grass,
     TerrainType.Dirt,
@@ -837,13 +837,13 @@ const roseBush: TerrainRestrictedMapObjectData & VariantMapObjectData = {
   width: 1,
 };
 
-const shrine: TerrainRestrictedMapObjectData & VariantMapObjectData = {
+const shrine: MapObjectData & TerrainRestrictedObjectData & VariantObjectData = {
   grid: [
     true, true, true,
     false, false, false,
   ],
   height: 2,
-  id: MapObjectId.Shrine,
+  id: ObjectId.Shrine,
   restrictedTerrains: [
     TerrainType.Grass,
     TerrainType.Dirt,
@@ -859,12 +859,12 @@ const shrine: TerrainRestrictedMapObjectData & VariantMapObjectData = {
   width: 3,
 };
 
-const shrine2: TerrainRestrictedMapObjectData & VariantMapObjectData = {
+const shrine2: MapObjectData & TerrainRestrictedObjectData & VariantObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Shrine2,
+  id: ObjectId.Shrine2,
   restrictedTerrains: [
     TerrainType.Grass,
     TerrainType.Swamp,
@@ -883,12 +883,12 @@ const shrine2: TerrainRestrictedMapObjectData & VariantMapObjectData = {
   width: 1,
 };
 
-const signpost: TerrainRestrictedMapObjectData & VariantMapObjectData = {
+const signpost: MapObjectData & TerrainRestrictedObjectData & VariantObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.Signpost,
+  id: ObjectId.Signpost,
   restrictedTerrains: [
     TerrainType.Grass,
     TerrainType.Snow,
@@ -913,12 +913,12 @@ const signpost: TerrainRestrictedMapObjectData & VariantMapObjectData = {
   width: 1,
 };
 
-const travelGate: TerrainRestrictedMapObjectData = {
+const travelGate: MapObjectData & TerrainRestrictedObjectData = {
   grid: [
     true,
   ],
   height: 1,
-  id: MapObjectId.TravelGate,
+  id: ObjectId.TravelGate,
   restrictedTerrains: [
     TerrainType.Grass,
     TerrainType.Swamp,
@@ -934,9 +934,9 @@ const travelGate: TerrainRestrictedMapObjectData = {
   width: 1,
 };
 
-const travelGate2: typeof travelGate & VariantMapObjectData = {
+const travelGate2: typeof travelGate & VariantObjectData = {
   ...travelGate,
-  id: MapObjectId.TravelGate2,
+  id: ObjectId.TravelGate2,
   restrictedTerrains: [
     TerrainType.Snow,
     TerrainType.Desert,
@@ -951,13 +951,13 @@ const travelGate2: typeof travelGate & VariantMapObjectData = {
   },
 };
 
-const lighthouse: TerrainRestrictedMapObjectData & OwnableObjectData & MobilityModifierObjectData = {
+const lighthouse: MapObjectData & TerrainRestrictedObjectData & OwnableObjectData & MobilityModifierObjectData = {
   grid: [
     true, true, true,
     undefined, false, undefined,
   ],
   height: 2,
-  id: MapObjectId.Lighthouse,
+  id: ObjectId.Lighthouse,
   mobilityModifier: {
     [TerrainType.Water]: {
       type: "add",
@@ -978,7 +978,7 @@ const lighthouse: TerrainRestrictedMapObjectData & OwnableObjectData & MobilityM
   width: 3,
 };
 
-const otherObjects: TerrainRestrictedMapObjectData[] = [
+const otherObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
   cave,
   faerieRing,
   {
@@ -989,7 +989,7 @@ const otherObjects: TerrainRestrictedMapObjectData[] = [
       undefined, false, undefined,
     ],
     height: 4,
-    id: MapObjectId.DragonCity,
+    id: ObjectId.DragonCity,
     restrictedTerrains: [
       TerrainType.Grass,
       TerrainType.Swamp,
@@ -1009,7 +1009,7 @@ const otherObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Fountain,
+    id: ObjectId.Fountain,
     restrictedTerrains: [
       TerrainType.Grass,
       TerrainType.Snow,
@@ -1030,7 +1030,7 @@ const otherObjects: TerrainRestrictedMapObjectData[] = [
       true, true, true,
     ],
     height: 1,
-    id: MapObjectId.Graveyard,
+    id: ObjectId.Graveyard,
     restrictedTerrains: [
       TerrainType.Grass,
       TerrainType.Swamp,
@@ -1048,7 +1048,7 @@ const otherObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Hole,
+    id: ObjectId.Hole,
     restrictedTerrains: [
       TerrainType.Grass,
       TerrainType.Swamp,
@@ -1068,7 +1068,7 @@ const otherObjects: TerrainRestrictedMapObjectData[] = [
       false, false,
     ],
     height: 2,
-    id: MapObjectId.OakTree,
+    id: ObjectId.OakTree,
     restrictedTerrains: [
       TerrainType.Grass,
       TerrainType.Swamp,
@@ -1089,7 +1089,7 @@ const otherObjects: TerrainRestrictedMapObjectData[] = [
       false,
     ],
     height: 2,
-    id: MapObjectId.Statue,
+    id: ObjectId.Statue,
     restrictedTerrains: [
       TerrainType.Grass,
       TerrainType.Swamp,
@@ -1109,7 +1109,7 @@ const otherObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.TreeStump,
+    id: ObjectId.TreeStump,
     restrictedTerrains: [
       TerrainType.Grass,
       TerrainType.Swamp,
@@ -1129,7 +1129,7 @@ const otherObjects: TerrainRestrictedMapObjectData[] = [
       undefined, false, false,
     ],
     height: 3,
-    id: MapObjectId.Waterwheel,
+    id: ObjectId.Waterwheel,
     restrictedTerrains: [
       TerrainType.Grass,
       TerrainType.Dirt,
@@ -1146,7 +1146,7 @@ const otherObjects: TerrainRestrictedMapObjectData[] = [
       false, false,
     ],
     height: 2,
-    id: MapObjectId.Windmill,
+    id: ObjectId.Windmill,
     restrictedTerrains: [
       TerrainType.Grass,
       TerrainType.Dirt,
@@ -1159,13 +1159,13 @@ const otherObjects: TerrainRestrictedMapObjectData[] = [
   },
 ];
 
-const riverObjects: TerrainRestrictedMapObjectData[] = [
+const riverObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
   {
     grid: [
       true,
     ],
     height: 1,
-    id: MapObjectId.River1,
+    id: ObjectId.River1,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 1,
@@ -1175,7 +1175,7 @@ const riverObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.River2,
+    id: ObjectId.River2,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 1,
@@ -1185,7 +1185,7 @@ const riverObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.River3,
+    id: ObjectId.River3,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 1,
@@ -1195,7 +1195,7 @@ const riverObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.River4,
+    id: ObjectId.River4,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 1,
@@ -1205,7 +1205,7 @@ const riverObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.River5,
+    id: ObjectId.River5,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 1,
@@ -1215,7 +1215,7 @@ const riverObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.River6,
+    id: ObjectId.River6,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 1,
@@ -1225,7 +1225,7 @@ const riverObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.River7,
+    id: ObjectId.River7,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 1,
@@ -1237,7 +1237,7 @@ const riverObjects: TerrainRestrictedMapObjectData[] = [
       true, true, true,
     ],
     height: 3,
-    id: MapObjectId.River8,
+    id: ObjectId.River8,
     restrictedTerrains: allTerrains,
     type: allTerrainTypes,
     width: 3,
@@ -1249,20 +1249,20 @@ const riverObjects: TerrainRestrictedMapObjectData[] = [
       undefined, true, undefined,
     ],
     height: 3,
-    id: MapObjectId.River9,
+    id: ObjectId.River9,
     restrictedTerrains: allTerrains,
     type: allTerrainTypes,
     width: 3,
   },
 ];
 
-const waterObjects: TerrainRestrictedMapObjectData[] = [
+const waterObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
   {
     grid: [
       true,
     ],
     height: 1,
-    id: MapObjectId.Buoy,
+    id: ObjectId.Buoy,
     restrictedTerrains: [
       TerrainType.Water,
     ],
@@ -1275,7 +1275,7 @@ const waterObjects: TerrainRestrictedMapObjectData[] = [
       false, undefined,
     ],
     height: 2,
-    id: MapObjectId.Shipwreck,
+    id: ObjectId.Shipwreck,
     restrictedTerrains: [
       TerrainType.Water,
     ],
@@ -1288,7 +1288,7 @@ const waterObjects: TerrainRestrictedMapObjectData[] = [
       true, true, true,
     ],
     height: 2,
-    id: MapObjectId.Whirlpool,
+    id: ObjectId.Whirlpool,
     restrictedTerrains: [
       TerrainType.Water,
     ],
@@ -1300,7 +1300,7 @@ const waterObjects: TerrainRestrictedMapObjectData[] = [
       true, true,
     ],
     height: 1,
-    id: MapObjectId.Water1,
+    id: ObjectId.Water1,
     restrictedTerrains: [
       TerrainType.Water,
     ],
@@ -1312,7 +1312,7 @@ const waterObjects: TerrainRestrictedMapObjectData[] = [
       true, true,
     ],
     height: 1,
-    id: MapObjectId.Water2,
+    id: ObjectId.Water2,
     restrictedTerrains: [
       TerrainType.Water,
     ],
@@ -1325,7 +1325,7 @@ const waterObjects: TerrainRestrictedMapObjectData[] = [
       false, false, false,
     ],
     height: 2,
-    id: MapObjectId.Water3,
+    id: ObjectId.Water3,
     restrictedTerrains: [
       TerrainType.Water,
     ],
@@ -1334,13 +1334,13 @@ const waterObjects: TerrainRestrictedMapObjectData[] = [
   },
 ];
 
-const grassObjects: TerrainRestrictedMapObjectData[] = [
+const grassObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
   {
     grid: [
       true, true, true, true,
     ],
     height: 1,
-    id: MapObjectId.GrassLake,
+    id: ObjectId.GrassLake,
     restrictedTerrains: [
       TerrainType.Grass,
     ],
@@ -1353,7 +1353,7 @@ const grassObjects: TerrainRestrictedMapObjectData[] = [
       true, true, true, true, true,
     ],
     height: 2,
-    id: MapObjectId.GrassLakeBig,
+    id: ObjectId.GrassLakeBig,
     restrictedTerrains: [
       TerrainType.Grass,
     ],
@@ -1365,7 +1365,7 @@ const grassObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Grass1,
+    id: ObjectId.Grass1,
     restrictedTerrains: [
       TerrainType.Grass,
     ],
@@ -1377,7 +1377,7 @@ const grassObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Grass2,
+    id: ObjectId.Grass2,
     restrictedTerrains: [
       TerrainType.Grass,
     ],
@@ -1389,7 +1389,7 @@ const grassObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Grass3,
+    id: ObjectId.Grass3,
     restrictedTerrains: [
       TerrainType.Grass,
     ],
@@ -1401,7 +1401,7 @@ const grassObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Grass4,
+    id: ObjectId.Grass4,
     restrictedTerrains: [
       TerrainType.Grass,
     ],
@@ -1413,7 +1413,7 @@ const grassObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Grass5,
+    id: ObjectId.Grass5,
     restrictedTerrains: [
       TerrainType.Grass,
     ],
@@ -1425,7 +1425,7 @@ const grassObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Grass6,
+    id: ObjectId.Grass6,
     restrictedTerrains: [
       TerrainType.Grass,
     ],
@@ -1437,7 +1437,7 @@ const grassObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Grass7,
+    id: ObjectId.Grass7,
     restrictedTerrains: [
       TerrainType.Grass,
     ],
@@ -1449,7 +1449,7 @@ const grassObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Grass8,
+    id: ObjectId.Grass8,
     restrictedTerrains: [
       TerrainType.Grass,
     ],
@@ -1461,7 +1461,7 @@ const grassObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Grass9,
+    id: ObjectId.Grass9,
     restrictedTerrains: [
       TerrainType.Grass,
     ],
@@ -1473,7 +1473,7 @@ const grassObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Grass10,
+    id: ObjectId.Grass10,
     restrictedTerrains: [
       TerrainType.Grass,
     ],
@@ -1482,13 +1482,13 @@ const grassObjects: TerrainRestrictedMapObjectData[] = [
   },
 ];
 
-const snowObjects: TerrainRestrictedMapObjectData[] = [
+const snowObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
   {
     grid: [
       true, true,
     ],
     height: 1,
-    id: MapObjectId.SnowLake,
+    id: ObjectId.SnowLake,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -1500,7 +1500,7 @@ const snowObjects: TerrainRestrictedMapObjectData[] = [
       true, true,
     ],
     height: 1,
-    id: MapObjectId.SnowLakeSmall,
+    id: ObjectId.SnowLakeSmall,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -1512,7 +1512,7 @@ const snowObjects: TerrainRestrictedMapObjectData[] = [
       true, true, true, true,
     ],
     height: 1,
-    id: MapObjectId.SnowLakeBig,
+    id: ObjectId.SnowLakeBig,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -1524,7 +1524,7 @@ const snowObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Snow1,
+    id: ObjectId.Snow1,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -1536,7 +1536,7 @@ const snowObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Snow2,
+    id: ObjectId.Snow2,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -1548,7 +1548,7 @@ const snowObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Snow3,
+    id: ObjectId.Snow3,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -1557,14 +1557,14 @@ const snowObjects: TerrainRestrictedMapObjectData[] = [
   },
 ];
 
-const swampObjects: TerrainRestrictedMapObjectData[] = [
+const swampObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
   {
     grid: [
       true, true, true,
       true, true, true,
     ],
     height: 2,
-    id: MapObjectId.SwampLake,
+    id: ObjectId.SwampLake,
     restrictedTerrains: [
       TerrainType.Swamp,
     ],
@@ -1578,7 +1578,7 @@ const swampObjects: TerrainRestrictedMapObjectData[] = [
       true, true, true, true, true,
     ],
     height: 3,
-    id: MapObjectId.SwampLakeBig,
+    id: ObjectId.SwampLakeBig,
     restrictedTerrains: [
       TerrainType.Swamp,
     ],
@@ -1590,7 +1590,7 @@ const swampObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Swamp1,
+    id: ObjectId.Swamp1,
     restrictedTerrains: [
       TerrainType.Swamp,
     ],
@@ -1602,7 +1602,7 @@ const swampObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Swamp2,
+    id: ObjectId.Swamp2,
     restrictedTerrains: [
       TerrainType.Swamp,
     ],
@@ -1614,7 +1614,7 @@ const swampObjects: TerrainRestrictedMapObjectData[] = [
       true, true,
     ],
     height: 1,
-    id: MapObjectId.Swamp3,
+    id: ObjectId.Swamp3,
     restrictedTerrains: [
       TerrainType.Swamp,
     ],
@@ -1626,7 +1626,7 @@ const swampObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Swamp4,
+    id: ObjectId.Swamp4,
     restrictedTerrains: [
       TerrainType.Swamp,
     ],
@@ -1638,7 +1638,7 @@ const swampObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Swamp5,
+    id: ObjectId.Swamp5,
     restrictedTerrains: [
       TerrainType.Swamp,
     ],
@@ -1647,13 +1647,13 @@ const swampObjects: TerrainRestrictedMapObjectData[] = [
   },
 ];
 
-const lavaObjects: TerrainRestrictedMapObjectData[] = [
+const lavaObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
   {
     grid: [
       true,
     ],
     height: 1,
-    id: MapObjectId.Lava1,
+    id: ObjectId.Lava1,
     restrictedTerrains: [
       TerrainType.Lava,
     ],
@@ -1666,7 +1666,7 @@ const lavaObjects: TerrainRestrictedMapObjectData[] = [
       true, true, true,
     ],
     height: 2,
-    id: MapObjectId.Lava2,
+    id: ObjectId.Lava2,
     restrictedTerrains: [
       TerrainType.Lava,
     ],
@@ -1679,7 +1679,7 @@ const lavaObjects: TerrainRestrictedMapObjectData[] = [
       true, true,
     ],
     height: 2,
-    id: MapObjectId.Lava3,
+    id: ObjectId.Lava3,
     restrictedTerrains: [
       TerrainType.Lava,
     ],
@@ -1691,7 +1691,7 @@ const lavaObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Lava4,
+    id: ObjectId.Lava4,
     restrictedTerrains: [
       TerrainType.Lava,
     ],
@@ -1704,7 +1704,7 @@ const lavaObjects: TerrainRestrictedMapObjectData[] = [
       true, true, true,
     ],
     height: 2,
-    id: MapObjectId.Lava5,
+    id: ObjectId.Lava5,
     restrictedTerrains: [
       TerrainType.Lava,
     ],
@@ -1716,7 +1716,7 @@ const lavaObjects: TerrainRestrictedMapObjectData[] = [
       true, true,
     ],
     height: 1,
-    id: MapObjectId.Lava6,
+    id: ObjectId.Lava6,
     restrictedTerrains: [
       TerrainType.Lava,
     ],
@@ -1729,7 +1729,7 @@ const lavaObjects: TerrainRestrictedMapObjectData[] = [
       false, false, false,
     ],
     height: 2,
-    id: MapObjectId.Lava7,
+    id: ObjectId.Lava7,
     restrictedTerrains: [
       TerrainType.Lava,
     ],
@@ -1743,7 +1743,7 @@ const lavaObjects: TerrainRestrictedMapObjectData[] = [
       true, true, undefined,
     ],
     height: 3,
-    id: MapObjectId.Lava8,
+    id: ObjectId.Lava8,
     restrictedTerrains: [
       TerrainType.Lava,
     ],
@@ -1756,7 +1756,7 @@ const lavaObjects: TerrainRestrictedMapObjectData[] = [
       true, true, false,
     ],
     height: 2,
-    id: MapObjectId.Lava9,
+    id: ObjectId.Lava9,
     restrictedTerrains: [
       TerrainType.Lava,
     ],
@@ -1769,7 +1769,7 @@ const lavaObjects: TerrainRestrictedMapObjectData[] = [
       false,
     ],
     height: 2,
-    id: MapObjectId.Lava10,
+    id: ObjectId.Lava10,
     restrictedTerrains: [
       TerrainType.Lava,
     ],
@@ -1778,14 +1778,14 @@ const lavaObjects: TerrainRestrictedMapObjectData[] = [
   },
 ];
 
-const desertObjects: TerrainRestrictedMapObjectData[] = [
+const desertObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
   {
     grid: [
       true, true, true, true,
       undefined, false, false, undefined,
     ],
     height: 2,
-    id: MapObjectId.Oasis,
+    id: ObjectId.Oasis,
     restrictedTerrains: [
       TerrainType.Desert,
     ],
@@ -1797,7 +1797,7 @@ const desertObjects: TerrainRestrictedMapObjectData[] = [
       true, true,
     ],
     height: 1,
-    id: MapObjectId.Skeleton,
+    id: ObjectId.Skeleton,
     restrictedTerrains: [
       TerrainType.Desert,
     ],
@@ -1809,7 +1809,7 @@ const desertObjects: TerrainRestrictedMapObjectData[] = [
       true, true,
     ],
     height: 1,
-    id: MapObjectId.Desert1,
+    id: ObjectId.Desert1,
     restrictedTerrains: [
       TerrainType.Desert,
     ],
@@ -1821,7 +1821,7 @@ const desertObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Desert2,
+    id: ObjectId.Desert2,
     restrictedTerrains: [
       TerrainType.Desert,
     ],
@@ -1833,7 +1833,7 @@ const desertObjects: TerrainRestrictedMapObjectData[] = [
       true, true, true,
     ],
     height: 1,
-    id: MapObjectId.Desert3,
+    id: ObjectId.Desert3,
     restrictedTerrains: [
       TerrainType.Desert,
     ],
@@ -1842,13 +1842,13 @@ const desertObjects: TerrainRestrictedMapObjectData[] = [
   },
 ];
 
-const dirtObjects: TerrainRestrictedMapObjectData[] = [
+const dirtObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
   {
     grid: [
       true, true,
     ],
     height: 1,
-    id: MapObjectId.DirtLake,
+    id: ObjectId.DirtLake,
     restrictedTerrains: [
       TerrainType.Dirt,
     ],
@@ -1861,7 +1861,7 @@ const dirtObjects: TerrainRestrictedMapObjectData[] = [
       true, true, true, true, true,
     ],
     height: 2,
-    id: MapObjectId.DirtLakeBig,
+    id: ObjectId.DirtLakeBig,
     restrictedTerrains: [
       TerrainType.Dirt,
     ],
@@ -1873,7 +1873,7 @@ const dirtObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Dirt1,
+    id: ObjectId.Dirt1,
     restrictedTerrains: [
       TerrainType.Dirt,
     ],
@@ -1885,7 +1885,7 @@ const dirtObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Dirt2,
+    id: ObjectId.Dirt2,
     restrictedTerrains: [
       TerrainType.Dirt,
     ],
@@ -1897,7 +1897,7 @@ const dirtObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Dirt3,
+    id: ObjectId.Dirt3,
     restrictedTerrains: [
       TerrainType.Dirt,
     ],
@@ -1909,7 +1909,7 @@ const dirtObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Dirt4,
+    id: ObjectId.Dirt4,
     restrictedTerrains: [
       TerrainType.Dirt,
     ],
@@ -1921,7 +1921,7 @@ const dirtObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Dirt5,
+    id: ObjectId.Dirt5,
     restrictedTerrains: [
       TerrainType.Dirt,
     ],
@@ -1933,7 +1933,7 @@ const dirtObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Dirt6,
+    id: ObjectId.Dirt6,
     restrictedTerrains: [
       TerrainType.Dirt,
     ],
@@ -1945,7 +1945,7 @@ const dirtObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Dirt7,
+    id: ObjectId.Dirt7,
     restrictedTerrains: [
       TerrainType.Dirt,
     ],
@@ -1957,7 +1957,7 @@ const dirtObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Dirt8,
+    id: ObjectId.Dirt8,
     restrictedTerrains: [
       TerrainType.Dirt,
     ],
@@ -1969,7 +1969,7 @@ const dirtObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Dirt9,
+    id: ObjectId.Dirt9,
     restrictedTerrains: [
       TerrainType.Dirt,
     ],
@@ -1981,7 +1981,7 @@ const dirtObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Dirt10,
+    id: ObjectId.Dirt10,
     restrictedTerrains: [
       TerrainType.Dirt,
     ],
@@ -1993,7 +1993,7 @@ const dirtObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Dirt11,
+    id: ObjectId.Dirt11,
     restrictedTerrains: [
       TerrainType.Dirt,
     ],
@@ -2002,7 +2002,7 @@ const dirtObjects: TerrainRestrictedMapObjectData[] = [
   },
 ];
 
-const mountainObjects: TerrainRestrictedMapObjectData[] = [
+const mountainObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
   {
     grid: [
       true, true, undefined,
@@ -2010,7 +2010,7 @@ const mountainObjects: TerrainRestrictedMapObjectData[] = [
       undefined, false, false,
     ],
     height: 3,
-    id: MapObjectId.Mountain1,
+    id: ObjectId.Mountain1,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2021,7 +2021,7 @@ const mountainObjects: TerrainRestrictedMapObjectData[] = [
       undefined, false, false,
     ],
     height: 2,
-    id: MapObjectId.Mountain2,
+    id: ObjectId.Mountain2,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2033,7 +2033,7 @@ const mountainObjects: TerrainRestrictedMapObjectData[] = [
       false, false, undefined,
     ],
     height: 3,
-    id: MapObjectId.Mountain3,
+    id: ObjectId.Mountain3,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2044,14 +2044,14 @@ const mountainObjects: TerrainRestrictedMapObjectData[] = [
       false, false, undefined,
     ],
     height: 2,
-    id: MapObjectId.Mountain4,
+    id: ObjectId.Mountain4,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
   },
 ];
 
-const terrainMountainObjects: (TerrainRestrictedMapObjectData & VariantMapObjectData)[] = [
+const terrainMountainObjects: (MapObjectData & TerrainRestrictedObjectData & VariantObjectData)[] = [
   {
     grid: [
       true, true, undefined,
@@ -2059,7 +2059,7 @@ const terrainMountainObjects: (TerrainRestrictedMapObjectData & VariantMapObject
       undefined, false, false,
     ],
     height: 3,
-    id: MapObjectId.Mountain5,
+    id: ObjectId.Mountain5,
     restrictedTerrains: [
       TerrainType.Grass,
       TerrainType.Snow,
@@ -2089,7 +2089,7 @@ const terrainMountainObjects: (TerrainRestrictedMapObjectData & VariantMapObject
       undefined, false, false,
     ],
     height: 2,
-    id: MapObjectId.Mountain6,
+    id: ObjectId.Mountain6,
     restrictedTerrains: [
       TerrainType.Grass,
       TerrainType.Snow,
@@ -2120,7 +2120,7 @@ const terrainMountainObjects: (TerrainRestrictedMapObjectData & VariantMapObject
       false, false, undefined,
     ],
     height: 3,
-    id: MapObjectId.Mountain7,
+    id: ObjectId.Mountain7,
     restrictedTerrains: [
       TerrainType.Grass,
       TerrainType.Snow,
@@ -2150,7 +2150,7 @@ const terrainMountainObjects: (TerrainRestrictedMapObjectData & VariantMapObject
       false, false, undefined,
     ],
     height: 2,
-    id: MapObjectId.Mountain8,
+    id: ObjectId.Mountain8,
     restrictedTerrains: [
       TerrainType.Grass,
       TerrainType.Snow,
@@ -2176,7 +2176,7 @@ const terrainMountainObjects: (TerrainRestrictedMapObjectData & VariantMapObject
   },
 ];
 
-const treesObjects: TerrainRestrictedMapObjectData[] = [
+const treesObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
   {
     grid: [
       undefined, true, true,
@@ -2184,7 +2184,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       false, false, undefined,
     ],
     height: 3,
-    id: MapObjectId.Trees1,
+    id: ObjectId.Trees1,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2195,7 +2195,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       false, false, undefined,
     ],
     height: 2,
-    id: MapObjectId.Trees2,
+    id: ObjectId.Trees2,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2207,7 +2207,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       undefined, false, false,
     ],
     height: 3,
-    id: MapObjectId.Trees3,
+    id: ObjectId.Trees3,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2218,7 +2218,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       undefined, false, false,
     ],
     height: 2,
-    id: MapObjectId.Trees4,
+    id: ObjectId.Trees4,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2228,7 +2228,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Trees5,
+    id: ObjectId.Trees5,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 1,
@@ -2238,7 +2238,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Trees6,
+    id: ObjectId.Trees6,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 1,
@@ -2250,7 +2250,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       false, false, undefined,
     ],
     height: 3,
-    id: MapObjectId.Trees7,
+    id: ObjectId.Trees7,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -2263,7 +2263,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       false, false, undefined,
     ],
     height: 2,
-    id: MapObjectId.Trees8,
+    id: ObjectId.Trees8,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -2277,7 +2277,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       undefined, false, false,
     ],
     height: 3,
-    id: MapObjectId.Trees9,
+    id: ObjectId.Trees9,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -2290,7 +2290,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       undefined, false, false,
     ],
     height: 2,
-    id: MapObjectId.Trees10,
+    id: ObjectId.Trees10,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -2302,7 +2302,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Trees11,
+    id: ObjectId.Trees11,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -2314,7 +2314,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Trees12,
+    id: ObjectId.Trees12,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -2326,7 +2326,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Trees13,
+    id: ObjectId.Trees13,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -2338,7 +2338,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Trees14,
+    id: ObjectId.Trees14,
     restrictedTerrains: [
       TerrainType.Snow,
     ],
@@ -2352,7 +2352,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       false, false, undefined,
     ],
     height: 3,
-    id: MapObjectId.Trees15,
+    id: ObjectId.Trees15,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2363,7 +2363,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       false, false, undefined,
     ],
     height: 2,
-    id: MapObjectId.Trees16,
+    id: ObjectId.Trees16,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2375,7 +2375,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       undefined, false, false,
     ],
     height: 3,
-    id: MapObjectId.Trees17,
+    id: ObjectId.Trees17,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2386,7 +2386,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       undefined, false, false,
     ],
     height: 2,
-    id: MapObjectId.Trees18,
+    id: ObjectId.Trees18,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2396,7 +2396,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Trees19,
+    id: ObjectId.Trees19,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 1,
@@ -2406,7 +2406,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Trees20,
+    id: ObjectId.Trees20,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 1,
@@ -2418,7 +2418,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       false, false, undefined,
     ],
     height: 3,
-    id: MapObjectId.Trees21,
+    id: ObjectId.Trees21,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2429,7 +2429,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       false, false, undefined,
     ],
     height: 2,
-    id: MapObjectId.Trees22,
+    id: ObjectId.Trees22,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2441,7 +2441,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       undefined, false, false,
     ],
     height: 3,
-    id: MapObjectId.Trees23,
+    id: ObjectId.Trees23,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2452,7 +2452,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       undefined, false, false,
     ],
     height: 2,
-    id: MapObjectId.Trees24,
+    id: ObjectId.Trees24,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 3,
@@ -2462,7 +2462,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Trees25,
+    id: ObjectId.Trees25,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 1,
@@ -2472,7 +2472,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Trees26,
+    id: ObjectId.Trees26,
     restrictedTerrains: nonWaterTerrains,
     type: nonWaterTerrainTypes,
     width: 1,
@@ -2482,7 +2482,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Trees27,
+    id: ObjectId.Trees27,
     restrictedTerrains: [
       TerrainType.Desert,
     ],
@@ -2494,7 +2494,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Trees28,
+    id: ObjectId.Trees28,
     restrictedTerrains: [
       TerrainType.Desert,
     ],
@@ -2506,7 +2506,7 @@ const treesObjects: TerrainRestrictedMapObjectData[] = [
       true,
     ],
     height: 1,
-    id: MapObjectId.Trees29,
+    id: ObjectId.Trees29,
     restrictedTerrains: [
       TerrainType.Desert,
     ],

@@ -1,6 +1,6 @@
 import { defineMessages } from "react-intl";
 
-import { MapObjectId, MapObjectType } from "heroes-homm1";
+import { MapObjectType, ObjectId } from "heroes-homm1";
 
 import { convertValue, unknownMessage } from "./util";
 
@@ -59,76 +59,76 @@ export const getMapObjectTypeNameMessage = (type: MapObjectType) =>
 
 const mapObjectMessages = defineMessages({
   // mines
-  [getKey(MapObjectId.CrystalMine)]: {
+  [getKey(ObjectId.CrystalMine)]: {
     defaultMessage: "Crystal Mine",
     id: "game.mapObject.crystalMine",
   },
-  [getKey(MapObjectId.GemsMine)]: {
+  [getKey(ObjectId.GemsMine)]: {
     defaultMessage: "Gem Mine",
     id: "game.mapObject.gemsMine",
   },
-  [getKey(MapObjectId.GoldMine)]: {
+  [getKey(ObjectId.GoldMine)]: {
     defaultMessage: "Gold Mine",
     id: "game.mapObject.goldMine",
   },
-  [getKey(MapObjectId.Alchemist)]: {
+  [getKey(ObjectId.Alchemist)]: {
     defaultMessage: "Alchemist",
     id: "game.mapObject.alchemist",
   },
-  [getKey(MapObjectId.OreMine)]: {
+  [getKey(ObjectId.OreMine)]: {
     defaultMessage: "Ore Mine",
     id: "game.mapObject.oreMine",
   },
-  [getKey(MapObjectId.SulfurMine)]: {
+  [getKey(ObjectId.SulfurMine)]: {
     defaultMessage: "Sulfur Mine",
     id: "game.mapObject.sulfurMine",
   },
-  [getKey(MapObjectId.Sawmill)]: {
+  [getKey(ObjectId.Sawmill)]: {
     defaultMessage: "Sawmill",
     id: "game.mapObject.sawmill",
   },
   // other
-  [getKey(MapObjectId.Buoy)]: {
+  [getKey(ObjectId.Buoy)]: {
     defaultMessage: "Buoy",
     id: "game.mapObject.buoy",
   },
-  [getKey(MapObjectId.Cottage)]: {
+  [getKey(ObjectId.Cottage)]: {
     defaultMessage: "Cottage",
     id: "game.mapObject.cottage",
   },
-  [getKey(MapObjectId.FaerieRing)]: {
+  [getKey(ObjectId.FaerieRing)]: {
     defaultMessage: "Faerie ring",
     id: "game.mapObject.faerieRing",
   },
-  [getKey(MapObjectId.Fountain)]: {
+  [getKey(ObjectId.Fountain)]: {
     defaultMessage: "Fountain",
     id: "game.mapObject.fountain",
   },
-  [getKey(MapObjectId.Graveyard)]: {
+  [getKey(ObjectId.Graveyard)]: {
     defaultMessage: "Graveyard",
     id: "game.mapObject.graveyard",
   },
-  [getKey(MapObjectId.Hut)]: {
+  [getKey(ObjectId.Hut)]: {
     defaultMessage: "Hut",
     id: "game.mapObject.hut",
   },
-  [getKey(MapObjectId.Oasis)]: {
+  [getKey(ObjectId.Oasis)]: {
     defaultMessage: "Oasis",
     id: "game.mapObject.oasis",
   },
-  [getKey(MapObjectId.Obelisk)]: {
+  [getKey(ObjectId.Obelisk)]: {
     defaultMessage: "Obelisk",
     id: "game.mapObject.obelisk",
   },
-  [getKey(MapObjectId.Shipwreck)]: {
+  [getKey(ObjectId.Shipwreck)]: {
     defaultMessage: "Shipwreck",
     id: "game.mapObject.shipwreck",
   },
-  [getKey(MapObjectId.Statue)]: {
+  [getKey(ObjectId.Statue)]: {
     defaultMessage: "Statue",
     id: "game.mapObject.statue",
   },
-  [getKey(MapObjectId.ThatchedHut)]: {
+  [getKey(ObjectId.ThatchedHut)]: {
     defaultMessage: "Thatched Hut",
     id: "game.mapObject.thatchedHut",
   },

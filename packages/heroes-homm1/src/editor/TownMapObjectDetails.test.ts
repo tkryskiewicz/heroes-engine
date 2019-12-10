@@ -1,9 +1,10 @@
-import { MapObjectId, RandomTownMapObject } from "../map";
+import { ObjectId } from "../ObjectId";
+import { RandomTownObject } from "../objects";
 import { getTownMapObjectDetails, setTownMapObjectDetails, TownMapObjectDetails } from "./TownMapObjectDetails";
 
 describe("getTownMapObjectDetails", () => {
   it("should return object details", () => {
-    const object: RandomTownMapObject = {
+    const object: RandomTownObject = {
       army: [
         {
           count: 1,
@@ -11,7 +12,7 @@ describe("getTownMapObjectDetails", () => {
         },
       ],
       customized: false,
-      dataId: MapObjectId.RandomTown,
+      dataId: ObjectId.RandomTown,
       id: "dataId",
       owner: "player",
     };
@@ -35,10 +36,10 @@ describe("getTownMapObjectDetails", () => {
 
 describe("setTownMapObjectDetails", () => {
   it("should set object details", () => {
-    const object: RandomTownMapObject = {
+    const object: RandomTownObject = {
       army: [],
       customized: false,
-      dataId: MapObjectId.RandomTown,
+      dataId: ObjectId.RandomTown,
       id: "id",
       owner: undefined,
     };
@@ -56,7 +57,7 @@ describe("setTownMapObjectDetails", () => {
 
     const result = setTownMapObjectDetails(object, value);
 
-    const expected: RandomTownMapObject = {
+    const expected: RandomTownObject = {
       ...object,
       army: [
         {

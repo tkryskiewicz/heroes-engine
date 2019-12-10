@@ -8,7 +8,7 @@ import {
   MobileObject,
 } from "heroes-core";
 
-import { isHeroMapObject } from "../map";
+import { isHeroObject } from "./HeroObject";
 
 export const getMovementCost = (
   object: MobileObject,
@@ -20,7 +20,7 @@ export const getMovementCost = (
 
   let terrainMovementCostModifier = terrainData.movementCostModifier;
 
-  if (isHeroMapObject(object)) {
+  if (isHeroObject(object)) {
     const heroClass = data.heroClasses[object.heroClass];
 
     if (hasModifierFor(heroClass.terrainMovementCostModifier, terrain)) {

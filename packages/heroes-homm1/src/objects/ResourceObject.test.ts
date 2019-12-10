@@ -1,19 +1,19 @@
 import {
-  isResourceMapObject,
-  isResourceMapObjectData,
-  ResourceMapObject,
-  ResourceMapObjectData,
-} from "./ResourceMapObject";
+  isResourceObject,
+  isResourceObjectData,
+  ResourceObject,
+  ResourceObjectData,
+} from "./ResourceObject";
 
-describe("isResourceMapObjectData", () => {
+describe("isResourceObjectData", () => {
   it("should return true when resource object", () => {
-    const objectData: ResourceMapObjectData = {
+    const objectData: ResourceObjectData = {
       id: "dataId",
       pickable: true,
       treasure: {},
     };
 
-    const data: Parameters<typeof isResourceMapObjectData>[1] = {
+    const data: Parameters<typeof isResourceObjectData>[1] = {
       resources: {
         [objectData.id]: {
           id: objectData.id,
@@ -22,21 +22,21 @@ describe("isResourceMapObjectData", () => {
       },
     };
 
-    const result = isResourceMapObjectData(objectData, data);
+    const result = isResourceObjectData(objectData, data);
 
     expect(result).toBe(true);
   });
 });
 
-describe("isResourceMapObject", () => {
+describe("isResourceObject", () => {
   it("should return true when there is a resource with same id", () => {
-    const object: ResourceMapObject = {
+    const object: ResourceObject = {
       dataId: "resource",
       id: "id",
       treasure: {},
     };
 
-    const data: Parameters<typeof isResourceMapObject>[1] = {
+    const data: Parameters<typeof isResourceObject>[1] = {
       resources: {
         resource: {
           id: "resource",
@@ -45,7 +45,7 @@ describe("isResourceMapObject", () => {
       },
     };
 
-    const result = isResourceMapObject(object, data);
+    const result = isResourceObject(object, data);
 
     expect(result).toBe(true);
   });

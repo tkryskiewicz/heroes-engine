@@ -1,5 +1,5 @@
 // FIXME: separate objects from their representation
-export enum MapObjectId {
+export enum ObjectId {
   Hero = "hero",
 
   // TODO: not random, rename

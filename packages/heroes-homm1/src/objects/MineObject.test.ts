@@ -1,21 +1,17 @@
-import { isMineMapObject, isMineMapObjectData, MineMapObject, MineMapObjectData } from "./MineMapObject";
+import { isMineObject, isMineObjectData, MineObject, MineObjectData } from "./MineObject";
 
-describe("isMineMapObjectData", () => {
+describe("isMineObjectData", () => {
   it("should return true when a mine for a resource", () => {
-    const objectData: MineMapObjectData = {
-      grid: [],
-      height: 1,
+    const objectData: MineObjectData = {
       id: "dataId",
       ownable: true,
       resourceGenerator: {
         amount: 1,
         resource: "resource",
       },
-      type: "type",
-      width: 1,
     };
 
-    const data: Parameters<typeof isMineMapObjectData>[1] = {
+    const data: Parameters<typeof isMineObjectData>[1] = {
       resources: {
         resource: {
           id: "resource",
@@ -24,21 +20,21 @@ describe("isMineMapObjectData", () => {
       },
     };
 
-    const result = isMineMapObjectData(objectData, data);
+    const result = isMineObjectData(objectData, data);
 
     expect(result).toBe(true);
   });
 });
 
-describe("isMineMapObject", () => {
+describe("isMineObject", () => {
   it("should return true when a mine for a resource", () => {
-    const object: MineMapObject = {
+    const object: MineObject = {
       dataId: "dataId",
       id: "id",
       owner: undefined,
     };
 
-    const data: Parameters<typeof isMineMapObject>[1] = {
+    const data: Parameters<typeof isMineObject>[1] = {
       resources: {
         resource: {
           id: "resource",
@@ -47,7 +43,7 @@ describe("isMineMapObject", () => {
       },
     };
 
-    const result = isMineMapObject(object, data);
+    const result = isMineObject(object, data);
 
     expect(result).toBe(true);
   });

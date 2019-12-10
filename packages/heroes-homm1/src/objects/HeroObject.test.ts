@@ -1,5 +1,6 @@
 import {
   CreatureData,
+  GameObject,
   HeroClassData,
   ItemData,
   MapObject,
@@ -8,8 +9,105 @@ import {
   MobilityModifierObjectData,
 } from "heroes-core";
 
-import { HeroMapObject, HeroMapObjectData, MapObjectId } from "../map";
-import { getInitialMobility } from "./HeroObject";
+import { ObjectId } from "../ObjectId";
+import {
+  getInitialMobility,
+  HeroObject,
+  HeroObjectData,
+  initializeHeroObject,
+  isHeroObject,
+  isHeroObjectData,
+} from "./HeroObject";
+
+describe("isHeroObjectData", () => {
+  it("should return true when hero object data", () => {
+    const objectData: HeroObjectData = {
+      army: {
+        preventMovingLastTroop: true,
+      },
+      baseMobility: 0,
+      id: ObjectId.Hero,
+      ownable: true,
+    };
+
+    const result = isHeroObjectData(objectData);
+
+    expect(result).toBe(true);
+  });
+});
+
+describe("initializeHeroObject", () => {
+  it("should initialize object", () => {
+    const objectData: HeroObjectData = {
+      army: {
+        preventMovingLastTroop: true,
+      },
+      baseMobility: 0,
+      id: ObjectId.Hero,
+      ownable: true,
+    };
+
+    const object: GameObject = {
+      dataId: "dataId",
+      id: "id",
+    };
+
+    const result = initializeHeroObject(object, objectData);
+
+    const expected: HeroObject = {
+      ...object,
+      army: [],
+      dataId: ObjectId.Hero,
+      experience: 0,
+      heroClass: "",
+      heroId: "",
+      items: [],
+      luck: 0,
+      mobility: 0,
+      morale: 0,
+      orientation: MapObjectOrientation.North,
+      owner: undefined,
+      skills: {},
+    };
+
+    expect(result).toEqual(expected);
+  });
+});
+
+describe("isHeroObject", () => {
+  it("should return true when hero object", () => {
+    const object: HeroObject = {
+      army: [],
+      dataId: ObjectId.Hero,
+      experience: 0,
+      heroClass: "heroClass",
+      heroId: "heroId",
+      id: "id",
+      items: [],
+      luck: 0,
+      mobility: 0,
+      morale: 0,
+      orientation: MapObjectOrientation.North,
+      owner: undefined,
+      skills: {},
+    };
+
+    const result = isHeroObject(object);
+
+    expect(result).toBe(true);
+  });
+
+  it("should return false when not hero object", () => {
+    const object: MapObject = {
+      dataId: "dataId",
+      id: "id",
+    };
+
+    const result = isHeroObject(object);
+
+    expect(result).toBe(false);
+  });
+});
 
 describe("getInitialMobility", () => {
   const defaultCreatureData: CreatureData = {
@@ -32,17 +130,13 @@ describe("getInitialMobility", () => {
     width: 1,
   };
 
-  const defaultObjectData: HeroMapObjectData = {
+  const defaultObjectData: HeroObjectData = {
       army: {
         preventMovingLastTroop: true,
       },
       baseMobility: 0,
-      grid: [],
-      height: 1,
-      id: MapObjectId.Hero,
+      id: ObjectId.Hero,
       ownable: true,
-      type: [],
-      width: 1,
   };
 
   const defaultHeroClassData: HeroClassData = {
@@ -62,9 +156,9 @@ describe("getInitialMobility", () => {
     mapObjects: {},
   };
 
-  const defaultObject: HeroMapObject = {
+  const defaultObject: HeroObject = {
       army: [],
-      dataId: MapObjectId.Hero,
+      dataId: ObjectId.Hero,
       experience: 0,
       heroClass: defaultHeroClassData.id,
       heroId: "",
@@ -79,12 +173,12 @@ describe("getInitialMobility", () => {
   };
 
   it("should return base mobility when no army", () => {
-    const objectData: HeroMapObjectData = {
+    const objectData: HeroObjectData = {
       ...defaultObjectData,
       baseMobility: 1,
     };
 
-    const object: HeroMapObject = {
+    const object: HeroObject = {
       ...defaultObject,
       army: [],
     };
@@ -107,12 +201,12 @@ describe("getInitialMobility", () => {
       },
     };
 
-    const objectData: HeroMapObjectData = {
+    const objectData: HeroObjectData = {
       ...defaultObjectData,
       baseMobility: 2,
     };
 
-    const object: HeroMapObject = {
+    const object: HeroObject = {
       ...defaultObject,
       army: [
         {
@@ -140,12 +234,12 @@ describe("getInitialMobility", () => {
       },
     };
 
-    const objectData: HeroMapObjectData = {
+    const objectData: HeroObjectData = {
       ...defaultObjectData,
       baseMobility: 1,
     };
 
-    const object: HeroMapObject = {
+    const object: HeroObject = {
       ...defaultObject,
       army: [
         {
@@ -166,7 +260,7 @@ describe("getInitialMobility", () => {
       speed: 1,
     };
 
-    const objectData: HeroMapObjectData = {
+    const objectData: HeroObjectData = {
       ...defaultObjectData,
       baseMobility: 2,
     };
@@ -189,7 +283,7 @@ describe("getInitialMobility", () => {
       },
     };
 
-    const object: HeroMapObject = {
+    const object: HeroObject = {
       ...defaultObject,
       army: [
         {
@@ -223,12 +317,12 @@ describe("getInitialMobility", () => {
       },
     };
 
-    const objectData: HeroMapObjectData = {
+    const objectData: HeroObjectData = {
       ...defaultObjectData,
       baseMobility: 1,
     };
 
-    const object: HeroMapObject = {
+    const object: HeroObject = {
       ...defaultObject,
       items: [
         {
@@ -259,7 +353,7 @@ describe("getInitialMobility", () => {
       },
     };
 
-    const objectData: HeroMapObjectData = {
+    const objectData: HeroObjectData = {
       ...defaultObjectData,
       baseMobility: 1,
     };

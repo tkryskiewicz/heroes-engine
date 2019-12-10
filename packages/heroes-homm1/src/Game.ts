@@ -64,24 +64,25 @@ import {
 import { isDefined } from "heroes-helpers";
 
 import {
-  createTownMapObject,
-  HeroMapObject,
-  HeroMapObjectData,
-  initializeHeroMapObject,
-  initializeRandomCreatureMapObject,
-  initializeRandomTownMapObject,
-  isHeroMapObject,
-  isHeroMapObjectData,
-  isRandomCreatureMapObjectData,
-  isRandomTownMapObjectData,
-  isTownMapObject,
-  RandomCreatureMapObjectData,
-  RandomTownMapObjectData,
-  recruitTownMapObjectTroop,
-  TownMapObject,
-  TownMapObjectData,
-} from "./map";
-import { getInitialMobility, getMovementCost } from "./objects";
+  getInitialMobility,
+  getMovementCost,
+  HeroObject,
+  HeroObjectData,
+  initializeHeroObject,
+  initializeRandomCreatureObject,
+  initializeRandomTownObject,
+  initializeTownObject,
+  isHeroObject,
+  isHeroObjectData,
+  isRandomCreatureObjectData,
+  isRandomTownObjectData,
+  isTownObject,
+  RandomCreatureObjectData,
+  RandomTownObjectData,
+  recruitTownObjectTroop,
+  TownObject,
+  TownObjectData,
+} from "./objects";
 import { Skill } from "./Skill";
 import { constructSpellBook, SpellBookSpell } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";
@@ -153,33 +154,29 @@ const treasureObjectHandler: Handler<TreasureObjectData> = {
 };
 
 // homm1
-const randomCreatureObjectHandler: Handler<RandomCreatureMapObjectData> = {
-  initialize: initializeRandomCreatureMapObject,
-  // @ts-ignore
-  objectDataTest: isRandomCreatureMapObjectData,
+const randomCreatureObjectHandler: Handler<RandomCreatureObjectData> = {
+  initialize: initializeRandomCreatureObject,
+  objectDataTest: isRandomCreatureObjectData,
 };
 
-const townObjectHandler: Handler<TownMapObjectData, TownMapObject> = {
-  // @ts-ignore
-  initialize: createTownMapObject,
-  objectTest: isTownMapObject,
+const townObjectHandler: Handler<TownObjectData, TownObject> = {
+  initialize: initializeTownObject,
+  objectTest: isTownObject,
   turnEnd: (object) => ({
     ...object,
     ...endTownTurn(object),
   }),
 };
 
-const randomTownObjectHandler: Handler<RandomTownMapObjectData> = {
-  initialize: initializeRandomTownMapObject,
-  // @ts-ignore
-  objectDataTest: isRandomTownMapObjectData,
+const randomTownObjectHandler: Handler<RandomTownObjectData> = {
+  initialize: initializeRandomTownObject,
+  objectDataTest: isRandomTownObjectData,
 };
 
-const heroObjectHandler: Handler<HeroMapObjectData, HeroMapObject> = {
-  initialize: initializeHeroMapObject,
-  // @ts-ignore
-  objectDataTest: isHeroMapObjectData,
-  objectTest: isHeroMapObject,
+const heroObjectHandler: Handler<HeroObjectData, HeroObject> = {
+  initialize: initializeHeroObject,
+  objectDataTest: isHeroObjectData,
+  objectTest: isHeroObject,
   turnStart: (object, objectData, game) => {
     const position = getObjectPosition(game.map, object.id)!;
 
@@ -232,7 +229,8 @@ export const createGameMapObject = (id: string, dataId: string, data: GameData):
 export const getGameHeroes = (game: Game): Hero[] =>
   game.map.cells
     .map((c) => c.object)
-    .filter(isHeroMapObject)
+    .filter(isDefined)
+    .filter(isHeroObject)
     .filter((o) => isObjectOwnedBy(o, game.activePlayer));
 
 export const getGameHero = (game: Game, hero: string): Hero | undefined =>
@@ -241,7 +239,8 @@ export const getGameHero = (game: Game, hero: string): Hero | undefined =>
 export const getGameTowns = (game: Game): Town[] =>
   game.map.cells
     .map((c) => c.object)
-    .filter(isTownMapObject)
+    .filter(isDefined)
+    .filter(isTownObject)
     .filter((o) => isObjectOwnedBy(o, game.activePlayer));
 
 export const getGameTown = (game: Game, town: string): Town | undefined =>
@@ -250,7 +249,7 @@ export const getGameTown = (game: Game, town: string): Town | undefined =>
 export const buildGameStructure = (game: Game, town: string, structure: string): Game => {
   const object = getObjectById(game.map, town);
 
-  if (!isTownMapObject(object)) {
+  if (!object || !isTownObject(object)) {
     throw new Error(`${town} is not a town object`);
   }
 
@@ -260,7 +259,7 @@ export const buildGameStructure = (game: Game, town: string, structure: string):
     throw new Error(`${structure} is not a valid structure`);
   }
 
-  const objectResult: TownMapObject = {
+  const objectResult: TownObject = {
     ...object,
     ...buildTownStructure(object, structure),
   };
@@ -275,7 +274,7 @@ export const buildGameStructure = (game: Game, town: string, structure: string):
 export const recruitGameTroop = (game: Game, townId: string, structureId: string, count: number): Game => {
   const object = getObjectById(game.map, townId);
 
-  if (!isTownMapObject(object)) {
+  if (!object || !isTownObject(object)) {
     throw new Error(`${townId} is not a town object`);
   }
 
@@ -293,7 +292,7 @@ export const recruitGameTroop = (game: Game, townId: string, structureId: string
 
   return {
     ...game,
-    map: replaceObject(game.map, recruitTownMapObjectTroop(object, structureId, count)),
+    map: replaceObject(game.map, recruitTownObjectTroop(object, structureId, count)),
     resources: subtractResources(game.resources, cost),
   };
 };
@@ -301,7 +300,7 @@ export const recruitGameTroop = (game: Game, townId: string, structureId: string
 export const buyMageGuildSpellBook = (game: Game, heroId: string, townId: string, cost: Resources): Game => {
   const object = getObjectById(game.map, heroId);
 
-  if (!isHeroMapObject(object)) {
+  if (!object || !isHeroObject(object)) {
     throw new Error(`${heroId} is not a hero object`);
   }
 

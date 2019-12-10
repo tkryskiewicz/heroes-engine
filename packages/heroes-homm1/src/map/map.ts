@@ -9,14 +9,14 @@ import {
   translatePoint,
 } from "heroes-core";
 
-import { isTerrainRestrictedMapObjectData } from "./TerrainRestrictedMapObject";
+import { isTerrainRestrictedObjectData } from "../objects";
 
 export const canPlaceObject = (map: Map, point: MapPoint, objectData: MapObjectData, data: GameData): boolean => {
   if (!canPlaceObjectCore(map, point, objectData, data)) {
     return false;
   }
 
-  if (isTerrainRestrictedMapObjectData(objectData)) {
+  if (isTerrainRestrictedObjectData(objectData)) {
     const isTerrainValid = everyMapObjectPoint(objectData, (obstaclePoint) => {
       const mapCell = map.cells[getCellIndex(map.width, translatePoint(point, obstaclePoint.x, -obstaclePoint.y))];
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
-import { MapObjectId, ResourceId } from "heroes-homm1";
+import { ObjectId, ResourceId } from "heroes-homm1";
 
 import { GameModal, ResourceIcon } from "../../base";
 import { GameParagraph, GameText } from "../../core";
@@ -41,8 +41,8 @@ class VisitMinePrompt extends React.Component<Props> {
         </GameParagraph>
         <GameParagraph textSize="large">
           <FormattedMessage
-            {...mine !== MapObjectId.Alchemist ? messages.content : messages.contentAlchemist}
-            values={{ mine: mine !== MapObjectId.Alchemist ? mineName.toLowerCase() : mineName, amount }}
+            {...mine !== ObjectId.Alchemist ? messages.content : messages.contentAlchemist}
+            values={{ mine: mine !== ObjectId.Alchemist ? mineName.toLowerCase() : mineName, amount }}
           />
         </GameParagraph>
         <div>

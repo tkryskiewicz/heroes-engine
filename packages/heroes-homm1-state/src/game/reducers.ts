@@ -20,7 +20,7 @@ import {
   buildGameStructure,
   buyMageGuildSpellBook,
   campaignScenarios,
-  changeHeroMapObjectHero,
+  changeHeroObjectHero,
   createGameMapObject,
   creatures,
   DiagonalMovementCostModifier,
@@ -30,10 +30,10 @@ import {
   endGameTurn,
   heroClasses,
   heroes,
-  HeroMapObject,
-  MapObjectId,
+  HeroObject,
   mapObjects,
   moveGameObject,
+  ObjectId,
   PlayerColorId,
   playerColors,
   PuzzlePieceCount,
@@ -108,8 +108,8 @@ Object.keys(data.heroClasses).forEach((hc, i) => {
   const heroId = Object.values(data.heroes).filter((h) => h.heroClass === hc)[0].id;
 
   const object = changeObjectOwner(
-    changeHeroMapObjectHero(
-      createGameMapObject(`hero/${i}`, MapObjectId.Hero, data) as HeroMapObject,
+    changeHeroObjectHero(
+      createGameMapObject(`hero/${i}`, ObjectId.Hero, data) as HeroObject,
       heroId,
       data,
     ),

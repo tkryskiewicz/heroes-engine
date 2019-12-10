@@ -17,12 +17,12 @@ import {
   wasVisitedBy,
 } from "heroes-core";
 import {
-  isHeroMapObject,
-  isMineMapObject,
-  isMineMapObjectData,
-  isObeliskMapObject,
-  isObeliskMapObjectData,
-  isTownMapObject,
+  isHeroObject,
+  isMineObject,
+  isMineObjectData,
+  isObeliskObject,
+  isObeliskObjectData,
+  isTownObject,
 } from "heroes-homm1";
 import {
   CreatureJoinPrompt,
@@ -49,8 +49,8 @@ export const renderMapObjectDetails = (
     readonly onCloseClick: () => void;
   },
 ) => {
-  if (activeObject && isOwnableObject(activeObject) && isObeliskMapObject(object) &&
-    isObeliskMapObjectData(objectData)) {
+  if (activeObject && isOwnableObject(activeObject) && isObeliskObject(object) &&
+    isObeliskObjectData(objectData)) {
     const visitor = getVisitor(objectData, activeObject);
 
     if (wasVisitedBy(object, visitor)) {
@@ -70,7 +70,7 @@ export const renderMapObjectDetails = (
     );
   }
 
-  if (isMineMapObjectData(objectData, data)) {
+  if (isMineObjectData(objectData, data)) {
     return (
       <VisitMinePrompt
         visible={true}
@@ -110,7 +110,7 @@ export const onKeyDown = (
   activeObject: MapObject | undefined,
   dispatch: Dispatch,
 ) => {
-  if (isHeroMapObject(activeObject)) {
+  if (activeObject && isHeroObject(activeObject)) {
     switch (event.keyCode) {
       case 37:
         dispatch(gameActions.moveObject(activeObject.id, MapObjectOrientation.West));
@@ -140,54 +140,54 @@ export const onCellClick = (
   data: GameData,
   dispatch: Dispatch,
 ) => {
-  if (isHeroMapObject(object)) {
-    if (!activeObject || !isHeroMapObject(activeObject)) {
+  if (isHeroObject(object)) {
+    if (!activeObject || !isHeroObject(activeObject)) {
       dispatch(locatorsActions.selectActiveObject(object.id));
 
       dispatch(statusWindowActions.changeSelectedOption(StatusWindowOption.HeroStatus));
-    } else if (isHeroMapObject(activeObject) && object.id !== activeObject.id) {
+    } else if (isHeroObject(activeObject) && object.id !== activeObject.id) {
       dispatch(adventureWindowActions.openHeroTradingWindow(activeObject.id, object.id));
     } else {
       dispatch(locatorsActions.openLocatorDetails());
     }
-  } else if (isTownMapObject(object)) {
+  } else if (isTownObject(object)) {
     if (!activeObject || object.id !== activeObject.id) {
       dispatch(locatorsActions.selectActiveObject(object.id));
     } else {
       dispatch(locatorsActions.openLocatorDetails());
     }
   } else if (isDwellingObject(object)) {
-    if (!isHeroMapObject(activeObject)) {
+    if (!activeObject || !isHeroObject(activeObject)) {
       return;
     }
 
     dispatch(adventureWindowActions.openMapObjectDetails(object.id));
   } else if (isTreasureObject(object)) {
-    if (!isHeroMapObject(activeObject)) {
+    if (!activeObject || !isHeroObject(activeObject)) {
       return;
     }
 
     dispatch(gameActions.visitMapObject(object.id, activeObject.id));
-  } else if (isMineMapObject(object, data)) {
-    if (!isHeroMapObject(activeObject) || isObjectOwnedBy(object, player)) {
+  } else if (isMineObject(object, data)) {
+    if (!activeObject || !isHeroObject(activeObject) || isObjectOwnedBy(object, player)) {
       return;
     }
 
     dispatch(adventureWindowActions.openMapObjectDetails(object.id));
   } else if (isItemObjectData(objectData)) {
-    if (!isHeroMapObject(activeObject)) {
+    if (!activeObject || !isHeroObject(activeObject)) {
       return;
     }
 
     dispatch(gameActions.visitMapObject(object.id, activeObject.id));
   } else if (isOwnableObjectData(objectData)) {
-    if (!isHeroMapObject(activeObject)) {
+    if (!activeObject || !isHeroObject(activeObject)) {
       return;
     }
 
     dispatch(gameActions.visitMapObject(object.id, activeObject.id));
   } else {
-    if (!isHeroMapObject(activeObject)) {
+    if (!activeObject || !isHeroObject(activeObject)) {
       return;
     }
 

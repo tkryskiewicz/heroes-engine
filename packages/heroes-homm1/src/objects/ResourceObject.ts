@@ -1,25 +1,25 @@
 import {
   GameData,
+  GameObject,
   GameObjectData,
-  MapObject,
   PickableObjectData,
   TreasureObject,
   TreasureObjectData,
 } from "heroes-core";
 
-export interface ResourceMapObjectData extends TreasureObjectData, PickableObjectData {
+export interface ResourceObjectData extends TreasureObjectData, PickableObjectData {
 }
 
-export const isResourceMapObjectData = (
+export const isResourceObjectData = (
   objectData: GameObjectData,
   data: Pick<GameData, "resources">,
-): objectData is ResourceMapObjectData =>
+): objectData is ResourceObjectData =>
   data.resources[objectData.id] !== undefined;
 
-export type ResourceMapObject = TreasureObject;
+export type ResourceObject = TreasureObject;
 
-export const isResourceMapObject = (
-  object: MapObject,
+export const isResourceObject = (
+  object: GameObject,
   data: Pick<GameData, "resources">,
-): object is ResourceMapObject =>
+): object is ResourceObject =>
   data.resources[object.dataId] !== undefined;

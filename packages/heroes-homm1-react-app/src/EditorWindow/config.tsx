@@ -9,19 +9,19 @@ import {
   Troop,
 } from "heroes-core";
 import {
-  changeHeroMapObjectHero,
+  changeHeroObjectHero,
   createGameMapObject,
   CreatureMapObjectDetails,
   getCreatureMapObjectDetails,
   getHeroMapObjectDetails,
   getTownMapObjectDetails,
   HeroMapObjectDetails,
-  isHeroMapObject,
-  isRandomCreatureMapObject,
-  isRandomTownMapObject,
+  isHeroObject,
+  isRandomCreatureObject,
+  isRandomTownObject,
   MapObjectDetails,
-  MapObjectId,
   MapObjectType,
+  ObjectId,
   setCreatureMapObjectDetails,
   setHeroMapObjectDetails,
   setTownMapObjectDetails,
@@ -34,90 +34,90 @@ import {
 } from "heroes-homm1-react";
 
 const mountainObjects = [
-  MapObjectId.Mountain1,
-  MapObjectId.Mountain2,
-  MapObjectId.Mountain3,
-  MapObjectId.Mountain4,
+  ObjectId.Mountain1,
+  ObjectId.Mountain2,
+  ObjectId.Mountain3,
+  ObjectId.Mountain4,
 ];
 
 const terrainMountainObjects = [
-  MapObjectId.Mountain5,
-  MapObjectId.Mountain6,
-  MapObjectId.Mountain7,
-  MapObjectId.Mountain8,
+  ObjectId.Mountain5,
+  ObjectId.Mountain6,
+  ObjectId.Mountain7,
+  ObjectId.Mountain8,
 ];
 
 const treesObjects = [
-  MapObjectId.Trees23,
-  MapObjectId.Trees24,
-  MapObjectId.Trees21,
-  MapObjectId.Trees22,
-  MapObjectId.Trees25,
-  MapObjectId.Trees26,
-  MapObjectId.Trees3,
-  MapObjectId.Trees4,
-  MapObjectId.Trees1,
-  MapObjectId.Trees2,
-  MapObjectId.Trees5,
-  MapObjectId.Trees6,
+  ObjectId.Trees23,
+  ObjectId.Trees24,
+  ObjectId.Trees21,
+  ObjectId.Trees22,
+  ObjectId.Trees25,
+  ObjectId.Trees26,
+  ObjectId.Trees3,
+  ObjectId.Trees4,
+  ObjectId.Trees1,
+  ObjectId.Trees2,
+  ObjectId.Trees5,
+  ObjectId.Trees6,
 ];
 
 const trees2Objects = [
-  MapObjectId.Trees17,
-  MapObjectId.Trees18,
-  MapObjectId.Trees15,
-  MapObjectId.Trees16,
-  MapObjectId.Trees19,
-  MapObjectId.Trees20,
+  ObjectId.Trees17,
+  ObjectId.Trees18,
+  ObjectId.Trees15,
+  ObjectId.Trees16,
+  ObjectId.Trees19,
+  ObjectId.Trees20,
 ];
 
 const snowTreesObjects = [
-  MapObjectId.Trees9,
-  MapObjectId.Trees10,
-  MapObjectId.Trees7,
-  MapObjectId.Trees8,
-  MapObjectId.Trees11,
-  MapObjectId.Trees12,
-  MapObjectId.Trees13,
-  MapObjectId.Trees14,
+  ObjectId.Trees9,
+  ObjectId.Trees10,
+  ObjectId.Trees7,
+  ObjectId.Trees8,
+  ObjectId.Trees11,
+  ObjectId.Trees12,
+  ObjectId.Trees13,
+  ObjectId.Trees14,
 ];
 
 const desertTreesObjects = [
-  MapObjectId.Trees27,
-  MapObjectId.Trees28,
-  MapObjectId.Trees29,
+  ObjectId.Trees27,
+  ObjectId.Trees28,
+  ObjectId.Trees29,
 ];
 
 const mineObjects = [
-  MapObjectId.OreMine,
-  MapObjectId.SulfurMine,
-  MapObjectId.CrystalMine,
-  MapObjectId.GemsMine,
-  MapObjectId.GoldMine,
+  ObjectId.OreMine,
+  ObjectId.SulfurMine,
+  ObjectId.CrystalMine,
+  ObjectId.GemsMine,
+  ObjectId.GoldMine,
 ];
 
 const lakeObjects = [
-  MapObjectId.GrassLakeBig,
-  MapObjectId.GrassLake,
-  MapObjectId.SnowLakeSmall,
-  MapObjectId.SnowLake,
-  MapObjectId.SnowLakeBig,
-  MapObjectId.SwampLakeBig,
-  MapObjectId.SwampLake,
-  MapObjectId.DirtLakeBig,
-  MapObjectId.DirtLake,
+  ObjectId.GrassLakeBig,
+  ObjectId.GrassLake,
+  ObjectId.SnowLakeSmall,
+  ObjectId.SnowLake,
+  ObjectId.SnowLakeBig,
+  ObjectId.SwampLakeBig,
+  ObjectId.SwampLake,
+  ObjectId.DirtLakeBig,
+  ObjectId.DirtLake,
 ];
 
 const riverObjects = [
-  MapObjectId.River1,
-  MapObjectId.River2,
-  MapObjectId.River3,
-  MapObjectId.River4,
-  MapObjectId.River5,
-  MapObjectId.River6,
-  MapObjectId.River7,
-  MapObjectId.River8,
-  MapObjectId.River9,
+  ObjectId.River1,
+  ObjectId.River2,
+  ObjectId.River3,
+  ObjectId.River4,
+  ObjectId.River5,
+  ObjectId.River6,
+  ObjectId.River7,
+  ObjectId.River8,
+  ObjectId.River9,
 ];
 
 const objectOrder: string[] = [
@@ -127,95 +127,95 @@ const objectOrder: string[] = [
   ...snowTreesObjects,
   ...desertTreesObjects,
   ...trees2Objects,
-  MapObjectId.Alchemist,
-  MapObjectId.DragonCity,
-  MapObjectId.Lighthouse,
+  ObjectId.Alchemist,
+  ObjectId.DragonCity,
+  ObjectId.Lighthouse,
   ...mineObjects,
-  MapObjectId.Sawmill,
-  MapObjectId.Signpost, // order changes
-  MapObjectId.Fireplace2,
-  MapObjectId.ThatchedHutSnow,
-  MapObjectId.CottageSnow,
-  MapObjectId.Grass1,
-  MapObjectId.Grass2,
-  MapObjectId.Swamp1,
-  MapObjectId.Dirt1,
-  MapObjectId.Dirt2,
-  MapObjectId.Cave,
-  MapObjectId.FaerieRing,
-  MapObjectId.Grass3,
-  MapObjectId.Grass4,
-  MapObjectId.Swamp4,
-  MapObjectId.Swamp2,
-  MapObjectId.Dirt3,
-  MapObjectId.Dirt4,
-  MapObjectId.Dirt5,
-  MapObjectId.Gazebo,
-  MapObjectId.Hut,
-  MapObjectId.ThatchedHut,
-  MapObjectId.Cottage,
+  ObjectId.Sawmill,
+  ObjectId.Signpost, // order changes
+  ObjectId.Fireplace2,
+  ObjectId.ThatchedHutSnow,
+  ObjectId.CottageSnow,
+  ObjectId.Grass1,
+  ObjectId.Grass2,
+  ObjectId.Swamp1,
+  ObjectId.Dirt1,
+  ObjectId.Dirt2,
+  ObjectId.Cave,
+  ObjectId.FaerieRing,
+  ObjectId.Grass3,
+  ObjectId.Grass4,
+  ObjectId.Swamp4,
+  ObjectId.Swamp2,
+  ObjectId.Dirt3,
+  ObjectId.Dirt4,
+  ObjectId.Dirt5,
+  ObjectId.Gazebo,
+  ObjectId.Hut,
+  ObjectId.ThatchedHut,
+  ObjectId.Cottage,
   ...lakeObjects,
-  MapObjectId.Shrine,
-  MapObjectId.Grass5,
-  MapObjectId.Grass6,
-  MapObjectId.Swamp5,
-  MapObjectId.Lava1,
-  MapObjectId.Lava2,
-  MapObjectId.Lava3,
-  MapObjectId.Lava5,
-  MapObjectId.Lava6,
-  MapObjectId.Lava4,
-  MapObjectId.Skeleton,
-  MapObjectId.Desert1,
-  MapObjectId.Desert2,
-  MapObjectId.Oasis,
-  MapObjectId.Dirt6,
-  MapObjectId.Dirt7,
-  MapObjectId.Obelisk,
-  MapObjectId.Grass7,
-  MapObjectId.Grass8,
-  MapObjectId.Grass9,
-  MapObjectId.Grass10,
-  MapObjectId.Snow1,
-  MapObjectId.Snow2,
-  MapObjectId.Snow3,
-  MapObjectId.Lava10,
-  MapObjectId.Lava7,
-  MapObjectId.Lava8,
-  MapObjectId.Lava9,
-  MapObjectId.Desert3,
-  MapObjectId.DesertTent,
-  MapObjectId.Dirt8,
-  MapObjectId.Dirt9,
-  MapObjectId.Dirt10,
-  MapObjectId.Dirt11,
-  MapObjectId.Rosebush,
-  MapObjectId.Shrine2,
-  MapObjectId.Swamp3,
-  MapObjectId.OakTree,
-  MapObjectId.TravelGate2,
-  MapObjectId.Fountain,
-  MapObjectId.Graveyard,
-  MapObjectId.Hole,
-  MapObjectId.Waterwheel,
-  MapObjectId.Statue,
-  MapObjectId.Buoy,
-  MapObjectId.Water3,
-  MapObjectId.Water1,
-  MapObjectId.Water2,
-  MapObjectId.Shipwreck,
-  MapObjectId.Whirlpool,
+  ObjectId.Shrine,
+  ObjectId.Grass5,
+  ObjectId.Grass6,
+  ObjectId.Swamp5,
+  ObjectId.Lava1,
+  ObjectId.Lava2,
+  ObjectId.Lava3,
+  ObjectId.Lava5,
+  ObjectId.Lava6,
+  ObjectId.Lava4,
+  ObjectId.Skeleton,
+  ObjectId.Desert1,
+  ObjectId.Desert2,
+  ObjectId.Oasis,
+  ObjectId.Dirt6,
+  ObjectId.Dirt7,
+  ObjectId.Obelisk,
+  ObjectId.Grass7,
+  ObjectId.Grass8,
+  ObjectId.Grass9,
+  ObjectId.Grass10,
+  ObjectId.Snow1,
+  ObjectId.Snow2,
+  ObjectId.Snow3,
+  ObjectId.Lava10,
+  ObjectId.Lava7,
+  ObjectId.Lava8,
+  ObjectId.Lava9,
+  ObjectId.Desert3,
+  ObjectId.DesertTent,
+  ObjectId.Dirt8,
+  ObjectId.Dirt9,
+  ObjectId.Dirt10,
+  ObjectId.Dirt11,
+  ObjectId.Rosebush,
+  ObjectId.Shrine2,
+  ObjectId.Swamp3,
+  ObjectId.OakTree,
+  ObjectId.TravelGate2,
+  ObjectId.Fountain,
+  ObjectId.Graveyard,
+  ObjectId.Hole,
+  ObjectId.Waterwheel,
+  ObjectId.Statue,
+  ObjectId.Buoy,
+  ObjectId.Water3,
+  ObjectId.Water1,
+  ObjectId.Water2,
+  ObjectId.Shipwreck,
+  ObjectId.Whirlpool,
   ...riverObjects,
-  MapObjectId.TreeStump,
-  MapObjectId.TravelGate,
-  MapObjectId.WagonCamp,
-  MapObjectId.Windmill,
-  MapObjectId.RandomCreature,
-  MapObjectId.RandomCreature1,
-  MapObjectId.RandomCreature2,
-  MapObjectId.RandomCreature3,
-  MapObjectId.RandomCreature4,
-  MapObjectId.Hero,
+  ObjectId.TreeStump,
+  ObjectId.TravelGate,
+  ObjectId.WagonCamp,
+  ObjectId.Windmill,
+  ObjectId.RandomCreature,
+  ObjectId.RandomCreature1,
+  ObjectId.RandomCreature2,
+  ObjectId.RandomCreature3,
+  ObjectId.RandomCreature4,
+  ObjectId.Hero,
 ];
 
 // TODO: add town objects
@@ -229,8 +229,8 @@ export const createEditorMapObject = (id: string, objectDataId: string, data: Ga
   const object = createGameMapObject(id, objectDataId, data);
 
   // FIXME
-  if (isHeroMapObject(object)) {
-    const hero = changeHeroMapObjectHero(object, Object.keys(data.heroes)[0], data);
+  if (isHeroObject(object)) {
+    const hero = changeHeroObjectHero(object, Object.keys(data.heroes)[0], data);
 
     // tslint:disable-next-line: no-unnecessary-local-variable
     const obj = {
@@ -252,15 +252,15 @@ export const createEditorMapObject = (id: string, objectDataId: string, data: Ga
 };
 
 export const getObjectDetails = (object: MapObject, data: GameData): MapObjectDetails | undefined => {
-  if (isCreatureObject(object, data) || isRandomCreatureMapObject(object, data)) {
+  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.mapObjects[object.dataId])) {
     return getCreatureMapObjectDetails(object);
   }
 
-  if (isHeroMapObject(object)) {
+  if (isHeroObject(object)) {
     return getHeroMapObjectDetails(object);
   }
 
-  if (isRandomTownMapObject(object)) {
+  if (isRandomTownObject(object)) {
     return getTownMapObjectDetails(object);
   }
 };
@@ -275,7 +275,7 @@ export const renderObjectDetails = (
     readonly onCloseClick: () => void;
   },
 ) => {
-  if (isCreatureObject(object, data) || isRandomCreatureMapObject(object, data)) {
+  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.mapObjects[object.dataId])) {
     return (
       <CreatureMapObjectDetailsWindow
         visible={true}
@@ -288,7 +288,7 @@ export const renderObjectDetails = (
     );
   }
 
-  if (isHeroMapObject(object)) {
+  if (isHeroObject(object)) {
     return (
       <HeroMapObjectDetailsWindow
         visible={true}
@@ -301,7 +301,7 @@ export const renderObjectDetails = (
     );
   }
 
-  if (isRandomTownMapObject(object)) {
+  if (isRandomTownObject(object)) {
     return (
       <TownMapObjectDetailsWindow
         visible={true}
@@ -316,15 +316,15 @@ export const renderObjectDetails = (
 };
 
 export const setObjectDetails = (object: MapObject, value: MapObjectDetails, data: GameData): MapObject => {
-  if (isCreatureObject(object, data) || isRandomCreatureMapObject(object, data)) {
+  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.mapObjects[object.dataId])) {
     return setCreatureMapObjectDetails(object, value as CreatureMapObjectDetails);
   }
 
-  if (isHeroMapObject(object)) {
+  if (isHeroObject(object)) {
     return setHeroMapObjectDetails(object, value as HeroMapObjectDetails, data);
   }
 
-  if (isRandomTownMapObject(object)) {
+  if (isRandomTownObject(object)) {
     return setTownMapObjectDetails(object, value as TownMapObjectDetails);
   }
 

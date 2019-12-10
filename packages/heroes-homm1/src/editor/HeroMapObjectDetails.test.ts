@@ -1,18 +1,19 @@
 import { MapObjectOrientation } from "heroes-core";
 
-import { HeroMapObject, MapObjectId } from "../map";
+import { ObjectId } from "../ObjectId";
+import { HeroObject } from "../objects";
 import { getHeroMapObjectDetails, HeroMapObjectDetails, setHeroMapObjectDetails } from "./HeroMapObjectDetails";
 
 describe("getHeroMapObjectDetails", () => {
   it("should return object details", () => {
-    const object: HeroMapObject = {
+    const object: HeroObject = {
       army: [
         {
           count: 1,
           creature: "creature",
         },
       ],
-      dataId: MapObjectId.Hero,
+      dataId: ObjectId.Hero,
       experience: 1,
       heroClass: "heroClass",
       heroId: "heroId",
@@ -56,9 +57,9 @@ describe("getHeroMapObjectDetails", () => {
 
 describe("setHeroMapObjectDetails", () => {
   it("should set object details", () => {
-    const object: HeroMapObject = {
+    const object: HeroObject = {
       army: [],
-      dataId: MapObjectId.Hero,
+      dataId: ObjectId.Hero,
       experience: 0,
       heroClass: "heroClass",
       heroId: "heroId",
@@ -99,7 +100,7 @@ describe("setHeroMapObjectDetails", () => {
 
     const result = setHeroMapObjectDetails(object, value, data);
 
-    const expected: HeroMapObject = {
+    const expected: HeroObject = {
       ...object,
       army: [
         {

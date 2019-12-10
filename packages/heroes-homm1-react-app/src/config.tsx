@@ -9,14 +9,14 @@ import {
   MapObjectData,
 } from "heroes-core";
 import {
-  isHeroMapObject,
-  isMineMapObject,
-  isMineMapObjectData,
-  isRandomCreatureMapObjectData,
-  isResourceMapObject,
-  isTownMapObject,
-  isVariantMapObjectData,
-  MapObjectId,
+  isHeroObject,
+  isMineObject,
+  isMineObjectData,
+  isRandomCreatureObjectData,
+  isResourceObject,
+  isTownObject,
+  isVariantObjectData,
+  ObjectId,
   StructureId,
 } from "heroes-homm1";
 import {
@@ -38,11 +38,11 @@ export const renderObject = (
   size: "small" | "large",
 ): React.ReactNode => {
   // FIXME: ??
-  const variant = terrain && isVariantMapObjectData(objectData) ?
+  const variant = terrain && isVariantObjectData(objectData) ?
     objectData.variants[terrain] :
     "";
 
-  if (isResourceMapObject(object, data)) {
+  if (isResourceObject(object, data)) {
     return (
       <ResourceMapObject
         size={size}
@@ -69,17 +69,17 @@ export const renderObject = (
     );
   }
 
-  if (objectData.id === MapObjectId.RandomTown || objectData.id === MapObjectId.RandomCastle) {
+  if (objectData.id === ObjectId.RandomTown || objectData.id === ObjectId.RandomCastle) {
     return (
       <MapObj
         size={size}
         type="random-town"
-        variant={objectData.id === MapObjectId.RandomCastle ? "castle" : "town"}
+        variant={objectData.id === ObjectId.RandomCastle ? "castle" : "town"}
       />
     );
   }
 
-  if (isMineMapObjectData(objectData, data) && isMineMapObject(object, data)) {
+  if (isMineObjectData(objectData, data) && isMineObject(object, data)) {
     return (
       <MineMapObject
         size={size}
@@ -90,7 +90,7 @@ export const renderObject = (
     );
   }
 
-  if (isHeroMapObject(object)) {
+  if (isHeroObject(object)) {
     // FIXME: ??
     const style: React.CSSProperties = {
       left: -9,
@@ -109,7 +109,7 @@ export const renderObject = (
     );
   }
 
-  if (isTownMapObject(object)) {
+  if (isTownObject(object)) {
     return (
       <TownMapObject
         size="large"
@@ -136,7 +136,7 @@ export const renderEditorObject = (
   data: GameData,
   size: "small" | "large",
 ) => {
-  if (isRandomCreatureMapObjectData(objectData)) {
+  if (isRandomCreatureObjectData(objectData)) {
     return (
       <RandomCreatureMapObject
         size={size}
@@ -145,11 +145,11 @@ export const renderEditorObject = (
     );
   }
 
-  if (isHeroMapObject(object)) {
+  if (isHeroObject(object)) {
     return (
       <MapObj
         size={size}
-        type={MapObjectId.RandomHero}
+        type={ObjectId.RandomHero}
       />
     );
   }

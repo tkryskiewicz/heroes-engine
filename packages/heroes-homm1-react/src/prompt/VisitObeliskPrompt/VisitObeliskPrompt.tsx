@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { MapObjectId } from "heroes-homm1";
+import { ObjectId } from "heroes-homm1";
 
 import { GameModal } from "../../base";
 import { GameParagraph, GameText } from "../../core";
@@ -19,7 +19,7 @@ export class VisitObeliskPrompt extends React.Component<ConfirmPromptProps> {
         onConfirmClick={this.props.onConfirmClick}
       >
         <GameParagraph textSize="large">
-          <FormattedMessage {...getMapObjectNameMessage(MapObjectId.Obelisk)} />
+          <FormattedMessage {...getMapObjectNameMessage(ObjectId.Obelisk)} />
         </GameParagraph>
         <GameText size="large">
           <FormattedMessage {...messages.content} />

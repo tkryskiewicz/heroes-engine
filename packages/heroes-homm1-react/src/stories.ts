@@ -15,11 +15,11 @@ import {
   HeroClassId,
   HeroId,
   LuckType,
-  MapObjectId,
   MapObjectType,
   MoraleType,
   MountainsStructureId,
   MovementSpeed,
+  ObjectId,
   OpponentSetting,
   PlainsStructureId,
   PlayerColorId,
@@ -58,7 +58,7 @@ export const resource = (name: string) =>
   select<ResourceId>(name, Object.values(ResourceId), ResourceId.Gold);
 
 export const mine = (name: string) =>
-  select<MapObjectId>(name, Object.values(resources).map((r) => r.mine) as MapObjectId[], MapObjectId.OreMine);
+  select<ObjectId>(name, Object.values(resources).map((r) => r.mine) as ObjectId[], ObjectId.OreMine);
 
 export const heroClass = (name: string) =>
   select<HeroClassId>(name, Object.values(HeroClassId), HeroClassId.Knight);
@@ -146,7 +146,7 @@ export const spell = (name: string) =>
   select<SpellId>(name, Object.values(SpellId), SpellId.Bless);
 
 export const mapObject = (name: string) =>
-  select<MapObjectId>(name, Object.values(MapObjectId), MapObjectId.Buoy);
+  select<ObjectId>(name, Object.values(ObjectId), ObjectId.Buoy);
 
 export const mapObjectSize = (name: string) =>
   select(name, ["large", "small"], "large");
@@ -154,14 +154,14 @@ export const mapObjectSize = (name: string) =>
 export const mapObjectOrientation = (name: string) =>
   select<MapObjectOrientation>(name, Object.values(MapObjectOrientation), MapObjectOrientation.North);
 
-const dwellingObjectOptions: MapObjectId[] = [
-  MapObjectId.Cottage,
-  MapObjectId.Hut,
-  MapObjectId.ThatchedHut,
+const dwellingObjectOptions: ObjectId[] = [
+  ObjectId.Cottage,
+  ObjectId.Hut,
+  ObjectId.ThatchedHut,
 ];
 
 export const dwellingObject = (name: string) =>
-  select(name, dwellingObjectOptions, MapObjectId.Cottage);
+  select(name, dwellingObjectOptions, ObjectId.Cottage);
 
 export const editorOption = (name: string) =>
   select<EditorOption>(name, Object.values(EditorOption), EditorOption.Terrains);
