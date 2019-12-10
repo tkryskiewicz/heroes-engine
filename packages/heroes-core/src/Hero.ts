@@ -12,8 +12,6 @@ export interface HeroSkills {
 
 export interface Hero {
   readonly id: string;
-  // FIXME: remove
-  readonly dataId: string;
   readonly heroId: string;
   readonly heroClass: string;
   readonly skills: HeroSkills;
