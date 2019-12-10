@@ -1,11 +1,13 @@
-import { MobilityModifierObjectData } from "heroes-core";
+import { MobilityModifierObjectData, TradableObjectData } from "heroes-core";
 
 import { Artifact, ArtifactData } from "./Artifact";
 import { ArtifactId } from "./ArtifactId";
 import { landTerrains } from "./terrains";
 import { TerrainType } from "./TerrainType";
 
-const attackArtifacts: ArtifactData[] = [
+type ArtifactObjectData = ArtifactData & TradableObjectData;
+
+const attackArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.ThunderMaceOfDominion,
     isUltimate: false,
@@ -28,7 +30,7 @@ const attackArtifacts: ArtifactData[] = [
   },
 ];
 
-const defenseArtifacts: ArtifactData[] = [
+const defenseArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.ArmoredGauntletsOfProtection,
     isUltimate: false,
@@ -51,7 +53,7 @@ const defenseArtifacts: ArtifactData[] = [
   },
 ];
 
-const spellPowerArtifacts: ArtifactData[] = [
+const spellPowerArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.CastersBraceletOfMagic,
     isUltimate: false,
@@ -74,7 +76,7 @@ const spellPowerArtifacts: ArtifactData[] = [
   },
 ];
 
-const knowledgeArtifacts: ArtifactData[] = [
+const knowledgeArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.MinorScrollOfKnowledge,
     isUltimate: false,
@@ -97,7 +99,7 @@ const knowledgeArtifacts: ArtifactData[] = [
   },
 ];
 
-const moraleArtifacts: ArtifactData[] = [
+const moraleArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.MedalOfValor,
     isUltimate: false,
@@ -120,7 +122,7 @@ const moraleArtifacts: ArtifactData[] = [
   },
 ];
 
-const luckArtifacts: ArtifactData[] = [
+const luckArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.LuckyRabbitsFoot,
     isUltimate: false,
@@ -143,7 +145,7 @@ const luckArtifacts: ArtifactData[] = [
   },
 ];
 
-const incomeArtifacts: ArtifactData[] = [
+const incomeArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.EndlessPurseOfGold,
     isUltimate: false,
@@ -161,7 +163,7 @@ const incomeArtifacts: ArtifactData[] = [
   },
 ];
 
-const mobilityArtifacts: (ArtifactData & MobilityModifierObjectData)[] = [
+const mobilityArtifacts: (ArtifactObjectData & MobilityModifierObjectData)[] = [
   {
     id: ArtifactId.TravelersBootsOfMobility,
     isUltimate: false,
@@ -202,7 +204,7 @@ const mobilityArtifacts: (ArtifactData & MobilityModifierObjectData)[] = [
   },
 ];
 
-const siegeWeaponsArtifacts: ArtifactData[] = [
+const siegeWeaponsArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.BallistaOfQuickness,
     isUltimate: false,
@@ -210,7 +212,7 @@ const siegeWeaponsArtifacts: ArtifactData[] = [
   },
 ];
 
-const spellBookArtifacts: ArtifactData[] = [
+const spellBookArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.Spellbook,
     isUltimate: false,
@@ -218,7 +220,7 @@ const spellBookArtifacts: ArtifactData[] = [
   },
 ];
 
-const cursedArtifacts: ArtifactData[] = [
+const cursedArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.FizbinOfMisfortune,
     isUltimate: false,
@@ -226,7 +228,7 @@ const cursedArtifacts: ArtifactData[] = [
   },
 ];
 
-const ultimateArtifacts: ArtifactData[] = [
+const ultimateArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.UltimateSwordOfDominion,
     isUltimate: true,

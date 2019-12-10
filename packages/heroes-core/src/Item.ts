@@ -1,6 +1,7 @@
-export interface ItemData {
+import { GameObjectData } from "./GameObject";
+
+export interface ItemData extends GameObjectData {
   readonly id: string;
-  readonly tradable: boolean;
 }
 
 export interface Item<T = {}> {

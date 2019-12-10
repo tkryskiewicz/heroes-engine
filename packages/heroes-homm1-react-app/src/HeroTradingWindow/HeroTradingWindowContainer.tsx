@@ -1,7 +1,7 @@
 import React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { getArmySize, Hero, TroopSelection, TroopSelectionType } from "heroes-core";
+import { getArmySize, Hero, isObjectTradable, isTradableObjectData, TroopSelection, TroopSelectionType } from "heroes-core";
 import { noop } from "heroes-helpers";
 import { ArtifactData, ArtifactSelection } from "heroes-homm1";
 import {
@@ -198,7 +198,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
     // TODO: simplify?
     // FIXME: is trading check handled correctly ?
     if (selectedArtifact) {
-      if (artifact && artifactData && !artifactData.tradable) {
+      if (artifact && artifactData && isTradableObjectData(artifactData) && !isObjectTradable(artifactData)) {
         this.props.onOpenArtifactNotTradablePrompt();
       } else if (hero === selectedArtifact.hero && index === selectedArtifact.index) {
         this.props.onOpenArtifactDetailsClick();
@@ -206,7 +206,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
         this.props.onTradeArtifactsClick(selectedArtifact, { hero, index });
       }
     } else if (artifact) {
-      if (artifactData && !artifactData.tradable) {
+      if (artifactData && isTradableObjectData(artifactData)  && !isObjectTradable(artifactData)) {
         this.props.onOpenArtifactNotTradablePrompt();
       } else {
         this.props.onSelectArtifactClick({ hero, index });
