@@ -4,12 +4,13 @@ import {
   ArmedObjectData,
   Army,
   EquipableObject,
+  EquipableObjectData,
   GameData,
   GameObject,
   GameObjectData,
   getArmedObjectMobility,
   hasModifierFor,
-  Hero,
+  HeroSkills,
   initializeArmedObject,
   initializeEquipableObject,
   initializeMobileObject,
@@ -26,19 +27,24 @@ import { isDefined } from "heroes-helpers";
 
 import { ObjectId } from "../ObjectId";
 
-export interface HeroObjectData extends ArmedObjectData, OwnableObjectData, MobileObjectData {
+export interface HeroObjectData extends ArmedObjectData, EquipableObjectData, OwnableObjectData, MobileObjectData {
   readonly id: ObjectId.Hero;
 }
 
 export const isHeroObjectData = (objectData: GameObjectData): objectData is HeroObjectData =>
   objectData.id === ObjectId.Hero;
 
-export interface HeroObject extends Hero, ArmedObject, EquipableObject, OwnableObject, MobileObject {
-  readonly dataId: ObjectId.Hero;
+export interface HeroObject extends ArmedObject, EquipableObject, OwnableObject, MobileObject {
+  readonly heroClass: string;
+  readonly heroId: string;
+  readonly experience: number;
+  readonly luck: number;
+  readonly morale: number;
+  readonly skills: HeroSkills;
 }
 
 export const isHeroObject = (object: GameObject): object is HeroObject =>
-  object.dataId === ObjectId.Hero;
+  "heroClass" in object && "heroId" in object;
 
 export const initializeHeroObject = (object: GameObject, objectData: HeroObjectData): HeroObject => ({
   ...object,

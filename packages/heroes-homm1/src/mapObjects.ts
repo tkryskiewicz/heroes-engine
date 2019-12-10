@@ -49,6 +49,7 @@ const heroObjects: (MapObjectData & HeroObjectData)[] = [
       preventMovingLastTroop: true,
     },
     baseMobility: 60,
+    equipable: true,
     grid: [
       true,
     ],

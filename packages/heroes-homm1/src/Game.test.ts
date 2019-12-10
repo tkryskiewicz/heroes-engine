@@ -26,6 +26,7 @@ describe("buyMageGuildSpellBook", () => {
         preventMovingLastTroop: true,
       },
       baseMobility: 0,
+      equipable: true,
       id: ObjectId.Hero,
       ownable: true,
     };

@@ -26,6 +26,7 @@ describe("isHeroObjectData", () => {
         preventMovingLastTroop: true,
       },
       baseMobility: 0,
+      equipable: true,
       id: ObjectId.Hero,
       ownable: true,
     };
@@ -43,6 +44,7 @@ describe("initializeHeroObject", () => {
         preventMovingLastTroop: true,
       },
       baseMobility: 0,
+      equipable: true,
       id: ObjectId.Hero,
       ownable: true,
     };
@@ -136,6 +138,7 @@ describe("getInitialMobility", () => {
         preventMovingLastTroop: true,
       },
       baseMobility: 0,
+      equipable: true,
       id: ObjectId.Hero,
       ownable: true,
   };

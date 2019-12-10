@@ -4,6 +4,7 @@ import { Route, RouteComponentProps, Switch, withRouter } from "react-router";
 
 import { getArmySize, Hero, Resources, Structure, Town, TroopSelection, TroopSelectionType } from "heroes-core";
 import { noop } from "heroes-helpers";
+import { HeroObject } from "heroes-homm1";
 import {
   Crest,
   getArmyStripStatusTextMessage,
@@ -27,12 +28,12 @@ import { TroopWindow } from "../TroopWindow";
 interface TownWindowContainerProps extends InjectedIntlProps, RouteComponentProps, WithGameWindowProps {
   readonly town: Town;
   readonly playerColor: string;
-  readonly visitingHero?: Hero;
+  readonly visitingHero?: HeroObject;
   readonly resources: Resources;
 
   readonly visibleStructureDetails?: string;
   readonly getStructureDetails: (
-    structure: Structure, town: string, visitingHero: Hero | undefined, resources: Resources, props: {
+    structure: Structure, town: string, visitingHero: HeroObject | undefined, resources: Resources, props: {
       readonly onCloseClick: () => void;
     }) => React.ReactNode;
   readonly onOpenStructureDetailsClick: (structure: string) => void;

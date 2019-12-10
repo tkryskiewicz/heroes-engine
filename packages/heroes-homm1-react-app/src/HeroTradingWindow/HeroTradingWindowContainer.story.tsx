@@ -15,7 +15,6 @@ const hero: Hero = {
       creature: CreatureId.Peasant,
     },
   ],
-  dataId: "",
   experience: 0,
   heroClass: HeroClassId.Knight,
   heroId: HeroId.LordKilburn,
@@ -29,7 +28,6 @@ const hero: Hero = {
 
 const otherHero: Hero = {
   army: [],
-  dataId: "",
   experience: 0,
   heroClass: HeroClassId.Knight,
   heroId: HeroId.Antoine,

@@ -226,7 +226,7 @@ export const createGameMapObject = (id: string, dataId: string, data: GameData):
   }, createMapObject(id, objectData));
 };
 
-export const getGameHeroes = (game: Game): Hero[] =>
+export const getGameHeroes = (game: Game): HeroObject[] =>
   game.map.cells
     .map((c) => c.object)
     .filter(isDefined)
