@@ -95,7 +95,7 @@ export const canPlaceObject = (
   map: Map,
   point: MapPoint,
   objectData: MapObjectData,
-  data: import("../Game").GameData,
+  data: Pick<import("../Game").GameData, "mapObjects">,
 ): boolean => {
   if (isPointTaken(map, point)) {
     return false;

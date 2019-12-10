@@ -1,4 +1,3 @@
-import { GameData } from "../Game";
 import { GameObject, GameObjectData } from "../GameObject";
 
 export interface CreatureObjectData extends GameObjectData {
@@ -19,6 +18,6 @@ export const initializeCreatureObject = (object: GameObject): CreatureObject => 
 
 export const isCreatureObject = (
   object: GameObject,
-  data: Pick<GameData, "creatures">,
+  data: Pick<import("../Game").GameData, "creatures">,
 ): object is CreatureObject =>
   data.creatures[object.dataId] !== undefined;

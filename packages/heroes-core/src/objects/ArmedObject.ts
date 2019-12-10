@@ -1,7 +1,6 @@
 import { isDefined } from "heroes-helpers";
 
 import { appendArmyTroop, Army, dismissArmyTroop, swapArmyTroops } from "../Army";
-import { GameData } from "../Game";
 import { GameObject, GameObjectData } from "../GameObject";
 import { Troop } from "../Troop";
 
@@ -69,7 +68,7 @@ export const swapArmedObjectTroops = (
 
 export const getArmedObjectMobility = (
   object: ArmedObject,
-  data: Pick<GameData, "creatures">,
+  data: Pick<import("../Game").GameData, "creatures">,
 ): number =>
   Math.min(...object.army
     .filter(isDefined)
