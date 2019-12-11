@@ -10,5 +10,6 @@ export * from "./OwnableObject";
 export * from "./PickableObject";
 export * from "./PuzzleObject";
 export * from "./ResourceGeneratorObject";
+export * from "./SkillModifierObject";
 export * from "./TradableObject";
 export * from "./TreasureObject";

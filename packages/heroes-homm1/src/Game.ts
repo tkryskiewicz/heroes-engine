@@ -32,6 +32,7 @@ import {
   isCreatureObjectData,
   isDwellingObjectData,
   isDwellingStructure,
+  isEquipableObject,
   isEquipableObjectData,
   isLimitedInteractionObjectData,
   isMobileObject,
@@ -334,12 +335,23 @@ export const startGameTurn = (game: Game): Game => {
       const objectData = game.data.mapObjects[o.dataId];
 
       if (isResourceGeneratorObjectData(objectData)) {
-        const resources = generateObjectResources(objectData);
-
         game = {
           ...game,
-          resources: addResources(game.resources, resources),
+          resources: addResources(game.resources, generateObjectResources(objectData)),
         };
+      }
+
+      if (isEquipableObjectData(objectData) && isEquipableObject(o)) {
+        o.items.filter(isDefined).forEach((i) => {
+          const itemData = game.data.items[i.id];
+
+          if (isResourceGeneratorObjectData(itemData)) {
+            game = {
+              ...game,
+              resources: addResources(game.resources, generateObjectResources(itemData)),
+            };
+          }
+        });
       }
     });
 
