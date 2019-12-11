@@ -2,6 +2,7 @@ import { MobilityModifierObjectData, ResourceGeneratorObjectData, SkillModifierO
 
 import { Artifact, ArtifactData } from "./Artifact";
 import { ArtifactId } from "./ArtifactId";
+import { UltimateObjectData } from "./objects";
 import { ResourceId } from "./ResourceId";
 import { Skill } from "./Skill";
 import { landTerrains } from "./terrains";
@@ -12,7 +13,6 @@ type ArtifactObjectData = ArtifactData & TradableObjectData;
 const attackArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.ThunderMaceOfDominion,
-    isUltimate: false,
     skillModifier: {
       [Skill.Attack]: {
         type: "add",
@@ -23,7 +23,6 @@ const attackArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   },
   {
     id: ArtifactId.GiantFlailOfDominion,
-    isUltimate: false,
     skillModifier: {
       [Skill.Attack]: {
         type: "add",
@@ -34,7 +33,6 @@ const attackArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   },
   {
     id: ArtifactId.PowerAxeOfDominion,
-    isUltimate: false,
     skillModifier: {
       [Skill.Attack]: {
         type: "add",
@@ -45,7 +43,6 @@ const attackArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   },
   {
     id: ArtifactId.DragonSwordOfDominion,
-    isUltimate: false,
     skillModifier: {
       [Skill.Attack]: {
         type: "add",
@@ -59,7 +56,6 @@ const attackArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
 const defenseArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.ArmoredGauntletsOfProtection,
-    isUltimate: false,
     skillModifier: {
       [Skill.Defense]: {
         type: "add",
@@ -70,7 +66,6 @@ const defenseArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   },
   {
     id: ArtifactId.DefenderHelmOfProtection,
-    isUltimate: false,
     skillModifier: {
       [Skill.Defense]: {
         type: "add",
@@ -81,7 +76,6 @@ const defenseArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   },
   {
     id: ArtifactId.StealthShieldOfProtection,
-    isUltimate: false,
     skillModifier: {
       [Skill.Defense]: {
         type: "add",
@@ -92,7 +86,6 @@ const defenseArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   },
   {
     id: ArtifactId.DivineBreastplateOfProtection,
-    isUltimate: false,
     skillModifier: {
       [Skill.Defense]: {
         type: "add",
@@ -106,7 +99,6 @@ const defenseArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
 const spellPowerArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.CastersBraceletOfMagic,
-    isUltimate: false,
     skillModifier: {
       [Skill.SpellPower]: {
         type: "add",
@@ -117,7 +109,6 @@ const spellPowerArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   },
   {
     id: ArtifactId.MagesRingOfPower,
-    isUltimate: false,
     skillModifier: {
       [Skill.SpellPower]: {
         type: "add",
@@ -128,7 +119,6 @@ const spellPowerArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   },
   {
     id: ArtifactId.WitchsBroachOfMagic,
-    isUltimate: false,
     skillModifier: {
       [Skill.SpellPower]: {
         type: "add",
@@ -139,7 +129,6 @@ const spellPowerArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   },
   {
     id: ArtifactId.ArcaneNecklaceOfMagic,
-    isUltimate: false,
     skillModifier: {
       [Skill.SpellPower]: {
         type: "add",
@@ -153,7 +142,6 @@ const spellPowerArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
 const knowledgeArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.MinorScrollOfKnowledge,
-    isUltimate: false,
     skillModifier: {
       [Skill.Knowledge]: {
         type: "add",
@@ -164,7 +152,6 @@ const knowledgeArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   },
   {
     id: ArtifactId.MajorScrollOfKnowledge,
-    isUltimate: false,
     skillModifier: {
       [Skill.Knowledge]: {
         type: "add",
@@ -175,7 +162,6 @@ const knowledgeArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   },
   {
     id: ArtifactId.SuperiorScrollOfKnowledge,
-    isUltimate: false,
     skillModifier: {
       [Skill.Knowledge]: {
         type: "add",
@@ -186,7 +172,6 @@ const knowledgeArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   },
   {
     id: ArtifactId.ForemostScrollOfKnowledge,
-    isUltimate: false,
     skillModifier: {
       [Skill.Knowledge]: {
         type: "add",
@@ -200,22 +185,18 @@ const knowledgeArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
 const moraleArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.MedalOfValor,
-    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.MedalOfCourage,
-    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.MedalOfHonor,
-    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.MedalOfDistinction,
-    isUltimate: false,
     tradable: true,
   },
 ];
@@ -223,22 +204,18 @@ const moraleArtifacts: ArtifactObjectData[] = [
 const luckArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.LuckyRabbitsFoot,
-    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.GoldenHoreshoe,
-    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.GamblersLuckyCoin,
-    isUltimate: false,
     tradable: true,
   },
   {
     id: ArtifactId.FourLeafClover,
-    isUltimate: false,
     tradable: true,
   },
 ];
@@ -246,7 +223,6 @@ const luckArtifacts: ArtifactObjectData[] = [
 const incomeArtifacts: (ArtifactObjectData & ResourceGeneratorObjectData)[] = [
   {
     id: ArtifactId.EndlessPurseOfGold,
-    isUltimate: false,
     resourceGenerator: {
       amount: 500,
       resource: ResourceId.Gold,
@@ -255,7 +231,6 @@ const incomeArtifacts: (ArtifactObjectData & ResourceGeneratorObjectData)[] = [
   },
   {
     id: ArtifactId.EndlessBagOfGold,
-    isUltimate: false,
     resourceGenerator: {
       amount: 750,
       resource: ResourceId.Gold,
@@ -264,7 +239,6 @@ const incomeArtifacts: (ArtifactObjectData & ResourceGeneratorObjectData)[] = [
   },
   {
     id: ArtifactId.EndlessSackOfGold,
-    isUltimate: false,
     resourceGenerator: {
       amount: 1000,
       resource: ResourceId.Gold,
@@ -276,7 +250,6 @@ const incomeArtifacts: (ArtifactObjectData & ResourceGeneratorObjectData)[] = [
 const mobilityArtifacts: (ArtifactObjectData & MobilityModifierObjectData)[] = [
   {
     id: ArtifactId.TravelersBootsOfMobility,
-    isUltimate: false,
     mobilityModifier: landTerrains.reduce((b, t) => ({
       ...b,
       [t]: 12,
@@ -285,7 +258,6 @@ const mobilityArtifacts: (ArtifactObjectData & MobilityModifierObjectData)[] = [
   },
   {
     id: ArtifactId.NomadBootsOfMobility,
-    isUltimate: false,
     mobilityModifier: landTerrains.reduce((b, t) => ({
       ...b,
       [t]: 24,
@@ -294,7 +266,6 @@ const mobilityArtifacts: (ArtifactObjectData & MobilityModifierObjectData)[] = [
   },
   {
     id: ArtifactId.SailorsAstrolabeOfMobility,
-    isUltimate: false,
     mobilityModifier: {
       type: "add",
       value: 20,
@@ -303,7 +274,6 @@ const mobilityArtifacts: (ArtifactObjectData & MobilityModifierObjectData)[] = [
   },
   {
     id: ArtifactId.TrueCompassOfMobility,
-    isUltimate: false,
     mobilityModifier: {
       [TerrainType.Water]: {
         type: "add",
@@ -317,7 +287,6 @@ const mobilityArtifacts: (ArtifactObjectData & MobilityModifierObjectData)[] = [
 const siegeWeaponsArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.BallistaOfQuickness,
-    isUltimate: false,
     tradable: true,
   },
 ];
@@ -325,7 +294,6 @@ const siegeWeaponsArtifacts: ArtifactObjectData[] = [
 const spellBookArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.Spellbook,
-    isUltimate: false,
     tradable: false,
   },
 ];
@@ -333,12 +301,11 @@ const spellBookArtifacts: ArtifactObjectData[] = [
 const cursedArtifacts: ArtifactObjectData[] = [
   {
     id: ArtifactId.FizbinOfMisfortune,
-    isUltimate: false,
     tradable: true,
   },
 ];
 
-const ultimateArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
+const ultimateArtifacts: (ArtifactObjectData & SkillModifierObjectData & UltimateObjectData)[] = [
   {
     id: ArtifactId.UltimateSwordOfDominion,
     isUltimate: true,

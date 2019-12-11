@@ -4,7 +4,7 @@ import { Route, RouteComponentProps, Switch, withRouter } from "react-router";
 
 import { GameData, getArmySize, Hero } from "heroes-core";
 import { noop } from "heroes-helpers";
-import { Artifact, getLuckType, getMoraleType, LuckType, MoraleType } from "heroes-homm1";
+import { Artifact, getLuckType, getMoraleType, isUltimateObjectData, LuckType, MoraleType } from "heroes-homm1";
 import {
   AdditionalStatsInfo,
   AdditionalStatType,
@@ -456,7 +456,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
       <ArtifactSlot
         index={index}
         artifact={artifact ? artifact.id : undefined}
-        isUltimate={artifactData ? artifactData.isUltimate : false}
+        isUltimate={artifactData && isUltimateObjectData(artifactData) ? artifactData.isUltimate : false}
         onMouseEnter={this.onArtifactMouseEnter}
         onMouseLeave={this.onArtifactMouseLeave}
         onClick={this.onArtifactClick}

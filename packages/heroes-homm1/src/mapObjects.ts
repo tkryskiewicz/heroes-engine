@@ -17,6 +17,7 @@ import { MapObjectType } from "./map";
 import { ObjectId } from "./ObjectId";
 import {
   HeroObjectData,
+  isUltimateObjectData,
   MineObjectData,
   ObeliskObjectData,
   RandomCreatureObjectData,
@@ -233,7 +234,7 @@ const artifactObjectOrder: string[] = [
 ];
 
 const artifactObjects: (MapObjectData & ArtifactObjectData)[] = artifacts
-  .filter((a) => a.id !== ArtifactId.Spellbook && !a.isUltimate)
+  .filter((a) => a.id !== ArtifactId.Spellbook && !isUltimateObjectData(a))
   .sort((a, b) => artifactObjectOrder.indexOf(a.id) - artifactObjectOrder.indexOf(b.id))
   .map<MapObjectData & ArtifactObjectData>((a) => ({
     grid: [

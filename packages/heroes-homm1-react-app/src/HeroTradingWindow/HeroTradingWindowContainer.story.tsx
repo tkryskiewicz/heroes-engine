@@ -83,7 +83,6 @@ storiesOf("HeroTradingWindowContainer", module)
   .add("non-tradable artifacts", () => {
     const nonTradableArtifact: ArtifactData & TradableObjectData = {
         id: ArtifactId.Spellbook,
-        isUltimate: false,
         tradable: false,
     };
 

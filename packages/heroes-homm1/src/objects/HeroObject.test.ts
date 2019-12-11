@@ -306,7 +306,6 @@ describe("getInitialMobility", () => {
   it("should apply item modifiers", () => {
     const itemData: ItemData & MobilityModifierObjectData = {
       id: "item",
-      isUltimate: false,
       mobilityModifier: {
         type: "add",
         value: 1,

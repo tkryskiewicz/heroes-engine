@@ -7,4 +7,5 @@ export * from "./RandomTownObject";
 export * from "./ResourceObject";
 export * from "./TerrainRestrictedObject";
 export * from "./TownObject";
+export * from "./UltimateObject";
 export * from "./VariantObject";
