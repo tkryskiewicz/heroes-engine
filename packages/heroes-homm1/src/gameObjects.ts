@@ -2517,7 +2517,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
   },
 ];
 
-export const mapObjects: MapObjectData[] = [
+export const gameObjects: MapObjectData[] = [
   ...heroObjects,
   ...townObjects,
   randomCastle,

@@ -28,10 +28,10 @@ import {
   EditorMaxCreatureCount,
   EditorMaxHeroExperience,
   endGameTurn,
+  gameObjects,
   heroClasses,
   heroes,
   HeroObject,
-  mapObjects,
   moveGameObject,
   ObjectId,
   PlayerColorId,
@@ -75,7 +75,7 @@ const data: GameData = {
     ...p,
     [c.id]: c,
   }), {}),
-  mapObjects: mapObjects.reduce((p, c) => ({
+  mapObjects: gameObjects.reduce((p, c) => ({
     ...p,
     [c.id]: c,
   }), {}),
