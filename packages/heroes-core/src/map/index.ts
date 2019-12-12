@@ -1,3 +1,4 @@
+export { MapObjectOrientation, translatePointDirection, isDiagonalDirection } from "./Direction";
 export {
   Map,
   createMap,
@@ -18,5 +19,4 @@ export {
   getObjectByPoint,
 } from "./Map";
 export { MapCell } from "./MapCell";
-export { MapObjectOrientation, translatePointDirection, isDiagonalDirection } from "./MapObjectOrientation";
 export { MapPoint, createPoint, isSamePoint, translatePoint } from "./MapPoint";

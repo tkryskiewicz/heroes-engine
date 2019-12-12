@@ -7,7 +7,6 @@ import {
   isCreatureObjectData,
   isItemObjectData,
   isStructureBuilt,
-  MapObjectData,
 } from "heroes-core";
 import {
   isHeroObject,

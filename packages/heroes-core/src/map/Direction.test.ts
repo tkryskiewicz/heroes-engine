@@ -1,4 +1,4 @@
-import { isDiagonalDirection, MapObjectOrientation, translatePointDirection } from "./MapObjectOrientation";
+import { isDiagonalDirection, MapObjectOrientation, translatePointDirection } from "./Direction";
 import { createPoint, MapPoint } from "./MapPoint";
 
 describe("translatePointDirection", () => {
