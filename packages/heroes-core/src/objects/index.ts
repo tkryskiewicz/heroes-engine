@@ -4,6 +4,7 @@ export * from "./DwellingObject";
 export * from "./EquipableObject";
 export * from "./ItemObject";
 export * from "./LimitedInteractionObject";
+export * from "./MapObject";
 export * from "./MobileObject";
 export * from "./MobilityModifierObject";
 export * from "./OwnableObject";

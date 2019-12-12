@@ -3,6 +3,8 @@ import { Dispatch } from "redux";
 
 import {
   GameData,
+  GameObject,
+  GameObjectData,
   getVisitor,
   isDwellingObject,
   isDwellingObjectData,
@@ -11,8 +13,6 @@ import {
   isOwnableObject,
   isOwnableObjectData,
   isTreasureObject,
-  MapObject,
-  MapObjectData,
   MapObjectOrientation,
   wasVisitedBy,
 } from "heroes-core";
@@ -40,9 +40,9 @@ import {
 } from "heroes-homm1-state";
 
 export const renderObjectDetails = (
-  object: MapObject,
-  objectData: MapObjectData,
-  activeObject: MapObject | undefined,
+  object: GameObject,
+  objectData: GameObjectData,
+  activeObject: GameObject | undefined,
   data: GameData,
   props: {
     readonly onConfirmClick: () => void;
@@ -107,7 +107,7 @@ export const renderObjectDetails = (
 
 export const onKeyDown = (
   event: React.KeyboardEvent<HTMLDivElement>,
-  activeObject: MapObject | undefined,
+  activeObject: GameObject | undefined,
   dispatch: Dispatch,
 ) => {
   if (activeObject && isHeroObject(activeObject)) {
@@ -134,9 +134,9 @@ export const onKeyDown = (
 
 export const onCellClick = (
   player: string,
-  object: MapObject,
-  objectData: MapObjectData,
-  activeObject: MapObject | undefined,
+  object: GameObject,
+  objectData: GameObjectData,
+  activeObject: GameObject | undefined,
   data: GameData,
   dispatch: Dispatch,
 ) => {

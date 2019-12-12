@@ -1,3 +1,5 @@
+import { GameObject } from "../GameObject";
+import { MapObjectData } from "../objects";
 import {
   changeTerrain,
   createMap,
@@ -14,7 +16,6 @@ import {
   removeObject,
   replaceObject,
 } from "./Map";
-import { MapObject, MapObjectData } from "./MapObject";
 import { createPoint, isSamePoint } from "./MapPoint";
 
 describe("createMap", () => {
@@ -174,7 +175,7 @@ describe("changeTerrain", () => {
 
 describe("isPointTaken", () => {
   it("should return true when point is taken", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
@@ -301,7 +302,7 @@ describe("everyMapObjectPoint", () => {
 
 describe("placeObject", () => {
   it("should place object", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
@@ -314,7 +315,7 @@ describe("placeObject", () => {
   });
 
   it("should throw when point is invalid", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
@@ -327,7 +328,7 @@ describe("placeObject", () => {
   });
 
   it("should throw when object is already placed", () => {
-    const objectA: MapObject = {
+    const objectA: GameObject = {
       dataId: "dataId",
       id: "idB",
     };
@@ -336,7 +337,7 @@ describe("placeObject", () => {
 
     map = placeObject(map, createPoint(0, 0), objectA);
 
-    const objectB: MapObject = {
+    const objectB: GameObject = {
       dataId: "dataId",
       id: "idB",
     };
@@ -351,7 +352,7 @@ describe("getObject", () => {
   it("should return object", () => {
     let map = createMap(1, 1, "terrain");
 
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
@@ -374,7 +375,7 @@ describe("getObject", () => {
 
 describe("moveObject", () => {
   it("should move object", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
@@ -389,7 +390,7 @@ describe("moveObject", () => {
   });
 
   it("should throw when from is not a valid map point", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
@@ -404,7 +405,7 @@ describe("moveObject", () => {
   });
 
   it("should throw when to is not a valid map point", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
@@ -427,7 +428,7 @@ describe("moveObject", () => {
   });
 
   it("should throw when target cell already contains an object", () => {
-    const objectA: MapObject = {
+    const objectA: GameObject = {
       dataId: "dataId",
       id: "idA",
     };
@@ -436,7 +437,7 @@ describe("moveObject", () => {
 
     map = placeObject(map, createPoint(0, 0), objectA);
 
-    const objectB: MapObject = {
+    const objectB: GameObject = {
       dataId: "dataId",
       id: "idB",
     };
@@ -451,7 +452,7 @@ describe("moveObject", () => {
 
 describe("removeObject", () => {
   it("should remove object", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
@@ -476,7 +477,7 @@ describe("removeObject", () => {
   });
 
   it("should change nothing when no object", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "someId",
     };
@@ -491,13 +492,13 @@ describe("removeObject", () => {
 
 describe("replaceObject", () => {
   it("should replace object", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
 
     // TODO: remove, coverage dummy
-    const otherObject: MapObject = {
+    const otherObject: GameObject = {
       dataId: "otherDataId",
       id: "otherId",
     };
@@ -507,7 +508,7 @@ describe("replaceObject", () => {
       createPoint(1, 0),
       otherObject);
 
-    const updatedObject: MapObject = {
+    const updatedObject: GameObject = {
       dataId: "otherDataId",
       id: "id",
     };

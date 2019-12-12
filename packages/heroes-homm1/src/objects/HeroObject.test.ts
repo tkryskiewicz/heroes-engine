@@ -3,7 +3,6 @@ import {
   GameObject,
   HeroClassData,
   ItemData,
-  MapObject,
   MapObjectData,
   MapObjectOrientation,
   MobilityModifierObjectData,
@@ -100,7 +99,7 @@ describe("isHeroObject", () => {
   });
 
   it("should return false when not hero object", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
@@ -360,7 +359,7 @@ describe("getInitialMobility", () => {
       baseMobility: 1,
     };
 
-    const mapObject: MapObject = {
+    const mapObject: GameObject = {
       dataId: mapObjectData.id,
       id: "mapObject",
     };

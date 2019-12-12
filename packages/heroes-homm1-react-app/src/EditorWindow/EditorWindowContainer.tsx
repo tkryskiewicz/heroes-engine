@@ -5,11 +5,12 @@ import {
   changeTerrain,
   CreatureObject,
   GameData,
+  GameObject,
   getCellIndex,
   getCellPoint,
   getObjectById,
+  isMapObjectData,
   isSamePoint,
-  MapObject,
   MapObjectOrientation,
   MapPoint,
   nextOption,
@@ -323,7 +324,8 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     } else if (selectedOption === EditorOption.Objects && selectedObject) {
       const objectData = data.objects[selectedObject];
 
-      if (!canPlaceObject(scenario.map, point, objectData, data)) {
+      // FIXME
+      if (!isMapObjectData(objectData) || !canPlaceObject(scenario.map, point, objectData, data)) {
         // FIXME: find better way to clear message
         this.setState({
           message: formatMessage(editorWindowMessages.invalidPlacement),
@@ -554,12 +556,17 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   private readonly renderObject = (object: string) => {
     const { data } = this.props;
 
-    const obj: MapObject = {
+    const obj: GameObject = {
       dataId: object,
       id: "",
     };
 
     const objectData = data.objects[object];
+
+    // FIXME
+    if (!isMapObjectData(objectData)) {
+      return undefined;
+    }
 
     const terrain = this.getTerrain();
 

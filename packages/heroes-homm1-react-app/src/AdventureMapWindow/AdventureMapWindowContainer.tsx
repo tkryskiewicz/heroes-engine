@@ -3,9 +3,9 @@ import { DispatchProp } from "react-redux";
 
 import {
   GameData,
+  GameObject,
   getObjectById,
   Map,
-  MapObject,
   MapPoint,
 } from "heroes-core";
 import { getTerrainTransition, isHeroObject, isTownObject } from "heroes-homm1";
@@ -81,7 +81,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     );
   }
 
-  private renderMapObject(object: MapObject, terrain: string) {
+  private renderMapObject(object: GameObject, terrain: string) {
     const { data } = this.props;
 
     const objectData = data.objects[object.dataId];

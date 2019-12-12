@@ -1,11 +1,11 @@
 import { CreatureData } from "./Creature";
+import { GameObjectData } from "./GameObject";
 import { HeroData } from "./Hero";
 import { HeroClassData } from "./HeroClass";
 import { ItemData, ItemSelection } from "./Item";
 import {
   getObjectById,
   Map,
-  MapObjectData,
   removeObject,
   replaceObject,
 } from "./map";
@@ -52,7 +52,7 @@ export interface GameData {
   readonly heroClasses: { readonly [id: string]: HeroClassData; };
   readonly heroes: { readonly [id: string]: HeroData; };
   readonly terrains: { readonly [id: string]: TerrainData; };
-  readonly objects: { readonly [id: string]: MapObjectData; };
+  readonly objects: { readonly [id: string]: GameObjectData; };
   readonly baseMovementCost: number;
   readonly diagonalMovementCostModifier?: Modifier;
   readonly armySize: number;

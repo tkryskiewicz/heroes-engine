@@ -11,7 +11,7 @@ export { CreatureSpeed } from "./CreatureSpeed";
 export * from "./editor";
 export { getCurrentLevel, getNextLevelExperience } from "./experience";
 export {
-  createGameMapObject,
+  createGameObject,
   getGameHero,
   getGameHeroes,
   getGameTown,

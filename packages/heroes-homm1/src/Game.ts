@@ -4,7 +4,6 @@ import {
   ArmedObjectData,
   buildTownStructure,
   canMobileObjectMove,
-  createMapObject,
   CreatureObjectData,
   DwellingObjectData,
   endTownTurn,
@@ -45,7 +44,6 @@ import {
   isResourceGeneratorObjectData,
   isTreasureObjectData,
   LimitedInteractionObjectData,
-  MapObject,
   MapObjectOrientation,
   MobileObjectData,
   moveMobileObject,
@@ -102,8 +100,8 @@ declare module "heroes-core/src/Game" {
 
 interface Handler<TObjectData extends GameObjectData, TObject extends GameObject = GameObject> {
   readonly objectDataTest?: (objectData: GameObjectData) => objectData is TObjectData;
-  readonly objectTest?: (object: MapObject) => object is TObject;
-  readonly initialize: (object: MapObject, objectData: TObjectData, data: GameData) => MapObject;
+  readonly objectTest?: (object: GameObject) => object is TObject;
+  readonly initialize: (object: GameObject, objectData: TObjectData, data: GameData) => GameObject;
   readonly turnStart?: (object: TObject, objectData: TObjectData, game: Game) => TObject;
   readonly turnEnd?: (object: TObject, objectData: TObjectData, data: GameData) => TObject;
 }
@@ -214,8 +212,13 @@ const objectHandlers = [
   randomTownObjectHandler,
 ];
 
-export const createGameMapObject = (id: string, dataId: string, data: GameData): MapObject => {
+export const createGameObject = (id: string, dataId: string, data: GameData): GameObject => {
   const objectData = data.objects[dataId];
+
+  const object: GameObject = {
+    dataId: objectData.id,
+    id,
+  };
 
   return objectHandlers.reduce((o, h) => {
     return {
@@ -224,7 +227,7 @@ export const createGameMapObject = (id: string, dataId: string, data: GameData):
       h.initialize(o, objectData, data) :
       o,
     };
-  }, createMapObject(id, objectData));
+  }, object);
 };
 
 export const getGameHeroes = (game: Game): HeroObject[] =>

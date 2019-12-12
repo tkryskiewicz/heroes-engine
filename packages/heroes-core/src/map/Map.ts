@@ -1,7 +1,10 @@
 // tslint:disable: no-loop-statement
 
+import { isDefined } from "heroes-helpers";
+
+import { GameObject } from "../GameObject";
+import { isMapObjectData, MapObjectData } from "../objects";
 import { MapCell } from "./MapCell";
-import { MapObject, MapObjectData } from "./MapObject";
 import { createPoint, MapPoint, translatePoint } from "./MapPoint";
 
 export interface Map {
@@ -119,9 +122,11 @@ export const canPlaceObject = (
 
         const objData = data.objects[obj.dataId];
 
-        forEachMapObjectPoint(objData, (objectPoint) => {
-          obstacleMap[getCellIndex(map.width, translatePoint(mapPoint, objectPoint.x, -objectPoint.y))] = CellTaken;
-        });
+        if (isMapObjectData(objData)) {
+          forEachMapObjectPoint(objData, (objectPoint) => {
+            obstacleMap[getCellIndex(map.width, translatePoint(mapPoint, objectPoint.x, -objectPoint.y))] = CellTaken;
+          });
+        }
       }
     }
   }
@@ -133,7 +138,7 @@ export const canPlaceObject = (
   });
 };
 
-export const placeObject = (map: Map, point: MapPoint, object: MapObject): Map => {
+export const placeObject = (map: Map, point: MapPoint, object: GameObject): Map => {
   if (!isPointValid(map, point)) {
     throw new Error(`Point {${point.x},${point.y}} is outside a ${map.width}x${map.height} map`);
   }
@@ -202,11 +207,13 @@ export const moveObject = (map: Map, from: MapPoint, to: MapPoint): Map => {
   };
 };
 
-export const getObjectById = (map: Map, id: string): MapObject | undefined =>
+export const getObjectById = (map: Map, id: string): GameObject | undefined =>
   map.cells
-    .reduce<MapObject | undefined>((p, c) => p || (c.object && c.object.id === id ? c.object : undefined), undefined);
+    .map((c) => c.object)
+    .filter(isDefined)
+    .find((o) => o.id === id);
 
-export const getObjectByPoint = (map: Map, point: MapPoint): MapObject | undefined =>
+export const getObjectByPoint = (map: Map, point: MapPoint): GameObject | undefined =>
   map.cells[getCellIndex(map.width, point)].object;
 
 export const removeObject = (map: Map, id: string): Map => ({
@@ -220,7 +227,7 @@ export const removeObject = (map: Map, id: string): Map => ({
   ),
 });
 
-export const replaceObject = (map: Map, object: MapObject): Map => ({
+export const replaceObject = (map: Map, object: GameObject): Map => ({
   ...map,
   cells: map.cells.map((c) => c.object && c.object.id === object.id ?
     {
