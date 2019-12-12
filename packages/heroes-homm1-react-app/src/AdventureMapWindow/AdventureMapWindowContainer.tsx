@@ -84,7 +84,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
   private renderMapObject(object: MapObject, terrain: string) {
     const { data } = this.props;
 
-    const objectData = data.mapObjects[object.dataId];
+    const objectData = data.objects[object.dataId];
 
     return renderObject(object, objectData, terrain, data, "large");
   }
@@ -157,7 +157,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
     const object = cell.object;
 
     if (object) {
-      const objectData = data.mapObjects[object.dataId];
+      const objectData = data.objects[object.dataId];
 
       onCellClick(player, object, objectData, activeObject, data, this.props.dispatch);
     }
@@ -172,7 +172,7 @@ class AdventureMapWindowContainer extends React.Component<Props, State> {
 
     const object = getObjectById(this.props.map, id)!;
 
-    const objectData = data.mapObjects[object.dataId];
+    const objectData = data.objects[object.dataId];
 
     return renderObjectDetails(object, objectData, activeObject, data, {
       onCloseClick: this.onCloseObjectDetailsClick,

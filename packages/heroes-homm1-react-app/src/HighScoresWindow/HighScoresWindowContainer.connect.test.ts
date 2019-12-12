@@ -4,7 +4,7 @@ import { AppState, highScoresWindowActions, rootReducer } from "heroes-homm1-sta
 import { mapDispatchToProps, mapStateToProps } from "./HighScoresWindowContainer.connect";
 
 describe("HighScoresWindowContainer", () => {
-    describe("mapStateToProps", () => {
+  describe("mapStateToProps", () => {
     it("should map state", () => {
       const state: AppState = {
         ...rootReducer(undefined, {} as any),
@@ -31,7 +31,7 @@ describe("HighScoresWindowContainer", () => {
     });
   });
 
-    describe("mapDispatchToProps", () => {
+  describe("mapDispatchToProps", () => {
     it("should map changing game type", () => {
       const dispatch = jest.fn();
 

@@ -215,7 +215,7 @@ const objectHandlers = [
 ];
 
 export const createGameMapObject = (id: string, dataId: string, data: GameData): MapObject => {
-  const objectData = data.mapObjects[dataId];
+  const objectData = data.objects[dataId];
 
   return objectHandlers.reduce((o, h) => {
     return {
@@ -332,7 +332,7 @@ export const startGameTurn = (game: Game): Game => {
 
   objects
     .forEach((o) => {
-      const objectData = game.data.mapObjects[o.dataId];
+      const objectData = game.data.objects[o.dataId];
 
       if (isResourceGeneratorObjectData(objectData)) {
         game = {
@@ -366,7 +366,7 @@ export const startGameTurn = (game: Game): Game => {
 
         const object = c.object;
 
-        const objectData = game.data.mapObjects[object.dataId];
+        const objectData = game.data.objects[object.dataId];
 
         const newObject = objectHandlers.reduce((o, h) => {
           if (h.objectTest && h.objectTest(o) && h.objectDataTest && h.objectDataTest(objectData) && h.turnStart) {
@@ -397,7 +397,7 @@ export const endGameTurn = (game: Game): Game => ({
 
       const object = c.object;
 
-      const objectData = game.data.mapObjects[object.dataId];
+      const objectData = game.data.objects[object.dataId];
 
       const newObject = objectHandlers.reduce((o, h) => {
         if (h.objectTest && h.objectTest(o) && h.objectDataTest && h.objectDataTest(objectData) && h.turnEnd) {

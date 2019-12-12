@@ -157,7 +157,7 @@ describe("getInitialMobility", () => {
       [defaultHeroClassData.id]: defaultHeroClassData,
     },
     items: {},
-    mapObjects: {},
+    objects: {},
   };
 
   const defaultObject: HeroObject = {
@@ -350,7 +350,7 @@ describe("getInitialMobility", () => {
 
     const data: Parameters<typeof getInitialMobility>[4] = {
       ...defaultData,
-      mapObjects: {
+      objects: {
         [mapObjectData.id]: mapObjectData,
       },
     };

@@ -52,7 +52,7 @@ export interface GameData {
   readonly heroClasses: { readonly [id: string]: HeroClassData; };
   readonly heroes: { readonly [id: string]: HeroData; };
   readonly terrains: { readonly [id: string]: TerrainData; };
-  readonly mapObjects: { readonly [id: string]: MapObjectData; };
+  readonly objects: { readonly [id: string]: MapObjectData; };
   readonly baseMovementCost: number;
   readonly diagonalMovementCostModifier?: Modifier;
   readonly armySize: number;
@@ -87,7 +87,7 @@ export const swapGameTroops = (
     throw new Error(`${troop.id} is not an armed object`);
   }
 
-  const objectData = game.data.mapObjects[object.dataId];
+  const objectData = game.data.objects[object.dataId];
 
   if (!isArmedObjectData(objectData)) {
     throw new Error(`no armed object data for ${object.id}`);
@@ -159,7 +159,7 @@ export const visitGameMapObject = (game: Game, id: string, activeObjectId: strin
     throw new Error("Invalid object");
   }
 
-  const objectData = game.data.mapObjects[object.dataId];
+  const objectData = game.data.objects[object.dataId];
 
   const activeObject = getObjectById(game.map, activeObjectId);
 

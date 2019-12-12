@@ -75,7 +75,7 @@ const data: GameData = {
     ...p,
     [c.id]: c,
   }), {}),
-  mapObjects: gameObjects.reduce((p, c) => ({
+  objects: gameObjects.reduce((p, c) => ({
     ...p,
     [c.id]: c,
   }), {}),

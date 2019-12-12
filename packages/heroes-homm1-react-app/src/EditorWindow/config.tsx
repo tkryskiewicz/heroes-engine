@@ -220,7 +220,7 @@ const objectOrder: string[] = [
 
 // TODO: add town objects
 export const getObjects = (type: MapObjectType, data: GameData): string[] =>
-  Object.values(data.mapObjects)
+  Object.values(data.objects)
     .filter((o) => o.type === type || (Array.isArray(o.type) && o.type.includes(type)))
     .map((o) => o.id)
     .sort((a, b) => objectOrder.indexOf(a) - objectOrder.indexOf(b));
@@ -252,7 +252,7 @@ export const createEditorMapObject = (id: string, objectDataId: string, data: Ga
 };
 
 export const getObjectDetails = (object: MapObject, data: GameData): ObjectDetails | undefined => {
-  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.mapObjects[object.dataId])) {
+  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.objects[object.dataId])) {
     return getCreatureObjectDetails(object);
   }
 
@@ -275,7 +275,7 @@ export const renderObjectDetails = (
     readonly onCloseClick: () => void;
   },
 ) => {
-  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.mapObjects[object.dataId])) {
+  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.objects[object.dataId])) {
     return (
       <CreatureMapObjectDetailsWindow
         visible={true}
@@ -316,7 +316,7 @@ export const renderObjectDetails = (
 };
 
 export const setObjectDetails = (object: MapObject, value: ObjectDetails, data: GameData): MapObject => {
-  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.mapObjects[object.dataId])) {
+  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.objects[object.dataId])) {
     return setCreatureObjectDetails(object, value as CreatureObjectDetails);
   }
 

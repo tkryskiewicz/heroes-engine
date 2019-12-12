@@ -95,7 +95,7 @@ export const canPlaceObject = (
   map: Map,
   point: MapPoint,
   objectData: MapObjectData,
-  data: Pick<import("../Game").GameData, "mapObjects">,
+  data: Pick<import("../Game").GameData, "objects">,
 ): boolean => {
   if (isPointTaken(map, point)) {
     return false;
@@ -117,7 +117,7 @@ export const canPlaceObject = (
       if (cell.object) {
         const obj = cell.object;
 
-        const objData = data.mapObjects[obj.dataId];
+        const objData = data.objects[obj.dataId];
 
         forEachMapObjectPoint(objData, (objectPoint) => {
           obstacleMap[getCellIndex(map.width, translatePoint(mapPoint, objectPoint.x, -objectPoint.y))] = CellTaken;

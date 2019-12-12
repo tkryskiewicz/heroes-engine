@@ -273,7 +273,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     const cell = scenario.map.cells[cellIndex];
 
     const object = cell.object ?
-      renderEditorObject(cell.object, data.mapObjects[cell.object.dataId], cell.terrain, data, size) :
+      renderEditorObject(cell.object, data.objects[cell.object.dataId], cell.terrain, data, size) :
       undefined;
 
     const transition = getTerrainTransition(scenario.map, cellPoint, data);
@@ -321,7 +321,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
 
       this.props.onScenarioChange(newScenario);
     } else if (selectedOption === EditorOption.Objects && selectedObject) {
-      const objectData = data.mapObjects[selectedObject];
+      const objectData = data.objects[selectedObject];
 
       if (!canPlaceObject(scenario.map, point, objectData, data)) {
         // FIXME: find better way to clear message
@@ -559,7 +559,7 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
       id: "",
     };
 
-    const objectData = data.mapObjects[object];
+    const objectData = data.objects[object];
 
     const terrain = this.getTerrain();
 

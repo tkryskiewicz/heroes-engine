@@ -79,7 +79,7 @@ describe("buyMageGuildSpellBook", () => {
         heroClasses: {},
         heroes: {},
         items: {},
-        mapObjects: {},
+        objects: {},
         playerColors: [],
         resources: {},
         spells: {},
