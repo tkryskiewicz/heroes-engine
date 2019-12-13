@@ -1,7 +1,7 @@
 import Classnames from "classnames";
 import React from "react";
 
-import { MapObjectOrientation } from "heroes-core";
+import { Direction } from "heroes-core";
 
 import * as styles from "./EditorHorizontalScrollbar.module.scss";
 
@@ -26,7 +26,7 @@ export class EditorHorizontalScrollbar extends React.Component<EditorHorizontalS
       <div className={Classnames(styles.root, this.props.className)}>
         <EditorScrollButton
           className={styles.left}
-          direction={MapObjectOrientation.West}
+          direction={Direction.West}
           onClick={this.props.onScrollLeftClick}
         />
         <div className={styles.track}>
@@ -38,7 +38,7 @@ export class EditorHorizontalScrollbar extends React.Component<EditorHorizontalS
         </div>
         <EditorScrollButton
           className={styles.right}
-          direction={MapObjectOrientation.East}
+          direction={Direction.East}
           onClick={this.props.onScrollRightClick}
         />
       </div>

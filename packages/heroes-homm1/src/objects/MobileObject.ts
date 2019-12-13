@@ -1,10 +1,10 @@
 import {
   applyModifier,
+  Direction,
   GameData,
   getModifierFor,
   hasModifierFor,
   isDiagonalDirection,
-  MapObjectOrientation,
   MobileObject,
 } from "heroes-core";
 
@@ -12,7 +12,7 @@ import { isHeroObject } from "./HeroObject";
 
 export const getMovementCost = (
   object: MobileObject,
-  direction: MapObjectOrientation,
+  direction: Direction,
   terrain: string,
   data: Pick<GameData, "baseMovementCost" | "diagonalMovementCostModifier" | "terrains" | "heroClasses">,
 ): number => {

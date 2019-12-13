@@ -2,11 +2,11 @@ import React from "react";
 
 import {
   GameData,
+  GameObject,
+  GameObjectData,
   isCreatureObjectData,
   isItemObjectData,
   isStructureBuilt,
-  MapObject,
-  MapObjectData,
 } from "heroes-core";
 import {
   isHeroObject,
@@ -31,8 +31,8 @@ import {
 } from "heroes-homm1-react";
 
 export const renderObject = (
-  object: MapObject,
-  objectData: MapObjectData,
+  object: GameObject,
+  objectData: GameObjectData,
   terrain: string | undefined,
   data: GameData,
   size: "small" | "large",
@@ -130,8 +130,8 @@ export const renderObject = (
 };
 
 export const renderEditorObject = (
-  object: MapObject,
-  objectData: MapObjectData,
+  object: GameObject,
+  objectData: GameObjectData,
   terrain: string | undefined,
   data: GameData,
   size: "small" | "large",

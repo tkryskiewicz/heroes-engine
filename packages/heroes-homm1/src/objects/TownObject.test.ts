@@ -1,4 +1,4 @@
-import { DwellingStructure, GameObject, MapObject, Structure } from "heroes-core";
+import { DwellingStructure, GameObject, Structure } from "heroes-core";
 
 import { ObjectId } from "../ObjectId";
 import {
@@ -50,7 +50,7 @@ describe("isTownObject", () => {
   });
 
   it("should return false when not town object", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };

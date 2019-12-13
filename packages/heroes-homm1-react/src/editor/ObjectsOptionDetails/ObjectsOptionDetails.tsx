@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
-import { MapObjectOrientation } from "heroes-core";
+import { Direction } from "heroes-core";
 import { noop } from "heroes-helpers";
 import { MapObjectType } from "heroes-homm1";
 
@@ -49,7 +49,7 @@ class ObjectsOptionDetails extends React.Component<ObjectsOptionDetailsProps> {
         <div className={styles.selector}>
           <EditorScrollButton
             className={styles.previous}
-            direction={MapObjectOrientation.West}
+            direction={Direction.West}
             onClick={this.props.onPreviousTypeClick}
           />
           <GameText size="small">
@@ -57,7 +57,7 @@ class ObjectsOptionDetails extends React.Component<ObjectsOptionDetailsProps> {
           </GameText>
           <EditorScrollButton
             className={styles.next}
-            direction={MapObjectOrientation.East}
+            direction={Direction.East}
             onClick={this.props.onNextTypeClick}
           />
         </div>

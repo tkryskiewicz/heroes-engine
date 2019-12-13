@@ -3,7 +3,7 @@ import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { heroClass, mapObjectOrientation, playerColor } from "../../stories";
+import { direction, heroClass, playerColor } from "../../stories";
 import { HeroMapObject } from "./HeroMapObject";
 
 storiesOf("map|HeroMapObject", module)
@@ -11,7 +11,7 @@ storiesOf("map|HeroMapObject", module)
     <HeroMapObject
       heroClass={heroClass("Hero Class")}
       playerColor={boolean("Owned?", true) ? playerColor("Player Color") : undefined}
-      orientation={mapObjectOrientation("Orientation")}
+      orientation={direction("Orientation")}
       onClick={action("Click")}
     />
   ));

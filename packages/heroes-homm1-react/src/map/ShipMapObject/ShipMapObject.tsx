@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MapObjectOrientation } from "heroes-core";
+import { Direction } from "heroes-core";
 
 import * as styles from "./ShipMapObject.module.scss";
 
@@ -8,7 +8,7 @@ import { withOrientableMapObject } from "../OrientableMapObject";
 
 interface ShipMapObjectProps {
   readonly playerColor?: string;
-  readonly orientation: MapObjectOrientation;
+  readonly orientation: Direction;
   readonly onClick?: () => void;
 }
 
@@ -27,7 +27,7 @@ class ShipMapObject extends React.Component<ShipMapObjectProps> {
     );
   }
 
-  private renderFlag(playerColor: string, orientation: MapObjectOrientation) {
+  private renderFlag(playerColor: string, orientation: Direction) {
     return (
       <img
         className={styles.flag}

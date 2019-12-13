@@ -1,5 +1,5 @@
+import { Direction } from "../Direction";
 import { GameObject, GameObjectData } from "../GameObject";
-import { MapObjectOrientation } from "../map";
 
 export interface MobileObjectData extends GameObjectData {
   readonly baseMobility: number;
@@ -10,13 +10,13 @@ export const isMobileObjectData = (objectData: GameObjectData): objectData is Mo
 
 export interface MobileObject extends GameObject {
   readonly mobility: number;
-  readonly orientation: MapObjectOrientation;
+  readonly orientation: Direction;
 }
 
 export const initializeMobileObject = (object: GameObject, objectData: MobileObjectData): MobileObject => ({
   ...object,
   mobility: objectData.baseMobility,
-  orientation: MapObjectOrientation.North,
+  orientation: Direction.North,
 });
 
 export const isMobileObject = (object: GameObject): object is MobileObject =>
@@ -28,7 +28,7 @@ export const canMobileObjectMove = (object: MobileObject): boolean =>
 
 export const moveMobileObject = (
   object: MobileObject,
-  direction: MapObjectOrientation,
+  direction: Direction,
   cost: number,
 ): MobileObject => ({
   ...object,

@@ -11,7 +11,7 @@ export { CreatureSpeed } from "./CreatureSpeed";
 export * from "./editor";
 export { getCurrentLevel, getNextLevelExperience } from "./experience";
 export {
-  createGameMapObject,
+  createGameObject,
   getGameHero,
   getGameHeroes,
   getGameTown,
@@ -24,6 +24,7 @@ export {
   moveGameObject,
 } from "./Game";
 export { GameDifficulty, getGameDifficultyRating } from "./GameDifficulty";
+export * from "./gameObjects";
 export { GameOption } from "./GameOption";
 export { GameSettings } from "./GameSettings";
 export { GameType } from "./GameType";
@@ -39,7 +40,6 @@ export {
   StructureVisitedLuckModifier,
 } from "./luck";
 export * from "./map";
-export { mapObjects } from "./mapObjects";
 export {
   MoraleType,
   getMoraleType,

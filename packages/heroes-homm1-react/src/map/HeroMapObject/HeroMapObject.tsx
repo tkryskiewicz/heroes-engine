@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MapObjectOrientation } from "heroes-core";
+import { Direction } from "heroes-core";
 import { noop } from "heroes-helpers";
 
 import * as styles from "./HeroMapObject.module.scss";
@@ -10,7 +10,7 @@ import { withOrientableMapObject } from "../OrientableMapObject";
 interface Props {
   readonly heroClass: string;
   readonly playerColor?: string;
-  readonly orientation: MapObjectOrientation;
+  readonly orientation: Direction;
   readonly onClick: () => void;
 }
 
@@ -34,7 +34,7 @@ class HeroMapObject extends React.Component<Props> {
     );
   }
 
-  private renderFlag(playerColor: string, orientation: MapObjectOrientation) {
+  private renderFlag(playerColor: string, orientation: Direction) {
     return (
       <img
         className={styles.flag}

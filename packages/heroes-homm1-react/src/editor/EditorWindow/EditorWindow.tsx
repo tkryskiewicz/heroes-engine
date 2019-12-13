@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MapObjectOrientation } from "heroes-core";
+import { Direction } from "heroes-core";
 import { noop } from "heroes-helpers";
 
 import * as styles from "./EditorWindow.module.scss";
@@ -55,25 +55,25 @@ export class EditorWindow extends React.Component<Props> {
         <EditorScrollButton
           data-test-id="scroll-top-left"
           className={styles.scrollNorthWest}
-          direction={MapObjectOrientation.NorthWest}
+          direction={Direction.NorthWest}
           onClick={this.props.onScrollTopLeft}
         />
         <EditorScrollButton
           data-test-id="scroll-top-right"
           className={styles.scrollNorthEast}
-          direction={MapObjectOrientation.NorthEast}
+          direction={Direction.NorthEast}
           onClick={this.props.onScrollTopRight}
         />
         <EditorScrollButton
           data-test-id="scroll-bottom-left"
           className={styles.scrollSouthWest}
-          direction={MapObjectOrientation.SouthWest}
+          direction={Direction.SouthWest}
           onClick={this.props.onScrollBottomLeft}
         />
         <EditorScrollButton
           data-test-id="scroll-bottom-right"
           className={styles.scrollSouthEast}
-          direction={MapObjectOrientation.SouthEast}
+          direction={Direction.SouthEast}
           onClick={this.props.onScrollBottomRight}
         />
         <div

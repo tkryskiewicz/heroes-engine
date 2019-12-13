@@ -1,11 +1,11 @@
-import { isDiagonalDirection, MapObjectOrientation, translatePointDirection } from "./MapObjectOrientation";
-import { createPoint, MapPoint } from "./MapPoint";
+import { Direction, isDiagonalDirection, translatePointDirection } from "./Direction";
+import { createPoint, MapPoint } from "./map";
 
 describe("translatePointDirection", () => {
   it("should translate by (0,-1) when north", () => {
     const point = createPoint(0, 0);
 
-    const result = translatePointDirection(point, MapObjectOrientation.North);
+    const result = translatePointDirection(point, Direction.North);
 
     const expected: MapPoint = {
       ...point,
@@ -18,7 +18,7 @@ describe("translatePointDirection", () => {
   it("should translate by (1,-1) when north-east", () => {
     const point = createPoint(0, 0);
 
-    const result = translatePointDirection(point, MapObjectOrientation.NorthEast);
+    const result = translatePointDirection(point, Direction.NorthEast);
 
     const expected: MapPoint = {
       ...point,
@@ -32,7 +32,7 @@ describe("translatePointDirection", () => {
   it("should translate by (1,0) when east", () => {
     const point = createPoint(0, 0);
 
-    const result = translatePointDirection(point, MapObjectOrientation.East);
+    const result = translatePointDirection(point, Direction.East);
 
     const expected: MapPoint = {
       ...point,
@@ -45,7 +45,7 @@ describe("translatePointDirection", () => {
   it("should translate by (1,1) when south-east", () => {
     const point = createPoint(0, 0);
 
-    const result = translatePointDirection(point, MapObjectOrientation.SouthEast);
+    const result = translatePointDirection(point, Direction.SouthEast);
 
     const expected: MapPoint = {
       ...point,
@@ -59,7 +59,7 @@ describe("translatePointDirection", () => {
   it("should translate by (0,1) when south", () => {
     const point = createPoint(0, 0);
 
-    const result = translatePointDirection(point, MapObjectOrientation.South);
+    const result = translatePointDirection(point, Direction.South);
 
     const expected: MapPoint = {
       ...point,
@@ -72,7 +72,7 @@ describe("translatePointDirection", () => {
   it("should translate by (-1,1) when south-west", () => {
     const point = createPoint(0, 0);
 
-    const result = translatePointDirection(point, MapObjectOrientation.SouthWest);
+    const result = translatePointDirection(point, Direction.SouthWest);
 
     const expected: MapPoint = {
       ...point,
@@ -86,7 +86,7 @@ describe("translatePointDirection", () => {
   it("should translate by (-1,0) when west", () => {
     const point = createPoint(0, 0);
 
-    const result = translatePointDirection(point, MapObjectOrientation.West);
+    const result = translatePointDirection(point, Direction.West);
 
     const expected: MapPoint = {
       ...point,
@@ -99,7 +99,7 @@ describe("translatePointDirection", () => {
   it("should translate by (-1,-1) when north-west", () => {
     const point = createPoint(0, 0);
 
-    const result = translatePointDirection(point, MapObjectOrientation.NorthWest);
+    const result = translatePointDirection(point, Direction.NorthWest);
 
     const expected: MapPoint = {
       ...point,
@@ -113,49 +113,49 @@ describe("translatePointDirection", () => {
 
 describe("isDiagonalDirection", () => {
   it("should return true when north", () => {
-    const result = isDiagonalDirection(MapObjectOrientation.North);
+    const result = isDiagonalDirection(Direction.North);
 
     expect(result).toBe(false);
   });
 
   it("should return true when north-east", () => {
-    const result = isDiagonalDirection(MapObjectOrientation.NorthEast);
+    const result = isDiagonalDirection(Direction.NorthEast);
 
     expect(result).toBe(true);
   });
 
   it("should return true when east", () => {
-    const result = isDiagonalDirection(MapObjectOrientation.East);
+    const result = isDiagonalDirection(Direction.East);
 
     expect(result).toBe(false);
   });
 
   it("should return true when south-east", () => {
-    const result = isDiagonalDirection(MapObjectOrientation.SouthEast);
+    const result = isDiagonalDirection(Direction.SouthEast);
 
     expect(result).toBe(true);
   });
 
   it("should return true when south", () => {
-    const result = isDiagonalDirection(MapObjectOrientation.South);
+    const result = isDiagonalDirection(Direction.South);
 
     expect(result).toBe(false);
   });
 
   it("should return true when south-west", () => {
-    const result = isDiagonalDirection(MapObjectOrientation.SouthWest);
+    const result = isDiagonalDirection(Direction.SouthWest);
 
     expect(result).toBe(true);
   });
 
   it("should return true when west", () => {
-    const result = isDiagonalDirection(MapObjectOrientation.West);
+    const result = isDiagonalDirection(Direction.West);
 
     expect(result).toBe(false);
   });
 
   it("should return true when north-west", () => {
-    const result = isDiagonalDirection(MapObjectOrientation.NorthWest);
+    const result = isDiagonalDirection(Direction.NorthWest);
 
     expect(result).toBe(true);
   });

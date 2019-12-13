@@ -4,8 +4,8 @@ import {
   ArmedObjectData,
   buildTownStructure,
   canMobileObjectMove,
-  createMapObject,
   CreatureObjectData,
+  Direction,
   DwellingObjectData,
   endTownTurn,
   EquipableObjectData,
@@ -45,8 +45,6 @@ import {
   isResourceGeneratorObjectData,
   isTreasureObjectData,
   LimitedInteractionObjectData,
-  MapObject,
-  MapObjectOrientation,
   MobileObjectData,
   moveMobileObject,
   moveObject,
@@ -102,8 +100,8 @@ declare module "heroes-core/src/Game" {
 
 interface Handler<TObjectData extends GameObjectData, TObject extends GameObject = GameObject> {
   readonly objectDataTest?: (objectData: GameObjectData) => objectData is TObjectData;
-  readonly objectTest?: (object: MapObject) => object is TObject;
-  readonly initialize: (object: MapObject, objectData: TObjectData, data: GameData) => MapObject;
+  readonly objectTest?: (object: GameObject) => object is TObject;
+  readonly initialize: (object: GameObject, objectData: TObjectData, data: GameData) => GameObject;
   readonly turnStart?: (object: TObject, objectData: TObjectData, game: Game) => TObject;
   readonly turnEnd?: (object: TObject, objectData: TObjectData, data: GameData) => TObject;
 }
@@ -214,8 +212,13 @@ const objectHandlers = [
   randomTownObjectHandler,
 ];
 
-export const createGameMapObject = (id: string, dataId: string, data: GameData): MapObject => {
-  const objectData = data.mapObjects[dataId];
+export const createGameObject = (id: string, dataId: string, data: GameData): GameObject => {
+  const objectData = data.objects[dataId];
+
+  const object: GameObject = {
+    dataId: objectData.id,
+    id,
+  };
 
   return objectHandlers.reduce((o, h) => {
     return {
@@ -224,7 +227,7 @@ export const createGameMapObject = (id: string, dataId: string, data: GameData):
       h.initialize(o, objectData, data) :
       o,
     };
-  }, createMapObject(id, objectData));
+  }, object);
 };
 
 export const getGameHeroes = (game: Game): HeroObject[] =>
@@ -332,7 +335,7 @@ export const startGameTurn = (game: Game): Game => {
 
   objects
     .forEach((o) => {
-      const objectData = game.data.mapObjects[o.dataId];
+      const objectData = game.data.objects[o.dataId];
 
       if (isResourceGeneratorObjectData(objectData)) {
         game = {
@@ -366,7 +369,7 @@ export const startGameTurn = (game: Game): Game => {
 
         const object = c.object;
 
-        const objectData = game.data.mapObjects[object.dataId];
+        const objectData = game.data.objects[object.dataId];
 
         const newObject = objectHandlers.reduce((o, h) => {
           if (h.objectTest && h.objectTest(o) && h.objectDataTest && h.objectDataTest(objectData) && h.turnStart) {
@@ -397,7 +400,7 @@ export const endGameTurn = (game: Game): Game => ({
 
       const object = c.object;
 
-      const objectData = game.data.mapObjects[object.dataId];
+      const objectData = game.data.objects[object.dataId];
 
       const newObject = objectHandlers.reduce((o, h) => {
         if (h.objectTest && h.objectTest(o) && h.objectDataTest && h.objectDataTest(objectData) && h.turnEnd) {
@@ -417,7 +420,7 @@ export const endGameTurn = (game: Game): Game => ({
   turn: game.turn + 1,
 });
 
-export const moveGameObject = (game: Game, id: string, direction: MapObjectOrientation) => {
+export const moveGameObject = (game: Game, id: string, direction: Direction) => {
   const object = getObjectById(game.map, id);
 
   if (!object || !isMobileObject(object)) {

@@ -1,4 +1,4 @@
-import { HeroClassData, MapObjectOrientation, MobileObject, TerrainData } from "heroes-core";
+import { Direction, HeroClassData, MobileObject, TerrainData } from "heroes-core";
 
 import { ObjectId } from "../ObjectId";
 import { HeroObject } from "../objects";
@@ -28,7 +28,7 @@ describe("getMovementCost", () => {
       dataId: "",
       id: "",
       mobility: 0,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
   };
 
   const defaultHeroObject: HeroObject = {
@@ -42,7 +42,7 @@ describe("getMovementCost", () => {
       luck: 0,
       mobility: 0,
       morale: 0,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
       owner: "",
       skills: {},
   };
@@ -53,7 +53,7 @@ describe("getMovementCost", () => {
       baseMovementCost: 1,
     };
 
-    const result = getMovementCost(defaultObject, MapObjectOrientation.North, defaultTerrainData.id, data);
+    const result = getMovementCost(defaultObject, Direction.North, defaultTerrainData.id, data);
 
     expect(result).toBe(1);
   });
@@ -75,7 +75,7 @@ describe("getMovementCost", () => {
       },
     };
 
-    const result = getMovementCost(defaultObject, MapObjectOrientation.North, defaultTerrainData.id, data);
+    const result = getMovementCost(defaultObject, Direction.North, defaultTerrainData.id, data);
 
     expect(result).toBe(2);
   });
@@ -90,7 +90,7 @@ describe("getMovementCost", () => {
       },
     };
 
-    const result = getMovementCost(defaultObject, MapObjectOrientation.NorthEast, defaultTerrainData.id, data);
+    const result = getMovementCost(defaultObject, Direction.NorthEast, defaultTerrainData.id, data);
 
     expect(result).toBe(2);
   });
@@ -117,7 +117,7 @@ describe("getMovementCost", () => {
       heroClass: heroClassData.id,
     };
 
-    const result = getMovementCost(object, MapObjectOrientation.North, defaultTerrainData.id, data);
+    const result = getMovementCost(object, Direction.North, defaultTerrainData.id, data);
 
     expect(result).toBe(2);
   });
@@ -154,7 +154,7 @@ describe("getMovementCost", () => {
       heroClass: heroClassData.id,
     };
 
-    const result = getMovementCost(object, MapObjectOrientation.North, terrainData.id, data);
+    const result = getMovementCost(object, Direction.North, terrainData.id, data);
 
     expect(result).toBe(3);
   });
@@ -188,7 +188,7 @@ describe("getMovementCost", () => {
       heroClass: defaultHeroClassData.id,
     };
 
-    const result = getMovementCost(object, MapObjectOrientation.North, terrainData.id, data);
+    const result = getMovementCost(object, Direction.North, terrainData.id, data);
 
     expect(result).toBe(2);
   });

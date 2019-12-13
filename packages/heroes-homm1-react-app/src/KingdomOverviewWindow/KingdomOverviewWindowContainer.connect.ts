@@ -39,7 +39,7 @@ const mapStateToProps = (state: AppState): Pick<KingdomOverviewWindowContainerPr
 
   const mines = ownedObjects
     .filter((o) => {
-      const objectData = state.game.data.mapObjects[o.dataId];
+      const objectData = state.game.data.objects[o.dataId];
 
       return isResourceGeneratorObjectData(objectData);
     });

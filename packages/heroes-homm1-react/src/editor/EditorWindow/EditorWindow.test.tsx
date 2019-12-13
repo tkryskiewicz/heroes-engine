@@ -1,7 +1,7 @@
 import { mount } from "enzyme";
 import React from "react";
 
-import { MapObjectOrientation } from "heroes-core";
+import { Direction } from "heroes-core";
 import { byTestId } from "heroes-test-helpers";
 
 import { EditorWindow, EditorWindowProps } from "./EditorWindow";
@@ -28,7 +28,7 @@ describe("EditorWindow", () => {
 
     control.simulate("click");
 
-    expect(props.onScrollTopLeft).toHaveBeenCalledWith(MapObjectOrientation.NorthWest);
+    expect(props.onScrollTopLeft).toHaveBeenCalledWith(Direction.NorthWest);
   });
 
   it("should handle scroll top-right click", () => {
@@ -42,7 +42,7 @@ describe("EditorWindow", () => {
 
     control.simulate("click");
 
-    expect(props.onScrollTopRight).toHaveBeenCalledWith(MapObjectOrientation.NorthEast);
+    expect(props.onScrollTopRight).toHaveBeenCalledWith(Direction.NorthEast);
   });
 
   it("should handle scroll bottom-left click", () => {
@@ -56,7 +56,7 @@ describe("EditorWindow", () => {
 
     control.simulate("click");
 
-    expect(props.onScrollBottomLeft).toHaveBeenCalledWith(MapObjectOrientation.SouthWest);
+    expect(props.onScrollBottomLeft).toHaveBeenCalledWith(Direction.SouthWest);
   });
 
   it("should handle scroll bottom right click", () => {
@@ -70,7 +70,7 @@ describe("EditorWindow", () => {
 
     control.simulate("click");
 
-    expect(props.onScrollBottomRight).toHaveBeenCalledWith(MapObjectOrientation.SouthEast);
+    expect(props.onScrollBottomRight).toHaveBeenCalledWith(Direction.SouthEast);
   });
 
   it("should render vertical cell numbers", () => {

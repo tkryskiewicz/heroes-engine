@@ -1,4 +1,4 @@
-import { MapObjectOrientation, Resources, TroopSelection } from "heroes-core";
+import { Direction, Resources, TroopSelection } from "heroes-core";
 import { ArtifactSelection } from "heroes-homm1";
 
 export enum GameActionType {
@@ -143,10 +143,10 @@ export const visitMapObject = (id: string, hero: string): VisitMapObjectAction =
 export interface MoveObjectAction {
   readonly type: GameActionType.MoveObject;
   readonly id: string;
-  readonly direction: MapObjectOrientation;
+  readonly direction: Direction;
 }
 
-export const moveObject = (id: string, direction: MapObjectOrientation): MoveObjectAction => ({
+export const moveObject = (id: string, direction: Direction): MoveObjectAction => ({
   direction,
   id,
   type: GameActionType.MoveObject,

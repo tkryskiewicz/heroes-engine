@@ -21,17 +21,17 @@ import {
   buyMageGuildSpellBook,
   campaignScenarios,
   changeHeroObjectHero,
-  createGameMapObject,
+  createGameObject,
   creatures,
   DiagonalMovementCostModifier,
   EditorHeroArtifactCount,
   EditorMaxCreatureCount,
   EditorMaxHeroExperience,
   endGameTurn,
+  gameObjects,
   heroClasses,
   heroes,
   HeroObject,
-  mapObjects,
   moveGameObject,
   ObjectId,
   PlayerColorId,
@@ -75,7 +75,7 @@ const data: GameData = {
     ...p,
     [c.id]: c,
   }), {}),
-  mapObjects: mapObjects.reduce((p, c) => ({
+  objects: gameObjects.reduce((p, c) => ({
     ...p,
     [c.id]: c,
   }), {}),
@@ -109,7 +109,7 @@ Object.keys(data.heroClasses).forEach((hc, i) => {
 
   const object = changeObjectOwner(
     changeHeroObjectHero(
-      createGameMapObject(`hero/${i}`, ObjectId.Hero, data) as HeroObject,
+      createGameObject(`hero/${i}`, ObjectId.Hero, data) as HeroObject,
       heroId,
       data,
     ),
@@ -119,7 +119,7 @@ Object.keys(data.heroClasses).forEach((hc, i) => {
 });
 
 Object.keys(data.resources).forEach((r, i) => {
-  const object = createGameMapObject(`treasure/${i}`, r, data);
+  const object = createGameObject(`treasure/${i}`, r, data);
 
   map = placeObject(map, createPoint(1 + i, 1), object);
 });

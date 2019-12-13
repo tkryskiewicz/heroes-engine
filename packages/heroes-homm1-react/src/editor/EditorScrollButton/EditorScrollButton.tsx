@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MapObjectOrientation } from "heroes-core";
+import { Direction } from "heroes-core";
 import { noop } from "heroes-helpers";
 
 import { buttonImages } from "./assets";
@@ -9,8 +9,8 @@ import { ImageButton } from "../../base";
 
 export interface EditorScrollButtonProps {
   readonly className?: string;
-  readonly direction: MapObjectOrientation;
-  readonly onClick: (direction: MapObjectOrientation) => void;
+  readonly direction: Direction;
+  readonly onClick: (direction: Direction) => void;
 }
 
 export class EditorScrollButton extends React.Component<EditorScrollButtonProps> {

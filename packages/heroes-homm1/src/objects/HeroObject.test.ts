@@ -1,11 +1,10 @@
 import {
   CreatureData,
+  Direction,
   GameObject,
   HeroClassData,
   ItemData,
-  MapObject,
   MapObjectData,
-  MapObjectOrientation,
   MobilityModifierObjectData,
 } from "heroes-core";
 
@@ -67,7 +66,7 @@ describe("initializeHeroObject", () => {
       luck: 0,
       mobility: 0,
       morale: 0,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
       owner: undefined,
       skills: {},
     };
@@ -89,7 +88,7 @@ describe("isHeroObject", () => {
       luck: 0,
       mobility: 0,
       morale: 0,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
       owner: undefined,
       skills: {},
     };
@@ -100,7 +99,7 @@ describe("isHeroObject", () => {
   });
 
   it("should return false when not hero object", () => {
-    const object: MapObject = {
+    const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
@@ -157,7 +156,7 @@ describe("getInitialMobility", () => {
       [defaultHeroClassData.id]: defaultHeroClassData,
     },
     items: {},
-    mapObjects: {},
+    objects: {},
   };
 
   const defaultObject: HeroObject = {
@@ -171,7 +170,7 @@ describe("getInitialMobility", () => {
       luck: 0,
       mobility: 0,
       morale: 0,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
       owner: "",
       skills: {},
   };
@@ -350,7 +349,7 @@ describe("getInitialMobility", () => {
 
     const data: Parameters<typeof getInitialMobility>[4] = {
       ...defaultData,
-      mapObjects: {
+      objects: {
         [mapObjectData.id]: mapObjectData,
       },
     };
@@ -360,7 +359,7 @@ describe("getInitialMobility", () => {
       baseMobility: 1,
     };
 
-    const mapObject: MapObject = {
+    const mapObject: GameObject = {
       dataId: mapObjectData.id,
       id: "mapObject",
     };

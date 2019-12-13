@@ -4,13 +4,14 @@ import {
   changeArmedObjectArmy,
   changeObjectOwner,
   GameData,
+  GameObject,
   isCreatureObject,
-  MapObject,
+  isMapObjectData,
   Troop,
 } from "heroes-core";
 import {
   changeHeroObjectHero,
-  createGameMapObject,
+  createGameObject,
   CreatureObjectDetails,
   getCreatureObjectDetails,
   getHeroObjectDetails,
@@ -220,13 +221,14 @@ const objectOrder: string[] = [
 
 // TODO: add town objects
 export const getObjects = (type: MapObjectType, data: GameData): string[] =>
-  Object.values(data.mapObjects)
+  Object.values(data.objects)
+    .filter(isMapObjectData)
     .filter((o) => o.type === type || (Array.isArray(o.type) && o.type.includes(type)))
     .map((o) => o.id)
     .sort((a, b) => objectOrder.indexOf(a) - objectOrder.indexOf(b));
 
-export const createEditorMapObject = (id: string, objectDataId: string, data: GameData): MapObject => {
-  const object = createGameMapObject(id, objectDataId, data);
+export const createEditorMapObject = (id: string, objectDataId: string, data: GameData): GameObject => {
+  const object = createGameObject(id, objectDataId, data);
 
   // FIXME
   if (isHeroObject(object)) {
@@ -251,8 +253,8 @@ export const createEditorMapObject = (id: string, objectDataId: string, data: Ga
   return object;
 };
 
-export const getObjectDetails = (object: MapObject, data: GameData): ObjectDetails | undefined => {
-  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.mapObjects[object.dataId])) {
+export const getObjectDetails = (object: GameObject, data: GameData): ObjectDetails | undefined => {
+  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.objects[object.dataId])) {
     return getCreatureObjectDetails(object);
   }
 
@@ -266,7 +268,7 @@ export const getObjectDetails = (object: MapObject, data: GameData): ObjectDetai
 };
 
 export const renderObjectDetails = (
-  object: MapObject,
+  object: GameObject,
   value: ObjectDetails,
   data: GameData,
   props: {
@@ -275,7 +277,7 @@ export const renderObjectDetails = (
     readonly onCloseClick: () => void;
   },
 ) => {
-  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.mapObjects[object.dataId])) {
+  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.objects[object.dataId])) {
     return (
       <CreatureMapObjectDetailsWindow
         visible={true}
@@ -315,8 +317,8 @@ export const renderObjectDetails = (
   }
 };
 
-export const setObjectDetails = (object: MapObject, value: ObjectDetails, data: GameData): MapObject => {
-  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.mapObjects[object.dataId])) {
+export const setObjectDetails = (object: GameObject, value: ObjectDetails, data: GameData): GameObject => {
+  if (isCreatureObject(object, data) || isRandomCreatureObject(object, data.objects[object.dataId])) {
     return setCreatureObjectDetails(object, value as CreatureObjectDetails);
   }
 

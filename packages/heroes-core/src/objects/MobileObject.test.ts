@@ -1,5 +1,5 @@
+import { Direction } from "../Direction";
 import { GameObject, GameObjectData } from "../GameObject";
-import { MapObjectOrientation } from "../map";
 import {
   canMobileObjectMove,
   initializeMobileObject,
@@ -51,7 +51,7 @@ describe("initializeMobileObject", () => {
     const expected: MobileObject = {
       ...object,
       mobility: 1,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
     };
 
     expect(result).toEqual(expected);
@@ -64,7 +64,7 @@ describe("isMobileObject", () => {
       dataId: "dataId",
       id: "id",
       mobility: 0,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
     };
 
     const result = isMobileObject(object);
@@ -90,7 +90,7 @@ describe("canMobileObjectMove", () => {
       dataId: "dataId",
       id: "id",
       mobility: 0,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
     };
 
     const result = canMobileObjectMove(object);
@@ -103,7 +103,7 @@ describe("canMobileObjectMove", () => {
       dataId: "dataId",
       id: "id",
       mobility: 1,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
     };
 
     const result = canMobileObjectMove(object);
@@ -118,14 +118,14 @@ describe("moveMobileObject", () => {
       dataId: "dataId",
       id: "id",
       mobility: 0,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
     };
 
-    const result = moveMobileObject(object, MapObjectOrientation.South, 0);
+    const result = moveMobileObject(object, Direction.South, 0);
 
     const expected: MobileObject = {
       ...object,
-      orientation: MapObjectOrientation.South,
+      orientation: Direction.South,
     };
 
     expect(result).toEqual(expected);
@@ -136,10 +136,10 @@ describe("moveMobileObject", () => {
       dataId: "dataId",
       id: "id",
       mobility: 1,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
     };
 
-    const result = moveMobileObject(object, MapObjectOrientation.North, 1);
+    const result = moveMobileObject(object, Direction.North, 1);
 
     const expected: MobileObject = {
       ...object,
@@ -156,7 +156,7 @@ describe("resetMobileObjectMobility", () => {
       dataId: "dataId",
       id: "id",
       mobility: 1,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
     };
 
     const result = resetMobileObjectMobility(object);

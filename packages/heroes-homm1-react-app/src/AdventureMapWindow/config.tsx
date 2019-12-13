@@ -2,7 +2,10 @@ import React from "react";
 import { Dispatch } from "redux";
 
 import {
+  Direction,
   GameData,
+  GameObject,
+  GameObjectData,
   getVisitor,
   isDwellingObject,
   isDwellingObjectData,
@@ -11,9 +14,6 @@ import {
   isOwnableObject,
   isOwnableObjectData,
   isTreasureObject,
-  MapObject,
-  MapObjectData,
-  MapObjectOrientation,
   wasVisitedBy,
 } from "heroes-core";
 import {
@@ -40,9 +40,9 @@ import {
 } from "heroes-homm1-state";
 
 export const renderObjectDetails = (
-  object: MapObject,
-  objectData: MapObjectData,
-  activeObject: MapObject | undefined,
+  object: GameObject,
+  objectData: GameObjectData,
+  activeObject: GameObject | undefined,
   data: GameData,
   props: {
     readonly onConfirmClick: () => void;
@@ -107,25 +107,25 @@ export const renderObjectDetails = (
 
 export const onKeyDown = (
   event: React.KeyboardEvent<HTMLDivElement>,
-  activeObject: MapObject | undefined,
+  activeObject: GameObject | undefined,
   dispatch: Dispatch,
 ) => {
   if (activeObject && isHeroObject(activeObject)) {
     switch (event.keyCode) {
       case 37:
-        dispatch(gameActions.moveObject(activeObject.id, MapObjectOrientation.West));
+        dispatch(gameActions.moveObject(activeObject.id, Direction.West));
 
         break;
       case 38:
-        dispatch(gameActions.moveObject(activeObject.id, MapObjectOrientation.North));
+        dispatch(gameActions.moveObject(activeObject.id, Direction.North));
 
         break;
       case 39:
-        dispatch(gameActions.moveObject(activeObject.id, MapObjectOrientation.East));
+        dispatch(gameActions.moveObject(activeObject.id, Direction.East));
 
         break;
       case 40:
-        dispatch(gameActions.moveObject(activeObject.id, MapObjectOrientation.South));
+        dispatch(gameActions.moveObject(activeObject.id, Direction.South));
 
         break;
     }
@@ -134,9 +134,9 @@ export const onKeyDown = (
 
 export const onCellClick = (
   player: string,
-  object: MapObject,
-  objectData: MapObjectData,
-  activeObject: MapObject | undefined,
+  object: GameObject,
+  objectData: GameObjectData,
+  activeObject: GameObject | undefined,
   data: GameData,
   dispatch: Dispatch,
 ) => {

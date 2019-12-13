@@ -1,4 +1,4 @@
-import { MapObjectOrientation } from "heroes-core";
+import { Direction } from "heroes-core";
 
 import { ObjectId } from "../ObjectId";
 import { HeroObject } from "../objects";
@@ -27,7 +27,7 @@ describe("getHeroObjectDetails", () => {
       luck: 0,
       mobility: 0,
       morale: 0,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
       owner: "player",
       skills: {},
     };
@@ -66,7 +66,7 @@ describe("setHeroObjectDetails", () => {
       luck: 0,
       mobility: 0,
       morale: 0,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
       owner: "player",
       skills: {},
     };

@@ -1,7 +1,7 @@
-import { MapObject } from "./MapObject";
+import { GameObject } from "../GameObject";
 
 export interface MapCell {
   readonly terrain: string;
   readonly terrainVariant: number;
-  readonly object?: MapObject;
+  readonly object?: GameObject;
 }

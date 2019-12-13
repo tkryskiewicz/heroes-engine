@@ -10,6 +10,7 @@ export {
 } from "./Battlefield";
 export { CombatSide } from "./CombatSide";
 export { CreatureData, Damage } from "./Creature";
+export * from "./Direction";
 export {
   Game,
   GameData,
