@@ -10,5 +10,6 @@ export const isItemObjectData = (objectData: GameObjectData): objectData is Item
 
 export const constructItemObjectItem = (objectData: ItemObjectData): Item => ({
   data: {},
+  dataId: objectData.id,
   id: objectData.item,
 });

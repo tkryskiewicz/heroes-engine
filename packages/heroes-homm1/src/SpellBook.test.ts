@@ -19,6 +19,7 @@ describe("constructSpellBook", () => {
           },
         ],
       },
+      dataId: ArtifactId.Spellbook,
       id: ArtifactId.Spellbook,
     };
 

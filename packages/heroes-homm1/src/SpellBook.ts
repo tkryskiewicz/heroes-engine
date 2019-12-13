@@ -18,5 +18,6 @@ export const constructSpellBook = (spells: SpellBookSpell[]): SpellBook => ({
   data: {
     spells,
   },
+  dataId: ArtifactId.Spellbook,
   id: ArtifactId.Spellbook,
 });

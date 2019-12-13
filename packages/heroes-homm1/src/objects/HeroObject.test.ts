@@ -328,6 +328,7 @@ describe("getInitialMobility", () => {
       items: [
         {
           data: {},
+          dataId: itemData.id,
           id: itemData.id,
         },
       ],

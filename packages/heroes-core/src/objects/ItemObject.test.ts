@@ -40,6 +40,7 @@ describe("constructItemObjectItem", () => {
 
     const expected: Item = {
       data: {},
+      dataId: "dataId",
       id: "item",
     };
 
