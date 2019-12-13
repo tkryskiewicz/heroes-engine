@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MapObjectOrientation } from "heroes-core";
+import { Direction } from "heroes-core";
 import { noop } from "heroes-helpers";
 
 import * as styles from "./EditorSlider.module.scss";
@@ -33,7 +33,7 @@ export class EditorSlider extends React.Component<EditorSliderProps> {
       <div className={styles.root}>
         <EditorScrollButton
           className={styles.decrease}
-          direction={MapObjectOrientation.West}
+          direction={Direction.West}
           onClick={this.onDecreaseClick}
         />
         <div className={styles.track}>
@@ -45,7 +45,7 @@ export class EditorSlider extends React.Component<EditorSliderProps> {
         </div>
         <EditorScrollButton
           className={styles.increase}
-          direction={MapObjectOrientation.East}
+          direction={Direction.East}
           onClick={this.onIncreaseClick}
         />
       </div>

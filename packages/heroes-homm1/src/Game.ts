@@ -5,6 +5,7 @@ import {
   buildTownStructure,
   canMobileObjectMove,
   CreatureObjectData,
+  Direction,
   DwellingObjectData,
   endTownTurn,
   EquipableObjectData,
@@ -44,7 +45,6 @@ import {
   isResourceGeneratorObjectData,
   isTreasureObjectData,
   LimitedInteractionObjectData,
-  MapObjectOrientation,
   MobileObjectData,
   moveMobileObject,
   moveObject,
@@ -420,7 +420,7 @@ export const endGameTurn = (game: Game): Game => ({
   turn: game.turn + 1,
 });
 
-export const moveGameObject = (game: Game, id: string, direction: MapObjectOrientation) => {
+export const moveGameObject = (game: Game, id: string, direction: Direction) => {
   const object = getObjectById(game.map, id);
 
   if (!object || !isMobileObject(object)) {

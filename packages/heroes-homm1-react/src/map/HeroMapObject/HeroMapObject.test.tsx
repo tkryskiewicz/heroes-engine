@@ -1,7 +1,7 @@
 import { mount } from "enzyme";
 import React from "react";
 
-import { MapObjectOrientation } from "heroes-core";
+import { Direction } from "heroes-core";
 import { byTestId } from "heroes-test-helpers";
 
 import { HeroMapObject, HeroMapObjectProps } from "./HeroMapObject";
@@ -9,7 +9,7 @@ import { HeroMapObject, HeroMapObjectProps } from "./HeroMapObject";
 describe("HeroMapObject", () => {
   const defaultProps: HeroMapObjectProps = {
     heroClass: "",
-    orientation: MapObjectOrientation.North,
+    orientation: Direction.North,
   };
 
   it("should handle click", () => {

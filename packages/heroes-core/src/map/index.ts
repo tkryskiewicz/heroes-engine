@@ -1,4 +1,3 @@
-export { MapObjectOrientation, translatePointDirection, isDiagonalDirection } from "./Direction";
 export {
   Map,
   createMap,

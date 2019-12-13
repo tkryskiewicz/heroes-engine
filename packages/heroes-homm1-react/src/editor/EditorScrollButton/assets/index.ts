@@ -1,35 +1,35 @@
-import { MapObjectOrientation } from "heroes-core";
+import { Direction } from "heroes-core";
 
 const buttonImages = {
-  [MapObjectOrientation.East]: {
+  [Direction.East]: {
     disabled: require("./east/disabled.jpg"),
     enabled: require("./east/enabled.jpg"),
   },
-  [MapObjectOrientation.North]: {
+  [Direction.North]: {
     disabled: require("./north/disabled.jpg"),
     enabled: require("./north/enabled.jpg"),
   },
-  [MapObjectOrientation.NorthEast]: {
+  [Direction.NorthEast]: {
     disabled: require("./north-east/disabled.jpg"),
     enabled: require("./north-east/enabled.jpg"),
   },
-  [MapObjectOrientation.NorthWest]: {
+  [Direction.NorthWest]: {
     disabled: require("./north-west/disabled.jpg"),
     enabled: require("./north-west/enabled.jpg"),
   },
-  [MapObjectOrientation.South]: {
+  [Direction.South]: {
     disabled: require("./south/disabled.jpg"),
     enabled: require("./south/enabled.jpg"),
   },
-  [MapObjectOrientation.SouthEast]: {
+  [Direction.SouthEast]: {
     disabled: require("./south-east/disabled.jpg"),
     enabled: require("./south-east/enabled.jpg"),
   },
-  [MapObjectOrientation.SouthWest]: {
+  [Direction.SouthWest]: {
     disabled: require("./south-west/disabled.jpg"),
     enabled: require("./south-west/enabled.jpg"),
   },
-  [MapObjectOrientation.West]: {
+  [Direction.West]: {
     disabled: require("./west/disabled.jpg"),
     enabled: require("./west/enabled.jpg"),
   },

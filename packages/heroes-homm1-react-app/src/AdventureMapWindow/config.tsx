@@ -2,6 +2,7 @@ import React from "react";
 import { Dispatch } from "redux";
 
 import {
+  Direction,
   GameData,
   GameObject,
   GameObjectData,
@@ -13,7 +14,6 @@ import {
   isOwnableObject,
   isOwnableObjectData,
   isTreasureObject,
-  MapObjectOrientation,
   wasVisitedBy,
 } from "heroes-core";
 import {
@@ -113,19 +113,19 @@ export const onKeyDown = (
   if (activeObject && isHeroObject(activeObject)) {
     switch (event.keyCode) {
       case 37:
-        dispatch(gameActions.moveObject(activeObject.id, MapObjectOrientation.West));
+        dispatch(gameActions.moveObject(activeObject.id, Direction.West));
 
         break;
       case 38:
-        dispatch(gameActions.moveObject(activeObject.id, MapObjectOrientation.North));
+        dispatch(gameActions.moveObject(activeObject.id, Direction.North));
 
         break;
       case 39:
-        dispatch(gameActions.moveObject(activeObject.id, MapObjectOrientation.East));
+        dispatch(gameActions.moveObject(activeObject.id, Direction.East));
 
         break;
       case 40:
-        dispatch(gameActions.moveObject(activeObject.id, MapObjectOrientation.South));
+        dispatch(gameActions.moveObject(activeObject.id, Direction.South));
 
         break;
     }

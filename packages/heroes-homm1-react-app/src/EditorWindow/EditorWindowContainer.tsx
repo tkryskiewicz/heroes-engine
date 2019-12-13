@@ -4,6 +4,7 @@ import { InjectedIntlProps, injectIntl } from "react-intl";
 import {
   changeTerrain,
   CreatureObject,
+  Direction,
   GameData,
   GameObject,
   getCellIndex,
@@ -11,7 +12,6 @@ import {
   getObjectById,
   isMapObjectData,
   isSamePoint,
-  MapObjectOrientation,
   MapPoint,
   nextOption,
   placeObject,
@@ -378,19 +378,19 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onScrollNorthWest = () => {
-    this.onScroll(MapObjectOrientation.NorthWest);
+    this.onScroll(Direction.NorthWest);
   }
 
   private readonly onScrollNorthEast = () => {
-    this.onScroll(MapObjectOrientation.NorthEast);
+    this.onScroll(Direction.NorthEast);
   }
 
   private readonly onScrollSouthWest = () => {
-    this.onScroll(MapObjectOrientation.SouthWest);
+    this.onScroll(Direction.SouthWest);
   }
 
   private readonly onScrollSouthEast = () => {
-    this.onScroll(MapObjectOrientation.SouthEast);
+    this.onScroll(Direction.SouthEast);
   }
 
   private readonly renderVerticalCellNumbers = () => {
@@ -436,11 +436,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onScrollWest = () => {
-    this.onScroll(MapObjectOrientation.West);
+    this.onScroll(Direction.West);
   }
 
   private readonly onScrollEast = () => {
-    this.onScroll(MapObjectOrientation.East);
+    this.onScroll(Direction.East);
   }
 
   private readonly renderVerticalScrollbar = () => {
@@ -456,11 +456,11 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onScrollNorth = () => {
-    this.onScroll(MapObjectOrientation.North);
+    this.onScroll(Direction.North);
   }
 
   private readonly onScrollSouth = () => {
-    this.onScroll(MapObjectOrientation.South);
+    this.onScroll(Direction.South);
   }
 
   private readonly renderOptions = () => {
@@ -766,24 +766,24 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
     return this.props.zoomed ? MapSize : MapSize * 2;
   }
 
-  private readonly onScroll = (direction: MapObjectOrientation) => {
+  private readonly onScroll = (direction: Direction) => {
     const { scenario, position } = this.props;
 
     // TODO: simplify
     let point = position;
 
-    if ([MapObjectOrientation.NorthWest, MapObjectOrientation.North, MapObjectOrientation.NorthEast]
+    if ([Direction.NorthWest, Direction.North, Direction.NorthEast]
       .includes(direction) && position.y > 0) {
       point = translatePoint(point, 0, -1);
-    } else if ([MapObjectOrientation.SouthWest, MapObjectOrientation.South, MapObjectOrientation.SouthEast]
+    } else if ([Direction.SouthWest, Direction.South, Direction.SouthEast]
       .includes(direction) && position.y < scenario.map.height - this.getCellCount()) {
       point = translatePoint(point, 0, 1);
     }
 
-    if ([MapObjectOrientation.NorthWest, MapObjectOrientation.West, MapObjectOrientation.SouthWest]
+    if ([Direction.NorthWest, Direction.West, Direction.SouthWest]
       .includes(direction) && position.x > 0) {
       point = translatePoint(point, -1, 0);
-    } else if ([MapObjectOrientation.NorthEast, MapObjectOrientation.East, MapObjectOrientation.SouthEast]
+    } else if ([Direction.NorthEast, Direction.East, Direction.SouthEast]
       .includes(direction) && position.x < scenario.map.width - this.getCellCount()) {
       point = translatePoint(point, 1, 0);
     }

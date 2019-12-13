@@ -1,22 +1,22 @@
 import React from "react";
 
-import { MapObjectOrientation } from "heroes-core";
+import { Direction } from "heroes-core";
 
 import { OrientableMapObject } from "./OrientableMapObject";
 
 const orientationMap = {
-  [MapObjectOrientation.North]: MapObjectOrientation.North,
-  [MapObjectOrientation.NorthEast]: MapObjectOrientation.NorthEast,
-  [MapObjectOrientation.East]: MapObjectOrientation.East,
-  [MapObjectOrientation.SouthEast]: MapObjectOrientation.SouthEast,
-  [MapObjectOrientation.South]: MapObjectOrientation.South,
-  [MapObjectOrientation.SouthWest]: MapObjectOrientation.SouthEast,
-  [MapObjectOrientation.West]: MapObjectOrientation.East,
-  [MapObjectOrientation.NorthWest]: MapObjectOrientation.NorthEast,
+  [Direction.North]: Direction.North,
+  [Direction.NorthEast]: Direction.NorthEast,
+  [Direction.East]: Direction.East,
+  [Direction.SouthEast]: Direction.SouthEast,
+  [Direction.South]: Direction.South,
+  [Direction.SouthWest]: Direction.SouthEast,
+  [Direction.West]: Direction.East,
+  [Direction.NorthWest]: Direction.NorthEast,
 };
 
 export interface WithOrientableMapObjectProps {
-  readonly orientation: MapObjectOrientation;
+  readonly orientation: Direction;
 }
 
 export const withOrientableMapObject = () =>

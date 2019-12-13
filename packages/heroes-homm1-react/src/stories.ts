@@ -1,6 +1,6 @@
 import { number, select } from "@storybook/addon-knobs";
 
-import { CombatSide, GameDate, MapObjectOrientation, Resources } from "heroes-core";
+import { CombatSide, Direction, GameDate, Resources } from "heroes-core";
 import {
   ArmySize,
   ArtifactId,
@@ -151,8 +151,8 @@ export const mapObject = (name: string) =>
 export const mapObjectSize = (name: string) =>
   select(name, ["large", "small"], "large");
 
-export const mapObjectOrientation = (name: string) =>
-  select<MapObjectOrientation>(name, Object.values(MapObjectOrientation), MapObjectOrientation.North);
+export const direction = (name: string) =>
+  select<Direction>(name, Object.values(Direction), Direction.North);
 
 const dwellingObjectOptions: ObjectId[] = [
   ObjectId.Cottage,

@@ -1,10 +1,10 @@
 import {
   CreatureData,
+  Direction,
   GameObject,
   HeroClassData,
   ItemData,
   MapObjectData,
-  MapObjectOrientation,
   MobilityModifierObjectData,
 } from "heroes-core";
 
@@ -66,7 +66,7 @@ describe("initializeHeroObject", () => {
       luck: 0,
       mobility: 0,
       morale: 0,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
       owner: undefined,
       skills: {},
     };
@@ -88,7 +88,7 @@ describe("isHeroObject", () => {
       luck: 0,
       mobility: 0,
       morale: 0,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
       owner: undefined,
       skills: {},
     };
@@ -170,7 +170,7 @@ describe("getInitialMobility", () => {
       luck: 0,
       mobility: 0,
       morale: 0,
-      orientation: MapObjectOrientation.North,
+      orientation: Direction.North,
       owner: "",
       skills: {},
   };
