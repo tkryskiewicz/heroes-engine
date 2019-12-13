@@ -5,11 +5,11 @@ import React from "react";
 
 import {
   ArtifactId,
-  HeroClass,
-  MapObjectId,
+  HeroClassId,
   MoraleModifier,
   MoraleModifierType,
   MoraleType,
+  ObjectId,
   TownId,
 } from "heroes-homm1";
 
@@ -27,7 +27,7 @@ storiesOf("prompt|MoraleDetailsPrompt", module)
   .add("modifiers", () => {
     const modifiers: MoraleModifier[] = [
       {
-        heroClass: HeroClass.Knight,
+        heroClass: HeroClassId.Knight,
         type: MoraleModifierType.HeroClass,
         value: 1,
       },
@@ -47,12 +47,12 @@ storiesOf("prompt|MoraleDetailsPrompt", module)
         value: 1,
       },
       {
-        structure: MapObjectId.Oasis,
+        structure: ObjectId.Oasis,
         type: MoraleModifierType.StructureVisited,
         value: 1,
       },
       {
-        structure: MapObjectId.Graveyard,
+        structure: ObjectId.Graveyard,
         type: MoraleModifierType.StructureRobber,
         value: -1,
       },

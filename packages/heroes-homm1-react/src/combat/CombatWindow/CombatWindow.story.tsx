@@ -8,7 +8,7 @@ import {
   BattlefieldHeigth,
   BattlefieldWidth,
   CreatureId,
-  HeroClass,
+  HeroClassId,
   HeroId,
   PlayerColorId,
   TerrainVariants,
@@ -21,7 +21,7 @@ storiesOf("combat|CombatWindow", module)
   .add("default", () => {
     const attacker: CombatWindowProps["attacker"] = {
       hero: {
-        heroClass: HeroClass.Knight,
+        heroClass: HeroClassId.Knight,
         id: HeroId.LordKilburn,
         luck: 0,
         morale: 0,
@@ -32,7 +32,7 @@ storiesOf("combat|CombatWindow", module)
 
     const defender: CombatWindowProps["defender"] = {
       hero: {
-        heroClass: HeroClass.Barbarian,
+        heroClass: HeroClassId.Barbarian,
         id: HeroId.LordHaart,
         luck: 0,
         morale: 0,

@@ -27,7 +27,7 @@ import {
   resources,
   ScenarioDifficulty,
   ScenarioSize,
-  Skill,
+  SkillId,
   SoundVolume,
   SpellId,
   SpellType,
@@ -64,15 +64,15 @@ export const heroClass = (name: string) =>
   select<HeroClassId>(name, Object.values(HeroClassId), HeroClassId.Knight);
 
 export const skill = (name: string) =>
-  select<Skill>(name, Object.values(Skill), Skill.Attack);
+  select<SkillId>(name, Object.values(SkillId), SkillId.Attack);
 
 export const skillValue = (name: string) => number(name, 0, { range: true, min: 0, max: 999, step: 1 });
 
 export const skills = (name: string) => ({
-  [Skill.Attack]: skillValue(`${name} / Attack`),
-  [Skill.Defense]: skillValue(`${name} / Defense`),
-  [Skill.SpellPower]: skillValue(`${name} / Spell Power`),
-  [Skill.Knowledge]: skillValue(`${name} / Knowledge`),
+  [SkillId.Attack]: skillValue(`${name} / Attack`),
+  [SkillId.Defense]: skillValue(`${name} / Defense`),
+  [SkillId.SpellPower]: skillValue(`${name} / Spell Power`),
+  [SkillId.Knowledge]: skillValue(`${name} / Knowledge`),
 });
 
 export const morale = (name: string) => number(name, 0, { range: true, min: -3, max: 3, step: 1 });

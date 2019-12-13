@@ -4,7 +4,7 @@ import { Artifact, ArtifactData } from "./Artifact";
 import { ArtifactId } from "./ArtifactId";
 import { UltimateObjectData } from "./objects";
 import { ResourceId } from "./ResourceId";
-import { Skill } from "./Skill";
+import { SkillId } from "./SkillId";
 import { landTerrains } from "./terrains";
 import { TerrainType } from "./TerrainType";
 
@@ -14,7 +14,7 @@ const attackArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.ThunderMaceOfDominion,
     skillModifier: {
-      [Skill.Attack]: {
+      [SkillId.Attack]: {
         type: "add",
         value: 1,
       },
@@ -24,7 +24,7 @@ const attackArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.GiantFlailOfDominion,
     skillModifier: {
-      [Skill.Attack]: {
+      [SkillId.Attack]: {
         type: "add",
         value: 1,
       },
@@ -34,7 +34,7 @@ const attackArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.PowerAxeOfDominion,
     skillModifier: {
-      [Skill.Attack]: {
+      [SkillId.Attack]: {
         type: "add",
         value: 2,
       },
@@ -44,7 +44,7 @@ const attackArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.DragonSwordOfDominion,
     skillModifier: {
-      [Skill.Attack]: {
+      [SkillId.Attack]: {
         type: "add",
         value: 3,
       },
@@ -57,7 +57,7 @@ const defenseArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.ArmoredGauntletsOfProtection,
     skillModifier: {
-      [Skill.Defense]: {
+      [SkillId.Defense]: {
         type: "add",
         value: 1,
       },
@@ -67,7 +67,7 @@ const defenseArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.DefenderHelmOfProtection,
     skillModifier: {
-      [Skill.Defense]: {
+      [SkillId.Defense]: {
         type: "add",
         value: 1,
       },
@@ -77,7 +77,7 @@ const defenseArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.StealthShieldOfProtection,
     skillModifier: {
-      [Skill.Defense]: {
+      [SkillId.Defense]: {
         type: "add",
         value: 2,
       },
@@ -87,7 +87,7 @@ const defenseArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.DivineBreastplateOfProtection,
     skillModifier: {
-      [Skill.Defense]: {
+      [SkillId.Defense]: {
         type: "add",
         value: 3,
       },
@@ -100,7 +100,7 @@ const spellPowerArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.CastersBraceletOfMagic,
     skillModifier: {
-      [Skill.SpellPower]: {
+      [SkillId.SpellPower]: {
         type: "add",
         value: 2,
       },
@@ -110,7 +110,7 @@ const spellPowerArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.MagesRingOfPower,
     skillModifier: {
-      [Skill.SpellPower]: {
+      [SkillId.SpellPower]: {
         type: "add",
         value: 2,
       },
@@ -120,7 +120,7 @@ const spellPowerArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.WitchsBroachOfMagic,
     skillModifier: {
-      [Skill.SpellPower]: {
+      [SkillId.SpellPower]: {
         type: "add",
         value: 3,
       },
@@ -130,7 +130,7 @@ const spellPowerArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.ArcaneNecklaceOfMagic,
     skillModifier: {
-      [Skill.SpellPower]: {
+      [SkillId.SpellPower]: {
         type: "add",
         value: 4,
       },
@@ -143,7 +143,7 @@ const knowledgeArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.MinorScrollOfKnowledge,
     skillModifier: {
-      [Skill.Knowledge]: {
+      [SkillId.Knowledge]: {
         type: "add",
         value: 2,
       },
@@ -153,7 +153,7 @@ const knowledgeArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.MajorScrollOfKnowledge,
     skillModifier: {
-      [Skill.Knowledge]: {
+      [SkillId.Knowledge]: {
         type: "add",
         value: 3,
       },
@@ -163,7 +163,7 @@ const knowledgeArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.SuperiorScrollOfKnowledge,
     skillModifier: {
-      [Skill.Knowledge]: {
+      [SkillId.Knowledge]: {
         type: "add",
         value: 4,
       },
@@ -173,7 +173,7 @@ const knowledgeArtifacts: (ArtifactObjectData & SkillModifierObjectData)[] = [
   {
     id: ArtifactId.ForemostScrollOfKnowledge,
     skillModifier: {
-      [Skill.Knowledge]: {
+      [SkillId.Knowledge]: {
         type: "add",
         value: 5,
       },
@@ -310,7 +310,7 @@ const ultimateArtifacts: (ArtifactObjectData & SkillModifierObjectData & Ultimat
     id: ArtifactId.UltimateSwordOfDominion,
     isUltimate: true,
     skillModifier: {
-      [Skill.Attack]: {
+      [SkillId.Attack]: {
         type: "add",
         value: 12,
       },
@@ -321,7 +321,7 @@ const ultimateArtifacts: (ArtifactObjectData & SkillModifierObjectData & Ultimat
     id: ArtifactId.UltimateCloakOfProtection,
     isUltimate: true,
     skillModifier: {
-      [Skill.Defense]: {
+      [SkillId.Defense]: {
         type: "add",
         value: 12,
       },
@@ -332,7 +332,7 @@ const ultimateArtifacts: (ArtifactObjectData & SkillModifierObjectData & Ultimat
     id: ArtifactId.UltimateWandOfMagic,
     isUltimate: true,
     skillModifier: {
-      [Skill.SpellPower]: {
+      [SkillId.SpellPower]: {
         type: "add",
         value: 12,
       },
@@ -343,7 +343,7 @@ const ultimateArtifacts: (ArtifactObjectData & SkillModifierObjectData & Ultimat
     id: ArtifactId.UltimateBookOfKnowledge,
     isUltimate: true,
     skillModifier: {
-      [Skill.Knowledge]: {
+      [SkillId.Knowledge]: {
         type: "add",
         value: 12,
       },

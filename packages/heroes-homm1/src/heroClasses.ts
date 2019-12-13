@@ -2,7 +2,7 @@ import { HeroClassData } from "heroes-core";
 
 import { CreatureId } from "./creatures";
 import { HeroClassId } from "./HeroClassId";
-import { Skill } from "./Skill";
+import { SkillId } from "./SkillId";
 import { TerrainType } from "./TerrainType";
 
 export const heroClasses: HeroClassData[] = [
@@ -21,10 +21,10 @@ export const heroClasses: HeroClassData[] = [
     ],
     id: HeroClassId.Knight,
     skills: {
-      [Skill.Attack]: 1,
-      [Skill.Defense]: 2,
-      [Skill.SpellPower]: 1,
-      [Skill.Knowledge]: 1,
+      [SkillId.Attack]: 1,
+      [SkillId.Defense]: 2,
+      [SkillId.SpellPower]: 1,
+      [SkillId.Knowledge]: 1,
     },
   },
   {
@@ -42,10 +42,10 @@ export const heroClasses: HeroClassData[] = [
     ],
     id: HeroClassId.Barbarian,
     skills: {
-      [Skill.Attack]: 2,
-      [Skill.Defense]: 1,
-      [Skill.SpellPower]: 1,
-      [Skill.Knowledge]: 1,
+      [SkillId.Attack]: 2,
+      [SkillId.Defense]: 1,
+      [SkillId.SpellPower]: 1,
+      [SkillId.Knowledge]: 1,
     },
     terrainMovementCostModifier: {
       type: "multiply",
@@ -67,10 +67,10 @@ export const heroClasses: HeroClassData[] = [
     ],
     id: HeroClassId.Sorceress,
     skills: {
-      [Skill.Attack]: 0,
-      [Skill.Defense]: 0,
-      [Skill.SpellPower]: 2,
-      [Skill.Knowledge]: 3,
+      [SkillId.Attack]: 0,
+      [SkillId.Defense]: 0,
+      [SkillId.SpellPower]: 2,
+      [SkillId.Knowledge]: 3,
     },
     terrainMobilityModifier: {
       [TerrainType.Water]: {
@@ -94,10 +94,10 @@ export const heroClasses: HeroClassData[] = [
     ],
     id: HeroClassId.Warlock,
     skills: {
-      [Skill.Attack]: 0,
-      [Skill.Defense]: 0,
-      [Skill.SpellPower]: 3,
-      [Skill.Knowledge]: 2,
+      [SkillId.Attack]: 0,
+      [SkillId.Defense]: 0,
+      [SkillId.SpellPower]: 3,
+      [SkillId.Knowledge]: 2,
     },
   },
 ];

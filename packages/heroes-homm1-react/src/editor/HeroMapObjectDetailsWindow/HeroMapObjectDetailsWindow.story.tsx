@@ -11,7 +11,7 @@ import {
   EditorMaxCreatureCount,
   EditorMaxHeroExperience,
   heroes,
-  HeroMapObjectDetails,
+  HeroObjectDetails,
   playerColors,
 } from "heroes-homm1";
 
@@ -43,7 +43,7 @@ storiesOf("editor|HeroMapObjectDetailsWindow", module)
   .add("default", () => {
     const armySize = number("Army Size", 5, { range: true, min: 1, max: 5, step: 1 });
 
-    const value: HeroMapObjectDetails = {
+    const value: HeroObjectDetails = {
       army: [...new Array(armySize).keys()]
       .map(() => ({ creature: CreatureId.Peasant, count: 0 })),
       artifacts: [],

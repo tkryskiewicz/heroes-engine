@@ -4,21 +4,20 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Hero } from "heroes-core";
-import { HeroClass, HeroId, HeroLimit, MaxMobility } from "heroes-homm1";
+import { HeroClassId, HeroId, HeroLimit } from "heroes-homm1";
 
 import { HeroLocators } from "./HeroLocators";
 
 const heroes: Hero[] = [
   {
     army: [],
-    artifacts: [],
-    dataId: "hero",
     experience: 0,
-    heroClass: HeroClass.Knight,
+    heroClass: HeroClassId.Knight,
     heroId: HeroId.LordKilburn,
     id: "id",
+    items: [],
     luck: 0,
-    mobility: MaxMobility,
+    mobility: 100,
     morale: 0,
     skills: {},
   },

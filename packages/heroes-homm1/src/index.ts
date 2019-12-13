@@ -75,7 +75,7 @@ export {
   getStandardGameRating,
   initialHighScores,
 } from "./scores";
-export { Skill, SkillIds } from "./Skill";
+export { SkillId, SkillIds } from "./SkillId";
 export { SoundVolume, isSoundEnabled } from "./SoundVolume";
 export { Spell } from "./Spell";
 export { SpellBook, SpellBookSpell, constructSpellBook } from "./SpellBook";

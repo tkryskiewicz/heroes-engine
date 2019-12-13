@@ -3,7 +3,7 @@ import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { HeroClass, ResourceId, TownId } from "heroes-homm1";
+import { HeroClassId, ResourceId, TownId } from "heroes-homm1";
 
 import { Placeholder } from "../Placeholder";
 import { playerColor } from "../stories";
@@ -24,7 +24,7 @@ storiesOf("KingdomOverviewWindow", module)
       playerColor={playerColor("Player Color")}
       renderTitle={renderTitle}
       renderDate={renderDate}
-      heroClasses={Object.values(HeroClass)}
+      heroClasses={Object.values(HeroClassId)}
       renderHeroClassSummary={renderHeroClassSummary}
       towns={Object.values(TownId)}
       renderCastleSummary={renderCastleSummary}

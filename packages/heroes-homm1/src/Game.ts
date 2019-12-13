@@ -82,7 +82,7 @@ import {
   TownObject,
   TownObjectData,
 } from "./objects";
-import { Skill } from "./Skill";
+import { SkillId } from "./SkillId";
 import { constructSpellBook, SpellBookSpell } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";
 
@@ -315,7 +315,7 @@ export const buyMageGuildSpellBook = (game: Game, heroId: string, townId: string
 
   const spellBook = constructSpellBook([
     ...mageGuild.data.spells.map((s): SpellBookSpell => ({
-      charges: object.skills[Skill.Knowledge] || 0,
+      charges: object.skills[SkillId.Knowledge] || 0,
       id: s,
     })),
   ]);

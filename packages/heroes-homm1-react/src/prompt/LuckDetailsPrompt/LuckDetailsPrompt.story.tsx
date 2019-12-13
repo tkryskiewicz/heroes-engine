@@ -3,7 +3,7 @@ import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { ArtifactId, LuckModifier, LuckModifierType, LuckType, MapObjectId } from "heroes-homm1";
+import { ArtifactId, LuckModifier, LuckModifierType, LuckType, ObjectId } from "heroes-homm1";
 
 import { luckType } from "../../stories";
 import { LuckDetailsPrompt } from "./LuckDetailsPrompt";
@@ -24,7 +24,7 @@ storiesOf("prompt|LuckDetailsPrompt", module)
         value: 1,
       },
       {
-        structure: MapObjectId.Fountain,
+        structure: ObjectId.Fountain,
         type: LuckModifierType.StructureVisited,
         value: 1,
       },

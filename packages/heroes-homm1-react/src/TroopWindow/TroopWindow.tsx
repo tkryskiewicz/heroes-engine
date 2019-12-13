@@ -3,7 +3,7 @@ import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import { CreatureData, Damage, HeroSkills } from "heroes-core";
 import { noop } from "heroes-helpers";
-import { LuckType, MoraleType, Skill } from "heroes-homm1";
+import { LuckType, MoraleType, SkillId } from "heroes-homm1";
 
 import * as styles from "./TroopWindow.module.scss";
 
@@ -92,13 +92,13 @@ class TroopWindow extends React.Component<TroopWindowProps> {
           {" "}
           <FormattedNumber value={creature.attack} />
           {" "}
-          {this.renderEnhancedValue(creature.attack, skillEnhancements[Skill.Attack])}
+          {this.renderEnhancedValue(creature.attack, skillEnhancements[SkillId.Attack])}
           <br />
           <FormattedMessage {...messages.defense} />:
           {" "}
           <FormattedNumber value={creature.defense} />
           {" "}
-          {this.renderEnhancedValue(creature.defense, skillEnhancements[Skill.Defense])}
+          {this.renderEnhancedValue(creature.defense, skillEnhancements[SkillId.Defense])}
           <br />
           {creature.shots && this.renderShots(creature.shots)}
           <FormattedMessage {...messages.damage} />:
