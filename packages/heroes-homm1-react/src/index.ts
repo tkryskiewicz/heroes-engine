@@ -62,7 +62,7 @@ export {
   gameDifficulty,
   gameType,
   luckType,
-  mapObjectType,
+  objectType,
   moraleType,
   playerColor,
   resourceAmounts,

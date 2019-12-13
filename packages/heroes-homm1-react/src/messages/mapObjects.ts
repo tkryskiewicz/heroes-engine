@@ -1,61 +1,61 @@
 import { defineMessages } from "react-intl";
 
-import { MapObjectType, ObjectId } from "heroes-homm1";
+import { ObjectId, ObjectType } from "heroes-homm1";
 
 import { convertValue, unknownMessage } from "./util";
 
 const getKey = (mapObject: string) =>
   convertValue(mapObject);
 
-const mapObjectTypeMessages = defineMessages({
-  [MapObjectType.Water]: {
+const objectTypeMessages = defineMessages({
+  [ObjectType.Water]: {
     defaultMessage: "Water Objs",
     id: "game.editor.objectType.waterObjects",
   },
-  [MapObjectType.Grass]: {
+  [ObjectType.Grass]: {
     defaultMessage: "Grass Objs",
     id: "game.editor.objectType.grassObjects",
   },
-  [MapObjectType.Snow]: {
+  [ObjectType.Snow]: {
     defaultMessage: "Snow Objs",
     id: "game.editor.objectType.snowObjects",
   },
-  [MapObjectType.Swamp]: {
+  [ObjectType.Swamp]: {
     defaultMessage: "Swamp Objs",
     id: "game.editor.objectType.swampObjects",
   },
-  [MapObjectType.Lava]: {
+  [ObjectType.Lava]: {
     defaultMessage: "Lava Objs",
     id: "game.editor.objectType.lavaObjects",
   },
-  [MapObjectType.Desert]: {
+  [ObjectType.Desert]: {
     defaultMessage: "Desert Objs",
     id: "game.editor.objectType.desertObjects",
   },
-  [MapObjectType.Dirt]: {
+  [ObjectType.Dirt]: {
     defaultMessage: "Dirt Objs",
     id: "game.editor.objectType.dirtObjects",
   },
-  [MapObjectType.Town]: {
+  [ObjectType.Town]: {
     defaultMessage: "Towns",
     id: "game.editor.objectType.towns",
   },
-  [MapObjectType.Monster]: {
+  [ObjectType.Monster]: {
     defaultMessage: "Monsters",
     id: "game.editor.objectType.monsters",
   },
-  [MapObjectType.Artifact]: {
+  [ObjectType.Artifact]: {
     defaultMessage: "Artifacts",
     id: "game.editor.objectType.artifacts",
   },
-  [MapObjectType.Treasure]: {
+  [ObjectType.Treasure]: {
     defaultMessage: "Treasures",
     id: "game.editor.objectType.treasures",
   },
 });
 
-export const getMapObjectTypeNameMessage = (type: MapObjectType) =>
-  mapObjectTypeMessages[type];
+export const getObjectTypeNameMessage = (type: ObjectType) =>
+  objectTypeMessages[type];
 
 const mapObjectMessages = defineMessages({
   // mines

@@ -20,9 +20,9 @@ import {
   isHeroObject,
   isRandomCreatureObject,
   isRandomTownObject,
-  MapObjectType,
   ObjectDetails,
   ObjectId,
+  ObjectType,
   setCreatureObjectDetails,
   setHeroObjectDetails,
   setTownObjectDetails,
@@ -220,7 +220,7 @@ const objectOrder: string[] = [
 ];
 
 // TODO: add town objects
-export const getObjects = (type: MapObjectType, data: GameData): string[] =>
+export const getObjects = (type: ObjectType, data: GameData): string[] =>
   Object.values(data.objects)
     .filter(isMapObjectData)
     .filter((o) => o.type === type || (Array.isArray(o.type) && o.type.includes(type)))

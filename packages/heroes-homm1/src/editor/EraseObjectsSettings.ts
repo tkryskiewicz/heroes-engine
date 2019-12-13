@@ -1,7 +1,7 @@
-import { MapObjectType } from "../map";
+import { ObjectType } from "../ObjectType";
 
 export interface EraseObjectsSettings {
-  readonly objectTypes: MapObjectType[];
+  readonly objectTypes: ObjectType[];
   readonly allOverlays: boolean;
   readonly clearEntire: boolean;
 }

@@ -2,13 +2,13 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { noop } from "heroes-helpers";
-import { EraseObjectsSettings, MapObjectType } from "heroes-homm1";
+import { EraseObjectsSettings, ObjectType } from "heroes-homm1";
 
 import * as styles from "./EraseOptionSettingsWindow.module.scss";
 
 import { GameCheckbox } from "../../base";
 import { GameText } from "../../core";
-import { getMapObjectTypeNameMessage } from "../../messages";
+import { getObjectTypeNameMessage } from "../../messages";
 import { EditorSettingsWindow, EditorSettingsWindowProps } from "../EditorSettingsWindow";
 import { messages } from "./messages";
 
@@ -34,7 +34,7 @@ export class EraseOptionSettingsWindow extends React.Component<EraseOptionSettin
       >
         <div className={styles.root}>
           <div className={styles.basic}>
-            {Object.values(MapObjectType).map((t) => this.renderObjectTypeSetting(t))}
+            {Object.values(ObjectType).map((t) => this.renderObjectTypeSetting(t))}
           </div>
           <div className={styles.additional}>
             <div className={styles.setting}>
@@ -63,7 +63,7 @@ export class EraseOptionSettingsWindow extends React.Component<EraseOptionSettin
     );
   }
 
-  private renderObjectTypeSetting(type: MapObjectType) {
+  private renderObjectTypeSetting(type: ObjectType) {
     // FIXME: ??
     const onClick = (checked: boolean) => this.onObjectTypeSettingChange(type, checked);
 
@@ -73,7 +73,7 @@ export class EraseOptionSettingsWindow extends React.Component<EraseOptionSettin
         className={styles.setting}
       >
         <GameText size="large">
-          <FormattedMessage {...getMapObjectTypeNameMessage(type)} />:
+          <FormattedMessage {...getObjectTypeNameMessage(type)} />:
         </GameText>
         {" "}
         <GameCheckbox
@@ -84,7 +84,7 @@ export class EraseOptionSettingsWindow extends React.Component<EraseOptionSettin
     );
   }
 
-  private readonly onObjectTypeSettingChange = (objectType: MapObjectType, checked: boolean) => {
+  private readonly onObjectTypeSettingChange = (objectType: ObjectType, checked: boolean) => {
     const { value } = this.props;
 
     const newValue: EraseObjectsSettings = {

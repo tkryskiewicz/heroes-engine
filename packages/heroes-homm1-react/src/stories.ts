@@ -15,11 +15,11 @@ import {
   HeroClassId,
   HeroId,
   LuckType,
-  MapObjectType,
   MoraleType,
   MountainsStructureId,
   MovementSpeed,
   ObjectId,
+  ObjectType,
   OpponentSetting,
   PlainsStructureId,
   PlayerColorId,
@@ -166,8 +166,8 @@ export const dwellingObject = (name: string) =>
 export const editorOption = (name: string) =>
   select<EditorOption>(name, Object.values(EditorOption), EditorOption.Terrains);
 
-export const mapObjectType = (name: string) =>
-  select<MapObjectType>(name, Object.values(MapObjectType), MapObjectType.Water);
+export const objectType = (name: string) =>
+  select<ObjectType>(name, Object.values(ObjectType), ObjectType.Water);
 
 export const terrainTransition = (name: string) =>
   select<TerrainTransition>(name, Object.values(TerrainTransition), TerrainTransition.None);

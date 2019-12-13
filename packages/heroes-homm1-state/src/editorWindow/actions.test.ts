@@ -4,7 +4,7 @@ import {
   EditorOption,
   EraseObjectsSettings,
   LandMassSetting,
-  MapObjectType,
+  ObjectType,
   RandomMapSettings,
   Scenario,
   ScenarioDifficulty,
@@ -121,11 +121,11 @@ describe("editorWindowActions", () => {
   });
 
   it("should create an action to change selected object type", () => {
-    const result = changeSelectedObjectType(MapObjectType.Water);
+    const result = changeSelectedObjectType(ObjectType.Water);
 
     const expected: ChangeSelectedObjectTypeAction = {
       type: EditorWindowActionType.ChangeSelectedObjectType,
-      value: MapObjectType.Water,
+      value: ObjectType.Water,
     };
 
     expect(result).toEqual(expected);

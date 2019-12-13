@@ -56,6 +56,7 @@ export {
 export { MovementSpeed } from "./MovementSpeed";
 export * from "./ObjectId";
 export * from "./objects";
+export * from "./ObjectType";
 export { OpponentSetting, getOpponentSettingRating } from "./OpponentSetting";
 export { PlayerColorId } from "./PlayerColorId";
 export { playerColors } from "./playerColors";

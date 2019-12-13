@@ -158,7 +158,7 @@ describe("gameActions", () => {
     expect(result).toEqual(expected);
   });
 
-  it("should create an action to visit map object", () => {
+  it("should create an action to visit object", () => {
     const result = visitMapObject("id", "hero");
 
     const expected: VisitMapObjectAction = {

@@ -2,8 +2,8 @@ import { MapPoint } from "heroes-core";
 import {
   EditorOption,
   EraseObjectsSettings,
-  MapObjectType,
   ObjectDetails,
+  ObjectType,
   RandomMapSettings,
   Scenario,
   ScenarioSpecification,
@@ -105,10 +105,10 @@ export const changeSelectedTerrain = (value: string): ChangeSelectedTerrainActio
 
 export interface ChangeSelectedObjectTypeAction {
   readonly type: EditorWindowActionType.ChangeSelectedObjectType;
-  readonly value: MapObjectType;
+  readonly value: ObjectType;
 }
 
-export const changeSelectedObjectType = (value: MapObjectType): ChangeSelectedObjectTypeAction => ({
+export const changeSelectedObjectType = (value: ObjectType): ChangeSelectedObjectTypeAction => ({
   type: EditorWindowActionType.ChangeSelectedObjectType,
   value,
 });

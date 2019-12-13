@@ -3,19 +3,19 @@ import { FormattedMessage, InjectedIntlProps, injectIntl } from "react-intl";
 
 import { Direction } from "heroes-core";
 import { noop } from "heroes-helpers";
-import { MapObjectType } from "heroes-homm1";
+import { ObjectType } from "heroes-homm1";
 
 import * as styles from "./ObjectsOptionDetails.module.scss";
 
 import { GameText } from "../../core";
-import { getMapObjectTypeNameMessage } from "../../messages";
+import { getObjectTypeNameMessage } from "../../messages";
 import { EditorObjectSlot } from "../EditorObjectSlot";
 import { EditorScrollButton } from "../EditorScrollButton";
 import { messages } from "./messages";
 
 interface ObjectsOptionDetailsProps extends InjectedIntlProps {
   readonly onSlotClick: () => void;
-  readonly selectedObjectType: MapObjectType;
+  readonly selectedObjectType: ObjectType;
   readonly onPreviousTypeClick: () => void;
   readonly onNextTypeClick: () => void;
 }
@@ -33,8 +33,8 @@ class ObjectsOptionDetails extends React.Component<ObjectsOptionDetailsProps> {
   };
 
   public render() {
-    const optionNumber = Object.values(MapObjectType).indexOf(this.props.selectedObjectType) + 1;
-    const optionName = this.props.intl.formatMessage(getMapObjectTypeNameMessage(this.props.selectedObjectType));
+    const optionNumber = Object.values(ObjectType).indexOf(this.props.selectedObjectType) + 1;
+    const optionName = this.props.intl.formatMessage(getObjectTypeNameMessage(this.props.selectedObjectType));
 
     return (
       <div className={styles.root}>

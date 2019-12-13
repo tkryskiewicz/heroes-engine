@@ -13,7 +13,7 @@ import {
 } from "./actions";
 
 describe("adventureWindowActions", () => {
-  it("should create an action to open map object details", () => {
+  it("should create an action to open object details", () => {
     const result = openObjectDetails("id");
 
     const expected: OpenObjectDetailsAction = {
@@ -24,7 +24,7 @@ describe("adventureWindowActions", () => {
     expect(result).toEqual(expected);
   });
 
-  it("should create an action to close map object details", () => {
+  it("should create an action to close object details", () => {
     const result = closeObjectDetails();
 
     const expected: CloseObjectDetailsAction = {

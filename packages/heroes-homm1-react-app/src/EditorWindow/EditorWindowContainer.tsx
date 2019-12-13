@@ -28,8 +28,8 @@ import {
   EraseObjectsSettings,
   getScenarioSpecification,
   getTerrainTransition,
-  MapObjectType,
   ObjectDetails,
+  ObjectType,
   RandomMapSettings,
   Scenario,
   ScenarioSpecification,
@@ -74,8 +74,8 @@ interface EditorWindowContainerProps extends InjectedIntlProps {
   readonly selectedTerrain: string;
   readonly onSelectedTerrainChange: (value: string) => void;
 
-  readonly selectedObjectType: MapObjectType;
-  readonly onSelectedObjectTypeChange: (value: MapObjectType) => void;
+  readonly selectedObjectType: ObjectType;
+  readonly onSelectedObjectTypeChange: (value: ObjectType) => void;
   readonly selectedObject?: string;
   readonly onSelectedObjectChange: (value: string) => void;
   readonly objectsWindowVisible: boolean;
@@ -521,13 +521,13 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   }
 
   private readonly onPreviousObjectTypeClick = () => {
-    const option = previousOption<MapObjectType>(Object.values(MapObjectType), this.props.selectedObjectType);
+    const option = previousOption<ObjectType>(Object.values(ObjectType), this.props.selectedObjectType);
 
     this.props.onSelectedObjectTypeChange(option);
   }
 
   private readonly onNextObjectTypeClick = () => {
-    const option = nextOption<MapObjectType>(Object.values(MapObjectType), this.props.selectedObjectType);
+    const option = nextOption<ObjectType>(Object.values(ObjectType), this.props.selectedObjectType);
 
     this.props.onSelectedObjectTypeChange(option);
   }
@@ -584,19 +584,19 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   // FIXME
   private getTerrain() {
     switch (this.props.selectedObjectType) {
-      case MapObjectType.Water:
+      case ObjectType.Water:
         return TerrainType.Water;
-      case MapObjectType.Grass:
+      case ObjectType.Grass:
         return TerrainType.Grass;
-      case MapObjectType.Snow:
+      case ObjectType.Snow:
         return TerrainType.Snow;
-      case MapObjectType.Swamp:
+      case ObjectType.Swamp:
         return TerrainType.Swamp;
-      case MapObjectType.Lava:
+      case ObjectType.Lava:
         return TerrainType.Lava;
-      case MapObjectType.Desert:
+      case ObjectType.Desert:
         return TerrainType.Desert;
-      case MapObjectType.Dirt:
+      case ObjectType.Dirt:
         return TerrainType.Dirt;
       default:
         return undefined;

@@ -1,4 +1,4 @@
-export enum MapObjectType {
+export enum ObjectType {
   Water = "water",
   Grass = "grass",
   Snow = "snow",
