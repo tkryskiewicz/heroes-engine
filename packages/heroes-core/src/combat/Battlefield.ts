@@ -1,5 +1,5 @@
+import { Troop } from "../Troop";
 import { CombatSide } from "./CombatSide";
-import { Troop } from "./Troop";
 
 export enum BattlefieldObjectType {
   Obstacle = "obstacle",
