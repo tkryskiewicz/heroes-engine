@@ -2,7 +2,7 @@ import { CreatureData } from "./Creature";
 import { GameObjectData } from "./GameObject";
 import { HeroData } from "./Hero";
 import { HeroClassData } from "./HeroClass";
-import { ItemData, ItemSelection } from "./Item";
+import { ItemSelection } from "./Item";
 import {
   getObjectById,
   Map,
@@ -46,7 +46,6 @@ import { TroopSelection } from "./Troop";
 export interface GameData {
   readonly playerColors: string[];
   readonly resources: { readonly [id: string]: ResourceData; };
-  readonly items: { readonly [id: string]: ItemData; };
   readonly creatures: { readonly [id: string]: CreatureData; };
   readonly spells: { readonly [id: string]: Spell; };
   readonly heroClasses: { readonly [id: string]: HeroClassData; };

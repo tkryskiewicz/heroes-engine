@@ -37,7 +37,7 @@ import { TroopSlot } from "../TroopSlot";
 import { TroopWindow } from "../TroopWindow";
 
 interface HeroWindowContainerProps extends InjectedIntlProps, RouteComponentProps, WithGameWindowProps {
-  readonly data: Pick<GameData, "items">;
+  readonly data: Pick<GameData, "objects">;
   readonly hero: Hero;
   readonly playerColor: string;
 
@@ -449,7 +449,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     const artifact = this.props.hero.items[index];
 
     const artifactData = artifact ?
-      this.props.data.items[artifact.id] :
+      this.props.data.objects[artifact.id] :
       undefined;
 
     return (

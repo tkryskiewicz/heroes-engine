@@ -1,8 +1,8 @@
 import {
   CreatureObjectData,
   DwellingObjectData,
+  GameObjectData,
   InteractionLimitType,
-  ItemObjectData,
   MapObjectData,
   MobilityModifierObjectData,
   OwnableObjectData,
@@ -10,13 +10,11 @@ import {
   TreasureObjectData,
 } from "heroes-core";
 
-import { ArtifactId } from "./ArtifactId";
-import { artifacts } from "./artifacts";
 import { CreatureId, creatures } from "./creatures";
+import { artifactObjects, randomArtifactObject } from "./data";
 import { ObjectId } from "./ObjectId";
 import {
   HeroObjectData,
-  isUltimateObjectData,
   MineObjectData,
   ObeliskObjectData,
   RandomCreatureObjectData,
@@ -187,78 +185,6 @@ const randomCreatureObjects: (MapObjectData & RandomCreatureObjectData & Terrain
     width: 1,
   },
 ];
-
-type ArtifactObjectData = ItemObjectData & PickableObjectData & TerrainRestrictedObjectData;
-
-const artifactObjectOrder: string[] = [
-  ArtifactId.ArcaneNecklaceOfMagic,
-  ArtifactId.CastersBraceletOfMagic,
-  ArtifactId.MagesRingOfPower,
-  ArtifactId.WitchsBroachOfMagic,
-
-  ArtifactId.MedalOfValor,
-  ArtifactId.MedalOfCourage,
-  ArtifactId.MedalOfHonor,
-  ArtifactId.MedalOfDistinction,
-
-  ArtifactId.FizbinOfMisfortune,
-
-  ArtifactId.ThunderMaceOfDominion,
-  ArtifactId.ArmoredGauntletsOfProtection,
-  ArtifactId.DefenderHelmOfProtection,
-  ArtifactId.GiantFlailOfDominion,
-  ArtifactId.BallistaOfQuickness,
-  ArtifactId.StealthShieldOfProtection,
-  ArtifactId.DragonSwordOfDominion,
-  ArtifactId.PowerAxeOfDominion,
-  ArtifactId.DivineBreastplateOfProtection,
-
-  ArtifactId.MinorScrollOfKnowledge,
-  ArtifactId.MajorScrollOfKnowledge,
-  ArtifactId.SuperiorScrollOfKnowledge,
-  ArtifactId.ForemostScrollOfKnowledge,
-
-  ArtifactId.EndlessSackOfGold,
-  ArtifactId.EndlessBagOfGold,
-  ArtifactId.EndlessPurseOfGold,
-
-  ArtifactId.NomadBootsOfMobility,
-  ArtifactId.TravelersBootsOfMobility,
-
-  ArtifactId.LuckyRabbitsFoot,
-  ArtifactId.GoldenHoreshoe,
-  ArtifactId.GamblersLuckyCoin,
-  ArtifactId.FourLeafClover,
-  ArtifactId.TrueCompassOfMobility,
-  ArtifactId.SailorsAstrolabeOfMobility,
-];
-
-const artifactObjects: (MapObjectData & ArtifactObjectData)[] = artifacts
-  .filter((a) => a.id !== ArtifactId.Spellbook && !isUltimateObjectData(a))
-  .sort((a, b) => artifactObjectOrder.indexOf(a.id) - artifactObjectOrder.indexOf(b.id))
-  .map<MapObjectData & ArtifactObjectData>((a) => ({
-    grid: [
-      true,
-    ],
-    height: 1,
-    id: a.id,
-    item: a.id,
-    pickable: true,
-    restrictedTerrains: nonWaterTerrains,
-    type: ObjectType.Artifact,
-    width: 1,
-  }));
-
-const randomArtifactObject: MapObjectData & TerrainRestrictedObjectData = {
-  grid: [
-    true,
-  ],
-  height: 1,
-  id: ObjectId.RandomArtifact,
-  restrictedTerrains: nonWaterTerrains,
-  type: ObjectType.Artifact,
-  width: 1,
-};
 
 type ResourceMapObjectData = MapObjectData & ResourceObjectData & TerrainRestrictedObjectData;
 
@@ -2517,7 +2443,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
   },
 ];
 
-export const gameObjects: MapObjectData[] = [
+export const gameObjects: GameObjectData[] = [
   ...heroObjects,
   ...townObjects,
   randomCastle,

@@ -3,7 +3,6 @@ import {
   Direction,
   GameObject,
   HeroClassData,
-  ItemData,
   MapObjectData,
   MobilityModifierObjectData,
 } from "heroes-core";
@@ -155,7 +154,6 @@ describe("getInitialMobility", () => {
     heroClasses: {
       [defaultHeroClassData.id]: defaultHeroClassData,
     },
-    items: {},
     objects: {},
   };
 
@@ -303,7 +301,7 @@ describe("getInitialMobility", () => {
   });
 
   it("should apply item modifiers", () => {
-    const itemData: ItemData & MobilityModifierObjectData = {
+    const itemData: MobilityModifierObjectData = {
       id: "item",
       mobilityModifier: {
         type: "add",
@@ -313,7 +311,7 @@ describe("getInitialMobility", () => {
 
     const data: Parameters<typeof getInitialMobility>[4] = {
       ...defaultData,
-      items: {
+      objects: {
         [itemData.id]: itemData,
       },
     };

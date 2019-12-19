@@ -30,7 +30,6 @@ const data: GameData = {
   },
   heroClasses: {},
   heroes: {},
-  items: {},
   objects: {},
   playerColors: [],
   resources: {},

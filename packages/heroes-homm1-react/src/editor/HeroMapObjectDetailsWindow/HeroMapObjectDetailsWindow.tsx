@@ -2,7 +2,7 @@ import { Col, Row } from "antd";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Army, GameData, Troop } from "heroes-core";
+import { Army, GameData, isItemObjectData, Troop } from "heroes-core";
 import { noop } from "heroes-helpers";
 import { ArtifactId, HeroObjectDetails } from "heroes-homm1";
 
@@ -18,7 +18,7 @@ import { ValueRangePrompt } from "../ValueRangePrompt";
 import { messages } from "./messages";
 
 export interface HeroMapObjectDetailsWindowProps extends EditorSettingsWindowProps {
-  readonly data: Pick<GameData, "playerColors" | "creatures" | "editor" | "heroes" | "items">;
+  readonly data: Pick<GameData, "playerColors" | "creatures" | "editor" | "heroes" | "objects">;
   readonly value: HeroObjectDetails;
   readonly onValueChange: (value: HeroObjectDetails) => void;
 }
@@ -255,8 +255,9 @@ export class HeroMapObjectDetailsWindow extends React.Component<HeroMapObjectDet
 
   private getArtifacts() {
     // TODO: extract logic
-    return Object.keys(this.props.data.items)
-      .filter((i) => i !== ArtifactId.Spellbook);
+    return Object.values(this.props.data.objects)
+      .filter((o) => isItemObjectData(o) && o.id !== ArtifactId.Spellbook)
+      .map((o) => o.id);
   }
 
   private readonly onExperienceChange = (value: number) => {

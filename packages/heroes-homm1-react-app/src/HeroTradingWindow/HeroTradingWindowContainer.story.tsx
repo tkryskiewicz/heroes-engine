@@ -8,6 +8,10 @@ import { ArtifactData, ArtifactId, ArtifactLimit, constructArtifact, CreatureId,
 
 import { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindowContainer";
 
+const defaultData: HeroTradingWindowProps["data"] = {
+  objects: {},
+};
+
 const hero: Hero = {
   army: [
     {
@@ -43,7 +47,7 @@ storiesOf("HeroTradingWindowContainer", module)
   .add("default", () => (
     <HeroTradingWindow
       visible={true}
-      artifacts={{}}
+      data={defaultData}
       hero={hero}
       otherHero={otherHero}
     />
@@ -71,7 +75,7 @@ storiesOf("HeroTradingWindowContainer", module)
     return (
       <HeroTradingWindow
         visible={true}
-        artifacts={{}}
+        data={defaultData}
         hero={h}
         otherHero={oh}
         selectedArtifact={artifactSelection}
@@ -86,8 +90,10 @@ storiesOf("HeroTradingWindowContainer", module)
         tradable: false,
     };
 
-    const artifacts: HeroTradingWindowProps["artifacts"] = {
-      [nonTradableArtifact.id]: nonTradableArtifact,
+    const data: HeroTradingWindowProps["data"] = {
+      objects: {
+        [nonTradableArtifact.id]: nonTradableArtifact,
+      },
     };
 
     const h: Hero = {
@@ -100,7 +106,7 @@ storiesOf("HeroTradingWindowContainer", module)
     return (
       <HeroTradingWindow
         visible={true}
-        artifacts={artifacts}
+        data={data}
         hero={h}
         otherHero={otherHero}
         artifactNotTradablePromptVisible={boolean("Artifact Not Tradable Prompt Visible", true)}

@@ -346,7 +346,7 @@ export const startGameTurn = (game: Game): Game => {
 
       if (isEquipableObjectData(objectData) && isEquipableObject(o)) {
         o.items.filter(isDefined).forEach((i) => {
-          const itemData = game.data.items[i.id];
+          const itemData = game.data.objects[i.id];
 
           if (isResourceGeneratorObjectData(itemData)) {
             game = {

@@ -1,9 +1,9 @@
 import React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { getArmySize, Hero, isObjectTradable, isTradableObjectData, TroopSelection, TroopSelectionType } from "heroes-core";
+import { GameData, getArmySize, Hero, isObjectTradable, isTradableObjectData, TroopSelection, TroopSelectionType } from "heroes-core";
 import { noop } from "heroes-helpers";
-import { ArtifactData, ArtifactSelection } from "heroes-homm1";
+import { ArtifactSelection } from "heroes-homm1";
 import {
   ArtifactDetailsPrompt,
   ArtifactNotTradablePrompt,
@@ -18,7 +18,7 @@ import {
 import { HeroWindow } from "../HeroWindow";
 
 interface Props extends InjectedIntlProps, WithGameWindowProps {
-  readonly artifacts: { readonly [id: string]: ArtifactData };
+  readonly data: Pick<GameData, "objects">;
 
   readonly hero: Hero;
   readonly otherHero: Hero;
@@ -185,14 +185,14 @@ class HeroTradingWindowContainer extends React.Component<Props> {
   }
 
   private readonly onArtifactClick = (hero: string, index: number) => {
-    const { artifacts, selectedArtifact } = this.props;
+    const { data, selectedArtifact } = this.props;
 
     const h = this.getHero(hero);
 
     const artifact = h.items[index];
 
-    const artifactData = artifact && artifacts[artifact.id] ?
-      artifacts[artifact.id] :
+    const artifactData = artifact && data.objects[artifact.id] ?
+      data.objects[artifact.id] :
       undefined;
 
     // TODO: simplify?

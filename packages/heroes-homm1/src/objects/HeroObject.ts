@@ -93,20 +93,18 @@ export const getInitialMobility = (
   objectData: HeroObjectData,
   terrain: string,
   ownedObjects: GameObject[],
-  data: Pick<GameData, "objects" | "creatures" | "heroClasses" | "items">,
+  data: Pick<GameData, "objects" | "creatures" | "heroClasses">,
 ): number => {
   const armyMobility = getArmedObjectMobility(object, data);
 
   const itemModifier = object.items
     .filter(isDefined)
-    // FIXME
-    .map<GameObjectData>((i) => data.items[i.id])
+    .map((i) => data.objects[i.id])
     .filter(isMobilityModifierObjectData)
     .reduce((b, d) => applyModifier(b, d.mobilityModifier, terrain), 0);
 
   const ownedObjectModifier = ownedObjects
-    // FIXME
-    .map<GameObjectData>((o) => data.objects[o.dataId])
+    .map((o) => data.objects[o.dataId])
     .filter(isMobilityModifierObjectData)
     .reduce((b, d) => applyModifier(b, d.mobilityModifier, terrain), 0);
 

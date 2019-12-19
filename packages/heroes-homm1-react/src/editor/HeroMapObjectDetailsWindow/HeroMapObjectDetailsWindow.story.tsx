@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import {
-  artifacts,
+  artifactObjects,
   CreatureId,
   creatures,
   EditorHeroArtifactCount,
@@ -32,7 +32,7 @@ const data: HeroMapObjectDetailsWindowProps["data"] = {
     ...p,
     [c.id]: c,
   }), {}),
-  items: artifacts.reduce((p, c) => ({
+  objects: artifactObjects.reduce((p, c) => ({
     ...p,
     [c.id]: c,
   }), {}),

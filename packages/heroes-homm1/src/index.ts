@@ -2,12 +2,13 @@ import { Modifier } from "heroes-core";
 
 export { Artifact, ArtifactData, ArtifactSelection } from "./Artifact";
 export { ArtifactId } from "./ArtifactId";
-export { artifacts, constructArtifact } from "./artifacts";
+export { constructArtifact } from "./artifacts";
 export { CampaignId, CampaignIds } from "./campaigns";
 export { CastleOptionStatus } from "./CastleOptionStatus";
 export { ComPort } from "./ComPort";
 export { CreatureId, creatures } from "./creatures";
 export { CreatureSpeed } from "./CreatureSpeed";
+export * from "./data";
 export * from "./editor";
 export { getCurrentLevel, getNextLevelExperience } from "./experience";
 export {

@@ -15,7 +15,6 @@ import {
 } from "heroes-core";
 import {
   ArmySize,
-  artifacts,
   BaseMovementCost,
   buildGameStructure,
   buyMageGuildSpellBook,
@@ -68,10 +67,6 @@ const data: GameData = {
     [c.id]: c,
   }), {}),
   heroes: heroes.reduce((p, c) => ({
-    ...p,
-    [c.id]: c,
-  }), {}),
-  items: artifacts.reduce((p, c) => ({
     ...p,
     [c.id]: c,
   }), {}),
