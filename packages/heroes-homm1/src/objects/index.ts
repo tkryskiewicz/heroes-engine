@@ -1,3 +1,4 @@
+export * from "./CategorisedObject";
 export * from "./HeroObject";
 export * from "./MineObject";
 export * from "./MobileObject";

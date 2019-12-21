@@ -1,4 +1,4 @@
-import { ObjectType } from "../ObjectType";
+import { ObjectType } from "../data";
 
 export interface EraseObjectsSettings {
   readonly objectTypes: ObjectType[];

@@ -5,6 +5,7 @@ import {
   changeObjectOwner,
   GameData,
   GameObject,
+  GameObjectData,
   isCreatureObject,
   isMapObjectData,
   Troop,
@@ -17,7 +18,9 @@ import {
   getHeroObjectDetails,
   getTownObjectDetails,
   HeroObjectDetails,
+  isCategorisedObjectData,
   isHeroObject,
+  isObjectFromCategory,
   isRandomCreatureObject,
   isRandomTownObject,
   ObjectDetails,
@@ -220,10 +223,11 @@ const objectOrder: string[] = [
 ];
 
 // TODO: add town objects
-export const getObjects = (type: ObjectType, data: GameData): string[] =>
+export const getObjects = (category: ObjectType, data: GameData): string[] =>
   Object.values(data.objects)
-    .filter(isMapObjectData)
-    .filter((o) => o.type === type || (Array.isArray(o.type) && o.type.includes(type)))
+    .filter<GameObjectData>(isMapObjectData)
+    .filter(isCategorisedObjectData)
+    .filter((o) => isObjectFromCategory(o, category))
     .map((o) => o.id)
     .sort((a, b) => objectOrder.indexOf(a) - objectOrder.indexOf(b));
 

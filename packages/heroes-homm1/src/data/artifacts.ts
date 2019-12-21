@@ -11,12 +11,12 @@ import {
 
 import { ArtifactId } from "../ArtifactId";
 import { ObjectId } from "../ObjectId";
-import { isUltimateObjectData, TerrainRestrictedObjectData, UltimateObjectData } from "../objects";
-import { ObjectType } from "../ObjectType";
+import { CategorisedObjectData, isUltimateObjectData, TerrainRestrictedObjectData, UltimateObjectData } from "../objects";
 import { ResourceId } from "../ResourceId";
 import { SkillId } from "../SkillId";
 import { landTerrains } from "../terrains";
 import { TerrainType } from "../TerrainType";
+import { ObjectType } from "./ObjectType";
 
 const attackArtifacts: (ItemData & SkillModifierObjectData)[] = [
   {
@@ -386,14 +386,14 @@ type ArtifactObjectData =
   PickableObjectData &
   TradableObjectData;
 
-const mapObjectDataDefaults: MapObjectData & TerrainRestrictedObjectData = {
+const mapObjectDataDefaults: MapObjectData & TerrainRestrictedObjectData & CategorisedObjectData = {
+  category: ObjectType.Artifact,
   grid: [
     true,
   ],
   height: 1,
   id: "",
   restrictedTerrains: landTerrains,
-  type: ObjectType.Artifact,
   width: 1,
 };
 
