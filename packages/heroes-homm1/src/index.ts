@@ -58,8 +58,6 @@ export * from "./objects";
 export { OpponentSetting, getOpponentSettingRating } from "./OpponentSetting";
 export { PlayerColorId } from "./PlayerColorId";
 export { playerColors } from "./playerColors";
-export { ResourceId } from "./ResourceId";
-export { resources } from "./resources";
 export { Scenario } from "./Scenario";
 export { ScenarioDifficulty } from "./ScenarioDifficulty";
 export { campaignScenarios } from "./scenarios";

@@ -1,6 +1,6 @@
 import { ResourceData } from "heroes-core";
 
-import { ObjectId } from "./ObjectId";
+import { ObjectId } from "../ObjectId";
 import { ResourceId } from "./ResourceId";
 
 export const resources: ResourceData[] = [

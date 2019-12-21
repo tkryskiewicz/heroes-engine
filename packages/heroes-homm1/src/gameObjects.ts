@@ -11,7 +11,7 @@ import {
 } from "heroes-core";
 
 import { CreatureId, creatures } from "./creatures";
-import { artifactObjects, ObjectType, randomArtifactObject, TerrainId } from "./data";
+import { artifactObjects, ObjectType, randomArtifactObject, ResourceId, TerrainId } from "./data";
 import { ObjectId } from "./ObjectId";
 import {
   CategorisedObjectData,
@@ -24,7 +24,6 @@ import {
   TownObjectData,
   VariantObjectData,
 } from "./objects";
-import { ResourceId } from "./ResourceId";
 
 const allTerrains = Object.values(TerrainId);
 const nonWaterTerrains = Object.values(TerrainId).filter((t) => t !== TerrainId.Water);
