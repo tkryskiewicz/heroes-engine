@@ -27,9 +27,7 @@ export * from "./gameObjects";
 export { GameOption } from "./GameOption";
 export { GameSettings } from "./GameSettings";
 export { GameType } from "./GameType";
-export { HeroClassId } from "./HeroClassId";
-export { heroClasses } from "./heroClasses";
-export { HeroId, heroes, constructHero } from "./heroes";
+export { constructHero } from "./heroes";
 export {
   LuckType,
   getLuckType,

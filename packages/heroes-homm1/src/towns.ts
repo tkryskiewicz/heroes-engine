@@ -1,6 +1,6 @@
 import { TownData } from "heroes-core";
 
-import { HeroClassId } from "./HeroClassId";
+import { HeroClassId } from "./data";
 import {
   commonStructures,
   coreStructures,
