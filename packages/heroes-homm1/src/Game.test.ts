@@ -16,7 +16,8 @@ import {
   TownObject,
 } from "./objects";
 import { constructSpellBook } from "./SpellBook";
-import { MageGuild, StructureId } from "./structures";
+import { StructureId } from "./StructureId";
+import { MageGuild } from "./structures";
 
 describe("buyMageGuildSpellBook", () => {
   // TODO: split into multiple tests

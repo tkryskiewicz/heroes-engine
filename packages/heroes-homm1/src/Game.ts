@@ -84,7 +84,8 @@ import {
   TownObjectData,
 } from "./objects";
 import { constructSpellBook, SpellBookSpell } from "./SpellBook";
-import { MageGuild, StructureId } from "./structures";
+import { StructureId } from "./StructureId";
+import { MageGuild } from "./structures";
 
 export interface EditorGameData {
   readonly maxCreatureCount: number;

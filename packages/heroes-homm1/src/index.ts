@@ -71,18 +71,8 @@ export {
 export { SoundVolume, isSoundEnabled } from "./SoundVolume";
 export { Spell } from "./Spell";
 export { SpellBook, SpellBookSpell, constructSpellBook } from "./SpellBook";
-export {
-  constructStructure,
-  getCastleOptionStatus,
-  StructureId,
-  isCommonStructure,
-  FarmStructureId,
-  PlainsStructureId,
-  ForestStructureId,
-  MountainsStructureId,
-  MageGuild,
-  Shipyard,
-} from "./structures";
+export * from "./StructureId";
+export { constructStructure, getCastleOptionStatus, isCommonStructure, MageGuild, Shipyard } from "./structures";
 export { constructTown } from "./Town";
 export { TownId } from "./TownId";
 export { towns } from "./towns";

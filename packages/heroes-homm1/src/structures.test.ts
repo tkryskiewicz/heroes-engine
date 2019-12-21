@@ -1,13 +1,8 @@
 import { Resources, Structure, StructureData } from "heroes-core";
 
 import { CastleOptionStatus } from "./CastleOptionStatus";
-import {
-  constructStructure,
-  FarmStructureId,
-  getCastleOptionStatus,
-  isCommonStructure,
-  StructureId,
-} from "./structures";
+import { FarmStructureId, StructureId } from "./StructureId";
+import { constructStructure, getCastleOptionStatus, isCommonStructure } from "./structures";
 
 describe("constructStructure", () => {
   it("should construct structure", () => {

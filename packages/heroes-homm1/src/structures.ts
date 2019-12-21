@@ -2,6 +2,13 @@ import { Dwelling, enoughResources, Resources, Structure, StructureData } from "
 
 import { CastleOptionStatus } from "./CastleOptionStatus";
 import { CreatureId, ResourceId, SpellId } from "./data";
+import {
+  FarmStructureId,
+  ForestStructureId,
+  MountainsStructureId,
+  PlainsStructureId,
+  StructureId,
+} from "./StructureId";
 
 interface DwellingType {
   readonly creature: string;
@@ -50,17 +57,6 @@ export const getCastleOptionStatus = (
 
   return status;
 };
-
-export enum StructureId {
-  Castle = "castle",
-
-  // Common Structures
-  ThievesGuild = "thieves-guild",
-  Tavern = "tavern",
-  Well = "well",
-  MageGuild = "mage-guild",
-  Shipyard = "shipyard",
-}
 
 interface MageGuildData {
   readonly spells: string[];
@@ -162,16 +158,6 @@ export const commonStructures: StructureData[] = [
   },
 ];
 
-// Farm Structures
-export enum FarmStructureId {
-  ThatchedHut = "thatched-hut",
-  ArcheryRange = "archery-range",
-  Blacksmith = "blacksmith",
-  Armory = "armory",
-  JoustingArena = "jousting-arena",
-  Cathedral = "cathedral",
-}
-
 export const farmStructures: StructureData[] = [
   {
     cost: {
@@ -259,16 +245,6 @@ export const farmStructures: StructureData[] = [
   },
 ];
 
-// Plains Structures
-export enum PlainsStructureId {
-  Hut = "hut",
-  StickHut = "stick-hut",
-  Den = "den",
-  Adobe = "adobe",
-  Bridge = "bridge",
-  Pyramid = "pyramid",
-}
-
 export const plainsStructures: StructureData[] = [
   {
     cost: {
@@ -355,16 +331,6 @@ export const plainsStructures: StructureData[] = [
     id: PlainsStructureId.Pyramid,
   },
 ];
-
-// Forest Structures
-export enum ForestStructureId {
-  Treehouse = "treehouse",
-  Cottage = "cottage",
-  ArcheryRange = "archery-range",
-  Stonehenge = "stonehenge",
-  FencedMeadow = "fenced-meadow",
-  RedTower = "red-tower",
-}
 
 export const forestStructures: StructureData[] = [
   {
@@ -456,16 +422,6 @@ export const forestStructures: StructureData[] = [
     id: ForestStructureId.RedTower,
   },
 ];
-
-// Mountains Structures
-export enum MountainsStructureId {
-  Cave = "cave",
-  Crypt = "crypt",
-  Nest = "nest",
-  Maze = "maze",
-  Swamp = "swamp",
-  BlackTower = "black-tower",
-}
 
 export const mountainsStructures: StructureData[] = [
   {
