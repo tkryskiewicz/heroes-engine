@@ -62,6 +62,7 @@ import {
 } from "heroes-core";
 import { isDefined } from "heroes-helpers";
 
+import { SkillId } from "./data";
 import {
   getInitialMobility,
   getMovementCost,
@@ -82,7 +83,6 @@ import {
   TownObject,
   TownObjectData,
 } from "./objects";
-import { SkillId } from "./SkillId";
 import { constructSpellBook, SpellBookSpell } from "./SpellBook";
 import { MageGuild, StructureId } from "./structures";
 

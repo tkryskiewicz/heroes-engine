@@ -7,6 +7,7 @@ export * from "./HeroId";
 export * from "./ObjectType";
 export * from "./ResourceId";
 export * from "./resources";
+export * from "./SkillId";
 export * from "./SpellId";
 export * from "./spells";
 export * from "./SpellType";

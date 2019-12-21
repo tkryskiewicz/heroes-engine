@@ -1,8 +1,8 @@
 import { HeroClassData } from "heroes-core";
 
 import { CreatureId } from "../creatures";
-import { SkillId } from "../SkillId";
 import { HeroClassId } from "./HeroClassId";
+import { SkillId } from "./SkillId";
 import { TerrainId } from "./TerrainId";
 
 export const heroClasses: HeroClassData[] = [
