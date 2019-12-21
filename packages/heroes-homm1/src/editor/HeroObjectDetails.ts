@@ -1,6 +1,6 @@
 import { Army, GameData } from "heroes-core";
 
-import { constructArtifact } from "../artifacts";
+import { constructArtifact } from "../Artifact";
 import { HeroObject } from "../objects";
 
 export interface HeroObjectDetails {

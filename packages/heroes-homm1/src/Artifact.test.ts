@@ -1,5 +1,4 @@
-import { Artifact } from "./Artifact";
-import { constructArtifact } from "./artifacts";
+import { Artifact, constructArtifact } from "./Artifact";
 
 describe("constructArtifact", () => {
   it("should construct an artifact", () => {

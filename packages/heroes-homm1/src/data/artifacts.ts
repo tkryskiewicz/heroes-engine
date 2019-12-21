@@ -9,11 +9,11 @@ import {
   TradableObjectData,
 } from "heroes-core";
 
-import { ArtifactId } from "../ArtifactId";
 import { ObjectId } from "../ObjectId";
 import { CategorisedObjectData, isUltimateObjectData, TerrainRestrictedObjectData, UltimateObjectData } from "../objects";
 import { ResourceId } from "../ResourceId";
 import { SkillId } from "../SkillId";
+import { ArtifactId } from "./ArtifactId";
 import { ObjectType } from "./ObjectType";
 import { TerrainId } from "./TerrainId";
 import { landTerrains } from "./terrains";
