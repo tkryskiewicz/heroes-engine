@@ -34,7 +34,7 @@ import {
   Scenario,
   ScenarioSpecification,
   setScenarioSpecification,
-  TerrainType,
+  TerrainId,
 } from "heroes-homm1";
 import {
   AdventureMapWindow,
@@ -585,19 +585,19 @@ class EditorWindowContainer extends React.Component<EditorWindowContainerProps, 
   private getTerrain() {
     switch (this.props.selectedObjectType) {
       case ObjectType.Water:
-        return TerrainType.Water;
+        return TerrainId.Water;
       case ObjectType.Grass:
-        return TerrainType.Grass;
+        return TerrainId.Grass;
       case ObjectType.Snow:
-        return TerrainType.Snow;
+        return TerrainId.Snow;
       case ObjectType.Swamp:
-        return TerrainType.Swamp;
+        return TerrainId.Swamp;
       case ObjectType.Lava:
-        return TerrainType.Lava;
+        return TerrainId.Lava;
       case ObjectType.Desert:
-        return TerrainType.Desert;
+        return TerrainId.Desert;
       case ObjectType.Dirt:
-        return TerrainType.Dirt;
+        return TerrainId.Dirt;
       default:
         return undefined;
     }

@@ -11,7 +11,7 @@ import {
 } from "heroes-core";
 
 import { CreatureId, creatures } from "./creatures";
-import { artifactObjects, ObjectType, randomArtifactObject } from "./data";
+import { artifactObjects, ObjectType, randomArtifactObject, TerrainId } from "./data";
 import { ObjectId } from "./ObjectId";
 import {
   CategorisedObjectData,
@@ -25,10 +25,9 @@ import {
   VariantObjectData,
 } from "./objects";
 import { ResourceId } from "./ResourceId";
-import { TerrainType } from "./TerrainType";
 
-const allTerrains = Object.values(TerrainType);
-const nonWaterTerrains = Object.values(TerrainType).filter((t) => t !== TerrainType.Water);
+const allTerrains = Object.values(TerrainId);
+const nonWaterTerrains = Object.values(TerrainId).filter((t) => t !== TerrainId.Water);
 
 const allTerrainCategories = [
   ObjectType.Water,
@@ -375,13 +374,13 @@ const fireplace2: typeof fireplace & VariantObjectData & CategorisedObjectData =
   ],
   id: ObjectId.Fireplace2,
   restrictedTerrains: [
-    TerrainType.Snow,
+    TerrainId.Snow,
     // TODO: assets are available, but can't place on desert, remove?
-    // TerrainType.Desert,
+    // TerrainId.Desert,
   ],
   variants: {
-    [TerrainType.Snow]: "snow",
-    [TerrainType.Desert]: "desert",
+    [TerrainId.Snow]: "snow",
+    [TerrainId.Desert]: "desert",
   },
 };
 
@@ -435,12 +434,12 @@ const mineObjectBase: MineMapObjectData & VariantObjectData & CategorisedObjectD
   },
   restrictedTerrains: nonWaterTerrains,
   variants: {
-    [TerrainType.Grass]: "grass",
-    [TerrainType.Snow]: "snow",
-    [TerrainType.Swamp]: "swamp",
-    [TerrainType.Lava]: "swamp",
-    [TerrainType.Desert]: "desert",
-    [TerrainType.Dirt]: "dirt",
+    [TerrainId.Grass]: "grass",
+    [TerrainId.Snow]: "snow",
+    [TerrainId.Swamp]: "swamp",
+    [TerrainId.Lava]: "swamp",
+    [TerrainId.Desert]: "desert",
+    [TerrainId.Dirt]: "dirt",
   },
   width: 2,
 };
@@ -503,12 +502,12 @@ const alchemist: MineMapObjectData & VariantObjectData & CategorisedObjectData =
   },
   restrictedTerrains: nonWaterTerrains,
   variants: {
-    [TerrainType.Grass]: "swamp",
-    [TerrainType.Snow]: "swamp",
-    [TerrainType.Swamp]: "swamp",
-    [TerrainType.Desert]: "desert",
-    [TerrainType.Lava]: "lava",
-    [TerrainType.Dirt]: "swamp",
+    [TerrainId.Grass]: "swamp",
+    [TerrainId.Snow]: "swamp",
+    [TerrainId.Swamp]: "swamp",
+    [TerrainId.Desert]: "desert",
+    [TerrainId.Lava]: "lava",
+    [TerrainId.Dirt]: "swamp",
   },
   width: 2,
 };
@@ -542,7 +541,7 @@ const cottage: MapObjectData & DwellingObjectData & TerrainRestrictedObjectData 
   height: 1,
   id: ObjectId.Cottage,
   restrictedTerrains: [
-    TerrainType.Grass,
+    TerrainId.Grass,
   ],
   width: 1,
 };
@@ -560,7 +559,7 @@ const cottageSnow: MapObjectData & DwellingObjectData & TerrainRestrictedObjectD
   height: 2,
   id: ObjectId.CottageSnow,
   restrictedTerrains: [
-    TerrainType.Snow,
+    TerrainId.Snow,
   ],
   width: 1,
 };
@@ -578,7 +577,7 @@ const desertTent: MapObjectData & DwellingObjectData & TerrainRestrictedObjectDa
   height: 2,
   id: ObjectId.DesertTent,
   restrictedTerrains: [
-    TerrainType.Desert,
+    TerrainId.Desert,
   ],
   width: 3,
 };
@@ -595,7 +594,7 @@ const hut: MapObjectData & DwellingObjectData & TerrainRestrictedObjectData & Ca
   height: 1,
   id: ObjectId.Hut,
   restrictedTerrains: [
-    TerrainType.Grass,
+    TerrainId.Grass,
   ],
   width: 1,
 };
@@ -612,7 +611,7 @@ const thatchedHut: MapObjectData & DwellingObjectData & TerrainRestrictedObjectD
   height: 1,
   id: ObjectId.ThatchedHut,
   restrictedTerrains: [
-    TerrainType.Grass,
+    TerrainId.Grass,
   ],
   width: 1,
 };
@@ -629,7 +628,7 @@ const thatchedHutSnow: MapObjectData & DwellingObjectData & TerrainRestrictedObj
   height: 1,
   id: ObjectId.ThatchedHutSnow,
   restrictedTerrains: [
-    TerrainType.Snow,
+    TerrainId.Snow,
   ],
   width: 1,
 };
@@ -678,12 +677,12 @@ const obelisk: ObeliskObject = {
   restrictedTerrains: nonWaterTerrains,
   uncoversPuzzlePiece: true,
   variants: {
-    [TerrainType.Grass]: "grass",
-    [TerrainType.Snow]: "snow",
-    [TerrainType.Swamp]: "swamp",
-    [TerrainType.Desert]: "desert",
-    [TerrainType.Lava]: "lava",
-    [TerrainType.Dirt]: "dirt",
+    [TerrainId.Grass]: "grass",
+    [TerrainId.Snow]: "snow",
+    [TerrainId.Swamp]: "swamp",
+    [TerrainId.Desert]: "desert",
+    [TerrainId.Lava]: "lava",
+    [TerrainId.Dirt]: "dirt",
   },
   width: 1,
 };
@@ -701,14 +700,14 @@ const cave: MapObjectData & TerrainRestrictedObjectData & VariantObjectData & Ca
   height: 2,
   id: ObjectId.Cave,
   restrictedTerrains: [
-    TerrainType.Swamp,
-    TerrainType.Lava,
-    TerrainType.Desert,
+    TerrainId.Swamp,
+    TerrainId.Lava,
+    TerrainId.Desert,
   ],
   variants: {
-    [TerrainType.Swamp]: "swamp",
-    [TerrainType.Lava]: "lava",
-    [TerrainType.Desert]: "desert",
+    [TerrainId.Swamp]: "swamp",
+    [TerrainId.Lava]: "lava",
+    [TerrainId.Desert]: "desert",
   },
   width: 2,
 };
@@ -725,14 +724,14 @@ const faerieRing: MapObjectData & TerrainRestrictedObjectData & VariantObjectDat
   height: 1,
   id: ObjectId.FaerieRing,
   restrictedTerrains: [
-    TerrainType.Grass,
-    TerrainType.Swamp,
-    TerrainType.Dirt,
+    TerrainId.Grass,
+    TerrainId.Swamp,
+    TerrainId.Dirt,
   ],
   variants: {
-    [TerrainType.Grass]: "grass",
-    [TerrainType.Swamp]: "swamp",
-    [TerrainType.Dirt]: "dirt",
+    [TerrainId.Grass]: "grass",
+    [TerrainId.Swamp]: "swamp",
+    [TerrainId.Dirt]: "dirt",
   },
   width: 2,
 };
@@ -748,12 +747,12 @@ const gazebo: MapObjectData & TerrainRestrictedObjectData & VariantObjectData & 
   height: 1,
   id: ObjectId.Gazebo,
   restrictedTerrains: [
-    TerrainType.Grass,
-    TerrainType.Dirt,
+    TerrainId.Grass,
+    TerrainId.Dirt,
   ],
   variants: {
-    [TerrainType.Grass]: "grass",
-    [TerrainType.Dirt]: "dirt",
+    [TerrainId.Grass]: "grass",
+    [TerrainId.Dirt]: "dirt",
   },
   width: 1,
 };
@@ -769,12 +768,12 @@ const roseBush: MapObjectData & TerrainRestrictedObjectData & VariantObjectData 
   height: 1,
   id: ObjectId.Rosebush,
   restrictedTerrains: [
-    TerrainType.Grass,
-    TerrainType.Dirt,
+    TerrainId.Grass,
+    TerrainId.Dirt,
   ],
   variants: {
-    [TerrainType.Grass]: "grass",
-    [TerrainType.Dirt]: "dirt",
+    [TerrainId.Grass]: "grass",
+    [TerrainId.Dirt]: "dirt",
   },
   width: 1,
 };
@@ -791,12 +790,12 @@ const shrine: MapObjectData & TerrainRestrictedObjectData & VariantObjectData & 
   height: 2,
   id: ObjectId.Shrine,
   restrictedTerrains: [
-    TerrainType.Grass,
-    TerrainType.Dirt,
+    TerrainId.Grass,
+    TerrainId.Dirt,
   ],
   variants: {
-    [TerrainType.Grass]: "grass",
-    [TerrainType.Dirt]: "dirt",
+    [TerrainId.Grass]: "grass",
+    [TerrainId.Dirt]: "dirt",
   },
   width: 3,
 };
@@ -813,14 +812,14 @@ const shrine2: MapObjectData & TerrainRestrictedObjectData & VariantObjectData &
   height: 1,
   id: ObjectId.Shrine2,
   restrictedTerrains: [
-    TerrainType.Grass,
-    TerrainType.Swamp,
-    TerrainType.Dirt,
+    TerrainId.Grass,
+    TerrainId.Swamp,
+    TerrainId.Dirt,
   ],
   variants: {
-    [TerrainType.Grass]: "grass",
-    [TerrainType.Swamp]: "swamp",
-    [TerrainType.Dirt]: "dirt",
+    [TerrainId.Grass]: "grass",
+    [TerrainId.Swamp]: "swamp",
+    [TerrainId.Dirt]: "dirt",
   },
   width: 1,
 };
@@ -839,18 +838,18 @@ const signpost: MapObjectData & TerrainRestrictedObjectData & VariantObjectData 
   height: 1,
   id: ObjectId.Signpost,
   restrictedTerrains: [
-    TerrainType.Grass,
-    TerrainType.Snow,
-    TerrainType.Swamp,
-    TerrainType.Desert,
-    TerrainType.Dirt,
+    TerrainId.Grass,
+    TerrainId.Snow,
+    TerrainId.Swamp,
+    TerrainId.Desert,
+    TerrainId.Dirt,
   ],
   variants: {
-    [TerrainType.Grass]: "grass",
-    [TerrainType.Snow]: "snow",
-    [TerrainType.Swamp]: "dirt",
-    [TerrainType.Desert]: "desert",
-    [TerrainType.Dirt]: "dirt",
+    [TerrainId.Grass]: "grass",
+    [TerrainId.Snow]: "snow",
+    [TerrainId.Swamp]: "dirt",
+    [TerrainId.Desert]: "desert",
+    [TerrainId.Dirt]: "dirt",
   },
   width: 1,
 };
@@ -868,10 +867,10 @@ const travelGate: MapObjectData & TerrainRestrictedObjectData & CategorisedObjec
   height: 1,
   id: ObjectId.TravelGate,
   restrictedTerrains: [
-    TerrainType.Grass,
-    TerrainType.Swamp,
-    TerrainType.Lava,
-    TerrainType.Dirt,
+    TerrainId.Grass,
+    TerrainId.Swamp,
+    TerrainId.Lava,
+    TerrainId.Dirt,
   ],
   width: 1,
 };
@@ -884,12 +883,12 @@ const travelGate2: typeof travelGate & VariantObjectData = {
   ],
   id: ObjectId.TravelGate2,
   restrictedTerrains: [
-    TerrainType.Snow,
-    TerrainType.Desert,
+    TerrainId.Snow,
+    TerrainId.Desert,
   ],
   variants: {
-    [TerrainType.Snow]: "snow",
-    [TerrainType.Desert]: "desert",
+    [TerrainId.Snow]: "snow",
+    [TerrainId.Desert]: "desert",
   },
 };
 
@@ -913,16 +912,16 @@ const lighthouse: LighthouseObject = {
   height: 2,
   id: ObjectId.Lighthouse,
   mobilityModifier: {
-    [TerrainType.Water]: {
+    [TerrainId.Water]: {
       type: "add",
       value: 20,
     },
   },
   ownable: true,
   restrictedTerrains: [
-    TerrainType.Grass,
-    TerrainType.Swamp,
-    TerrainType.Dirt,
+    TerrainId.Grass,
+    TerrainId.Swamp,
+    TerrainId.Dirt,
   ],
   width: 3,
 };
@@ -946,10 +945,10 @@ const otherObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
     height: 4,
     id: ObjectId.DragonCity,
     restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Swamp,
-      TerrainType.Desert,
-      TerrainType.Dirt,
+      TerrainId.Grass,
+      TerrainId.Swamp,
+      TerrainId.Desert,
+      TerrainId.Dirt,
     ],
     width: 3,
   },
@@ -966,10 +965,10 @@ const otherObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
     height: 1,
     id: ObjectId.Fountain,
     restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Snow,
-      TerrainType.Swamp,
-      TerrainType.Dirt,
+      TerrainId.Grass,
+      TerrainId.Snow,
+      TerrainId.Swamp,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -986,9 +985,9 @@ const otherObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
     height: 1,
     id: ObjectId.Graveyard,
     restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Swamp,
-      TerrainType.Dirt,
+      TerrainId.Grass,
+      TerrainId.Swamp,
+      TerrainId.Dirt,
     ],
     width: 3,
   },
@@ -1004,9 +1003,9 @@ const otherObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
     height: 1,
     id: ObjectId.Hole,
     restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Swamp,
-      TerrainType.Dirt,
+      TerrainId.Grass,
+      TerrainId.Swamp,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -1023,8 +1022,8 @@ const otherObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
     height: 2,
     id: ObjectId.OakTree,
     restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Swamp,
+      TerrainId.Grass,
+      TerrainId.Swamp,
     ],
     width: 2,
   },
@@ -1045,9 +1044,9 @@ const otherObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
     height: 2,
     id: ObjectId.Statue,
     restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Swamp,
-      TerrainType.Dirt,
+      TerrainId.Grass,
+      TerrainId.Swamp,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -1065,9 +1064,9 @@ const otherObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
     height: 1,
     id: ObjectId.TreeStump,
     restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Swamp,
-      TerrainType.Dirt,
+      TerrainId.Grass,
+      TerrainId.Swamp,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -1084,8 +1083,8 @@ const otherObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
     height: 3,
     id: ObjectId.Waterwheel,
     restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Dirt,
+      TerrainId.Grass,
+      TerrainId.Dirt,
     ],
     width: 3,
   },
@@ -1101,8 +1100,8 @@ const otherObjects: (MapObjectData & TerrainRestrictedObjectData)[] = [
     height: 2,
     id: ObjectId.Windmill,
     restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Dirt,
+      TerrainId.Grass,
+      TerrainId.Dirt,
     ],
     width: 2,
   },
@@ -1214,7 +1213,7 @@ const waterObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Buoy,
     restrictedTerrains: [
-      TerrainType.Water,
+      TerrainId.Water,
     ],
     width: 1,
   },
@@ -1227,7 +1226,7 @@ const waterObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 2,
     id: ObjectId.Shipwreck,
     restrictedTerrains: [
-      TerrainType.Water,
+      TerrainId.Water,
     ],
     width: 2,
   },
@@ -1240,7 +1239,7 @@ const waterObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 2,
     id: ObjectId.Whirlpool,
     restrictedTerrains: [
-      TerrainType.Water,
+      TerrainId.Water,
     ],
     width: 3,
   },
@@ -1252,7 +1251,7 @@ const waterObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Water1,
     restrictedTerrains: [
-      TerrainType.Water,
+      TerrainId.Water,
     ],
     width: 2,
   },
@@ -1264,7 +1263,7 @@ const waterObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Water2,
     restrictedTerrains: [
-      TerrainType.Water,
+      TerrainId.Water,
     ],
     width: 2,
   },
@@ -1277,7 +1276,7 @@ const waterObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 2,
     id: ObjectId.Water3,
     restrictedTerrains: [
-      TerrainType.Water,
+      TerrainId.Water,
     ],
     width: 3,
   },
@@ -1292,7 +1291,7 @@ const grassObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.GrassLake,
     restrictedTerrains: [
-      TerrainType.Grass,
+      TerrainId.Grass,
     ],
     width: 4,
   },
@@ -1305,7 +1304,7 @@ const grassObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 2,
     id: ObjectId.GrassLakeBig,
     restrictedTerrains: [
-      TerrainType.Grass,
+      TerrainId.Grass,
     ],
     width: 5,
   },
@@ -1317,7 +1316,7 @@ const grassObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Grass1,
     restrictedTerrains: [
-      TerrainType.Grass,
+      TerrainId.Grass,
     ],
     width: 1,
   },
@@ -1329,7 +1328,7 @@ const grassObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Grass2,
     restrictedTerrains: [
-      TerrainType.Grass,
+      TerrainId.Grass,
     ],
     width: 1,
   },
@@ -1341,7 +1340,7 @@ const grassObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Grass3,
     restrictedTerrains: [
-      TerrainType.Grass,
+      TerrainId.Grass,
     ],
     width: 1,
   },
@@ -1353,7 +1352,7 @@ const grassObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Grass4,
     restrictedTerrains: [
-      TerrainType.Grass,
+      TerrainId.Grass,
     ],
     width: 1,
   },
@@ -1365,7 +1364,7 @@ const grassObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Grass5,
     restrictedTerrains: [
-      TerrainType.Grass,
+      TerrainId.Grass,
     ],
     width: 1,
   },
@@ -1377,7 +1376,7 @@ const grassObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Grass6,
     restrictedTerrains: [
-      TerrainType.Grass,
+      TerrainId.Grass,
     ],
     width: 1,
   },
@@ -1389,7 +1388,7 @@ const grassObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Grass7,
     restrictedTerrains: [
-      TerrainType.Grass,
+      TerrainId.Grass,
     ],
     width: 1,
   },
@@ -1401,7 +1400,7 @@ const grassObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Grass8,
     restrictedTerrains: [
-      TerrainType.Grass,
+      TerrainId.Grass,
     ],
     width: 1,
   },
@@ -1413,7 +1412,7 @@ const grassObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Grass9,
     restrictedTerrains: [
-      TerrainType.Grass,
+      TerrainId.Grass,
     ],
     width: 1,
   },
@@ -1425,7 +1424,7 @@ const grassObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Grass10,
     restrictedTerrains: [
-      TerrainType.Grass,
+      TerrainId.Grass,
     ],
     width: 1,
   },
@@ -1440,7 +1439,7 @@ const snowObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.SnowLake,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 2,
   },
@@ -1452,7 +1451,7 @@ const snowObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.SnowLakeSmall,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 2,
   },
@@ -1464,7 +1463,7 @@ const snowObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.SnowLakeBig,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 4,
   },
@@ -1476,7 +1475,7 @@ const snowObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Snow1,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 1,
   },
@@ -1488,7 +1487,7 @@ const snowObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Snow2,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 1,
   },
@@ -1500,7 +1499,7 @@ const snowObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Snow3,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 1,
   },
@@ -1516,7 +1515,7 @@ const swampObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 2,
     id: ObjectId.SwampLake,
     restrictedTerrains: [
-      TerrainType.Swamp,
+      TerrainId.Swamp,
     ],
     width: 3,
   },
@@ -1530,7 +1529,7 @@ const swampObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 3,
     id: ObjectId.SwampLakeBig,
     restrictedTerrains: [
-      TerrainType.Swamp,
+      TerrainId.Swamp,
     ],
     width: 5,
   },
@@ -1542,7 +1541,7 @@ const swampObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Swamp1,
     restrictedTerrains: [
-      TerrainType.Swamp,
+      TerrainId.Swamp,
     ],
     width: 1,
   },
@@ -1554,7 +1553,7 @@ const swampObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Swamp2,
     restrictedTerrains: [
-      TerrainType.Swamp,
+      TerrainId.Swamp,
     ],
     width: 1,
   },
@@ -1566,7 +1565,7 @@ const swampObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Swamp3,
     restrictedTerrains: [
-      TerrainType.Swamp,
+      TerrainId.Swamp,
     ],
     width: 2,
   },
@@ -1578,7 +1577,7 @@ const swampObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Swamp4,
     restrictedTerrains: [
-      TerrainType.Swamp,
+      TerrainId.Swamp,
     ],
     width: 1,
   },
@@ -1590,7 +1589,7 @@ const swampObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Swamp5,
     restrictedTerrains: [
-      TerrainType.Swamp,
+      TerrainId.Swamp,
     ],
     width: 1,
   },
@@ -1605,7 +1604,7 @@ const lavaObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Lava1,
     restrictedTerrains: [
-      TerrainType.Lava,
+      TerrainId.Lava,
     ],
     width: 1,
   },
@@ -1618,7 +1617,7 @@ const lavaObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 2,
     id: ObjectId.Lava2,
     restrictedTerrains: [
-      TerrainType.Lava,
+      TerrainId.Lava,
     ],
     width: 3,
   },
@@ -1631,7 +1630,7 @@ const lavaObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 2,
     id: ObjectId.Lava3,
     restrictedTerrains: [
-      TerrainType.Lava,
+      TerrainId.Lava,
     ],
     width: 2,
   },
@@ -1643,7 +1642,7 @@ const lavaObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Lava4,
     restrictedTerrains: [
-      TerrainType.Lava,
+      TerrainId.Lava,
     ],
     width: 1,
   },
@@ -1656,7 +1655,7 @@ const lavaObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 2,
     id: ObjectId.Lava5,
     restrictedTerrains: [
-      TerrainType.Lava,
+      TerrainId.Lava,
     ],
     width: 3,
   },
@@ -1668,7 +1667,7 @@ const lavaObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Lava6,
     restrictedTerrains: [
-      TerrainType.Lava,
+      TerrainId.Lava,
     ],
     width: 2,
   },
@@ -1681,7 +1680,7 @@ const lavaObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 2,
     id: ObjectId.Lava7,
     restrictedTerrains: [
-      TerrainType.Lava,
+      TerrainId.Lava,
     ],
     width: 3,
   },
@@ -1695,7 +1694,7 @@ const lavaObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 3,
     id: ObjectId.Lava8,
     restrictedTerrains: [
-      TerrainType.Lava,
+      TerrainId.Lava,
     ],
     width: 3,
   },
@@ -1708,7 +1707,7 @@ const lavaObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 2,
     id: ObjectId.Lava9,
     restrictedTerrains: [
-      TerrainType.Lava,
+      TerrainId.Lava,
     ],
     width: 3,
   },
@@ -1721,7 +1720,7 @@ const lavaObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 2,
     id: ObjectId.Lava10,
     restrictedTerrains: [
-      TerrainType.Lava,
+      TerrainId.Lava,
     ],
     width: 1,
   },
@@ -1737,7 +1736,7 @@ const desertObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedO
     height: 2,
     id: ObjectId.Oasis,
     restrictedTerrains: [
-      TerrainType.Desert,
+      TerrainId.Desert,
     ],
     width: 4,
   },
@@ -1749,7 +1748,7 @@ const desertObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedO
     height: 1,
     id: ObjectId.Skeleton,
     restrictedTerrains: [
-      TerrainType.Desert,
+      TerrainId.Desert,
     ],
     width: 2,
   },
@@ -1761,7 +1760,7 @@ const desertObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedO
     height: 1,
     id: ObjectId.Desert1,
     restrictedTerrains: [
-      TerrainType.Desert,
+      TerrainId.Desert,
     ],
     width: 2,
   },
@@ -1773,7 +1772,7 @@ const desertObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedO
     height: 1,
     id: ObjectId.Desert2,
     restrictedTerrains: [
-      TerrainType.Desert,
+      TerrainId.Desert,
     ],
     width: 1,
   },
@@ -1785,7 +1784,7 @@ const desertObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedO
     height: 1,
     id: ObjectId.Desert3,
     restrictedTerrains: [
-      TerrainType.Desert,
+      TerrainId.Desert,
     ],
     width: 3,
   },
@@ -1800,7 +1799,7 @@ const dirtObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.DirtLake,
     restrictedTerrains: [
-      TerrainType.Dirt,
+      TerrainId.Dirt,
     ],
     width: 2,
   },
@@ -1813,7 +1812,7 @@ const dirtObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 2,
     id: ObjectId.DirtLakeBig,
     restrictedTerrains: [
-      TerrainType.Dirt,
+      TerrainId.Dirt,
     ],
     width: 5,
   },
@@ -1825,7 +1824,7 @@ const dirtObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Dirt1,
     restrictedTerrains: [
-      TerrainType.Dirt,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -1837,7 +1836,7 @@ const dirtObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Dirt2,
     restrictedTerrains: [
-      TerrainType.Dirt,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -1849,7 +1848,7 @@ const dirtObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Dirt3,
     restrictedTerrains: [
-      TerrainType.Dirt,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -1861,7 +1860,7 @@ const dirtObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Dirt4,
     restrictedTerrains: [
-      TerrainType.Dirt,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -1873,7 +1872,7 @@ const dirtObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Dirt5,
     restrictedTerrains: [
-      TerrainType.Dirt,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -1885,7 +1884,7 @@ const dirtObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Dirt6,
     restrictedTerrains: [
-      TerrainType.Dirt,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -1897,7 +1896,7 @@ const dirtObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Dirt7,
     restrictedTerrains: [
-      TerrainType.Dirt,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -1909,7 +1908,7 @@ const dirtObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Dirt8,
     restrictedTerrains: [
-      TerrainType.Dirt,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -1921,7 +1920,7 @@ const dirtObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Dirt9,
     restrictedTerrains: [
-      TerrainType.Dirt,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -1933,7 +1932,7 @@ const dirtObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Dirt10,
     restrictedTerrains: [
-      TerrainType.Dirt,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -1945,7 +1944,7 @@ const dirtObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedObj
     height: 1,
     id: ObjectId.Dirt11,
     restrictedTerrains: [
-      TerrainType.Dirt,
+      TerrainId.Dirt,
     ],
     width: 1,
   },
@@ -2023,18 +2022,18 @@ const terrainMountainObjects: TerrainMountainObject[] = [
     height: 3,
     id: ObjectId.Mountain5,
     restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Snow,
-      TerrainType.Swamp,
-      TerrainType.Desert,
-      TerrainType.Dirt,
+      TerrainId.Grass,
+      TerrainId.Snow,
+      TerrainId.Swamp,
+      TerrainId.Desert,
+      TerrainId.Dirt,
     ],
     variants: {
-      [TerrainType.Grass]: "grass",
-      [TerrainType.Snow]: "snow",
-      [TerrainType.Swamp]: "swamp",
-      [TerrainType.Desert]: "desert",
-      [TerrainType.Dirt]: "dirt",
+      [TerrainId.Grass]: "grass",
+      [TerrainId.Snow]: "snow",
+      [TerrainId.Swamp]: "swamp",
+      [TerrainId.Desert]: "desert",
+      [TerrainId.Dirt]: "dirt",
     },
     width: 3,
   },
@@ -2053,18 +2052,18 @@ const terrainMountainObjects: TerrainMountainObject[] = [
     height: 2,
     id: ObjectId.Mountain6,
     restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Snow,
-      TerrainType.Swamp,
-      TerrainType.Desert,
-      TerrainType.Dirt,
+      TerrainId.Grass,
+      TerrainId.Snow,
+      TerrainId.Swamp,
+      TerrainId.Desert,
+      TerrainId.Dirt,
     ],
     variants: {
-      [TerrainType.Grass]: "grass",
-      [TerrainType.Snow]: "snow",
-      [TerrainType.Swamp]: "swamp",
-      [TerrainType.Desert]: "desert",
-      [TerrainType.Dirt]: "dirt",
+      [TerrainId.Grass]: "grass",
+      [TerrainId.Snow]: "snow",
+      [TerrainId.Swamp]: "swamp",
+      [TerrainId.Desert]: "desert",
+      [TerrainId.Dirt]: "dirt",
     },
     width: 3,
   },
@@ -2084,18 +2083,18 @@ const terrainMountainObjects: TerrainMountainObject[] = [
     height: 3,
     id: ObjectId.Mountain7,
     restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Snow,
-      TerrainType.Swamp,
-      TerrainType.Desert,
-      TerrainType.Dirt,
+      TerrainId.Grass,
+      TerrainId.Snow,
+      TerrainId.Swamp,
+      TerrainId.Desert,
+      TerrainId.Dirt,
     ],
     variants: {
-      [TerrainType.Grass]: "grass",
-      [TerrainType.Snow]: "snow",
-      [TerrainType.Swamp]: "swamp",
-      [TerrainType.Desert]: "desert",
-      [TerrainType.Dirt]: "dirt",
+      [TerrainId.Grass]: "grass",
+      [TerrainId.Snow]: "snow",
+      [TerrainId.Swamp]: "swamp",
+      [TerrainId.Desert]: "desert",
+      [TerrainId.Dirt]: "dirt",
     },
     width: 3,
   },
@@ -2114,18 +2113,18 @@ const terrainMountainObjects: TerrainMountainObject[] = [
     height: 2,
     id: ObjectId.Mountain8,
     restrictedTerrains: [
-      TerrainType.Grass,
-      TerrainType.Snow,
-      TerrainType.Swamp,
-      TerrainType.Desert,
-      TerrainType.Dirt,
+      TerrainId.Grass,
+      TerrainId.Snow,
+      TerrainId.Swamp,
+      TerrainId.Desert,
+      TerrainId.Dirt,
     ],
     variants: {
-      [TerrainType.Grass]: "grass",
-      [TerrainType.Snow]: "snow",
-      [TerrainType.Swamp]: "swamp",
-      [TerrainType.Desert]: "desert",
-      [TerrainType.Dirt]: "dirt",
+      [TerrainId.Grass]: "grass",
+      [TerrainId.Snow]: "snow",
+      [TerrainId.Swamp]: "swamp",
+      [TerrainId.Desert]: "desert",
+      [TerrainId.Dirt]: "dirt",
     },
     width: 3,
   },
@@ -2208,7 +2207,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 3,
     id: ObjectId.Trees7,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 3,
   },
@@ -2221,7 +2220,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 2,
     id: ObjectId.Trees8,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 3,
   },
@@ -2235,7 +2234,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 3,
     id: ObjectId.Trees9,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 3,
   },
@@ -2248,7 +2247,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 2,
     id: ObjectId.Trees10,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 3,
   },
@@ -2260,7 +2259,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Trees11,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 1,
   },
@@ -2272,7 +2271,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Trees12,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 1,
   },
@@ -2284,7 +2283,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Trees13,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 1,
   },
@@ -2296,7 +2295,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Trees14,
     restrictedTerrains: [
-      TerrainType.Snow,
+      TerrainId.Snow,
     ],
     width: 1,
   },
@@ -2440,7 +2439,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Trees27,
     restrictedTerrains: [
-      TerrainType.Desert,
+      TerrainId.Desert,
     ],
     width: 1,
   },
@@ -2452,7 +2451,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Trees28,
     restrictedTerrains: [
-      TerrainType.Desert,
+      TerrainId.Desert,
     ],
     width: 1,
   },
@@ -2464,7 +2463,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     height: 1,
     id: ObjectId.Trees29,
     restrictedTerrains: [
-      TerrainType.Desert,
+      TerrainId.Desert,
     ],
     width: 1,
   },

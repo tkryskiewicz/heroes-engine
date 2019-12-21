@@ -1,19 +1,19 @@
 import { TerrainData } from "heroes-core";
 
-import { TerrainType } from "./TerrainType";
+import { TerrainId } from "./TerrainId";
 
 export const terrains: TerrainData[] = [
   {
     hasTransitions: true,
-    id: TerrainType.Water,
+    id: TerrainId.Water,
   },
   {
     hasTransitions: true,
-    id: TerrainType.Grass,
+    id: TerrainId.Grass,
   },
   {
     hasTransitions: true,
-    id: TerrainType.Snow,
+    id: TerrainId.Snow,
     movementCostModifier: {
       type: "multiply",
       value: 1.5,
@@ -21,7 +21,7 @@ export const terrains: TerrainData[] = [
   },
   {
     hasTransitions: true,
-    id: TerrainType.Swamp,
+    id: TerrainId.Swamp,
     movementCostModifier: {
       type: "multiply",
       value: 1.5,
@@ -29,11 +29,11 @@ export const terrains: TerrainData[] = [
   },
   {
     hasTransitions: true,
-    id: TerrainType.Lava,
+    id: TerrainId.Lava,
   },
   {
     hasTransitions: true,
-    id: TerrainType.Desert,
+    id: TerrainId.Desert,
     movementCostModifier: {
       type: "multiply",
       value: 2,
@@ -41,10 +41,10 @@ export const terrains: TerrainData[] = [
   },
   {
     hasTransitions: false,
-    id: TerrainType.Dirt,
+    id: TerrainId.Dirt,
   },
 ];
 
 export const landTerrains = terrains
-  .filter((t) => t.id !== TerrainType.Water)
+  .filter((t) => t.id !== TerrainId.Water)
   .map((t) => t.id);

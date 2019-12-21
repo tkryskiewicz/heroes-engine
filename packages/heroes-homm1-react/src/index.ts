@@ -67,5 +67,5 @@ export {
   playerColor,
   resourceAmounts,
   skills,
-  terrainType,
+  terrain,
 } from "./stories";

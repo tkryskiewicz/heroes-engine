@@ -12,10 +12,10 @@ import {
   ScenarioDifficulty,
   ScenarioSize,
   ScenarioSpecification,
+  TerrainId,
   terrains,
-  TerrainType,
 } from "heroes-homm1";
-import { editorOption, objectType, terrainType } from "heroes-homm1-react";
+import { editorOption, objectType, terrain } from "heroes-homm1-react";
 
 import { EditorWindow } from "./EditorWindowContainer";
 
@@ -41,7 +41,7 @@ const data: GameData = {
   towns: {},
 };
 
-const map = createMap(38, 38, TerrainType.Water, 4);
+const map = createMap(38, 38, TerrainId.Water, 4);
 
 const scenario: Scenario = {
   description: "No Description",
@@ -92,7 +92,7 @@ storiesOf("EditorWindowContainer", module)
         onPositionChange={action("Position Change")}
         selectedOption={editorOption("Selected Option")}
         onSelectedOptionChange={action("Selected Option Change")}
-        selectedTerrain={terrainType("Selected Terrain")}
+        selectedTerrain={terrain("Selected Terrain")}
         onSelectedTerrainChange={action("Selected Terrain Change")}
         selectedObjectType={objectType("Selected Object Type")}
         onSelectedObjectTypeChange={action("Selected Object Type Change")}

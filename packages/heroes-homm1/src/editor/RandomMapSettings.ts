@@ -1,4 +1,4 @@
-import { TerrainType } from "../TerrainType";
+import { TerrainId } from "../data";
 
 export enum LandMassSetting {
   Scattered = "scattered",
@@ -23,10 +23,10 @@ export const createDefaultRandomMapSettings = (): RandomMapSettings => ({
   mountains: 0.5,
   saveWithoutViewing: false,
   terrainAmount: {
-    [TerrainType.Water]: 0.35,
-    [TerrainType.Grass]: 0.35,
-    [TerrainType.Snow]: 0.25,
-    [TerrainType.Dirt]: 0.25,
+    [TerrainId.Water]: 0.35,
+    [TerrainId.Grass]: 0.35,
+    [TerrainId.Snow]: 0.25,
+    [TerrainId.Dirt]: 0.25,
   },
   treasures: 0.5,
   trees: 0.5,

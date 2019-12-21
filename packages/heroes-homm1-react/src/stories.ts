@@ -32,8 +32,8 @@ import {
   SpellId,
   SpellType,
   StructureId,
+  TerrainId,
   TerrainTransition,
-  TerrainType,
   TownId,
 } from "heroes-homm1";
 
@@ -127,8 +127,8 @@ export const opponentSetting = (name: string, value = OpponentSetting.Dumb) =>
 export const artifact = (name: string) =>
   select<ArtifactId>(name, Object.values(ArtifactId), ArtifactId.ThunderMaceOfDominion);
 
-export const terrainType = (name: string) =>
-  select<TerrainType>(name, Object.values(TerrainType), TerrainType.Water);
+export const terrain = (name: string) =>
+  select<TerrainId>(name, Object.values(TerrainId), TerrainId.Water);
 
 export const combatSide = (name: string) =>
   select<CombatSide>(name, Object.values(CombatSide), CombatSide.Attacker);

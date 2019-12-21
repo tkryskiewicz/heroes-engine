@@ -1,16 +1,16 @@
 import { createMap } from "heroes-core";
 
+import { TerrainId } from "./data";
 import { Scenario } from "./Scenario";
 import { ScenarioDifficulty } from "./ScenarioDifficulty";
 import { ScenarioSize } from "./ScenarioSize";
-import { TerrainType } from "./TerrainType";
 
 // FIXME
 const baseScenario: Scenario = {
   description: "",
   difficulty: ScenarioDifficulty.Normal,
   filePrefix: "",
-  map: createMap(1, 1, TerrainType.Water, 4),
+  map: createMap(1, 1, TerrainId.Water, 4),
   name: "",
   size: ScenarioSize.Medium,
 };

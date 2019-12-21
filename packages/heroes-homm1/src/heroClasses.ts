@@ -1,9 +1,9 @@
 import { HeroClassData } from "heroes-core";
 
 import { CreatureId } from "./creatures";
+import { TerrainId } from "./data";
 import { HeroClassId } from "./HeroClassId";
 import { SkillId } from "./SkillId";
-import { TerrainType } from "./TerrainType";
 
 export const heroClasses: HeroClassData[] = [
   {
@@ -73,7 +73,7 @@ export const heroClasses: HeroClassData[] = [
       [SkillId.Knowledge]: 3,
     },
     terrainMobilityModifier: {
-      [TerrainType.Water]: {
+      [TerrainId.Water]: {
         type: "multiply",
         value: 2,
       },

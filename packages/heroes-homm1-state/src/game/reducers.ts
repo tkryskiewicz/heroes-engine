@@ -41,8 +41,8 @@ import {
   resources,
   spells,
   startGameTurn,
+  TerrainId,
   terrains,
-  TerrainType,
   towns,
 } from "heroes-homm1";
 
@@ -93,7 +93,7 @@ const data: GameData = {
   }), {}),
 };
 
-let map: Map = createMap(14, 14, TerrainType.Grass, 4);
+let map: Map = createMap(14, 14, TerrainId.Grass, 4);
 
 Object.keys(data.terrains).forEach((t, i) => {
   map = changeTerrain(map, createPoint(3 + i, 4), t);

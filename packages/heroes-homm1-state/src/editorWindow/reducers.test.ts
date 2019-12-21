@@ -12,7 +12,7 @@ import {
   ScenarioDifficulty,
   ScenarioSize,
   ScenarioSpecification,
-  TerrainType,
+  TerrainId,
 } from "heroes-homm1";
 
 import {
@@ -60,7 +60,7 @@ const defaultState: EditorWindowState = {
     description: "No Description",
     difficulty: ScenarioDifficulty.Normal,
     filePrefix: "VJVF",
-    map: createMap(50, 50, TerrainType.Water, 0),
+    map: createMap(50, 50, TerrainId.Water, 0),
     name: "No Name",
     size: ScenarioSize.Medium,
   },
@@ -68,7 +68,7 @@ const defaultState: EditorWindowState = {
   scenarioSpecificationVisible: false,
   selectedObjectType: ObjectType.Water,
   selectedOption: EditorOption.Terrains,
-  selectedTerrain: TerrainType.Water,
+  selectedTerrain: TerrainId.Water,
   zoomed: true,
 };
 

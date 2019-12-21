@@ -14,7 +14,7 @@ import {
   TerrainVariants,
 } from "heroes-homm1";
 
-import { combatSide, terrainType } from "../../stories";
+import { combatSide, terrain } from "../../stories";
 import { CombatWindow, CombatWindowProps } from "./CombatWindow";
 
 storiesOf("combat|CombatWindow", module)
@@ -44,7 +44,7 @@ storiesOf("combat|CombatWindow", module)
     const battlefieldBase = createBattlefield(
       BattlefieldWidth,
       BattlefieldHeigth,
-      terrainType("Terrain Type"),
+      terrain("Terrain"),
       boolean("Woody Terrain", false),
       TerrainVariants,
     );

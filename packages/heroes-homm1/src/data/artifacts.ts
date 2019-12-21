@@ -14,9 +14,9 @@ import { ObjectId } from "../ObjectId";
 import { CategorisedObjectData, isUltimateObjectData, TerrainRestrictedObjectData, UltimateObjectData } from "../objects";
 import { ResourceId } from "../ResourceId";
 import { SkillId } from "../SkillId";
-import { landTerrains } from "../terrains";
-import { TerrainType } from "../TerrainType";
 import { ObjectType } from "./ObjectType";
+import { TerrainId } from "./TerrainId";
+import { landTerrains } from "./terrains";
 
 const attackArtifacts: (ItemData & SkillModifierObjectData)[] = [
   {
@@ -253,7 +253,7 @@ const mobilityArtifacts: (ItemData & MobilityModifierObjectData)[] = [
   {
     id: ArtifactId.TrueCompassOfMobility,
     mobilityModifier: {
-      [TerrainType.Water]: {
+      [TerrainId.Water]: {
         type: "add",
         value: 40,
       },

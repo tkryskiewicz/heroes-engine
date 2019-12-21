@@ -1,4 +1,4 @@
-export enum TerrainType {
+export enum TerrainId {
   Water = "water",
   Grass = "grass",
   Snow = "snow",

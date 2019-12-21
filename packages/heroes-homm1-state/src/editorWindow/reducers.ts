@@ -6,13 +6,13 @@ import {
   ObjectType,
   ScenarioDifficulty,
   ScenarioSize,
-  TerrainType,
+  TerrainId,
 } from "heroes-homm1";
 
 import { EditorWindowAction, EditorWindowActionType } from "./actions";
 import { EditorWindowState } from "./state";
 
-const map = createMap(50, 50, TerrainType.Water, 4);
+const map = createMap(50, 50, TerrainId.Water, 4);
 
 const initialState: EditorWindowState = {
   eraseObejctsSettingsVisible: false,
@@ -38,7 +38,7 @@ const initialState: EditorWindowState = {
   scenarioSpecificationVisible: false,
   selectedObjectType: ObjectType.Water,
   selectedOption: EditorOption.Terrains,
-  selectedTerrain: TerrainType.Water,
+  selectedTerrain: TerrainId.Water,
   zoomed: true,
 };
 

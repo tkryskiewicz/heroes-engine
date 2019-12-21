@@ -1,35 +1,35 @@
 import { defineMessages } from "react-intl";
 
-import { TerrainType } from "heroes-homm1";
+import { TerrainId } from "heroes-homm1";
 
 import { unknownMessage } from "./util";
 
 const terrainMessages = defineMessages<string>({
-  [TerrainType.Water]: {
+  [TerrainId.Water]: {
     defaultMessage: "Water",
     id: "game.terrain.water",
   },
-  [TerrainType.Grass]: {
+  [TerrainId.Grass]: {
     defaultMessage: "Grass",
     id: "game.terrain.grass",
   },
-  [TerrainType.Snow]: {
+  [TerrainId.Snow]: {
     defaultMessage: "Snow",
     id: "game.terrain.snow",
   },
-  [TerrainType.Swamp]: {
+  [TerrainId.Swamp]: {
     defaultMessage: "Swamp",
     id: "game.terrain.swamp",
   },
-  [TerrainType.Lava]: {
+  [TerrainId.Lava]: {
     defaultMessage: "Lava",
     id: "game.terrain.lava",
   },
-  [TerrainType.Desert]: {
+  [TerrainId.Desert]: {
     defaultMessage: "Desert",
     id: "game.terrain.desert",
   },
-  [TerrainType.Dirt]: {
+  [TerrainId.Dirt]: {
     defaultMessage: "Dirt",
     id: "game.terrain.dirt",
   },
