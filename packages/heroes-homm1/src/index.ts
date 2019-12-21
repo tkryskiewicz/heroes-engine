@@ -76,8 +76,6 @@ export { SkillId, SkillIds } from "./SkillId";
 export { SoundVolume, isSoundEnabled } from "./SoundVolume";
 export { Spell } from "./Spell";
 export { SpellBook, SpellBookSpell, constructSpellBook } from "./SpellBook";
-export { SpellId, spells } from "./spells";
-export { SpellType } from "./SpellType";
 export {
   constructStructure,
   getCastleOptionStatus,

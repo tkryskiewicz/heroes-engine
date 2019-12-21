@@ -2,8 +2,7 @@ import { Dwelling, enoughResources, Resources, Structure, StructureData } from "
 
 import { CastleOptionStatus } from "./CastleOptionStatus";
 import { CreatureId } from "./creatures";
-import { ResourceId } from "./data";
-import { SpellId } from "./spells";
+import { ResourceId, SpellId } from "./data";
 
 interface DwellingType {
   readonly creature: string;

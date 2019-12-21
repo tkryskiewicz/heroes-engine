@@ -3,5 +3,8 @@ export * from "./artifacts";
 export * from "./ObjectType";
 export * from "./ResourceId";
 export * from "./resources";
+export * from "./SpellId";
+export * from "./spells";
+export * from "./SpellType";
 export * from "./TerrainId";
 export * from "./terrains";
