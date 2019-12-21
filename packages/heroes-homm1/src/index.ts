@@ -4,8 +4,6 @@ export { Artifact, ArtifactData, ArtifactSelection, constructArtifact } from "./
 export { CampaignId, CampaignIds } from "./campaigns";
 export { CastleOptionStatus } from "./CastleOptionStatus";
 export { ComPort } from "./ComPort";
-export { CreatureId, creatures } from "./creatures";
-export { CreatureSpeed } from "./CreatureSpeed";
 export * from "./data";
 export * from "./editor";
 export { getCurrentLevel, getNextLevelExperience } from "./experience";

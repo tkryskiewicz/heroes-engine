@@ -1,8 +1,7 @@
 import { Dwelling, enoughResources, Resources, Structure, StructureData } from "heroes-core";
 
 import { CastleOptionStatus } from "./CastleOptionStatus";
-import { CreatureId } from "./creatures";
-import { ResourceId, SpellId } from "./data";
+import { CreatureId, ResourceId, SpellId } from "./data";
 
 interface DwellingType {
   readonly creature: string;

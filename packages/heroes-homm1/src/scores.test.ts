@@ -1,4 +1,4 @@
-import { CreatureId } from "./creatures";
+import { CreatureId } from "./data";
 import { getCampaignGameRating, getStandardGameRating } from "./scores";
 
 describe("getCampaignGameRating", () => {

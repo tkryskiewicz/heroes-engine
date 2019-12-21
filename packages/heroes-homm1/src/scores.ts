@@ -1,5 +1,5 @@
 import { CampaignId } from "./campaigns";
-import { CreatureId } from "./creatures";
+import { CreatureId } from "./data";
 import { GameType } from "./GameType";
 
 export interface HighScores {

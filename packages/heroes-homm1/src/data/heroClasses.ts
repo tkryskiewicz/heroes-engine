@@ -1,6 +1,6 @@
 import { HeroClassData } from "heroes-core";
 
-import { CreatureId } from "../creatures";
+import { CreatureId } from "./CreatureId";
 import { HeroClassId } from "./HeroClassId";
 import { SkillId } from "./SkillId";
 import { TerrainId } from "./TerrainId";

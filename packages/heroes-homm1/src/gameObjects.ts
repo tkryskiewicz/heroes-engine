@@ -10,8 +10,15 @@ import {
   TreasureObjectData,
 } from "heroes-core";
 
-import { CreatureId, creatures } from "./creatures";
-import { artifactObjects, ObjectType, randomArtifactObject, ResourceId, TerrainId } from "./data";
+import {
+  artifactObjects,
+  CreatureId,
+  creatures,
+  ObjectType,
+  randomArtifactObject,
+  ResourceId,
+  TerrainId,
+} from "./data";
 import { ObjectId } from "./ObjectId";
 import {
   CategorisedObjectData,
