@@ -2,9 +2,9 @@ import React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 import { Route, RouteComponentProps, Switch, withRouter } from "react-router";
 
-import { GameData, getArmySize, Hero } from "heroes-core";
+import { GameData, getArmySize, Hero, Item } from "heroes-core";
 import { noop } from "heroes-helpers";
-import { Artifact, getLuckType, getMoraleType, isUltimateObjectData, LuckType, MoraleType } from "heroes-homm1";
+import { getLuckType, getMoraleType, isUltimateObjectData, LuckType, MoraleType } from "heroes-homm1";
 import {
   AdditionalStatsInfo,
   AdditionalStatType,
@@ -55,7 +55,7 @@ interface HeroWindowContainerProps extends InjectedIntlProps, RouteComponentProp
   readonly onCloseTroopDetailsClick: () => void;
   readonly onConfirmDismissTroopClick: (index: number) => void;
 
-  readonly getArtifactDetails: (artifact: Artifact, props: {
+  readonly getArtifactDetails: (artifact: Item, props: {
     readonly onCloseClick: () => void;
     readonly onStatusTextChange: (statusText: string) => void;
   }) => React.ReactNode;

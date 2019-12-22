@@ -1,12 +1,13 @@
 import React from "react";
 
-import { Artifact, isSpellBookObject } from "heroes-homm1";
+import { Item } from "heroes-core";
+import { isSpellBookObject } from "heroes-homm1";
 import { ArtifactDetailsPrompt, NoSpellsPrompt } from "heroes-homm1-react";
 
 import { SpellBookWindow } from "../SpellBookWindow";
 
 export const getArtifactDetails = (
-  object: Artifact,
+  object: Item,
   props: {
     readonly onStatusTextChange: (statusText: string) => void;
     readonly onCloseClick: () => void;

@@ -1,6 +1,6 @@
 import { Modifier } from "heroes-core";
 
-export { Artifact, ArtifactData, ArtifactSelection } from "./Artifact";
+export { ArtifactSelection } from "./Artifact";
 export { CampaignId, CampaignIds } from "./campaigns";
 export { CastleOptionStatus } from "./CastleOptionStatus";
 export { ComPort } from "./ComPort";

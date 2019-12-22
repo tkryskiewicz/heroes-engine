@@ -3,8 +3,8 @@ import { boolean, number, select } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { Hero, TradableObjectData } from "heroes-core";
-import { ArtifactData, ArtifactId, ArtifactLimit, CreatureId, HeroClassId, HeroId } from "heroes-homm1";
+import { Hero, ItemData, TradableObjectData } from "heroes-core";
+import { ArtifactId, ArtifactLimit, CreatureId, HeroClassId, HeroId } from "heroes-homm1";
 
 import { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindowContainer";
 
@@ -91,7 +91,7 @@ storiesOf("HeroTradingWindowContainer", module)
     );
   })
   .add("non-tradable artifacts", () => {
-    const nonTradableArtifact: ArtifactData & TradableObjectData = {
+    const nonTradableArtifact: ItemData & TradableObjectData = {
         id: ArtifactId.Spellbook,
         tradable: false,
     };
