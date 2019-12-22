@@ -1,5 +1,4 @@
-import { Direction, Resources, TroopSelection } from "heroes-core";
-import { ArtifactSelection } from "heroes-homm1";
+import { Direction, ItemSelection, Resources, TroopSelection } from "heroes-core";
 
 export enum GameActionType {
   SwapTroops = "game/swapTroops",
@@ -52,11 +51,11 @@ export const dismissTroop = (troop: TroopSelection): DismissTroopAction => ({
 
 export interface TradeArtifactsAction {
   readonly type: GameActionType.TradeArtifacts;
-  readonly artifact: ArtifactSelection;
-  readonly withArtifact: ArtifactSelection;
+  readonly artifact: ItemSelection;
+  readonly withArtifact: ItemSelection;
 }
 
-export const tradeArtifacts = (artifact: ArtifactSelection, withArtifact: ArtifactSelection): TradeArtifactsAction => ({
+export const tradeArtifacts = (artifact: ItemSelection, withArtifact: ItemSelection): TradeArtifactsAction => ({
   artifact,
   type: GameActionType.TradeArtifacts,
   withArtifact,

@@ -1,9 +1,17 @@
 import React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 
-import { GameData, getArmySize, Hero, isObjectTradable, isTradableObjectData, TroopSelection, TroopSelectionType } from "heroes-core";
+import {
+  GameData,
+  getArmySize,
+  Hero,
+  isObjectTradable,
+  isTradableObjectData,
+  ItemSelection,
+  TroopSelection,
+  TroopSelectionType,
+} from "heroes-core";
 import { noop } from "heroes-helpers";
-import { ArtifactSelection } from "heroes-homm1";
 import {
   ArtifactDetailsPrompt,
   ArtifactNotTradablePrompt,
@@ -31,9 +39,9 @@ interface Props extends InjectedIntlProps, WithGameWindowProps {
   readonly onSelectTroop: (troop: TroopSelection) => void;
   readonly onSwapTroops: (troop: TroopSelection, withTroop: TroopSelection) => void;
 
-  readonly selectedArtifact?: ArtifactSelection;
-  readonly onSelectArtifactClick: (artifact: ArtifactSelection) => void;
-  readonly onTradeArtifactsClick: (artifact: ArtifactSelection, withArtifact: ArtifactSelection) => void;
+  readonly selectedArtifact?: ItemSelection;
+  readonly onSelectArtifactClick: (artifact: ItemSelection) => void;
+  readonly onTradeArtifactsClick: (artifact: ItemSelection, withArtifact: ItemSelection) => void;
 
   readonly artifactDetailsVisible: boolean;
   readonly onOpenArtifactDetailsClick: () => void;
@@ -178,7 +186,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
         index={index}
         hero={hero}
         artifact={artifact ? artifact.dataId : undefined}
-        selected={selectedArtifact && selectedArtifact.hero === hero && selectedArtifact.index === index}
+        selected={selectedArtifact && selectedArtifact.objectId === hero && selectedArtifact.index === index}
         onClick={this.onArtifactClick}
       />
     );
@@ -200,22 +208,22 @@ class HeroTradingWindowContainer extends React.Component<Props> {
     if (selectedArtifact) {
       if (artifact && artifactData && isTradableObjectData(artifactData) && !isObjectTradable(artifactData)) {
         this.props.onOpenArtifactNotTradablePrompt();
-      } else if (hero === selectedArtifact.hero && index === selectedArtifact.index) {
+      } else if (hero === selectedArtifact.objectId && index === selectedArtifact.index) {
         this.props.onOpenArtifactDetailsClick();
       } else {
-        this.props.onTradeArtifactsClick(selectedArtifact, { hero, index });
+        this.props.onTradeArtifactsClick(selectedArtifact, { objectId: hero, index });
       }
     } else if (artifact) {
       if (artifactData && isTradableObjectData(artifactData)  && !isObjectTradable(artifactData)) {
         this.props.onOpenArtifactNotTradablePrompt();
       } else {
-        this.props.onSelectArtifactClick({ hero, index });
+        this.props.onSelectArtifactClick({ objectId: hero, index });
       }
     }
   }
 
-  private renderArtifactDetails(artifact: ArtifactSelection) {
-    const h = this.getHero(artifact.hero);
+  private renderArtifactDetails(artifact: ItemSelection) {
+    const h = this.getHero(artifact.objectId);
 
     const a = h.items[artifact.index]!;
 

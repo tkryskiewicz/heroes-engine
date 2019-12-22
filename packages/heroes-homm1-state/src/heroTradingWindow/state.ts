@@ -1,10 +1,9 @@
-import { TroopSelection } from "heroes-core";
-import { ArtifactSelection } from "heroes-homm1";
+import { ItemSelection, TroopSelection } from "heroes-core";
 
 export interface HeroTradingWindowState {
   readonly visibleHeroDetails?: string;
   readonly selectedTroop?: TroopSelection;
-  readonly selectedArtifact?: ArtifactSelection;
+  readonly selectedArtifact?: ItemSelection;
   readonly artifactDetailsVisible: boolean;
   readonly artifactNotTradablePromptVisible: boolean;
 }

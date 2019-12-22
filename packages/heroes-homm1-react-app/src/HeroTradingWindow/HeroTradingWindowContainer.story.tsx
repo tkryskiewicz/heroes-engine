@@ -74,8 +74,8 @@ storiesOf("HeroTradingWindowContainer", module)
     };
 
     const artifactSelection = boolean("Artifact Selected?", true) ? {
-      hero: select("Hero", { Hero: h.id, OtherHero: oh.id }, h.id),
       index: number("Index", 0, { range: true, min: 0, max: ArtifactLimit - 1, step: 1 }),
+      objectId: select("Hero", { Hero: h.id, OtherHero: oh.id }, h.id),
     } : undefined;
 
     return (

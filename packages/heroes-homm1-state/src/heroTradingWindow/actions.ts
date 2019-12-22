@@ -1,5 +1,4 @@
-import { TroopSelection } from "heroes-core";
-import { ArtifactSelection } from "heroes-homm1";
+import { ItemSelection, TroopSelection } from "heroes-core";
 
 export enum HeroTradingWindowActionType {
   OpenHeroDetails = "heroTradingWindow/openHeroDetails",
@@ -64,10 +63,10 @@ export const deselectTroop = (): DeselectTroopAction => ({
 
 export interface SelectArtifactAction {
   readonly type: HeroTradingWindowActionType.SelectArtifact;
-  readonly artifact: ArtifactSelection;
+  readonly artifact: ItemSelection;
 }
 
-export const selectArtifact = (artifact: ArtifactSelection): SelectArtifactAction => ({
+export const selectArtifact = (artifact: ItemSelection): SelectArtifactAction => ({
   artifact,
   type: HeroTradingWindowActionType.SelectArtifact,
 });

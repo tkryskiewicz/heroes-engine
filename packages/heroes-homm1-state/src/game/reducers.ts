@@ -6,7 +6,6 @@ import {
   dismissGameHero,
   dismissGameTroop,
   GameData,
-  ItemSelection,
   Map,
   placeObject,
   swapGameTroops,
@@ -153,18 +152,8 @@ export const gameReducer = (state: GameState = initialState, action: GameAction)
     case GameActionType.TradeArtifacts:
       const { artifact, withArtifact } = action;
 
-      const item: ItemSelection = {
-        index: artifact.index,
-        objectId: artifact.hero,
-      };
-
-      const withItem: ItemSelection = {
-        index: withArtifact.index,
-        objectId: withArtifact.hero,
-      };
-
       return {
-        ...tradeGameItems(state, item, withItem),
+        ...tradeGameItems(state, artifact, withArtifact),
       };
     case GameActionType.DismissHero:
       return {
