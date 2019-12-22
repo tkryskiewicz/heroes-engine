@@ -449,13 +449,13 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     const artifact = this.props.hero.items[index];
 
     const artifactData = artifact ?
-      this.props.data.objects[artifact.id] :
+      this.props.data.objects[artifact.dataId] :
       undefined;
 
     return (
       <ArtifactSlot
         index={index}
-        artifact={artifact ? artifact.id : undefined}
+        artifact={artifact ? artifact.dataId : undefined}
         isUltimate={artifactData && isUltimateObjectData(artifactData) ? artifactData.isUltimate : false}
         onMouseEnter={this.onArtifactMouseEnter}
         onMouseLeave={this.onArtifactMouseLeave}
@@ -468,7 +468,7 @@ class HeroWindowContainer extends React.Component<HeroWindowContainerProps, Hero
     const artifact = this.props.hero.items[index];
 
     const message = artifact ?
-      getArtifactNameMessage(artifact.id) :
+      getArtifactNameMessage(artifact.dataId) :
       artifactSlotMessages.empty;
 
     const statusText = this.props.intl.formatMessage(message);

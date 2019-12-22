@@ -80,7 +80,6 @@ describe("isEquipableObject", () => {
 describe("addObjectItem", () => {
   it("should add item to inventory", () => {
     const item: Item = {
-      data: "data",
       dataId: "dataId",
       id: "id",
     };
@@ -107,7 +106,6 @@ describe("addObjectItem", () => {
 describe("hasObjectItem", () => {
   it("should return true when item is in inventory", () => {
     const item: Item = {
-      data: {},
       dataId: "dataId",
       id: "item",
     };
@@ -141,7 +139,6 @@ describe("hasObjectItem", () => {
 describe("tradeObjectItems", () => {
   it("should trade items between objects", () => {
     const item: Item = {
-      data: {},
       dataId: "dataId",
       id: "item",
     };
@@ -182,13 +179,11 @@ describe("tradeObjectItems", () => {
 
   it("should trade items within object", () => {
     const item: Item = {
-      data: {},
       dataId: "dataId",
       id: "item",
     };
 
     const withItem: Item = {
-      data: {},
       dataId: "otherDataId",
       id: "otherItem",
     };

@@ -1,47 +1,42 @@
 import React from "react";
 
-import { Artifact, ArtifactId, SpellBook } from "heroes-homm1";
+import { Artifact, isSpellBookObject } from "heroes-homm1";
 import { ArtifactDetailsPrompt, NoSpellsPrompt } from "heroes-homm1-react";
 
 import { SpellBookWindow } from "../SpellBookWindow";
 
 export const getArtifactDetails = (
-  artifact: Artifact,
+  object: Artifact,
   props: {
     readonly onStatusTextChange: (statusText: string) => void;
     readonly onCloseClick: () => void;
   },
 ): React.ReactNode => {
-  switch (artifact.id) {
-    case ArtifactId.Spellbook: {
-      const spellBook = artifact as SpellBook;
-
-      if (!spellBook.data.spells.length) {
-        return (
-          <NoSpellsPrompt
-            visible={true}
-            onConfirmClick={props.onCloseClick}
-          />
-        );
-      }
-
+  if (isSpellBookObject(object)) {
+    if (!object.spells.length) {
       return (
-        <SpellBookWindow
-          visible={true}
-          spells={spellBook.data.spells}
-          onStatusTextChange={props.onStatusTextChange}
-          onExitClick={props.onCloseClick}
-        />
-      );
-    }
-    default: {
-      return (
-        <ArtifactDetailsPrompt
-          artifact={artifact.id}
+        <NoSpellsPrompt
           visible={true}
           onConfirmClick={props.onCloseClick}
         />
       );
     }
+
+    return (
+      <SpellBookWindow
+        visible={true}
+        spells={object.spells}
+        onStatusTextChange={props.onStatusTextChange}
+        onExitClick={props.onCloseClick}
+      />
+    );
   }
+
+  return (
+    <ArtifactDetailsPrompt
+      artifact={object.id}
+      visible={true}
+      onConfirmClick={props.onCloseClick}
+    />
+  );
 };

@@ -6,6 +6,7 @@ export * from "./ObeliskObject";
 export * from "./RandomCreatureObject";
 export * from "./RandomTownObject";
 export * from "./ResourceObject";
+export * from "./SpellBookObject";
 export * from "./TerrainRestrictedObject";
 export * from "./TownObject";
 export * from "./UltimateObject";

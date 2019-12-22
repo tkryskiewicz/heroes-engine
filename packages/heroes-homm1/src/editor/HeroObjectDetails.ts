@@ -1,6 +1,5 @@
 import { Army, GameData } from "heroes-core";
 
-import { constructArtifact } from "../Artifact";
 import { HeroObject } from "../objects";
 
 export interface HeroObjectDetails {
@@ -29,6 +28,12 @@ export const setHeroObjectDetails = (
   experience: details.experience,
   heroClass: data.heroes[details.heroId].heroClass,
   heroId: details.heroId,
-  items: details.artifacts.map((a) => a ? constructArtifact(a) : undefined),
+  items: details.artifacts.map((a) => a ?
+    {
+      dataId: a,
+      id: a,
+    } :
+    undefined,
+  ),
   owner: details.owner,
 });

@@ -13,9 +13,10 @@ import {
   HeroObject,
   HeroObjectData,
   initializeHeroObject,
+  SpellBookObject,
+  SpellBookObjectData,
   TownObject,
 } from "./objects";
-import { constructSpellBook } from "./SpellBook";
 import { StructureId } from "./StructureId";
 import { MageGuild } from "./structures";
 
@@ -66,6 +67,11 @@ describe("buyMageGuildSpellBook", () => {
       ],
     };
 
+    const spellBookObjectData: SpellBookObjectData = {
+      id: "spellbook",
+      spellBook: true,
+    };
+
     const game: Game = {
       activePlayer: "player",
       data: {
@@ -79,7 +85,9 @@ describe("buyMageGuildSpellBook", () => {
         },
         heroClasses: {},
         heroes: {},
-        objects: {},
+        objects: {
+          [spellBookObjectData.id]: spellBookObjectData,
+        },
         playerColors: [],
         resources: {},
         spells: {},
@@ -108,15 +116,21 @@ describe("buyMageGuildSpellBook", () => {
 
     const result = buyMageGuildSpellBook(game, "hero", "town", mageGuild.data.spellBookCost);
 
+    const spellBook: SpellBookObject = {
+      dataId: "spellbook",
+      id: "spellbook",
+      spells: [
+        {
+          charges: 0,
+          id: "spell",
+        },
+      ],
+    };
+
     const expectedHero: HeroObject = {
       ...heroObject,
       items: [
-        constructSpellBook([
-          {
-            charges: 0,
-            id: "spell",
-          },
-        ]),
+        spellBook,
       ],
     };
 

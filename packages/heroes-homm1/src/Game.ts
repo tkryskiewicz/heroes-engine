@@ -62,8 +62,9 @@ import {
 } from "heroes-core";
 import { isDefined } from "heroes-helpers";
 
-import { SkillId } from "./data";
+import { ArtifactId, SkillId } from "./data";
 import {
+  addSpellBookSpells,
   getInitialMobility,
   getMovementCost,
   HeroObject,
@@ -71,19 +72,23 @@ import {
   initializeHeroObject,
   initializeRandomCreatureObject,
   initializeRandomTownObject,
+  initializeSpellBookObject,
   initializeTownObject,
   isHeroObject,
   isHeroObjectData,
   isRandomCreatureObjectData,
   isRandomTownObjectData,
+  isSpellBookObjectData,
   isTownObject,
   RandomCreatureObjectData,
   RandomTownObjectData,
   recruitTownObjectTroop,
+  SpellBookObject,
+  SpellBookObjectData,
+  SpellBookSpell,
   TownObject,
   TownObjectData,
 } from "./objects";
-import { constructSpellBook, SpellBookSpell } from "./SpellBook";
 import { StructureId } from "./StructureId";
 import { MageGuild } from "./structures";
 
@@ -154,6 +159,11 @@ const treasureObjectHandler: Handler<TreasureObjectData> = {
 };
 
 // homm1
+const spellBookObjectHandler: Handler<SpellBookObjectData, SpellBookObject> = {
+  initialize: initializeSpellBookObject,
+  objectDataTest: isSpellBookObjectData,
+};
+
 const randomCreatureObjectHandler: Handler<RandomCreatureObjectData> = {
   initialize: initializeRandomCreatureObject,
   objectDataTest: isRandomCreatureObjectData,
@@ -209,6 +219,7 @@ const objectHandlers = [
   treasureObjectHandler,
   townObjectHandler,
   heroObjectHandler,
+  spellBookObjectHandler,
   randomCreatureObjectHandler,
   randomTownObjectHandler,
 ];
@@ -314,12 +325,15 @@ export const buyMageGuildSpellBook = (game: Game, heroId: string, townId: string
   // TODO: check if mage guild is built?
   const mageGuild = getTownStructure(town, StructureId.MageGuild) as MageGuild;
 
-  const spellBook = constructSpellBook([
-    ...mageGuild.data.spells.map((s): SpellBookSpell => ({
-      charges: object.skills[SkillId.Knowledge] || 0,
-      id: s,
-    })),
-  ]);
+  const spells = mageGuild.data.spells.map((s): SpellBookSpell => ({
+    charges: object.skills[SkillId.Knowledge] || 0,
+    id: s,
+  }));
+
+  const spellBook = addSpellBookSpells(
+    createGameObject(ArtifactId.Spellbook, ArtifactId.Spellbook, game.data) as SpellBookObject,
+    spells,
+  );
 
   return {
     ...game,

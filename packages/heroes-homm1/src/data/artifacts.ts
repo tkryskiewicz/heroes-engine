@@ -10,7 +10,13 @@ import {
 } from "heroes-core";
 
 import { ObjectId } from "../ObjectId";
-import { CategorisedObjectData, isUltimateObjectData, TerrainRestrictedObjectData, UltimateObjectData } from "../objects";
+import {
+  CategorisedObjectData,
+  isUltimateObjectData,
+  SpellBookObjectData,
+  TerrainRestrictedObjectData,
+  UltimateObjectData,
+} from "../objects";
 import { ArtifactId } from "./ArtifactId";
 import { ObjectType } from "./ObjectType";
 import { ResourceId } from "./ResourceId";
@@ -267,9 +273,10 @@ const siegeWeaponsArtifacts: ItemData[] = [
   },
 ];
 
-const spellBookArtifacts: ItemData[] = [
+const spellBookArtifacts: SpellBookObjectData[] = [
   {
     id: ArtifactId.Spellbook,
+    spellBook: true,
   },
 ];
 

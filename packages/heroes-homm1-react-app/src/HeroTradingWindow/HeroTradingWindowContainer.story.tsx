@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Hero, TradableObjectData } from "heroes-core";
-import { ArtifactData, ArtifactId, ArtifactLimit, constructArtifact, CreatureId, HeroClassId, HeroId } from "heroes-homm1";
+import { ArtifactData, ArtifactId, ArtifactLimit, CreatureId, HeroClassId, HeroId } from "heroes-homm1";
 
 import { HeroTradingWindow, HeroTradingWindowProps } from "./HeroTradingWindowContainer";
 
@@ -56,14 +56,20 @@ storiesOf("HeroTradingWindowContainer", module)
     const h: Hero = {
       ...hero,
       items: [
-        constructArtifact(ArtifactId.ThunderMaceOfDominion),
+        {
+          dataId: ArtifactId.ThunderMaceOfDominion,
+          id: "artifactA",
+        },
       ],
     };
 
     const oh: Hero = {
       ...otherHero,
       items: [
-        constructArtifact(ArtifactId.GiantFlailOfDominion),
+        {
+          dataId: ArtifactId.GiantFlailOfDominion,
+          id: "artifactB",
+        },
       ],
     };
 
@@ -99,7 +105,10 @@ storiesOf("HeroTradingWindowContainer", module)
     const h: Hero = {
       ...hero,
       items: [
-        constructArtifact(ArtifactId.Spellbook, {}),
+        {
+          dataId: nonTradableArtifact.id,
+          id: "id",
+        },
       ],
     };
 

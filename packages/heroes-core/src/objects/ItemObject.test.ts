@@ -39,7 +39,6 @@ describe("constructItemObjectItem", () => {
     const result = constructItemObjectItem(objectData);
 
     const expected: Item = {
-      data: {},
       dataId: "dataId",
       id: "item",
     };

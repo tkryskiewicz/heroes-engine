@@ -177,7 +177,7 @@ class HeroTradingWindowContainer extends React.Component<Props> {
       <TradingArtifactSlot
         index={index}
         hero={hero}
-        artifact={artifact ? artifact.id : undefined}
+        artifact={artifact ? artifact.dataId : undefined}
         selected={selectedArtifact && selectedArtifact.hero === hero && selectedArtifact.index === index}
         onClick={this.onArtifactClick}
       />
@@ -191,8 +191,8 @@ class HeroTradingWindowContainer extends React.Component<Props> {
 
     const artifact = h.items[index];
 
-    const artifactData = artifact && data.objects[artifact.id] ?
-      data.objects[artifact.id] :
+    const artifactData = artifact && data.objects[artifact.dataId] ?
+      data.objects[artifact.dataId] :
       undefined;
 
     // TODO: simplify?

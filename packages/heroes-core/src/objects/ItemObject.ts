@@ -9,7 +9,6 @@ export const isItemObjectData = (objectData: GameObjectData): objectData is Item
   (objectData as ItemObjectData).item !== undefined;
 
 export const constructItemObjectItem = (objectData: ItemObjectData): Item => ({
-  data: {},
   dataId: objectData.id,
   id: objectData.item,
 });

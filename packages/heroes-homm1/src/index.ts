@@ -1,6 +1,6 @@
 import { Modifier } from "heroes-core";
 
-export { Artifact, ArtifactData, ArtifactSelection, constructArtifact } from "./Artifact";
+export { Artifact, ArtifactData, ArtifactSelection } from "./Artifact";
 export { CampaignId, CampaignIds } from "./campaigns";
 export { CastleOptionStatus } from "./CastleOptionStatus";
 export { ComPort } from "./ComPort";
@@ -69,7 +69,6 @@ export {
 } from "./scores";
 export { SoundVolume, isSoundEnabled } from "./SoundVolume";
 export { Spell } from "./Spell";
-export { SpellBook, SpellBookSpell, constructSpellBook } from "./SpellBook";
 export * from "./StructureId";
 export { constructStructure, getCastleOptionStatus, isCommonStructure, MageGuild, Shipyard } from "./structures";
 export { constructTown } from "./Town";

@@ -20,7 +20,6 @@ describe("getHeroObjectDetails", () => {
       id: "id",
       items: [
       {
-          data: {},
           dataId: "artifact",
           id: "artifact",
         },
@@ -113,7 +112,6 @@ describe("setHeroObjectDetails", () => {
       id: "id",
       items: [
         {
-          data: {},
           dataId: "artifact",
           id: "artifact",
         },

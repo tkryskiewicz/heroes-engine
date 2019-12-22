@@ -2,9 +2,7 @@ import { GameObject, GameObjectData } from "./GameObject";
 
 export type ItemData = GameObjectData;
 
-export interface Item<T = {}> extends GameObject {
-  readonly data: T;
-}
+export type Item = GameObject;
 
 export interface ItemSelection {
   readonly objectId: string;

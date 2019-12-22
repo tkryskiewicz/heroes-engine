@@ -325,7 +325,6 @@ describe("getInitialMobility", () => {
       ...defaultObject,
       items: [
         {
-          data: {},
           dataId: itemData.id,
           id: itemData.id,
         },
