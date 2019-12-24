@@ -1,6 +1,6 @@
 import { TownData } from "heroes-core";
 
-import { HeroClassId } from "./data";
+import { HeroClassId } from "./HeroClassId";
 import {
   commonStructures,
   coreStructures,
@@ -11,7 +11,7 @@ import {
 } from "./structures";
 import { TownId } from "./TownId";
 
-export const towns: TownData[] = [
+export const townObjects: TownData[] = [
   {
     heroClass: HeroClassId.Knight,
     id: TownId.Farm,

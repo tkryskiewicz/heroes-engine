@@ -1,6 +1,6 @@
 import { Resources, Structure, StructureData } from "heroes-core";
 
-import { CastleOptionStatus } from "./CastleOptionStatus";
+import { CastleOptionStatus } from "../CastleOptionStatus";
 import { FarmStructureId, StructureId } from "./StructureId";
 import { constructStructure, getCastleOptionStatus, isCommonStructure } from "./structures";
 

@@ -1,6 +1,6 @@
 import { GameData, Town } from "heroes-core";
 
-import { constructStructure } from "./structures";
+import { constructStructure } from "./data";
 
 declare module "heroes-core/src/Town" {
   interface TownData {

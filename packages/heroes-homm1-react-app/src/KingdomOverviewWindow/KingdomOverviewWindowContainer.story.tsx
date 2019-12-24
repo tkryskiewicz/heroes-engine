@@ -3,7 +3,7 @@ import { boolean, number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { heroClasses, resources, towns } from "heroes-homm1";
+import { heroClasses, resources, townObjects } from "heroes-homm1";
 import { gameDate, playerColor, resourceAmounts } from "heroes-homm1-react";
 
 import { KingdomOverviewWindowContainer, KingdomOverviewWindowContainerProps } from "./KingdomOverviewWindowContainer";
@@ -17,7 +17,7 @@ const data: KingdomOverviewWindowContainerProps["data"] = {
     ...p,
     [c.id]: c,
   }), {}),
-  towns: towns.reduce((p, c) => ({
+  towns: townObjects.reduce((p, c) => ({
     ...p,
     [c.id]: c,
   }), {}),

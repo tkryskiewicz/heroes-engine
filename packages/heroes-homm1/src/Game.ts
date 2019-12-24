@@ -62,7 +62,7 @@ import {
 } from "heroes-core";
 import { isDefined } from "heroes-helpers";
 
-import { ArtifactId, SkillId } from "./data";
+import { ArtifactId, MageGuild, SkillId, StructureId } from "./data";
 import {
   addSpellBookSpells,
   getInitialMobility,
@@ -89,8 +89,6 @@ import {
   TownObject,
   TownObjectData,
 } from "./objects";
-import { StructureId } from "./StructureId";
-import { MageGuild } from "./structures";
 
 export interface EditorGameData {
   readonly maxCreatureCount: number;

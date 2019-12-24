@@ -68,11 +68,7 @@ export {
 } from "./scores";
 export { SoundVolume, isSoundEnabled } from "./SoundVolume";
 export { Spell } from "./Spell";
-export * from "./StructureId";
-export { constructStructure, getCastleOptionStatus, isCommonStructure, MageGuild, Shipyard } from "./structures";
 export { constructTown } from "./Town";
-export { TownId } from "./TownId";
-export { towns } from "./towns";
 
 export const MaxPlayers = 4;
 export const HeroLimit = 8;

@@ -1,8 +1,8 @@
 import { CreatureData } from "heroes-core";
 
-import { TownId } from "../TownId";
 import { CreatureId } from "./CreatureId";
 import { CreatureSpeed } from "./CreatureSpeed";
+import { TownId } from "./TownId";
 
 const farmCreatures: CreatureData[] = [
   {

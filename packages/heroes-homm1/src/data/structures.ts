@@ -1,7 +1,9 @@
 import { Dwelling, enoughResources, Resources, Structure, StructureData } from "heroes-core";
 
-import { CastleOptionStatus } from "./CastleOptionStatus";
-import { CreatureId, ResourceId, SpellId } from "./data";
+import { CastleOptionStatus } from "../CastleOptionStatus";
+import { CreatureId } from "./CreatureId";
+import { ResourceId } from "./ResourceId";
+import { SpellId } from "./SpellId";
 import {
   FarmStructureId,
   ForestStructureId,

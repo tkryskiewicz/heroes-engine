@@ -7,6 +7,7 @@ import {
   replaceObject,
 } from "heroes-core";
 
+import { MageGuild, StructureId } from "./data";
 import { buyMageGuildSpellBook } from "./Game";
 import { ObjectId } from "./ObjectId";
 import {
@@ -17,8 +18,6 @@ import {
   SpellBookObjectData,
   TownObject,
 } from "./objects";
-import { StructureId } from "./StructureId";
-import { MageGuild } from "./structures";
 
 describe("buyMageGuildSpellBook", () => {
   // TODO: split into multiple tests
