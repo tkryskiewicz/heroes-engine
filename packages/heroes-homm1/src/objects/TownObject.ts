@@ -2,7 +2,10 @@ import {
   appendArmyTroop,
   ArmedObject,
   ArmedObjectData,
+  buildStructure,
+  GameData,
   GameObject,
+  GameObjectData,
   getTroop,
   OwnableObject,
   OwnableObjectData,
@@ -10,26 +13,41 @@ import {
   Town,
 } from "heroes-core";
 
-import { ObjectId } from "../ObjectId";
+import { constructStructure, StructureId } from "../data";
 
 export interface TownObjectData extends ArmedObjectData, OwnableObjectData {
+  readonly town: string;
+  readonly isCastleBuilt: boolean;
+  readonly heroClass: string;
 }
+
+export const isTownObjectData = (objectData: GameObjectData): objectData is TownObjectData =>
+  (objectData as TownObjectData).town !== undefined;
 
 export interface TownObject extends Town, ArmedObject, OwnableObject {
 }
 
-export const initializeTownObject = (object: GameObject): TownObject => ({
+export const isTownObject = (object: GameObject): object is TownObject =>
+  (object as TownObject).structures !== undefined;
+
+export const initializeTownObject = (
+  object: GameObject,
+  objectData: TownObjectData,
+  data: Pick<GameData, "towns">,
+): TownObject => ({
   ...object,
   army: [],
   canConstructStructures: true,
   heroClass: "",
   name: "",
   owner: undefined,
-  structures: [],
+  structures: data.towns[objectData.town].structures
+    .map(constructStructure)
+    .map((s) => s.id === StructureId.Castle && objectData.isCastleBuilt ?
+      buildStructure(s) :
+      s,
+    ),
 });
-
-export const isTownObject = (object: GameObject): object is TownObject =>
-  object.dataId === ObjectId.Town;
 
 export const recruitTownObjectTroop = (
   object: TownObject,

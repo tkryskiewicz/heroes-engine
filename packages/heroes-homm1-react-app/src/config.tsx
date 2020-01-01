@@ -15,6 +15,7 @@ import {
   isRandomCreatureObjectData,
   isResourceObject,
   isTownObject,
+  isTownObjectData,
   isVariantObjectData,
   ObjectId,
   StructureId,
@@ -109,11 +110,11 @@ export const renderObject = (
     );
   }
 
-  if (isTownObject(object)) {
+  if (isTownObject(object) && isTownObjectData(objectData)) {
     return (
       <TownMapObject
         size="large"
-        town={object.id}
+        town={objectData.town}
         isCastleBuilt={isStructureBuilt(object, StructureId.Castle)}
         playerColor={object.owner}
       />
@@ -150,6 +151,16 @@ export const renderEditorObject = (
       <MapObj
         size={size}
         type={ObjectId.RandomHero}
+      />
+    );
+  }
+
+  if (isTownObjectData(objectData)) {
+    return (
+      <TownMapObject
+        size={size}
+        town={objectData.town}
+        isCastleBuilt={objectData.isCastleBuilt}
       />
     );
   }

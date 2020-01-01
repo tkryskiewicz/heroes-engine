@@ -45,6 +45,9 @@ export const terrains: TerrainData[] = [
   },
 ];
 
+export const allTerrains = terrains
+  .map((t) => t.id);
+
 export const landTerrains = terrains
   .filter((t) => t.id !== TerrainId.Water)
   .map((t) => t.id);

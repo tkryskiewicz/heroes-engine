@@ -80,6 +80,7 @@ import {
   isRandomTownObjectData,
   isSpellBookObjectData,
   isTownObject,
+  isTownObjectData,
   RandomCreatureObjectData,
   RandomTownObjectData,
   recruitTownObjectTroop,
@@ -169,6 +170,7 @@ const randomCreatureObjectHandler: Handler<RandomCreatureObjectData> = {
 
 const townObjectHandler: Handler<TownObjectData, TownObject> = {
   initialize: initializeTownObject,
+  objectDataTest: isTownObjectData,
   objectTest: isTownObject,
   turnEnd: (object) => ({
     ...object,

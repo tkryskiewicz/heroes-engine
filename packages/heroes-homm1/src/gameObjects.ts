@@ -11,13 +11,16 @@ import {
 } from "heroes-core";
 
 import {
+  allTerrains,
   artifactObjects,
   CreatureId,
   creatures,
+  landTerrains,
   ObjectType,
   randomArtifactObject,
   ResourceId,
   TerrainId,
+  townObjects,
 } from "./data";
 import { ObjectId } from "./ObjectId";
 import {
@@ -28,12 +31,8 @@ import {
   RandomCreatureObjectData,
   ResourceObjectData,
   TerrainRestrictedObjectData,
-  TownObjectData,
   VariantObjectData,
 } from "./objects";
-
-const allTerrains = Object.values(TerrainId);
-const nonWaterTerrains = Object.values(TerrainId).filter((t) => t !== TerrainId.Water);
 
 const allTerrainCategories = [
   ObjectType.Water,
@@ -66,51 +65,6 @@ const heroObjects: (MapObjectData & HeroObjectData & CategorisedObjectData)[] = 
   },
 ];
 
-const townObjects: (MapObjectData & TownObjectData & CategorisedObjectData)[] = [
-  {
-    army: {
-      preventMovingLastTroop: false,
-    },
-    category: "other",
-    grid: [
-      true, true, true, true,
-      true, true, true, true,
-      false, false, false, false,
-    ],
-    height: 3,
-    id: ObjectId.Town,
-    ownable: true,
-    // FIXME: make town objects work
-    width: 4,
-  },
-];
-
-const randomTown: MapObjectData & TerrainRestrictedObjectData & CategorisedObjectData = {
-  category: ObjectType.Town,
-  grid: [
-    true, true, true, true,
-    true, true, true, true,
-    false, false, false, false,
-  ],
-  height: 3,
-  id: ObjectId.RandomTown,
-  restrictedTerrains: nonWaterTerrains,
-  width: 4,
-};
-
-const randomCastle: MapObjectData & TerrainRestrictedObjectData & CategorisedObjectData = {
-  category: ObjectType.Town,
-  grid: [
-    true, true, true, true,
-    true, true, true, true,
-    false, false, false, false,
-  ],
-  height: 3,
-  id: ObjectId.RandomCastle,
-  restrictedTerrains: nonWaterTerrains,
-  width: 4,
-};
-
 type CreatureMapObjectData = CreatureObjectData & TerrainRestrictedObjectData;
 
 const creatureObjects: (MapObjectData & CreatureMapObjectData)[] = creatures
@@ -122,7 +76,7 @@ const creatureObjects: (MapObjectData & CreatureMapObjectData)[] = creatures
       ],
       height: 1,
       id: c.id,
-      restrictedTerrains: nonWaterTerrains,
+      restrictedTerrains: landTerrains,
       width: 1,
     }));
 
@@ -141,7 +95,7 @@ const randomCreatureObjects: RandomCreatureObject[] = [
     height: 1,
     id: ObjectId.RandomCreature,
     randomCreature: {},
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -154,7 +108,7 @@ const randomCreatureObjects: RandomCreatureObject[] = [
     randomCreature: {
       level: 1,
     },
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -167,7 +121,7 @@ const randomCreatureObjects: RandomCreatureObject[] = [
     randomCreature: {
       level: 2,
     },
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -180,7 +134,7 @@ const randomCreatureObjects: RandomCreatureObject[] = [
     randomCreature: {
       level: 3,
     },
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -193,7 +147,7 @@ const randomCreatureObjects: RandomCreatureObject[] = [
     randomCreature: {
       level: 4,
     },
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
 ];
@@ -208,7 +162,7 @@ const goldObject: ResourceMapObjectData & CategorisedObjectData = {
   height: 1,
   id: ObjectId.Gold,
   pickable: true,
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   treasure: {
     [ResourceId.Gold]: {
       // TODO: multiplies of 100
@@ -227,7 +181,7 @@ const woodObject: ResourceMapObjectData & CategorisedObjectData = {
   height: 1,
   id: ObjectId.Wood,
   pickable: true,
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   treasure: {
     [ResourceId.Wood]: {
       max: 15,
@@ -245,7 +199,7 @@ const oreObject: ResourceMapObjectData & CategorisedObjectData = {
   height: 1,
   id: ObjectId.Ore,
   pickable: true,
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   treasure: {
     [ResourceId.Ore]: {
       max: 16,
@@ -263,7 +217,7 @@ const crystalObject: ResourceMapObjectData & CategorisedObjectData = {
   height: 1,
   id: ObjectId.Crystal,
   pickable: true,
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   treasure: {
     [ResourceId.Crystal]: {
       max: 7,
@@ -281,7 +235,7 @@ const sulfurObject: ResourceMapObjectData & CategorisedObjectData = {
   height: 1,
   id: ObjectId.Sulfur,
   pickable: true,
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   treasure: {
     [ResourceId.Sulfur]: {
       max: 7,
@@ -299,7 +253,7 @@ const gemsObject: ResourceMapObjectData & CategorisedObjectData = {
   height: 1,
   id: ObjectId.Gems,
   pickable: true,
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   treasure: {
     [ResourceId.Gems]: {
       max: 7,
@@ -317,7 +271,7 @@ const mercuryObject: ResourceMapObjectData & CategorisedObjectData = {
   height: 1,
   id: ObjectId.Mercury,
   pickable: true,
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   treasure: {
     [ResourceId.Mercury]: {
       max: 7,
@@ -344,7 +298,7 @@ const randomResourceObject: MapObjectData & TerrainRestrictedObjectData & Catego
   ],
   height: 1,
   id: ObjectId.RandomResource,
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   width: 1,
 };
 
@@ -358,7 +312,7 @@ const fireplace: MapObjectData & TreasureMapObjectData & CategorisedObjectData =
   height: 1,
   id: ObjectId.Fireplace,
   pickable: true,
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   treasure: {
     [ResourceId.Gold]: {
       max: 7,
@@ -398,7 +352,7 @@ const treasureChestObject: MapObjectData & TreasureMapObjectData & CategorisedOb
   height: 1,
   id: ObjectId.TreasureChest,
   pickable: true,
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   treasure: {},
   width: 1,
 };
@@ -411,7 +365,7 @@ const lampObject: MapObjectData & TreasureMapObjectData & CategorisedObjectData 
   height: 1,
   id: ObjectId.Lamp,
   pickable: true,
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   treasure: {},
   width: 1,
 };
@@ -438,7 +392,7 @@ const mineObjectBase: MineMapObjectData & VariantObjectData & CategorisedObjectD
     amount: 0,
     resource: "",
   },
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   variants: {
     [TerrainId.Grass]: "grass",
     [TerrainId.Snow]: "snow",
@@ -506,7 +460,7 @@ const alchemist: MineMapObjectData & VariantObjectData & CategorisedObjectData =
     amount: 2,
     resource: ResourceId.Mercury,
   },
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   variants: {
     [TerrainId.Grass]: "swamp",
     [TerrainId.Snow]: "swamp",
@@ -531,7 +485,7 @@ const sawmill: MineMapObjectData & CategorisedObjectData = {
     amount: 2,
     resource: ResourceId.Wood,
   },
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   width: 2,
 };
 
@@ -651,7 +605,7 @@ const wagonCamp: MapObjectData & DwellingObjectData & TerrainRestrictedObjectDat
   ],
   height: 2,
   id: ObjectId.WagonCamp,
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   width: 3,
 };
 
@@ -680,7 +634,7 @@ const obelisk: ObeliskObject = {
   height: 1,
   id: ObjectId.Obelisk,
   interactionLimit: InteractionLimitType.OncePerPlayer,
-  restrictedTerrains: nonWaterTerrains,
+  restrictedTerrains: landTerrains,
   uncoversPuzzlePiece: true,
   variants: {
     [TerrainId.Grass]: "grass",
@@ -1121,7 +1075,7 @@ const riverObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 1,
     id: ObjectId.River1,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -1131,7 +1085,7 @@ const riverObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 1,
     id: ObjectId.River2,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -1141,7 +1095,7 @@ const riverObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 1,
     id: ObjectId.River3,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -1151,7 +1105,7 @@ const riverObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 1,
     id: ObjectId.River4,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -1161,7 +1115,7 @@ const riverObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 1,
     id: ObjectId.River5,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -1171,7 +1125,7 @@ const riverObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 1,
     id: ObjectId.River6,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -1181,7 +1135,7 @@ const riverObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 1,
     id: ObjectId.River7,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -1966,7 +1920,7 @@ const mountainObjects: (MapObjectData & TerrainRestrictedObjectData & Categorise
     ],
     height: 3,
     id: ObjectId.Mountain1,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -1977,7 +1931,7 @@ const mountainObjects: (MapObjectData & TerrainRestrictedObjectData & Categorise
     ],
     height: 2,
     id: ObjectId.Mountain2,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -1989,7 +1943,7 @@ const mountainObjects: (MapObjectData & TerrainRestrictedObjectData & Categorise
     ],
     height: 3,
     id: ObjectId.Mountain3,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -2000,7 +1954,7 @@ const mountainObjects: (MapObjectData & TerrainRestrictedObjectData & Categorise
     ],
     height: 2,
     id: ObjectId.Mountain4,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
 ];
@@ -2146,7 +2100,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 3,
     id: ObjectId.Trees1,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -2157,7 +2111,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 2,
     id: ObjectId.Trees2,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -2169,7 +2123,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 3,
     id: ObjectId.Trees3,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -2180,7 +2134,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 2,
     id: ObjectId.Trees4,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -2190,7 +2144,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 1,
     id: ObjectId.Trees5,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -2200,7 +2154,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 1,
     id: ObjectId.Trees6,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -2314,7 +2268,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 3,
     id: ObjectId.Trees15,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -2325,7 +2279,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 2,
     id: ObjectId.Trees16,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -2337,7 +2291,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 3,
     id: ObjectId.Trees17,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -2348,7 +2302,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 2,
     id: ObjectId.Trees18,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -2358,7 +2312,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 1,
     id: ObjectId.Trees19,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -2368,7 +2322,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 1,
     id: ObjectId.Trees20,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -2380,7 +2334,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 3,
     id: ObjectId.Trees21,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -2391,7 +2345,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 2,
     id: ObjectId.Trees22,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -2403,7 +2357,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 3,
     id: ObjectId.Trees23,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -2414,7 +2368,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 2,
     id: ObjectId.Trees24,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 3,
   },
   {
@@ -2424,7 +2378,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 1,
     id: ObjectId.Trees25,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -2434,7 +2388,7 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
     ],
     height: 1,
     id: ObjectId.Trees26,
-    restrictedTerrains: nonWaterTerrains,
+    restrictedTerrains: landTerrains,
     width: 1,
   },
   {
@@ -2478,8 +2432,6 @@ const treesObjects: (MapObjectData & TerrainRestrictedObjectData & CategorisedOb
 export const gameObjects: GameObjectData[] = [
   ...heroObjects,
   ...townObjects,
-  randomCastle,
-  randomTown,
   ...creatureObjects,
   ...randomCreatureObjects,
   ...resourceObjects,

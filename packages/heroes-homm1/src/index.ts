@@ -68,7 +68,6 @@ export {
 } from "./scores";
 export { SoundVolume, isSoundEnabled } from "./SoundVolume";
 export { Spell } from "./Spell";
-export { constructTown } from "./Town";
 
 export const MaxPlayers = 4;
 export const HeroLimit = 8;

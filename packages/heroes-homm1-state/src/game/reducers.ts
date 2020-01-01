@@ -42,7 +42,7 @@ import {
   startGameTurn,
   TerrainId,
   terrains,
-  townObjects,
+  towns,
 } from "heroes-homm1";
 
 import { GameAction, GameActionType } from "./actions";
@@ -86,7 +86,7 @@ const data: GameData = {
     ...p,
     [c.id]: c,
   }), {}),
-  towns: townObjects.reduce((p, c) => ({
+  towns: towns.reduce((p, c) => ({
     ...p,
     [c.id]: c,
   }), {}),

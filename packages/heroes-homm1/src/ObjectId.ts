@@ -5,7 +5,14 @@ export enum ObjectId {
   // TODO: not random, rename
   RandomHero = "random-hero",
 
-  Town = "town",
+  FarmTown = "farm-town",
+  FarmCastle = "farm-castle",
+  PlainsTown = "plains-town",
+  PlainsCastle = "plains-castle",
+  ForestTown = "forest-town",
+  ForestCastle = "forest-castle",
+  MountainsTown = "mountains-town",
+  MountainsCastle = "mountains-castle",
 
   RandomTown = "random-town",
   RandomCastle = "random-castle",
