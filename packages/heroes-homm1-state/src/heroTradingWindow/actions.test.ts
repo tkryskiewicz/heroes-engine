@@ -1,5 +1,4 @@
-import { TroopSelection, TroopSelectionType } from "heroes-core";
-import { ArtifactSelection } from "heroes-homm1";
+import { ItemSelection, TroopSelection, TroopSelectionType } from "heroes-core";
 
 import {
   closeArtifactDetails,
@@ -75,9 +74,9 @@ describe("heroTradingWindowActions", () => {
   });
 
   it("should create an action to select an artifact", () => {
-    const artifact: ArtifactSelection = {
-      hero: "hero",
+    const artifact: ItemSelection = {
       index: 0,
+      objectId: "hero",
     };
 
     const result = selectArtifact(artifact);

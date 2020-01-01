@@ -56,7 +56,7 @@ describe("buyMageGuildSpellBook", () => {
     const townObject: TownObject = {
       army: [],
       canConstructStructures: true,
-      dataId: ObjectId.Town,
+      dataId: "dataId",
       heroClass: "heroClass",
       id: "town",
       name: "Name",

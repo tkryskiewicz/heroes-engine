@@ -1,5 +1,4 @@
-import { TroopSelection, TroopSelectionType } from "heroes-core";
-import { ArtifactSelection } from "heroes-homm1";
+import { ItemSelection, TroopSelection, TroopSelectionType } from "heroes-core";
 
 import {
   closeArtifactDetails,
@@ -109,9 +108,9 @@ describe("heroTradingWindowReducer", () => {
   });
 
   it("should handle selecting artifact", () => {
-    const artifact: ArtifactSelection = {
-      hero: "hero",
+    const artifact: ItemSelection = {
       index: 0,
+      objectId: "hero",
     };
 
     const state: HeroTradingWindowState = {
@@ -131,9 +130,9 @@ describe("heroTradingWindowReducer", () => {
   });
 
   it("should handle deselecting artifact", () => {
-    const artifact: ArtifactSelection = {
-      hero: "hero",
+    const artifact: ItemSelection = {
       index: 0,
+      objectId: "hero",
     };
 
     const state: HeroTradingWindowState = {

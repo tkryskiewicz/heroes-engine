@@ -1,5 +1,4 @@
-import { TroopSelection, TroopSelectionType } from "heroes-core";
-import { ArtifactSelection } from "heroes-homm1";
+import { ItemSelection, TroopSelection, TroopSelectionType } from "heroes-core";
 
 import {
   buildStructure,
@@ -68,14 +67,14 @@ describe("gameActions", () => {
   });
 
   it("should create an action to trade artifacts", () => {
-    const artifact: ArtifactSelection = {
-      hero: "hero",
+    const artifact: ItemSelection = {
       index: 0,
+      objectId: "hero",
     };
 
-    const withArtifact: ArtifactSelection = {
-      hero: "withHero",
+    const withArtifact: ItemSelection = {
       index: 0,
+      objectId: "withHero",
     };
 
     const result = tradeArtifacts(artifact, withArtifact);

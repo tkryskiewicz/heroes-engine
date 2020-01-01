@@ -1,21 +1,43 @@
-import { DwellingStructure, GameObject, Structure } from "heroes-core";
+import { DwellingStructure, GameObject, Structure, TownData } from "heroes-core";
 
-import { ObjectId } from "../ObjectId";
 import {
   initializeTownObject,
   isTownObject,
   recruitTownObjectTroop,
   TownObject,
+  TownObjectData,
 } from "./TownObject";
 
 describe("initializeTownObject", () => {
   it("should create object", () => {
+    const objectData: TownObjectData = {
+      army: {
+        preventMovingLastTroop: false,
+      },
+      heroClass: "heroClass",
+      id: "dataId",
+      isCastleBuilt: false,
+      ownable: true,
+      town: "town",
+    };
+
+    const townData: TownData = {
+      id: "town",
+      structures: [],
+    };
+
+    const data: Parameters<typeof initializeTownObject>[2] = {
+      towns: {
+        [townData.id]: townData,
+      },
+    };
+
     const object: GameObject = {
       dataId: "dataId",
       id: "id",
     };
 
-    const result = initializeTownObject(object);
+    const result = initializeTownObject(object, objectData, data);
 
     const expected: TownObject = {
       ...object,
@@ -36,7 +58,7 @@ describe("isTownObject", () => {
     const object: TownObject = {
       army: [],
       canConstructStructures: true,
-      dataId: ObjectId.Town,
+      dataId: "dataId",
       heroClass: "",
       id: "id",
       name: "",
