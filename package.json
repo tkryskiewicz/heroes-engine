@@ -9,7 +9,7 @@
   "dependencies": {
     "antd": "^3.19.4",
     "classnames": "^2.2.6",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-intl": "^3.3.2",
